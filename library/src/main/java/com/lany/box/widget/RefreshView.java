@@ -258,7 +258,12 @@ public class RefreshView extends RelativeLayout implements RefreshHeader {
     @Override
     public void onInitialized(RefreshKernel kernel, int height, int extendHeight) {
         mRefreshKernel = kernel;
-        mRefreshKernel.requestDrawBackgoundForHeader(mBackgroundColor);
+        mRefreshKernel.requestDrawBackgroundForHeader(mBackgroundColor);
+    }
+
+    @Override
+    public void onPulling(float percent, int offset, int height, int extendHeight) {
+
     }
 
     @Override
@@ -271,16 +276,12 @@ public class RefreshView extends RelativeLayout implements RefreshHeader {
     }
 
     @Override
-    public void onPullingDown(float percent, int offset, int headHeight, int extendHeight) {
-    }
-
-    @Override
     public void onReleasing(float percent, int offset, int headHeight, int extendHeight) {
 
     }
 
     @Override
-    public void onRefreshReleased(RefreshLayout layout, int headerHeight, int extendHeight) {
+    public void onReleased(RefreshLayout refreshLayout, int height, int extendHeight) {
 
     }
 
@@ -451,7 +452,7 @@ public class RefreshView extends RelativeLayout implements RefreshHeader {
     public RefreshView setPrimaryColor(int primaryColor) {
         setBackgroundColor(mBackgroundColor = primaryColor);
         if (mRefreshKernel != null) {
-            mRefreshKernel.requestDrawBackgoundForHeader(mBackgroundColor);
+            mRefreshKernel.requestDrawBackgroundForHeader(mBackgroundColor);
         }
         return this;
     }

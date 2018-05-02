@@ -70,7 +70,7 @@ dependencies {
     //主项目中要添加butterknife依赖
     compileOnly 'com.jakewharton:butterknife:8.8.1'
     //刷新套件
-    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //dagger2
     compileOnly 'com.google.dagger:dagger:2.14.1'
     compileOnly 'com.google.dagger:dagger-android:2.14.1'
