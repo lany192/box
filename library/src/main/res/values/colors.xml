@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="toolbar_bg">#ffffff</color>
+    <color name="pic_default_bg">#eeeeee</color>
+    <color name="refresh_head_background">#f2f2f2</color>
+    <color name="refresh_head_text_color">#999999</color>
+    <color name="dialog_title">#333333</color>
+    <color name="green">#2ba245</color>
+    <color name="blue">#03a9f4</color>
+    <color name="gray">#888888</color>
+    <color name="orange">#f27242</color>
+    <color name="window_background">#f2f2f2</color>
+    <color name="item_bg_normal">@android:color/transparent</color>
+    <color name="item_bg_pressed">#15000000</color>
+</resources>

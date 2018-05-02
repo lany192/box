@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.lany.box.sample"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':library')
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.umeng.analytics:analytics:6.1.4'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'com.google.dagger:dagger:2.14.1'
+    implementation 'com.google.dagger:dagger-android:2.14.1'
+    implementation 'com.google.dagger:dagger-android-support:2.14.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.14.1'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.14.1'
+    compileOnly 'org.projectlombok:lombok:1.16.20'
+    annotationProcessor 'org.projectlombok:lombok:1.16.20'
+    implementation 'com.github.linger1216:labelview:v1.1.2'
+    implementation 'com.google.android:flexbox:0.3.2'
+    implementation 'com.liulishuo.filedownloader:library:1.7.1'
+}

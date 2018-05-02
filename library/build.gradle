@@ -1,0 +1,83 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.lany192'
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api "com.android.support:appcompat-v7:" + rootProject.ext.supportLibraryVersion
+    api "com.android.support:design:" + rootProject.ext.supportLibraryVersion
+    api "com.android.support:recyclerview-v7:" + rootProject.ext.supportLibraryVersion
+    api "com.android.support:support-annotations:" + rootProject.ext.supportLibraryVersion
+
+    api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    api 'org.greenrobot:eventbus:3.1.1'
+
+    api 'io.reactivex.rxjava2:rxjava:2.1.12'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    //带删除功能的EditText
+    api 'com.github.lany192:ClearEditText:1.0.4'
+    //菜单控件
+    api 'com.github.lany192:MenuView:1.0.0'
+    //banner控件
+    api 'com.lany:BannerView:2.0.5'
+    //唯一设备码获取
+    api 'com.lany:UniqueDeviceId:1.0.4'
+    //SharedPreferences封装
+    api 'com.lany:SharedPreferences:1.0.4'
+    //多状态切换控件
+    api 'com.lany:StateView:1.2.2'
+    //超链接处理
+    api 'com.klinkerapps:link_builder:1.6.1'
+    //TabLayout控件
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
+    //RecyclerView适配器
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //圆形图片
+    api 'de.hdodenhof:circleimageview:2.2.0'
+    //硬盘缓存
+    api 'com.jakewharton:disklrucache:2.0.2'
+    //日志
+    api 'com.elvishew:xlog:1.4.0'
+    //主项目中要添加butterknife依赖
+    compileOnly 'com.jakewharton:butterknife:8.8.1'
+    //刷新套件
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
+    //dagger2
+    compileOnly 'com.google.dagger:dagger:2.14.1'
+    compileOnly 'com.google.dagger:dagger-android:2.14.1'
+    compileOnly 'com.google.dagger:dagger-android-support:2.14.1'
+    api 'com.gyf.barlibrary:barlibrary:2.3.0'
+    //圆角图片
+    api 'com.makeramen:roundedimageview:2.3.0'
+    //分割线
+    api 'com.github.lany192:Divider:1.0.5'
+}
