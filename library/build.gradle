@@ -61,8 +61,6 @@ dependencies {
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
     //RecyclerView适配器
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
-    //圆形图片
-    api 'de.hdodenhof:circleimageview:2.2.0'
     //硬盘缓存
     api 'com.jakewharton:disklrucache:2.0.2'
     //日志
@@ -72,9 +70,10 @@ dependencies {
     //刷新套件
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //dagger2
-    compileOnly 'com.google.dagger:dagger:2.14.1'
-    compileOnly 'com.google.dagger:dagger-android:2.14.1'
-    compileOnly 'com.google.dagger:dagger-android-support:2.14.1'
+    compileOnly 'com.google.dagger:dagger:2.15'
+    compileOnly 'com.google.dagger:dagger-android:2.15'
+    compileOnly 'com.google.dagger:dagger-android-support:2.15'
+    //状态栏工具
     api 'com.gyf.barlibrary:barlibrary:2.3.0'
     //圆角图片
     api 'com.makeramen:roundedimageview:2.3.0'
