@@ -79,4 +79,6 @@ dependencies {
     api 'com.makeramen:roundedimageview:2.3.0'
     //分割线
     api 'com.github.lany192:Divider:1.0.5'
+    //下载框架
+    api 'com.liulishuo.filedownloader:library:1.7.3'
 }
