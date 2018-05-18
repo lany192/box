@@ -42,5 +42,4 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.16.20'
     implementation 'com.github.linger1216:labelview:v1.1.2'
     implementation 'com.google.android:flexbox:0.3.2'
-    implementation 'com.liulishuo.filedownloader:library:1.7.1'
 }
