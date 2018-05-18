@@ -7,7 +7,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
-
+/**
+ * 正方形布局
+ */
 public class SquareFrameLayout extends FrameLayout {
 
     public SquareFrameLayout(@NonNull Context context) {
