@@ -9,18 +9,18 @@ import com.lany.box.R;
 /**
  * 分割线代理
  */
-public class DividerDelegate extends MultiDelegate {
+public class DividerDelegate extends MultiDelegate<Object> {
     private int height = 4;
 
     @ColorInt
     private int color = Color.parseColor("#dddddd");
 
     public DividerDelegate() {
-        super();
+        super(null);
     }
 
     public DividerDelegate(int height, @ColorInt int color) {
-        super();
+        super(null);
         this.height = height;
         this.color = color;
     }
