@@ -12,22 +12,33 @@ import com.lany.box.adapter.ItemViewHolder;
 import com.lany.box.helper.ViewTypeHelper;
 
 /**
- * 多布局代理基类
+ * 多布局代理基类，适用于MultiAdapter适配器
  */
-public abstract class MultiDelegate implements MultiItemEntity {
+public abstract class MultiDelegate<D> implements MultiItemEntity {
     protected final String TAG = this.getClass().getSimpleName();
-    private int spanSize = 2;
+    private int mSpanSize = 2;
     private Context mContext;
-    protected ItemViewHolder helper;
+    protected ItemViewHolder mHelper;
     protected Logger.Builder log = XLog.tag(TAG);
+    protected D mData;
+
+    public MultiDelegate(D data) {
+        this.mData = data;
+    }
 
     @Override
     public int getItemType() {
+        //根据类class的名称生成对应的唯一id
         return ViewTypeHelper.getInstance().getViewType(this);
     }
 
+    /**
+     * 站位的大小
+     *
+     * @return 大小
+     */
     public int getSpanSize() {
-        return spanSize;
+        return mSpanSize;
     }
 
     /**
@@ -45,18 +56,18 @@ public abstract class MultiDelegate implements MultiItemEntity {
 
     public void convert(ItemViewHolder helper, Context context) {
         this.mContext = context;
-        this.helper = helper;
+        this.mHelper = helper;
         init();
     }
 
     @SuppressWarnings("unchecked")
     public <T extends View> T getView(@IdRes int viewId) {
-        return (T) helper.getView(viewId);
+        return (T) mHelper.getView(viewId);
     }
 
     public MultiDelegate setSpanSize(int spanSize) {
         log.i("spanSize:" + spanSize);
-        this.spanSize = spanSize;
+        this.mSpanSize = spanSize;
         return this;
     }
 
