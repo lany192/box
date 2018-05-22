@@ -20,7 +20,7 @@ import com.lany.box.widget.RefreshView;
 import com.lany.sp.BuildConfig;
 import com.lany.sp.SPHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
@@ -51,7 +51,7 @@ public abstract class BaseApp extends Application {
     private void initRefreshView() {
         //设置刷新头颜色
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        SmartRefreshLayout.setDefaultRefreshHeaderCreater(new DefaultRefreshHeaderCreater() {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @NonNull
             @Override
             public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {

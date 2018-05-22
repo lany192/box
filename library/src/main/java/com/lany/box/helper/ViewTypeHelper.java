@@ -3,11 +3,11 @@ package com.lany.box.helper;
 import android.support.v4.util.SparseArrayCompat;
 
 import com.elvishew.xlog.XLog;
-import com.lany.box.item.MultiItem;
+import com.lany.box.delegate.MultiDelegate;
 
 
 /**
- * 根据类名获得一个唯一的随机数
+ * 根据类名获得一个唯一的随机数，用于给多布局适配器代理获取对应的类型
  */
 public class ViewTypeHelper {
     private final String TAG = getClass().getSimpleName();
@@ -29,7 +29,7 @@ public class ViewTypeHelper {
         return instance;
     }
 
-    public int getViewType(MultiItem item) {
+    public int getViewType(MultiDelegate item) {
         Class<?> cls = item.getClass();
         int viewType = mViewTypeMap.indexOfValue(cls);
         if (viewType == -1) {//如果不存在

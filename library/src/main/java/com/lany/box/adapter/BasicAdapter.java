@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
+
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -20,7 +23,8 @@ import butterknife.ButterKnife;
  * ListView适配器基类
  */
 public abstract class BasicAdapter<T> extends BaseAdapter {
-    protected String TAG = this.getClass().getSimpleName();
+    protected final String TAG = this.getClass().getSimpleName();
+    protected Logger.Builder log = XLog.tag(TAG);
     private Context mContext;
     protected List<T> mItems;
 

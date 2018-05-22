@@ -1,6 +1,7 @@
 package com.lany.box.mvp.view;
 
 public interface BaseView {
+
     void showEmpty();
 
     void showEmpty(String msg);

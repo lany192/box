@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.lany.box.R;
 import com.lany.box.dialog.LoadingDialog;
@@ -29,6 +30,7 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
+    protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
     private StateLayout mStateLayout;
     private Unbinder mUnBinder;
@@ -57,7 +59,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        XLog.tag(TAG).i(TAG + " onCreate");
+        log.i(TAG + " onCreate");
         EventBus.getDefault().register(this);
         this.self = getActivity();
     }
@@ -73,7 +75,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        XLog.tag(TAG).i(TAG + " onCreateView");
+        log.i(TAG + " onCreateView");
         RelativeLayout containView = new RelativeLayout(self);
         containView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
@@ -126,19 +128,19 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     protected void onToolbarDoubleClick() {
         //要实现复写该方法
-        XLog.tag(TAG).i(TAG + " 双击了toolbar");
+        log.i(TAG + " 双击了toolbar");
     }
 
     /**
      * 如果需要懒加载，逻辑写在这里,只被调用一次
      */
     protected void onLazyLoad() {
-        XLog.tag(TAG).i(TAG + " onLazyInit");
+        log.i(TAG + " onLazyInit");
     }
 
     @Override
     public void onDestroy() {
-        XLog.tag(TAG).i(TAG + " onDestroy()");
+        log.i(TAG + " onDestroy()");
         EventBus.getDefault().unregister(this);
         if (null != mUnBinder) {
             mUnBinder.unbind();
@@ -148,7 +150,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Subscribe
     public void onEvent(NetWorkEvent event) {
-        XLog.tag(TAG).i(TAG + " 网络状态发送变化");
+        log.i(TAG + " 网络状态发送变化");
     }
 
     @Override

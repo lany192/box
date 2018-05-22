@@ -6,11 +6,13 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.lany.box.mvp.model.BaseModel;
 
 public abstract class BasePresenter implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
+    protected Logger.Builder log = XLog.tag(TAG);
 
     public BasePresenter(Fragment view, BaseModel model) {
         view.getLifecycle().addObserver(model);
@@ -22,31 +24,31 @@ public abstract class BasePresenter implements LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {
-        XLog.tag(TAG).i("onCreate()");
+        log.i("onCreate()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
-        XLog.tag(TAG).i("onStart()");
+        log.i("onStart()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
-        XLog.tag(TAG).i("onResume()");
+        log.i("onResume()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onPause() {
-        XLog.tag(TAG).i("onPause()");
+        log.i("onPause()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onStop() {
-        XLog.tag(TAG).i("onStop()");
+        log.i("onStop()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
-        XLog.tag(TAG).i("onDestroy()");
+        log.i("onDestroy()");
     }
 }

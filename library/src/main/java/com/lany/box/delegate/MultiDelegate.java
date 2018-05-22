@@ -1,4 +1,4 @@
-package com.lany.box.item;
+package com.lany.box.delegate;
 
 import android.content.Context;
 import android.support.annotation.IdRes;
@@ -6,14 +6,20 @@ import android.support.annotation.LayoutRes;
 import android.view.View;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.lany.box.adapter.ItemViewHolder;
 import com.lany.box.helper.ViewTypeHelper;
 
-public abstract class MultiItem implements MultiItemEntity {
+/**
+ * 多布局代理基类
+ */
+public abstract class MultiDelegate implements MultiItemEntity {
     protected final String TAG = this.getClass().getSimpleName();
     private int spanSize = 2;
-    protected Context mContext;
+    private Context mContext;
     protected ItemViewHolder helper;
+    protected Logger.Builder log = XLog.tag(TAG);
 
     @Override
     public int getItemType() {
@@ -24,9 +30,17 @@ public abstract class MultiItem implements MultiItemEntity {
         return spanSize;
     }
 
+    /**
+     * 返回布局文件id
+     *
+     * @return 布局文件id
+     */
     @LayoutRes
     public abstract int getLayoutId();
 
+    /**
+     * 初始化方法
+     */
     public abstract void init();
 
     public void convert(ItemViewHolder helper, Context context) {
@@ -40,8 +54,13 @@ public abstract class MultiItem implements MultiItemEntity {
         return (T) helper.getView(viewId);
     }
 
-    public MultiItem setSpanSize(int spanSize) {
+    public MultiDelegate setSpanSize(int spanSize) {
+        log.i("spanSize:" + spanSize);
         this.spanSize = spanSize;
         return this;
+    }
+
+    public Context getContext() {
+        return mContext;
     }
 }

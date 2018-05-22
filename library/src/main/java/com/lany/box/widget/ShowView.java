@@ -46,16 +46,15 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
 
     private void init() {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.show_view, this, true);
-        mRefreshLayout = (SmartRefreshLayout) view.findViewById(R.id.show_view_refresh_layout);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.show_view_recycler_view);
-        mGotoTopBtn = (ImageView) view.findViewById(R.id.show_view_goto_top_img);
+        mRefreshLayout = view.findViewById(R.id.show_view_refresh_layout);
+        mRecyclerView = view.findViewById(R.id.show_view_recycler_view);
+        mGotoTopBtn = view.findViewById(R.id.show_view_goto_top_img);
         mGotoTopBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 gotoTop();
             }
         });
-
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

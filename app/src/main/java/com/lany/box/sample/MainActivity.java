@@ -2,7 +2,6 @@ package com.lany.box.sample;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 
 import com.lany.box.activity.BaseActivity;
@@ -32,17 +31,17 @@ public class MainActivity extends BaseActivity {
 
                             @Override
                             protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                                Log.i(TAG, "下载进度: " + (soFarBytes / (float) totalBytes * 100) + "%");
+                                log.i("下载进度: " + (soFarBytes / (float) totalBytes * 100) + "%");
                             }
 
                             @Override
                             protected void completed(BaseDownloadTask task) {
-                                Log.i(TAG, "completed: 下载完成" + task.getUrl() + " 目标文件路径：" + task.getTargetFilePath());
+                                log.i("completed: 下载完成" + task.getUrl() + " 目标文件路径：" + task.getTargetFilePath());
                             }
 
                             @Override
                             protected void error(BaseDownloadTask task, Throwable e) {
-                                Log.i(TAG, "error: " + e.getMessage());
+                                log.i("error: " + e.getMessage());
                             }
                         }).start();
             }

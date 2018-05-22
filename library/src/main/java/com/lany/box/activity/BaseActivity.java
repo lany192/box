@@ -9,7 +9,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.gyf.barlibrary.ImmersionBar;
 import com.lany.box.R;
@@ -39,6 +39,7 @@ import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
+    protected Logger.Builder log = XLog.tag(TAG);
     protected AppCompatActivity self;
     private View mToolbar;
     private RelativeLayout mAllView;
@@ -232,7 +233,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     public void onRetry() {
-        XLog.tag(TAG).i(TAG + " 点击重试");
+        log.i(TAG + " 点击重试");
     }
 
     @Override
@@ -249,7 +250,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Subscribe
     public void onEvent(NetWorkEvent event) {
-        Log.i(TAG, "onEvent: 网络发生了变化");
+        log.i("onEvent: 网络发生了变化");
     }
 
     @Override

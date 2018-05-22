@@ -1,4 +1,4 @@
-package com.lany.box.item;
+package com.lany.box.delegate;
 
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
@@ -6,17 +6,20 @@ import android.view.View;
 
 import com.lany.box.R;
 
-public class DividerItem extends MultiItem {
+/**
+ * 分割线代理
+ */
+public class DividerDelegate extends MultiDelegate {
     private int height = 4;
 
     @ColorInt
     private int color = Color.parseColor("#dddddd");
 
-    public DividerItem() {
+    public DividerDelegate() {
         super();
     }
 
-    public DividerItem(int height, @ColorInt int color) {
+    public DividerDelegate(int height, @ColorInt int color) {
         super();
         this.height = height;
         this.color = color;
@@ -34,12 +37,12 @@ public class DividerItem extends MultiItem {
         view.setBackgroundColor(color);
     }
 
-    public DividerItem setHeight(int height) {
+    public DividerDelegate setHeight(int height) {
         this.height = height;
         return this;
     }
 
-    public DividerItem setColor(@ColorInt int color) {
+    public DividerDelegate setColor(@ColorInt int color) {
         this.color = color;
         return this;
     }

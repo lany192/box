@@ -15,12 +15,14 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 
 import butterknife.ButterKnife;
 
 public abstract class BaseLayout extends FrameLayout implements LifecycleObserver {
-    protected final String TAG = getClass().getSimpleName();
+    protected final String TAG = this.getClass().getSimpleName();
+    protected Logger.Builder log = XLog.tag(TAG);
 
     public BaseLayout(@NonNull Context context) {
         super(context);
@@ -56,31 +58,31 @@ public abstract class BaseLayout extends FrameLayout implements LifecycleObserve
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {
-        XLog.tag(TAG).i("onCreate()");
+        log.i("onCreate()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
-        XLog.tag(TAG).i("onStart()");
+        log.i("onStart()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
-        XLog.tag(TAG).i("onResume()");
+        log.i("onResume()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onPause() {
-        XLog.tag(TAG).i("onPause()");
+        log.i("onPause()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onStop() {
-        XLog.tag(TAG).i("onStop()");
+        log.i("onStop()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
-        XLog.tag(TAG).i("onDestroy()");
+        log.i("onDestroy()");
     }
 }
