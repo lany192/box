@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
 import com.elvishew.xlog.LogConfiguration;
@@ -49,8 +48,6 @@ public abstract class BaseApp extends Application {
     }
 
     private void initRefreshView() {
-        //设置刷新头颜色
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @NonNull
             @Override
