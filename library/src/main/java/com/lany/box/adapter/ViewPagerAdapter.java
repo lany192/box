@@ -9,7 +9,7 @@ import com.lany.box.entity.TabItem;
 import java.util.List;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-    private List<TabItem> tabs = null;
+    private List<TabItem> tabs;
 
     public ViewPagerAdapter(FragmentManager fm, List<TabItem> items) {
         super(fm);
