@@ -33,7 +33,7 @@ public class SimpleAdapter extends BasicAdapter<String> {
 
         public ViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.item_text);
+            title = view.findViewById(R.id.item_text);
         }
     }
 }
