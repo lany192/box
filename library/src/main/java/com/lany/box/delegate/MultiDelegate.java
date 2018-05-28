@@ -26,9 +26,13 @@ public abstract class MultiDelegate<D> implements MultiItemEntity {
         this.mData = data;
     }
 
+    /**
+     * 根据类class的名称生成对应的唯一id
+     *
+     * @return item类型
+     */
     @Override
     public int getItemType() {
-        //根据类class的名称生成对应的唯一id
         return ViewTypeHelper.getInstance().getViewType(this);
     }
 

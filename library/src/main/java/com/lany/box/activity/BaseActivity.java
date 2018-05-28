@@ -2,7 +2,6 @@ package com.lany.box.activity;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -37,6 +36,9 @@ import org.greenrobot.eventbus.Subscribe;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+/**
+ * 通用基类
+ */
 public abstract class BaseActivity extends AppCompatActivity implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
@@ -108,9 +110,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         initContentView();
         setContentView(mAllView);
         mUnBinder = ButterKnife.bind(this);
-        if (hasToolbar()) {
-            setBarTitle(getTitle());
-        }
         init(savedInstanceState);
     }
 
@@ -146,16 +145,16 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
         setPaddingSmart(this, mToolbar);
         mAllView.addView(mToolbar);
-        View backBtn;
-        try {
-            backBtn = mToolbar.findViewById(R.id.custom_toolbar_back_btn);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_back_btn' field to back in custom toolbar layout.");
-        }
-        try {
-            mTitleText = mToolbar.findViewById(R.id.custom_toolbar_title_text);
-        } catch (Exception e) {
+
+        mTitleText = mToolbar.findViewById(R.id.custom_toolbar_title_text);
+        if (mTitleText == null) {
             throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_title_text' field to set title in custom toolbar layout.");
+        }
+        setBarTitle(getTitle());
+
+        View backBtn = mToolbar.findViewById(R.id.custom_toolbar_back_btn);
+        if (backBtn == null) {
+            throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_back_btn' field to back in custom toolbar layout.");
         }
         if (hasBackBtn()) {
             backBtn.setVisibility(View.VISIBLE);
@@ -163,7 +162,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 @Override
                 public void onClick(View v) {
                     if (!ClickUtil.isFast()) {
-                        onCustomBackPressed();
+                        backAction();
                     }
                 }
             });
@@ -184,7 +183,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         //点击空白区域收起输入法
         if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            if (manager != null) {
+                manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
         }
     }
 
@@ -209,31 +210,27 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     }
 
     public void setBarTitle(CharSequence title) {
-        if (hasToolbar()) {
-            if (!TextUtils.isEmpty(title)) {
-                mTitleText.setText(title);
-            }
-        } else {
-            throw new IllegalArgumentException("No toolbar, can't call this method.");
+        if (hasToolbar() && !TextUtils.isEmpty(title)) {
+            mTitleText.setText(title);
         }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            onCustomBackPressed();
+            backAction();
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    protected void onCustomBackPressed() {
+    protected void backAction() {
         onBackPressed();
     }
 
     @Override
     public void onRetry() {
-        log.i(TAG + " 点击重试");
+        log.i("点击重试");
     }
 
     @Override
@@ -309,9 +306,5 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (mLoadingDialog != null && mLoadingDialog.isAdded()) {
             mLoadingDialog.cancel();
         }
-    }
-
-    public void startActivity(Class<?> cls) {
-        startActivity(new Intent(this, cls));
     }
 }

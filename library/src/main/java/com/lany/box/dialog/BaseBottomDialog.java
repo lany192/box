@@ -9,11 +9,15 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
+
 import butterknife.ButterKnife;
 
 
 public abstract class BaseBottomDialog {
     protected final String TAG = this.getClass().getSimpleName();
+    protected Logger.Builder log = XLog.tag(TAG);
     protected BottomSheetDialog mDialog;
     protected View mContentView;
 
@@ -34,7 +38,7 @@ public abstract class BaseBottomDialog {
     }
 
     protected <T extends View> T getView(@IdRes int viewId) {
-        return (T) mContentView.findViewById(viewId);
+        return mContentView.findViewById(viewId);
     }
 
     public void show() {

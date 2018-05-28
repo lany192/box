@@ -1,6 +1,5 @@
 package com.lany.box.fragment;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -59,7 +58,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        log.i(TAG + " onCreate");
         EventBus.getDefault().register(this);
         this.self = getActivity();
     }
@@ -75,7 +73,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        log.i(TAG + " onCreateView");
         RelativeLayout containView = new RelativeLayout(self);
         containView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
@@ -125,17 +122,18 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         }
     }
 
-
+    /**
+     * 要实现复写该方法
+     */
     protected void onToolbarDoubleClick() {
-        //要实现复写该方法
-        log.i(TAG + " 双击了toolbar");
+        log.i(" 双击了toolbar");
     }
 
     /**
      * 如果需要懒加载，逻辑写在这里,只被调用一次
      */
     protected void onLazyLoad() {
-        log.i(TAG + " onLazyInit");
+        log.i("onLazyInit懒加载");
     }
 
     @Override
@@ -150,7 +148,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Subscribe
     public void onEvent(NetWorkEvent event) {
-        log.i(TAG + " 网络状态发送变化");
+        log.i(" 网络状态发送变化");
     }
 
     @Override
@@ -214,9 +212,5 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (mLoadingDialog != null && mLoadingDialog.isAdded()) {
             mLoadingDialog.cancel();
         }
-    }
-
-    public void startActivity(Class<?> cls) {
-        startActivity(new Intent(getActivity(), cls));
     }
 }
