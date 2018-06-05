@@ -21,4 +21,6 @@ public interface BaseView {
     void showLoadingDialog(CharSequence message);
 
     void cancelLoadingDialog();
+
+    void finish();
 }

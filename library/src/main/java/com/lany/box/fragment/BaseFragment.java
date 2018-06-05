@@ -213,4 +213,8 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
             mLoadingDialog.cancel();
         }
     }
+
+    public void finish() {
+        getActivity().finish();
+    }
 }
