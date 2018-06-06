@@ -14,15 +14,15 @@ import com.lany.box.helper.ViewTypeHelper;
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
  */
-public abstract class MultiDelegate<D> implements MultiItemEntity {
+public abstract class MultiDelegate<T> implements MultiItemEntity {
     protected final String TAG = this.getClass().getSimpleName();
     private int mSpanSize = 2;
     private Context mContext;
     protected ItemViewHolder mHelper;
     protected Logger.Builder log = XLog.tag(TAG);
-    protected D mData;
+    protected final T mData;
 
-    public MultiDelegate(D data) {
+    public MultiDelegate(final T data) {
         this.mData = data;
     }
 
@@ -77,5 +77,9 @@ public abstract class MultiDelegate<D> implements MultiItemEntity {
 
     public Context getContext() {
         return mContext;
+    }
+
+    public T getDate() {
+        return mData;
     }
 }
