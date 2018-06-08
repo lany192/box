@@ -225,6 +225,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     }
 
     protected void backAction() {
+        hideSoftInput();
         onBackPressed();
     }
 
