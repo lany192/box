@@ -4,14 +4,19 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 
-import com.lany.box.activity.BaseActivity;
+import com.lany.box.activity.BaseDaggerActivity;
 import com.lany.box.interfaces.SimpleFileDownloadListener;
+import com.lany.box.utils.ToastUtils;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloader;
 
 import java.io.File;
 
-public class MainActivity extends BaseActivity {
+import javax.inject.Inject;
+
+public class MainActivity extends BaseDaggerActivity implements MainContract.View {
+    @Inject
+    MainPresenter mPresenter;
 
     @Override
     protected int getLayoutId() {
@@ -23,28 +28,35 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.download_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + File.separator + "gradle-4.4-all.zip";
-                String fileUrl = "https://downloads.gradle.org/distributions/gradle-4.4-all.zip";
-                FileDownloader.getImpl().create(fileUrl)
-                        .setPath(path)
-                        .setListener(new SimpleFileDownloadListener() {
+                mPresenter.sayClick();
 
-                            @Override
-                            protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                                log.i("下载进度: " + (soFarBytes / (float) totalBytes * 100) + "%");
-                            }
-
-                            @Override
-                            protected void completed(BaseDownloadTask task) {
-                                log.i("completed: 下载完成" + task.getUrl() + " 目标文件路径：" + task.getTargetFilePath());
-                            }
-
-                            @Override
-                            protected void error(BaseDownloadTask task, Throwable e) {
-                                log.i("error: " + e.getMessage());
-                            }
-                        }).start();
+//                String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + File.separator + "gradle-4.4-all.zip";
+//                String fileUrl = "https://downloads.gradle.org/distributions/gradle-4.4-all.zip";
+//                FileDownloader.getImpl().create(fileUrl)
+//                        .setPath(path)
+//                        .setListener(new SimpleFileDownloadListener() {
+//
+//                            @Override
+//                            protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+//                                log.i("下载进度: " + (soFarBytes / (float) totalBytes * 100) + "%");
+//                            }
+//
+//                            @Override
+//                            protected void completed(BaseDownloadTask task) {
+//                                log.i("completed: 下载完成" + task.getUrl() + " 目标文件路径：" + task.getTargetFilePath());
+//                            }
+//
+//                            @Override
+//                            protected void error(BaseDownloadTask task, Throwable e) {
+//                                log.i("error: " + e.getMessage());
+//                            }
+//                        }).start();
             }
         });
+    }
+
+    @Override
+    public void sayHello(String hello) {
+        ToastUtils.show(hello);
     }
 }

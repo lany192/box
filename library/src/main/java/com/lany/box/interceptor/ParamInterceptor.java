@@ -37,7 +37,6 @@ public class ParamInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Request.Builder requestBuilder = request.newBuilder();
-
         // process header params inject
         Headers.Builder headerBuilder = request.headers().newBuilder();
         if (headerParamsMap.size() > 0) {
@@ -47,7 +46,6 @@ public class ParamInterceptor implements Interceptor {
                 headerBuilder.add((String) entry.getKey(), (String) entry.getValue());
             }
         }
-
         if (headerLinesList.size() > 0) {
             for (String line : headerLinesList) {
                 headerBuilder.add(line);
@@ -67,9 +65,8 @@ public class ParamInterceptor implements Interceptor {
             if (canInjectIntoBody(request)) {
                 FormBody.Builder formBodyBuilder = new FormBody.Builder();
                 for (Map.Entry<String, String> entry : mParameterMap.entrySet()) {
-                    formBodyBuilder.add((String) entry.getKey(), (String) entry.getValue());
+                    formBodyBuilder.add(entry.getKey(), entry.getValue());
                 }
-
                 RequestBody formBody = formBodyBuilder.build();
                 String postBodyString = bodyToString(request.body());
                 postBodyString += ((postBodyString.length() > 0) ? "&" : "") + bodyToString(formBody);
