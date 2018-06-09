@@ -27,7 +27,7 @@ public class DividerDelegate extends MultiDelegate<Object> {
 
     @Override
     public int getLayoutId() {
-        return R.layout.type_divider_item_view;
+        return R.layout.item_divider;
     }
 
     @Override

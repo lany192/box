@@ -18,7 +18,7 @@ public abstract class MultiDelegate<T> implements MultiItemEntity {
     protected final String TAG = this.getClass().getSimpleName();
     private int mSpanSize = 2;
     private Context mContext;
-    protected ItemViewHolder mHelper;
+    private ItemViewHolder mHolder;
     protected Logger.Builder log = XLog.tag(TAG);
     protected final T mData;
 
@@ -45,6 +45,10 @@ public abstract class MultiDelegate<T> implements MultiItemEntity {
         return mSpanSize;
     }
 
+    public ItemViewHolder getHolder() {
+        return mHolder;
+    }
+
     /**
      * 返回布局文件id
      *
@@ -60,13 +64,13 @@ public abstract class MultiDelegate<T> implements MultiItemEntity {
 
     public void convert(ItemViewHolder helper, Context context) {
         this.mContext = context;
-        this.mHelper = helper;
+        this.mHolder = helper;
         init();
     }
 
     @SuppressWarnings("unchecked")
     public <T extends View> T getView(@IdRes int viewId) {
-        return (T) mHelper.getView(viewId);
+        return (T) mHolder.getView(viewId);
     }
 
     public MultiDelegate setSpanSize(int spanSize) {
