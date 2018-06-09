@@ -22,7 +22,7 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> imp
         if (view instanceof LifecycleOwner) {
             ((LifecycleOwner) view).getLifecycle().addObserver(model);
         } else {
-            throw new IllegalArgumentException("The view must be an instance of Fragment or AppCompatActivity");
+            throw new IllegalArgumentException("The view must be an instance of LifecycleOwner");
         }
     }
 
