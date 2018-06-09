@@ -24,6 +24,7 @@ dependencies {
     api "com.android.support:appcompat-v7:" + rootProject.ext.supportLibraryVersion
     api "com.android.support:design:" + rootProject.ext.supportLibraryVersion
     api "com.android.support:recyclerview-v7:" + rootProject.ext.supportLibraryVersion
+    api "com.android.support:exifinterface:" + rootProject.ext.supportLibraryVersion
     //图片加载控件
     api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     //事件分发
@@ -59,7 +60,7 @@ dependencies {
     //圆角图片
     api 'com.makeramen:roundedimageview:2.3.0'
     //下载框架
-    api 'com.liulishuo.filedownloader:library:1.7.3'
+    api 'com.liulishuo.filedownloader:library:1.7.4'
     //刷新套件
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //主项目中要添加butterknife依赖
@@ -72,4 +73,5 @@ dependencies {
     api 'com.github.lany192:ItemDecoration:1.1.2'
     //图片压缩
     api 'top.zibin:Luban:1.1.5'
+
 }
