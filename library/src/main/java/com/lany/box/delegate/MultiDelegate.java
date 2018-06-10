@@ -83,7 +83,7 @@ public abstract class MultiDelegate<T> implements MultiItemEntity {
         return mContext;
     }
 
-    public T getDate() {
+    public T getData() {
         return mData;
     }
 }
