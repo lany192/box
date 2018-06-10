@@ -20,6 +20,7 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> imp
         this.view = view;
         this.model = model;
         if (view instanceof LifecycleOwner) {
+            ((LifecycleOwner) view).getLifecycle().addObserver(this);
             ((LifecycleOwner) view).getLifecycle().addObserver(model);
         } else {
             throw new IllegalArgumentException("The view must be an instance of LifecycleOwner");
