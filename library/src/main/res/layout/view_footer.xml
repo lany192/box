@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/load_failed"
+            android:text="@string/brvah_load_failed"
             android:textColor="#999999"
             android:textSize="12sp" />
 
