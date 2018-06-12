@@ -17,59 +17,57 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:" + rootProject.ext.supportLibraryVersion
-    implementation "com.android.support:design:" + rootProject.ext.supportLibraryVersion
-    implementation "com.android.support:recyclerview-v7:" + rootProject.ext.supportLibraryVersion
-    implementation "com.android.support:exifinterface:" + rootProject.ext.supportLibraryVersion
+    api "com.android.support:appcompat-v7:" + rootProject.ext.supportLibraryVersion
+    api "com.android.support:design:" + rootProject.ext.supportLibraryVersion
+    api "com.android.support:recyclerview-v7:" + rootProject.ext.supportLibraryVersion
+    api "com.android.support:exifinterface:" + rootProject.ext.supportLibraryVersion
     //图片加载控件
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     //事件分发
-    implementation 'org.greenrobot:eventbus:3.1.1'
+    api 'org.greenrobot:eventbus:3.1.1'
     //rxjava
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.13'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api 'io.reactivex.rxjava2:rxjava:2.1.14'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     //网络请求
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     //带删除功能的EditText
-    implementation 'com.github.lany192:ClearEditText:1.0.4'
+    api 'com.github.lany192:ClearEditText:1.0.4'
     //唯一设备码获取
-    implementation 'com.lany:UniqueDeviceId:1.0.4'
+    api 'com.lany:UniqueDeviceId:1.0.4'
     //SharedPreferences封装
-    implementation 'com.lany:SharedPreferences:1.0.4'
+    api 'com.lany:SharedPreferences:1.0.4'
     //多状态切换控件
-    implementation 'com.lany:StateView:1.2.2'
+    api 'com.lany:StateView:1.2.2'
     //超链接处理
-    implementation 'com.klinkerapps:link_builder:1.6.1'
+    api 'com.klinkerapps:link_builder:1.6.1'
     //TabLayout控件
-    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
     //RecyclerView适配器
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
     //日志
-    implementation 'com.elvishew:xlog:1.4.1'
+    api 'com.elvishew:xlog:1.4.1'
     //状态栏工具
-    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
+    api 'com.gyf.barlibrary:barlibrary:2.3.0'
     //圆角图片
-    implementation 'com.makeramen:roundedimageview:2.3.0'
+    api 'com.makeramen:roundedimageview:2.3.0'
     //下载框架
-    implementation 'com.liulishuo.filedownloader:library:1.7.4'
+    api 'com.liulishuo.filedownloader:library:1.7.4'
     //刷新套件
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //主项目中要添加butterknife依赖
-    implementation 'com.jakewharton:butterknife:8.8.1'
+    compileOnly 'com.jakewharton:butterknife:8.8.1'
     //dagger2
     compileOnly 'com.google.dagger:dagger:2.16'
     compileOnly 'com.google.dagger:dagger-android:2.16'
     compileOnly 'com.google.dagger:dagger-android-support:2.16'
     //分割线
-    implementation 'com.github.lany192:ItemDecoration:1.1.2'
+    api 'com.github.lany192:ItemDecoration:1.1.4'
     //图片压缩
-    implementation 'top.zibin:Luban:1.1.5'
-
+    api 'top.zibin:Luban:1.1.5'
 }
