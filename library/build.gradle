@@ -68,6 +68,4 @@ dependencies {
     compileOnly 'com.google.dagger:dagger-android-support:2.16'
     //分割线
     api 'com.github.lany192:ItemDecoration:1.1.4'
-    //图片压缩
-    api 'top.zibin:Luban:1.1.5'
 }
