@@ -107,14 +107,6 @@ public abstract class MultiDelegate<T> implements MultiItemEntity {
         mHolder.setImageUrl(viewId, picUrl);
     }
 
-    public void setAvatarUrl(@IdRes int viewId, String picUrl) {
-        mHolder.setAvatarUrl(viewId, picUrl);
-    }
-
-    public void showCircle(@IdRes int viewId, String picUrl) {
-        mHolder.showCircle(viewId, picUrl);
-    }
-
     public void setTextSize(@IdRes int viewId, float size) {
         mHolder.setTextSize(viewId, size);
     }
