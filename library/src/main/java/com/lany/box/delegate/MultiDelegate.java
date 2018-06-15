@@ -1,14 +1,18 @@
 package com.lany.box.delegate;
 
 import android.content.Context;
+import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.lany.box.adapter.ItemViewHolder;
+import com.lany.box.helper.ImageHelper;
 import com.lany.box.helper.ViewTypeHelper;
 
 /**
@@ -85,5 +89,29 @@ public abstract class MultiDelegate<T> implements MultiItemEntity {
 
     public T getData() {
         return mData;
+    }
+
+    public void setText(@IdRes int viewId, CharSequence value) {
+        mHolder.setText(viewId, value);
+    }
+
+    public void setText(@IdRes int viewId, int value) {
+        mHolder.setText(viewId, value);
+    }
+
+    public void setTextColor(@IdRes int viewId, @ColorInt int color) {
+        mHolder.setTextColor(viewId, color);
+    }
+
+    public void setImageUrl(@IdRes int viewId, String picUrl) {
+        mHolder.setImageUrl(viewId, picUrl);
+    }
+
+    public void setTextSize(@IdRes int viewId, float size) {
+        mHolder.setTextSize(viewId, size);
+    }
+
+    public void setVisibility(@IdRes int viewId, int visibility) {
+        mHolder.setVisibility(viewId, visibility);
     }
 }

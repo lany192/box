@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 @Keep
 public class RollPicker extends NumberPicker {
@@ -86,5 +87,11 @@ public class RollPicker extends NumberPicker {
                 break;
             }
         }
+    }
+
+    public void setShowValues(List<String> list) {
+        String[] values = new String[list.size()];
+        list.toArray(values);
+        super.setDisplayedValues(values);
     }
 }
