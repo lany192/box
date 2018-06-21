@@ -10,7 +10,7 @@ import java.lang.reflect.ParameterizedType;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public abstract class HttpCallback<T> implements Observer<String> {
+public abstract class Callback<T> implements Observer<String> {
     private final String TAG = this.getClass().getSimpleName();
     private Logger.Builder log = XLog.tag(TAG);
     private Class<T> clz;
