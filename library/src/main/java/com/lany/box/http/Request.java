@@ -29,6 +29,7 @@ public abstract class Request<T> implements Observer<String> {
 
     @Override
     public void onNext(String json) {
+        log.i("请求结果:");
         log.json(json);
         T bean = JsonUtils.json2object(getClz(), json);
         if (bean != null) {
