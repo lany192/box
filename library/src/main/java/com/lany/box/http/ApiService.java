@@ -10,7 +10,7 @@ import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
-public interface APIService {
+public interface ApiService {
 
     @POST
     Observable<String> post(@Url String url, @Body MultipartBody body);
