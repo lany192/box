@@ -73,6 +73,4 @@ dependencies {
     compileOnly 'com.google.dagger:dagger-android-support:2.16'
     //分割线
     api 'com.github.lany192:ItemDecoration:1.1.4'
-    //权限控制
-    api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 }
