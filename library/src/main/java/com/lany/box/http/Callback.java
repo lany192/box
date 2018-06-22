@@ -10,7 +10,7 @@ import java.lang.reflect.ParameterizedType;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public abstract class Request<T> implements Observer<String> {
+public abstract class Callback<T> implements Observer<String> {
     private final String TAG = this.getClass().getSimpleName();
     private Logger.Builder log = XLog.tag(TAG);
     private Class<T> clz;
@@ -23,13 +23,12 @@ public abstract class Request<T> implements Observer<String> {
     }
 
     @Override
-    public void onSubscribe(Disposable d) {
+    public void onSubscribe(Disposable disposable) {
 
     }
 
     @Override
     public void onNext(String json) {
-        log.i("请求结果:");
         log.json(json);
         T bean = JsonUtils.json2object(getClz(), json);
         if (bean != null) {
