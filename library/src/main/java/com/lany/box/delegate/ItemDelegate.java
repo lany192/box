@@ -5,28 +5,24 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.lany.box.adapter.ItemViewHolder;
-import com.lany.box.helper.ImageHelper;
-import com.lany.box.helper.ViewTypeHelper;
+import com.lany.box.helper.ItemTypeHelper;
 
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
  */
-public abstract class MultiDelegate<T> implements MultiItemEntity {
-    protected final String TAG = this.getClass().getSimpleName();
-    private int mSpanSize = 2;
+public abstract class ItemDelegate<T> implements MultiItemEntity {
+    final String TAG = this.getClass().getSimpleName();
     private Context mContext;
     private ItemViewHolder mHolder;
     protected Logger.Builder log = XLog.tag(TAG);
-    protected final T mData;
+    final T mData;
 
-    public MultiDelegate(final T data) {
+    public ItemDelegate(final T data) {
         this.mData = data;
     }
 
@@ -37,16 +33,16 @@ public abstract class MultiDelegate<T> implements MultiItemEntity {
      */
     @Override
     public int getItemType() {
-        return ViewTypeHelper.getInstance().getViewType(this);
+        return ItemTypeHelper.getInstance().getViewType(this);
     }
 
     /**
-     * 站位的大小
+     * 站位的大小,默认是2。如需修改复现该方法
      *
      * @return 大小
      */
     public int getSpanSize() {
-        return mSpanSize;
+        return 2;
     }
 
     public ItemViewHolder getHolder() {
@@ -75,12 +71,6 @@ public abstract class MultiDelegate<T> implements MultiItemEntity {
     @SuppressWarnings("unchecked")
     public <T extends View> T getView(@IdRes int viewId) {
         return (T) mHolder.getView(viewId);
-    }
-
-    public MultiDelegate setSpanSize(int spanSize) {
-        log.i("spanSize:" + spanSize);
-        this.mSpanSize = spanSize;
-        return this;
     }
 
     public Context getContext() {

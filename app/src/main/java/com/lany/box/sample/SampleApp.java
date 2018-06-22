@@ -6,7 +6,7 @@ import com.liulishuo.filedownloader.FileDownloader;
 
 import dagger.android.AndroidInjector;
 
-public class App extends BaseDaggerApp {
+public class SampleApp extends BaseDaggerApp {
 
     @Override
     public void onCreate() {
