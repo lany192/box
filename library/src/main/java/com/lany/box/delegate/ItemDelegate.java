@@ -16,11 +16,11 @@ import com.lany.box.helper.ItemTypeHelper;
  * 多布局代理基类，适用于MultiAdapter适配器
  */
 public abstract class ItemDelegate<T> implements MultiItemEntity {
-    final String TAG = this.getClass().getSimpleName();
+    protected final String TAG = this.getClass().getSimpleName();
     private Context mContext;
     private ItemViewHolder mHolder;
     protected Logger.Builder log = XLog.tag(TAG);
-    final T mData;
+    protected final T mData;
 
     public ItemDelegate(final T data) {
         this.mData = data;
