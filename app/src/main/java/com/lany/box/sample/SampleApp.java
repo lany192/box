@@ -1,12 +1,12 @@
 package com.lany.box.sample;
 
-import com.lany.box.BaseDaggerApp;
+import com.lany.box.BaseApp;
 import com.lany.box.sample.di.component.DaggerAppComponent;
 import com.liulishuo.filedownloader.FileDownloader;
 
 import dagger.android.AndroidInjector;
 
-public class SampleApp extends BaseDaggerApp {
+public class SampleApp extends BaseApp {
 
     @Override
     public void onCreate() {
@@ -15,7 +15,7 @@ public class SampleApp extends BaseDaggerApp {
     }
 
     @Override
-    protected AndroidInjector<? extends BaseDaggerApp> applicationInjector() {
+    protected AndroidInjector<? extends BaseApp> applicationInjector() {
         return DaggerAppComponent.builder().create(this);
     }
 }

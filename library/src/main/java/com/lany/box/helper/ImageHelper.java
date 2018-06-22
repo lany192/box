@@ -76,7 +76,6 @@ public class ImageHelper {
         show(imageView, url, radius, R.drawable.default_avatar, null, true);
     }
 
-
     public void show(ImageView imageView, String url, boolean isCache) {
         show(imageView, url, 0, R.drawable.default_pic, null, isCache);
     }
