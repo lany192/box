@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
-import com.lany.box.delegate.MultiDelegate;
+import com.lany.box.delegate.ItemDelegate;
 
 import java.util.List;
 
 /**
  * 多布局适配器
  */
-public class MultiAdapter extends BaseQuickAdapter<MultiDelegate, ItemViewHolder> {
+public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder> {
     private SparseIntArray mTypeMap = new SparseIntArray();
     private final int TYPE_NOT_FOUND = -404;
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
 
-    public MultiAdapter(List<MultiDelegate> items) {
+    public MultiAdapter(List<ItemDelegate> items) {
         super(items);
         setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
             @Override
@@ -34,7 +34,7 @@ public class MultiAdapter extends BaseQuickAdapter<MultiDelegate, ItemViewHolder
 
     @Override
     protected int getDefItemViewType(int position) {
-        MultiDelegate item = getItem(position);
+        ItemDelegate item = getItem(position);
         int viewType = -1;
         if (item != null) {
             viewType = item.getItemType();
@@ -55,7 +55,7 @@ public class MultiAdapter extends BaseQuickAdapter<MultiDelegate, ItemViewHolder
     }
 
     @Override
-    protected void convert(ItemViewHolder helper, MultiDelegate item) {
+    protected void convert(ItemViewHolder helper, ItemDelegate item) {
         item.convert(helper, mContext);
     }
 }

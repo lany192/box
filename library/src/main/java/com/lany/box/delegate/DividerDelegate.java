@@ -9,7 +9,7 @@ import com.lany.box.R;
 /**
  * 分割线代理
  */
-public class DividerDelegate extends MultiDelegate<Object> {
+public class DividerDelegate extends ItemDelegate<Object> {
     private int height = 4;
 
     @ColorInt
