@@ -45,6 +45,7 @@ dependencies {
     //dagger2
     annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.16'
+
     //权限控制
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 }
