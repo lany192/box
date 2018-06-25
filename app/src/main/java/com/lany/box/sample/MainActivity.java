@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.lany.box.activity.BaseActivity;
+import com.lany.box.activity.DaggerActivity;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -14,7 +14,7 @@ import javax.inject.Inject;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-public class MainActivity extends BaseActivity implements MainContract.View {
+public class MainActivity extends DaggerActivity implements MainContract.View {
     @Inject
     MainPresenter mPresenter;
 
