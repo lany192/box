@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +26,8 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.support.DaggerFragment;
 
-public abstract class BaseFragment extends DaggerFragment implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;

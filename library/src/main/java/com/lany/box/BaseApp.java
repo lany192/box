@@ -1,9 +1,9 @@
 package com.lany.box;
 
 import android.app.ActivityManager;
+import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.elvishew.xlog.LogConfiguration;
@@ -18,13 +18,8 @@ import com.lany.box.widget.RefreshView;
 import com.lany.sp.BuildConfig;
 import com.lany.sp.SPHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
-import dagger.android.support.DaggerApplication;
-
-public abstract class BaseApp extends DaggerApplication {
+public abstract class BaseApp extends Application {
     protected final String TAG = getClass().getSimpleName();
     private static Context context;
 
@@ -39,23 +34,17 @@ public abstract class BaseApp extends DaggerApplication {
     }
 
     private void initCatchException() {
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            public void uncaughtException(Thread thread, Throwable e) {
-                XLog.tag(TAG).e(e.getLocalizedMessage());
-                XLog.tag(TAG).st(10).e(TAG, "程序崩溃退出", e);
-                Log.e(TAG, "程序崩溃退出", e);
-            }
+        Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
+            XLog.tag(TAG).e(e.getLocalizedMessage());
+            XLog.tag(TAG).st(10).e(TAG, "程序崩溃退出", e);
+            Log.e(TAG, "程序崩溃退出", e);
         });
     }
 
     private void initRefreshView() {
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-            @NonNull
-            @Override
-            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);
-                return new RefreshView(context).setArrowResource(R.drawable.vector_arrow_gray);
-            }
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
+            layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);
+            return new RefreshView(context).setArrowResource(R.drawable.vector_arrow_gray);
         });
     }
 

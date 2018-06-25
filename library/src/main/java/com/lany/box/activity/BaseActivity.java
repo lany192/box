@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -35,15 +36,14 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.support.DaggerAppCompatActivity;
 
 /**
  * 通用基类
  */
-public abstract class BaseActivity extends DaggerAppCompatActivity implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
-    protected AppCompatActivity self;
+    protected FragmentActivity self;
     private View mToolbar;
     private RelativeLayout mAllView;
     private TextView mTitleText;
