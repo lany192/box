@@ -1,15 +1,14 @@
 package com.lany.box.fragment;
 
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
@@ -26,8 +25,9 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import dagger.android.support.DaggerFragment;
 
-public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseFragment extends DaggerFragment implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
@@ -73,43 +73,32 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        RelativeLayout containView = new RelativeLayout(self);
-        containView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-        LinearLayout allView = new LinearLayout(self);
-        allView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        allView.setOrientation(LinearLayout.VERTICAL);
-
+        LinearLayout containerView = new LinearLayout(self);
+        containerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        containerView.setOrientation(LinearLayout.VERTICAL);
         if (hasToolBar()) {
             View toolbar = inflater.inflate(getToolBarLayoutId(), null);
-            toolbar.setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
-                @Override
-                public void onDoubleClick(View view) {
-                    onToolbarDoubleClick();
-                }
-            }));
+            toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
             setPaddingSmart(toolbar);
-            allView.addView(toolbar);
+            containerView.addView(toolbar);
         }
         if (getLayoutId() != 0) {
-            View contentView = inflater.inflate(getLayoutId(), null);
             mStateLayout = new StateLayout(getContext());
             mStateLayout.setOnRetryListener(this);
-            mStateLayout.addView(contentView);
-            allView.addView(mStateLayout, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            mStateLayout.addView(inflater.inflate(getLayoutId(), null));
+            containerView.addView(mStateLayout, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         } else {
             throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
         }
-        mUnBinder = ButterKnife.bind(this, allView);
+        mUnBinder = ButterKnife.bind(this, containerView);
         init(savedInstanceState);
-        containView.addView(allView);
         isViewInit = true;
         if (getUserVisibleHint() && !isLazyLoaded) {
             isLazyLoaded = true;
             onLazyLoad();
         }
-        return containView;
+        return containerView;
     }
 
     public void setPaddingSmart(View view) {
@@ -215,6 +204,9 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     }
 
     public void finish() {
-        getActivity().finish();
+        Activity activity = getActivity();
+        if (activity != null) {
+            activity.finish();
+        }
     }
 }

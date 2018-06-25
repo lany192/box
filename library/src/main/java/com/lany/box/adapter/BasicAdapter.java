@@ -17,6 +17,8 @@ import com.elvishew.xlog.XLog;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * ListView适配器基类
  */
@@ -80,5 +82,14 @@ public abstract class BasicAdapter<T> extends BaseAdapter {
 
     public Context getContext() {
         return mContext;
+    }
+
+    public abstract class BaseViewHolder {
+        public final View itemView;
+
+        public BaseViewHolder(View itemView) {
+            ButterKnife.bind(this, itemView);
+            this.itemView = itemView;
+        }
     }
 }

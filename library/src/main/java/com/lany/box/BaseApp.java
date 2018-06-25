@@ -1,7 +1,6 @@
 package com.lany.box;
 
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -23,7 +22,9 @@ import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
-public abstract class BaseApp extends Application {
+import dagger.android.support.DaggerApplication;
+
+public abstract class BaseApp extends DaggerApplication {
     protected final String TAG = getClass().getSimpleName();
     private static Context context;
 

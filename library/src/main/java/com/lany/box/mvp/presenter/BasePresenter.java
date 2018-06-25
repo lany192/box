@@ -7,10 +7,9 @@ import android.arch.lifecycle.OnLifecycleEvent;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
-import com.lany.box.mvp.model.BaseModel;
 import com.lany.box.mvp.view.BaseView;
 
-public abstract class BasePresenter<V extends BaseView, M extends BaseModel> implements LifecycleObserver {
+public abstract class BasePresenter<V extends BaseView, M> implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     private final V view;
@@ -21,7 +20,9 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> imp
         this.model = model;
         if (view instanceof LifecycleOwner) {
             ((LifecycleOwner) view).getLifecycle().addObserver(this);
-            ((LifecycleOwner) view).getLifecycle().addObserver(model);
+            if (model instanceof LifecycleObserver) {
+                ((LifecycleOwner) view).getLifecycle().addObserver((LifecycleObserver) model);
+            }
         } else {
             throw new IllegalArgumentException("The view must be an instance of LifecycleOwner");
         }

@@ -35,11 +35,12 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import dagger.android.support.DaggerAppCompatActivity;
 
 /**
  * 通用基类
  */
-public abstract class BaseActivity extends AppCompatActivity implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseActivity extends DaggerAppCompatActivity implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected AppCompatActivity self;
@@ -102,12 +103,22 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 .navigationBarEnable(false);
         mImmersionBar.init();
         onBeforeSetContentView();
-        this.mAllView = new RelativeLayout(this);
-        this.mAllView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        if (hasToolbar()) {
-            initToolbar();
+        mAllView = new RelativeLayout(this);
+        mAllView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        if (getLayoutId() != 0) {
+            View contentView = LayoutInflater.from(this).inflate(getLayoutId(), null);
+            mStateLayout = new StateLayout(this);
+            mStateLayout.setOnRetryListener(this);
+            mStateLayout.addView(contentView);
+            LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            if (hasToolbar()) {
+                initToolbar();
+                layoutParams.addRule(RelativeLayout.BELOW, mToolbar.getId());
+            }
+            mAllView.addView(mStateLayout, layoutParams);
+        } else {
+            throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
         }
-        initContentView();
         setContentView(mAllView);
         mUnBinder = ButterKnife.bind(this);
         init(savedInstanceState);
@@ -134,42 +145,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         //要实现复写该方法
     }
 
-    private void initToolbar() {
-        mToolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
-        mToolbar.setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
-            @Override
-            public void onDoubleClick(View view) {
-                onToolbarDoubleClick();
-            }
-        }));
-        mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
-        setPaddingSmart(this, mToolbar);
-        mAllView.addView(mToolbar);
-
-        mTitleText = mToolbar.findViewById(R.id.custom_toolbar_title_text);
-        if (mTitleText == null) {
-            throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_title_text' field to set title in custom toolbar layout.");
-        }
-        setBarTitle(getTitle());
-
-        View backBtn = mToolbar.findViewById(R.id.custom_toolbar_back_btn);
-        if (backBtn == null) {
-            throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_back_btn' field to back in custom toolbar layout.");
-        }
-        if (hasBackBtn()) {
-            backBtn.setVisibility(View.VISIBLE);
-            backBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!ClickUtil.isFast()) {
-                        backAction();
-                    }
-                }
-            });
-        } else {
-            backBtn.setVisibility(View.GONE);
-        }
-    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -189,19 +164,32 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         }
     }
 
-    private void initContentView() {
-        if (getLayoutId() != 0) {
-            View contentView = LayoutInflater.from(this).inflate(getLayoutId(), null);
-            mStateLayout = new StateLayout(this);
-            mStateLayout.setOnRetryListener(this);
-            mStateLayout.addView(contentView);
-            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-            if (hasToolbar()) {
-                lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
-            }
-            mAllView.addView(mStateLayout, lp);
+    private void initToolbar() {
+        mToolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
+        mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
+        mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
+        setPaddingSmart(this, mToolbar);
+        mAllView.addView(mToolbar);
+
+        mTitleText = mToolbar.findViewById(R.id.custom_toolbar_title_text);
+        if (mTitleText == null) {
+            throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_title_text' field to set title in custom toolbar layout.");
+        }
+        setBarTitle(getTitle());
+
+        View backBtn = mToolbar.findViewById(R.id.custom_toolbar_back_btn);
+        if (backBtn == null) {
+            throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_back_btn' field to back in custom toolbar layout.");
+        }
+        if (hasBackBtn()) {
+            backBtn.setVisibility(View.VISIBLE);
+            backBtn.setOnClickListener(v -> {
+                if (!ClickUtil.isFast()) {
+                    backAction();
+                }
+            });
         } else {
-            throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
+            backBtn.setVisibility(View.GONE);
         }
     }
 
