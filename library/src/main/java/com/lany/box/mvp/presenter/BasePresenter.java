@@ -43,22 +43,22 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
-        log.i("onStart()");
+        //log.i("onStart()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
-        log.i("onResume()");
+        //log.i("onResume()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onPause() {
-        log.i("onPause()");
+        //log.i("onPause()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onStop() {
-        log.i("onStop()");
+        //log.i("onStop()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
