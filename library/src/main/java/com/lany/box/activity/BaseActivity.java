@@ -100,17 +100,17 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 .navigationBarEnable(false);
         mImmersionBar.init();
         onBeforeSetContentView();
-        RelativeLayout contentView = new RelativeLayout(this);
-        contentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        LayoutParams stateLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        RelativeLayout rootView = new RelativeLayout(this);
+        rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        LayoutParams slp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (hasToolbar()) {
-            View mToolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
-            mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
-            mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
-            setPaddingSmart(mToolbar);
-            mTitleText = mToolbar.findViewById(R.id.custom_toolbar_title_text);
+            View toolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
+            toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
+            toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
+            setPaddingSmart(toolbar);
+            mTitleText = toolbar.findViewById(R.id.custom_toolbar_title_text);
             setBarTitle(getTitle());
-            View backBtn = mToolbar.findViewById(R.id.custom_toolbar_back_btn);
+            View backBtn = toolbar.findViewById(R.id.custom_toolbar_back_btn);
             if (backBtn == null) {
                 throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_back_btn' field to back in custom toolbar layout.");
             }
@@ -124,18 +124,18 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             } else {
                 backBtn.setVisibility(View.GONE);
             }
-            stateLayoutParams.addRule(RelativeLayout.BELOW, mToolbar.getId());
-            contentView.addView(mToolbar);
+            slp.addRule(RelativeLayout.BELOW, toolbar.getId());
+            rootView.addView(toolbar);
         }
         if (getLayoutId() != 0) {
             mStateLayout = new StateLayout(this);
             mStateLayout.setOnRetryListener(this);
             mStateLayout.addView(LayoutInflater.from(this).inflate(getLayoutId(), null));
-            contentView.addView(mStateLayout, stateLayoutParams);
+            rootView.addView(mStateLayout, slp);
         } else {
             throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
         }
-        setContentView(contentView);
+        setContentView(rootView);
         mUnBinder = ButterKnife.bind(this);
         init(savedInstanceState);
     }

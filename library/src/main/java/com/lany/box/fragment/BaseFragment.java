@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.lany.box.R;
@@ -42,7 +42,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     protected abstract void init(Bundle savedInstanceState);
 
-    protected boolean hasToolBar() {
+    protected boolean hasToolbar() {
         return false;
     }
 
@@ -73,32 +73,33 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LinearLayout containerView = new LinearLayout(self);
-        containerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        containerView.setOrientation(LinearLayout.VERTICAL);
-        if (hasToolBar()) {
+        RelativeLayout rootView = new RelativeLayout(self);
+        rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        LayoutParams slp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        if (hasToolbar()) {
             View toolbar = inflater.inflate(getToolBarLayoutId(), null);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
             setPaddingSmart(toolbar);
-            containerView.addView(toolbar);
+            slp.addRule(RelativeLayout.BELOW, toolbar.getId());
+            rootView.addView(toolbar);
         }
         if (getLayoutId() != 0) {
-            mStateLayout = new StateLayout(getContext());
+            mStateLayout = new StateLayout(self);
             mStateLayout.setOnRetryListener(this);
-            mStateLayout.addView(inflater.inflate(getLayoutId(), null));
-            containerView.addView(mStateLayout, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            mStateLayout.addView(LayoutInflater.from(self).inflate(getLayoutId(), null));
+            rootView.addView(mStateLayout, slp);
         } else {
             throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
         }
-        mUnBinder = ButterKnife.bind(this, containerView);
+        mUnBinder = ButterKnife.bind(this, rootView);
         init(savedInstanceState);
         isViewInit = true;
         if (getUserVisibleHint() && !isLazyLoaded) {
             isLazyLoaded = true;
             onLazyLoad();
         }
-        return containerView;
+        return rootView;
     }
 
     public void setPaddingSmart(View view) {
