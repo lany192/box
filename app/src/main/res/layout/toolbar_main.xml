@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_default_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/green"
+    android:gravity="bottom"
+    android:minHeight="@dimen/actionbar_height">
+
+    <ImageButton
+        android:id="@+id/custom_toolbar_back_btn"
+        android:layout_width="@dimen/actionbar_height"
+        android:layout_height="@dimen/actionbar_height"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/actionBarItemBackground"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerInside"
+        android:src="@drawable/vector_back_black" />
+
+    <TextView
+        android:id="@+id/custom_toolbar_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/actionbar_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:maxWidth="240dp"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="#f2f2f2" />
+
+</RelativeLayout>

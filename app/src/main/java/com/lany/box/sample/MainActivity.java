@@ -19,6 +19,16 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     MainPresenter mPresenter;
 
     @Override
+    protected boolean hasBackBtn() {
+        return false;
+    }
+
+    @Override
+    protected int getToolBarLayoutId() {
+        return R.layout.toolbar_main;
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }
