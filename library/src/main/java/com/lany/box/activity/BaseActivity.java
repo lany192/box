@@ -44,8 +44,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
-    private View mToolbar;
-    private RelativeLayout mAllView;
     private TextView mTitleText;
     private StateLayout mStateLayout;
     private Unbinder mUnBinder;
@@ -97,53 +95,47 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         super.onCreate(savedInstanceState);
         this.self = this;
         EventBus.getDefault().register(this);
-        mImmersionBar = ImmersionBar
-                .with(this)
+        mImmersionBar = ImmersionBar.with(this)
                 .statusBarDarkFont(hasStateBarDarkMode(), 0.2f)
                 .navigationBarEnable(false);
         mImmersionBar.init();
         onBeforeSetContentView();
-        mAllView = new RelativeLayout(this);
-        mAllView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        RelativeLayout contentView = new RelativeLayout(this);
+        contentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        LayoutParams stateLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        if (hasToolbar()) {
+            View mToolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
+            mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
+            mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
+            setPaddingSmart(mToolbar);
+            mTitleText = mToolbar.findViewById(R.id.custom_toolbar_title_text);
+            setBarTitle(getTitle());
+            View backBtn = mToolbar.findViewById(R.id.custom_toolbar_back_btn);
+            if (backBtn == null) {
+                throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_back_btn' field to back in custom toolbar layout.");
+            }
+            if (hasBackBtn()) {
+                backBtn.setVisibility(View.VISIBLE);
+                backBtn.setOnClickListener(v -> {
+                    if (!ClickUtil.isFast()) {
+                        backAction();
+                    }
+                });
+            } else {
+                backBtn.setVisibility(View.GONE);
+            }
+            stateLayoutParams.addRule(RelativeLayout.BELOW, mToolbar.getId());
+            contentView.addView(mToolbar);
+        }
         if (getLayoutId() != 0) {
-            View contentView = LayoutInflater.from(this).inflate(getLayoutId(), null);
             mStateLayout = new StateLayout(this);
             mStateLayout.setOnRetryListener(this);
-            mStateLayout.addView(contentView);
-            LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-            if (hasToolbar()) {
-                mToolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
-                mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
-                mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
-                setPaddingSmart(mToolbar);
-                mAllView.addView(mToolbar);
-                layoutParams.addRule(RelativeLayout.BELOW, mToolbar.getId());
-                mTitleText = mToolbar.findViewById(R.id.custom_toolbar_title_text);
-                if (mTitleText == null) {
-                    throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_title_text' field to set title in custom toolbar layout.");
-                }
-                setBarTitle(getTitle());
-
-                View backBtn = mToolbar.findViewById(R.id.custom_toolbar_back_btn);
-                if (backBtn == null) {
-                    throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_back_btn' field to back in custom toolbar layout.");
-                }
-                if (hasBackBtn()) {
-                    backBtn.setVisibility(View.VISIBLE);
-                    backBtn.setOnClickListener(v -> {
-                        if (!ClickUtil.isFast()) {
-                            backAction();
-                        }
-                    });
-                } else {
-                    backBtn.setVisibility(View.GONE);
-                }
-            }
-            mAllView.addView(mStateLayout, layoutParams);
+            mStateLayout.addView(LayoutInflater.from(this).inflate(getLayoutId(), null));
+            contentView.addView(mStateLayout, stateLayoutParams);
         } else {
             throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
         }
-        setContentView(mAllView);
+        setContentView(contentView);
         mUnBinder = ButterKnife.bind(this);
         init(savedInstanceState);
     }
@@ -154,10 +146,11 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     public void setPaddingSmart(View view) {
         if (Build.VERSION.SDK_INT >= 16) {
             ViewGroup.LayoutParams lp = view.getLayoutParams();
+            int statusBarHeight = PhoneUtils.getStatusBarHeight(self);
             if (lp != null && lp.height > 0) {
-                lp.height += PhoneUtils.getStatusBarHeight(this);//增高
+                lp.height += statusBarHeight;//增高
             }
-            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + PhoneUtils.getStatusBarHeight(this), view.getPaddingRight(), view.getPaddingBottom());
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + statusBarHeight, view.getPaddingRight(), view.getPaddingBottom());
         }
     }
 
@@ -168,7 +161,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     protected void onToolbarDoubleClick() {
         //要实现复写该方法
     }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -193,6 +185,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     }
 
     public void setBarTitle(CharSequence title) {
+        if (mTitleText == null) {
+            throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_title_text' field to set title in custom toolbar layout.");
+        }
         if (hasToolbar() && !TextUtils.isEmpty(title)) {
             mTitleText.setText(title);
         }
