@@ -3,22 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e1e1e1"
+
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/download_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="download" />
-
-    <TextView
-        android:id="@+id/my_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test1\ntest2\ntest3\ntest4\ntest5\ntest6\ntest7\ntest8\n"
-        android:textColor="@android:color/black"
-        android:textSize="14sp" />
-
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

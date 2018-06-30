@@ -8,7 +8,7 @@ public class HelloFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.hello;
     }
 
     @Override
