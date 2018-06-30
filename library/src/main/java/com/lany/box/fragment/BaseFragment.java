@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.lany.box.R;
@@ -78,6 +79,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         LayoutParams slp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (hasToolbar()) {
             View toolbar = inflater.inflate(getToolBarLayoutId(), null);
+            toolbar.setId(R.id.toolbar);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
             setPaddingSmart(toolbar);
