@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/custom_default_toolbar"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/toolbar_bg"
@@ -8,7 +8,7 @@
     android:minHeight="@dimen/actionbar_height">
 
     <ImageButton
-        android:id="@+id/custom_toolbar_back_btn"
+        android:id="@+id/toolbar_back_btn"
         android:layout_width="@dimen/actionbar_height"
         android:layout_height="@dimen/actionbar_height"
         android:layout_alignParentBottom="true"
@@ -18,7 +18,7 @@
         android:src="@drawable/vector_back_black" />
 
     <TextView
-        android:id="@+id/custom_toolbar_title_text"
+        android:id="@+id/toolbar_title_text"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/actionbar_height"
         android:layout_alignParentBottom="true"
@@ -35,6 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_alignParentBottom="true"
-        android:background="#f2f2f2" />
+        android:background="#e1e1e1" />
 
 </RelativeLayout>

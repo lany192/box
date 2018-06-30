@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="toolbar_bg">#ffffff</color>
+    <color name="toolbar_bg">#fafafa</color>
     <color name="pic_default_bg">#eeeeee</color>
     <color name="refresh_head_background">#f2f2f2</color>
     <color name="refresh_head_text_color">#999999</color>

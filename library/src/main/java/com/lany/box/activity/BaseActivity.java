@@ -75,7 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
      * 返回Toolbar布局文件id
      */
     protected int getToolBarLayoutId() {
-        return R.layout.toolbar_default_layout;
+        return R.layout.toolbar_default;
     }
 
     protected int getToolBarHeight() {
@@ -104,6 +104,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         if (hasToolbar()) {
             mToolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
+            mToolbar.setId(R.id.toolbar);
             mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
             setPaddingSmart(mToolbar);
@@ -129,9 +130,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     }
 
     private void initBackBtn() {
-        View backBtn = mToolbar.findViewById(R.id.custom_toolbar_back_btn);
+        View backBtn = mToolbar.findViewById(R.id.toolbar_back_btn);
         if (backBtn == null) {
-            throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_back_btn' field to back in custom toolbar layout.");
+            throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
         }
         if (hasBackBtn()) {
             backBtn.setVisibility(View.VISIBLE);
@@ -190,9 +191,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     public void setBarTitle(CharSequence title) {
         if (hasToolbar()) {
-            TextView titleText = mToolbar.findViewById(R.id.custom_toolbar_title_text);
+            TextView titleText = mToolbar.findViewById(R.id.toolbar_title_text);
             if (titleText == null) {
-                throw new IllegalArgumentException("Please use the 'R.id.custom_toolbar_title_text' field to set title in custom toolbar layout.");
+                throw new IllegalArgumentException("Please use the 'R.id.toolbar_title_text' field to set title in custom toolbar layout.");
             }
             if (hasToolbar() && !TextUtils.isEmpty(title)) {
                 titleText.setText(title);

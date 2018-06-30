@@ -48,7 +48,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @LayoutRes
     protected int getToolBarLayoutId() {
-        return R.layout.toolbar_default_layout;
+        return R.layout.toolbar_default;
     }
 
     protected int getToolBarHeight() {
