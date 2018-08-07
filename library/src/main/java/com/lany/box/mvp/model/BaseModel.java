@@ -6,6 +6,10 @@ import android.arch.lifecycle.OnLifecycleEvent;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.lany.box.event.NetWorkEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public abstract class BaseModel implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
@@ -14,6 +18,7 @@ public abstract class BaseModel implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {
         log.i("onCreate()");
+        EventBus.getDefault().register(this);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -39,5 +44,12 @@ public abstract class BaseModel implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
         log.i("onDestroy()");
+        EventBus.getDefault().unregister(this);
     }
+
+    @Subscribe
+    public void onEvent(NetWorkEvent event) {
+        log.i("onEvent: 网络发生了变化");
+    }
+
 }
