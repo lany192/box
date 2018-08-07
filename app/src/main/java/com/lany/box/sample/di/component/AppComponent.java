@@ -2,6 +2,7 @@ package com.lany.box.sample.di.component;
 
 import com.lany.box.sample.SampleApp;
 import com.lany.box.sample.di.module.ActivityModule;
+import com.lany.box.sample.di.module.HttpModule;
 
 import javax.inject.Singleton;
 
@@ -15,6 +16,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AndroidInjectionModule.class,
         AndroidSupportInjectionModule.class,
         ActivityModule.class,
+        HttpModule.class,
 })
 public interface AppComponent extends AndroidInjector<SampleApp> {
 

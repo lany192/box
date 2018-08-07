@@ -3,6 +3,7 @@ package com.lany.box.http;
 import com.lany.box.BaseApp;
 import com.lany.box.utils.ListUtils;
 import com.lany.uniqueid.DeviceUtils;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,17 @@ public class HttpRequest {
     private String url;
     private HashMap<String, String> params = new HashMap<>();
 
+    private static HashMap<String, String> defaultParams = new HashMap<>();
+
+    {
+        defaultParams.put("deviceId", DeviceUtils.getUniqueDeviceId(BaseApp.getContext()));
+        defaultParams.put("client", "android");
+    }
+
+    public static void addDefaultParams(String key, String value) {
+        defaultParams.put(key, value);
+    }
+
     private HttpRequest() {
         builder = new MultipartBody.Builder();
         builder.setType(MultipartBody.FORM);
@@ -28,8 +40,9 @@ public class HttpRequest {
     public static HttpRequest of(String url) {
         HttpRequest body = new HttpRequest();
         body.setUrl(url);
-        body.add("deviceId", DeviceUtils.getUniqueDeviceId(BaseApp.getContext()));
-        body.add("client", "android");
+        for (String key : defaultParams.keySet()) {
+            body.add(key, defaultParams.get(key));
+        }
         return body;
     }
 

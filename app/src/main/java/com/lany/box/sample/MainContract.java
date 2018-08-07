@@ -11,8 +11,4 @@ public interface MainContract {
     interface Presenter {
         void sayClick();
     }
-
-    interface Model {
-        String getContent();
-    }
 }

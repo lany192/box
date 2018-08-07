@@ -25,7 +25,7 @@ task clean(type: Delete) {
 
 ext {
     minSdkVersion = 16
-    targetSdkVersion = 28
+    targetSdkVersion = 22
     compileSdkVersion = 28
     supportLibraryVersion = '27.1.1'
     repluginHostVersion = '2.2.4'
