@@ -3,6 +3,7 @@ package com.lany.box;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
@@ -62,7 +63,7 @@ public abstract class BaseApp extends Application {
                 .build();
 
         XLog.init(config, new AndroidPrinter(), filePrinter);
-        XLog.tag(TAG).i("进程名称:" + getProcessName() + "  pid:" + android.os.Process.myPid());
+        XLog.tag(TAG).i("进程名称:" + getAppProcessName() + "  pid:" + android.os.Process.myPid());
     }
 
     protected String getLogFilePath() {
@@ -73,16 +74,20 @@ public abstract class BaseApp extends Application {
         return LogLevel.ALL;
     }
 
-    protected String getProcessName() {
-        ActivityManager manager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
-        if (manager != null) {
-            for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
-                if (processInfo.pid == android.os.Process.myPid()) {
-                    return processInfo.processName;
+    protected String getAppProcessName() {
+        if (Build.VERSION.SDK_INT >= 28) {
+            return getProcessName();
+        } else {
+            ActivityManager manager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+            if (manager != null) {
+                for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
+                    if (processInfo.pid == android.os.Process.myPid()) {
+                        return processInfo.processName;
+                    }
                 }
             }
+            return "";
         }
-        return "";
     }
 
     public static Context getContext() {

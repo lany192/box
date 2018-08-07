@@ -62,7 +62,7 @@ dependencies {
     //圆角图片
     api 'com.makeramen:roundedimageview:2.3.0'
     //下载框架
-    api 'com.liulishuo.filedownloader:library:1.7.4'
+    api 'com.liulishuo.filedownloader:library:1.7.5'
     //刷新套件
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //主项目中要添加butterknife依赖
