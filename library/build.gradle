@@ -33,7 +33,7 @@ dependencies {
     //事件分发
     api 'org.greenrobot:eventbus:3.1.1'
     //rxjava
-    api 'io.reactivex.rxjava2:rxjava:2.1.14'
+    api 'io.reactivex.rxjava2:rxjava:2.2.0'
     api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     //网络请求
     api 'com.squareup.retrofit2:retrofit:2.4.0'
