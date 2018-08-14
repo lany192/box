@@ -54,7 +54,7 @@ dependencies {
     //TabLayout控件
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
     //RecyclerView适配器
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41'
     //日志
     api 'com.elvishew:xlog:1.4.1'
     //状态栏工具
@@ -68,7 +68,7 @@ dependencies {
     //主项目中要添加butterknife依赖
     compileOnly 'com.jakewharton:butterknife:8.8.1'
     //dagger2
-    compileOnly 'com.google.dagger:dagger-android-support:2.16'
+    compileOnly 'com.google.dagger:dagger-android-support:2.17'
     //分割线
     api 'com.github.lany192:ItemDecoration:1.1.4'
 }
