@@ -12,6 +12,7 @@ import java.util.Map;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -73,6 +74,11 @@ public class HttpRequest {
 
     public HttpRequest add(String key, float value) {
         params.put(key, String.valueOf(value));
+        return this;
+    }
+
+    public HttpRequest addJson(String json) {
+        builder.addPart(FormBody.create(MediaType.parse("application/json; charset=utf-8"), json));
         return this;
     }
 
