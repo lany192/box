@@ -80,7 +80,12 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (hasToolbar()) {
             View toolbar = inflater.inflate(getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
-            toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
+            toolbar.setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
+                @Override
+                public void onDoubleClick(View view) {
+                    onToolbarDoubleClick();
+                }
+            }));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
             setPaddingSmart(toolbar);
             slp.addRule(RelativeLayout.BELOW, toolbar.getId());

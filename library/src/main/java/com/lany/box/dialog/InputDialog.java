@@ -41,10 +41,13 @@ public class InputDialog extends BaseDialogFragment {
         if (!TextUtils.isEmpty(mButtonText)) {
             button.setText(mButtonText);
         }
-        button.setOnClickListener(v -> {
-            getDialog().cancel();
-            if (null != mOnInputListener) {
-                mOnInputListener.onResult(editText.getText().toString());
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().cancel();
+                if (null != mOnInputListener) {
+                    mOnInputListener.onResult(editText.getText().toString());
+                }
             }
         });
     }

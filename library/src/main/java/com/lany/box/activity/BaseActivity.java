@@ -105,7 +105,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (hasToolbar()) {
             mToolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
             mToolbar.setId(R.id.toolbar);
-            mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
+            mToolbar.setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
+                @Override
+                public void onDoubleClick(View view) {
+                    onToolbarDoubleClick();
+                }
+            }));
             mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
             setPaddingSmart(mToolbar);
             rootView.addView(mToolbar);
@@ -136,9 +141,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         }
         if (hasBackBtn()) {
             backBtn.setVisibility(View.VISIBLE);
-            backBtn.setOnClickListener(v -> {
-                if (!ClickUtil.isFast()) {
-                    backAction();
+            backBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!ClickUtil.isFast()) {
+                        backAction();
+                    }
                 }
             });
         } else {

@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.elvishew.xlog.LogConfiguration;
@@ -19,6 +20,9 @@ import com.lany.box.widget.RefreshView;
 import com.lany.sp.BuildConfig;
 import com.lany.sp.SPHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 public abstract class BaseApp extends Application {
     protected final String TAG = getClass().getSimpleName();
@@ -35,17 +39,24 @@ public abstract class BaseApp extends Application {
     }
 
     private void initCatchException() {
-        Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
-            XLog.tag(TAG).e(e.getLocalizedMessage());
-            XLog.tag(TAG).st(10).e(TAG, "程序崩溃退出", e);
-            Log.e(TAG, "程序崩溃退出", e);
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread thread, Throwable e) {
+                XLog.tag(TAG).e(e.getLocalizedMessage());
+                XLog.tag(TAG).st(10).e(TAG, "程序崩溃退出", e);
+                Log.e(TAG, "程序崩溃退出", e);
+            }
         });
     }
 
     private void initRefreshView() {
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
-            layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);
-            return new RefreshView(context).setArrowResource(R.drawable.vector_arrow_gray);
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @NonNull
+            @Override
+            public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
+                layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);
+                return new RefreshView(context).setArrowResource(R.drawable.vector_arrow_gray);
+            }
         });
     }
 

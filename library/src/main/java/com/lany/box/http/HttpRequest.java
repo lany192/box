@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.FormBody;
@@ -105,18 +107,26 @@ public class HttpRequest {
         for (Map.Entry<String, String> entry : params.entrySet()) {
             builder.addFormDataPart(entry.getKey(), entry.getValue());
         }
-        return service.post(url, builder.build()).compose(observable ->
-                observable
+        return service.post(url, builder.build()).compose(new ObservableTransformer<String, String>() {
+            @Override
+            public ObservableSource<String> apply(Observable<String> observable) {
+                return observable
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
-                        .unsubscribeOn(Schedulers.io()));
+                        .unsubscribeOn(Schedulers.io());
+            }
+        });
     }
 
     public Observable<String> get(ApiService service) {
-        return service.get(url, params).compose(observable ->
-                observable
+        return service.get(url, params).compose(new ObservableTransformer<String, String>() {
+            @Override
+            public ObservableSource<String> apply(Observable<String> observable) {
+                return observable
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
-                        .unsubscribeOn(Schedulers.io()));
+                        .unsubscribeOn(Schedulers.io());
+            }
+        });
     }
 }

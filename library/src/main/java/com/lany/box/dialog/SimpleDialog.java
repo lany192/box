@@ -89,10 +89,13 @@ public class SimpleDialog extends BaseDialogFragment {
             if (mRightTextColor != 0) {
                 rightBtn.setTextColor(mRightTextColor);
             }
-            rightBtn.setOnClickListener(v -> {
-                getDialog().cancel();
-                if (null != mOnRightListener) {
-                    mOnRightListener.onClicked();
+            rightBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getDialog().cancel();
+                    if (null != mOnRightListener) {
+                        mOnRightListener.onClicked();
+                    }
                 }
             });
         } else {
@@ -104,10 +107,13 @@ public class SimpleDialog extends BaseDialogFragment {
             if (mLeftTextColor != 0) {
                 leftBtn.setTextColor(mLeftTextColor);
             }
-            leftBtn.setOnClickListener(v -> {
-                getDialog().cancel();
-                if (null != mOnLeftListener) {
-                    mOnLeftListener.onClicked();
+            leftBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getDialog().cancel();
+                    if (null != mOnLeftListener) {
+                        mOnLeftListener.onClicked();
+                    }
                 }
             });
         } else {
