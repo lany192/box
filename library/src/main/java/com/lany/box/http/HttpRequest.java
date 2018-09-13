@@ -79,6 +79,15 @@ public class HttpRequest {
         return this;
     }
 
+    public HttpRequest addList(String name, List<String> values) {
+        if (!ListUtils.isEmpty(values)) {
+            for (int i = 0; i < values.size(); i++) {
+                builder.addFormDataPart(name, values.get(i));
+            }
+        }
+        return this;
+    }
+
     public HttpRequest addJson(String json) {
         builder.addPart(FormBody.create(MediaType.parse("application/json; charset=utf-8"), json));
         return this;
