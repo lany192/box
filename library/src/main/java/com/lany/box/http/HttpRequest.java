@@ -1,5 +1,7 @@
 package com.lany.box.http;
 
+import android.text.TextUtils;
+
 import com.lany.box.BaseApp;
 import com.lany.box.utils.ListUtils;
 import com.lany.uniqueid.DeviceUtils;
@@ -55,54 +57,81 @@ public class HttpRequest {
     }
 
     public HttpRequest add(String key, String value) {
-        params.put(key, value);
+        if (TextUtils.isEmpty(key)) {
+            return this;
+        }
+        params.put(key, TextUtils.isEmpty(value) ? "" : value);
         return this;
     }
 
     public HttpRequest add(String key, int value) {
+        if (TextUtils.isEmpty(key)) {
+            return this;
+        }
         params.put(key, String.valueOf(value));
         return this;
     }
 
     public HttpRequest add(String key, long value) {
+        if (TextUtils.isEmpty(key)) {
+            return this;
+        }
         params.put(key, String.valueOf(value));
         return this;
     }
 
     public HttpRequest add(String key, double value) {
+        if (TextUtils.isEmpty(key)) {
+            return this;
+        }
         params.put(key, String.valueOf(value));
         return this;
     }
 
     public HttpRequest add(String key, float value) {
+        if (TextUtils.isEmpty(key)) {
+            return this;
+        }
         params.put(key, String.valueOf(value));
         return this;
     }
 
-    public HttpRequest addList(String name, List<String> values) {
+    public HttpRequest addList(String key, List<String> values) {
+        if (TextUtils.isEmpty(key)) {
+            return this;
+        }
         if (!ListUtils.isEmpty(values)) {
             for (int i = 0; i < values.size(); i++) {
-                builder.addFormDataPart(name, values.get(i));
+                builder.addFormDataPart(key, values.get(i));
             }
         }
         return this;
     }
 
     public HttpRequest addJson(String json) {
+        if (TextUtils.isEmpty(json)) {
+            return this;
+        }
         builder.addPart(FormBody.create(MediaType.parse("application/json; charset=utf-8"), json));
         return this;
     }
 
-    public HttpRequest addImageFile(String name, File file) {
-        builder.addFormDataPart(name, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+    public HttpRequest addImageFile(String key, File file) {
+        if (TextUtils.isEmpty(key) || file == null) {
+            return this;
+        }
+        builder.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         return this;
     }
 
-    public HttpRequest addImagePaths(String name, List<String> paths) {
+    public HttpRequest addImagePaths(String key, List<String> paths) {
+        if (TextUtils.isEmpty(key)) {
+            return this;
+        }
         if (!ListUtils.isEmpty(paths)) {
             for (int i = 0; i < paths.size(); i++) {
                 File file = new File(paths.get(i));
-                builder.addFormDataPart(name, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+                builder.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
             }
         }
         return this;
