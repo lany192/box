@@ -65,7 +65,17 @@ public abstract class ItemDelegate<T> implements MultiItemEntity {
     public void convert(ItemViewHolder helper, Context context) {
         this.mContext = context;
         this.mHolder = helper;
+        mHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OnItemClicked();
+            }
+        });
         init();
+    }
+
+    public void OnItemClicked() {
+
     }
 
     @SuppressWarnings("unchecked")
