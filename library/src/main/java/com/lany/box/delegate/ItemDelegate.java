@@ -15,7 +15,7 @@ import com.lany.box.helper.ItemTypeHelper;
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
  */
-public abstract class ItemDelegate<T> implements MultiItemEntity {
+public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickListener {
     protected final String TAG = this.getClass().getSimpleName();
     private Context mContext;
     private ItemViewHolder mHolder;
@@ -113,5 +113,10 @@ public abstract class ItemDelegate<T> implements MultiItemEntity {
 
     public void setVisibility(@IdRes int viewId, int visibility) {
         mHolder.setVisibility(viewId, visibility);
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }
