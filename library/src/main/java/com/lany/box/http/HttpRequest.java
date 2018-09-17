@@ -96,6 +96,14 @@ public class HttpRequest {
         return this;
     }
 
+    public HttpRequest add(String key, boolean value) {
+        if (TextUtils.isEmpty(key)) {
+            return this;
+        }
+        params.put(key, String.valueOf(value));
+        return this;
+    }
+
     public HttpRequest addList(String key, List<String> values) {
         if (TextUtils.isEmpty(key)) {
             return this;
