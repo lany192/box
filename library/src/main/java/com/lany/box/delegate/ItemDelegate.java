@@ -68,14 +68,14 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
         mHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OnItemClicked();
+                onItemClicked();
             }
         });
         init();
     }
 
-    public void OnItemClicked() {
-
+    public void onItemClicked() {
+        //item 点击事件
     }
 
     @SuppressWarnings("unchecked")
