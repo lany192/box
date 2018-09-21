@@ -3,6 +3,7 @@ package com.lany.box.fragment;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -37,6 +38,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     private LoadingDialog mLoadingDialog = null;
     private boolean isViewInit = false;
     private boolean isLazyLoaded = false;
+    private RelativeLayout mRootView;
 
     @LayoutRes
     protected abstract int getLayoutId();
@@ -74,8 +76,8 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        RelativeLayout rootView = new RelativeLayout(self);
-        rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        mRootView = new RelativeLayout(self);
+        mRootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         LayoutParams slp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (hasToolbar()) {
             View toolbar = inflater.inflate(getToolBarLayoutId(), null);
@@ -89,24 +91,28 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
             setPaddingSmart(toolbar);
             slp.addRule(RelativeLayout.BELOW, toolbar.getId());
-            rootView.addView(toolbar);
+            mRootView.addView(toolbar);
         }
         if (getLayoutId() != 0) {
             mStateLayout = new StateLayout(self);
             mStateLayout.setOnRetryListener(this);
             mStateLayout.addView(LayoutInflater.from(self).inflate(getLayoutId(), null));
-            rootView.addView(mStateLayout, slp);
+            mRootView.addView(mStateLayout, slp);
         } else {
             throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
         }
-        mUnBinder = ButterKnife.bind(this, rootView);
+        mUnBinder = ButterKnife.bind(this, mRootView);
         init(savedInstanceState);
         isViewInit = true;
         if (getUserVisibleHint() && !isLazyLoaded) {
             isLazyLoaded = true;
             onLazyLoad();
         }
-        return rootView;
+        return mRootView;
+    }
+
+    public <T extends View> T findView(@IdRes int viewId) {
+        return mRootView.findViewById(viewId);
     }
 
     public void setPaddingSmart(View view) {
