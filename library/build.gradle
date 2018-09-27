@@ -28,8 +28,10 @@ dependencies {
     api "com.android.support:design:" + rootProject.ext.supportLibraryVersion
     api "com.android.support:recyclerview-v7:" + rootProject.ext.supportLibraryVersion
     api "com.android.support:exifinterface:" + rootProject.ext.supportLibraryVersion
-    //图片加载控件
+    //图片加载器
     api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    //图片加载器
+    api 'com.github.bumptech.glide:glide:4.8.0'
     //事件分发
     api 'org.greenrobot:eventbus:3.1.1'
     //rxjava
@@ -71,4 +73,5 @@ dependencies {
     compileOnly 'com.google.dagger:dagger-android-support:2.17'
     //分割线
     api 'com.github.lany192:ItemDecoration:1.1.4'
+
 }
