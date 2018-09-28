@@ -23,6 +23,11 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     MainPresenter mPresenter;
 
     @Override
+    protected boolean isStatusBarDarkFont() {
+        return false;
+    }
+
+    @Override
     protected boolean hasBackBtn() {
         return false;
     }

@@ -67,7 +67,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     /**
      * 状态栏的文字和图标是否改成黑色
      */
-    protected boolean hasStateBarDarkMode() {
+    protected boolean isStatusBarDarkFont() {
         return true;
     }
 
@@ -96,7 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         this.self = this;
         EventBus.getDefault().register(this);
         mImmersionBar = ImmersionBar.with(this)
-                .statusBarDarkFont(hasStateBarDarkMode(), 0.2f)
+                .statusBarDarkFont(isStatusBarDarkFont(), 0.2f)
                 .navigationBarEnable(false);
         mImmersionBar.init();
         onBeforeSetContentView();

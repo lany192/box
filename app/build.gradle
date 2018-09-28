@@ -38,6 +38,7 @@ dependencies {
     implementation 'com.lany:BannerView:2.0.5'
     compileOnly 'org.projectlombok:lombok:1.18.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    implementation 'com.github.lany192:ItemDecoration:1.1.4'
     //-------------------------------------------------------------------------------------------
     //butterknife依赖
     implementation 'com.jakewharton:butterknife:8.8.1'

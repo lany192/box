@@ -12,6 +12,8 @@ import com.elvishew.xlog.XLog;
 import com.lany.box.adapter.ItemViewHolder;
 import com.lany.box.helper.ItemTypeHelper;
 
+import butterknife.ButterKnife;
+
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
  */
@@ -65,6 +67,7 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
     public void convert(ItemViewHolder helper, Context context) {
         this.mContext = context;
         this.mHolder = helper;
+        ButterKnife.bind(this, mHolder.itemView);
         mHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
