@@ -245,15 +245,14 @@ public class PhoneUtils {
         }
     }
 
-
     /**
      * 获取状态栏高度
      */
-    public static int getStatusBarHeight(Context ctx) {
+    public static int getStatusBarHeight() {
         int result = 24;
-        int resId = ctx.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int resId = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0) {
-            result = ctx.getResources().getDimensionPixelSize(resId);
+            result = Resources.getSystem().getDimensionPixelSize(resId);
         } else {
             result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                     result, Resources.getSystem().getDisplayMetrics());

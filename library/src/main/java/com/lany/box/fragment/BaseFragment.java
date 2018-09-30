@@ -1,7 +1,6 @@
 package com.lany.box.fragment;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -20,7 +19,7 @@ import com.lany.box.dialog.LoadingDialog;
 import com.lany.box.event.NetWorkEvent;
 import com.lany.box.interfaces.OnDoubleClickListener;
 import com.lany.box.mvp.view.BaseView;
-import com.lany.box.utils.PhoneUtils;
+import com.lany.box.utils.ViewUtils;
 import com.lany.state.StateLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -89,7 +88,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
                 }
             }));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
-            setPaddingSmart(toolbar);
+            ViewUtils.setPaddingSmart(toolbar);
             slp.addRule(RelativeLayout.BELOW, toolbar.getId());
             mRootView.addView(toolbar);
         }
@@ -113,16 +112,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     public <T extends View> T findView(@IdRes int viewId) {
         return mRootView.findViewById(viewId);
-    }
-
-    public void setPaddingSmart(View view) {
-        if (Build.VERSION.SDK_INT >= 16) {
-            ViewGroup.LayoutParams lp = view.getLayoutParams();
-            if (lp != null && lp.height > 0) {
-                lp.height += PhoneUtils.getStatusBarHeight(self);//增高
-            }
-            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + PhoneUtils.getStatusBarHeight(self), view.getPaddingRight(), view.getPaddingBottom());
-        }
     }
 
     /**

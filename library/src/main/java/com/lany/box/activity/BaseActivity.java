@@ -2,7 +2,6 @@ package com.lany.box.activity;
 
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
@@ -28,7 +27,7 @@ import com.lany.box.event.NetWorkEvent;
 import com.lany.box.interfaces.OnDoubleClickListener;
 import com.lany.box.mvp.view.BaseView;
 import com.lany.box.utils.ClickUtil;
-import com.lany.box.utils.PhoneUtils;
+import com.lany.box.utils.ViewUtils;
 import com.lany.state.StateLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -112,7 +111,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 }
             }));
             mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
-            setPaddingSmart(mToolbar);
+            ViewUtils.setPaddingSmart(mToolbar);
             rootView.addView(mToolbar);
             setBarTitle(getTitle());
             initBackBtn();
@@ -154,18 +153,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         }
     }
 
-    /**
-     * 增加View的paddingTop,增加的值为状态栏高度
-     */
-    public void setPaddingSmart(View view) {
-        if (Build.VERSION.SDK_INT >= 16) {
-            ViewGroup.LayoutParams lp = view.getLayoutParams();
-            if (lp != null && lp.height > 0) {
-                lp.height += PhoneUtils.getStatusBarHeight(this);//增高
-            }
-            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + PhoneUtils.getStatusBarHeight(this), view.getPaddingRight(), view.getPaddingBottom());
-        }
-    }
 
     protected void onBeforeSetContentView() {
 
