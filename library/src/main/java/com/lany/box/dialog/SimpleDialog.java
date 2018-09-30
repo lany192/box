@@ -3,7 +3,6 @@ package com.lany.box.dialog;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.support.annotation.StringRes;
-import android.support.v4.app.BaseDialogFragment;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import com.elvishew.xlog.XLog;
 import com.klinker.android.link_builder.TouchableMovementMethod;
 import com.lany.box.R;
-
 
 //    SimpleDialog dialog = new SimpleDialog();
 //    dialog.setTitle("提示");
@@ -34,7 +32,7 @@ import com.lany.box.R;
 //    });
 //    dialog.show(this);
 
-public class SimpleDialog extends BaseDialogFragment {
+public class SimpleDialog extends com.lany.box.fragment.DialogFragment {
     private OnRightListener mOnRightListener;
     private OnLeftListener mOnLeftListener;
     private CharSequence mTitle;

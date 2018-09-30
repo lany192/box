@@ -24,6 +24,7 @@ import com.lany.state.StateLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -60,7 +61,9 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         this.self = getActivity();
     }
 
@@ -131,14 +134,16 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     @Override
     public void onDestroy() {
         log.i(TAG + " onDestroy()");
-        EventBus.getDefault().unregister(this);
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
         if (null != mUnBinder) {
             mUnBinder.unbind();
         }
         super.onDestroy();
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NetWorkEvent event) {
         log.i(" 网络状态发送变化");
     }

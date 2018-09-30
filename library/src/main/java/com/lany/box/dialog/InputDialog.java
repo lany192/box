@@ -1,6 +1,5 @@
 package com.lany.box.dialog;
 
-import android.support.v4.app.BaseDialogFragment;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 import com.github.lany192.edittext.ClearEditText;
 import com.lany.box.R;
 
-public class InputDialog extends BaseDialogFragment {
+public class InputDialog extends com.lany.box.fragment.DialogFragment {
     private OnInputListener mOnInputListener;
     private CharSequence mHint;
     private CharSequence mTitle;

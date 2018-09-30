@@ -17,7 +17,7 @@
 
 	dependencies {
 	        //必须
-	        implementation 'com.github.lany192:Box:2.4.1'
+	        implementation 'com.github.lany192:Box:2.4.2'
             implementation 'com.jakewharton:butterknife:8.8.1'
             annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
             //如果使用了dagger2需要添加

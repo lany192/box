@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,11 +14,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.lany.box.event.NetWorkEvent;
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.lany.box.utils.DensityUtils;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 
@@ -30,6 +27,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
     protected final String TAG = this.getClass().getSimpleName();
     protected View mContentView;
     protected boolean canceledOnTouchOutside = true;
+    protected Logger.Builder log = XLog.tag(TAG);
+    protected FragmentActivity self;
 
     @LayoutRes
     protected abstract int getLayoutId();
@@ -37,19 +36,9 @@ public abstract class BaseDialogFragment extends DialogFragment {
     protected abstract void init();
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Subscribe
-    public void onEvent(NetWorkEvent event) {
+        this.self = getActivity();
     }
 
     @Override

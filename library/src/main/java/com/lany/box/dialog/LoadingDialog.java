@@ -1,7 +1,6 @@
 package com.lany.box.dialog;
 
 
-import android.support.v4.app.BaseDialogFragment;
 import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 
 import com.lany.box.R;
 
-public class LoadingDialog extends BaseDialogFragment {
+public class LoadingDialog extends com.lany.box.fragment.DialogFragment {
     private CharSequence mMessage;
     private TextView mMsgText;
 

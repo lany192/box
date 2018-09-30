@@ -10,6 +10,7 @@ import com.lany.box.event.NetWorkEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public abstract class BaseModel implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
@@ -18,7 +19,9 @@ public abstract class BaseModel implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {
         log.i("onCreate()");
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -44,12 +47,14 @@ public abstract class BaseModel implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
         log.i("onDestroy()");
-        EventBus.getDefault().unregister(this);
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NetWorkEvent event) {
-        log.i("onEvent: 网络发生了变化");
+        //log.i("onEvent: 网络发生了变化");
     }
 
 }
