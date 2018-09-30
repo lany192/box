@@ -15,7 +15,6 @@ import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator;
 import com.lany.box.utils.FileUtils;
 import com.lany.box.utils.LogFileFormat;
 import com.lany.box.widget.RefreshView;
-import com.lany.sp.BuildConfig;
 import com.lany.sp.SPHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -43,14 +42,18 @@ public class Box {
     }
 
     public void init(Context ctx) {
+        init(ctx, false);
+    }
+
+    public void init(Context ctx, boolean debug) {
         Context app = ctx.getApplicationContext();
         if (app == null) {
             this.context = ctx;
         } else {
             this.context = ((Application) app).getBaseContext();
         }
-        SPHelper.getInstance().init(ctx, BuildConfig.DEBUG);
-        initLog();
+        SPHelper.getInstance().init(ctx, debug);
+        initLog(debug);
         initCatchException();
         initRefreshView();
     }
@@ -77,10 +80,10 @@ public class Box {
         });
     }
 
-    private void initLog() {
+    private void initLog(boolean debug) {
         LogConfiguration config = new LogConfiguration
                 .Builder()
-                .logLevel(BuildConfig.DEBUG ? LogLevel.ALL : LogLevel.NONE)
+                .logLevel(debug ? LogLevel.ALL : LogLevel.NONE)
                 .tag("XLog")
                 .build();
         String logPath = FileUtils.getCacheDir(getContext()) + "/XLog/";
