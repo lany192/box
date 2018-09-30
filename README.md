@@ -16,9 +16,31 @@
 ## 添加依赖
 
 	dependencies {
+	        //必须
 	        implementation 'com.github.lany192:Box:2.4.0'
+            implementation 'com.jakewharton:butterknife:8.8.1'
+            annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+            //如果使用了dagger2需要添加
+            implementation 'com.google.dagger:dagger-android-support:2.17'
+            annotationProcessor 'com.google.dagger:dagger-compiler:2.17'
+            annotationProcessor 'com.google.dagger:dagger-android-processor:2.17'
 	}
 	
-## 注意事项
+## 初始化
 
-    other
+在Application类中的onCreate初始化
+
+    public class SampleApp extends Application {
+    
+        @Override
+        public void onCreate() {
+            super.onCreate();
+            Box.of().init(this);
+        }
+    
+    }
+
+## 其它注意事项
+
+如果需要使用dagger，Application类需要继承dagger.android.support.DaggerApplication类
+    

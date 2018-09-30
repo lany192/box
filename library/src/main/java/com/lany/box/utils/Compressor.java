@@ -9,7 +9,7 @@ import android.support.annotation.Keep;
 import android.support.media.ExifInterface;
 import android.util.Log;
 
-import com.lany.box.AndroidBox;
+import com.lany.box.Box;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -29,7 +29,7 @@ public class Compressor {
 
     public Compressor(String sourcePath) throws Exception {
         this.mSourceExif = new ExifInterface(sourcePath);
-        this.mTargetFile = new File(getCacheDirectory(AndroidBox.getContext()), System.currentTimeMillis() + ".jpg");
+        this.mTargetFile = new File(getCacheDirectory(Box.of().getContext()), System.currentTimeMillis() + ".jpg");
         this.mSourceImagePath = sourcePath;
 
         BitmapFactory.Options options = new BitmapFactory.Options();

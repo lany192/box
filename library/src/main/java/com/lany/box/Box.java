@@ -1,10 +1,7 @@
 package com.lany.box;
 
-import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.os.Build;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -15,6 +12,7 @@ import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator;
+import com.lany.box.utils.FileUtils;
 import com.lany.box.utils.LogFileFormat;
 import com.lany.box.widget.RefreshView;
 import com.lany.sp.BuildConfig;
@@ -24,15 +22,34 @@ import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
-public abstract class BaseApp extends Application {
-    protected final String TAG = getClass().getSimpleName();
-    private static Context context;
+public class Box {
+    private final String TAG = "Box";
+    private Context context;
+    private volatile static Box instance;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        SPHelper.getInstance().init(this, BuildConfig.DEBUG);
-        context = getApplicationContext();
+    private Box() {
+
+    }
+
+    public static Box of() {
+        if (instance == null) {
+            synchronized (Box.class) {
+                if (instance == null) {
+                    instance = new Box();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void init(Context ctx) {
+        Context app = ctx.getApplicationContext();
+        if (app == null) {
+            this.context = ctx;
+        } else {
+            this.context = ((Application) app).getBaseContext();
+        }
+        SPHelper.getInstance().init(ctx, BuildConfig.DEBUG);
         initLog();
         initCatchException();
         initRefreshView();
@@ -63,45 +80,20 @@ public abstract class BaseApp extends Application {
     private void initLog() {
         LogConfiguration config = new LogConfiguration
                 .Builder()
-                .logLevel(getLogLevel())
+                .logLevel(BuildConfig.DEBUG ? LogLevel.ALL : LogLevel.NONE)
                 .tag("XLog")
                 .build();
-
+        String logPath = FileUtils.getCacheDir(getContext()) + "/XLog/";
         Printer filePrinter = new FilePrinter
-                .Builder(getLogFilePath())
+                .Builder(logPath)
                 .fileNameGenerator(new DateFileNameGenerator())
                 .logFlattener(new LogFileFormat())
                 .build();
 
         XLog.init(config, new AndroidPrinter(), filePrinter);
-        XLog.tag(TAG).i("进程名称:" + getAppProcessName() + "  pid:" + android.os.Process.myPid());
     }
 
-    protected String getLogFilePath() {
-        return Environment.getExternalStorageDirectory().getPath() + "/xlog/" + getPackageName() + "/";
-    }
-
-    protected int getLogLevel() {
-        return LogLevel.ALL;
-    }
-
-    protected String getAppProcessName() {
-        if (Build.VERSION.SDK_INT >= 28) {
-            return getProcessName();
-        } else {
-            ActivityManager manager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
-            if (manager != null) {
-                for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
-                    if (processInfo.pid == android.os.Process.myPid()) {
-                        return processInfo.processName;
-                    }
-                }
-            }
-            return "";
-        }
-    }
-
-    public static Context getContext() {
+    public Context getContext() {
         return context;
     }
 }
