@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.elvishew.xlog.XLog;
-import com.lany.box.BaseApp;
+import com.lany.box.AndroidBox;
 
 
 /**
@@ -18,7 +18,7 @@ public class ToastUtils {
         if (resId <= 0) {
             return;
         }
-        show(BaseApp.getContext().getString(resId));
+        show(AndroidBox.getContext().getString(resId));
     }
 
     public static void show(final CharSequence text) {
@@ -28,7 +28,7 @@ public class ToastUtils {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(BaseApp.getContext(), text, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AndroidBox.getContext(), text, Toast.LENGTH_SHORT).show();
                 XLog.tag(TAG).i("Toast消息:" + text.toString());
             }
         });

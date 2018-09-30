@@ -206,6 +206,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         }
     }
 
+    @Override
     public void finish() {
         Activity activity = getActivity();
         if (activity != null) {

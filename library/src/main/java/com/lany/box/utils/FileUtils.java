@@ -4,20 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.widget.Toast;
 
 import java.io.File;
 
-/**
- * Created by user on 2016/2/25.
- */
 public class FileUtils {
 
     /**
      * 获取APP的工作路径
-     *
-     * @param context
-     * @return
      */
     public static File getDiskAppDir(Context context) {
         if (Environment.MEDIA_MOUNTED.equals(Environment
@@ -30,13 +23,26 @@ public class FileUtils {
     }
 
     /**
+     * 获取缓存路径
+     */
+    public static File getCacheDir(Context context) {
+        if (Environment.MEDIA_MOUNTED.equals(Environment
+                .getExternalStorageState())
+                || !Environment.isExternalStorageRemovable()) {
+            return context.getExternalCacheDir();
+        } else {
+            return context.getCacheDir();
+        }
+    }
+
+    /**
      * 根据传入的uniqueFileDirName获取硬盘缓存夹的路径地址
      *
      * @param context
      * @param uniqueFileDirName
      * @return
      */
-    public static File getDiskCacheDir(Context context, String uniqueFileDirName) {
+    public static File getCacheDir(Context context, String uniqueFileDirName) {
         String cacheDirPath;
         if (Environment.MEDIA_MOUNTED.equals(Environment
                 .getExternalStorageState())
@@ -77,7 +83,7 @@ public class FileUtils {
             intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
             context.startActivity(intent);
         } else {
-            Toast.makeText(context, filePath + "路径不存在", Toast.LENGTH_SHORT).show();
+            ToastUtils.show(filePath + "路径不存在");
         }
     }
 }

@@ -13,7 +13,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.TypedValue;
 
-import com.lany.box.BaseApp;
+import com.lany.box.AndroidBox;
 import com.lany.box.dialog.SimpleDialog;
 
 import java.io.BufferedReader;
@@ -33,21 +33,21 @@ public class PhoneUtils {
      * 获取屏幕宽度(px)
      */
     public static int getDeviceWidth() {
-        return BaseApp.getContext().getResources().getDisplayMetrics().widthPixels;
+        return AndroidBox.getContext().getResources().getDisplayMetrics().widthPixels;
     }
 
     /**
      * 获取屏幕的高度(px)
      */
     public static int getDeviceHeight() {
-        return BaseApp.getContext().getResources().getDisplayMetrics().heightPixels;
+        return AndroidBox.getContext().getResources().getDisplayMetrics().heightPixels;
     }
 
     /**
      * 获取本机号码，注意要添加权限android.permission.READ_PHONE_STATE
      */
     public static String getPhoneNumber() {
-        TelephonyManager mTelephonyMgr = (TelephonyManager) BaseApp.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager mTelephonyMgr = (TelephonyManager) AndroidBox.getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return mTelephonyMgr.getLine1Number();
     }
 
@@ -93,9 +93,9 @@ public class PhoneUtils {
      * @return
      */
     public static int getAppVersionCode() {
-        PackageManager pm = BaseApp.getContext().getPackageManager();
+        PackageManager pm = AndroidBox.getContext().getPackageManager();
         try {
-            PackageInfo pi = pm.getPackageInfo(BaseApp.getContext().getPackageName(), 0);
+            PackageInfo pi = pm.getPackageInfo(AndroidBox.getContext().getPackageName(), 0);
             return pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -109,9 +109,9 @@ public class PhoneUtils {
      * @return
      */
     public static String getAppVersionName() {
-        PackageManager pm = BaseApp.getContext().getPackageManager();
+        PackageManager pm = AndroidBox.getContext().getPackageManager();
         try {
-            PackageInfo pi = pm.getPackageInfo(BaseApp.getContext().getPackageName(), 0);
+            PackageInfo pi = pm.getPackageInfo(AndroidBox.getContext().getPackageName(), 0);
             return pi.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -123,7 +123,7 @@ public class PhoneUtils {
      * 获取androidId
      */
     public static String getAndroidId() {
-        return Settings.Secure.getString(BaseApp.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        return Settings.Secure.getString(AndroidBox.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
     /**
@@ -143,7 +143,7 @@ public class PhoneUtils {
      * 获取设备号DeviceId
      */
     public static String getDeviceId() {
-        TelephonyManager tm = (TelephonyManager) BaseApp.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager tm = (TelephonyManager) AndroidBox.getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
     }
 
@@ -201,7 +201,7 @@ public class PhoneUtils {
     public static String getMetaData(String key) {
         ApplicationInfo appInfo = null;
         String value = "";
-        Context context = BaseApp.getContext();
+        Context context = AndroidBox.getContext();
         try {
             appInfo = context.getPackageManager().getApplicationInfo(
                     context.getPackageName(), PackageManager.GET_META_DATA);

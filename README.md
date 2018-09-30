@@ -1,10 +1,10 @@
 [![](https://jitpack.io/v/lany192/Box.svg)](https://jitpack.io/#lany192/Box)
 
-# 使用MVP+retrofit2+Dagger2+OkHttp3组合封装
+# 快速开发框架 
 
-## Step 1. Add the JitPack repository to your build file
+使用MVP+retrofit2+Dagger2+OkHttp3组合封装
 
-Add it in your root build.gradle at the end of repositories:
+## 引入代码仓库
 
     allprojects {
         repositories {
@@ -13,10 +13,12 @@ Add it in your root build.gradle at the end of repositories:
         }
     }
 	
-## Step 2. Add the dependency
+## 添加依赖
 
 	dependencies {
 	        implementation 'com.github.lany192:Box:2.4.0'
 	}
 	
-##注意事项
+## 注意事项
+
+    other

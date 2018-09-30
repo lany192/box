@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
-import com.lany.box.BaseApp;
+import com.lany.box.AndroidBox;
 import com.lany.box.R;
 import com.lany.box.utils.PhoneUtils;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -44,7 +44,7 @@ public class ImageHelper {
         int cacheSize = maxMemory / 12;
         int width = PhoneUtils.getDeviceWidth() / 2;
         int height = PhoneUtils.getDeviceHeight() / 2;
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(BaseApp.getContext())
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(AndroidBox.getContext())
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .threadPoolSize(5)//设置并发线程数
                 .denyCacheImageMultipleSizesInMemory()

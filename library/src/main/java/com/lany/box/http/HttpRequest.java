@@ -2,7 +2,7 @@ package com.lany.box.http;
 
 import android.text.TextUtils;
 
-import com.lany.box.BaseApp;
+import com.lany.box.AndroidBox;
 import com.lany.box.utils.ListUtils;
 import com.lany.uniqueid.DeviceUtils;
 
@@ -29,7 +29,7 @@ public class HttpRequest {
     private static HashMap<String, String> defaultParams = new HashMap<>();
 
     {
-        defaultParams.put("deviceId", DeviceUtils.getUniqueDeviceId(BaseApp.getContext()));
+        defaultParams.put("deviceId", DeviceUtils.getUniqueDeviceId(AndroidBox.getContext()));
         defaultParams.put("client", "android");
     }
 

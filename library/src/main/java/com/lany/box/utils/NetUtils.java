@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.lany.box.BaseApp;
+import com.lany.box.AndroidBox;
 
 public class NetUtils {
 
@@ -12,7 +12,7 @@ public class NetUtils {
      * 判断当前网络是否可用
      */
     public static boolean isNetWorkAvailable() {
-        ConnectivityManager manager = (ConnectivityManager) BaseApp.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager = (ConnectivityManager) AndroidBox.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (manager != null) {
             NetworkInfo info = manager.getActiveNetworkInfo();
             return info != null && info.isConnected();

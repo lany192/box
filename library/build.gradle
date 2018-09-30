@@ -58,7 +58,7 @@ dependencies {
     //RecyclerView适配器
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41'
     //日志
-    api 'com.elvishew:xlog:1.4.1'
+    api 'com.elvishew:xlog:1.5.0'
     //状态栏工具
     api 'com.gyf.barlibrary:barlibrary:2.3.0'
     //圆角图片
