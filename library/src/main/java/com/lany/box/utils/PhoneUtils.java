@@ -10,17 +10,35 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 
 import com.lany.box.Box;
 import com.lany.box.dialog.SimpleDialog;
+import com.lany.uniqueid.DeviceUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class PhoneUtils {
-    private final static String TAG = "PhoneUtils";
+    private static String BASE_INFO;
+
+    /**
+     * 获取手机的基本信息:系统类型/屏幕信息/手机型号/系统版本号/app版本号/发布渠道/手机号码
+     */
+    public static String getBaseInfo() {
+        if (TextUtils.isEmpty(BASE_INFO)) {
+            BASE_INFO = "android" + ";"
+                    + getScreenInfo() + ";"
+                    + getPhoneModel() + ";"
+                    + getOSVersionCode() + ";"
+                    + getAppVersionCode() + ";"
+                    + getChannelCode() + ";"
+                    + getPhoneNumber();
+        }
+        return BASE_INFO;
+    }
 
     /**
      * 获取屏幕信息
@@ -47,8 +65,12 @@ public class PhoneUtils {
      * 获取本机号码，注意要添加权限android.permission.READ_PHONE_STATE
      */
     public static String getPhoneNumber() {
-        TelephonyManager mTelephonyMgr = (TelephonyManager) Box.of().getContext().getSystemService(Context.TELEPHONY_SERVICE);
-        return mTelephonyMgr.getLine1Number();
+        try {
+            TelephonyManager mTelephonyMgr = (TelephonyManager) Box.of().getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            return mTelephonyMgr.getLine1Number();
+        } catch (Exception e) {
+            return "";
+        }
     }
 
     /**

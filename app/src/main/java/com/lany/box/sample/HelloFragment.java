@@ -4,25 +4,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.lany.box.adapter.MultiAdapter;
 import com.lany.box.delegate.ItemDelegate;
 import com.lany.box.fragment.BaseFragment;
 import com.lany.box.sample.delegate.HelloDelegate;
 import com.lany.box.utils.DensityUtils;
-import com.lany.box.widget.ShowView;
 import com.lany.itemdecoration.LinearItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class HelloFragment extends BaseFragment {
     @BindView(R.id.showView)
