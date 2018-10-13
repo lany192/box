@@ -28,14 +28,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':library')
-    implementation 'com.umeng.analytics:analytics:6.1.4'
-    implementation 'org.greenrobot:greendao:3.2.2'
-    implementation 'com.github.linger1216:labelview:v1.1.2'
-    implementation 'com.google.android:flexbox:0.3.2'
-    //菜单控件
-    implementation 'com.github.lany192:MenuView:1.0.0'
-    //banner控件
-    implementation 'com.lany:BannerView:2.0.5'
     compileOnly 'org.projectlombok:lombok:1.18.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.2'
     implementation 'com.github.lany192:ItemDecoration:1.1.4'
@@ -49,5 +41,5 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.17'
 
     //权限控制
-    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5'
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
 }
