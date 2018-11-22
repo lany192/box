@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -151,7 +152,7 @@ public class HttpRequest {
     }
 
     public Observable<String> post(ApiService service) {
-        for (Map.Entry<String, String> entry : params.entrySet()) {
+        for (Map.Entry<String, String> entry : new TreeMap<>(params).entrySet()) {
             builder.addFormDataPart(entry.getKey(), entry.getValue());
         }
         return service.post(url, builder.build()).compose(new ObservableTransformer<String, String>() {
@@ -166,7 +167,7 @@ public class HttpRequest {
     }
 
     public Observable<String> get(ApiService service) {
-        return service.get(url, params).compose(new ObservableTransformer<String, String>() {
+        return service.get(url, new TreeMap<>(params)).compose(new ObservableTransformer<String, String>() {
             @Override
             public ObservableSource<String> apply(Observable<String> observable) {
                 return observable

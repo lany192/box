@@ -1,6 +1,6 @@
 package com.lany.box.http;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -16,5 +16,5 @@ public interface ApiService {
     Observable<String> post(@Url String url, @Body MultipartBody body);
 
     @GET
-    Observable<String> get(@Url String url, @QueryMap HashMap<String, String> hashMap);
+    Observable<String> get(@Url String url, @QueryMap Map<String, String> map);
 }
