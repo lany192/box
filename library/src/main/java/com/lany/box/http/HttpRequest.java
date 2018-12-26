@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.lany.box.Box;
 import com.lany.box.utils.ListUtils;
 import com.lany.box.utils.PhoneUtils;
-import com.lany.uniqueid.DeviceUtils;
 
 import java.io.File;
 import java.util.HashMap;
@@ -31,7 +30,7 @@ public class HttpRequest {
     private static HashMap<String, String> defaultParams = new HashMap<>();
 
     {
-        defaultParams.put("deviceId", DeviceUtils.getUniqueDeviceId(Box.of().getContext()));
+        //defaultParams.put("deviceId", DeviceUtils.getUniqueDeviceId(Box.of().getContext()));
         defaultParams.put("baseInfo", PhoneUtils.getBaseInfo());
     }
 
