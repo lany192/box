@@ -16,7 +16,6 @@ import android.util.TypedValue;
 
 import com.lany.box.Box;
 import com.lany.box.dialog.SimpleDialog;
-import com.lany.uniqueid.DeviceUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
