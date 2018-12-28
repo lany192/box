@@ -146,6 +146,9 @@ public class HttpRequest {
             for (Map.Entry<String, String> entry : mParams.entrySet()) {
                 mBuilder.addFormDataPart(entry.getKey(), entry.getValue());
             }
+        } else {
+            //至少要有一个Part，不然会报错
+            mBuilder.addPart(MultipartBody.Part.createFormData("", ""));
         }
         return service.post(mApiUrl, mBuilder.build()).compose(new ObservableTransformer<String, String>() {
             @Override
