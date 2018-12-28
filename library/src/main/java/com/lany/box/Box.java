@@ -12,6 +12,7 @@ import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator;
+import com.hjq.toast.ToastUtils;
 import com.lany.box.utils.FileUtils;
 import com.lany.box.utils.LogFileFormat;
 import com.lany.box.widget.RefreshView;
@@ -41,17 +42,18 @@ public class Box {
         return instance;
     }
 
-    public void init(Context ctx) {
+    public void init(Application ctx) {
         init(ctx, false);
     }
 
-    public void init(Context ctx, boolean debug) {
+    public void init(Application ctx, boolean debug) {
         Context app = ctx.getApplicationContext();
         if (app == null) {
             this.context = ctx;
         } else {
             this.context = ((Application) app).getBaseContext();
         }
+        ToastUtils.init(ctx);
         SPHelper.getInstance().init(ctx, debug);
         initLog(debug);
         initCatchException();

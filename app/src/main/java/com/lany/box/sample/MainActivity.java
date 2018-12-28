@@ -3,10 +3,11 @@ package com.lany.box.sample;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
+import com.hjq.toast.ToastUtils;
 import com.lany.box.activity.DaggerActivity;
 import com.lany.box.adapter.ViewPagerAdapter;
 import com.lany.box.entity.TabItem;
-import com.lany.box.utils.ToastUtils;
+
 
 import java.util.ArrayList;
 import java.util.List;
