@@ -8,7 +8,6 @@ import com.lany.box.utils.ListUtils;
 import com.lany.box.utils.PhoneUtils;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -25,42 +24,31 @@ import okhttp3.RequestBody;
 
 public class HttpRequest {
     private MultipartBody.Builder mBuilder;
-    private String url;
-    private HashMap<String, String> params = new HashMap<>();
+    private String mApiUrl;
+    private TreeMap<String, String> mParams = new TreeMap<>();
 
-    private static HashMap<String, String> mParams = new HashMap<>();
-
-    public static void addDefaultParams(String key, String value) {
-        mParams.put(key, value);
-    }
-
-    /**
-     * @param addDefault 是否添加默认参数
-     */
-    private HttpRequest(boolean addDefault) {
+    private HttpRequest(String apiUrl, boolean addDefault) {
         mBuilder = new MultipartBody.Builder();
         mBuilder.setType(MultipartBody.FORM);
+
+        mApiUrl = apiUrl;
+
         if (addDefault) {
-            mParams.put("deviceId", DeviceUtils.getUniqueDeviceId(Box.of().getContext()));
-            mParams.put("baseInfo", PhoneUtils.getBaseInfo());
+            add("deviceId", DeviceUtils.getUniqueDeviceId(Box.of().getContext()));
+            add("baseInfo", PhoneUtils.getBaseInfo());
         }
     }
 
-    public static HttpRequest of(String url) {
-        return of(url, true);
+    public static HttpRequest of(String apiUrl) {
+        return of(apiUrl, true);
     }
 
-    public static HttpRequest of(String url, boolean addDefaultParams) {
-        HttpRequest body = new HttpRequest(addDefaultParams);
-        body.setUrl(url);
-        for (String key : mParams.keySet()) {
-            body.add(key, mParams.get(key));
-        }
-        return body;
+    public static HttpRequest of(String apiUrl, boolean addDefault) {
+        return new HttpRequest(apiUrl, addDefault);
     }
 
-    public HttpRequest url(String url) {
-        this.url = url;
+    public HttpRequest api(String apiUrl) {
+        this.mApiUrl = apiUrl;
         return this;
     }
 
@@ -68,7 +56,7 @@ public class HttpRequest {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
-        params.put(key, TextUtils.isEmpty(value) ? "" : value);
+        mParams.put(key, TextUtils.isEmpty(value) ? "" : value);
         return this;
     }
 
@@ -76,7 +64,7 @@ public class HttpRequest {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
-        params.put(key, String.valueOf(value));
+        mParams.put(key, String.valueOf(value));
         return this;
     }
 
@@ -84,7 +72,7 @@ public class HttpRequest {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
-        params.put(key, String.valueOf(value));
+        mParams.put(key, String.valueOf(value));
         return this;
     }
 
@@ -92,7 +80,7 @@ public class HttpRequest {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
-        params.put(key, String.valueOf(value));
+        mParams.put(key, String.valueOf(value));
         return this;
     }
 
@@ -100,7 +88,7 @@ public class HttpRequest {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
-        params.put(key, String.valueOf(value));
+        mParams.put(key, String.valueOf(value));
         return this;
     }
 
@@ -108,7 +96,7 @@ public class HttpRequest {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
-        params.put(key, String.valueOf(value));
+        mParams.put(key, String.valueOf(value));
         return this;
     }
 
@@ -132,7 +120,7 @@ public class HttpRequest {
         return this;
     }
 
-    public HttpRequest addImageFile(String key, File file) {
+    public HttpRequest addImage(String key, File file) {
         if (TextUtils.isEmpty(key) || file == null) {
             return this;
         }
@@ -140,28 +128,26 @@ public class HttpRequest {
         return this;
     }
 
-    public HttpRequest addImagePaths(String key, List<String> paths) {
+    public HttpRequest addImage(String key, List<String> filePaths) {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
-        if (!ListUtils.isEmpty(paths)) {
-            for (int i = 0; i < paths.size(); i++) {
-                File file = new File(paths.get(i));
+        if (!ListUtils.isEmpty(filePaths)) {
+            for (int i = 0; i < filePaths.size(); i++) {
+                File file = new File(filePaths.get(i));
                 mBuilder.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
             }
         }
         return this;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public Observable<String> post(ApiService service) {
-        for (Map.Entry<String, String> entry : new TreeMap<>(params).entrySet()) {
-            mBuilder.addFormDataPart(entry.getKey(), entry.getValue());
+        if (mParams != null && mParams.size() > 0) {
+            for (Map.Entry<String, String> entry : mParams.entrySet()) {
+                mBuilder.addFormDataPart(entry.getKey(), entry.getValue());
+            }
         }
-        return service.post(url, mBuilder.build()).compose(new ObservableTransformer<String, String>() {
+        return service.post(mApiUrl, mBuilder.build()).compose(new ObservableTransformer<String, String>() {
             @Override
             public ObservableSource<String> apply(Observable<String> observable) {
                 return observable
@@ -173,7 +159,7 @@ public class HttpRequest {
     }
 
     public Observable<String> get(ApiService service) {
-        return service.get(url, new TreeMap<>(params)).compose(new ObservableTransformer<String, String>() {
+        return service.get(mApiUrl, mParams).compose(new ObservableTransformer<String, String>() {
             @Override
             public ObservableSource<String> apply(Observable<String> observable) {
                 return observable
