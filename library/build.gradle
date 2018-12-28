@@ -45,8 +45,6 @@ dependencies {
     api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     //带删除功能的EditText
     api 'com.github.lany192:ClearEditText:1.0.4'
-//    //唯一设备码获取
-//    api 'com.lany:UniqueDeviceId:1.0.4'
     //SharedPreferences封装
     api 'com.lany:SharedPreferences:1.0.4'
     //多状态切换控件
@@ -77,4 +75,6 @@ dependencies {
     api 'com.github.lany192:NumberPicker:1.0.3'
 
     api 'com.hjq:toast:5.2'
+
+    api 'com.github.tbruyelle:rxpermissions:0.10.2'
 }
