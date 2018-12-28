@@ -52,9 +52,13 @@ public class DeviceUtils {
         StringBuilder sb = new StringBuilder();
         TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
         if (tm != null) {
-            String deviceId = tm.getDeviceId();
-            if (!TextUtils.isEmpty(deviceId)) {
-                sb.append(deviceId);
+            try {
+                String deviceId = tm.getDeviceId();
+                if (!TextUtils.isEmpty(deviceId)) {
+                    sb.append(deviceId);
+                }
+            } catch (SecurityException e) {
+                e.printStackTrace();
             }
         }
         String androidId = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.ANDROID_ID);

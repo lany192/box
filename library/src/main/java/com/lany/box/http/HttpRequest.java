@@ -3,6 +3,7 @@ package com.lany.box.http;
 import android.text.TextUtils;
 
 import com.lany.box.Box;
+import com.lany.box.utils.DeviceUtils;
 import com.lany.box.utils.ListUtils;
 import com.lany.box.utils.PhoneUtils;
 
@@ -23,31 +24,37 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class HttpRequest {
-    private MultipartBody.Builder builder;
+    private MultipartBody.Builder mBuilder;
     private String url;
     private HashMap<String, String> params = new HashMap<>();
 
-    private static HashMap<String, String> defaultParams = new HashMap<>();
-
-    {
-        //defaultParams.put("deviceId", DeviceUtils.getUniqueDeviceId(Box.of().getContext()));
-        defaultParams.put("baseInfo", PhoneUtils.getBaseInfo());
-    }
+    private static HashMap<String, String> mParams = new HashMap<>();
 
     public static void addDefaultParams(String key, String value) {
-        defaultParams.put(key, value);
+        mParams.put(key, value);
     }
 
-    private HttpRequest() {
-        builder = new MultipartBody.Builder();
-        builder.setType(MultipartBody.FORM);
+    /**
+     * @param addDefault 是否添加默认参数
+     */
+    private HttpRequest(boolean addDefault) {
+        mBuilder = new MultipartBody.Builder();
+        mBuilder.setType(MultipartBody.FORM);
+        if (addDefault) {
+            mParams.put("deviceId", DeviceUtils.getUniqueDeviceId(Box.of().getContext()));
+            mParams.put("baseInfo", PhoneUtils.getBaseInfo());
+        }
     }
 
     public static HttpRequest of(String url) {
-        HttpRequest body = new HttpRequest();
+        return of(url, true);
+    }
+
+    public static HttpRequest of(String url, boolean addDefaultParams) {
+        HttpRequest body = new HttpRequest(addDefaultParams);
         body.setUrl(url);
-        for (String key : defaultParams.keySet()) {
-            body.add(key, defaultParams.get(key));
+        for (String key : mParams.keySet()) {
+            body.add(key, mParams.get(key));
         }
         return body;
     }
@@ -111,7 +118,7 @@ public class HttpRequest {
         }
         if (!ListUtils.isEmpty(values)) {
             for (int i = 0; i < values.size(); i++) {
-                builder.addFormDataPart(key, values.get(i));
+                mBuilder.addFormDataPart(key, values.get(i));
             }
         }
         return this;
@@ -121,7 +128,7 @@ public class HttpRequest {
         if (TextUtils.isEmpty(json)) {
             return this;
         }
-        builder.addPart(FormBody.create(MediaType.parse("application/json; charset=utf-8"), json));
+        mBuilder.addPart(FormBody.create(MediaType.parse("application/json; charset=utf-8"), json));
         return this;
     }
 
@@ -129,7 +136,7 @@ public class HttpRequest {
         if (TextUtils.isEmpty(key) || file == null) {
             return this;
         }
-        builder.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+        mBuilder.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         return this;
     }
 
@@ -140,7 +147,7 @@ public class HttpRequest {
         if (!ListUtils.isEmpty(paths)) {
             for (int i = 0; i < paths.size(); i++) {
                 File file = new File(paths.get(i));
-                builder.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+                mBuilder.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
             }
         }
         return this;
@@ -152,9 +159,9 @@ public class HttpRequest {
 
     public Observable<String> post(ApiService service) {
         for (Map.Entry<String, String> entry : new TreeMap<>(params).entrySet()) {
-            builder.addFormDataPart(entry.getKey(), entry.getValue());
+            mBuilder.addFormDataPart(entry.getKey(), entry.getValue());
         }
-        return service.post(url, builder.build()).compose(new ObservableTransformer<String, String>() {
+        return service.post(url, mBuilder.build()).compose(new ObservableTransformer<String, String>() {
             @Override
             public ObservableSource<String> apply(Observable<String> observable) {
                 return observable
