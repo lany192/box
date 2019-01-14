@@ -10,8 +10,6 @@ public class Repository implements Model {
 
     public Repository(ApiService apiService) {
         mAPIService = apiService;
-        HttpRequest.addDefaultParams("uid", "123456");
-        HttpRequest.addDefaultParams("token", "sdjfsh4324jkdh3234r4r4r4y5y6u6w34fff");
     }
 
     @Override

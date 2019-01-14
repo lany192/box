@@ -9,12 +9,4 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <application>
-        <!-- 监听网络变化 -->
-        <receiver android:name=".receiver.NetChangedReceiver">
-            <intent-filter android:priority="1000">
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
-    </application>
 </manifest>
