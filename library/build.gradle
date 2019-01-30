@@ -24,10 +24,10 @@ android {
 }
 
 dependencies {
-    api "com.android.support:appcompat-v7:" + rootProject.ext.supportLibraryVersion
-    api "com.android.support:design:" + rootProject.ext.supportLibraryVersion
-    api "com.android.support:recyclerview-v7:" + rootProject.ext.supportLibraryVersion
-    api "com.android.support:exifinterface:" + rootProject.ext.supportLibraryVersion
+    api 'androidx.appcompat:appcompat:1.0.2'
+    api 'com.google.android.material:material:1.0.0'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'androidx.exifinterface:exifinterface:1.0.0'
     //图片加载器
     api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     //图片加载器
