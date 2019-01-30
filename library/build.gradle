@@ -67,8 +67,6 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //主项目中要添加butterknife依赖
     compileOnly 'com.jakewharton:butterknife:10.0.0'
-    //dagger2
-    compileOnly 'com.google.dagger:dagger-android-support:2.16'
     //分割线
     api 'com.github.lany192:ItemDecoration:1.1.6'
     //自定义NumberPicker

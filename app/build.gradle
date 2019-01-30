@@ -32,7 +32,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     //dagger2
-    implementation 'com.google.dagger:dagger-android-support:2.16'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.16'
+    implementation 'com.google.dagger:dagger-android-support:2.21'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.21'
 }

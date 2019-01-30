@@ -1,8 +1,8 @@
-package com.lany.box.sample.di.component;
+package com.lany.box.sample.dagger.di.component;
 
 import com.lany.box.sample.SampleApp;
-import com.lany.box.sample.di.module.ActivityModule;
-import com.lany.box.sample.di.module.HttpModule;
+import com.lany.box.sample.dagger.di.module.ActivityModule;
+import com.lany.box.sample.dagger.di.module.HttpModule;
 
 import javax.inject.Singleton;
 

@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.hjq.toast.ToastUtils;
-import com.lany.box.activity.DaggerActivity;
 import com.lany.box.adapter.ViewPagerAdapter;
 import com.lany.box.entity.TabItem;
+import com.lany.box.sample.dagger.DaggerActivity;
 import com.lany.box.utils.DeviceUtils;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;

@@ -1,4 +1,4 @@
-package com.lany.box.di.scope;
+package com.lany.box.sample.dagger.di.scope;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

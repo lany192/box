@@ -1,4 +1,4 @@
-package com.lany.box.di.module;
+package com.lany.box.sample.dagger.di.module;
 
 import java.util.Random;
 

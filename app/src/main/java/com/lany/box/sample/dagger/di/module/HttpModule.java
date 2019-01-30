@@ -1,4 +1,4 @@
-package com.lany.box.sample.di.module;
+package com.lany.box.sample.dagger.di.module;
 
 import com.elvishew.xlog.XLog;
 import com.google.gson.GsonBuilder;

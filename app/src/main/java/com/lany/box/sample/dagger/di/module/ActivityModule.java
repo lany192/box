@@ -1,9 +1,8 @@
-package com.lany.box.sample.di.module;
+package com.lany.box.sample.dagger.di.module;
 
 
-import com.lany.box.di.module.BaseModule;
-import com.lany.box.di.scope.ActivityScope;
 import com.lany.box.sample.MainActivity;
+import com.lany.box.sample.dagger.di.scope.ActivityScope;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

@@ -1,6 +1,8 @@
-package com.lany.box.fragment;
+package com.lany.box.sample.dagger;
 
 import android.content.Context;
+
+import com.lany.box.fragment.BaseFragment;
 
 import javax.inject.Inject;
 
