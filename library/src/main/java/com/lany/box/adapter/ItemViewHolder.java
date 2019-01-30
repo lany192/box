@@ -1,7 +1,5 @@
 package com.lany.box.adapter;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.IdRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +8,8 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.lany.box.helper.ImageHelper;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.IdRes;
 import butterknife.ButterKnife;
 
 public class ItemViewHolder extends BaseViewHolder {

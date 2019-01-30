@@ -1,11 +1,9 @@
-package android.support.v4.app;
+package androidx.fragment.app;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,6 +16,8 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.lany.box.utils.DensityUtils;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import butterknife.ButterKnife;
 
 /**

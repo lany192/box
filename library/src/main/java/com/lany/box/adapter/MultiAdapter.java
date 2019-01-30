@@ -1,6 +1,5 @@
 package com.lany.box.adapter;
 
-import android.support.v7.widget.GridLayoutManager;
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
@@ -10,6 +9,8 @@ import com.elvishew.xlog.XLog;
 import com.lany.box.delegate.ItemDelegate;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.GridLayoutManager;
 
 /**
  * 多布局适配器

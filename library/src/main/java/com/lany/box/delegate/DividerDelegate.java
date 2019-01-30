@@ -1,7 +1,7 @@
 package com.lany.box.delegate;
 
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 import android.view.View;
 
 import com.lany.box.R;

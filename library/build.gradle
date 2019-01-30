@@ -18,8 +18,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -35,7 +35,7 @@ dependencies {
     //事件分发
     api 'org.greenrobot:eventbus:3.1.1'
     //rxjava
-    api 'io.reactivex.rxjava2:rxjava:2.2.4'
+    api 'io.reactivex.rxjava2:rxjava:2.2.5'
     api 'io.reactivex.rxjava2:rxandroid:2.1.0'
     //网络请求
     api 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -44,7 +44,7 @@ dependencies {
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     //带删除功能的EditText
-    api 'com.github.lany192:ClearEditText:1.0.4'
+    api 'com.github.lany192:ClearEditText:1.0.6'
     //SharedPreferences封装
     api 'com.lany:SharedPreferences:1.0.4'
     //多状态切换控件
@@ -54,7 +54,7 @@ dependencies {
     //TabLayout控件
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
     //RecyclerView适配器
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
     //日志
     api 'com.elvishew:xlog:1.5.0'
     //状态栏工具
@@ -66,15 +66,15 @@ dependencies {
     //刷新套件
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //主项目中要添加butterknife依赖
-    compileOnly 'com.jakewharton:butterknife:8.8.1'
+    compileOnly 'com.jakewharton:butterknife:10.0.0'
     //dagger2
-    compileOnly 'com.google.dagger:dagger-android-support:2.19'
+    compileOnly 'com.google.dagger:dagger-android-support:2.20'
     //分割线
-    api 'com.github.lany192:ItemDecoration:1.1.5'
+    api 'com.github.lany192:ItemDecoration:1.1.6'
     //自定义NumberPicker
     api 'com.github.lany192:NumberPicker:1.0.3'
 
     api 'com.hjq:toast:5.2'
-
+    //权限控制
     api 'com.github.tbruyelle:rxpermissions:0.10.2'
 }

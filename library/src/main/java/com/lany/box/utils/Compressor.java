@@ -5,8 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Environment;
-import android.support.annotation.Keep;
-import android.support.media.ExifInterface;
+import androidx.annotation.Keep;
+import androidx.exifinterface.media.ExifInterface;
+
 import android.util.Log;
 
 import com.lany.box.Box;

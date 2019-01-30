@@ -9,7 +9,6 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.elvishew.xlog.LogConfiguration;
@@ -32,6 +31,8 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
+
+import androidx.annotation.NonNull;
 
 public class Box {
     private final String TAG = "Box";

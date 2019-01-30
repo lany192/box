@@ -1,7 +1,8 @@
 package com.lany.box.entity;
 
-import android.support.annotation.DrawableRes;
-import android.support.v4.app.Fragment;
+
+import androidx.annotation.DrawableRes;
+import androidx.fragment.app.Fragment;
 
 public class TabItem {
     private String title;

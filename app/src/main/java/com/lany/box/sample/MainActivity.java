@@ -2,7 +2,6 @@ package com.lany.box.sample;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 
 import com.hjq.toast.ToastUtils;
@@ -18,6 +17,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.disposables.Disposable;

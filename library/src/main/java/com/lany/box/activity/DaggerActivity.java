@@ -2,10 +2,10 @@ package com.lany.box.activity;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
+import androidx.annotation.Nullable;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -17,7 +17,7 @@ import dagger.android.support.HasSupportFragmentInjector;
  */
 public abstract class DaggerActivity extends BaseActivity implements HasFragmentInjector, HasSupportFragmentInjector {
     @Inject
-    DispatchingAndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector;
+    DispatchingAndroidInjector<androidx.fragment.app.Fragment> supportFragmentInjector;
     @Inject
     DispatchingAndroidInjector<Fragment> frameworkFragmentInjector;
 
@@ -28,7 +28,7 @@ public abstract class DaggerActivity extends BaseActivity implements HasFragment
     }
 
     @Override
-    public AndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector() {
+    public AndroidInjector<androidx.fragment.app.Fragment> supportFragmentInjector() {
         return supportFragmentInjector;
     }
 

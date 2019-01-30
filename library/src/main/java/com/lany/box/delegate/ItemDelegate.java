@@ -1,9 +1,6 @@
 package com.lany.box.delegate;
 
 import android.content.Context;
-import android.support.annotation.ColorInt;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.view.View;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
@@ -12,6 +9,9 @@ import com.elvishew.xlog.XLog;
 import com.lany.box.adapter.ItemViewHolder;
 import com.lany.box.helper.ItemTypeHelper;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import butterknife.ButterKnife;
 
 /**
