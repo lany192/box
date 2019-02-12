@@ -1,5 +1,8 @@
 package com.lany.box.mvp.model;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
@@ -8,10 +11,6 @@ import com.lany.box.event.NetWorkEvent;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.OnLifecycleEvent;
 
 public abstract class BaseModel implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();

@@ -1,6 +1,6 @@
 package com.lany.box.sample.delegate;
 
-import androidx.fragment.app.FragmentActivity;
+import android.support.v4.app.FragmentActivity;
 import android.widget.TextView;
 
 import com.lany.box.delegate.ItemDelegate;

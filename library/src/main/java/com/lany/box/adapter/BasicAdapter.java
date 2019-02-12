@@ -2,6 +2,10 @@ package com.lany.box.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +17,6 @@ import com.elvishew.xlog.XLog;
 
 import java.util.List;
 
-import androidx.annotation.ColorRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.LayoutRes;
-import androidx.core.content.ContextCompat;
 import butterknife.ButterKnife;
 
 /**

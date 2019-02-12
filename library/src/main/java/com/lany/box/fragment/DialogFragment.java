@@ -1,12 +1,12 @@
 package com.lany.box.fragment;
 
+import android.support.v4.app.BaseDialogFragment;
 
 import com.lany.box.event.NetWorkEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-import androidx.fragment.app.BaseDialogFragment;
+import org.greenrobot.eventbus.ThreadMode;
 
 public abstract class DialogFragment extends BaseDialogFragment {
 

@@ -1,7 +1,7 @@
 package com.lany.box.widget;
 
 import android.content.Context;
-import androidx.appcompat.widget.AppCompatTextView;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 

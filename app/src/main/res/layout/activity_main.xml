@@ -25,7 +25,7 @@
         android:textColor="@android:color/white"
         android:textSize="14sp" />
 
-    <androidx.viewpager.widget.ViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

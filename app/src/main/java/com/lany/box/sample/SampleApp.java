@@ -1,7 +1,7 @@
 package com.lany.box.sample;
 
 import com.lany.box.Box;
-import com.lany.box.sample.dagger.di.component.DaggerAppComponent;
+import com.lany.box.sample.di.component.DaggerAppComponent;
 import com.liulishuo.filedownloader.FileDownloader;
 
 import dagger.android.AndroidInjector;

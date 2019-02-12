@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.elvishew.xlog.LogConfiguration;
@@ -31,8 +32,6 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
-
-import androidx.annotation.NonNull;
 
 public class Box {
     private final String TAG = "Box";
@@ -92,13 +91,14 @@ public class Box {
                         }
                     });
         } else {
+            String ACTION_NAME = "android.net.conn.CONNECTIVTY_CHANGE";
             getContext().registerReceiver(new BroadcastReceiver() {
 
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
                 }
-            }, new IntentFilter("android.net.conn.CONNECTIVTY_CHANGE"));
+            }, new IntentFilter(ACTION_NAME));
         }
     }
 

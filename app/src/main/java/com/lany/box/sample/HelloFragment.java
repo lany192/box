@@ -2,6 +2,8 @@ package com.lany.box.sample;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.lany.box.adapter.MultiAdapter;
 import com.lany.box.delegate.ItemDelegate;
@@ -13,8 +15,6 @@ import com.lany.itemdecoration.LinearItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 public class HelloFragment extends BaseFragment {
@@ -29,7 +29,7 @@ public class HelloFragment extends BaseFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        manager.setOrientation(RecyclerView.VERTICAL);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
         mShowView.setLayoutManager(manager);
         mShowView.addItemDecoration(new LinearItemDecoration(manager.getOrientation())
                 .setPadding(DensityUtils.dp2px(8))

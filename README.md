@@ -18,13 +18,13 @@
 	dependencies {
 	        //必须
 	        implementation 'com.github.lany192:Box:latest.integration'
-            implementation 'com.jakewharton:butterknife:10.0.0'
-            annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+            implementation 'com.jakewharton:butterknife:8.8.1'
+            annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
             //选择加入，如果使用了dagger2需要添加
-            implementation 'com.google.dagger:dagger:2.20'
-            implementation 'com.google.dagger:dagger-android-support:2.20'
-            annotationProcessor 'com.google.dagger:dagger-compiler:2.20'
-            annotationProcessor 'com.google.dagger:dagger-android-processor:2.20'
+            implementation 'com.google.dagger:dagger:2.19'
+            implementation 'com.google.dagger:dagger-android-support:2.19'
+            annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
+            annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
 	}
 	
 ## 初始化

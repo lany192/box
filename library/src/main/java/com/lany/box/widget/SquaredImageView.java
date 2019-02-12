@@ -1,7 +1,7 @@
 package com.lany.box.widget;
 
 import android.content.Context;
-import androidx.appcompat.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 /**

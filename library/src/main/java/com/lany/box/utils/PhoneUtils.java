@@ -8,7 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.Settings;
-import androidx.fragment.app.FragmentActivity;
+import android.support.v4.app.FragmentActivity;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
