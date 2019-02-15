@@ -37,6 +37,9 @@ public class HelloDelegate extends ItemDelegate<String> {
             @Override
             public void onFinish(View view, int width, int height) {
                 int maxPicWidth = PhoneUtils.getDeviceWidth();
+                if (width < maxPicWidth) {
+                    maxPicWidth = width;
+                }
                 view.setLayoutParams(new LinearLayout.LayoutParams(maxPicWidth, maxPicWidth * height / width));
                 view.setVisibility(View.VISIBLE);
             }
