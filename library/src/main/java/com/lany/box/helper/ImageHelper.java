@@ -126,7 +126,7 @@ public class ImageHelper {
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                         if (listener != null && resource != null) {
-                            listener.onFinish(imageView, resource.getIntrinsicWidth(), resource.getIntrinsicHeight());
+                            listener.onFinish(imageView, resource.getMinimumWidth(), resource.getMinimumHeight());
                         }
                         return false;
                     }
