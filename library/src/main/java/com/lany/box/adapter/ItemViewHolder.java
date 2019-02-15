@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.lany.box.helper.ImageHelper;
+import com.lany.box.helper.ImageLoader;
 
 import butterknife.ButterKnife;
 
@@ -36,20 +36,14 @@ public class ItemViewHolder extends BaseViewHolder {
 
     public ItemViewHolder setImageUrl(@IdRes int viewId, String picUrl) {
         ImageView imageView = getView(viewId);
-        ImageHelper.getInstance().show(imageView, picUrl);
+        ImageLoader.of().show(imageView, picUrl);
         return this;
     }
 
     public ItemViewHolder setAvatarUrl(@IdRes int viewId, String picUrl) {
         ImageView imageView = getView(viewId);
         imageView.getLayoutParams().height = imageView.getLayoutParams().width;
-        ImageHelper.getInstance().showAvatar(imageView, picUrl);
-        return this;
-    }
-
-    public ItemViewHolder showCircle(@IdRes int viewId, String picUrl) {
-        ImageView imageView = getView(viewId);
-        ImageHelper.getInstance().showCircle(imageView, picUrl);
+        ImageLoader.of().showAvatar(imageView, picUrl);
         return this;
     }
 
