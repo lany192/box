@@ -183,4 +183,13 @@ public class SimpleDialog extends com.lany.box.fragment.DialogFragment {
         this.mOnLeftListener = listener;
         this.isShowDivider = true;
     }
+
+    public void setRightBtn(CharSequence rightText) {
+        this.mRightText = rightText;
+    }
+
+    public void setLeftBtn(CharSequence leftText) {
+        this.mLeftText = leftText;
+        this.isShowDivider = true;
+    }
 }

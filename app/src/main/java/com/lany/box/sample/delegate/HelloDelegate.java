@@ -61,18 +61,8 @@ public class HelloDelegate extends ItemDelegate<String> {
         dialog.setMessage("猜猜我是谁");
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setRightBtn("确定", new SimpleDialog.OnRightListener() {
-            @Override
-            public void onClicked() {
-
-            }
-        });
-        dialog.setLeftBtn("取消", new SimpleDialog.OnLeftListener() {
-            @Override
-            public void onClicked() {
-
-            }
-        });
+        dialog.setRightBtn("确定");
+        dialog.setLeftBtn("取消");
         dialog.show((FragmentActivity) getContext());
     }
 }
