@@ -34,9 +34,12 @@ public class HelloDelegate extends ItemDelegate<String> {
     public void init() {
         textView.setText(getData());
         String picUrl = "http://d.hiphotos.baidu.com/image/pic/item/4b90f603738da977625f2cf7bd51f8198718e3fe.jpg";
+        if (getHolder().getAdapterPosition() % 2 == 0) {
+            picUrl = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550479961661&di=58f0ec0ba23d0bf8cff25499d8a93623&imgtype=0&src=http%3A%2F%2Fbannerdesign.cn%2Fwp-content%2Fuploads%2F2015%2F02%2F20150204014336322.jpg";
+        }
         ImageHelper.of().show(imageView, picUrl, new OnImageListener() {
             @Override
-            public void onFinish(ImageView view, int width, int height) {
+            public void onLoadFinish(ImageView view, int width, int height) {
                 log.i("显示的图片尺寸,原始尺寸:" + width + "*" + height);
                 view.setVisibility(View.VISIBLE);
                 int maxPicWidth = PhoneUtils.getDeviceWidth();

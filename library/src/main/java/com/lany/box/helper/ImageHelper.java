@@ -2,21 +2,20 @@ package com.lany.box.helper;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.lany.box.R;
 import com.lany.box.interfaces.BitmapTarget;
 import com.lany.box.interfaces.OnImageListener;
+import com.lany.box.utils.PhoneUtils;
 
 import java.io.File;
 
@@ -121,19 +120,21 @@ public class ImageHelper {
                 .asBitmap()
                 .load(url)
                 .apply(options)
-                .into(new BitmapTarget<Bitmap>() {
+                .into(new BitmapTarget(imageView) {
 
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        int width = resource.getWidth();
+                        int height = resource.getHeight();
                         if (listener != null) {
-                            listener.onFinish(imageView, resource.getWidth(), resource.getHeight());
+                            listener.onLoadFinish(imageView, width, height);
                         }
-                        imageView.setImageBitmap(resource);
-                    }
-
-                    @Override
-                    public void getSize(@NonNull SizeReadyCallback cb) {
-                        cb.onSizeReady(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
+                        int maxWidth = 1080;
+                        if (width > maxWidth) {
+                            super.onResourceReady(ThumbnailUtils.extractThumbnail(resource, maxWidth, height * maxWidth / width), transition);
+                        } else {
+                            super.onResourceReady(resource, transition);
+                        }
                     }
                 });
     }
