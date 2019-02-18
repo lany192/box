@@ -3,17 +3,20 @@ package com.lany.box.helper;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.lany.box.R;
-import com.lany.box.interfaces.OnImageLoadListener;
+import com.lany.box.interfaces.BitmapTarget;
+import com.lany.box.interfaces.OnImageListener;
 
 import java.io.File;
 
@@ -108,29 +111,30 @@ public class ImageHelper {
                 .into(imageView);
     }
 
-    public void show(ImageView imageView, String url, OnImageLoadListener listener) {
+    public void show(ImageView imageView, String url, OnImageListener listener) {
         RequestOptions options = new RequestOptions()
                 .placeholder(R.drawable.default_pic)
                 .error(R.drawable.default_pic)
                 .override(imageView.getWidth(), imageView.getHeight())
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(imageView.getContext())
+                .asBitmap()
                 .load(url)
                 .apply(options)
-                .listener(new RequestListener<Drawable>() {
+                .into(new BitmapTarget<Bitmap>() {
+
                     @Override
-                    public boolean onLoadFailed(GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        return false;
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        if (listener != null) {
+                            listener.onFinish(imageView, resource.getWidth(), resource.getHeight());
+                        }
+                        imageView.setImageBitmap(resource);
                     }
 
                     @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        if (listener != null && resource != null) {
-                            listener.onFinish(imageView, resource.getMinimumWidth(), resource.getMinimumHeight());
-                        }
-                        return false;
+                    public void getSize(@NonNull SizeReadyCallback cb) {
+                        cb.onSizeReady(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
                     }
-                })
-                .into(imageView);
+                });
     }
 }

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.lany.box.delegate.ItemDelegate;
 import com.lany.box.dialog.SimpleDialog;
 import com.lany.box.helper.ImageHelper;
-import com.lany.box.interfaces.OnImageLoadListener;
+import com.lany.box.interfaces.OnImageListener;
 import com.lany.box.sample.R;
 import com.lany.box.utils.PhoneUtils;
 
@@ -33,15 +33,20 @@ public class HelloDelegate extends ItemDelegate<String> {
     @Override
     public void init() {
         textView.setText(getData());
-        ImageHelper.of().show(imageView, "http://d.hiphotos.baidu.com/image/pic/item/4b90f603738da977625f2cf7bd51f8198718e3fe.jpg", new OnImageLoadListener() {
+        String picUrl = "http://d.hiphotos.baidu.com/image/pic/item/4b90f603738da977625f2cf7bd51f8198718e3fe.jpg";
+        ImageHelper.of().show(imageView, picUrl, new OnImageListener() {
             @Override
-            public void onFinish(View view, int width, int height) {
+            public void onFinish(ImageView view, int width, int height) {
+                log.i("显示的图片尺寸,原始尺寸:" + width + "*" + height);
+                view.setVisibility(View.VISIBLE);
                 int maxPicWidth = PhoneUtils.getDeviceWidth();
                 if (width < maxPicWidth) {
                     maxPicWidth = width;
                 }
-                view.setLayoutParams(new LinearLayout.LayoutParams(maxPicWidth, maxPicWidth * height / width));
-                view.setVisibility(View.VISIBLE);
+                int targetWidth = maxPicWidth;
+                int targetHeight = maxPicWidth * height / width;
+                log.i("显示的图片尺寸:" + targetWidth + "*" + targetHeight);
+                view.setLayoutParams(new LinearLayout.LayoutParams(targetWidth, targetHeight));
             }
         });
     }
