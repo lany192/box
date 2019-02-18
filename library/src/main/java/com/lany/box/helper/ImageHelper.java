@@ -11,9 +11,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.lany.box.R;
-import com.lany.box.interfaces.BitmapTarget;
 import com.lany.box.interfaces.OnImageListener;
 import com.lany.box.utils.PhoneUtils;
 
@@ -120,20 +120,20 @@ public class ImageHelper {
                 .asBitmap()
                 .load(url)
                 .apply(options)
-                .into(new BitmapTarget(imageView) {
+                .into(new BitmapImageViewTarget(imageView) {
 
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        int width = resource.getWidth();
-                        int height = resource.getHeight();
+                        super.onResourceReady(resource, transition);
                         if (listener != null) {
-                            listener.onLoadFinish(imageView, width, height);
-                        }
-                        int maxWidth = 1080;
-                        if (width > maxWidth) {
-                            super.onResourceReady(ThumbnailUtils.extractThumbnail(resource, maxWidth, height * maxWidth / width), transition);
-                        } else {
-                            super.onResourceReady(resource, transition);
+                            int width = resource.getWidth();
+                            int height = resource.getHeight();
+                            int screenWidth = PhoneUtils.getDeviceWidth();
+                            if (width < screenWidth) {
+                                listener.onLoadFinish(imageView, width, height);
+                            } else {
+                                listener.onLoadFinish(imageView, screenWidth, screenWidth * height / width);
+                            }
                         }
                     }
                 });
