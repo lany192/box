@@ -1,5 +1,6 @@
 package com.lany.box.sample.delegate;
 
+import android.graphics.Bitmap;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,8 +10,9 @@ import android.widget.TextView;
 import com.lany.box.delegate.ItemDelegate;
 import com.lany.box.dialog.SimpleDialog;
 import com.lany.box.helper.ImageHelper;
-import com.lany.box.interfaces.OnImageListener;
 import com.lany.box.sample.R;
+import com.lany.box.utils.PhoneUtils;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import butterknife.BindView;
 
@@ -38,12 +40,13 @@ public class HelloDelegate extends ItemDelegate<String> {
         } else if (getHolder().getAdapterPosition() % 3 == 0) {
             picUrl = "http://e.hiphotos.baidu.com/image/pic/item/eac4b74543a982265bd540e38782b9014b90ebda.jpg";
         }
-        ImageHelper.of().show(imageView, picUrl, new OnImageListener() {
+        ImageHelper.of().show(imageView, picUrl, new SimpleImageLoadingListener() {
+
             @Override
-            public void onLoadFinish(ImageView view, int width, int height) {
-                log.i("显示的图片尺寸:" + width + "*" + height);
+            public void onLoadingComplete(String imageUri, View view, Bitmap bitmap) {
+                int screenWidth = PhoneUtils.getDeviceWidth();
+                view.setLayoutParams(new LinearLayout.LayoutParams(screenWidth, screenWidth * bitmap.getHeight() / bitmap.getWidth()));
                 view.setVisibility(View.VISIBLE);
-                view.setLayoutParams(new LinearLayout.LayoutParams(width, height));
             }
         });
     }

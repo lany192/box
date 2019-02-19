@@ -1,21 +1,25 @@
 package com.lany.box.helper;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.lany.box.R;
-import com.lany.box.interfaces.OnImageListener;
 import com.lany.box.utils.PhoneUtils;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
 
@@ -110,32 +114,41 @@ public class ImageHelper {
                 .into(imageView);
     }
 
-    public void show(ImageView imageView, String url, OnImageListener listener) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(R.drawable.default_pic)
-                .error(R.drawable.default_pic)
-                .override(imageView.getWidth(), imageView.getHeight())
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(imageView.getContext())
-                .asBitmap()
-                .load(url)
-                .apply(options)
-                .into(new BitmapImageViewTarget(imageView) {
-
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        super.onResourceReady(resource, transition);
-                        if (listener != null) {
-                            int width = resource.getWidth();
-                            int height = resource.getHeight();
-                            int screenWidth = PhoneUtils.getDeviceWidth();
-                            if (width < screenWidth) {
-                                listener.onLoadFinish(imageView, width, height);
-                            } else {
-                                listener.onLoadFinish(imageView, screenWidth, screenWidth * height / width);
-                            }
-                        }
-                    }
-                });
+    public void show(ImageView imageView, String url, ImageLoadingListener listener) {
+        if (imageView == null) {
+            return;
+        }
+        if (!ImageLoader.getInstance().isInited()) {
+            int maxMemory = (int) Runtime.getRuntime().maxMemory();
+            int cacheSize = maxMemory / 12;
+            int width = PhoneUtils.getDeviceWidth();
+            int height = PhoneUtils.getDeviceHeight();
+            ImageLoader.getInstance().init(new ImageLoaderConfiguration.Builder(imageView.getContext())
+                    .threadPriority(Thread.NORM_PRIORITY - 2)
+                    .threadPoolSize(5)//设置并发线程数
+                    .denyCacheImageMultipleSizesInMemory()
+                    .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                    .tasksProcessingOrder(QueueProcessingType.FIFO)
+                    .memoryCacheSize(cacheSize)
+                    .memoryCache(new WeakMemoryCache())
+//                .writeDebugLogs()//打印日志
+                    .memoryCacheExtraOptions(width, height) //每个缓存文件的最大长宽
+                    .diskCacheExtraOptions(width, height, null)
+                    .build());
+        }
+        BitmapFactory.Options option = new BitmapFactory.Options();
+        option.inSampleSize = 4;
+        DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.default_pic)
+                .showImageForEmptyUri(R.drawable.default_pic)
+                .showImageOnFail(R.drawable.default_pic)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .decodingOptions(option)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .displayer(new SimpleBitmapDisplayer());
+        ImageLoader.getInstance().displayImage(url, imageView, builder.build(), listener);
     }
 }
