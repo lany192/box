@@ -14,5 +14,7 @@ public interface BaseListView<T> extends BaseView {
 
     void end();
 
+    void gotoTop();
+
     List<T> getItems();
 }
