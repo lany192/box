@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hjq.toast.ToastUtils;
 import com.lany.box.delegate.ItemDelegate;
 import com.lany.box.dialog.SimpleDialog;
 import com.lany.box.helper.ImageHelper;
@@ -58,7 +59,12 @@ public class HelloDelegate extends ItemDelegate<String> {
         dialog.setMessage("猜猜我是谁");
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setRightBtn("确定");
+        dialog.setRightBtn("确定", new SimpleDialog.OnRightListener() {
+            @Override
+            public void onClicked() {
+                ToastUtils.show("张三");
+            }
+        });
         dialog.setLeftBtn("取消");
         dialog.show((FragmentActivity) getContext());
     }

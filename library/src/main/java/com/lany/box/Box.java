@@ -11,6 +11,7 @@ import android.net.NetworkRequest;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.Gravity;
 
 import com.elvishew.xlog.LogConfiguration;
 import com.elvishew.xlog.LogLevel;
@@ -19,6 +20,7 @@ import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator;
+import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
 import com.lany.box.event.NetWorkEvent;
 import com.lany.box.utils.FileUtils;
@@ -64,12 +66,83 @@ public class Box {
         } else {
             this.context = ((Application) app).getBaseContext();
         }
-        ToastUtils.init(ctx);
+        initToast(ctx);
         SPHelper.getInstance().init(ctx, debug);
         initLog(debug);
         initCatchException();
         initRefreshView();
         registerNetwork();
+    }
+
+    private void initToast(Application ctx) {
+        ToastUtils.init(ctx);
+        ToastUtils.initStyle(new IToastStyle() {
+
+            @Override
+            public int getGravity() {
+                return Gravity.CENTER;
+            }
+
+            @Override
+            public int getXOffset() {
+                return 0;
+            }
+
+            @Override
+            public int getYOffset() {
+                return 0;
+            }
+
+            @Override
+            public int getZ() {
+                return 30;
+            }
+
+            @Override
+            public int getCornerRadius() {
+                return 6;
+            }
+
+            @Override
+            public int getBackgroundColor() {
+                return 0xcc000000;
+            }
+
+            @Override
+            public int getTextColor() {
+                return 0xffffffff;
+            }
+
+            @Override
+            public float getTextSize() {
+                return 14;
+            }
+
+            @Override
+            public int getMaxLines() {
+                return 3;
+            }
+
+            @Override
+            public int getPaddingLeft() {
+                return 24;
+            }
+
+            @Override
+            public int getPaddingTop() {
+                return 16;
+            }
+
+            @Override
+            public int getPaddingRight() {
+                return getPaddingLeft();
+            }
+
+            @Override
+            public int getPaddingBottom() {
+                return getPaddingTop();
+            }
+        });
     }
 
     private void registerNetwork() {
