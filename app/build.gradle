@@ -20,6 +20,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
@@ -42,4 +51,6 @@ dependencies {
 
     //权限控制
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+    implementation 'org.codehaus.groovy:groovy-all:2.5.6'
 }

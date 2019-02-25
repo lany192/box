@@ -172,4 +172,8 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
         scrollToPosition(0);
         mGotoTopBtn.setVisibility(View.GONE);
     }
+
+    public void setHasFixedSize(boolean hasFixedSize){
+        mRecyclerView.setHasFixedSize(hasFixedSize);
+    }
 }
