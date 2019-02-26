@@ -99,8 +99,8 @@ public class Compressor {
         }
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        final int maxWidth = 1080;
-        final int maxHeight = 1280;
+        final int maxWidth = 1440;
+        final int maxHeight = 2560;
         if (width > maxWidth || height > maxHeight) {
             float scale;
             if (width < height) {
@@ -114,7 +114,8 @@ public class Compressor {
     }
 
     public File start() {
-        Log.i(TAG, "开始压缩源文件:" + mSourceImagePath + "，大小：" + (mSourceImagePath.length() >> 10) + "kb");
+        File sourceFile = new File(mSourceImagePath);
+        Log.i(TAG, "开始压缩源文件:" + mSourceImagePath + "，大小：" + (sourceFile.length() >> 10) + "kb");
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = computeSize();
@@ -122,9 +123,9 @@ public class Compressor {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         targetBitmap = rotatingImage(targetBitmap);
         int leastCompressSize = 150;//小于150kb不压缩
-        int quality = 100;
+        int quality = 99;
         if (needCompress(leastCompressSize, mSourceImagePath)) {
-            quality = 60;
+            quality = 55;
         }
         targetBitmap.compress(Bitmap.CompressFormat.JPEG, quality, stream);
         if (!targetBitmap.isRecycled()) {
@@ -161,7 +162,9 @@ public class Compressor {
     private boolean needCompress(int leastCompressSize, String path) {
         if (leastCompressSize > 0) {
             File source = new File(path);
-            return source.exists() && source.length() > (leastCompressSize << 10);
+            boolean isPass = source.exists() && source.length() > (leastCompressSize << 10);
+            Log.i(TAG, "压缩检查: " + path + ",是否需要压缩:" + isPass);
+            return isPass;
         }
         return true;
     }
