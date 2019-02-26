@@ -7,7 +7,6 @@ import android.graphics.Matrix;
 import android.os.Environment;
 import android.support.annotation.Keep;
 import android.support.media.ExifInterface;
-import android.util.Log;
 
 import com.lany.box.Box;
 
@@ -20,15 +19,15 @@ import java.io.FileOutputStream;
  */
 @Keep
 public class Compressor {
-    private final String TAG = "Compressor";
-    private ExifInterface mSourceExif;
+    private final String TAG = getClass().getSimpleName();
+    private ExifInterface mExifInterface;
     private String mSourceImagePath;
     private File mTargetFile;
     private int mSourceWidth;
     private int mSourceHeight;
 
     public Compressor(String sourcePath) throws Exception {
-        this.mSourceExif = new ExifInterface(sourcePath);
+        this.mExifInterface = new ExifInterface(sourcePath);
         this.mTargetFile = new File(getCacheDirectory(Box.of().getContext()), System.currentTimeMillis() + ".jpg");
         this.mSourceImagePath = sourcePath;
 
@@ -44,14 +43,13 @@ public class Compressor {
     /**
      * app缓存目录
      */
-    public File getCacheDirectory(Context ctx) {
+    private File getCacheDirectory(Context ctx) {
         File cacheDir = ctx.getCacheDir();
         if (cacheDir == null) {
             return Environment.getExternalStorageDirectory();
         }
         return cacheDir;
     }
-
 
     private int computeSize() {
         mSourceWidth = mSourceWidth % 2 == 1 ? mSourceWidth + 1 : mSourceWidth;
@@ -61,34 +59,29 @@ public class Compressor {
         int shortSide = Math.min(mSourceWidth, mSourceHeight);
 
         float scale = ((float) shortSide / longSide);
-        Log.i(TAG, "scale: " + scale);
         if (scale <= 1 && scale > 0.5625) {
             if (longSide < 1664) {
                 return 1;
             } else if (longSide < 4990) {
                 return 2;
-            } else if (longSide < 10240) {
+            } else if (longSide > 4990 && longSide < 10240) {
                 return 4;
             } else {
                 return longSide / 1280 == 0 ? 1 : longSide / 1280;
             }
         } else if (scale <= 0.5625 && scale > 0.5) {
             return longSide / 1280 == 0 ? 1 : longSide / 1280;
-        } else if (scale <= 0.5 && scale > 0.2) {
-            return (int) Math.ceil(longSide / (1280.0 / scale));
-        } else if (scale <= 0.2 && scale > 0.1) {//长图或者扁图，比较极端
-            return 4;
         } else {
-            return 5;//长图或者扁图，极端图片
+            return (int) Math.ceil(longSide / (1280.0 / scale));
         }
     }
 
     private Bitmap rotatingImage(Bitmap bitmap) {
-        if (mSourceExif == null)
+        if (mExifInterface == null)
             return bitmap;
         Matrix matrix = new Matrix();
         int angle = 0;
-        int orientation = mSourceExif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+        int orientation = mExifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
         switch (orientation) {
             case ExifInterface.ORIENTATION_ROTATE_90:
                 angle = 90;
@@ -125,7 +118,12 @@ public class Compressor {
         Bitmap targetBitmap = BitmapFactory.decodeFile(mSourceImagePath, options);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         targetBitmap = rotatingImage(targetBitmap);
-        targetBitmap.compress(Bitmap.CompressFormat.JPEG, 40, stream);
+        int leastCompressSize = 150;//小于150kb不压缩
+        int quality = 100;
+        if (needCompress(leastCompressSize, mSourceImagePath)) {
+            quality = 60;
+        }
+        targetBitmap.compress(Bitmap.CompressFormat.JPEG, quality, stream);
         if (!targetBitmap.isRecycled()) {
             targetBitmap.recycle();
             targetBitmap = null;
@@ -151,5 +149,16 @@ public class Compressor {
             }
         }
         return mTargetFile;
+    }
+
+    /**
+     * 判断是否需要压缩
+     */
+    private boolean needCompress(int leastCompressSize, String path) {
+        if (leastCompressSize > 0) {
+            File source = new File(path);
+            return source.exists() && source.length() > (leastCompressSize << 10);
+        }
+        return true;
     }
 }
