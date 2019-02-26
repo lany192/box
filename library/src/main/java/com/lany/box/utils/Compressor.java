@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.os.Environment;
 import android.support.annotation.Keep;
 import android.support.media.ExifInterface;
+import android.util.Log;
 
 import com.lany.box.Box;
 
@@ -98,8 +99,8 @@ public class Compressor {
         }
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        final int maxWidth = 1440;
-        final int maxHeight = 2560;
+        final int maxWidth = 1080;
+        final int maxHeight = 1280;
         if (width > maxWidth || height > maxHeight) {
             float scale;
             if (width < height) {
@@ -113,6 +114,8 @@ public class Compressor {
     }
 
     public File start() {
+        Log.i(TAG, "开始压缩源文件:" + mSourceImagePath + "，大小：" + (mSourceImagePath.length() >> 10) + "kb");
+
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = computeSize();
         Bitmap targetBitmap = BitmapFactory.decodeFile(mSourceImagePath, options);
@@ -148,6 +151,7 @@ public class Compressor {
                 }
             }
         }
+        Log.i(TAG, "压缩结束，压缩后文件:" + mTargetFile.getPath() + "，大小：" + (mTargetFile.length() >> 10) + "kb");
         return mTargetFile;
     }
 
