@@ -13,13 +13,15 @@ import com.lany.box.Box;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 
 /**
  * 图片压缩器，使用方法：File resultFile = new Compressor(sourcePath).start();
  */
 @Keep
-public class Compressor {
+public class PicCompressor {
     private final String TAG = getClass().getSimpleName();
     private ExifInterface mExifInterface;
     private String mSourceImagePath;
@@ -27,7 +29,7 @@ public class Compressor {
     private int mSourceWidth;
     private int mSourceHeight;
 
-    public Compressor(String sourcePath) throws Exception {
+    public PicCompressor(String sourcePath) throws Exception {
         this.mExifInterface = new ExifInterface(sourcePath);
         this.mTargetFile = new File(getCacheDirectory(Box.of().getContext()), System.currentTimeMillis() + ".jpg");
         this.mSourceImagePath = sourcePath;
@@ -115,44 +117,63 @@ public class Compressor {
 
     public File start() {
         File sourceFile = new File(mSourceImagePath);
-        Log.i(TAG, "开始压缩源文件:" + mSourceImagePath + "，大小：" + (sourceFile.length() >> 10) + "kb");
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = computeSize();
-        Bitmap targetBitmap = BitmapFactory.decodeFile(mSourceImagePath, options);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        targetBitmap = rotatingImage(targetBitmap);
+        if (!sourceFile.exists()) {
+            Log.i(TAG, "文件不存在" + mSourceImagePath);
+            return null;
+        }
         int leastCompressSize = 150;//小于150kb不压缩
-        int quality = 99;
         if (needCompress(leastCompressSize, mSourceImagePath)) {
-            quality = 55;
-        }
-        targetBitmap.compress(Bitmap.CompressFormat.JPEG, quality, stream);
-        if (!targetBitmap.isRecycled()) {
-            targetBitmap.recycle();
-            targetBitmap = null;
-            System.gc();
-        }
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(mTargetFile);
-            fos.write(stream.toByteArray());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.flush();
-                    fos.close();
-                    stream.close();
-                    fos = null;
-                    stream = null;
-                } catch (Exception e) {
-                    e.printStackTrace();
+            Log.i(TAG, "\n开始压缩源文件:" + mSourceImagePath + "，大小：" + (sourceFile.length() >> 10) + "kb");
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = computeSize();
+            Bitmap targetBitmap = BitmapFactory.decodeFile(mSourceImagePath, options);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            targetBitmap = rotatingImage(targetBitmap);
+            targetBitmap.compress(Bitmap.CompressFormat.JPEG, 55, stream);
+            if (!targetBitmap.isRecycled()) {
+                targetBitmap.recycle();
+                targetBitmap = null;
+                System.gc();
+            }
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(mTargetFile);
+                fos.write(stream.toByteArray());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (fos != null) {
+                    try {
+                        fos.flush();
+                        fos.close();
+                        stream.close();
+                        fos = null;
+                        stream = null;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+            Log.i(TAG, "压缩结束，压缩后文件:" + mTargetFile.getPath() + "，大小：" + (mTargetFile.length() >> 10) + "kb");
+        } else {
+            Log.i(TAG, "不压缩，直接拷贝");
+            try {
+                int bytesum = 0;
+                int byteread = 0;
+                InputStream inStream = new FileInputStream(mSourceImagePath); //读入原文件
+                FileOutputStream fs = new FileOutputStream(mTargetFile.getPath());
+                byte[] buffer = new byte[1444];
+                while ((byteread = inStream.read(buffer)) != -1) {
+                    bytesum += byteread; //字节数 文件大小
+                    System.out.println(bytesum);
+                    fs.write(buffer, 0, byteread);
+                }
+                inStream.close();
+            } catch (Exception e) {
+                System.out.println("复制单个文件操作出错");
+                e.printStackTrace();
+            }
         }
-        Log.i(TAG, "压缩结束，压缩后文件:" + mTargetFile.getPath() + "，大小：" + (mTargetFile.length() >> 10) + "kb");
         return mTargetFile;
     }
 
