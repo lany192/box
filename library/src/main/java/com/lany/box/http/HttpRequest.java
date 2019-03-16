@@ -8,6 +8,8 @@ import com.lany.box.utils.ListUtils;
 import com.lany.box.utils.PhoneUtils;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -139,6 +141,51 @@ public class HttpRequest {
             }
         }
         return this;
+    }
+
+    public HttpRequest addObject(Object object) {
+        if (object != null) {
+            Map<String, String> fields = object2map(object);
+            if (!fields.isEmpty()) {
+                for (Map.Entry<String, String> entry : fields.entrySet()) {
+                    mParams.put(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+        return this;
+    }
+
+    /**
+     * 对象转map
+     */
+    private Map<String, String> object2map(Object obj) {
+        if (obj == null) {
+            return new HashMap<>();
+        }
+        Map<String, String> map = new HashMap<>();
+        // 获取f对象对应类中的所有属性域
+        Field[] fields = obj.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            String fieldName = field.getName();
+            try {
+                // 获取原来的访问控制权限
+                boolean accessFlag = field.isAccessible();
+                // 修改访问控制权限
+                field.setAccessible(true);
+                // 获取在对象f中属性fields[i]对应的对象中的变量
+                Object value = field.get(obj);
+                if (value != null) {
+                    map.put(fieldName, value.toString());
+                }
+                // 恢复访问控制权限
+                field.setAccessible(accessFlag);
+            } catch (IllegalArgumentException ex) {
+                ex.printStackTrace();
+            } catch (IllegalAccessException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return map;
     }
 
     public Observable<String> post(ApiService service) {
