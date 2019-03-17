@@ -21,6 +21,7 @@ public class Request {
     private String apiUrl;
     private TreeMap<String, String> params = new TreeMap<>();
     private List<MultipartBody.Part> parts = new ArrayList<>();
+    private ApiService apiService;
 
     private Request(String apiUrl) {
         this.apiUrl = apiUrl;
@@ -28,6 +29,11 @@ public class Request {
 
     public static Request of(String apiUrl) {
         return new Request(apiUrl);
+    }
+
+    public Request service(ApiService apiService) {
+        this.apiService = apiService;
+        return this;
     }
 
     public Request add(String key, String value) {
@@ -170,7 +176,11 @@ public class Request {
         return map;
     }
 
-    public Observable<String> post(ApiService service) {
+    public Observable<String> post() {
+        if (apiService == null) {
+            throw new IllegalStateException("ApiService is null");
+        }
+
         MultipartBody.Builder builder = new MultipartBody.Builder();
         if (params != null && params.size() > 0) {
             for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -186,7 +196,7 @@ public class Request {
             }
         }
         builder.setType(MultipartBody.FORM);
-        return service
+        return apiService
                 .post(apiUrl, builder.build())
                 .compose(observable -> observable
                         .observeOn(AndroidSchedulers.mainThread())
@@ -194,8 +204,11 @@ public class Request {
                         .unsubscribeOn(Schedulers.io()));
     }
 
-    public Observable<String> get(ApiService service) {
-        return service
+    public Observable<String> get() {
+        if (apiService == null) {
+            throw new IllegalStateException("ApiService is null");
+        }
+        return apiService
                 .get(apiUrl, params)
                 .compose(observable -> observable
                         .observeOn(AndroidSchedulers.mainThread())
