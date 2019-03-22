@@ -2,6 +2,8 @@ package com.lany.box.http;
 
 import android.text.TextUtils;
 
+import com.lany.box.utils.JsonUtils;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -137,15 +139,19 @@ public class Request {
             if (!fields.isEmpty()) {
                 for (Map.Entry<String, Object> entry : fields.entrySet()) {
                     Object value = entry.getValue();
-                    if (value instanceof List) {
-                        List<String> values = (List<String>) value;
-                        if (values.size() > 0) {
-                            for (int i = 0; i < values.size(); i++) {
-                                params.put(entry.getKey(), values.get(i));
+                    if (value != null) {
+                        if (value instanceof List) {
+                            List<String> values = (List<String>) value;
+                            if (values.size() > 0) {
+                                for (int i = 0; i < values.size(); i++) {
+                                    params.put(entry.getKey(), values.get(i));
+                                }
                             }
+                        } else if (isBaseType(value)) {
+                            params.put(entry.getKey(), value.toString());
+                        } else {
+                            params.put(entry.getKey(), JsonUtils.object2json(value));
                         }
-                    } else {
-                        params.put(entry.getKey(), value.toString());
                     }
                 }
             }
@@ -184,6 +190,21 @@ public class Request {
             }
         }
         return map;
+    }
+
+    /**
+     * 判断object是否为基本类型
+     */
+    private boolean isBaseType(Object object) {
+        Class className = object.getClass();
+        return className.equals(Integer.class) ||
+                className.equals(Byte.class) ||
+                className.equals(Long.class) ||
+                className.equals(Double.class) ||
+                className.equals(Float.class) ||
+                className.equals(Character.class) ||
+                className.equals(Short.class) ||
+                className.equals(Boolean.class);
     }
 
     public Observable<String> post() {
