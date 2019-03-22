@@ -133,10 +133,20 @@ public class Request {
 
     public Request add(Object object) {
         if (object != null) {
-            Map<String, String> fields = object2map(object);
+            Map<String, Object> fields = object2map(object);
             if (!fields.isEmpty()) {
-                for (Map.Entry<String, String> entry : fields.entrySet()) {
-                    params.put(entry.getKey(), entry.getValue());
+                for (Map.Entry<String, Object> entry : fields.entrySet()) {
+                    Object value = entry.getValue();
+                    if (value instanceof List) {
+                        List<String> values = (List<String>) value;
+                        if (values.size() > 0) {
+                            for (int i = 0; i < values.size(); i++) {
+                                params.put(entry.getKey(), values.get(i));
+                            }
+                        }
+                    } else {
+                        params.put(entry.getKey(), value.toString());
+                    }
                 }
             }
         }
@@ -146,11 +156,11 @@ public class Request {
     /**
      * 对象转map
      */
-    private Map<String, String> object2map(Object obj) {
+    private Map<String, Object> object2map(Object obj) {
         if (obj == null) {
             return new HashMap<>();
         }
-        Map<String, String> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         // 获取f对象对应类中的所有属性域
         Field[] fields = obj.getClass().getDeclaredFields();
         for (Field field : fields) {
@@ -163,7 +173,7 @@ public class Request {
                 // 获取在对象f中属性fields[i]对应的对象中的变量
                 Object value = field.get(obj);
                 if (value != null) {
-                    map.put(fieldName, value.toString());
+                    map.put(fieldName, value);
                 }
                 // 恢复访问控制权限
                 field.setAccessible(accessFlag);
