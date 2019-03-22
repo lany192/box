@@ -196,15 +196,11 @@ public class Request {
      * 判断object是否为基本类型
      */
     private boolean isBaseType(Object object) {
-        Class className = object.getClass();
-        return className.equals(Integer.class) ||
-                className.equals(Byte.class) ||
-                className.equals(Long.class) ||
-                className.equals(Double.class) ||
-                className.equals(Float.class) ||
-                className.equals(Character.class) ||
-                className.equals(Short.class) ||
-                className.equals(Boolean.class);
+        Class clz = object.getClass();
+        return clz.equals(Integer.class) || clz.equals(Byte.class) ||
+                clz.equals(Long.class) || clz.equals(Double.class) ||
+                clz.equals(Float.class) || clz.equals(Character.class) ||
+                clz.equals(Short.class) || clz.equals(Boolean.class);
     }
 
     public Observable<String> post() {
