@@ -59,6 +59,4 @@ dependencies {
 
     //权限控制
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-
-    implementation 'org.codehaus.groovy:groovy-all:2.5.6'
 }

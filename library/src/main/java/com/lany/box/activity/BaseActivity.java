@@ -98,8 +98,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             EventBus.getDefault().register(this);
         }
         mImmersionBar = ImmersionBar.with(this)
-                .statusBarDarkFont(isStatusBarDarkFont(), 0.2f)
-                .navigationBarEnable(false);
+                .statusBarDarkFont(isStatusBarDarkFont(), 0.2f);
         mImmersionBar.init();
         onBeforeSetContentView();
         RelativeLayout rootView = new RelativeLayout(this);
