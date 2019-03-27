@@ -34,7 +34,8 @@ android {
         exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
-
+        exclude 'META-INF/groovy/org.codehaus.groovy.runtime.ExtensionModule'
+        exclude 'META-INF/groovy-release-info.properties'
     }
 }
 
