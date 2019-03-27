@@ -27,14 +27,13 @@ import com.lany.box.event.NetWorkEvent;
 import com.lany.box.utils.FileUtils;
 import com.lany.box.utils.LogFileFormat;
 import com.lany.box.utils.NetUtils;
+import com.lany.box.utils.PermissionUtils;
 import com.lany.box.widget.RefreshView;
 import com.lany.sp.SPHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.tbruyelle.rxpermissions2.Permission;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -42,8 +41,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 public class Box {
     private final String TAG = "Box";
@@ -180,61 +177,34 @@ public class Box {
     }
 
     private void registerNetwork() {
-        getContext().registerReceiver(new BroadcastReceiver() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                && PermissionUtils.checkPermission(getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
+                && PermissionUtils.checkPermission(getContext(), Manifest.permission.WRITE_SETTINGS)) {
+            ConnectivityManager manager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            manager.requestNetwork(new NetworkRequest.Builder().build(),
+                    new ConnectivityManager.NetworkCallback() {
 
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
-            }
-        }, new IntentFilter("android.net.conn.CONNECTIVTY_CHANGE"));
+                        @Override
+                        public void onLost(Network network) {
+                            super.onLost(network);
+                            EventBus.getDefault().post(new NetWorkEvent(false));
+                        }
 
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            RxPermissions rxPermissions = new RxPermissions(this);
-//            Disposable disposable = rxPermissions
-//                    .requestEach(Manifest.permission.CHANGE_NETWORK_STATE,
-//                            Manifest.permission.WRITE_SETTINGS)
-//                    .subscribe(new Consumer<Permission>() {
-//                        @Override
-//                        public void accept(Permission permission) throws Exception {
-//                            if (permission.granted) {
-//                                // 用户已经同意该权限
-//                                Log.d(TAG, permission.name + " 通过授权");
-//                                ConnectivityManager manager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-//                                manager.requestNetwork(new NetworkRequest.Builder().build(),
-//                                        new ConnectivityManager.NetworkCallback() {
-//
-//                                            @Override
-//                                            public void onLost(Network network) {
-//                                                super.onLost(network);
-//                                                EventBus.getDefault().post(new NetWorkEvent(false));
-//                                            }
-//
-//                                            @Override
-//                                            public void onAvailable(Network network) {
-//                                                super.onAvailable(network);
-//                                                EventBus.getDefault().post(new NetWorkEvent(true));
-//                                            }
-//                                        });
-//                            } else if (permission.shouldShowRequestPermissionRationale) {
-//                                // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-//                                Log.d(TAG, permission.name + "授权失败。用户拒绝了该权限，没有选中『不再询问』");
-//                            } else {
-//                                // 用户拒绝了该权限，并且选中『不再询问』
-//                                Log.d(TAG, permission.name + "授权失败。用户拒绝了该权限，且选中『不再询问』");
-//                            }
-//                        }
-//                    });
-//        } else {
-//            String ACTION_NAME = "android.net.conn.CONNECTIVTY_CHANGE";
-//            getContext().registerReceiver(new BroadcastReceiver() {
-//
-//                @Override
-//                public void onReceive(Context context, Intent intent) {
-//                    EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
-//                }
-//            }, new IntentFilter(ACTION_NAME));
-//        }
+                        @Override
+                        public void onAvailable(Network network) {
+                            super.onAvailable(network);
+                            EventBus.getDefault().post(new NetWorkEvent(true));
+                        }
+                    });
+        } else {
+            getContext().registerReceiver(new BroadcastReceiver() {
+
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
+                }
+            }, new IntentFilter("android.net.conn.CONNECTIVTY_CHANGE"));
+        }
     }
 
     private void initCatchException() {
@@ -247,6 +217,7 @@ public class Box {
             }
         });
     }
+
 
     private void initRefreshView() {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
