@@ -79,6 +79,7 @@ public class InputDialog extends com.lany.box.fragment.DialogFragment {
                 mOnInputListener.onResult(Objects.requireNonNull(editText.getText()).toString());
             }
         });
+        findViewById(R.id.dialog_input_close_btn).setOnClickListener(v -> cancel());
     }
 
     public interface OnInputListener {

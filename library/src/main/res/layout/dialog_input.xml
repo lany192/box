@@ -4,23 +4,55 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/dialog_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="提示"
-        android:textColor="#333333"
-        android:textSize="14sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:background="@color/toolbar_bg"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_input_close_btn"
+            android:layout_width="60dp"
+            android:layout_height="@dimen/actionbar_height"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@android:string/cancel"
+            android:textColor="#babcc8"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dialog_input_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="提示"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/dialog_input_ok_btn"
+            android:layout_width="60dp"
+            android:layout_height="@dimen/actionbar_height"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@android:string/ok"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e1e1e1" />
 
     <EditText
         android:id="@+id/dialog_input_input_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
         android:background="#f4f4f4"
         android:gravity="left|top"
         android:hint="请输入内容"
@@ -28,19 +60,5 @@
         android:padding="8dp"
         android:textColor="#555555"
         android:textSize="14sp"
-        tools:background="#dddddd" />
-
-    <Button
-        android:id="@+id/dialog_input_ok_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_gravity="right"
-        android:layout_marginTop="10dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:gravity="center"
-        android:minWidth="64dp"
-        android:text="@android:string/ok"
-        android:textColor="#555555"
-        android:textSize="13sp"
         tools:background="#dddddd" />
 </LinearLayout>
