@@ -59,6 +59,7 @@ public class InputDialog extends com.lany.box.fragment.DialogFragment {
 
         if (!TextUtils.isEmpty(mContent)) {
             editText.setText(mContent);
+            editText.setSelection(mContent.length());
         }
         if (!TextUtils.isEmpty(mHint)) {
             editText.setHint(mHint);
