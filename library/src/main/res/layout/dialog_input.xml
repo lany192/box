@@ -3,12 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/fragment_dialog_bg"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp"
-    android:paddingTop="24dp">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/dialog_input_title"
@@ -17,15 +14,17 @@
         android:layout_marginTop="10dp"
         android:text="提示"
         android:textColor="#333333"
-        android:textSize="16sp"
-        tools:background="#dddddd" />
+        android:textSize="14sp" />
 
-    <com.github.lany192.edittext.ClearEditText
+    <EditText
         android:id="@+id/dialog_input_input_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="请输入"
+        android:layout_marginTop="10dp"
+        android:background="#f4f4f4"
+        android:gravity="left|top"
+        android:hint="请输入内容"
+        android:minHeight="120dp"
         android:padding="8dp"
         android:textColor="#555555"
         android:textSize="14sp"
@@ -33,14 +32,15 @@
 
     <Button
         android:id="@+id/dialog_input_ok_btn"
-        android:layout_width="64dp"
+        android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_gravity="right"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center"
+        android:minWidth="64dp"
         android:text="@android:string/ok"
         android:textColor="#555555"
-        android:textSize="14sp"
+        android:textSize="13sp"
         tools:background="#dddddd" />
 </LinearLayout>

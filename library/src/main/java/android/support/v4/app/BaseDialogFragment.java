@@ -1,6 +1,5 @@
 package android.support.v4.app;
 
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -51,12 +50,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         mDialog.setCancelable(mCancelable);
         mDialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
         if (!mCancelable) {
-            mDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    return keyCode == KeyEvent.KEYCODE_BACK;
-                }
-            });
+            mDialog.setOnKeyListener((dialog, keyCode, event) -> keyCode == KeyEvent.KEYCODE_BACK);
         }
         mContentView = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);
@@ -64,7 +58,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         return mContentView;
     }
 
-    protected View findViewById(@IdRes int id) {
+    public <T extends View> T findViewById(@IdRes int id) {
         return mContentView.findViewById(id);
     }
 
