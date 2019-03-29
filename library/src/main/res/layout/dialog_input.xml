@@ -17,8 +17,8 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@android:string/cancel"
-            android:textColor="#babcc8"
-            android:textSize="16sp" />
+            android:textColor="#555555"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/dialog_input_title"
@@ -37,8 +37,8 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@android:string/ok"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textColor="#555555"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <EditText
