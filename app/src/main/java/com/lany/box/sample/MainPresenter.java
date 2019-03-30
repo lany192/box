@@ -17,16 +17,18 @@ public class MainPresenter extends BasePresenter<MainActivity, Model> implements
 
     @Override
     public void sayClick() {
-        getModel().getHello("hello Lany", new Callback<SimpleBean>() {
-            @Override
-            public void onSuccess(SimpleBean bean) {
-                getView().sayHello(bean.getMsg());
-            }
+        getView().sayHello("");
 
-            @Override
-            public void onFailure(Throwable e) {
-
-            }
-        });
+//        getModel().getHello("hello Lany", new Callback<SimpleBean>() {
+//            @Override
+//            public void onSuccess(SimpleBean bean) {
+//                getView().sayHello(bean.getMsg());
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable e) {
+//
+//            }
+//        });
     }
 }

@@ -4,11 +4,14 @@ import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.inputmethod.EditorInfo;
 
 import com.hjq.toast.ToastUtils;
 import com.lany.box.activity.DaggerActivity;
 import com.lany.box.adapter.ViewPagerAdapter;
+import com.lany.box.dialog.InputDialog;
 import com.lany.box.entity.TabItem;
+import com.lany.box.sample.filter.MoneyInputFilter;
 import com.lany.box.utils.DeviceUtils;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -89,7 +92,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
         ssss();
     }
 
-    private void ssss(){
+    private void ssss() {
         RxPermissions rxPermissions = new RxPermissions(this);
         Disposable disposable = rxPermissions
                 .requestEach(Manifest.permission.READ_PHONE_STATE)
@@ -97,7 +100,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
                     @Override
                     public void accept(Permission permission) throws Exception {
                         if (permission.granted) {
-                            ToastUtils.show("唯一id:"+DeviceUtils.getUniqueDeviceId(self));
+                            ToastUtils.show("唯一id:" + DeviceUtils.getUniqueDeviceId(self));
                             // 用户已经同意该权限
                             Log.d(TAG, permission.name + " 通过授权");
                         } else if (permission.shouldShowRequestPermissionRationale) {
@@ -118,7 +121,25 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
 
     @Override
     public void sayHello(String hello) {
-        ToastUtils.show(hello);
+        //ToastUtils.show(hello);
+
+
+        InputDialog dialog = new InputDialog();
+        dialog.setTitle("金额");
+        dialog.setHint("请输入金额");
+        dialog.setInputType(EditorInfo.TYPE_CLASS_NUMBER | EditorInfo.TYPE_NUMBER_FLAG_DECIMAL);
+        dialog.addInputFilter(new MoneyInputFilter());
+        dialog.setMaxLength(5);
+        dialog.setButtonText("提交");
+        dialog.setOnInputListener(new InputDialog.OnInputListener() {
+            @Override
+            public void onResult(CharSequence result) {
+
+            }
+        });
+        dialog.show(this);
+
+
 //
 //        RxPermissions rxPermissions = new RxPermissions(this);
 //        //rxPermissions.setLogging(true);

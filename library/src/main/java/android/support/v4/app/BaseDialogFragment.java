@@ -54,7 +54,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
         }
         mContentView = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);
-        init();
         return mContentView;
     }
 
@@ -73,6 +72,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if (window != null) {
             window.setLayout(getDialogWidth(), WindowManager.LayoutParams.WRAP_CONTENT);
         }
+        init();
     }
 
     protected int getDialogWidth() {

@@ -16,6 +16,8 @@ import com.lany.box.fragment.DialogFragment;
 import com.lany.box.utils.PhoneUtils;
 import com.lany.box.utils.SoftKeyboardUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class InputDialog extends DialogFragment {
@@ -25,8 +27,8 @@ public class InputDialog extends DialogFragment {
     private CharSequence btnText;
     private CharSequence content;
     private int inputType = InputType.TYPE_NULL;
-    private int maxLength = Integer.MAX_VALUE;
     private EditText editText;
+    private List<InputFilter> filters = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -43,20 +45,20 @@ public class InputDialog extends DialogFragment {
             lp.width = PhoneUtils.getDeviceWidth();
             window.setAttributes(lp);
         }
-        new Handler().postDelayed(() -> SoftKeyboardUtils.toggle(editText.getContext()), 300);
+        new Handler().postDelayed(() -> SoftKeyboardUtils.toggle(getContext()), 300);
     }
 
     @Override
     public void cancel() {
-        SoftKeyboardUtils.hide(editText.getContext());
+        SoftKeyboardUtils.hideSoftInput(getContext(), editText);
         super.cancel();
     }
 
     @Override
     protected void init() {
-        TextView titleText = findViewById(com.lany.box.R.id.dialog_input_title);
-        editText = findViewById(com.lany.box.R.id.dialog_input_input_edit);
-        Button button = findViewById(com.lany.box.R.id.dialog_input_ok_btn);
+        TextView titleText = findViewById(R.id.dialog_input_title);
+        editText = findViewById(R.id.dialog_input_input_edit);
+        Button button = findViewById(R.id.dialog_input_ok_btn);
 
         editText.setFocusable(true);
         editText.setFocusableInTouchMode(true);
@@ -64,8 +66,8 @@ public class InputDialog extends DialogFragment {
         if (inputType != InputType.TYPE_NULL) {
             editText.setInputType(inputType);
         }
-        if (maxLength > 0 && maxLength != Integer.MAX_VALUE) {
-            editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+        if (filters.size() > 0) {
+            editText.setFilters(filters.toArray(new InputFilter[0]));
         }
         if (!TextUtils.isEmpty(content)) {
             editText.setText(content);
@@ -88,8 +90,9 @@ public class InputDialog extends DialogFragment {
                 mOnInputListener.onResult(Objects.requireNonNull(editText.getText()).toString());
             }
         });
-        findViewById(com.lany.box.R.id.dialog_input_close_btn).setOnClickListener(v -> cancel());
+        findViewById(R.id.dialog_input_close_btn).setOnClickListener(v -> cancel());
     }
+
 
     public interface OnInputListener {
         void onResult(CharSequence result);
@@ -99,8 +102,12 @@ public class InputDialog extends DialogFragment {
         this.inputType = inputType;
     }
 
+    public void addInputFilter(InputFilter filter) {
+        filters.add(filter);
+    }
+
     public void setMaxLength(int maxLength) {
-        this.maxLength = maxLength;
+        filters.add(new InputFilter.LengthFilter(maxLength));
     }
 
     public void setOnInputListener(OnInputListener listener) {
