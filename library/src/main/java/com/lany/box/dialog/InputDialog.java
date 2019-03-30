@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.lany.box.R;
 import com.lany.box.fragment.DialogFragment;
 import com.lany.box.utils.PhoneUtils;
+import com.lany.box.utils.SoftKeyboardUtils;
 
 import java.util.Objects;
 
@@ -44,10 +45,21 @@ public class InputDialog extends DialogFragment {
             lp.width = PhoneUtils.getDeviceWidth();
             window.setAttributes(lp);
         }
-        new Handler().postDelayed(() -> {
-            InputMethodManager manager = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            manager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-        }, 300);
+        new Handler().postDelayed(() -> SoftKeyboardUtils.toggle(editText.getContext()), 300);
+    }
+
+    @Override
+    public void cancel() {
+        SoftKeyboardUtils.hide(editText.getContext());
+        super.cancel();
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 
     @Override
