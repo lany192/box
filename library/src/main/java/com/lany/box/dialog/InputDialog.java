@@ -1,6 +1,5 @@
 package com.lany.box.dialog;
 
-import android.content.Context;
 import android.os.Handler;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -8,7 +7,6 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -52,14 +50,6 @@ public class InputDialog extends DialogFragment {
     public void cancel() {
         SoftKeyboardUtils.hide(editText.getContext());
         super.cancel();
-    }
-
-    /**
-     * 隐藏键盘
-     */
-    protected void hideInput() {
-        InputMethodManager imm = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 
     @Override
