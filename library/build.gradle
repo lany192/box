@@ -58,11 +58,11 @@ dependencies {
     //日志
     api 'com.elvishew:xlog:1.5.0'
     //状态栏工具
-    api 'com.gyf.barlibrary:barlibrary:2.3.0'
+    api 'com.gyf.immersionbar:immersionbar:2.3.3'
     //圆角图片
     api 'com.makeramen:roundedimageview:2.3.0'
     //下载框架
-    api 'com.liulishuo.filedownloader:library:1.7.5'
+    api 'com.liulishuo.filedownloader:library:1.7.6'
     //刷新套件
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //主项目中要添加butterknife依赖
