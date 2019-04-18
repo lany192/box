@@ -10,7 +10,6 @@ import com.lany.box.R;
 
 public class LoadingDialog extends com.lany.box.fragment.DialogFragment {
     private CharSequence mMessage;
-    private TextView mMsgText;
 
     @Override
     protected int getLayoutId() {
@@ -19,9 +18,9 @@ public class LoadingDialog extends com.lany.box.fragment.DialogFragment {
 
     @Override
     protected void init() {
-        mMsgText = (TextView) findViewById(R.id.loading_dialog_msg_text);
+        TextView msgText = findViewById(R.id.loading_dialog_msg_text);
         if (!TextUtils.isEmpty(mMessage)) {
-            mMsgText.setText(mMessage);
+            msgText.setText(mMessage);
         }
     }
 

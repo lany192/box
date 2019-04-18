@@ -57,10 +57,10 @@ public class SimpleDialog extends com.lany.box.fragment.DialogFragment {
 
     @Override
     protected void init() {
-        TextView titleText = (TextView) findViewById(R.id.dialog_simple_title);
-        TextView msgText = (TextView) findViewById(R.id.dialog_simple_content);
-        Button leftBtn = (Button) findViewById(R.id.dialog_simple_left_btn);
-        Button rightBtn = (Button) findViewById(R.id.dialog_simple_right_btn);
+        TextView titleText = findViewById(R.id.dialog_simple_title);
+        TextView msgText = findViewById(R.id.dialog_simple_content);
+        Button leftBtn = findViewById(R.id.dialog_simple_left_btn);
+        Button rightBtn = findViewById(R.id.dialog_simple_right_btn);
         View dividerView = findViewById(R.id.dialog_simple_divider_view);
         if (TextUtils.isEmpty(mTitle)) {
             titleText.setVisibility(View.GONE);

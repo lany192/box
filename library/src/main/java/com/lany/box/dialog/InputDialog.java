@@ -45,12 +45,12 @@ public class InputDialog extends DialogFragment {
             lp.width = PhoneUtils.getDeviceWidth();
             window.setAttributes(lp);
         }
-        new Handler().postDelayed(() -> SoftKeyboardUtils.toggle(getContext()), 300);
+        new Handler().postDelayed(() -> SoftKeyboardUtils.toggle(self), 300);
     }
 
     @Override
     public void cancel() {
-        SoftKeyboardUtils.hideSoftInput(getContext(), editText);
+        SoftKeyboardUtils.hideSoftInput(self, editText);
         super.cancel();
     }
 
