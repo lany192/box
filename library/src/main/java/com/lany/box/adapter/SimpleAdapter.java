@@ -8,6 +8,10 @@ import com.lany.box.R;
 
 import java.util.List;
 
+/**
+ * 不推荐使用ListView
+ */
+@Deprecated
 public class SimpleAdapter extends BasicAdapter<String> {
 
     public SimpleAdapter(List<String> items) {

@@ -1,6 +1,5 @@
 package com.lany.box.adapter;
 
-import android.support.v7.widget.GridLayoutManager;
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
@@ -10,6 +9,7 @@ import com.elvishew.xlog.XLog;
 import com.lany.box.delegate.ItemDelegate;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 多布局适配器
@@ -22,13 +22,10 @@ public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder>
 
     public MultiAdapter(List<ItemDelegate> items) {
         super(items);
-        setSpanSizeLookup(new SpanSizeLookup() {
-            @Override
-            public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
-                int spanSize = getItem(position).getSpanSize();
-                log.i("spanSize:" + spanSize);
-                return spanSize;
-            }
+        setSpanSizeLookup((gridLayoutManager, position) -> {
+            int spanSize = Objects.requireNonNull(getItem(position)).getSpanSize();
+            log.i("spanSize:" + spanSize);
+            return spanSize;
         });
     }
 

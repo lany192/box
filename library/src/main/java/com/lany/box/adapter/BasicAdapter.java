@@ -20,8 +20,9 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 /**
- * ListView适配器基类
+ * ListView适配器基类,不推荐使用ListView
  */
+@Deprecated
 public abstract class BasicAdapter<T> extends BaseAdapter {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
