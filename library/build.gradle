@@ -44,7 +44,7 @@ dependencies {
     //带删除功能的EditText
     api 'com.github.lany192:ClearEditText:1.0.4'
     //SharedPreferences封装
-    api 'com.lany:SharedPreferences:1.0.4'
+    //api 'com.lany:SharedPreferences:1.0.4'
     //多状态切换控件
     api 'com.lany:StateView:1.2.2'
     //超链接处理

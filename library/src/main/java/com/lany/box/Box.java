@@ -25,12 +25,12 @@ import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator;
 import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
 import com.lany.box.event.NetWorkEvent;
+import com.lany.box.helper.SPHelper;
 import com.lany.box.utils.FileUtils;
 import com.lany.box.utils.LogFileFormat;
 import com.lany.box.utils.NetUtils;
 import com.lany.box.utils.PermissionUtils;
 import com.lany.box.widget.RefreshView;
-import com.lany.sp.SPHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
@@ -75,7 +75,7 @@ public class Box {
             this.context = ((Application) app).getBaseContext();
         }
         initToast(ctx);
-        SPHelper.getInstance().init(ctx, debug);
+        SPHelper.of().init(ctx);
         initLog(debug);
         initCatchException();
         initRefreshView();
