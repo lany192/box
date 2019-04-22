@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 
 import com.hjq.toast.ToastUtils;
@@ -31,7 +32,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     ViewPager mViewPager;
     @Inject
     MainPresenter mPresenter;
-
+    private long exitTime = 0; // 第一次按退出的时间
     @Override
     protected boolean isStatusBarDarkFont() {
         return false;
@@ -173,4 +174,18 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
 //                });
 
     }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - exitTime) > 3000) {
+                ToastUtils.show("再按一次退出应用");
+                exitTime = System.currentTimeMillis();
+                return false;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

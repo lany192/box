@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
@@ -126,22 +127,22 @@ public class Box {
 
             @Override
             public int getZ() {
-                return 30;
+                return 10;
             }
 
             @Override
             public int getCornerRadius() {
-                return 6;
+                return 4;
             }
 
             @Override
             public int getBackgroundColor() {
-                return 0xcc000000;
+                return 0xB0000000;
             }
 
             @Override
             public int getTextColor() {
-                return 0xffffffff;
+                return Color.WHITE;
             }
 
             @Override
@@ -151,17 +152,17 @@ public class Box {
 
             @Override
             public int getMaxLines() {
-                return 3;
+                return 5;
             }
 
             @Override
             public int getPaddingLeft() {
-                return 24;
+                return 16;
             }
 
             @Override
             public int getPaddingTop() {
-                return 16;
+                return getPaddingLeft();
             }
 
             @Override
@@ -171,7 +172,7 @@ public class Box {
 
             @Override
             public int getPaddingBottom() {
-                return getPaddingTop();
+                return getPaddingLeft();
             }
         });
     }
