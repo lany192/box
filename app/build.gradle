@@ -47,15 +47,14 @@ dependencies {
     implementation project(':library')
     compileOnly 'org.projectlombok:lombok:1.18.6'
     annotationProcessor 'org.projectlombok:lombok:1.18.6'
-    implementation 'com.github.lany192:ItemDecoration:1.1.4'
     //-------------------------------------------------------------------------------------------
     //butterknife依赖
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //dagger2
-    implementation 'com.google.dagger:dagger-android-support:2.19'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
+    implementation 'com.google.dagger:dagger-android-support:2.22.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.22.1'
 
     //权限控制
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'

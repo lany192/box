@@ -40,7 +40,8 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.5.0'
     api 'com.squareup.retrofit2:converter-scalars:2.5.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    api 'com.squareup.okhttp3:logging-interceptor:3.14.1'
+    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
     //带删除功能的EditText
     api 'com.github.lany192:ClearEditText:1.0.4'
     //SharedPreferences封装
@@ -66,7 +67,7 @@ dependencies {
     //主项目中要添加butterknife依赖
     compileOnly 'com.jakewharton:butterknife:8.8.1'
     //dagger2
-    compileOnly 'com.google.dagger:dagger-android-support:2.19'
+    compileOnly 'com.google.dagger:dagger-android-support:2.22.1'
     //分割线
     api 'com.github.lany192:ItemDecoration:1.1.4'
     //自定义NumberPicker
