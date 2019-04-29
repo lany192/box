@@ -23,6 +23,16 @@ public class HelloFragment extends BaseFragment {
     RecyclerView mShowView;
 
     @Override
+    protected int getToolBarLayoutId() {
+        return R.layout.toolbar_hello;
+    }
+
+    @Override
+    protected boolean hasToolbar() {
+        return true;
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.hello;
     }

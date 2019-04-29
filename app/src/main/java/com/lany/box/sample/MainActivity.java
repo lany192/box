@@ -4,14 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 import com.lany.box.activity.DaggerActivity;
 import com.lany.box.adapter.ViewPagerAdapter;
 import com.lany.box.config.UIConfig;
-import com.lany.box.dialog.InputDialog;
-import com.lany.box.sample.filter.MoneyInputFilter;
 import com.lany.box.sample.fragment.HelloFragment;
 import com.lany.box.sample.fragment.IndexFragment;
 import com.lany.box.sample.fragment.MyFragment;
@@ -23,7 +21,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class MainActivity extends DaggerActivity implements MainContract.View {
     @BindView(R.id.main_viewpager)
@@ -38,9 +35,8 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     @Override
     protected UIConfig getConfig() {
         UIConfig config = super.getConfig();
-        config.setHasBackBtn(false);
+        config.setHasToolbar(false);
         config.setKeyboardEnable(false);
-        config.setToolBarLayoutId(R.layout.toolbar_main);
         return config;
     }
 
@@ -57,29 +53,20 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
         items.add(new MyFragment());
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), items));
         mNavigationBar.setupWithViewPager(mViewPager);
-    }
-
-    @OnClick(R.id.custom_toolbar_edit_btn)
-    void btnClicked() {
-        mPresenter.sayClick();
-    }
-
-    @Override
-    public void sayHello(String hello) {
-        InputDialog dialog = new InputDialog();
-        dialog.setTitle("金额");
-        dialog.setHint("请输入金额");
-        dialog.setInputType(EditorInfo.TYPE_CLASS_NUMBER | EditorInfo.TYPE_NUMBER_FLAG_DECIMAL);
-        dialog.addInputFilter(new MoneyInputFilter());
-        dialog.setMaxLength(5);
-        dialog.setButtonText("提交");
-        dialog.setOnInputListener(new InputDialog.OnInputListener() {
-            @Override
-            public void onResult(CharSequence result) {
-                ToastUtils.show(result);
+        mNavigationBar.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.i_music:
+                    ImmersionBar.with(this).statusBarDarkFont(true).init();
+                    break;
+                case R.id.i_backup:
+                    ImmersionBar.with(this).statusBarDarkFont(false).init();
+                    break;
+                case R.id.i_friends:
+                    ImmersionBar.with(this).statusBarDarkFont(false).init();
+                    break;
             }
+            return true;
         });
-        dialog.show(this);
     }
 
     @Override
