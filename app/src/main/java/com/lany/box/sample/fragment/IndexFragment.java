@@ -6,6 +6,10 @@ import com.lany.box.fragment.BaseFragment;
 import com.lany.box.sample.R;
 
 public class IndexFragment extends BaseFragment {
+    @Override
+    protected int getToolBarLayoutId() {
+        return super.getToolBarLayoutId();
+    }
 
     @Override
     protected int getLayoutId() {
