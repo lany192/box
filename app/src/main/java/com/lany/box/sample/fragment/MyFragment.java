@@ -21,4 +21,6 @@ public class MyFragment extends BaseFragment {
     protected void init(Bundle savedInstanceState) {
 
     }
+
+
 }

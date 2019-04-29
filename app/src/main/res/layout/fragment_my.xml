@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,4 +17,117 @@
         android:layout_height="wrap_content"
         android:text="我的" />
 
+    <com.github.lany192.menu.MenuView
+        android:id="@+id/my_order_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/actionBarItemBackground"
+        app:menu_hintColor="#999999"
+        app:menu_isShowIcon="false"
+        app:menu_name="我的订单" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#dddddd" />
+
+    <com.github.lany192.menu.MenuView
+        android:id="@+id/my_wallet_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/actionBarItemBackground"
+        app:menu_hintColor="#999999"
+        app:menu_isShowIcon="false"
+        app:menu_name="我的钱包" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#dddddd" />
+
+    <com.github.lany192.menu.MenuView
+        android:id="@+id/my_release_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/actionBarItemBackground"
+        app:menu_hintColor="#999999"
+        app:menu_isShowIcon="false"
+        app:menu_name="我发布的" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#dddddd" />
+
+    <com.github.lany192.menu.MenuView
+        android:id="@+id/my_coupon_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/actionBarItemBackground"
+        app:menu_hintColor="#999999"
+        app:menu_isShowIcon="false"
+        app:menu_name="优惠券" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#dddddd" />
+
+    <com.github.lany192.menu.MenuView
+        android:id="@+id/my_sell_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/actionBarItemBackground"
+        app:menu_hintColor="#999999"
+        app:menu_isShowIcon="false"
+        app:menu_name="我的小店" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#dddddd" />
+
+    <com.github.lany192.menu.MenuView
+        android:id="@+id/my_plant_life_cycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/actionBarItemBackground"
+        android:visibility="gone"
+        app:menu_hintColor="#999999"
+        app:menu_isShowIcon="false"
+        app:menu_name="植物成长记" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#dddddd"
+        android:visibility="gone" />
+
+    <com.github.lany192.menu.MenuView
+        android:id="@+id/my_favorite_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/actionBarItemBackground"
+        app:menu_hintColor="#999999"
+        app:menu_isShowIcon="false"
+        app:menu_name="我的收藏" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#dddddd" />
 </LinearLayout>
