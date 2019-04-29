@@ -32,6 +32,7 @@ import com.lany.box.interfaces.OnDoubleClickListener;
 import com.lany.box.mvp.view.BaseView;
 import com.lany.box.utils.ClickUtil;
 import com.lany.box.utils.DensityUtils;
+import com.lany.box.utils.ViewUtils;
 import com.lany.state.StateLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -97,6 +98,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             mToolbar.setId(R.id.toolbar);
             mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolBarHeight()));
+            if (getConfig().isTransparentStatusBar()) {
+                ViewUtils.setPaddingSmart(mToolbar);
+            }
             rootView.addView(mToolbar);
             setBarTitle(getTitle());
             initBackBtn();

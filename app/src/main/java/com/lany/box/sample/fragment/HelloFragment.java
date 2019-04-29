@@ -1,4 +1,4 @@
-package com.lany.box.sample;
+package com.lany.box.sample.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.lany.box.adapter.MultiAdapter;
 import com.lany.box.delegate.ItemDelegate;
 import com.lany.box.fragment.BaseFragment;
+import com.lany.box.sample.R;
 import com.lany.box.sample.delegate.HelloDelegate;
 import com.lany.box.utils.DensityUtils;
 import com.lany.itemdecoration.LinearItemDecoration;

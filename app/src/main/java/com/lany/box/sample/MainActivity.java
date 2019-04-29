@@ -2,6 +2,7 @@ package com.lany.box.sample;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -12,8 +13,10 @@ import com.lany.box.activity.DaggerActivity;
 import com.lany.box.adapter.ViewPagerAdapter;
 import com.lany.box.config.UIConfig;
 import com.lany.box.dialog.InputDialog;
-import com.lany.box.entity.TabItem;
 import com.lany.box.sample.filter.MoneyInputFilter;
+import com.lany.box.sample.fragment.HelloFragment;
+import com.lany.box.sample.fragment.IndexFragment;
+import com.lany.box.sample.fragment.MyFragment;
 import com.lany.box.utils.DeviceUtils;
 import com.lany.box.widget.NavigationBar;
 import com.tbruyelle.rxpermissions2.Permission;
@@ -36,12 +39,15 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     NavigationBar mNavigationBar;
     @Inject
     MainPresenter mPresenter;
+
     private long exitTime = 0; // 第一次按退出的时间
 
     @Override
     protected UIConfig getConfig() {
         UIConfig config = super.getConfig();
         config.setHasBackBtn(false);
+        config.setKeyboardEnable(false);
+        config.setTransparentStatusBar(true);
         return config;
     }
 
@@ -52,10 +58,10 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        List<TabItem> items = new ArrayList<>();
-        items.add(new TabItem("item1", new IndexFragment()));
-        items.add(new TabItem("item2", new HelloFragment()));
-        items.add(new TabItem("item3", new HelloFragment()));
+        List<Fragment> items = new ArrayList<>();
+        items.add(new IndexFragment());
+        items.add(new HelloFragment());
+        items.add(new MyFragment());
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), items));
         mNavigationBar.setupWithViewPager(mViewPager);
 
