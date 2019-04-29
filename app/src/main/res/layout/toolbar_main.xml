@@ -30,10 +30,23 @@
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/custom_toolbar_edit_btn"
+        android:layout_width="@dimen/actionbar_height"
+        android:layout_height="@dimen/actionbar_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/actionBarItemBackground"
+        android:contentDescription="@string/app_name"
+        android:gravity="center"
+        android:text="输入"
+        android:textColor="#999999"
+        android:textSize="14sp" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_alignParentBottom="true"
-        android:background="#000000" />
+        android:background="#dddddd" />
 
 </RelativeLayout>

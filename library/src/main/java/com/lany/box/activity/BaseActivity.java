@@ -54,17 +54,22 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private Unbinder mUnBinder;
     private LoadingDialog mLoadingDialog;
 
+    /**
+     * 获取Activity的界面配置
+     *
+     * @return UIConfig
+     */
     protected UIConfig getConfig() {
         return UIConfig.builder()
                 .fullscreen(false)
-                .hasBackBtn(true)
                 .hasToolbar(true)
+                .toolBarLayoutId(R.layout.toolbar_default)//hasToolbar值为true时，该值无效
+                .hasBackBtn(true)//hasToolbar值为true时，该值无效
                 .keyboardEnable(true)
-                .statusBarColor(android.R.color.white)
+                .statusBarColor(android.R.color.white)//如果transparentStatusBar为true，该值无效
                 .statusBarDarkFont(true)
                 .toolBarHeight(DensityUtils.dp2px(48))
-                .transparentStatusBar(false)
-                .toolBarLayoutId(R.layout.toolbar_default)
+                .transparentStatusBar(true)
                 .build();
     }
 
