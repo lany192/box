@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
+        app:itemIconTint="@color/selector_item_gray_color"
+        app:itemTextColor="@color/selector_item_gray_color"
         app:menu="@menu/main_navigation_menu" />
 
     <android.support.v4.view.ViewPager
