@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@android:color/white"
     android:gravity="bottom"
     android:minHeight="@dimen/actionbar_height">
 
@@ -24,10 +24,10 @@
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
         android:gravity="center"
-        android:maxLines="1"
         android:maxWidth="240dp"
+        android:maxLines="1"
         android:text="@string/app_name"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18sp" />
 
     <View

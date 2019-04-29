@@ -2,6 +2,8 @@ package com.lany.box.activity;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
@@ -20,14 +22,16 @@ import android.widget.TextView;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.gyf.barlibrary.BarHide;
 import com.gyf.barlibrary.ImmersionBar;
 import com.lany.box.R;
+import com.lany.box.config.UIConfig;
 import com.lany.box.dialog.LoadingDialog;
 import com.lany.box.event.NetWorkEvent;
 import com.lany.box.interfaces.OnDoubleClickListener;
 import com.lany.box.mvp.view.BaseView;
 import com.lany.box.utils.ClickUtil;
-import com.lany.box.utils.ViewUtils;
+import com.lany.box.utils.DensityUtils;
 import com.lany.state.StateLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -48,38 +52,19 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private StateLayout mStateLayout;
     private Unbinder mUnBinder;
     private LoadingDialog mLoadingDialog;
-    protected ImmersionBar mImmersionBar;
 
-    /**
-     * 是否需要Toolbar
-     */
-    protected boolean hasToolbar() {
-        return true;
-    }
-
-    /**
-     * Toolbar是否需要显示返回键
-     */
-    protected boolean hasBackBtn() {
-        return true;
-    }
-
-    /**
-     * 状态栏的文字和图标是否改成黑色
-     */
-    protected boolean isStatusBarDarkFont() {
-        return true;
-    }
-
-    /**
-     * 返回Toolbar布局文件id
-     */
-    protected int getToolBarLayoutId() {
-        return R.layout.toolbar_default;
-    }
-
-    protected int getToolBarHeight() {
-        return getResources().getDimensionPixelSize(R.dimen.actionbar_height);
+    protected UIConfig getConfig() {
+        return UIConfig.builder()
+                .fullscreen(false)
+                .hasBackBtn(true)
+                .hasToolbar(true)
+                .keyboardEnable(true)
+                .statusBarColor(android.R.color.white)
+                .statusBarDarkFont(true)
+                .toolBarHeight(DensityUtils.dp2px(48))
+                .transparentStatusBar(false)
+                .toolBarLayoutId(R.layout.toolbar_default)
+                .build();
     }
 
     /**
@@ -97,23 +82,21 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        mImmersionBar = ImmersionBar.with(this)
-                .statusBarDarkFont(isStatusBarDarkFont(), 0.2f);
-        mImmersionBar.init();
+        initStatusBar();
         onBeforeSetContentView();
+        setContentView(rootView());
+        mUnBinder = ButterKnife.bind(this);
+        init(savedInstanceState);
+    }
+
+    private View rootView() {
         RelativeLayout rootView = new RelativeLayout(this);
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        if (hasToolbar()) {
-            mToolbar = LayoutInflater.from(this).inflate(getToolBarLayoutId(), null);
+        if (getConfig().isHasToolbar()) {
+            mToolbar = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId(), null);
             mToolbar.setId(R.id.toolbar);
-            mToolbar.setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
-                @Override
-                public void onDoubleClick(View view) {
-                    onToolbarDoubleClick();
-                }
-            }));
-            mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
-            ViewUtils.setPaddingSmart(mToolbar);
+            mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
+            mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolBarHeight()));
             rootView.addView(mToolbar);
             setBarTitle(getTitle());
             initBackBtn();
@@ -123,16 +106,41 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             mStateLayout.setOnRetryListener(this);
             mStateLayout.addView(LayoutInflater.from(this).inflate(getLayoutId(), null));
             LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-            if (hasToolbar()) {
+            if (getConfig().isHasToolbar()) {
                 lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
             }
             rootView.addView(mStateLayout, lp);
         } else {
             throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
         }
-        setContentView(rootView);
-        mUnBinder = ButterKnife.bind(this);
-        init(savedInstanceState);
+        return rootView;
+    }
+
+    /**
+     * 用法：https://github.com/gyf-dev/ImmersionBar
+     */
+    private void initStatusBar() {
+        ImmersionBar bar = ImmersionBar.with(this);
+        if (getConfig().isFullscreen()) {
+            bar.hideBar(BarHide.FLAG_HIDE_BAR);//隐藏状态栏或导航栏或两者，不写默认不隐藏
+        } else {
+            bar.navigationBarColorInt(Color.WHITE);
+            bar.navigationBarDarkIcon(true);
+            if (ImmersionBar.isSupportStatusBarDarkFont()) {
+                bar.statusBarDarkFont(getConfig().isStatusBarDarkFont());
+            }
+            if (getConfig().isTransparentStatusBar()) {
+                bar.statusBarAlpha(0.0f).statusBarColor(android.R.color.transparent);
+            } else {
+                bar.statusBarColor(getConfig().getStatusBarColor()).fitsSystemWindows(true);
+            }
+            bar.keyboardEnable(getConfig().isKeyboardEnable());
+            //特殊机型处理,状态栏背景改成黑色
+            if (!TextUtils.isEmpty(Build.MODEL) && Build.MODEL.contains("A33")) {
+                bar.statusBarColor(android.R.color.black);
+            }
+        }
+        bar.init();
     }
 
     private void initBackBtn() {
@@ -140,14 +148,11 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (backBtn == null) {
             throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
         }
-        if (hasBackBtn()) {
+        if (getConfig().isHasBackBtn()) {
             backBtn.setVisibility(View.VISIBLE);
-            backBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!ClickUtil.isFast()) {
-                        backAction();
-                    }
+            backBtn.setOnClickListener(v -> {
+                if (!ClickUtil.isFast()) {
+                    backAction();
                 }
             });
         } else {
@@ -187,12 +192,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     }
 
     public void setBarTitle(CharSequence title) {
-        if (hasToolbar()) {
+        if (getConfig().isHasToolbar()) {
             TextView titleText = mToolbar.findViewById(R.id.toolbar_title_text);
             if (titleText == null) {
                 throw new IllegalArgumentException("Please use the 'R.id.toolbar_title_text' field to set title in custom toolbar layout.");
             }
-            if (hasToolbar() && !TextUtils.isEmpty(title)) {
+            if (getConfig().isHasToolbar() && !TextUtils.isEmpty(title)) {
                 titleText.setText(title);
             }
         }
@@ -219,9 +224,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     protected void onDestroy() {
-        if (mImmersionBar != null) {
-            mImmersionBar.destroy();  //必须调用该方法，防止内存泄漏，不调用该方法，如果界面bar发生改变，在不关闭app的情况下，退出此界面再进入将记忆最后一次bar改变的状态
-        }
+        ImmersionBar.with(this).destroy();
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
