@@ -1,6 +1,7 @@
 package com.lany.box.sample;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 
@@ -32,9 +33,10 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
 
     private long exitTime = 0; // 第一次按退出的时间
 
+    @NonNull
     @Override
-    protected UIConfig getConfig() {
-        return super.getConfig()
+    protected UIConfig getConfig(UIConfig config) {
+        return config
                 .layoutId(R.layout.activity_main)
                 .hasToolbar(false)
                 .keyboardEnable(false);

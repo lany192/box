@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -52,14 +53,18 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private StateLayout mStateLayout;
     private Unbinder mUnBinder;
     private LoadingDialog mLoadingDialog;
+    private UIConfig config;
 
-    /**
-     * 获取Activity的界面配置
-     *
-     * @return UIConfig
-     */
-    protected UIConfig getConfig() {
-        return new UIConfig()
+    protected abstract void init(Bundle savedInstanceState);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.self = this;
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+        config = getConfig(new UIConfig()
                 .layoutId(R.layout.ui_default)
                 .fullscreen(false)
                 .hasToolbar(true)
@@ -71,44 +76,34 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 .toolbarHeight(DensityUtils.dp2px(48))
                 .transparentStatusBar(true)
                 .toolbarColor(android.R.color.white)
-                .title(getTitle());//hasToolbar为true,以及能找到title id时该设置生效
-    }
-
-    protected abstract void init(Bundle savedInstanceState);
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.self = this;
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
+                .title(getTitle())//hasToolbar为true,以及能找到title id时该设置生效
+        );
         initStatusBar();
         onBeforeSetContentView();
-        setContentView(rootView());
+        setContentView(getContentView());
         mUnBinder = ButterKnife.bind(this);
         init(savedInstanceState);
     }
 
-    private View rootView() {
-        RelativeLayout rootView = new RelativeLayout(this);
-        rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+    private View getContentView() {
+        RelativeLayout contentView = new RelativeLayout(this);
+        contentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         mStateLayout = new StateLayout(this);
         mStateLayout.setOnRetryListener(this);
-        mStateLayout.addView(LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null));
+        mStateLayout.addView(LayoutInflater.from(this).inflate(config.getLayoutId(), null));
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        if (getConfig().isHasToolbar()) {
-            mToolbar = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId(), null);
+        if (config.isHasToolbar()) {
+            mToolbar = LayoutInflater.from(this).inflate(config.getToolBarLayoutId(), null);
             mToolbar.setId(R.id.toolbar);
             mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    getConfig().getToolbarHeight()));
-            if (getConfig().isTransparentStatusBar()) {
+                    config.getToolbarHeight()));
+            if (config.isTransparentStatusBar()) {
                 ViewUtils.setPaddingSmart(mToolbar);
             }
-            rootView.addView(mToolbar);
-            setBarTitle(getConfig().getTitle());
-            if (getConfig().isHasBackBtn()) {
+            contentView.addView(mToolbar);
+            setBarTitle(config.getTitle());
+            if (config.isHasBackBtn()) {
                 View backBtn = mToolbar.findViewById(R.id.toolbar_back_btn);
                 if (backBtn == null) {
                     throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
@@ -121,8 +116,8 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             }
             lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
         }
-        rootView.addView(mStateLayout, lp);
-        return rootView;
+        contentView.addView(mStateLayout, lp);
+        return contentView;
     }
 
     /**
@@ -130,26 +125,36 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
      */
     private void initStatusBar() {
         ImmersionBar bar = ImmersionBar.with(this);
-        if (getConfig().isFullscreen()) {
+        if (config.isFullscreen()) {
             bar.hideBar(BarHide.FLAG_HIDE_BAR);//隐藏状态栏或导航栏或两者，不写默认不隐藏
         } else {
             bar.navigationBarColorInt(Color.WHITE);
             bar.navigationBarDarkIcon(true);
             if (ImmersionBar.isSupportStatusBarDarkFont()) {
-                bar.statusBarDarkFont(getConfig().isStatusBarDarkFont());
+                bar.statusBarDarkFont(config.isStatusBarDarkFont());
             }
-            if (getConfig().isTransparentStatusBar()) {
+            if (config.isTransparentStatusBar()) {
                 bar.statusBarAlpha(0.0f).statusBarColor(android.R.color.transparent);
             } else {
-                bar.statusBarColor(getConfig().getStatusBarColor()).fitsSystemWindows(true);
+                bar.statusBarColor(config.getStatusBarColor()).fitsSystemWindows(true);
             }
-            bar.keyboardEnable(getConfig().isKeyboardEnable());
+            bar.keyboardEnable(config.isKeyboardEnable());
             //特殊机型处理,状态栏背景改成黑色
             if (!TextUtils.isEmpty(Build.MODEL) && Build.MODEL.contains("A33")) {
                 bar.statusBarColor(android.R.color.black);
             }
         }
         bar.init();
+    }
+
+    /**
+     * 获取Activity的界面配置
+     *
+     * @return UIConfig
+     */
+    @NonNull
+    protected UIConfig getConfig(UIConfig config) {
+        return config;
     }
 
     protected void onBeforeSetContentView() {
@@ -183,12 +188,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     }
 
     public void setBarTitle(CharSequence title) {
-        if (getConfig().isHasToolbar()) {
+        if (config.isHasToolbar()) {
             TextView titleText = mToolbar.findViewById(R.id.toolbar_title_text);
             if (titleText == null) {
                 throw new IllegalArgumentException("Please use the 'R.id.toolbar_title_text' field to set title in custom toolbar layout.");
             }
-            if (getConfig().isHasToolbar() && !TextUtils.isEmpty(title)) {
+            if (config.isHasToolbar() && !TextUtils.isEmpty(title)) {
                 titleText.setText(title);
             }
         }
