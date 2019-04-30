@@ -1,14 +1,14 @@
 package com.lany.box.sample;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 import com.lany.box.activity.DaggerActivity;
-import com.lany.box.adapter.ViewPagerAdapter;
+import com.lany.box.adapter.TabAdapter;
+import com.lany.box.adapter.TabItem;
 import com.lany.box.config.UIConfig;
 import com.lany.box.sample.fragment.HelloFragment;
 import com.lany.box.sample.fragment.IndexFragment;
@@ -47,11 +47,11 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        List<Fragment> items = new ArrayList<>();
-        items.add(new IndexFragment());
-        items.add(new HelloFragment());
-        items.add(new MyFragment());
-        mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), items));
+        List<TabItem> items = new ArrayList<>();
+        items.add(new TabItem(new IndexFragment()));
+        items.add(new TabItem(new HelloFragment()));
+        items.add(new TabItem(new MyFragment()));
+        mViewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), items));
         mNavigationBar.setupWithViewPager(mViewPager);
         mNavigationBar.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
