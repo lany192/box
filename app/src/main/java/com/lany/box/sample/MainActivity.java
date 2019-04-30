@@ -34,15 +34,10 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
 
     @Override
     protected UIConfig getConfig() {
-        UIConfig config = super.getConfig();
-        config.setHasToolbar(false);
-        config.setKeyboardEnable(false);
-        return config;
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_main;
+        return super.getConfig()
+                .layoutId(R.layout.activity_main)
+                .hasToolbar(false)
+                .keyboardEnable(false);
     }
 
     @Override

@@ -3,16 +3,17 @@ package com.lany.box.config;
 import android.support.annotation.ColorRes;
 import android.support.annotation.LayoutRes;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
-@Builder
-@Setter
 @Getter
 public class UIConfig {
     /**
-     * 返回Toolbar布局文件id
+     * 布局文件id
+     */
+    @LayoutRes
+    private int layoutId;
+    /**
+     * Toolbar布局文件id
      */
     @LayoutRes
     private int toolBarLayoutId;
@@ -31,7 +32,12 @@ public class UIConfig {
     /**
      * toolbar的高度
      */
-    private int toolBarHeight;
+    private int toolbarHeight;
+    /**
+     * Toolbar颜色
+     */
+    @ColorRes
+    private int toolbarColor;
     /**
      * 是否处理软键盘
      */
@@ -49,4 +55,69 @@ public class UIConfig {
      * 是否全屏
      */
     private boolean fullscreen;
+
+    /**
+     * toolbar标题
+     */
+    private CharSequence title;
+
+    public UIConfig layoutId(int layoutId) {
+        this.layoutId = layoutId;
+        return this;
+    }
+
+    public UIConfig toolBarLayoutId(int toolBarLayoutId) {
+        this.toolBarLayoutId = toolBarLayoutId;
+        return this;
+    }
+
+    public UIConfig statusBarDarkFont(boolean statusBarDarkFont) {
+        this.statusBarDarkFont = statusBarDarkFont;
+        return this;
+    }
+
+    public UIConfig hasToolbar(boolean hasToolbar) {
+        this.hasToolbar = hasToolbar;
+        return this;
+    }
+
+    public UIConfig hasBackBtn(boolean hasBackBtn) {
+        this.hasBackBtn = hasBackBtn;
+        return this;
+    }
+
+    public UIConfig toolbarHeight(int toolbarHeight) {
+        this.toolbarHeight = toolbarHeight;
+        return this;
+    }
+
+    public UIConfig toolbarColor(int toolbarColor) {
+        this.toolbarColor = toolbarColor;
+        return this;
+    }
+
+    public UIConfig keyboardEnable(boolean keyboardEnable) {
+        this.keyboardEnable = keyboardEnable;
+        return this;
+    }
+
+    public UIConfig statusBarColor(int statusBarColor) {
+        this.statusBarColor = statusBarColor;
+        return this;
+    }
+
+    public UIConfig transparentStatusBar(boolean transparentStatusBar) {
+        this.transparentStatusBar = transparentStatusBar;
+        return this;
+    }
+
+    public UIConfig fullscreen(boolean fullscreen) {
+        this.fullscreen = fullscreen;
+        return this;
+    }
+
+    public UIConfig title(CharSequence title) {
+        this.title = title;
+        return this;
+    }
 }

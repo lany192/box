@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -60,7 +59,8 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
      * @return UIConfig
      */
     protected UIConfig getConfig() {
-        return UIConfig.builder()
+        return new UIConfig()
+                .layoutId(R.layout.ui_default)
                 .fullscreen(false)
                 .hasToolbar(true)
                 .toolBarLayoutId(R.layout.toolbar_default)//hasToolbar值为true时，该值无效
@@ -68,16 +68,11 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 .keyboardEnable(true)
                 .statusBarColor(android.R.color.white)//如果transparentStatusBar为true，该值无效
                 .statusBarDarkFont(true)
-                .toolBarHeight(DensityUtils.dp2px(48))
+                .toolbarHeight(DensityUtils.dp2px(48))
                 .transparentStatusBar(true)
-                .build();
+                .toolbarColor(android.R.color.white)
+                .title(getTitle());//hasToolbar为true,以及能找到title id时该设置生效
     }
-
-    /**
-     * 返回内容布局文件id
-     */
-    @LayoutRes
-    protected abstract int getLayoutId();
 
     protected abstract void init(Bundle savedInstanceState);
 
@@ -102,26 +97,23 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             mToolbar = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId(), null);
             mToolbar.setId(R.id.toolbar);
             mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
-            mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolBarHeight()));
+            mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    getConfig().getToolbarHeight()));
             if (getConfig().isTransparentStatusBar()) {
                 ViewUtils.setPaddingSmart(mToolbar);
             }
             rootView.addView(mToolbar);
-            setBarTitle(getTitle());
+            setBarTitle(getConfig().getTitle());
             initBackBtn();
         }
-        if (getLayoutId() != 0) {
-            mStateLayout = new StateLayout(this);
-            mStateLayout.setOnRetryListener(this);
-            mStateLayout.addView(LayoutInflater.from(this).inflate(getLayoutId(), null));
-            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-            if (getConfig().isHasToolbar()) {
-                lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
-            }
-            rootView.addView(mStateLayout, lp);
-        } else {
-            throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
+        mStateLayout = new StateLayout(this);
+        mStateLayout.setOnRetryListener(this);
+        mStateLayout.addView(LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null));
+        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        if (getConfig().isHasToolbar()) {
+            lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
         }
+        rootView.addView(mStateLayout, lp);
         return rootView;
     }
 
