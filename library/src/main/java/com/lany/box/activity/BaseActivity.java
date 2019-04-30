@@ -83,7 +83,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 .statusBarDarkFont(true)
                 .toolbarHeight(DensityUtils.dp2px(48))
                 .transparentStatusBar(true)
-                .toolbarColor(android.R.color.white)
                 .title(getTitle())//hasToolbar为true,以及能找到title id时该设置生效
         );
         initStatusBar();
@@ -106,6 +105,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     config.getToolbarHeight()));
+            if (config.getToolbarColor() > 0) {
+                mToolbar.setBackgroundResource(config.getToolbarColor());
+            }
             if (config.isTransparentStatusBar()) {
                 ViewUtils.setPaddingSmart(mToolbar);
             }
