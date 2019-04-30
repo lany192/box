@@ -55,6 +55,14 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private LoadingDialog mLoadingDialog;
     private UIConfig config;
 
+    /**
+     * 获取Activity的界面配置
+     *
+     * @return UIConfig
+     */
+    @NonNull
+    protected abstract UIConfig getConfig(UIConfig config);
+
     protected abstract void init(Bundle savedInstanceState);
 
     @Override
@@ -147,15 +155,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         bar.init();
     }
 
-    /**
-     * 获取Activity的界面配置
-     *
-     * @return UIConfig
-     */
-    @NonNull
-    protected UIConfig getConfig(UIConfig config) {
-        return config;
-    }
 
     protected void onBeforeSetContentView() {
 
