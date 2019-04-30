@@ -93,6 +93,10 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private View rootView() {
         RelativeLayout rootView = new RelativeLayout(this);
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        mStateLayout = new StateLayout(this);
+        mStateLayout.setOnRetryListener(this);
+        mStateLayout.addView(LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null));
+        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (getConfig().isHasToolbar()) {
             mToolbar = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId(), null);
             mToolbar.setId(R.id.toolbar);
@@ -104,13 +108,17 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             }
             rootView.addView(mToolbar);
             setBarTitle(getConfig().getTitle());
-            initBackBtn();
-        }
-        mStateLayout = new StateLayout(this);
-        mStateLayout.setOnRetryListener(this);
-        mStateLayout.addView(LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null));
-        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        if (getConfig().isHasToolbar()) {
+            if (getConfig().isHasBackBtn()) {
+                View backBtn = mToolbar.findViewById(R.id.toolbar_back_btn);
+                if (backBtn == null) {
+                    throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
+                }
+                backBtn.setOnClickListener(v -> {
+                    if (!ClickUtil.isFast()) {
+                        backAction();
+                    }
+                });
+            }
             lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
         }
         rootView.addView(mStateLayout, lp);
@@ -143,24 +151,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         }
         bar.init();
     }
-
-    private void initBackBtn() {
-        View backBtn = mToolbar.findViewById(R.id.toolbar_back_btn);
-        if (backBtn == null) {
-            throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
-        }
-        if (getConfig().isHasBackBtn()) {
-            backBtn.setVisibility(View.VISIBLE);
-            backBtn.setOnClickListener(v -> {
-                if (!ClickUtil.isFast()) {
-                    backAction();
-                }
-            });
-        } else {
-            backBtn.setVisibility(View.GONE);
-        }
-    }
-
 
     protected void onBeforeSetContentView() {
 
