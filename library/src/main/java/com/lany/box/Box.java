@@ -127,17 +127,17 @@ public class Box {
 
             @Override
             public int getZ() {
-                return 10;
-            }
-
-            @Override
-            public int getCornerRadius() {
                 return 4;
             }
 
             @Override
+            public int getCornerRadius() {
+                return 5;
+            }
+
+            @Override
             public int getBackgroundColor() {
-                return 0xB0000000;
+                return 0xa0000000;
             }
 
             @Override
