@@ -10,7 +10,7 @@ import com.hjq.toast.ToastUtils;
 import com.lany.box.activity.DaggerActivity;
 import com.lany.box.adapter.TabAdapter;
 import com.lany.box.adapter.TabItem;
-import com.lany.box.config.UIConfig;
+import com.lany.box.config.ActivityConfig;
 import com.lany.box.sample.fragment.HelloFragment;
 import com.lany.box.sample.fragment.IndexFragment;
 import com.lany.box.sample.fragment.MyFragment;
@@ -35,7 +35,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
 
     @NonNull
     @Override
-    protected UIConfig getConfig(UIConfig config) {
+    protected ActivityConfig getConfig(ActivityConfig config) {
         return config
                 .layoutId(R.layout.activity_main)
                 .hasToolbar(false)
@@ -49,6 +49,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
         items.add(new TabItem(new HelloFragment()));
         items.add(new TabItem(new MyFragment()));
         mViewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), items));
+        mNavigationBar.enableAnimation(false);
         mNavigationBar.setupWithViewPager(mViewPager);
         mNavigationBar.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {

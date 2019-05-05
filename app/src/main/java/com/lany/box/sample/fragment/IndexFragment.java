@@ -1,9 +1,11 @@
 package com.lany.box.sample.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.inputmethod.EditorInfo;
 
 import com.hjq.toast.ToastUtils;
+import com.lany.box.config.FragmentConfig;
 import com.lany.box.dialog.InputDialog;
 import com.lany.box.fragment.BaseFragment;
 import com.lany.box.sample.R;
@@ -12,25 +14,18 @@ import com.lany.box.sample.filter.MoneyInputFilter;
 import butterknife.OnClick;
 
 public class IndexFragment extends BaseFragment {
-    @Override
-    protected int getToolBarLayoutId() {
-        return R.layout.toolbar_index;
-    }
 
+    @NonNull
     @Override
-    protected boolean hasToolbar() {
-        return true;
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_index;
+    protected FragmentConfig getConfig(FragmentConfig config) {
+        return config.layoutId(R.layout.fragment_index).toolBarLayoutId(R.layout.toolbar_index);
     }
 
     @Override
     protected void init(Bundle savedInstanceState) {
 
     }
+
     @OnClick(R.id.custom_toolbar_edit_btn)
     void btnClicked() {
         InputDialog dialog = new InputDialog();

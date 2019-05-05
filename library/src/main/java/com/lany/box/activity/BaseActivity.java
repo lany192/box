@@ -25,7 +25,7 @@ import com.elvishew.xlog.XLog;
 import com.gyf.barlibrary.BarHide;
 import com.gyf.barlibrary.ImmersionBar;
 import com.lany.box.R;
-import com.lany.box.config.UIConfig;
+import com.lany.box.config.ActivityConfig;
 import com.lany.box.dialog.LoadingDialog;
 import com.lany.box.event.NetWorkEvent;
 import com.lany.box.interfaces.OnDoubleClickListener;
@@ -53,15 +53,15 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private StateLayout mStateLayout;
     private Unbinder mUnBinder;
     private LoadingDialog mLoadingDialog;
-    private UIConfig config;
+    private ActivityConfig config;
 
     /**
      * 获取Activity的界面配置
      *
-     * @return UIConfig
+     * @return ActivityConfig
      */
     @NonNull
-    protected abstract UIConfig getConfig(UIConfig config);
+    protected abstract ActivityConfig getConfig(ActivityConfig config);
 
     protected abstract void init(Bundle savedInstanceState);
 
@@ -72,7 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        config = getConfig(new UIConfig()
+        config = getConfig(new ActivityConfig()
                 .layoutId(R.layout.ui_default)
                 .fullscreen(false)
                 .hasToolbar(true)

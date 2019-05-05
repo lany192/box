@@ -2,10 +2,12 @@ package com.lany.box.sample.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.lany.box.adapter.MultiAdapter;
+import com.lany.box.config.FragmentConfig;
 import com.lany.box.delegate.ItemDelegate;
 import com.lany.box.fragment.BaseFragment;
 import com.lany.box.sample.R;
@@ -22,19 +24,10 @@ public class HelloFragment extends BaseFragment {
     @BindView(R.id.showView)
     RecyclerView mShowView;
 
+    @NonNull
     @Override
-    protected int getToolBarLayoutId() {
-        return R.layout.toolbar_hello;
-    }
-
-    @Override
-    protected boolean hasToolbar() {
-        return true;
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.hello;
+    protected FragmentConfig getConfig(FragmentConfig config) {
+        return config.layoutId(R.layout.hello).toolBarLayoutId(R.layout.toolbar_hello);
     }
 
     @Override

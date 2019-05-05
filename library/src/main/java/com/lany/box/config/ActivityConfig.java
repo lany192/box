@@ -6,7 +6,7 @@ import android.support.annotation.LayoutRes;
 import lombok.Getter;
 
 @Getter
-public class UIConfig {
+public class ActivityConfig {
     /**
      * 布局文件id
      */
@@ -61,62 +61,62 @@ public class UIConfig {
      */
     private CharSequence title;
 
-    public UIConfig layoutId(int layoutId) {
+    public ActivityConfig layoutId(int layoutId) {
         this.layoutId = layoutId;
         return this;
     }
 
-    public UIConfig toolBarLayoutId(int toolBarLayoutId) {
+    public ActivityConfig toolBarLayoutId(int toolBarLayoutId) {
         this.toolBarLayoutId = toolBarLayoutId;
         return this;
     }
 
-    public UIConfig statusBarDarkFont(boolean statusBarDarkFont) {
+    public ActivityConfig statusBarDarkFont(boolean statusBarDarkFont) {
         this.statusBarDarkFont = statusBarDarkFont;
         return this;
     }
 
-    public UIConfig hasToolbar(boolean hasToolbar) {
+    public ActivityConfig hasToolbar(boolean hasToolbar) {
         this.hasToolbar = hasToolbar;
         return this;
     }
 
-    public UIConfig hasBackBtn(boolean hasBackBtn) {
+    public ActivityConfig hasBackBtn(boolean hasBackBtn) {
         this.hasBackBtn = hasBackBtn;
         return this;
     }
 
-    public UIConfig toolbarHeight(int toolbarHeight) {
+    public ActivityConfig toolbarHeight(int toolbarHeight) {
         this.toolbarHeight = toolbarHeight;
         return this;
     }
 
-    public UIConfig toolbarColor(int toolbarColor) {
+    public ActivityConfig toolbarColor(int toolbarColor) {
         this.toolbarColor = toolbarColor;
         return this;
     }
 
-    public UIConfig keyboardEnable(boolean keyboardEnable) {
+    public ActivityConfig keyboardEnable(boolean keyboardEnable) {
         this.keyboardEnable = keyboardEnable;
         return this;
     }
 
-    public UIConfig statusBarColor(int statusBarColor) {
+    public ActivityConfig statusBarColor(int statusBarColor) {
         this.statusBarColor = statusBarColor;
         return this;
     }
 
-    public UIConfig transparentStatusBar(boolean transparentStatusBar) {
+    public ActivityConfig transparentStatusBar(boolean transparentStatusBar) {
         this.transparentStatusBar = transparentStatusBar;
         return this;
     }
 
-    public UIConfig fullscreen(boolean fullscreen) {
+    public ActivityConfig fullscreen(boolean fullscreen) {
         this.fullscreen = fullscreen;
         return this;
     }
 
-    public UIConfig title(CharSequence title) {
+    public ActivityConfig title(CharSequence title) {
         this.title = title;
         return this;
     }

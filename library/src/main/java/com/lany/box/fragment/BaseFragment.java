@@ -3,7 +3,7 @@ package com.lany.box.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -15,10 +15,12 @@ import android.widget.RelativeLayout.LayoutParams;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.lany.box.R;
+import com.lany.box.config.FragmentConfig;
 import com.lany.box.dialog.LoadingDialog;
 import com.lany.box.event.NetWorkEvent;
 import com.lany.box.interfaces.OnDoubleClickListener;
 import com.lany.box.mvp.view.BaseView;
+import com.lany.box.utils.DensityUtils;
 import com.lany.box.utils.ViewUtils;
 import com.lany.state.StateLayout;
 
@@ -39,24 +41,17 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     private boolean isViewInit = false;
     private boolean isLazyLoaded = false;
     private RelativeLayout mRootView;
+    private FragmentConfig config;
 
-    @LayoutRes
-    protected abstract int getLayoutId();
+    /**
+     * 获取Fragment的界面配置
+     *
+     * @return FragmentConfig
+     */
+    @NonNull
+    protected abstract FragmentConfig getConfig(FragmentConfig config);
 
     protected abstract void init(Bundle savedInstanceState);
-
-    protected boolean hasToolbar() {
-        return false;
-    }
-
-    @LayoutRes
-    protected int getToolBarLayoutId() {
-        return R.layout.toolbar_default;
-    }
-
-    protected int getToolBarHeight() {
-        return getResources().getDimensionPixelSize(R.dimen.actionbar_height);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +60,9 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
             EventBus.getDefault().register(this);
         }
         this.self = getActivity();
+        config = getConfig(new FragmentConfig()
+                .layoutId(R.layout.ui_default)
+                .toolbarHeight(DensityUtils.dp2px(48)));
     }
 
     @Override
@@ -80,29 +78,23 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = new RelativeLayout(self);
         mRootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
+        mStateLayout = new StateLayout(self);
+        mStateLayout.setOnRetryListener(this);
+        mStateLayout.addView(LayoutInflater.from(self).inflate(config.getLayoutId(), null));
+
         LayoutParams slp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        if (hasToolbar()) {
-            View toolbar = inflater.inflate(getToolBarLayoutId(), null);
+        if (config.isHasToolbar()) {
+            View toolbar = inflater.inflate(config.getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
-            toolbar.setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
-                @Override
-                public void onDoubleClick(View view) {
-                    onToolbarDoubleClick();
-                }
-            }));
-            toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getToolBarHeight()));
+            toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
+            toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, config.getToolbarHeight()));
             ViewUtils.setPaddingSmart(toolbar);
             slp.addRule(RelativeLayout.BELOW, toolbar.getId());
             mRootView.addView(toolbar);
         }
-        if (getLayoutId() != 0) {
-            mStateLayout = new StateLayout(self);
-            mStateLayout.setOnRetryListener(this);
-            mStateLayout.addView(LayoutInflater.from(self).inflate(getLayoutId(), null));
-            mRootView.addView(mStateLayout, slp);
-        } else {
-            throw new IllegalArgumentException("getLayoutId() return 0 , you need a layout file resources");
-        }
+
+        mRootView.addView(mStateLayout, slp);
         mUnBinder = ButterKnife.bind(this, mRootView);
         init(savedInstanceState);
         isViewInit = true;
