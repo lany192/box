@@ -113,8 +113,8 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             }
             contentView.addView(mToolbar);
             setBarTitle(config.getTitle());
+            View backBtn = mToolbar.findViewById(R.id.toolbar_back_btn);
             if (config.isHasBackBtn()) {
-                View backBtn = mToolbar.findViewById(R.id.toolbar_back_btn);
                 if (backBtn == null) {
                     throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
                 }
@@ -123,6 +123,10 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                         backAction();
                     }
                 });
+            } else {
+                if (backBtn != null) {
+                    backBtn.setVisibility(View.GONE);
+                }
             }
             lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
         }
