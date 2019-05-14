@@ -3,6 +3,7 @@ package com.lany.box.http;
 import android.text.TextUtils;
 
 import com.lany.box.utils.JsonUtils;
+import com.lany.box.utils.ListUtils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -38,78 +39,27 @@ public class Request {
         return this;
     }
 
-    public Request add(String key, String value) {
-        if (TextUtils.isEmpty(key)) {
+    public Request add(String key, Object value) {
+        if (TextUtils.isEmpty(key) || value == null) {
             return this;
         }
-        params.put(key, TextUtils.isEmpty(value) ? "" : value);
-        return this;
-    }
-
-    public Request add(String key, int value) {
-        if (TextUtils.isEmpty(key)) {
-            return this;
-        }
-        params.put(key, String.valueOf(value));
-        return this;
-    }
-
-    public Request add(String key, long value) {
-        if (TextUtils.isEmpty(key)) {
-            return this;
-        }
-        params.put(key, String.valueOf(value));
-        return this;
-    }
-
-    public Request add(String key, double value) {
-        if (TextUtils.isEmpty(key)) {
-            return this;
-        }
-        params.put(key, String.valueOf(value));
-        return this;
-    }
-
-    public Request add(String key, float value) {
-        if (TextUtils.isEmpty(key)) {
-            return this;
-        }
-        params.put(key, String.valueOf(value));
-        return this;
-    }
-
-    public Request add(String key, boolean value) {
-        if (TextUtils.isEmpty(key)) {
-            return this;
-        }
-        params.put(key, String.valueOf(value));
-        return this;
-    }
-
-    public Request add(String key, List<String> values) {
-        if (TextUtils.isEmpty(key)) {
-            return this;
-        }
-        if (values != null && values.size() > 0) {
-            for (int i = 0; i < values.size(); i++) {
-                params.put(key, values.get(i));
+        if (isBaseType(value)) {
+            params.put(key, String.valueOf(value));
+        } else {
+            if (value instanceof List) {
+                List<String> list = (List<String>) value;
+                if (!ListUtils.isEmpty(list)) {
+                    for (String item : list) {
+                        params.put(key, item);
+                    }
+                }
+            } else if (value instanceof File) {
+                File file = (File) value;
+                parts.add(MultipartBody.Part.createFormData(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file)));
+            } else {
+                params.put(key, JsonUtils.object2json(value));
             }
         }
-        return this;
-    }
-
-    /**
-     * 添加图片
-     *
-     * @param key  名称
-     * @param file 图片文件
-     * @return HttpRequest
-     */
-    public Request add(String key, File file) {
-        if (TextUtils.isEmpty(key) || file == null) {
-            return this;
-        }
-        parts.add(MultipartBody.Part.createFormData(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file)));
         return this;
     }
 
@@ -120,14 +70,13 @@ public class Request {
      * @param paths 图片地址集
      * @return HttpRequest
      */
-    public Request addImages(String key, List<String> paths) {
+    public Request addPaths(String key, List<String> paths) {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
-        if (paths != null && paths.size() > 0) {
-            for (int i = 0; i < paths.size(); i++) {
-                File file = new File(paths.get(i));
-                parts.add(MultipartBody.Part.createFormData(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file)));
+        if (!ListUtils.isEmpty(paths)) {
+            for (String path : paths) {
+                add(key, new File(path));
             }
         }
         return this;
@@ -138,21 +87,7 @@ public class Request {
             Map<String, Object> fields = object2map(object);
             if (!fields.isEmpty()) {
                 for (Map.Entry<String, Object> entry : fields.entrySet()) {
-                    Object value = entry.getValue();
-                    if (value != null) {
-                        if (value instanceof List) {
-                            List<String> values = (List<String>) value;
-                            if (values.size() > 0) {
-                                for (int i = 0; i < values.size(); i++) {
-                                    params.put(entry.getKey(), values.get(i));
-                                }
-                            }
-                        } else if (isBaseType(value)) {
-                            params.put(entry.getKey(), value.toString());
-                        } else {
-                            params.put(entry.getKey(), JsonUtils.object2json(value));
-                        }
-                    }
+                    add(entry.getKey(), entry.getValue());
                 }
             }
         }
@@ -197,10 +132,15 @@ public class Request {
      */
     private boolean isBaseType(Object object) {
         Class clz = object.getClass();
-        return clz.equals(String.class) || clz.equals(Integer.class) || clz.equals(Byte.class) ||
-                clz.equals(Long.class) || clz.equals(Double.class) ||
-                clz.equals(Float.class) || clz.equals(Character.class) ||
-                clz.equals(Short.class) || clz.equals(Boolean.class);
+        return clz.equals(String.class)
+                || clz.equals(Integer.class)
+                || clz.equals(Byte.class)
+                || clz.equals(Long.class)
+                || clz.equals(Double.class)
+                || clz.equals(Float.class)
+                || clz.equals(Character.class)
+                || clz.equals(Short.class)
+                || clz.equals(Boolean.class);
     }
 
     public Observable<String> post() {
