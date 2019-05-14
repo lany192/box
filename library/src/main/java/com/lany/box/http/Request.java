@@ -21,7 +21,7 @@ import okhttp3.RequestBody;
 
 public class Request {
     private String apiUrl;
-    private TreeMap<String, Object> params = new TreeMap<>();
+    private TreeMap<String, String> params = new TreeMap<>();
     private List<MultipartBody.Part> parts = new ArrayList<>();
     private ApiService apiService;
 
@@ -197,7 +197,7 @@ public class Request {
      */
     private boolean isBaseType(Object object) {
         Class clz = object.getClass();
-        return clz.equals(Integer.class) || clz.equals(Byte.class) ||
+        return clz.equals(String.class) || clz.equals(Integer.class) || clz.equals(Byte.class) ||
                 clz.equals(Long.class) || clz.equals(Double.class) ||
                 clz.equals(Float.class) || clz.equals(Character.class) ||
                 clz.equals(Short.class) || clz.equals(Boolean.class);
@@ -210,8 +210,8 @@ public class Request {
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
         if (params != null && params.size() > 0) {
-            for (Map.Entry<String, Object> entry : params.entrySet()) {
-                builder.addFormDataPart(entry.getKey(), entry.getValue().toString());
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                builder.addFormDataPart(entry.getKey(), entry.getValue());
             }
         } else {
             //至少要有一个Part，不然会报错
