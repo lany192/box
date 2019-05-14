@@ -16,5 +16,5 @@ public interface ApiService {
     Observable<String> post(@Url String url, @Body MultipartBody body);
 
     @GET
-    Observable<String> get(@Url String url, @QueryMap Map<String, String> map);
+    Observable<String> get(@Url String url, @QueryMap Map<String, Object> map);
 }

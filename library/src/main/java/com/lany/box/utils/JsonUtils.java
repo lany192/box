@@ -32,7 +32,7 @@ public class JsonUtils {
      * 对象转json
      */
     public static String object2json(Object object) {
-        return new Gson().toJson(object).replace("\\\"", "");
+        return new Gson().toJson(object);
     }
 
     public static <T> List<T> json2List(Class<T[]> clazz, String json) {

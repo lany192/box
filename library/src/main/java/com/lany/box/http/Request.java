@@ -21,7 +21,7 @@ import okhttp3.RequestBody;
 
 public class Request {
     private String apiUrl;
-    private TreeMap<String, String> params = new TreeMap<>();
+    private TreeMap<String, Object> params = new TreeMap<>();
     private List<MultipartBody.Part> parts = new ArrayList<>();
     private ApiService apiService;
 
@@ -210,8 +210,8 @@ public class Request {
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
         if (params != null && params.size() > 0) {
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                builder.addFormDataPart(entry.getKey(), entry.getValue());
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                builder.addFormDataPart(entry.getKey(), entry.getValue().toString());
             }
         } else {
             //至少要有一个Part，不然会报错
