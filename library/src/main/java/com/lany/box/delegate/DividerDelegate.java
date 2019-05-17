@@ -2,27 +2,37 @@ package com.lany.box.delegate;
 
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
-import android.view.View;
+import android.text.TextUtils;
+import android.widget.TextView;
 
 import com.lany.box.R;
 
 /**
  * 分割线代理
+ *
+ * 高度和内容属性互斥，只能同时设置一个
  */
 public class DividerDelegate extends ItemDelegate<Object> {
     private int height = 4;
-
     @ColorInt
-    private int color = Color.parseColor("#dddddd");
+    private int color = Color.parseColor("#f1f1f1");
+
+    private String hint;
 
     public DividerDelegate() {
         super(null);
     }
 
-    public DividerDelegate(int height, @ColorInt int color) {
+    public DividerDelegate(int height, @ColorInt int backgroundColor) {
         super(null);
         this.height = height;
-        this.color = color;
+        this.color = backgroundColor;
+    }
+
+    public DividerDelegate(String hint, @ColorInt int backgroundColor) {
+        super(null);
+        this.hint = hint;
+        this.color = backgroundColor;
     }
 
     @Override
@@ -32,9 +42,18 @@ public class DividerDelegate extends ItemDelegate<Object> {
 
     @Override
     public void init() {
-        View view = getView(R.id.type_divider_view);
-        view.getLayoutParams().height = height;
-        view.setBackgroundColor(color);
+        TextView hintText = getView(R.id.type_divider_view);
+        hintText.setBackgroundColor(color);
+        if (!TextUtils.isEmpty(hint)) {
+            hintText.setText(hint);
+        } else {
+            hintText.getLayoutParams().height = height;
+        }
+    }
+
+    public DividerDelegate setHint(String hint) {
+        this.hint = hint;
+        return this;
     }
 
     public DividerDelegate setHeight(int height) {
@@ -42,7 +61,7 @@ public class DividerDelegate extends ItemDelegate<Object> {
         return this;
     }
 
-    public DividerDelegate setColor(@ColorInt int color) {
+    public DividerDelegate setBackgroundColor(@ColorInt int color) {
         this.color = color;
         return this;
     }
