@@ -41,7 +41,7 @@ public class DividerDelegate extends ItemDelegate<Object> {
     }
 
     @Override
-    public void init() {
+    public void init(Object data, int position) {
         TextView hintText = getView(R.id.type_divider_view);
         hintText.setBackgroundColor(color);
         if (!TextUtils.isEmpty(hint)) {

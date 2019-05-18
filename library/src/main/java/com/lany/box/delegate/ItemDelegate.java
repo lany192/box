@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
@@ -22,9 +23,9 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
     private Context mContext;
     private ItemViewHolder mHolder;
     protected Logger.Builder log = XLog.tag(TAG);
-    protected final T mData;
+    private final T mData;
 
-    public ItemDelegate(final T data) {
+    public ItemDelegate(@NonNull final T data) {
         this.mData = data;
     }
 
@@ -62,19 +63,14 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
     /**
      * 初始化方法
      */
-    public abstract void init();
+    public abstract void init(T data, int position);
 
     public void convert(ItemViewHolder helper, Context context) {
         this.mContext = context;
         this.mHolder = helper;
         ButterKnife.bind(this, mHolder.itemView);
-        mHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClicked();
-            }
-        });
-        init();
+        mHolder.itemView.setOnClickListener(v -> onItemClicked());
+        init(mData, helper.getAdapterPosition());
     }
 
     public void onItemClicked() {
