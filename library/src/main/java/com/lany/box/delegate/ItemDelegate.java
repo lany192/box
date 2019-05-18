@@ -69,11 +69,11 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
         this.mContext = context;
         this.mHolder = helper;
         ButterKnife.bind(this, mHolder.itemView);
-        mHolder.itemView.setOnClickListener(v -> onItemClicked());
+        mHolder.itemView.setOnClickListener(v -> onItemClicked(mData, helper.getAdapterPosition()));
         init(mData, helper.getAdapterPosition());
     }
 
-    public void onItemClicked() {
+    public void onItemClicked(T data, int position) {
         //item 点击事件
     }
 
