@@ -30,6 +30,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
@@ -42,6 +44,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     private boolean isLazyLoaded = false;
     private RelativeLayout mRootView;
     private FragmentConfig config;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     /**
      * 获取Fragment的界面配置
@@ -132,6 +135,10 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (null != mUnBinder) {
             mUnBinder.unbind();
         }
+        if (compositeDisposable != null && compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable = null;
+        }
         super.onDestroy();
     }
 
@@ -209,5 +216,9 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (activity != null) {
             activity.finish();
         }
+    }
+
+    protected void add(Disposable disposable) {
+        compositeDisposable.add(disposable);
     }
 }

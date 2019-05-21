@@ -41,6 +41,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * 通用基类
@@ -54,6 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private Unbinder mUnBinder;
     private LoadingDialog mLoadingDialog;
     private ActivityConfig config;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     /**
      * 获取Activity的界面配置
@@ -223,6 +226,10 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         log.i("点击重试");
     }
 
+    protected void add(Disposable disposable) {
+        compositeDisposable.add(disposable);
+    }
+
     @Override
     protected void onDestroy() {
         ImmersionBar.with(this).destroy();
@@ -231,6 +238,10 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         }
         if (null != mUnBinder) {
             mUnBinder.unbind();
+        }
+        if (compositeDisposable != null && compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable = null;
         }
         super.onDestroy();
     }
