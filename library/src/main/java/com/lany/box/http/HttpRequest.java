@@ -39,12 +39,20 @@ public class HttpRequest {
         return this;
     }
 
+    /**
+     * 注意:只有值为基础类型才有可能用于GET请求
+     *
+     * @param key
+     * @param value
+     * @return
+     */
     public HttpRequest add(String key, Object value) {
         if (TextUtils.isEmpty(key) || value == null) {
             return this;
         }
         if (isBaseType(value)) {
             params.put(key, String.valueOf(value));
+            parts.add(MultipartBody.Part.createFormData(key, String.valueOf(value)));
         } else {
             if (value instanceof List) {
                 List<String> list = (List<String>) value;
@@ -67,6 +75,7 @@ public class HttpRequest {
                 parts.add(MultipartBody.Part.createFormData(key, file.getName(), RequestBody.create(MediaType.parse("image/*"), file)));
             } else {
                 params.put(key, JsonUtils.object2json(value));
+                parts.add(MultipartBody.Part.createFormData(key, String.valueOf(value)));
             }
         }
         return this;
@@ -156,20 +165,14 @@ public class HttpRequest {
         if (apiService == null) {
             throw new IllegalStateException("ApiService is null");
         }
-
         MultipartBody.Builder builder = new MultipartBody.Builder();
-        if (params != null && params.size() > 0) {
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                builder.addFormDataPart(entry.getKey(), entry.getValue());
+        if (!ListUtils.isEmpty(parts)) {
+            for (MultipartBody.Part part : parts) {
+                builder.addPart(part);
             }
         } else {
             //至少要有一个Part，不然会报错
             builder.addPart(MultipartBody.Part.createFormData("", ""));
-        }
-        if (parts != null && parts.size() > 0) {
-            for (MultipartBody.Part part : parts) {
-                builder.addPart(part);
-            }
         }
         builder.setType(MultipartBody.FORM);
         return apiService
