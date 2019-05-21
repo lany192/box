@@ -20,26 +20,26 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class Request {
+public class HttpRequest {
     private String apiUrl;
     private TreeMap<String, String> params = new TreeMap<>();
     private List<MultipartBody.Part> parts = new ArrayList<>();
     private ApiService apiService;
 
-    private Request(String apiUrl) {
+    private HttpRequest(String apiUrl) {
         this.apiUrl = apiUrl;
     }
 
-    public static Request of(String apiUrl) {
-        return new Request(apiUrl);
+    public static HttpRequest of(String apiUrl) {
+        return new HttpRequest(apiUrl);
     }
 
-    public Request service(ApiService apiService) {
+    public HttpRequest service(ApiService apiService) {
         this.apiService = apiService;
         return this;
     }
 
-    public Request add(String key, Object value) {
+    public HttpRequest add(String key, Object value) {
         if (TextUtils.isEmpty(key) || value == null) {
             return this;
         }
@@ -50,7 +50,16 @@ public class Request {
                 List<String> list = (List<String>) value;
                 if (!ListUtils.isEmpty(list)) {
                     for (String item : list) {
-                        params.put(key, item);
+                        parts.add(MultipartBody.Part.createFormData(key, item));
+                    }
+                }
+            } else if (value instanceof String[]) {
+                String[] array = (String[]) value;
+                if (array.length > 0) {
+                    for (String item : array) {
+                        if (!TextUtils.isEmpty(item)) {
+                            parts.add(MultipartBody.Part.createFormData(key, item));
+                        }
                     }
                 }
             } else if (value instanceof File) {
@@ -70,7 +79,7 @@ public class Request {
      * @param paths 图片地址集
      * @return HttpRequest
      */
-    public Request addPaths(String key, List<String> paths) {
+    public HttpRequest addPaths(String key, List<String> paths) {
         if (TextUtils.isEmpty(key)) {
             return this;
         }
@@ -82,7 +91,7 @@ public class Request {
         return this;
     }
 
-    public Request add(Object object) {
+    public HttpRequest add(Object object) {
         if (object != null) {
             Map<String, Object> fields = object2map(object);
             if (!fields.isEmpty()) {

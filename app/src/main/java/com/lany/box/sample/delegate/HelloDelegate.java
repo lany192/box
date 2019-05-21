@@ -28,13 +28,13 @@ public class HelloDelegate extends ItemDelegate<String> {
     }
 
     @Override
-    public void init() {
+    public void init(String data, int position) {
         textView.setText(getData());
         ImageLoader.of().showFullWidth(imageView, getData());
     }
 
     @Override
-    public void onItemClicked() {
+    public void onItemClicked(String data, int position) {
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");
         dialog.setMessage("猜猜我是谁");
