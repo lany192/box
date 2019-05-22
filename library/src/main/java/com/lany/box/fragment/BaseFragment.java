@@ -218,7 +218,12 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         }
     }
 
-    protected void add(Disposable disposable) {
+    /**
+     * 接收处理Disposable对象
+     *
+     * @param disposable
+     */
+    protected void manageDisposable(Disposable disposable) {
         compositeDisposable.add(disposable);
     }
 }

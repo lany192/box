@@ -226,7 +226,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         log.i("点击重试");
     }
 
-    protected void add(Disposable disposable) {
+    /**
+     * 接收处理Disposable对象
+     *
+     * @param disposable
+     */
+    protected void manageDisposable(Disposable disposable) {
         compositeDisposable.add(disposable);
     }
 
