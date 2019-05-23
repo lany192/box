@@ -24,8 +24,15 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
     private ItemViewHolder mHolder;
     protected Logger.Builder log = XLog.tag(TAG);
     private final T mData;
+    @LayoutRes
+    private int layoutId;
 
     public ItemDelegate(@NonNull final T data) {
+        this.mData = data;
+    }
+
+    public ItemDelegate(@LayoutRes int layoutId, @NonNull final T data) {
+        this.layoutId = layoutId;
         this.mData = data;
     }
 
@@ -57,8 +64,9 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
      *
      * @return 布局文件id
      */
-    @LayoutRes
-    public abstract int getLayoutId();
+    public @LayoutRes int getLayoutId() {
+        return layoutId;
+    }
 
     /**
      * 初始化方法
