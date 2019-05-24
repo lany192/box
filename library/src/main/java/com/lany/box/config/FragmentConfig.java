@@ -30,6 +30,11 @@ public class FragmentConfig {
      */
     @ColorRes
     private int toolbarColor;
+    /**
+     * 内容的背景颜色
+     */
+    @ColorRes
+    private int contentColor;
 
     public FragmentConfig layoutId(int layoutId) {
         this.layoutId = layoutId;
@@ -47,8 +52,13 @@ public class FragmentConfig {
         return this;
     }
 
-    public FragmentConfig toolbarColor(int toolbarColor) {
-        this.toolbarColor = toolbarColor;
+    public FragmentConfig toolbarColor(int color) {
+        this.toolbarColor = color;
+        return this;
+    }
+
+    public FragmentConfig contentColor(@ColorRes int color) {
+        this.contentColor = color;
         return this;
     }
 }

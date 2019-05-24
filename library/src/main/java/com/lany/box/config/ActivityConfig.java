@@ -60,6 +60,11 @@ public class ActivityConfig {
      * toolbar标题
      */
     private CharSequence title;
+    /**
+     * 内容的背景颜色
+     */
+    @ColorRes
+    private int contentColor;
 
     public ActivityConfig layoutId(int layoutId) {
         this.layoutId = layoutId;
@@ -91,8 +96,8 @@ public class ActivityConfig {
         return this;
     }
 
-    public ActivityConfig toolbarColor(int toolbarColor) {
-        this.toolbarColor = toolbarColor;
+    public ActivityConfig toolbarColor(@ColorRes int color) {
+        this.toolbarColor = color;
         return this;
     }
 
@@ -101,8 +106,8 @@ public class ActivityConfig {
         return this;
     }
 
-    public ActivityConfig statusBarColor(int statusBarColor) {
-        this.statusBarColor = statusBarColor;
+    public ActivityConfig statusBarColor(@ColorRes int color) {
+        this.statusBarColor = color;
         return this;
     }
 
@@ -118,6 +123,11 @@ public class ActivityConfig {
 
     public ActivityConfig title(CharSequence title) {
         this.title = title;
+        return this;
+    }
+
+    public ActivityConfig contentColor(@ColorRes int color) {
+        this.contentColor = color;
         return this;
     }
 }

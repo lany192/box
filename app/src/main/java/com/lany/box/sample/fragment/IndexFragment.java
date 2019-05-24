@@ -18,7 +18,9 @@ public class IndexFragment extends BaseFragment {
     @NonNull
     @Override
     protected FragmentConfig getConfig(FragmentConfig config) {
-        return config.layoutId(R.layout.fragment_index).toolBarLayoutId(R.layout.toolbar_index);
+        return config.layoutId(R.layout.fragment_index)
+                .contentColor(android.R.color.holo_green_light)
+                .toolBarLayoutId(R.layout.toolbar_index);
     }
 
     @Override

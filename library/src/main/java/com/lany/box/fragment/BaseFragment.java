@@ -84,7 +84,11 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
         mStateLayout = new StateLayout(self);
         mStateLayout.setOnRetryListener(this);
-        mStateLayout.addView(LayoutInflater.from(self).inflate(config.getLayoutId(), null));
+        View contentView = LayoutInflater.from(self).inflate(config.getLayoutId(), null);
+        if (config.getContentColor() > 0) {
+            contentView.setBackgroundResource(config.getContentColor());
+        }
+        mStateLayout.addView(contentView);
 
         LayoutParams slp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (config.isHasToolbar()) {

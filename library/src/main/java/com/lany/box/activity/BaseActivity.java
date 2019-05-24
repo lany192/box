@@ -96,11 +96,15 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     }
 
     private View getContentView() {
-        RelativeLayout contentView = new RelativeLayout(this);
-        contentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        RelativeLayout rootView = new RelativeLayout(this);
+        rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         mStateLayout = new StateLayout(this);
         mStateLayout.setOnRetryListener(this);
-        mStateLayout.addView(LayoutInflater.from(this).inflate(config.getLayoutId(), null));
+        View contentView = LayoutInflater.from(this).inflate(config.getLayoutId(), null);
+        if (config.getContentColor() > 0) {
+            contentView.setBackgroundResource(config.getContentColor());
+        }
+        mStateLayout.addView(contentView);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (config.isHasToolbar()) {
             mToolbar = LayoutInflater.from(this).inflate(config.getToolBarLayoutId(), null);
@@ -114,7 +118,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             if (config.isTransparentStatusBar()) {
                 ViewUtils.setPaddingSmart(mToolbar);
             }
-            contentView.addView(mToolbar);
+            rootView.addView(mToolbar);
             setBarTitle(config.getTitle());
             View backBtn = mToolbar.findViewById(R.id.toolbar_back_btn);
             if (config.isHasBackBtn()) {
@@ -133,8 +137,8 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             }
             lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
         }
-        contentView.addView(mStateLayout, lp);
-        return contentView;
+        rootView.addView(mStateLayout, lp);
+        return rootView;
     }
 
     /**
