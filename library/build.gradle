@@ -40,8 +40,8 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.5.0'
     api 'com.squareup.retrofit2:converter-scalars:2.5.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-    api 'com.squareup.okhttp3:okhttp:3.10.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.14.2'
+    api 'com.squareup.okhttp3:okhttp:3.14.2'
     //带删除功能的EditText
     api 'com.github.lany192:ClearEditText:1.0.4'
     //多状态切换控件
@@ -49,9 +49,15 @@ dependencies {
     //超链接处理
     api 'com.klinkerapps:link_builder:1.6.1'
     //TabLayout控件
-    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
+    api('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2') {
+        exclude group: 'com.android.support'
+    }
+
     //RecyclerView适配器
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+    //分割线
+    api 'com.github.lany192:ItemDecoration:1.1.4'
+
     //日志
     api 'com.elvishew:xlog:1.5.0'
     //状态栏工具
@@ -65,14 +71,11 @@ dependencies {
     //主项目中要添加butterknife依赖
     compileOnly 'com.jakewharton:butterknife:8.8.1'
     //dagger2
-    compileOnly 'com.google.dagger:dagger-android-support:2.22.1'
-    //分割线
-    api 'com.github.lany192:ItemDecoration:1.1.4'
-    //自定义NumberPicker
-    api 'com.github.lany192:NumberPicker:1.0.3'
+    compileOnly 'com.google.dagger:dagger-android-support:2.23.1'
+
 
     api 'com.hjq:toast:5.5'
-
+    //权限控制
     api 'com.github.tbruyelle:rxpermissions:0.10.2'
 
     //压缩图片

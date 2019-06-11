@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.Map;
+
 
 /**
  * SharedPreferences封装工具类
@@ -225,5 +227,42 @@ public class SPHelper {
         Editor editor = getSharedPreferences(spaceName).edit();
         editor.clear();
         editor.apply();
+    }
+
+    public void put(Map<String, Object> map) {
+        put("", map);
+    }
+
+    /**
+     * 批量提交
+     */
+    public void put(String spaceName, Map<String, Object> map) {
+        if (map != null && !map.isEmpty()) {
+            Editor editor;
+            if (TextUtils.isEmpty(spaceName)) {
+                editor = getSharedPreferences().edit();
+            } else {
+                editor = getSharedPreferences(spaceName).edit();
+            }
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                if (value != null) {
+                    Class clz = value.getClass();
+                    if (clz.equals(String.class)) {
+                        editor.putString(key, (String) value);
+                    } else if (clz.equals(Integer.class)) {
+                        editor.putInt(key, (int) value);
+                    } else if (clz.equals(Long.class)) {
+                        editor.putLong(key, (long) value);
+                    } else if (clz.equals(Float.class)) {
+                        editor.putFloat(key, (float) value);
+                    } else if (clz.equals(Boolean.class)) {
+                        editor.putBoolean(key, (boolean) value);
+                    }
+                }
+            }
+            editor.apply();
+        }
     }
 }
