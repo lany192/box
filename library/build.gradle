@@ -40,8 +40,8 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.5.0'
     api 'com.squareup.retrofit2:converter-scalars:2.5.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    api 'com.squareup.okhttp3:logging-interceptor:3.14.2'
-    api 'com.squareup.okhttp3:okhttp:3.14.2'
+    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
     //带删除功能的EditText
     api 'com.github.lany192:ClearEditText:1.0.4'
     //多状态切换控件
