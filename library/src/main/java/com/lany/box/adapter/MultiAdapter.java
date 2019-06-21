@@ -15,7 +15,7 @@ import java.util.Objects;
  * 多布局适配器
  */
 public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder> {
-    private SparseIntArray mTypeMap = new SparseIntArray();
+    private SparseIntArray typeMap = new SparseIntArray();
     private final int TYPE_NOT_FOUND = -404;
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
@@ -36,7 +36,7 @@ public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder>
         if (item != null) {
             viewType = item.getItemType();
             if (getLayoutId(viewType) == TYPE_NOT_FOUND) {
-                mTypeMap.put(viewType, item.getLayoutId());
+                typeMap.put(viewType, item.getLayoutId());
             }
         }
         return viewType;
@@ -48,7 +48,7 @@ public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder>
     }
 
     private int getLayoutId(int viewType) {
-        return mTypeMap.get(viewType, TYPE_NOT_FOUND);
+        return typeMap.get(viewType, TYPE_NOT_FOUND);
     }
 
     @Override
