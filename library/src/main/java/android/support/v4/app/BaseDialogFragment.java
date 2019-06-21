@@ -15,7 +15,7 @@ import android.view.WindowManager;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
-import com.lany.box.utils.DensityUtils;
+import com.github.lany192.box.utils.DensityUtils;
 
 import butterknife.ButterKnife;
 
