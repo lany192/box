@@ -19,10 +19,9 @@ import butterknife.ButterKnife;
  * 多布局代理基类，适用于MultiAdapter适配器
  */
 public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickListener {
-    protected final String TAG = this.getClass().getSimpleName();
     private Context mContext;
     private ItemViewHolder mHolder;
-    protected Logger.Builder log = XLog.tag(TAG);
+    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private final T mData;
     @LayoutRes
     private int layoutId;
