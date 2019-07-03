@@ -9,30 +9,20 @@ import com.github.lany192.box.R;
 
 /**
  * 分割线代理
- *
+ * <p>
  * 高度和内容属性互斥，只能同时设置一个
  */
-public class DividerDelegate extends ItemDelegate<Object> {
-    private int height = 4;
+public class Divider extends ItemDelegate<Object> {
+    private int size = 4;
     @ColorInt
     private int color = Color.parseColor("#f1f1f1");
+    @ColorInt
+    private int hintColor = Color.WHITE;
 
     private String hint;
 
-    public DividerDelegate() {
+    public Divider() {
         super(null);
-    }
-
-    public DividerDelegate(int height, @ColorInt int backgroundColor) {
-        super(null);
-        this.height = height;
-        this.color = backgroundColor;
-    }
-
-    public DividerDelegate(String hint, @ColorInt int backgroundColor) {
-        super(null);
-        this.hint = hint;
-        this.color = backgroundColor;
     }
 
     @Override
@@ -46,22 +36,28 @@ public class DividerDelegate extends ItemDelegate<Object> {
         hintText.setBackgroundColor(color);
         if (!TextUtils.isEmpty(hint)) {
             hintText.setText(hint);
+            hintText.setTextColor(hintColor);
         } else {
-            hintText.getLayoutParams().height = height;
+            hintText.getLayoutParams().height = size;
         }
     }
 
-    public DividerDelegate setHint(String hint) {
+    public Divider hintColor(@ColorInt int hintColor) {
+        this.hintColor = hintColor;
+        return this;
+    }
+
+    public Divider hint(String hint) {
         this.hint = hint;
         return this;
     }
 
-    public DividerDelegate setHeight(int height) {
-        this.height = height;
+    public Divider size(int size) {
+        this.size = size;
         return this;
     }
 
-    public DividerDelegate setBackgroundColor(@ColorInt int color) {
+    public Divider color(@ColorInt int color) {
         this.color = color;
         return this;
     }

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.config.FragmentConfig;
+import com.github.lany192.box.delegate.Divider;
 import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.sample.R;
@@ -27,7 +28,8 @@ public class HelloFragment extends BaseFragment {
     @NonNull
     @Override
     protected FragmentConfig getConfig(FragmentConfig config) {
-        return config.layoutId(R.layout.hello).toolBarLayoutId(R.layout.toolbar_hello);
+        return config.layoutId(R.layout.hello)
+                .toolBarLayoutId(R.layout.toolbar_hello);
     }
 
     @Override
@@ -43,6 +45,11 @@ public class HelloFragment extends BaseFragment {
         List<ItemDelegate> items = new ArrayList<>();
         for (String pic : pics) {
             items.add(new HelloDelegate(pic));
+            items.add(new Divider()
+                    .size(10)
+                    .color(Color.BLUE)
+                    .hintColor(Color.WHITE)
+                    .hint("华丽的分割线"));
         }
         mShowView.setAdapter(new MultiAdapter(items));
     }

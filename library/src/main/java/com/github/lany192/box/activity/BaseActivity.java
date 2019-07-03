@@ -56,7 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private Unbinder mUnBinder;
     private LoadingDialog mLoadingDialog;
     private ActivityConfig config;
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     /**
      * 获取Activity的界面配置
@@ -235,8 +235,8 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
      *
      * @param disposable
      */
-    protected void manageDisposable(Disposable disposable) {
-        compositeDisposable.add(disposable);
+    protected void addDisposable(Disposable disposable) {
+        disposables.add(disposable);
     }
 
     @Override
@@ -248,9 +248,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (null != mUnBinder) {
             mUnBinder.unbind();
         }
-        if (compositeDisposable != null && compositeDisposable.isDisposed()) {
-            compositeDisposable.dispose();
-            compositeDisposable = null;
+        if (disposables != null && disposables.isDisposed()) {
+            disposables.dispose();
+            disposables = null;
         }
         super.onDestroy();
     }
