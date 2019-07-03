@@ -45,8 +45,8 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     @Override
     protected void init(Bundle savedInstanceState) {
         List<TabItem> items = new ArrayList<>();
-        items.add(new TabItem(new IndexFragment()));
         items.add(new TabItem(new HelloFragment()));
+        items.add(new TabItem(new IndexFragment()));
         items.add(new TabItem(new MyFragment()));
         mViewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), items));
         mNavigationBar.enableAnimation(false);
@@ -54,10 +54,10 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
         mNavigationBar.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.i_music:
-                    ImmersionBar.with(this).statusBarDarkFont(true).init();
+                    ImmersionBar.with(this).statusBarDarkFont(false).init();
                     break;
                 case R.id.i_backup:
-                    ImmersionBar.with(this).statusBarDarkFont(false).init();
+                    ImmersionBar.with(this).statusBarDarkFont(true).init();
                     break;
                 case R.id.i_friends:
                     ImmersionBar.with(this).statusBarDarkFont(false).init();

@@ -5,8 +5,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.github.lany192.box.adapter.ItemViewHolder;
 import com.github.lany192.box.helper.ItemTypeHelper;
 
@@ -17,7 +15,6 @@ import butterknife.ButterKnife;
  */
 public abstract class ItemDelegate<T> implements MultiItemEntity {
     private Context mContext;
-    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private T mData;
 
     public ItemDelegate(@NonNull final T data) {
@@ -68,11 +65,7 @@ public abstract class ItemDelegate<T> implements MultiItemEntity {
         //item 点击事件
     }
 
-    public Context getContext() {
+    protected Context getContext() {
         return mContext;
-    }
-
-    public T getData() {
-        return mData;
     }
 }
