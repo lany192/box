@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.github.lany192.box.R;
+import com.github.lany192.box.adapter.ItemViewHolder;
 
 /**
  * 分割线代理
@@ -31,8 +32,8 @@ public class Divider extends ItemDelegate<Object> {
     }
 
     @Override
-    public void init(Object data, int position) {
-        TextView hintText = getView(R.id.type_divider_view);
+    public void init(ItemViewHolder holder, Object data, int position) {
+        TextView hintText = holder.getView(R.id.type_divider_view);
         hintText.setBackgroundColor(color);
         if (!TextUtils.isEmpty(hint)) {
             hintText.setText(hint);

@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.lany192.box.adapter.ItemViewHolder;
 import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.dialog.SimpleDialog;
 import com.github.lany192.box.helper.ImageLoader;
@@ -28,9 +29,9 @@ public class HelloDelegate extends ItemDelegate<String> {
     }
 
     @Override
-    public void init(String data, int position) {
-        textView.setText(getData());
-        ImageLoader.of().showFullWidth(imageView, getData());
+    public void init(ItemViewHolder holder, String data, int position) {
+        textView.setText(data);
+        ImageLoader.of().showFullWidth(imageView, data);
     }
 
     @Override

@@ -1,11 +1,8 @@
 package com.github.lany192.box.delegate;
 
 import android.content.Context;
-import android.support.annotation.ColorInt;
-import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.view.View;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.elvishew.xlog.Logger;
@@ -18,20 +15,12 @@ import butterknife.ButterKnife;
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
  */
-public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickListener {
+public abstract class ItemDelegate<T> implements MultiItemEntity {
     private Context mContext;
-    private ItemViewHolder mHolder;
     protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
-    private final T mData;
-    @LayoutRes
-    private int layoutId;
+    private T mData;
 
     public ItemDelegate(@NonNull final T data) {
-        this.mData = data;
-    }
-
-    public ItemDelegate(@LayoutRes int layoutId, @NonNull final T data) {
-        this.layoutId = layoutId;
         this.mData = data;
     }
 
@@ -54,39 +43,29 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
         return 2;
     }
 
-    public ItemViewHolder getHolder() {
-        return mHolder;
-    }
-
     /**
      * 返回布局文件id
      *
      * @return 布局文件id
      */
-    public @LayoutRes int getLayoutId() {
-        return layoutId;
-    }
+    @LayoutRes
+    public abstract int getLayoutId();
 
     /**
      * 初始化方法
      */
-    public abstract void init(T data, int position);
+    public abstract void init(ItemViewHolder holder, T data, int position);
 
-    public void convert(ItemViewHolder helper, Context context) {
+    public void convert(ItemViewHolder holder, Context context) {
         this.mContext = context;
-        this.mHolder = helper;
-        ButterKnife.bind(this, mHolder.itemView);
-        mHolder.itemView.setOnClickListener(v -> onItemClicked(mData, helper.getAdapterPosition()));
-        init(mData, helper.getAdapterPosition());
+        int position = holder.getAdapterPosition();
+        ButterKnife.bind(this, holder.itemView);
+        holder.itemView.setOnClickListener(v -> onItemClicked(mData, position));
+        init(holder, mData, position);
     }
 
     public void onItemClicked(T data, int position) {
         //item 点击事件
-    }
-
-    @SuppressWarnings("unchecked")
-    public <T extends View> T getView(@IdRes int viewId) {
-        return (T) mHolder.getView(viewId);
     }
 
     public Context getContext() {
@@ -95,34 +74,5 @@ public abstract class ItemDelegate<T> implements MultiItemEntity, View.OnClickLi
 
     public T getData() {
         return mData;
-    }
-
-    public void setText(@IdRes int viewId, CharSequence value) {
-        mHolder.setText(viewId, value);
-    }
-
-    public void setText(@IdRes int viewId, int value) {
-        mHolder.setText(viewId, value);
-    }
-
-    public void setTextColor(@IdRes int viewId, @ColorInt int color) {
-        mHolder.setTextColor(viewId, color);
-    }
-
-    public void setImageUrl(@IdRes int viewId, String picUrl) {
-        mHolder.setImageUrl(viewId, picUrl);
-    }
-
-    public void setTextSize(@IdRes int viewId, float size) {
-        mHolder.setTextSize(viewId, size);
-    }
-
-    public void setVisibility(@IdRes int viewId, int visibility) {
-        mHolder.setVisibility(viewId, visibility);
-    }
-
-    @Override
-    public void onClick(View view) {
-
     }
 }

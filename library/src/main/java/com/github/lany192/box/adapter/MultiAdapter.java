@@ -22,11 +22,7 @@ public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder>
 
     public MultiAdapter(List<ItemDelegate> items) {
         super(items);
-        setSpanSizeLookup((gridLayoutManager, position) -> {
-            int spanSize = Objects.requireNonNull(getItem(position)).getSpanSize();
-            log.i("spanSize:" + spanSize);
-            return spanSize;
-        });
+        setSpanSizeLookup((gridLayoutManager, position) -> Objects.requireNonNull(getItem(position)).getSpanSize());
     }
 
     @Override
@@ -52,7 +48,7 @@ public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder>
     }
 
     @Override
-    protected void convert(ItemViewHolder helper, ItemDelegate item) {
-        item.convert(helper, mContext);
+    protected void convert(ItemViewHolder holder, ItemDelegate item) {
+        item.convert(holder, mContext);
     }
 }
