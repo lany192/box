@@ -11,15 +11,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.Headers;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.github.lany192.box.R;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ImageLoader {
     private volatile static ImageLoader instance;
+    private Headers headers = Headers.DEFAULT;
 
     public static ImageLoader of() {
         if (instance == null) {
@@ -33,7 +38,17 @@ public class ImageLoader {
     }
 
     private ImageLoader() {
+    }
 
+    /**
+     * 设置防盗链接
+     */
+    public void setReferer(String url) {
+        this.headers = () -> {
+            Map<String, String> headers = new HashMap<>();
+            headers.put("Referer", url);
+            return headers;
+        };
     }
 
     public void showAvatar(ImageView imageView, String url) {
@@ -47,7 +62,7 @@ public class ImageLoader {
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(imageView.getContext())
-                .load(url)
+                .load(new GlideUrl(url, headers))
                 .apply(options)
                 .into(imageView);
     }
@@ -62,7 +77,7 @@ public class ImageLoader {
                 .override(imageView.getWidth(), imageView.getHeight())
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(imageView.getContext())
-                .load(url)
+                .load(new GlideUrl(url, headers))
                 .apply(options)
                 .into(imageView);
     }
@@ -137,7 +152,7 @@ public class ImageLoader {
                 .override(imageView.getWidth(), imageView.getHeight())
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(imageView.getContext())
-                .load(url)
+                .load(new GlideUrl(url, headers))
                 .apply(options)
                 .addListener(new RequestListener<Drawable>() {
 
@@ -157,5 +172,4 @@ public class ImageLoader {
                 })
                 .into(imageView);
     }
-
 }
