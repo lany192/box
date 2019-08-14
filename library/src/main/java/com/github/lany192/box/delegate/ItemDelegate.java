@@ -21,6 +21,10 @@ public abstract class ItemDelegate<T> implements MultiItemEntity {
         this.mData = data;
     }
 
+    public T getData() {
+        return mData;
+    }
+
     /**
      * 根据类class的名称生成对应的唯一id
      *
