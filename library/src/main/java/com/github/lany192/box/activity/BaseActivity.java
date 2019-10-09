@@ -30,9 +30,9 @@ import com.github.lany192.box.mvp.view.BaseView;
 import com.github.lany192.box.utils.ClickUtil;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
-import com.gyf.barlibrary.BarHide;
-import com.gyf.barlibrary.ImmersionBar;
 import com.github.lany192.box.R;
+import com.gyf.immersionbar.BarHide;
+import com.gyf.immersionbar.ImmersionBar;
 import com.lany.state.StateLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -241,7 +241,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     protected void onDestroy() {
-        ImmersionBar.with(this).destroy();
+        //ImmersionBar.with(this).destroy();
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }

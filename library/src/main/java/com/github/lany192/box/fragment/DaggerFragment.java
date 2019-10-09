@@ -1,22 +1,21 @@
 package com.github.lany192.box.fragment;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasAndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
-import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * 如果使用了dagger，用这个基类
  */
-public abstract class DaggerFragment extends BaseFragment implements HasSupportFragmentInjector {
+public abstract class DaggerFragment extends BaseFragment implements HasAndroidInjector {
 
     @Inject
-    DispatchingAndroidInjector<Fragment> childFragmentInjector;
+    DispatchingAndroidInjector<Object> androidInjector;
 
     @Override
     public void onAttach(Context context) {
@@ -25,7 +24,7 @@ public abstract class DaggerFragment extends BaseFragment implements HasSupportF
     }
 
     @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return childFragmentInjector;
+    public AndroidInjector<Object> androidInjector() {
+        return androidInjector;
     }
 }

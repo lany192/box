@@ -33,7 +33,7 @@ dependencies {
     //事件分发
     api 'org.greenrobot:eventbus:3.1.1'
     //rxjava
-    api 'io.reactivex.rxjava2:rxjava:2.2.8'
+    api 'io.reactivex.rxjava2:rxjava:2.2.11'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     //网络请求
     api 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -54,14 +54,14 @@ dependencies {
     }
 
     //RecyclerView适配器
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
     //分割线
     api 'com.github.lany192:ItemDecoration:1.1.7'
 
     //日志
-    api 'com.elvishew:xlog:1.5.0'
+    api 'com.elvishew:xlog:1.6.1'
     //状态栏工具
-    api 'com.gyf.immersionbar:immersionbar:2.3.3'
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
     //圆角图片
     api 'com.makeramen:roundedimageview:2.3.0'
     //下载框架
@@ -71,7 +71,7 @@ dependencies {
     //主项目中要添加butterknife依赖
     compileOnly 'com.jakewharton:butterknife:8.8.1'
     //dagger2
-    compileOnly 'com.google.dagger:dagger-android-support:2.23.1'
+    compileOnly 'com.google.dagger:dagger-android-support:2.24'
 
 
     api 'com.hjq:toast:5.5'
@@ -81,6 +81,6 @@ dependencies {
     //压缩图片
     api 'top.zibin:Luban:1.1.8'
 
-    compileOnly 'org.projectlombok:lombok:1.18.6'
-    annotationProcessor 'org.projectlombok:lombok:1.18.6'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
 }

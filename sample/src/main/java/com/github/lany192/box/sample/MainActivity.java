@@ -13,7 +13,7 @@ import com.github.lany192.box.sample.fragment.HelloFragment;
 import com.github.lany192.box.sample.fragment.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
 import com.github.lany192.box.widget.NavigationBar;
-import com.gyf.barlibrary.ImmersionBar;
+import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
 import java.util.ArrayList;
