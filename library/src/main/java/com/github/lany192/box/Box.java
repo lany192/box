@@ -28,14 +28,10 @@ import com.github.lany192.box.utils.FileUtils;
 import com.github.lany192.box.utils.LogFileFormat;
 import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.PermissionUtils;
-import com.github.lany192.box.widget.RefreshView;
 import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
-import com.github.lany192.box.R;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -210,25 +206,18 @@ public class Box {
     }
 
     private void initCatchException() {
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(Thread thread, Throwable e) {
-                XLog.tag(TAG).e(e.getLocalizedMessage());
-                XLog.tag(TAG).st(10).e(TAG, "程序崩溃退出", e);
-                Log.e(TAG, "程序崩溃退出", e);
-            }
+        Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
+            XLog.tag(TAG).e(e.getLocalizedMessage());
+            XLog.tag(TAG).st(10).e(TAG, "程序崩溃退出", e);
+            Log.e(TAG, "程序崩溃退出", e);
         });
     }
 
 
     private void initRefreshView() {
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-            @NonNull
-            @Override
-            public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);
-                return new RefreshView(context).setArrowResource(R.drawable.vector_arrow_gray);
-            }
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
+            layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);
+            return new ClassicsHeader(context).setArrowResource(R.drawable.vector_arrow_gray);
         });
     }
 

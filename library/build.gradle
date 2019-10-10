@@ -67,12 +67,11 @@ dependencies {
     //下载框架
     api 'com.liulishuo.filedownloader:library:1.7.6'
     //刷新套件
-    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     //主项目中要添加butterknife依赖
     compileOnly 'com.jakewharton:butterknife:8.8.1'
     //dagger2
     compileOnly 'com.google.dagger:dagger-android-support:2.24'
-
 
     api 'com.hjq:toast:5.5'
     //权限控制

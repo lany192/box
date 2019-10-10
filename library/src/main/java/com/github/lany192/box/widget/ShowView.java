@@ -130,9 +130,7 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
     }
 
     public void stop() {
-        if (mRefreshLayout.isRefreshing()) {
-            mRefreshLayout.finishRefresh();
-        }
+        mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
             mAdapter.loadMoreComplete();
         }
@@ -142,9 +140,7 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
      * 显示没有更多
      */
     public void end() {
-        if (mRefreshLayout.isRefreshing()) {
-            mRefreshLayout.finishRefresh();
-        }
+        mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
             mAdapter.loadMoreComplete();
             mAdapter.loadMoreEnd();
@@ -152,9 +148,7 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
     }
 
     public void loadMoreFail() {
-        if (mRefreshLayout.isRefreshing()) {
-            mRefreshLayout.finishRefresh();
-        }
+        mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
             mAdapter.loadMoreComplete();
             mAdapter.loadMoreFail();
