@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/i_music"
+        android:id="@+id/menu_main_index"
         android:checked="true"
         android:icon="@drawable/ic_audiotrack_black_24dp"
-        android:title="@string/music" />
+        android:title="@string/index" />
     <item
-        android:id="@+id/i_backup"
+        android:id="@+id/menu_main_pic"
         android:icon="@drawable/ic_backup_black_24dp"
-        android:title="@string/backup" />
+        android:title="@string/picture" />
     <item
-        android:id="@+id/i_friends"
+        android:id="@+id/menu_main_my"
         android:icon="@drawable/ic_camera_black_24dp"
-        android:title="@string/friends" />
+        android:title="@string/my" />
 </menu>
