@@ -6,16 +6,6 @@
     android:gravity="bottom"
     android:minHeight="@dimen/actionbar_height">
 
-    <ImageButton
-        android:id="@+id/toolbar_back_btn"
-        android:layout_width="@dimen/actionbar_height"
-        android:layout_height="@dimen/actionbar_height"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/actionBarItemBackground"
-        android:contentDescription="@string/app_name"
-        android:scaleType="centerInside"
-        android:src="@drawable/vector_back_white" />
-
     <TextView
         android:id="@+id/toolbar_title_text"
         android:layout_width="wrap_content"

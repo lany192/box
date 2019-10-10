@@ -21,15 +21,14 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class HelloFragment extends BaseFragment {
+public class SubTabFragment extends BaseFragment {
     @BindView(R.id.showView)
     ShowView mShowView;
 
     @NonNull
     @Override
     protected FragmentConfig getConfig(FragmentConfig config) {
-        return config.layoutId(R.layout.hello)
-                .toolBarLayoutId(R.layout.toolbar_hello);
+        return config.layoutId(R.layout.fragment_hello);
     }
 
     @Override

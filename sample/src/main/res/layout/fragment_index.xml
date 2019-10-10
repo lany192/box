@@ -1,15 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <Button
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/index_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="哈哈" />
+        android:layout_height="48dp"
+        app:tl_divider_width="0dp"
+        app:tl_indicator_color="@android:color/black"
+        app:tl_indicator_corner_radius="1dp"
+        app:tl_indicator_height="2dp"
+        app:tl_indicator_width="60dp"
+        app:tl_tab_space_equal="true"
+        app:tl_textSelectColor="@android:color/black"
+        app:tl_textUnselectColor="#999999"
+        app:tl_textsize="13sp"
+        app:tl_underline_color="#f0f0f0"
+        app:tl_underline_height="1dp" />
 
-    <EditText
+    <android.support.v4.view.ViewPager
+        android:id="@+id/index_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 </LinearLayout>
