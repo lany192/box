@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.github.lany192.box.widget.NavigationBar
+    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
         android:id="@+id/main_navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

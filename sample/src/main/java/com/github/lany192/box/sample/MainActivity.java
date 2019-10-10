@@ -12,9 +12,9 @@ import com.github.lany192.box.config.ActivityConfig;
 import com.github.lany192.box.sample.fragment.HelloFragment;
 import com.github.lany192.box.sample.fragment.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
-import com.github.lany192.box.widget.NavigationBar;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     @BindView(R.id.main_viewpager)
     ViewPager mViewPager;
     @BindView(R.id.main_navigation_bar)
-    NavigationBar mNavigationBar;
+    BottomNavigationViewEx mNavigationView;
     @Inject
     MainPresenter mPresenter;
 
@@ -49,9 +49,9 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
         items.add(new TabItem(new HelloFragment()));
         items.add(new TabItem(new MyFragment()));
         mViewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), items));
-        mNavigationBar.enableAnimation(false);
-        mNavigationBar.setupWithViewPager(mViewPager);
-        mNavigationBar.setOnNavigationItemSelectedListener(menuItem -> {
+        mNavigationView.enableAnimation(false);
+        mNavigationView.setupWithViewPager(mViewPager);
+        mNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.menu_main_index:
                     ImmersionBar.with(this).statusBarDarkFont(true).init();
