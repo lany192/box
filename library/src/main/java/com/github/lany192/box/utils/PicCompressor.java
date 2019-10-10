@@ -19,18 +19,18 @@ import top.zibin.luban.Luban;
 /**
  * luban图片压缩封装
  */
-public class Compressor {
+public class PicCompressor {
     private final String TAG = getClass().getSimpleName();
     private List<String> paths;
     private Consumer<List<String>> consumer;
 
-    public Compressor(String path, Consumer<List<String>> consumer) {
+    public PicCompressor(String path, Consumer<List<String>> consumer) {
         this.paths = new ArrayList<>();
         this.paths.add(path);
         this.consumer = consumer;
     }
 
-    public Compressor(List<String> paths, Consumer<List<String>> consumer) {
+    public PicCompressor(List<String> paths, Consumer<List<String>> consumer) {
         this.paths = paths;
         this.consumer = consumer;
     }
