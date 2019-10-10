@@ -40,6 +40,12 @@ public class ItemViewHolder extends BaseViewHolder {
         return this;
     }
 
+    public ItemViewHolder setImageFullWidth(@IdRes int viewId, String picUrl) {
+        ImageView imageView = getView(viewId);
+        ImageLoader.of().showFullWidth(imageView, picUrl);
+        return this;
+    }
+
     public ItemViewHolder setAvatarUrl(@IdRes int viewId, String picUrl) {
         ImageView imageView = getView(viewId);
         imageView.getLayoutParams().height = imageView.getLayoutParams().width;
