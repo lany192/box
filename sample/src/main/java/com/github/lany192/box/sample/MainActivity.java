@@ -31,7 +31,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     @Inject
     MainPresenter mPresenter;
 
-    private long exitTime = 0; // 第一次按退出的时间
+    private long mLastClickTime = 0; // 第一次按退出的时间
 
     @NonNull
     @Override
@@ -68,9 +68,9 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if ((System.currentTimeMillis() - exitTime) > 3000) {
-                ToastUtils.show("再按一次退出应用");
-                exitTime = System.currentTimeMillis();
+            if ((System.currentTimeMillis() - mLastClickTime) > 3000) {
+                ToastUtils.show("再按一次退出" + getString(R.string.app_name));
+                mLastClickTime = System.currentTimeMillis();
                 return false;
             }
         }
