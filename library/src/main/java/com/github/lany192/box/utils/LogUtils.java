@@ -14,12 +14,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class LogUtils {
-    private final String TAG = this.getClass().getSimpleName();
+    private static final String TAG = "LogUtils";
 
     /**
      * 根据日期读取日志内容
      */
-    public String getLogPathByDate(Context context, Date date) {
+    public static String getLogPathByDate(Context context, Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String fileName = sdf.format(date);
 
