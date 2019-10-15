@@ -11,8 +11,10 @@ import com.github.lany192.box.delegate.Divider;
 import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.sample.R;
+import com.github.lany192.box.sample.bean.PicBean;
 import com.github.lany192.box.sample.delegate.HelloDelegate;
 import com.github.lany192.box.utils.DensityUtils;
+import com.github.lany192.box.utils.JsonUtils;
 import com.github.lany192.box.widget.ShowView;
 import com.github.lany192.decoration.LinearDecoration;
 
@@ -64,6 +66,15 @@ public class HelloFragment extends BaseFragment {
                 "https://wx2.sinaimg.cn/bmiddle/0060lm7Tgy1g22fft14xtj30u0140wqo.jpg",
                 "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22ffsig5wj30u0140wqn.jpg",
                 "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22ffs63lhj30u0140gv0.jpg"};
+
+
+        PicBean bean = new PicBean();
+        bean.setCode(1);
+        bean.setMsg("请求成功");
+        bean.setData(pics);
+
+        log.i(JsonUtils.object2json(bean));
+
         List<ItemDelegate> items = new ArrayList<>();
         for (String pic : pics) {
             items.add(new HelloDelegate(pic));

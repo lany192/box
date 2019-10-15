@@ -11,7 +11,6 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Gravity;
 
@@ -21,13 +20,14 @@ import com.elvishew.xlog.XLog;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
-import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.helper.SPHelper;
 import com.github.lany192.box.utils.FileUtils;
 import com.github.lany192.box.utils.LogFileFormat;
+import com.github.lany192.box.utils.LogFileNameGenerator;
 import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.PermissionUtils;
+import com.github.lany192.box.utils.PhoneUtils;
 import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -207,12 +207,12 @@ public class Box {
 
     private void initCatchException() {
         Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
+            XLog.tag(TAG).i("手机基本信息:" + PhoneUtils.getBaseInfo());
             XLog.tag(TAG).e(e.getLocalizedMessage());
             XLog.tag(TAG).st(10).e(TAG, "程序崩溃退出", e);
             Log.e(TAG, "程序崩溃退出", e);
         });
     }
-
 
     private void initRefreshView() {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
@@ -230,8 +230,8 @@ public class Box {
         String logPath = FileUtils.getCacheDir(getContext()) + "/XLog/";
         Printer filePrinter = new FilePrinter
                 .Builder(logPath)
-                .fileNameGenerator(new DateFileNameGenerator())
-                .logFlattener(new LogFileFormat())
+                .fileNameGenerator(new LogFileNameGenerator())
+                .flattener(new LogFileFormat())
                 .build();
 
         XLog.init(config, new AndroidPrinter(), filePrinter);
