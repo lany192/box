@@ -19,7 +19,7 @@ public class LogUtils {
     /**
      * 根据日期读取日志内容
      */
-    private String getLogPathByDate(Context context, Date date) {
+    public String getLogPathByDate(Context context, Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String fileName = sdf.format(date);
 
