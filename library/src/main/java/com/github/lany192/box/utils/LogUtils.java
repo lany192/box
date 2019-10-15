@@ -1,6 +1,7 @@
 package com.github.lany192.box.utils;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
@@ -20,14 +21,10 @@ public class LogUtils {
      * 根据日期读取日志内容
      */
     public static String getLogPathByDate(Context context, Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String fileName = sdf.format(date);
-
-        File cacheDir = context.getExternalCacheDir();
-        if (cacheDir == null || !cacheDir.exists()) {
-            return "没有找到缓存目录";
-        }
-        String path = cacheDir.getPath() + "/XLog/" + fileName + ".log";
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/XLog/"
+                + context.getPackageName() + fileName + ".log";
         File file = new File(path);
         if (!file.exists()) {
             return "没有找到相关日志文件：" + path;

@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
 import android.os.Build;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Gravity;
 
@@ -22,7 +23,6 @@ import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.helper.SPHelper;
-import com.github.lany192.box.utils.FileUtils;
 import com.github.lany192.box.utils.LogFileFormat;
 import com.github.lany192.box.utils.LogFileNameGenerator;
 import com.github.lany192.box.utils.NetUtils;
@@ -227,10 +227,10 @@ public class Box {
                 .logLevel(debug ? LogLevel.ALL : LogLevel.NONE)
                 .tag("XLog")
                 .build();
-        String logPath = FileUtils.getCacheDir(getContext()) + "/XLog/";
+        String logPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/XLog/";
         Printer filePrinter = new FilePrinter
                 .Builder(logPath)
-                .fileNameGenerator(new LogFileNameGenerator())
+                .fileNameGenerator(new LogFileNameGenerator(context.getPackageName()))
                 .flattener(new LogFileFormat())
                 .build();
 
