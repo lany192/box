@@ -109,6 +109,7 @@ public class FileUtils {
                 String tmp;
                 while ((tmp = br.readLine()) != null) {
                     builder.append(tmp);
+                    builder.append("\n");
                 }
                 return builder.toString();
             } catch (Exception e) {
