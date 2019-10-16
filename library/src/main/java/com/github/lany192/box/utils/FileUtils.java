@@ -7,7 +7,13 @@ import android.os.Environment;
 
 import com.hjq.toast.ToastUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class FileUtils {
 
@@ -87,5 +93,40 @@ public class FileUtils {
         } else {
             ToastUtils.show(filePath + "路径不存在");
         }
+    }
+
+    /**
+     * 读取文本内容
+     */
+    public static String readTextByPath(String path) {
+        File file = new File(path);
+        if (file.exists() && !file.isDirectory()) {
+            StringBuilder builder = new StringBuilder();
+            try {
+                FileInputStream fileInputStream = new FileInputStream(file);
+                InputStreamReader isr = new InputStreamReader(fileInputStream, "UTF-8");
+                BufferedReader br = new BufferedReader(isr);
+                String tmp;
+                while ((tmp = br.readLine()) != null) {
+                    builder.append(tmp);
+                }
+                return builder.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 根据日期读取日志内容
+     */
+    public static String getLogPathByDate(Context context, Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+        String fileName = sdf.format(date);
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()
+                + "/XLog/"
+                + context.getPackageName() + fileName + ".log";
+        return readTextByPath(path);
     }
 }
