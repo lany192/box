@@ -228,7 +228,7 @@ public class Box {
                 .logLevel(debug ? LogLevel.ALL : LogLevel.NONE)
                 .tag("XLog")
                 .build();
-        String logPath = StorageUtils.getCacheDirectory(context) + File.separator + "/XLog/";
+        String logPath = StorageUtils.getCacheDirectory(context) + File.separator + "XLog" + File.separator;
         Printer filePrinter = new FilePrinter
                 .Builder(logPath)
                 .fileNameGenerator(new LogFileNameGenerator(context.getPackageName()))
