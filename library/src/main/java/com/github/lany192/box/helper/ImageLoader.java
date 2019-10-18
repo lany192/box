@@ -4,10 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -76,10 +78,13 @@ public class ImageLoader {
                 .error(R.drawable.default_pic)
                 .override(imageView.getWidth(), imageView.getHeight())
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(imageView.getContext())
-                .load(new GlideUrl(url, headers))
-                .apply(options)
-                .into(imageView);
+        RequestBuilder<Drawable> builder;
+        if (!TextUtils.isEmpty(url) && url.startsWith("http")) {
+            builder = Glide.with(imageView.getContext()).load(new GlideUrl(url, headers));
+        } else {
+            builder = Glide.with(imageView.getContext()).load(url);
+        }
+        builder.apply(options).into(imageView);
     }
 
     public void show(ImageView imageView, Uri uri) {
@@ -151,25 +156,27 @@ public class ImageLoader {
                 .error(R.drawable.default_pic)
                 .override(imageView.getWidth(), imageView.getHeight())
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(imageView.getContext())
-                .load(new GlideUrl(url, headers))
-                .apply(options)
-                .addListener(new RequestListener<Drawable>() {
+        RequestBuilder<Drawable> builder;
+        if (!TextUtils.isEmpty(url) && url.startsWith("http")) {
+            builder = Glide.with(imageView.getContext()).load(new GlideUrl(url, headers));
+        } else {
+            builder = Glide.with(imageView.getContext()).load(url);
+        }
+        builder.apply(options).addListener(new RequestListener<Drawable>() {
 
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        return false;
-                    }
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                return false;
+            }
 
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        imageView.setVisibility(View.VISIBLE);
-                        imageView.getLayoutParams().height = imageView.getWidth() * resource.getIntrinsicHeight() / resource.getIntrinsicWidth();
-                        imageView.setImageDrawable(resource);
-                        imageView.requestLayout();
-                        return true;
-                    }
-                })
-                .into(imageView);
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                imageView.setVisibility(View.VISIBLE);
+                imageView.getLayoutParams().height = imageView.getWidth() * resource.getIntrinsicHeight() / resource.getIntrinsicWidth();
+                imageView.setImageDrawable(resource);
+                imageView.requestLayout();
+                return true;
+            }
+        }).into(imageView);
     }
 }
