@@ -125,7 +125,7 @@ public class FileUtils {
     public static String getLogPathByDate(Context context, Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String fileName = sdf.format(date);
-        String path = context.getFilesDir().getPath() + "/" + "app_log_" + fileName + ".log";
+        String path = context.getFilesDir().getPath() + "/log/" + "app_log_" + fileName + ".log";
         return readTextByPath(path);
     }
 }

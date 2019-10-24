@@ -229,7 +229,7 @@ public class Box {
                 .logLevel(debug ? LogLevel.ALL : LogLevel.NONE)
                 .tag("XLog")
                 .build();
-        String logPath = context.getFilesDir().getPath() + "/";
+        String logPath = context.getFilesDir().getPath() + "/log/";
         Printer filePrinter = new FilePrinter
                 .Builder(logPath)
                 .fileNameGenerator(new LogFileNameGenerator())
