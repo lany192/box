@@ -229,10 +229,10 @@ public class Box {
                 .logLevel(debug ? LogLevel.ALL : LogLevel.NONE)
                 .tag("XLog")
                 .build();
-        String logPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/XLog/";
+        String logPath = context.getFilesDir().getPath() + "/";
         Printer filePrinter = new FilePrinter
                 .Builder(logPath)
-                .fileNameGenerator(new LogFileNameGenerator(context.getPackageName()))
+                .fileNameGenerator(new LogFileNameGenerator())
                 .flattener(new LogFileFormat())
                 .build();
 

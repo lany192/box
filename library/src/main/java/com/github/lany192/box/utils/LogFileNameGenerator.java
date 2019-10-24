@@ -16,11 +16,6 @@ public class LogFileNameGenerator implements FileNameGenerator {
             return new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         }
     };
-    String packageName;
-
-    public LogFileNameGenerator(String packageName) {
-        this.packageName = packageName;
-    }
 
     @Override
     public boolean isFileNameChangeable() {
@@ -34,6 +29,6 @@ public class LogFileNameGenerator implements FileNameGenerator {
     public String generateFileName(int logLevel, long timestamp) {
         SimpleDateFormat sdf = mLocalDateFormat.get();
         sdf.setTimeZone(TimeZone.getDefault());
-        return packageName +"_"+ sdf.format(new Date(timestamp)) + ".log";
+        return "app_log__"+ sdf.format(new Date(timestamp)) + ".log";
     }
 }
