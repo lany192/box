@@ -11,7 +11,6 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
 import android.os.Build;
-import android.os.Environment;
 import android.util.Log;
 import android.view.Gravity;
 
@@ -28,7 +27,6 @@ import com.github.lany192.box.utils.LogFileNameGenerator;
 import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.box.utils.PhoneUtils;
-import com.github.lany192.box.utils.StorageUtils;
 import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -36,7 +34,6 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -226,17 +223,21 @@ public class Box {
     private void initLog(boolean debug) {
         LogConfiguration config = new LogConfiguration
                 .Builder()
-                .logLevel(debug ? LogLevel.ALL : LogLevel.NONE)
+                .logLevel(LogLevel.ALL)
                 .tag("XLog")
                 .build();
         String logPath = context.getFilesDir().getPath() + "/log/";
+        Log.i(TAG, "初始化日志文件路径:" + logPath);
         Printer filePrinter = new FilePrinter
                 .Builder(logPath)
                 .fileNameGenerator(new LogFileNameGenerator())
                 .flattener(new LogFileFormat())
                 .build();
-
-        XLog.init(config, new AndroidPrinter(), filePrinter);
+        if (debug) {
+            XLog.init(config, new AndroidPrinter(), filePrinter);
+        } else {
+            XLog.init(config, filePrinter);
+        }
     }
 
     public Context getContext() {

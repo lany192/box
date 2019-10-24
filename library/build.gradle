@@ -69,6 +69,7 @@ dependencies {
     //刷新套件
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     //主项目中要添加butterknife依赖
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     compileOnly 'com.jakewharton:butterknife:8.8.1'
     //dagger2
     compileOnly 'com.google.dagger:dagger-android-support:2.24'

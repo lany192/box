@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.hjq.toast.ToastUtils;
 
 import java.io.BufferedReader;
@@ -16,6 +19,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class FileUtils {
+    private static Logger.Builder log = XLog.tag("FileUtils");
 
     /**
      * 获取APP的工作路径
@@ -125,7 +129,8 @@ public class FileUtils {
     public static String getLogPathByDate(Context context, Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String fileName = sdf.format(date);
-        String path = context.getFilesDir().getPath() + "/log/" + "app_log_" + fileName + ".log";
+        String path = context.getFilesDir().getPath() + "/log/app_log_" + fileName + ".log";
+        log.i("日志文件路径:" + path);
         return readTextByPath(path);
     }
 }

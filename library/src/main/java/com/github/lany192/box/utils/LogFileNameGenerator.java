@@ -29,6 +29,6 @@ public class LogFileNameGenerator implements FileNameGenerator {
     public String generateFileName(int logLevel, long timestamp) {
         SimpleDateFormat sdf = mLocalDateFormat.get();
         sdf.setTimeZone(TimeZone.getDefault());
-        return "app_log__"+ sdf.format(new Date(timestamp)) + ".log";
+        return "app_log_"+ sdf.format(new Date(timestamp)) + ".log";
     }
 }

@@ -73,7 +73,7 @@ public class HelloFragment extends BaseFragment {
         bean.setMsg("请求成功");
         bean.setData(pics);
 
-        log.i(JsonUtils.object2json(bean));
+        log.json(JsonUtils.object2json(bean));
 
         List<ItemDelegate> items = new ArrayList<>();
         for (String pic : pics) {

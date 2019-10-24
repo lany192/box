@@ -107,22 +107,15 @@
         app:menu_isShowIcon="false"
         app:menu_name="植物成长记" />
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd"
-        android:visibility="gone" />
 
     <com.github.lany192.menu.MenuView
-        android:id="@+id/my_favorite_view"
+        android:id="@+id/my_debug_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="?android:attr/actionBarItemBackground"
         app:menu_hintColor="#999999"
         app:menu_isShowIcon="false"
-        app:menu_name="我的收藏" />
+        app:menu_name="调试" />
 
     <View
         android:layout_width="wrap_content"
