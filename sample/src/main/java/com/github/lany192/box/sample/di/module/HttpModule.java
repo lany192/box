@@ -63,18 +63,14 @@ public class HttpModule {
     @Singleton
     @Provides
     public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
-        HttpLoggingInterceptor interceptor;
-        interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                String TAG = "okHttp ";
-                if (message.startsWith("--> GET") || message.startsWith("--> POST")) {
-                    XLog.tag(TAG).i("  ");
-                }
-                XLog.tag(TAG).i(message);
-                if (message.startsWith("<-- END HTTP")) {
-                    XLog.tag(TAG).i("  ");
-                }
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(message -> {
+            String TAG = "okHttp ";
+            if (message.startsWith("--> GET") || message.startsWith("--> POST")) {
+                XLog.tag(TAG).i("  ");
+            }
+            XLog.tag(TAG).i(message);
+            if (message.startsWith("<-- END HTTP")) {
+                XLog.tag(TAG).i("  ");
             }
         });
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
