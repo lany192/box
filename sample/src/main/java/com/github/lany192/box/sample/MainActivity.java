@@ -1,8 +1,8 @@
 package com.github.lany192.box.sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
+import androidx.annotation.NonNull;
 import android.view.KeyEvent;
 
 import com.github.lany192.box.activity.DaggerActivity;

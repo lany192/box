@@ -2,8 +2,7 @@ package com.github.lany192.box.dialog;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.IdRes;
-import android.support.design.widget.BottomSheetDialog;
+import androidx.annotation.IdRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +10,7 @@ import android.view.WindowManager;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import butterknife.ButterKnife;
 

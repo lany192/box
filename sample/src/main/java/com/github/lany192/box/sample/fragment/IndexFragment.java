@@ -1,9 +1,10 @@
 package com.github.lany192.box.sample.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
 import android.view.inputmethod.EditorInfo;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.github.lany192.box.adapter.TabAdapter;

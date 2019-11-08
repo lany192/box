@@ -1,7 +1,7 @@
 package com.github.lany192.box.delegate;
 
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 import android.text.TextUtils;
 import android.widget.TextView;
 

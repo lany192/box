@@ -1,8 +1,9 @@
 package com.github.lany192.box.mvp.model;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.OnLifecycleEvent;
+
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;

@@ -1,6 +1,6 @@
 package com.github.lany192.box.utils;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.text.TextUtils;
 import android.util.Log;
 

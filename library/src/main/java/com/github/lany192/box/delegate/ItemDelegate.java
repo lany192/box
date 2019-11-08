@@ -1,8 +1,8 @@
 package com.github.lany192.box.delegate;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.github.lany192.box.adapter.ItemViewHolder;

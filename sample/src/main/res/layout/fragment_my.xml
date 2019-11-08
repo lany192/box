@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="我的" />
 
-    <com.github.lany192.menu.MenuView
+    <com.github.lany192.view.MenuView
         android:id="@+id/my_order_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -33,7 +33,7 @@
         android:layout_marginRight="16dp"
         android:background="#dddddd" />
 
-    <com.github.lany192.menu.MenuView
+    <com.github.lany192.view.MenuView
         android:id="@+id/my_wallet_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -49,7 +49,7 @@
         android:layout_marginRight="16dp"
         android:background="#dddddd" />
 
-    <com.github.lany192.menu.MenuView
+    <com.github.lany192.view.MenuView
         android:id="@+id/my_release_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -65,7 +65,7 @@
         android:layout_marginRight="16dp"
         android:background="#dddddd" />
 
-    <com.github.lany192.menu.MenuView
+    <com.github.lany192.view.MenuView
         android:id="@+id/my_coupon_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -81,7 +81,7 @@
         android:layout_marginRight="16dp"
         android:background="#dddddd" />
 
-    <com.github.lany192.menu.MenuView
+    <com.github.lany192.view.MenuView
         android:id="@+id/my_sell_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -97,7 +97,7 @@
         android:layout_marginRight="16dp"
         android:background="#dddddd" />
 
-    <com.github.lany192.menu.MenuView
+    <com.github.lany192.view.MenuView
         android:id="@+id/my_plant_life_cycle_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -108,7 +108,7 @@
         app:menu_name="植物成长记" />
 
 
-    <com.github.lany192.menu.MenuView
+    <com.github.lany192.view.MenuView
         android:id="@+id/my_debug_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"

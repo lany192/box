@@ -1,6 +1,6 @@
 package com.github.lany192.box.fragment;
 
-import android.support.v4.app.BaseDialogFragment;
+import androidx.fragment.app.BaseDialogFragment;
 
 import com.github.lany192.box.event.NetWorkEvent;
 

@@ -1,7 +1,7 @@
 package com.github.lany192.box.config;
 
-import android.support.annotation.ColorRes;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.ColorRes;
+import androidx.annotation.LayoutRes;
 
 import lombok.Getter;
 

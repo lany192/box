@@ -3,10 +3,11 @@ package com.github.lany192.box.helper;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
@@ -19,6 +20,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.github.lany192.box.R;
+import com.github.lany192.box.utils.CheckUtils;
 
 import java.io.File;
 import java.util.HashMap;
@@ -79,7 +81,7 @@ public class ImageLoader {
                 .override(imageView.getWidth(), imageView.getHeight())
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         RequestBuilder<Drawable> builder;
-        if (!TextUtils.isEmpty(url) && url.startsWith("http")) {
+        if (!TextUtils.isEmpty(url) && CheckUtils.isWebUrl(url)) {
             builder = Glide.with(imageView.getContext()).load(new GlideUrl(url, headers));
         } else {
             builder = Glide.with(imageView.getContext()).load(url);
@@ -157,7 +159,7 @@ public class ImageLoader {
                 .override(imageView.getWidth(), imageView.getHeight())
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         RequestBuilder<Drawable> builder;
-        if (!TextUtils.isEmpty(url) && url.startsWith("http")) {
+        if (!TextUtils.isEmpty(url) && CheckUtils.isWebUrl(url)) {
             builder = Glide.with(imageView.getContext()).load(new GlideUrl(url, headers));
         } else {
             builder = Glide.with(imageView.getContext()).load(url);

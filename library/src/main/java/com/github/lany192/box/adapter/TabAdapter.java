@@ -1,9 +1,10 @@
 package com.github.lany192.box.adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.text.TextUtils;
+
+import androidx.fragment.app.Fragment;
 
 import java.util.List;
 

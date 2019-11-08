@@ -1,6 +1,7 @@
 package com.github.lany192.box.helper;
 
-import android.support.v4.util.SparseArrayCompat;
+
+import androidx.collection.SparseArrayCompat;
 
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.delegate.ItemDelegate;

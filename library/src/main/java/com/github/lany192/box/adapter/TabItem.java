@@ -1,6 +1,6 @@
 package com.github.lany192.box.adapter;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import lombok.Getter;
 import lombok.Setter;

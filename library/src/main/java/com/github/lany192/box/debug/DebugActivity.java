@@ -2,7 +2,7 @@ package com.github.lany192.box.debug;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.widget.TextView;
 
 import com.github.lany192.box.R;

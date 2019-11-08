@@ -1,7 +1,7 @@
 package com.github.lany192.box.adapter;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.IdRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.IdRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
