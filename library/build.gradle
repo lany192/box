@@ -70,6 +70,8 @@ dependencies {
     api 'top.zibin:Luban:1.1.8'
 
     api 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+    //超链接处理
+    api 'com.klinkerapps:link_builder:1.6.1'
 
     compileOnly 'com.jakewharton:butterknife:10.2.0'
     compileOnly 'com.google.dagger:dagger-android-support:2.24'

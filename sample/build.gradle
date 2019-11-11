@@ -65,9 +65,5 @@ dependencies {
     //菜单控件
     implementation 'com.github.lany192:MenuView:1.0.2'
 
-    api 'com.github.lany192:ClearEditText:1.0.6'
-    //超链接处理
-    api 'com.klinkerapps:link_builder:1.6.1'
-//    //TabLayout控件
-//    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
+    implementation 'com.github.lany192:ClearEditText:1.0.6'
 }
