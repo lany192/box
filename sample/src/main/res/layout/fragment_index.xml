@@ -4,21 +4,15 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.flyco.tablayout.SlidingTabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/index_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:tl_divider_width="0dp"
-        app:tl_indicator_color="@android:color/black"
-        app:tl_indicator_corner_radius="1dp"
-        app:tl_indicator_height="2dp"
-        app:tl_indicator_width="60dp"
-        app:tl_tab_space_equal="true"
-        app:tl_textSelectColor="@android:color/black"
-        app:tl_textUnselectColor="#999999"
-        app:tl_textsize="13sp"
-        app:tl_underline_color="#f0f0f0"
-        app:tl_underline_height="1dp" />
+        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="@android:color/black"
+        app:tabTextColor="#999999" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/index_view_pager"

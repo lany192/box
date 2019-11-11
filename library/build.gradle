@@ -41,19 +41,13 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.5.0'
     api 'com.squareup.retrofit2:converter-scalars:2.5.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+
+    //版本尽量不升级了，否则要处理javax.net.ssl.SSLHandshakeException: Handshake failed异常
     api 'com.squareup.okhttp3:logging-interceptor:3.12.0'
     api 'com.squareup.okhttp3:okhttp:3.12.0'
 
-    api 'com.github.lany192:ClearEditText:1.0.6'
     api 'com.github.lany192:StateLayout:1.2.4'
     api 'com.github.lany192:ItemDecoration:1.18'
-
-    //超链接处理
-    api 'com.klinkerapps:link_builder:1.6.1'
-    //TabLayout控件
-    api('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2') {
-        exclude group: 'com.android.support'
-    }
 
     //RecyclerView适配器
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
@@ -67,11 +61,6 @@ dependencies {
     api 'com.liulishuo.filedownloader:library:1.7.7'
     //刷新套件
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
-    //主项目中要添加butterknife依赖
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    compileOnly 'com.jakewharton:butterknife:10.2.0'
-    //dagger2
-    compileOnly 'com.google.dagger:dagger-android-support:2.24'
 
     api 'com.hjq:toast:5.5'
     //权限控制
@@ -80,8 +69,10 @@ dependencies {
     //压缩图片
     api 'top.zibin:Luban:1.1.8'
 
+    api 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+
+    compileOnly 'com.jakewharton:butterknife:10.2.0'
+    compileOnly 'com.google.dagger:dagger-android-support:2.24'
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
-
-    api 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
 }
