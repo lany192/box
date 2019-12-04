@@ -15,7 +15,7 @@ public class JsonUtils {
     /**
      * json转对象
      */
-    public static <T> T json2object(Class<T> cls, String json) {
+    public static <T> T json2object(String json, Class<T> cls) {
         if (TextUtils.isEmpty(json)) {
             return null;
         }
@@ -35,7 +35,7 @@ public class JsonUtils {
         return new Gson().toJson(object);
     }
 
-    public static <T> List<T> json2List(Class<T[]> clazz, String json) {
+    public static <T> List<T> json2List(String json, Class<T[]> clazz) {
         if (TextUtils.isEmpty(json)) {
             return null;
         }
@@ -44,7 +44,7 @@ public class JsonUtils {
         return Arrays.asList(array);
     }
 
-    public static <T> ArrayList<T> json2ArrayList(Class<T> clazz, String json) {
+    public static <T> ArrayList<T> json2ArrayList(String json, Class<T> clazz) {
         if (TextUtils.isEmpty(json)) {
             return null;
         }

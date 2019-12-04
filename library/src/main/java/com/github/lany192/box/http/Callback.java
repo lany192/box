@@ -30,7 +30,7 @@ public abstract class Callback<T> implements Observer<String> {
     @Override
     public void onNext(String json) {
         log.json(json);
-        T bean = JsonUtils.json2object(getClz(), json);
+        T bean = JsonUtils.json2object(json, getClz());
         if (bean != null) {
             onSuccess(bean);
         } else {
