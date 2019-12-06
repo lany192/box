@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.box.R;
 import com.github.lany192.box.config.ActivityConfig;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
@@ -31,7 +32,6 @@ import com.github.lany192.box.mvp.view.BaseView;
 import com.github.lany192.box.utils.ClickUtil;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
-import com.github.lany192.box.R;
 import com.github.lany192.view.StateLayout;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
