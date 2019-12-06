@@ -13,15 +13,12 @@ import com.github.lany192.box.mvp.view.BaseView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import javax.inject.Inject;
-
 public abstract class BasePresenter<V extends BaseView, M> implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     private final V view;
     private final M model;
 
-    @Inject
     public BasePresenter(V view, M model) {
         this.view = view;
         this.model = model;
