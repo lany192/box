@@ -3,9 +3,15 @@ package com.github.lany192.box.http;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.box.bean.BaseBean;
+import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.utils.JsonUtils;
+import com.github.lany192.box.utils.NetUtils;
+import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.ParameterizedType;
+import org.greenrobot.eventbus.EventBus;
+
+import java.lang.reflect.Type;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -13,14 +19,6 @@ import io.reactivex.disposables.Disposable;
 public abstract class Callback<T> implements Observer<String> {
     private final String TAG = this.getClass().getSimpleName();
     private Logger.Builder log = XLog.tag(TAG);
-    private Class<T> clz;
-
-    public Class<T> getClz() {
-        if (clz == null) {
-            clz = (Class<T>) (((ParameterizedType) this.getClass().getGenericSuperclass())).getActualTypeArguments()[0];
-        }
-        return clz;
-    }
 
     @Override
     public void onSubscribe(Disposable disposable) {
@@ -30,10 +28,12 @@ public abstract class Callback<T> implements Observer<String> {
     @Override
     public void onNext(String json) {
         log.json(json);
-        T bean = JsonUtils.json2object(json, getClz());
+        Type type = new TypeToken<BaseBean<T>>() {}.getType();
+        BaseBean<T> bean = JsonUtils.json2object(json, type);
         if (bean != null) {
             onSuccess(bean);
         } else {
+            EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
             onFailure(new Throwable("数据解析失败"));
         }
     }
@@ -48,7 +48,7 @@ public abstract class Callback<T> implements Observer<String> {
 
     }
 
-    public abstract void onSuccess(T bean);
+    public abstract void onSuccess(BaseBean<T> bean);
 
     public abstract void onFailure(Throwable e);
 }

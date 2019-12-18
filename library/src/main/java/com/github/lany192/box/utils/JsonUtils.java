@@ -12,6 +12,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JsonUtils {
+
+    /**
+     * json转对象
+     */
+    public static <T> T json2object(String json, Type type) {
+        if (TextUtils.isEmpty(json)) {
+            return null;
+        }
+        T t = null;
+        try {
+            t = new Gson().fromJson(json, type);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return t;
+    }
+
     /**
      * json转对象
      */
