@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.event.NetWorkEvent;
+import com.github.lany192.box.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -18,6 +19,6 @@ public class NetChangedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         XLog.tag(TAG).i("网络变化了--------------------");
-        EventBus.getDefault().post(new NetWorkEvent());
+        EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
     }
 }
