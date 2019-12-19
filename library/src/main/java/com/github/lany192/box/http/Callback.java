@@ -30,17 +30,22 @@ public abstract class Callback<T> implements Observer<String> {
         log.json(json);
         Type type = new TypeToken<BaseBean<T>>() {}.getType();
         BaseBean<T> bean = JsonUtils.json2object(json, type);
+        EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
         if (bean != null) {
-            onSuccess(bean);
+            if (bean.isSuccess()) {
+                onSuccess(bean.getData());
+            } else {
+                onFailure(bean.getCode(), new Throwable(bean.getMsg()));
+            }
         } else {
-            EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
-            onFailure(new Throwable("数据解析失败"));
+            onFailure(601, new Throwable("数据解析失败"));
         }
     }
 
     @Override
     public void onError(Throwable e) {
-        onFailure(e);
+        EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
+        onFailure(602, e);
     }
 
     @Override
@@ -48,7 +53,7 @@ public abstract class Callback<T> implements Observer<String> {
 
     }
 
-    public abstract void onSuccess(BaseBean<T> bean);
+    public abstract void onSuccess(T data);
 
-    public abstract void onFailure(Throwable e);
+    public abstract void onFailure(int code, Throwable e);
 }
