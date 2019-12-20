@@ -38,9 +38,10 @@ public class IndexFragment extends BaseFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         List<TabItem> tabs = new ArrayList<>();
-        tabs.add(new TabItem("列表1", new SubTabFragment()));
         tabs.add(new TabItem("列表2", new SubTabFragment()));
-        tabs.add(new TabItem("列列表表3", new SubTabFragment()));
+        tabs.add(new TabItem("列表3", new SubTabFragment()));
+        tabs.add(new TabItem("城市列表", new CityFragment()));
+        tabs.add(new TabItem("城市列表1", new CityFragment()));
         mViewPager.setAdapter(new TabAdapter(getChildFragmentManager(), tabs));
         mTabLayout.setupWithViewPager(mViewPager);
     }

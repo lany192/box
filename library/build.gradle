@@ -44,7 +44,6 @@ dependencies {
 
     //版本尽量不升级了，否则要处理javax.net.ssl.SSLHandshakeException: Handshake failed异常
     api 'com.squareup.okhttp3:logging-interceptor:3.12.0'
-    api 'com.squareup.okhttp3:okhttp:3.12.0'
 
     api 'com.github.lany192:StateLayout:1.2.4'
     api 'com.github.lany192:ItemDecoration:1.18'

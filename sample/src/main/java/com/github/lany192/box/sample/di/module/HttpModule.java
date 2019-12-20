@@ -1,8 +1,7 @@
 package com.github.lany192.box.sample.di.module;
 
 import com.elvishew.xlog.XLog;
-import com.github.lany192.box.http.ApiService;
-import com.github.lany192.box.sample.model.Repository;
+import com.github.lany192.box.sample.http.ApiService;
 import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
@@ -23,21 +22,9 @@ public class HttpModule {
 
     @Singleton
     @Provides
-    public Repository provideRepository(ApiService apiService) {
-        return new Repository(apiService);
-    }
-
-    @Singleton
-    @Provides
-    public ApiService provideApiService(Retrofit retrofit) {
-        return retrofit.create(ApiService.class);
-    }
-
-    @Singleton
-    @Provides
     public Retrofit provideRetrofit(OkHttpClient client) {
         return new Retrofit.Builder()
-                .baseUrl("http://www.lanyugui.cn/")
+                .baseUrl("https://lany192.github.io/")
                 .client(client)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder()
@@ -76,4 +63,12 @@ public class HttpModule {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return interceptor;
     }
+
+
+    @Singleton
+    @Provides
+    public ApiService provideApiService(Retrofit retrofit) {
+        return retrofit.create(ApiService.class);
+    }
+
 }

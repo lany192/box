@@ -5,8 +5,12 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public abstract class BaseBean<T> {
+public class Result<T> {
     private int code;
     private String msg;
     private T data;
+
+    public boolean isSuccess() {
+        return code == 200;
+    }
 }
