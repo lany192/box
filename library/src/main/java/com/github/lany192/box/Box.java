@@ -25,6 +25,7 @@ import com.github.lany192.box.helper.SPHelper;
 import com.github.lany192.box.utils.LogFileFormat;
 import com.github.lany192.box.utils.LogFileNameGenerator;
 import com.github.lany192.box.utils.NetUtils;
+import com.github.lany192.box.utils.OtherUtils;
 import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.hjq.toast.IToastStyle;
@@ -33,10 +34,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 
 public class Box {
@@ -76,30 +73,7 @@ public class Box {
         initCatchException();
         initRefreshView();
         registerNetwork();
-        closeAndroidPWarningDialog(debug);
-    }
-
-    private void closeAndroidPWarningDialog(boolean debug) {
-        if (debug && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            try {
-                Class aClass = Class.forName("android.content.pm.PackageParser$Package");
-                Constructor declaredConstructor = aClass.getDeclaredConstructor(String.class);
-                declaredConstructor.setAccessible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                Class cls = Class.forName("android.app.ActivityThread");
-                Method declaredMethod = cls.getDeclaredMethod("currentActivityThread");
-                declaredMethod.setAccessible(true);
-                Object activityThread = declaredMethod.invoke(null);
-                Field mHiddenApiWarningShown = cls.getDeclaredField("mHiddenApiWarningShown");
-                mHiddenApiWarningShown.setAccessible(true);
-                mHiddenApiWarningShown.setBoolean(activityThread, true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        OtherUtils.closeAndroidPWarningDialog(debug);
     }
 
     private void initToast(Application ctx) {

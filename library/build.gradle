@@ -34,16 +34,15 @@ dependencies {
     //事件分发
     api 'org.greenrobot:eventbus:3.1.1'
     //rxjava
-    api 'io.reactivex.rxjava2:rxjava:2.2.14'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     //网络请求
-    api 'com.squareup.retrofit2:retrofit:2.5.0'
-    api 'com.squareup.retrofit2:converter-gson:2.5.0'
-    api 'com.squareup.retrofit2:converter-scalars:2.5.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    api 'com.squareup.retrofit2:retrofit:2.7.0'
+    api 'com.squareup.retrofit2:converter-gson:2.7.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.7.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.7.0'
 
     //版本尽量不升级了，否则要处理javax.net.ssl.SSLHandshakeException: Handshake failed异常
-    api 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.14.4'
 
     api 'com.github.lany192:StateLayout:1.2.4'
     api 'com.github.lany192:ItemDecoration:1.18'
@@ -70,7 +69,7 @@ dependencies {
 
     api 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     //超链接处理
-    api 'com.klinkerapps:link_builder:1.6.1'
+    api 'com.klinkerapps:link_builder:2.0.5'
 
     compileOnly 'com.jakewharton:butterknife:10.2.0'
     compileOnly 'com.google.dagger:dagger-android-support:2.24'

@@ -51,6 +51,16 @@ public class CityFragment extends DaggerFragment {
                 .setWidth(1));
         mMultiAdapter = new MultiAdapter(new ArrayList<>());
         mShowView.setAdapter(mMultiAdapter);
+        request();
+    }
+
+    @Override
+    public void onRetry() {
+        request();
+    }
+
+    private void request(){
+        showLoading();
         apiService.getCityInfo().enqueue(new HttpCallback<List<Area>>() {
             @Override
             public void onSuccess(String msg, List<Area> areas) {
@@ -59,10 +69,12 @@ public class CityFragment extends DaggerFragment {
                     items.add(new AreaDelegate(area));
                 }
                 mMultiAdapter.setNewData(items);
+                showContent();
             }
 
             @Override
             public void onFailure(int code, Throwable e) {
+                showError(e.getMessage());
                 e.printStackTrace();
                 ToastUtils.show("请求异常" + e.getMessage());
             }
