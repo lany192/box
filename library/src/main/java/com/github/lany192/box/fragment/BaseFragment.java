@@ -148,7 +148,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NetWorkEvent event) {
-        log.i(" 网络状态发送变化");
+        //log.i(" 网络状态发送变化");
     }
 
     @Override

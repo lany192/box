@@ -258,7 +258,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NetWorkEvent event) {
-        log.i("onEvent: 网络发生了变化");
+        //log.i("onEvent: 网络发生了变化");
     }
 
     @Override
