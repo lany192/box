@@ -33,6 +33,8 @@ public class CityFragment extends DaggerFragment {
     @Inject
     ApiService apiService;
 
+    private MultiAdapter mMultiAdapter;
+
     @NonNull
     @Override
     protected FragmentConfig getConfig(FragmentConfig config) {
@@ -45,10 +47,10 @@ public class CityFragment extends DaggerFragment {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mShowView.setLayoutManager(manager);
         mShowView.addItemDecoration(new LinearDecoration(manager.getOrientation())
-                .setPadding(DensityUtils.dp2px(8))
                 .setColor(Color.GRAY)
                 .setWidth(1));
-        mShowView.setAdapter(new MultiAdapter(new ArrayList<>()));
+        mMultiAdapter = new MultiAdapter(new ArrayList<>());
+        mShowView.setAdapter(mMultiAdapter);
         apiService.getCityInfo().enqueue(new HttpCallback<List<Area>>() {
             @Override
             public void onSuccess(String msg, List<Area> areas) {
@@ -56,7 +58,7 @@ public class CityFragment extends DaggerFragment {
                 for (Area area : areas) {
                     items.add(new AreaDelegate(area));
                 }
-                mShowView.setAdapter(new MultiAdapter(items));
+                mMultiAdapter.setNewData(items);
             }
 
             @Override
