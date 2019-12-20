@@ -42,7 +42,7 @@ dependencies {
     api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
 
     //版本尽量不升级了，否则要处理javax.net.ssl.SSLHandshakeException: Handshake failed异常
-    api 'com.squareup.okhttp3:logging-interceptor:3.14.4'
+    api 'com.squareup.okhttp3:logging-interceptor:3.12.0'
 
     api 'com.github.lany192:StateLayout:1.2.4'
     api 'com.github.lany192:ItemDecoration:1.18'
