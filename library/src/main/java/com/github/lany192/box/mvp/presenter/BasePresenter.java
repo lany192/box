@@ -2,7 +2,6 @@ package com.github.lany192.box.mvp.presenter;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 
 import com.elvishew.xlog.Logger;
@@ -22,13 +21,9 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
     public BasePresenter(V view, M model) {
         this.view = view;
         this.model = model;
-        if (view instanceof LifecycleOwner) {
-            ((LifecycleOwner) view).getLifecycle().addObserver(this);
-            if (model instanceof LifecycleObserver) {
-                ((LifecycleOwner) view).getLifecycle().addObserver((LifecycleObserver) model);
-            }
-        } else {
-            throw new IllegalArgumentException("The view must be an instance of LifecycleOwner");
+        view.getLifecycle().addObserver(this);
+        if (model instanceof LifecycleObserver) {
+            view.getLifecycle().addObserver((LifecycleObserver) model);
         }
     }
 
