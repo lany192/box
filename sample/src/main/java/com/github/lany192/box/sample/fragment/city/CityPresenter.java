@@ -36,7 +36,7 @@ public class CityPresenter extends BasePresenter<CityContract.View, ApiService>
         }
     }
 
-    private void request() {
+    public void request() {
         getModel().getCityInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

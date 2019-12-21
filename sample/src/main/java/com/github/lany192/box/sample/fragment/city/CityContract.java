@@ -15,6 +15,9 @@ public interface CityContract {
     }
 
     interface Presenter {
+
         void init();
+
+        void request();
     }
 }
