@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.fragment;
+package com.github.lany192.box.sample.fragment.city;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,7 +30,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class CityFragment extends DaggerFragment {
+public class CityFragment extends DaggerFragment implements CityContract.View {
     @BindView(R.id.showView)
     RecyclerView mShowView;
     @Inject
@@ -95,5 +95,10 @@ public class CityFragment extends DaggerFragment {
                         showContent();
                     }
                 });
+    }
+
+    @Override
+    public void showCities(List<ItemDelegate> items) {
+        mMultiAdapter.setNewData(items);
     }
 }

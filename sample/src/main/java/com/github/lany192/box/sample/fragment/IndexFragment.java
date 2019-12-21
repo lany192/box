@@ -13,6 +13,7 @@ import com.github.lany192.box.dialog.InputDialog;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.filter.MoneyInputFilter;
+import com.github.lany192.box.sample.fragment.city.CityFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.hjq.toast.ToastUtils;
 
