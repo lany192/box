@@ -13,10 +13,9 @@ import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.fragment.DaggerFragment;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Area;
+import com.github.lany192.box.sample.bean.Result;
 import com.github.lany192.box.sample.delegate.AreaDelegate;
 import com.github.lany192.box.sample.http.ApiService;
-import com.github.lany192.box.sample.http.HttpCallback;
-import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.decoration.LinearDecoration;
 import com.hjq.toast.ToastUtils;
 
@@ -26,6 +25,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class CityFragment extends DaggerFragment {
     @BindView(R.id.showView)
@@ -59,25 +62,38 @@ public class CityFragment extends DaggerFragment {
         request();
     }
 
-    private void request(){
-        showLoading();
-        apiService.getCityInfo().enqueue(new HttpCallback<List<Area>>() {
-            @Override
-            public void onSuccess(String msg, List<Area> areas) {
-                List<ItemDelegate> items = new ArrayList<>();
-                for (Area area : areas) {
-                    items.add(new AreaDelegate(area));
-                }
-                mMultiAdapter.setNewData(items);
-                showContent();
-            }
+    private void request() {
+        apiService.getCityInfo()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Result<List<Area>>>() {
 
-            @Override
-            public void onFailure(int code, Throwable e) {
-                showError(e.getMessage());
-                e.printStackTrace();
-                ToastUtils.show("请求异常" + e.getMessage());
-            }
-        });
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onNext(Result<List<Area>> result) {
+                        List<ItemDelegate> items = new ArrayList<>();
+                        for (Area area : result.getData()) {
+                            items.add(new AreaDelegate(area));
+                        }
+                        mMultiAdapter.setNewData(items);
+                        showContent();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showError(e.getMessage());
+                        e.printStackTrace();
+                        ToastUtils.show("请求异常" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        showContent();
+                    }
+                });
     }
 }

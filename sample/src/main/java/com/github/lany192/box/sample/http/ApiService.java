@@ -5,11 +5,11 @@ import com.github.lany192.box.sample.bean.Result;
 
 import java.util.List;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface ApiService {
 
     @GET("json/city.json")
-    Call<Result<List<Area>>> getCityInfo();
+    Observable<Result<List<Area>>> getCityInfo();
 }
