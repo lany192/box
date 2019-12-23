@@ -8,6 +8,7 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.mvp.view.BaseView;
+import com.github.lany192.box.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -93,6 +94,8 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
 
     @Subscribe
     public void onEvent(NetWorkEvent event) {
-        //log.i("onEvent: 网络发生了变化");
+        if (!NetUtils.isNetWorkAvailable()) {
+            getView().showNoWifi();
+        }
     }
 }
