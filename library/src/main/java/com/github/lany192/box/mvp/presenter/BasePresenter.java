@@ -42,6 +42,7 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
         compositeDisposable.add(observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
                 .subscribeWith(observer));
     }
 
