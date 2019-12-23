@@ -43,6 +43,7 @@ public class IndexFragment extends BaseFragment {
         tabs.add(new TabItem("列表3", new SubTabFragment()));
         tabs.add(new TabItem("省市县", new CityFragment()));
         mViewPager.setAdapter(new TabAdapter(getChildFragmentManager(), tabs));
+        mViewPager.setOffscreenPageLimit(tabs.size() + 1);
         mTabLayout.setupWithViewPager(mViewPager);
     }
 

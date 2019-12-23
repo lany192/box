@@ -1,20 +1,18 @@
 package com.github.lany192.box.sample.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.config.FragmentConfig;
-import com.github.lany192.box.delegate.Divider;
 import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.delegate.HelloDelegate;
-import com.github.lany192.box.utils.DensityUtils;
+import com.github.lany192.box.utils.JsonUtils;
 import com.github.lany192.box.widget.ShowView;
-import com.github.lany192.decoration.LinearDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,41 +35,60 @@ public class HelloFragment extends BaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mShowView.setLayoutManager(manager);
-        mShowView.addItemDecoration(new LinearDecoration(manager.getOrientation())
-                .setPadding(DensityUtils.dp2px(8))
-                .setColor(Color.GRAY)
-                .setWidth(1));
-        String[] pics = new String[]{"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550479961661&di=58f0ec0ba23d0bf8cff25499d8a93623&imgtype=0&src=http%3A%2F%2Fbannerdesign.cn%2Fwp-content%2Fuploads%2F2015%2F02%2F20150204014336322.jpg",
-                "http://e.hiphotos.baidu.com/image/pic/item/eac4b74543a982265bd540e38782b9014b90ebda.jpg",
-                "http://d.hiphotos.baidu.com/image/pic/item/4b90f603738da977625f2cf7bd51f8198718e3fe.jpg",
-                "https://wx3.sinaimg.cn/bmiddle/0060lm7Tgy1g22fgqr55oj30u00k00um.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22ff9ge8zj30u00s777u.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22fhvz2z5j30k00f0mya.jpg",
-                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22ff31rzuj30u00s077j.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22fhjkxdoj30hv0ih3zf.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22fh7l9qhj30u01hc7an.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22fi7pdy6j30u0140n35.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22fhwgxx2j30u0140djp.jpg",
-                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22fhw7p7aj30u014041u.jpg",
-                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22ff9oa5pj30u0140gpd.jpg",
-                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22ffkxeptj30rs0rst9k.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22ff37jsaj30u00l6acv.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22ff3ay1hj30k00plq57.jpg",
-                "https://wx4.sinaimg.cn/bmiddle/0060lm7Tgy1g22fgkxa75j30u00mijwr.jpg",
-                "https://wx2.sinaimg.cn/bmiddle/0060lm7Tgy1g22fidcdp4j30tr1sg7a5.jpg",
-                "https://wx3.sinaimg.cn/bmiddle/0060lm7Tgy1g22fhpsiy1j30u0140dhi.jpg",
-                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22fflat9oj30u0140tkl.jpg",
-                "https://wx2.sinaimg.cn/bmiddle/0060lm7Tgy1g22fft14xtj30u0140wqo.jpg",
-                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22ffsig5wj30u0140wqn.jpg",
-                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22ffs63lhj30u0140gv0.jpg"};
+//        mShowView.addItemDecoration(new LinearDecoration(manager.getOrientation())
+//                .setPadding(DensityUtils.dp2px(8))
+//                .setColor(Color.GRAY)
+//                .setWidth(1));
+        List<String> images = new ArrayList<>();
+        images.add("https://taoduorou.cn/files/images/2019-09-27/0bc183f272e366fc0415cbe83d2ba08e.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-18/8d6ac435c042e812544429cc5a9dee59.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-19/7d7a93f3551587c031b142b2c407d0e6.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-19/8d6ac435c042e812544429cc5a9dee59.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-19/944938478f31f159f69ee43d76bf51e1.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-19/d12ea67dbae1f31f6cd8516538e7ca60.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-20/7d7a93f3551587c031b142b2c407d0e6.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-20/944938478f31f159f69ee43d76bf51e1.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-24/7d7a93f3551587c031b142b2c407d0e6.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-26/7d7a93f3551587c031b142b2c407d0e6.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-26/8d6ac435c042e812544429cc5a9dee59.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-26/944938478f31f159f69ee43d76bf51e1.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-26/d12ea67dbae1f31f6cd8516538e7ca60.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-31/2d68ecfc3d0f20b24fbd1fb63a9ae122.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-10-31/a25b734b8c6adf21a67c8eb8b6548dcd.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-02/1448fd619b5ab68acb89cfa49b062b41.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-02/2d68ecfc3d0f20b24fbd1fb63a9ae122.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-02/434d6f73d4054fc16531fede52e71af7.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-02/474334ffd4352efbdd32bc650be5faee.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-02/4d00ecec6b70f59d88b4647b5793b8fc.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-02/7c9f6e2ed3914d39228047ee2a9002d4.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-04/124615564fe6a2ba36e47e97174216e0.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-04/1448fd619b5ab68acb89cfa49b062b41.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-04/62fc51772a0de2a5aa3dca0ece0fd08e.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-04/7d81938bab814f0f5d7491bc02538d6f.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-05/2d68ecfc3d0f20b24fbd1fb63a9ae122.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-05/573b8e48b2e65d3e34290c537591d64b.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-05/9f3e6637197c89ef3af86c5507e8b8e0.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-05/a05f92780d8c3e434961fb899072381d.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-05/c696d903eebe05486b68e38768f768a4.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-07/474334ffd4352efbdd32bc650be5faee.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-11-07/4d00ecec6b70f59d88b4647b5793b8fc.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-06/7d7a93f3551587c031b142b2c407d0e6.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-08/47bfb9e8fdc96f7cd1d4683ad1e8cf5d.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-08/84383a9d01dd21b037a54fac4c79b6ba.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-08/c33de7eee0f7121a68ab497a5bcbddae.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-08/ca4c00e50abfe0cccd9024252b5c1875.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-08/e33d9d792b11c68f73da004bffb14325.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-09/84383a9d01dd21b037a54fac4c79b6ba.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-10/124615564fe6a2ba36e47e97174216e0.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-10/7d81938bab814f0f5d7491bc02538d6f.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-20/16cfb93741a6061c57c485ebdfa0638a.jpg");
+        images.add("https://taoduorou.cn/files/images/2019-12-20/9f3e6637197c89ef3af86c5507e8b8e0.jpg");
+
+        log.json(JsonUtils.object2json(images));
 
         List<ItemDelegate> items = new ArrayList<>();
-        for (String pic : pics) {
+        for (String pic : images) {
             items.add(new HelloDelegate(pic));
-            items.add(new Divider()
-                    .color(Color.WHITE)
-                    .hintColor(Color.BLACK)
-                    .hint("华丽的分割线----------------------------"));
         }
         mShowView.setAdapter(new MultiAdapter(items));
     }
