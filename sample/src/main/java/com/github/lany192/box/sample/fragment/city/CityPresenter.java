@@ -14,10 +14,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.observers.DisposableObserver;
 
 public class CityPresenter extends BasePresenter<CityContract.View, ApiService>
         implements CityContract.Presenter {
@@ -37,37 +34,34 @@ public class CityPresenter extends BasePresenter<CityContract.View, ApiService>
     }
 
     public void request() {
-        getModel().getCityInfo()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Result<List<Area>>>() {
+        request(getModel().getCityInfo(), new DisposableObserver<Result<List<Area>>>() {
 
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        getView().showLoading();
-                    }
+            @Override
+            public void onStart() {
+                getView().showLoading();
+            }
 
-                    @Override
-                    public void onNext(Result<List<Area>> result) {
-                        getView().showContent();
-                        List<ItemDelegate> items = new ArrayList<>();
-                        for (Area area : result.getData()) {
-                            items.add(new AreaDelegate(area));
-                        }
-                        getView().showCities(items);
-                    }
+            @Override
+            public void onNext(Result<List<Area>> result) {
+                getView().showContent();
+                List<ItemDelegate> items = new ArrayList<>();
+                for (Area area : result.getData()) {
+                    items.add(new AreaDelegate(area));
+                }
+                getView().showCities(items);
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().showError(e.getMessage());
-                        e.printStackTrace();
-                        ToastUtils.show("请求异常" + e.getMessage());
-                    }
+            @Override
+            public void onError(Throwable e) {
+                getView().showError(e.getMessage());
+                e.printStackTrace();
+                ToastUtils.show("请求异常" + e.getMessage());
+            }
 
-                    @Override
-                    public void onComplete() {
-                        getView().showContent();
-                    }
-                });
+            @Override
+            public void onComplete() {
+                getView().showContent();
+            }
+        });
     }
 }

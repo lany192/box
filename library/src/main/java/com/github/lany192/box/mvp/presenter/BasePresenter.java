@@ -12,11 +12,18 @@ import com.github.lany192.box.mvp.view.BaseView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+
 public abstract class BasePresenter<V extends BaseView, M> implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     private final V view;
     private final M model;
+    private CompositeDisposable compositeDisposable;
 
     public BasePresenter(V view, M model) {
         this.view = view;
@@ -25,6 +32,16 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
         if (model instanceof LifecycleObserver) {
             view.getLifecycle().addObserver((LifecycleObserver) model);
         }
+    }
+
+    protected <T> void request(Observable<T> observable, DisposableObserver<T> observer) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(observer));
     }
 
     protected V getView() {
@@ -68,6 +85,9 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
         log.i("onDestroy()");
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
+        }
+        if (compositeDisposable != null) {
+            compositeDisposable.dispose();
         }
     }
 

@@ -9,7 +9,9 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface ApiService {
-
+    /**
+     * 获取省市县数据
+     */
     @GET("json/city.json")
     Observable<Result<List<Area>>> getCityInfo();
 }
