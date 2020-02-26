@@ -9,7 +9,7 @@ public class ViewUtils {
      * 增加View的paddingTop,增加的值为状态栏高度
      */
     public static void setPaddingSmart(View view) {
-        if (Build.VERSION.SDK_INT >= 16) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             ViewGroup.LayoutParams lp = view.getLayoutParams();
             int statusBarHeight = PhoneUtils.getStatusBarHeight();
             if (lp != null && lp.height > 0) {
