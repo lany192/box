@@ -23,7 +23,7 @@ public class NoNullTextView extends AppCompatTextView {
         super(context, attrs, defStyleAttr);
     }
 
-    public void putText(CharSequence text) {
+    public void setContent(CharSequence text) {
         setText(TextUtils.isEmpty(text) ? "" : text);
     }
 }
