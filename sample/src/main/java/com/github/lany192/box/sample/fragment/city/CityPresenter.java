@@ -1,6 +1,6 @@
 package com.github.lany192.box.sample.fragment.city;
 
-import com.github.lany192.box.delegate.ItemDelegate;
+import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.mvp.presenter.BasePresenter;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.delegate.AreaDelegate;
@@ -9,8 +9,8 @@ import com.github.lany192.box.sample.http.HttpCallback;
 import com.github.lany192.box.utils.NetUtils;
 import com.hjq.toast.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -46,10 +46,7 @@ public class CityPresenter extends BasePresenter<CityContract.View, ApiService>
 
             @Override
             public void onSuccess(String msg, List<Area> areas) {
-                List<ItemDelegate> items = new ArrayList<>();
-                for (Area area : areas) {
-                    items.add(new AreaDelegate(area));
-                }
+                List<Delegate> items = areas.stream().map(AreaDelegate::new).collect(Collectors.toList());
                 getView().showCities(items);
             }
 

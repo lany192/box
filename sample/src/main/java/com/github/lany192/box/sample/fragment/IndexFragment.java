@@ -6,7 +6,7 @@ import android.view.inputmethod.EditorInfo;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
-import com.github.lany192.box.adapter.TabAdapter;
+import com.github.lany192.box.adapter.FragmentsAdapter;
 import com.github.lany192.box.adapter.TabItem;
 import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.dialog.InputDialog;
@@ -42,7 +42,7 @@ public class IndexFragment extends BaseFragment {
         tabs.add(new TabItem("首页", new SubTabFragment()));
         tabs.add(new TabItem("列表3", new SubTabFragment()));
         tabs.add(new TabItem("省市县", new CityFragment()));
-        mViewPager.setAdapter(new TabAdapter(getChildFragmentManager(), tabs));
+        mViewPager.setAdapter(new FragmentsAdapter(getChildFragmentManager(), tabs));
         mViewPager.setOffscreenPageLimit(tabs.size() + 1);
         mTabLayout.setupWithViewPager(mViewPager);
     }

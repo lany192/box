@@ -2,18 +2,20 @@ package com.github.lany192.box.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.box.R;
 import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
@@ -21,7 +23,6 @@ import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.view.BaseView;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
-import com.github.lany192.box.R;
 import com.github.lany192.view.StateLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -40,11 +41,20 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     private StateLayout mStateLayout;
     private Unbinder mUnBinder;
     private LoadingDialog mLoadingDialog = null;
-    private boolean isViewInit = false;
-    private boolean isLazyLoaded = false;
+    /**
+     * 是否执行过懒加载
+     */
+    private boolean isLazyLoaded;
     private RelativeLayout mRootView;
+    /**
+     * 配置信息
+     */
     private FragmentConfig config;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    /**
+     * 本界面用户是否可见
+     */
+    private boolean userVisible;
 
     /**
      * 获取Fragment的界面配置
@@ -69,12 +79,27 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint() && isViewInit && !isLazyLoaded) {
+    public void onResume() {
+        super.onResume();
+        userVisible = true;
+        //需要在FragmentStatePagerAdapter构造方法中配置
+        if (!isLazyLoaded) {
             isLazyLoaded = true;
             onLazyLoad();
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        userVisible = false;
+    }
+
+    /**
+     * 用户是否可见
+     */
+    public boolean isUserVisible() {
+        return userVisible;
     }
 
     @Override
@@ -104,11 +129,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         mRootView.addView(mStateLayout, slp);
         mUnBinder = ButterKnife.bind(this, mRootView);
         init(savedInstanceState);
-        isViewInit = true;
-        if (getUserVisibleHint() && !isLazyLoaded) {
-            isLazyLoaded = true;
-            onLazyLoad();
-        }
         return mRootView;
     }
 
@@ -127,7 +147,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
      * 如果需要懒加载，逻辑写在这里,只被调用一次
      */
     protected void onLazyLoad() {
-        log.i("onLazyInit懒加载");
+        log.i("懒加载...");
     }
 
     @Override

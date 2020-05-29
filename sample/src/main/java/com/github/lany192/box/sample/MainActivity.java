@@ -1,12 +1,13 @@
 package com.github.lany192.box.sample;
 
 import android.os.Bundle;
-import androidx.viewpager.widget.ViewPager;
-import androidx.annotation.NonNull;
 import android.view.KeyEvent;
 
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
+
 import com.github.lany192.box.activity.DaggerActivity;
-import com.github.lany192.box.adapter.TabAdapter;
+import com.github.lany192.box.adapter.FragmentsAdapter;
 import com.github.lany192.box.adapter.TabItem;
 import com.github.lany192.box.config.ActivityConfig;
 import com.github.lany192.box.sample.fragment.HelloFragment;
@@ -48,7 +49,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
         items.add(new TabItem(new IndexFragment()));
         items.add(new TabItem(new HelloFragment()));
         items.add(new TabItem(new MyFragment()));
-        mViewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), items));
+        mViewPager.setAdapter(new FragmentsAdapter(getSupportFragmentManager(), items));
         mNavigationView.enableAnimation(false);
         mNavigationView.setupWithViewPager(mViewPager);
         mNavigationView.setOnNavigationItemSelectedListener(menuItem -> {

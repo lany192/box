@@ -89,4 +89,5 @@ public class HelloFragment extends BaseFragment {
         List<Delegate> items = images.stream().map(HelloDelegate::new).collect(Collectors.toList());
         mShowView.setAdapter(new MultiAdapter(items));
     }
+
 }

@@ -1,18 +1,19 @@
 package com.github.lany192.box.adapter;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.text.TextUtils;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
-public class TabAdapter extends FragmentStatePagerAdapter {
+public class FragmentsAdapter extends FragmentStatePagerAdapter {
     private List<TabItem> tabs;
 
-    public TabAdapter(FragmentManager fm, List<TabItem> items) {
-        super(fm);
+    public FragmentsAdapter(FragmentManager fm, List<TabItem> items) {
+        //要实现fragment懒加载功能，主要看第二个参数，然后在Fragment的OnResume里判断是否可见
+        super(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.tabs = items;
     }
 

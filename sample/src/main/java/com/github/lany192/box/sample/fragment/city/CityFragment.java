@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.config.FragmentConfig;
-import com.github.lany192.box.delegate.ItemDelegate;
+import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.DaggerFragment;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.decoration.LinearDecoration;
@@ -54,7 +54,7 @@ public class CityFragment extends DaggerFragment implements CityContract.View {
     }
 
     @Override
-    public void showCities(List<ItemDelegate> items) {
-        mMultiAdapter.setNewData(items);
+    public void showCities(List<Delegate> items) {
+        mMultiAdapter.setList(items);
     }
 }
