@@ -3,14 +3,12 @@ package com.github.lany192.box.adapter;
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.lany192.box.delegate.ItemDelegate;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 多布局适配器
@@ -19,14 +17,19 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<ItemDelegate, ItemVi
     private SparseIntArray mTypeMap = new SparseIntArray();
     private final int TYPE_NOT_FOUND = -404;
 
-    public MultiAdapter(@Nullable List<ItemDelegate> data) {
-        super(data);
+    public MultiAdapter(List<ItemDelegate> items) {
+        super(items);
     }
 
-//    public MultiAdapter(List<ItemDelegate> items) {
-//        super(items);
-//        setSpanSizeLookup((gridLayoutManager, position) -> Objects.requireNonNull(getItem(position)).getSpanSize());
-//    }
+    public MultiAdapter(List<ItemDelegate> items, GridLayoutManager layoutManager) {
+        super(items);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return getItem(position).getSpanSize();
+            }
+        });
+    }
 
     @Override
     protected int getDefItemViewType(int position) {
