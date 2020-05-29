@@ -2,7 +2,8 @@ package com.github.lany192.box.sample.http;
 
 import com.github.lany192.box.sample.bean.Result;
 
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.rxjava3.observers.DisposableObserver;
+
 
 /**
  * 接口回调封装

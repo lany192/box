@@ -9,11 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import top.zibin.luban.Luban;
 
 /**
@@ -36,13 +37,13 @@ public class PicCompressor {
     }
 
     public void start() {
-        new CompositeDisposable().add(Flowable.just(paths)
+        Disposable disposable = Flowable.just(paths)
                 .observeOn(Schedulers.io())
                 .map(this::compress)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(throwable -> Log.e(TAG, throwable.getMessage()))
-                .onErrorResumeNext(Flowable.empty())
-                .subscribe(consumer));
+                .subscribe(consumer);
+        new CompositeDisposable().add(disposable);
     }
 
     private List<String> compress(List<String> photosPaths) throws IOException {

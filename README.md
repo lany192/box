@@ -2,7 +2,7 @@
 
 # 快速开发框架 
 
-使用MVP+retrofit2+Dagger2+OkHttp3组合封装
+使用MVP+rxjava3+rxandroid3+retrofit2+Dagger2+OkHttp3组合封装
 
 ## 引入代码仓库
 
@@ -18,8 +18,8 @@
 	dependencies {
 	        //必须
 	        implementation 'com.github.lany192:Box:latest.integration'
-            implementation 'com.jakewharton:butterknife:8.8.1'
-            annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+            implementation 'com.jakewharton:butterknife:10.2.1'
+            annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
             //选择加入，如果使用了dagger2需要添加
             implementation 'com.google.dagger:dagger-android-support:2.24'
             annotationProcessor 'com.google.dagger:dagger-compiler:2.24'

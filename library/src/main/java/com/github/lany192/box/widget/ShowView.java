@@ -1,26 +1,27 @@
 package com.github.lany192.box.widget;
 
 import android.content.Context;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.github.lany192.box.interfaces.OnRefreshMoreListener;
+import com.chad.library.adapter.base.listener.OnLoadMoreListener;
+import com.chad.library.adapter.base.module.BaseLoadMoreModule;
 import com.github.lany192.box.R;
+import com.github.lany192.box.interfaces.OnRefreshMoreListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 /**
  * RecyclerView的下拉刷新和上拉加载及置顶功能封装
  */
-public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoadMoreListener {
+public class ShowView extends FrameLayout {
     private SmartRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
     private ImageView mGotoTopBtn;
@@ -28,6 +29,7 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
     private int gotoTopCount = 5;
     private BaseQuickAdapter mAdapter;
     private OnRefreshMoreListener mListener;
+    private BaseLoadMoreModule loadMoreModule;
 
     public ShowView(Context context) {
         super(context);
@@ -49,12 +51,7 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
         mRefreshLayout = view.findViewById(R.id.show_view_refresh_layout);
         mRecyclerView = view.findViewById(R.id.show_view_recycler_view);
         mGotoTopBtn = view.findViewById(R.id.show_view_goto_top_img);
-        mGotoTopBtn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoTop();
-            }
-        });
+        mGotoTopBtn.setOnClickListener(v -> gotoTop());
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -73,16 +70,13 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
                 }
             }
         });
-        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                mAdapter.setEnableLoadMore(false);
-                if (mListener != null) {
-                    mListener.onRefresh();
-                }
-                mRefreshLayout.finishRefresh();
-                mAdapter.setEnableLoadMore(true);
+        mRefreshLayout.setOnRefreshListener(refreshLayout -> {
+            loadMoreModule.setEnableLoadMore(false);
+            if (mListener != null) {
+                mListener.onRefresh();
             }
+            mRefreshLayout.finishRefresh();
+            loadMoreModule.setEnableLoadMore(true);
         });
     }
 
@@ -96,9 +90,17 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
 
     public void setAdapter(BaseQuickAdapter adapter) {
         this.mAdapter = adapter;
-        this.mAdapter.setLoadMoreView(new FooterView());
+        loadMoreModule = new BaseLoadMoreModule(mAdapter);
+        loadMoreModule.setLoadMoreView(new FooterView());
+        loadMoreModule.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                if (mListener != null) {
+                    mListener.onLoadMore();
+                }
+            }
+        });
         mRecyclerView.setAdapter(adapter);
-        mAdapter.setOnLoadMoreListener(this, mRecyclerView);
     }
 
     public void addOnScrollListener(RecyclerView.OnScrollListener listener) {
@@ -132,7 +134,7 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
     public void stop() {
         mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
-            mAdapter.loadMoreComplete();
+            loadMoreModule.loadMoreComplete();
         }
     }
 
@@ -142,23 +144,16 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
     public void end() {
         mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
-            mAdapter.loadMoreComplete();
-            mAdapter.loadMoreEnd();
+            loadMoreModule.loadMoreComplete();
+            loadMoreModule.loadMoreEnd();
         }
     }
 
     public void loadMoreFail() {
         mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
-            mAdapter.loadMoreComplete();
-            mAdapter.loadMoreFail();
-        }
-    }
-
-    @Override
-    public void onLoadMoreRequested() {
-        if (mListener != null) {
-            mListener.onLoadMore();
+            loadMoreModule.loadMoreComplete();
+            loadMoreModule.loadMoreFail();
         }
     }
 
@@ -167,7 +162,7 @@ public class ShowView extends FrameLayout implements BaseQuickAdapter.RequestLoa
         mGotoTopBtn.setVisibility(View.GONE);
     }
 
-    public void setHasFixedSize(boolean hasFixedSize){
+    public void setHasFixedSize(boolean hasFixedSize) {
         mRecyclerView.setHasFixedSize(hasFixedSize);
     }
 }
