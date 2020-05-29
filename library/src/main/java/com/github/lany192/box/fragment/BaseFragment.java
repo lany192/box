@@ -116,7 +116,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         mStateLayout.addView(contentView);
 
         LayoutParams slp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        if (config.isHasToolbar()) {
+        if (config.getHasToolbar()) {
             View toolbar = inflater.inflate(config.getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
