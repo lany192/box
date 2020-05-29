@@ -1,4 +1,4 @@
-package androidx.fragment.app;
+package com.github.lany192.box.fragment;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,6 +13,9 @@ import android.view.WindowManager;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
@@ -43,15 +46,15 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Window window = mDialog.getWindow();
+        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = getDialog().getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
-        mDialog.setCancelable(mCancelable);
-        mDialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
-        if (!mCancelable) {
-            mDialog.setOnKeyListener((dialog, keyCode, event) -> keyCode == KeyEvent.KEYCODE_BACK);
+        getDialog().setCancelable(isCancelable());
+        getDialog().setCanceledOnTouchOutside(canceledOnTouchOutside);
+        if (!isCancelable()) {
+            getDialog().setOnKeyListener((dialog, keyCode, event) -> keyCode == KeyEvent.KEYCODE_BACK);
         }
         mContentView = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);
@@ -69,7 +72,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Window window = mDialog.getWindow();
+        Window window = getDialog().getWindow();
         if (window != null) {
             window.setLayout(getDialogWidth(), WindowManager.LayoutParams.WRAP_CONTENT);
         }
@@ -85,12 +88,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if (isAdded()) {
             Log.w(TAG, "已经显示，忽略......");
         } else {
-            mDismissed = false;
-            mShownByMe = true;
-            FragmentTransaction ft = manager.beginTransaction();
-            ft.add(this, tag);
-            //ft.commit();
-            ft.commitAllowingStateLoss();
+            super.show(manager, tag);
         }
     }
 
@@ -99,8 +97,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
     }
 
     public void cancel() {
-        if (mDialog != null && mDialog.isShowing()) {
-            mDialog.cancel();
+        if (getDialog() != null && getDialog().isShowing()) {
+            getDialog().cancel();
         }
     }
 }

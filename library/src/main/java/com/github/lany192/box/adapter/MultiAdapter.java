@@ -3,8 +3,11 @@ package com.github.lany192.box.adapter;
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.lany192.box.delegate.ItemDelegate;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,14 +15,18 @@ import java.util.Objects;
 /**
  * 多布局适配器
  */
-public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder> {
+public class MultiAdapter extends BaseMultiItemQuickAdapter<ItemDelegate, ItemViewHolder> {
     private SparseIntArray mTypeMap = new SparseIntArray();
     private final int TYPE_NOT_FOUND = -404;
 
-    public MultiAdapter(List<ItemDelegate> items) {
-        super(items);
-        setSpanSizeLookup((gridLayoutManager, position) -> Objects.requireNonNull(getItem(position)).getSpanSize());
+    public MultiAdapter(@Nullable List<ItemDelegate> data) {
+        super(data);
     }
+
+//    public MultiAdapter(List<ItemDelegate> items) {
+//        super(items);
+//        setSpanSizeLookup((gridLayoutManager, position) -> Objects.requireNonNull(getItem(position)).getSpanSize());
+//    }
 
     @Override
     protected int getDefItemViewType(int position) {
@@ -45,6 +52,6 @@ public class MultiAdapter extends BaseQuickAdapter<ItemDelegate, ItemViewHolder>
 
     @Override
     protected void convert(ItemViewHolder holder, ItemDelegate item) {
-        item.convert(holder, mContext);
+        item.convert(holder, getContext());
     }
 }

@@ -1,7 +1,5 @@
 package com.github.lany192.box.fragment;
 
-import androidx.fragment.app.BaseDialogFragment;
-
 import com.github.lany192.box.event.NetWorkEvent;
 
 import org.greenrobot.eventbus.EventBus;
