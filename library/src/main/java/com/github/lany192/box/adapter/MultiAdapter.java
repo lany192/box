@@ -6,22 +6,22 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
-import com.github.lany192.box.delegate.ItemDelegate;
+import com.github.lany192.box.delegate.Delegate;
 
 import java.util.List;
 
 /**
  * 多布局适配器
  */
-public class MultiAdapter extends BaseMultiItemQuickAdapter<ItemDelegate, ItemViewHolder> {
+public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder> {
     private SparseIntArray mTypeMap = new SparseIntArray();
     private final int TYPE_NOT_FOUND = -404;
 
-    public MultiAdapter(List<ItemDelegate> items) {
+    public MultiAdapter(List<Delegate> items) {
         super(items);
     }
 
-    public MultiAdapter(List<ItemDelegate> items, GridLayoutManager layoutManager) {
+    public MultiAdapter(List<Delegate> items, GridLayoutManager layoutManager) {
         super(items);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -33,7 +33,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<ItemDelegate, ItemVi
 
     @Override
     protected int getDefItemViewType(int position) {
-        ItemDelegate item = getItem(position);
+        Delegate item = getItem(position);
         int viewType = -1;
         if (item != null) {
             viewType = item.getItemType();
@@ -54,7 +54,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<ItemDelegate, ItemVi
     }
 
     @Override
-    protected void convert(ItemViewHolder holder, ItemDelegate item) {
-        item.convert(holder, getContext());
+    protected void convert(ItemViewHolder holder, Delegate delegate) {
+        delegate.convert(holder, getContext());
     }
 }

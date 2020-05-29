@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.config.FragmentConfig;
-import com.github.lany192.box.delegate.ItemDelegate;
+import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Menu;
@@ -40,7 +40,7 @@ public class SubTabFragment extends BaseFragment {
 //                .setColor(Color.GRAY)
 //                .setWidth(1));
 
-        List<ItemDelegate> items = new ArrayList<>();
+        List<Delegate> items = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             items.add(new MenuDelegate(new Menu("菜单" + i, R.drawable.android)));
         }

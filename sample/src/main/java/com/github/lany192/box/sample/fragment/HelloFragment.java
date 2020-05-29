@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.config.FragmentConfig;
-import com.github.lany192.box.delegate.ItemDelegate;
+import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.delegate.HelloDelegate;
@@ -16,6 +16,7 @@ import com.github.lany192.box.widget.ShowView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 
@@ -85,11 +86,7 @@ public class HelloFragment extends BaseFragment {
         images.add("https://taoduorou.cn/files/images/2019-12-20/9f3e6637197c89ef3af86c5507e8b8e0.jpg");
 
         log.json(JsonUtils.object2json(images));
-
-        List<ItemDelegate> items = new ArrayList<>();
-        for (String pic : images) {
-            items.add(new HelloDelegate(pic));
-        }
+        List<Delegate> items = images.stream().map(HelloDelegate::new).collect(Collectors.toList());
         mShowView.setAdapter(new MultiAdapter(items));
     }
 }

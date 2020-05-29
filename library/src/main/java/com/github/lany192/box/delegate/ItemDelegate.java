@@ -1,10 +1,9 @@
 package com.github.lany192.box.delegate;
 
 import android.content.Context;
-import androidx.annotation.LayoutRes;
+
 import androidx.annotation.NonNull;
 
-import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.github.lany192.box.adapter.ItemViewHolder;
 import com.github.lany192.box.helper.ItemTypeHelper;
 
@@ -13,7 +12,7 @@ import butterknife.ButterKnife;
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
  */
-public abstract class ItemDelegate<T> implements MultiItemEntity {
+public abstract class ItemDelegate<T> implements Delegate {
     private Context mContext;
     private T mData;
 
@@ -36,27 +35,11 @@ public abstract class ItemDelegate<T> implements MultiItemEntity {
     }
 
     /**
-     * 站位的大小,默认是2。如需修改复现该方法
-     *
-     * @return 大小
-     */
-    public int getSpanSize() {
-        return 2;
-    }
-
-    /**
-     * 返回布局文件id
-     *
-     * @return 布局文件id
-     */
-    @LayoutRes
-    public abstract int getLayoutId();
-
-    /**
      * 初始化方法
      */
     public abstract void init(ItemViewHolder holder, T data, int position);
 
+    @Override
     public void convert(ItemViewHolder holder, Context context) {
         this.mContext = context;
         int position = holder.getAdapterPosition();
