@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.github.lany192.box.adapter.FragmentsAdapter;
-import com.github.lany192.box.adapter.TabItem;
 import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.dialog.InputDialog;
 import com.github.lany192.box.fragment.BaseFragment;
@@ -15,10 +15,8 @@ import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.filter.MoneyInputFilter;
 import com.github.lany192.box.sample.fragment.city.CityFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.hjq.toast.ToastUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,7 +25,7 @@ public class IndexFragment extends BaseFragment {
     @BindView(R.id.index_tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.index_view_pager)
-    ViewPager mViewPager;
+    ViewPager2 mViewPager2;
 
     @NonNull
     @Override
@@ -38,13 +36,37 @@ public class IndexFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        List<TabItem> tabs = new ArrayList<>();
-        tabs.add(new TabItem("首页", new SubTabFragment()));
-        tabs.add(new TabItem("列表3", new SubTabFragment()));
-        tabs.add(new TabItem("省市县", new CityFragment()));
-        mViewPager.setAdapter(new FragmentsAdapter(getChildFragmentManager(), tabs));
-        mViewPager.setOffscreenPageLimit(tabs.size() + 1);
-        mTabLayout.setupWithViewPager(mViewPager);
+        mViewPager2.setAdapter(new FragmentStateAdapter(this){
+
+                @Override
+                public int getItemCount() {
+                    return 2;
+                }
+
+                @NonNull
+                @Override
+                public Fragment createFragment(int position) {
+                    switch (position) {
+                        case 0:
+                            return new SubTabFragment();
+                        case 1:
+                            return new CityFragment();
+                        default:
+                            return null;
+                    }
+                }
+        });
+        mViewPager2.setOffscreenPageLimit(2);
+        new TabLayoutMediator(mTabLayout, mViewPager2, (tab, position) -> {
+            switch (position) {
+                case 0:
+                    tab.setText("标题1");
+                case 1:
+                    tab.setText("标题2");
+                default:
+                    tab.setText("错误");
+            }
+        }).attach();
     }
 
     @OnClick(R.id.custom_toolbar_edit_btn)

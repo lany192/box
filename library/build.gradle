@@ -77,7 +77,6 @@ dependencies {
     //压缩图片
     api 'top.zibin:Luban:1.1.8'
 
-    api 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     //超链接处理
     api 'com.klinkerapps:link_builder:2.0.5'
 
