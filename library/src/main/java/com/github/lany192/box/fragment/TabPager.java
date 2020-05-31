@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * 简化ViewPager2和TabLayout的绑定
+ */
 public class TabPager {
     private List<PagerItem> items = new ArrayList<>();
     private final ViewPager2 viewPager2;
@@ -60,6 +63,13 @@ public class TabPager {
         bind();
     }
 
+    /**
+     * 添加tab
+     *
+     * @param title    tab标题
+     * @param fragment tab内容
+     * @return TabPager
+     */
     public TabPager addTab(String title, Fragment fragment) {
         if (TextUtils.isEmpty(title)) {
             throw new RuntimeException("addTab: 添加tab失败，title不能为空！");
@@ -79,6 +89,11 @@ public class TabPager {
         return this;
     }
 
+    /**
+     * 根据tab名称移除tab
+     *
+     * @param title tab标题
+     */
     public void removeTab(String title) {
         if (TextUtils.isEmpty(title)) {
             return;
@@ -96,6 +111,9 @@ public class TabPager {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * 根据tab position移除tab
+     */
     public void removeTab(int position) {
         if (position < items.size()) {
             items.remove(position);
