@@ -89,8 +89,6 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
 
     api 'com.hjq:toast:5.5'
-    //权限控制
-    api 'com.github.tbruyelle:rxpermissions:0.10.2'
 
     //压缩图片
     api 'top.zibin:Luban:1.1.8'
