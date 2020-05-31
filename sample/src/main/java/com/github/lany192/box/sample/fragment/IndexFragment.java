@@ -9,7 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.dialog.InputDialog;
 import com.github.lany192.box.fragment.BaseFragment;
-import com.github.lany192.box.fragment.FragmentPager;
+import com.github.lany192.box.fragment.TabPager;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.filter.MoneyInputFilter;
 import com.github.lany192.box.sample.fragment.city.CityFragment;
@@ -34,13 +34,12 @@ public class IndexFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        new FragmentPager(mViewPager2, mTabLayout)
+        new TabPager(this, mViewPager2, mTabLayout)
                 .addTab("标题1", new SubTabFragment())
                 .addTab("标题2", new CityFragment())
                 .addTab("标题3", new SubTabFragment())
                 .addTab("标题4", new CityFragment())
-                .addTab("标题5", new SubTabFragment())
-                .build(this);
+                .addTab("标题5", new SubTabFragment());
     }
 
     @OnClick(R.id.custom_toolbar_edit_btn)

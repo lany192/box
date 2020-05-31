@@ -16,17 +16,51 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class FragmentPager {
+public class TabPager {
     private List<PagerItem> items = new ArrayList<>();
     private final ViewPager2 viewPager2;
     private final TabLayout tabLayout;
+    private FragmentStateAdapter adapter;
 
-    public FragmentPager(final ViewPager2 viewPager2, final TabLayout tabLayout) {
+    public TabPager(FragmentActivity fragmentActivity, final ViewPager2 viewPager2, final TabLayout tabLayout) {
         this.viewPager2 = viewPager2;
         this.tabLayout = tabLayout;
+        adapter = new FragmentStateAdapter(fragmentActivity) {
+
+            @Override
+            public int getItemCount() {
+                return items.size();
+            }
+
+            @NotNull
+            @Override
+            public Fragment createFragment(int position) {
+                return items.get(position).fragment;
+            }
+        };
+        bind();
     }
 
-    public FragmentPager addTab(String title, Fragment fragment) {
+    public TabPager(Fragment fragment, final ViewPager2 viewPager2, final TabLayout tabLayout) {
+        this.viewPager2 = viewPager2;
+        this.tabLayout = tabLayout;
+        adapter = new FragmentStateAdapter(fragment) {
+
+            @Override
+            public int getItemCount() {
+                return items.size();
+            }
+
+            @NotNull
+            @Override
+            public Fragment createFragment(int position) {
+                return items.get(position).fragment;
+            }
+        };
+        bind();
+    }
+
+    public TabPager addTab(String title, Fragment fragment) {
         if (TextUtils.isEmpty(title)) {
             throw new RuntimeException("addTab: 添加tab失败，title不能为空！");
         }
@@ -39,6 +73,9 @@ public class FragmentPager {
             }
         }
         items.add(new PagerItem(title, fragment));
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
         return this;
     }
 
@@ -53,47 +90,23 @@ public class FragmentPager {
                 iterator.remove();
             }
         }
+        if (adapter == null) {
+            throw new RuntimeException("adapter不能为null！先调用build");
+        }
+        adapter.notifyDataSetChanged();
     }
 
     public void removeTab(int position) {
         if (position < items.size()) {
             items.remove(position);
         }
+        if (adapter == null) {
+            throw new RuntimeException("adapter不能为null！先调用build");
+        }
+        adapter.notifyDataSetChanged();
     }
 
-    public void build(FragmentActivity fragmentActivity) {
-        bind(new FragmentStateAdapter(fragmentActivity) {
-
-            @Override
-            public int getItemCount() {
-                return items.size();
-            }
-
-            @NotNull
-            @Override
-            public Fragment createFragment(int position) {
-                return items.get(position).fragment;
-            }
-        });
-    }
-
-    public void build(Fragment fragment) {
-        bind(new FragmentStateAdapter(fragment) {
-
-            @Override
-            public int getItemCount() {
-                return items.size();
-            }
-
-            @NotNull
-            @Override
-            public Fragment createFragment(int position) {
-                return items.get(position).fragment;
-            }
-        });
-    }
-
-    private void bind(FragmentStateAdapter adapter) {
+    private void bind() {
         if (items.size() > 3) {
             this.viewPager2.setOffscreenPageLimit(3);
         }
