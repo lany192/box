@@ -30,11 +30,11 @@ import butterknife.ButterKnife;
  * 这个基类要放在这个包中是为了复写父类的show(FragmentManager manager, String tag)
  */
 public abstract class DialogFragment extends androidx.fragment.app.DialogFragment {
-    final String TAG = this.getClass().getSimpleName();
-    View mContentView;
-    boolean canceledOnTouchOutside = true;
-    Logger.Builder log = XLog.tag(TAG);
-    FragmentActivity self;
+    protected final String TAG = this.getClass().getSimpleName();
+    protected View mContentView;
+    protected boolean canceledOnTouchOutside = true;
+    protected Logger.Builder log = XLog.tag(TAG);
+    protected FragmentActivity self;
 
     @LayoutRes
     protected abstract int getLayoutId();
