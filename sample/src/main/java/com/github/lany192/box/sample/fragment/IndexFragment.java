@@ -4,18 +4,16 @@ import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.dialog.InputDialog;
 import com.github.lany192.box.fragment.BaseFragment;
+import com.github.lany192.box.fragment.FragmentPager;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.filter.MoneyInputFilter;
 import com.github.lany192.box.sample.fragment.city.CityFragment;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.hjq.toast.ToastUtils;
 
 import butterknife.BindView;
@@ -36,37 +34,13 @@ public class IndexFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mViewPager2.setAdapter(new FragmentStateAdapter(this){
-
-                @Override
-                public int getItemCount() {
-                    return 2;
-                }
-
-                @NonNull
-                @Override
-                public Fragment createFragment(int position) {
-                    switch (position) {
-                        case 0:
-                            return new SubTabFragment();
-                        case 1:
-                            return new CityFragment();
-                        default:
-                            return null;
-                    }
-                }
-        });
-        mViewPager2.setOffscreenPageLimit(2);
-        new TabLayoutMediator(mTabLayout, mViewPager2, (tab, position) -> {
-            switch (position) {
-                case 0:
-                    tab.setText("标题1");
-                case 1:
-                    tab.setText("标题2");
-                default:
-                    tab.setText("错误");
-            }
-        }).attach();
+        new FragmentPager(mViewPager2, mTabLayout)
+                .addTab("标题1", new SubTabFragment())
+                .addTab("标题2", new CityFragment())
+                .addTab("标题3", new SubTabFragment())
+                .addTab("标题4", new CityFragment())
+                .addTab("标题5", new SubTabFragment())
+                .build(this);
     }
 
     @OnClick(R.id.custom_toolbar_edit_btn)

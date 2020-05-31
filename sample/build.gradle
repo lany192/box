@@ -40,6 +40,7 @@ android {
         exclude 'META-INF/LGPL2.1'
         exclude 'META-INF/groovy/org.codehaus.groovy.runtime.ExtensionModule'
         exclude 'META-INF/groovy-release-info.properties'
+        exclude 'META-INF/library_release.kotlin_module'
     }
 }
 
@@ -67,9 +68,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     //dagger2
-    implementation 'com.google.dagger:dagger-android-support:2.24'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.24'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.24'
+    implementation 'com.google.dagger:dagger-android-support:2.27'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.27'
     //菜单控件
     implementation 'com.github.lany192:MenuView:1.0.2'
 

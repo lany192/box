@@ -12,7 +12,7 @@ import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.DaggerFragment;
 import com.github.lany192.box.sample.R;
-import com.github.lany192.decoration.LinearDecoration;
+import com.github.lany192.decoration.LinearItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class CityFragment extends DaggerFragment implements CityContract.View {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mShowView.setLayoutManager(manager);
-        mShowView.addItemDecoration(new LinearDecoration(manager.getOrientation())
+        mShowView.addItemDecoration(new LinearItemDecoration(manager.getOrientation())
                 .setColor(Color.GRAY)
                 .setWidth(1));
         mMultiAdapter = new MultiAdapter(new ArrayList<>());
