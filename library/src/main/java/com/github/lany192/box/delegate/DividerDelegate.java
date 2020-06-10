@@ -13,7 +13,7 @@ import com.github.lany192.box.adapter.ItemViewHolder;
  * <p>
  * 高度和内容属性互斥，只能同时设置一个
  */
-public class Divider extends ItemDelegate<Object> {
+public class DividerDelegate extends ItemDelegate<Object> {
     private int size = 4;
     @ColorInt
     private int color = Color.parseColor("#f1f1f1");
@@ -22,7 +22,7 @@ public class Divider extends ItemDelegate<Object> {
 
     private String hint;
 
-    public Divider() {
+    public DividerDelegate() {
         super(null);
     }
 
@@ -43,22 +43,22 @@ public class Divider extends ItemDelegate<Object> {
         }
     }
 
-    public Divider hintColor(@ColorInt int hintColor) {
+    public DividerDelegate hintColor(@ColorInt int hintColor) {
         this.hintColor = hintColor;
         return this;
     }
 
-    public Divider hint(String hint) {
+    public DividerDelegate hint(String hint) {
         this.hint = hint;
         return this;
     }
 
-    public Divider size(int size) {
+    public DividerDelegate size(int size) {
         this.size = size;
         return this;
     }
 
-    public Divider color(@ColorInt int color) {
+    public DividerDelegate color(@ColorInt int color) {
         this.color = color;
         return this;
     }
