@@ -56,54 +56,76 @@ public class ImageLoader {
      * 显示图片
      *
      * @param imageView 显示控件
-     * @param model     显示来源，可以是 String/Uri/File/Drawable/Bitmap/Integer
+     * @param model     可以是 String/Uri/File/Drawable/Bitmap/Integer
      */
     public void show(ImageView imageView, Object model) {
-        load(imageView, model, new RequestOptions(), null);
+        show(imageView, model, new RequestOptions());
     }
 
     /**
      * 显示图片
      */
     public void show(ImageView imageView, Object model, @DrawableRes int errorResId) {
-        load(imageView, model, new RequestOptions().error(errorResId), null);
+        show(imageView, model, new RequestOptions().error(errorResId));
+    }
+
+    /**
+     * 显示图片
+     */
+    public void show(ImageView imageView, Object model, @DrawableRes int errorResId, int size) {
+        show(imageView, model, new RequestOptions().error(errorResId).override(size));
     }
 
     /**
      * 显示圆角图片，四个角都是圆角
      */
     public void roundCorner(ImageView imageView, Object model, int radiusDp) {
-        roundCorner(imageView, model, radiusDp, RoundedCornersTransform.CornerType.ALL);
+        show(imageView, model, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, RoundedCornersTransform.CornerType.ALL)));
     }
 
     /**
      * 指定角显示圆角
      */
     public void roundCorner(ImageView imageView, Object model, int radiusDp, RoundedCornersTransform.CornerType cornerType) {
-        load(imageView, model, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, cornerType)), null);
+        show(imageView, model, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, cornerType)));
     }
+
 
     /**
      * 显示圆形图片
      */
     public void circle(ImageView imageView, Object model) {
-        circle(imageView, model, 0);
+        show(imageView, model, RequestOptions.circleCropTransform());
     }
 
     /**
      * 显示图片
      */
     public void circle(ImageView imageView, Object model, @DrawableRes int errorResId) {
-        load(imageView, model, RequestOptions.circleCropTransform().error(errorResId), null);
+        show(imageView, model, RequestOptions.circleCropTransform().error(errorResId));
+    }
+
+    /**
+     * 显示图片
+     */
+    public void circle(ImageView imageView, Object model, RequestOptions options) {
+        show(imageView, model, options.circleCrop());
     }
 
     /**
      * 显示头像，圆形
      */
     public void avatar(ImageView imageView, Object model) {
-        load(imageView, model, RequestOptions.circleCropTransform()
+        show(imageView, model, RequestOptions.circleCropTransform()
                 .placeholder(R.drawable.default_avatar)
-                .error(R.drawable.default_avatar), null);
+                .error(R.drawable.default_avatar));
+    }
+
+    /**
+     * 显示图片
+     */
+    public void show(ImageView imageView, Object model, RequestOptions options) {
+        load(imageView, model, options, null);
     }
 
     /**
@@ -147,7 +169,10 @@ public class ImageLoader {
         if (options.getErrorPlaceholder() == null && options.getErrorId() == 0) {
             options = options.error(R.drawable.default_pic);
         }
-        options = options.diskCacheStrategy(DiskCacheStrategy.ALL);
+        //判断缓存类型
+        if (options.getDiskCacheStrategy() == DiskCacheStrategy.AUTOMATIC) {
+            options = options.diskCacheStrategy(DiskCacheStrategy.ALL);
+        }
         if (model instanceof String) {
             String url = (String) model;
             Glide.with(imageView.getContext())
