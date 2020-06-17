@@ -35,6 +35,7 @@ public class IndexFragment extends BaseFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         new TabPager(this, mViewPager2, mTabLayout)
+                .addTab("精选", new DemoFragment())
                 .addTab("标题1", new SubTabFragment())
                 .addTab("标题2", new CityFragment())
                 .addTab("标题3", new SubTabFragment())

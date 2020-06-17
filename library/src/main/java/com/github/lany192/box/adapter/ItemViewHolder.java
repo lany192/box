@@ -49,7 +49,7 @@ public class ItemViewHolder extends BaseViewHolder {
     public ItemViewHolder setAvatarUrl(@IdRes int viewId, String picUrl) {
         ImageView imageView = getView(viewId);
         imageView.getLayoutParams().height = imageView.getLayoutParams().width;
-        ImageLoader.of().showAvatar(imageView, picUrl);
+        ImageLoader.of().avatar(imageView, picUrl);
         return this;
     }
 
