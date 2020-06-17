@@ -77,19 +77,11 @@ public class ImageLoader {
     }
 
     /**
-     * 显示圆角图片，四个角都是圆角
-     */
-    public void roundCorner(ImageView imageView, Object model, int radiusDp) {
-        show(imageView, model, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, RoundedCornersTransform.CornerType.ALL)));
-    }
-
-    /**
      * 指定角显示圆角
      */
-    public void roundCorner(ImageView imageView, Object model, int radiusDp, RoundedCornersTransform.CornerType cornerType) {
+    public void show(ImageView imageView, Object model, RoundedCornersTransform.CornerType cornerType, int radiusDp) {
         show(imageView, model, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, cornerType)));
     }
-
 
     /**
      * 显示圆形图片
