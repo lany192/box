@@ -1,14 +1,11 @@
 package com.github.lany192.box.helper;
 
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
-import androidx.annotation.RawRes;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -23,7 +20,6 @@ import com.github.lany192.box.R;
 import com.github.lany192.box.utils.CheckUtils;
 import com.github.lany192.box.utils.RoundedCornersTransform;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,79 +54,54 @@ public class ImageLoader {
 
     /**
      * 显示图片
+     *
+     * @param imageView 显示控件
+     * @param model     显示来源，可以是 String/Uri/File/Drawable/Bitmap/Integer
      */
-    public void show(ImageView imageView, String url) {
-        load(imageView, url, new RequestOptions(), null);
+    public void show(ImageView imageView, Object model) {
+        load(imageView, model, new RequestOptions(), null);
     }
 
     /**
-     * 显示Uri图片
+     * 显示图片
      */
-    public void show(ImageView imageView, Uri uri) {
-        load(imageView, uri, new RequestOptions(), null);
-    }
-
-    /**
-     * 显示File图片
-     */
-    public void show(ImageView imageView, File file) {
-        load(imageView, file, new RequestOptions(), null);
-    }
-
-    /**
-     * 显示Drawable图片
-     */
-    public void show(ImageView imageView, Drawable drawable) {
-        load(imageView, drawable, new RequestOptions(), null);
-    }
-
-    /**
-     * 显示Bitmap图片
-     */
-    public void show(ImageView imageView, Bitmap bitmap) {
-        load(imageView, bitmap, new RequestOptions(), null);
-    }
-
-    /**
-     * 显示资源图片
-     */
-    public void show(ImageView imageView, @RawRes @DrawableRes @Nullable Integer resourceId) {
-        load(imageView, resourceId, new RequestOptions(), null);
+    public void show(ImageView imageView, Object model, @DrawableRes int errorResId) {
+        load(imageView, model, new RequestOptions().error(errorResId), null);
     }
 
     /**
      * 显示圆角图片，四个角都是圆角
      */
-    public void show(ImageView imageView, String url, int radiusDp) {
-        show(imageView, url, radiusDp, RoundedCornersTransform.CornerType.ALL);
+    public void roundCorner(ImageView imageView, Object model, int radiusDp) {
+        roundCorner(imageView, model, radiusDp, RoundedCornersTransform.CornerType.ALL);
     }
 
     /**
      * 指定角显示圆角
      */
-    public void show(ImageView imageView, String url, int radiusDp, RoundedCornersTransform.CornerType cornerType) {
-        load(imageView, url, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, cornerType)), null);
+    public void roundCorner(ImageView imageView, Object model, int radiusDp, RoundedCornersTransform.CornerType cornerType) {
+        load(imageView, model, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, cornerType)), null);
     }
 
     /**
      * 显示圆形图片
      */
-    public void circle(ImageView imageView, String url) {
-        load(imageView, url, RequestOptions.circleCropTransform(), null);
+    public void circle(ImageView imageView, Object model) {
+        circle(imageView, model, 0);
     }
 
     /**
-     * 显示圆形图片
+     * 显示图片
      */
-    public void circle(ImageView imageView, @RawRes @DrawableRes @Nullable Integer resourceId) {
-        load(imageView, resourceId, RequestOptions.circleCropTransform(), null);
+    public void circle(ImageView imageView, Object model, @DrawableRes int errorResId) {
+        load(imageView, model, RequestOptions.circleCropTransform().error(errorResId), null);
     }
 
     /**
      * 显示头像，圆形
      */
-    public void avatar(ImageView imageView, String url) {
-        load(imageView, url, RequestOptions.circleCropTransform()
+    public void avatar(ImageView imageView, Object model) {
+        load(imageView, model, RequestOptions.circleCropTransform()
                 .placeholder(R.drawable.default_avatar)
                 .error(R.drawable.default_avatar), null);
     }
@@ -138,8 +109,8 @@ public class ImageLoader {
     /**
      * 显示图片原始比例，宽顶满显示控件
      */
-    public void showFullWidth(ImageView imageView, String url) {
-        load(imageView, url, new RequestOptions(), new RequestListener<Drawable>() {
+    public void showFullWidth(ImageView imageView, Object model) {
+        load(imageView, model, new RequestOptions(), new RequestListener<Drawable>() {
 
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -160,7 +131,7 @@ public class ImageLoader {
     /**
      * 通用加载项
      */
-    private void load(ImageView imageView, Object object, RequestOptions options, RequestListener<Drawable> listener) {
+    private void load(ImageView imageView, Object model, RequestOptions options, RequestListener<Drawable> listener) {
         if (imageView == null) {
             return;
         }
@@ -177,8 +148,8 @@ public class ImageLoader {
             options = options.error(R.drawable.default_pic);
         }
         options = options.diskCacheStrategy(DiskCacheStrategy.ALL);
-        if (object instanceof String) {
-            String url = (String) object;
+        if (model instanceof String) {
+            String url = (String) model;
             Glide.with(imageView.getContext())
                     .load(CheckUtils.isWebUrl(url) ? new GlideUrl(url, headers) : url)
                     .apply(options)
@@ -186,7 +157,7 @@ public class ImageLoader {
                     .into(imageView);
         } else {
             Glide.with(imageView.getContext())
-                    .load(object)
+                    .load(model)
                     .apply(options)
                     .addListener(listener)
                     .into(imageView);
