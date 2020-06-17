@@ -56,42 +56,79 @@ public class ImageLoader {
         };
     }
 
+    /**
+     * 显示图片
+     */
     public void show(ImageView imageView, String url) {
         load(imageView, url, new RequestOptions(), null);
     }
 
+    /**
+     * 显示Uri图片
+     */
     public void show(ImageView imageView, Uri uri) {
         load(imageView, uri, new RequestOptions(), null);
     }
 
+    /**
+     * 显示File图片
+     */
     public void show(ImageView imageView, File file) {
         load(imageView, file, new RequestOptions(), null);
     }
 
+    /**
+     * 显示Drawable图片
+     */
     public void show(ImageView imageView, Drawable drawable) {
         load(imageView, drawable, new RequestOptions(), null);
     }
 
+    /**
+     * 显示Bitmap图片
+     */
     public void show(ImageView imageView, Bitmap bitmap) {
         load(imageView, bitmap, new RequestOptions(), null);
     }
 
+    /**
+     * 显示资源图片
+     */
     public void show(ImageView imageView, @RawRes @DrawableRes @Nullable Integer resourceId) {
         load(imageView, resourceId, new RequestOptions(), null);
     }
 
+    /**
+     * 显示圆角图片，四个角都是圆角
+     */
+    public void show(ImageView imageView, String url, int radiusDp) {
+        show(imageView, url, radiusDp, RoundedCornersTransform.CornerType.ALL);
+    }
+
+    /**
+     * 指定角显示圆角
+     */
+    public void show(ImageView imageView, String url, int radiusDp, RoundedCornersTransform.CornerType cornerType) {
+        load(imageView, url, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, cornerType)), null);
+    }
+
+    /**
+     * 显示圆形图片
+     */
     public void circle(ImageView imageView, String url) {
         load(imageView, url, RequestOptions.circleCropTransform(), null);
     }
 
-    public void circle(ImageView imageView, String url, int radius) {
-        circle(imageView, url, radius, RoundedCornersTransform.CornerType.ALL);
+    /**
+     * 显示圆形图片
+     */
+    public void circle(ImageView imageView, @RawRes @DrawableRes @Nullable Integer resourceId) {
+        load(imageView, resourceId, RequestOptions.circleCropTransform(), null);
     }
 
-    public void circle(ImageView imageView, String url, int radius, RoundedCornersTransform.CornerType cornerType) {
-        load(imageView, url, RequestOptions.bitmapTransform(new RoundedCornersTransform(radius, cornerType)), null);
-    }
-
+    /**
+     * 显示头像，圆形
+     */
     public void avatar(ImageView imageView, String url) {
         load(imageView, url, RequestOptions.circleCropTransform()
                 .placeholder(R.drawable.default_avatar)

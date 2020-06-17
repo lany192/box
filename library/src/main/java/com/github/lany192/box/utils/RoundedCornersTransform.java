@@ -32,20 +32,20 @@ public class RoundedCornersTransform extends BitmapTransformation {
     private int margin;
     private CornerType cornerType;
 
-    public RoundedCornersTransform(int radius) {
-        this(radius, 0, CornerType.ALL);
+    public RoundedCornersTransform(int radiusDp) {
+        this(radiusDp, 0, CornerType.ALL);
     }
 
-    public RoundedCornersTransform(int radius, int margin) {
-        this(radius, margin, CornerType.ALL);
+    public RoundedCornersTransform(int radiusDp, int margin) {
+        this(radiusDp, margin, CornerType.ALL);
     }
 
-    public RoundedCornersTransform(int radius, CornerType cornerType) {
-        this(radius, 0, cornerType);
+    public RoundedCornersTransform(int radiusDp, CornerType cornerType) {
+        this(radiusDp, 0, cornerType);
     }
 
-    public RoundedCornersTransform(int radius, int margin, CornerType cornerType) {
-        this.radius = radius;
+    public RoundedCornersTransform(int radiusDp, int margin, CornerType cornerType) {
+        this.radius = DensityUtils.dp2px(radiusDp);
         this.diameter = this.radius * 2;
         this.margin = margin;
         this.cornerType = cornerType;
