@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * SharedPreferences封装工具类
  */
-public class SPHelper {
+public final class SPHelper {
     private final String TAG = getClass().getSimpleName();
     private volatile static SPHelper instance;
     private String mSpaceName;//默认存储空间名称

@@ -7,7 +7,7 @@ import android.os.Environment;
 import java.io.File;
 import java.math.BigDecimal;
 
-public class CleanHelper {
+public final class CleanHelper {
     private volatile static CleanHelper instance = null;
 
     private CleanHelper() {

@@ -23,7 +23,7 @@ import com.github.lany192.box.utils.RoundedCornersTransform;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ImageLoader {
+public final class ImageLoader {
     private volatile static ImageLoader instance;
     private Headers headers = Headers.DEFAULT;
 
