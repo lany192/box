@@ -30,7 +30,8 @@ public class DemoFragment extends BaseFragment {
     ImageView imageView2;
     @BindView(R.id.image3)
     ImageView imageView3;
-
+    @BindView(R.id.image4)
+    ImageView imageView4;
     @NonNull
     @Override
     protected FragmentConfig getConfig(FragmentConfig config) {
@@ -39,8 +40,9 @@ public class DemoFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        ImageLoader.of().show(imageView, "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1905962969,819482129&fm=26&gp=0.jpg", 20, RoundedCornersTransform.CornerType.TOP_LEFT);
+        ImageLoader.of().show(imageView, "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1905962969,819482129&fm=26&gp=0.jpg",RoundedCornersTransform.CornerType.TOP_LEFT, 20);
         ImageLoader.of().circle(imageView2, R.mipmap.a);
         ImageLoader.of().showFullWidth(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318");
+        ImageLoader.of().showOneTimeGif(imageView4, R.mipmap.test);
     }
 }

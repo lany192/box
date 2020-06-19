@@ -13,12 +13,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.Headers;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.github.lany192.box.R;
 import com.github.lany192.box.utils.CheckUtils;
 import com.github.lany192.box.utils.RoundedCornersTransform;
+import com.github.lany192.box.utils.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,6 +52,25 @@ public final class ImageLoader {
             headers.put("Referer", url);
             return headers;
         };
+    }
+
+    public void showOneTimeGif(ImageView imageView, int resId) {
+        Glide.with(imageView.getContext())
+                .asGif()
+                .load(resId)
+                .addListener(new RequestListener<GifDrawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                        resource.setLoopCount(1);
+                        return false;
+                    }
+                })
+                .into(imageView);
     }
 
     /**
