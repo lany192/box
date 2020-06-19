@@ -10,12 +10,13 @@ import android.view.WindowManager;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.box.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import butterknife.ButterKnife;
 
 
-public abstract class BaseBottomDialog {
+public abstract class BottomDialog {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected BottomSheetDialog mDialog;
@@ -23,15 +24,18 @@ public abstract class BaseBottomDialog {
 
     protected abstract int getLayoutId();
 
-    public BaseBottomDialog(Context context) {
+    public BottomDialog(Context context) {
         mDialog = new BottomSheetDialog(context);
         mContentView = LayoutInflater.from(context).inflate(getLayoutId(), null);
         ButterKnife.bind(this, mContentView);
         mDialog.setContentView(mContentView);
-        //使状态栏的颜色不变黑
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = mDialog.getWindow();
-            if (window != null) {
+        Window window = mDialog.getWindow();
+        if (window != null) {
+            //透明背景
+            window.findViewById(R.id.design_bottom_sheet)
+                    .setBackgroundResource(android.R.color.transparent);
+            //使状态栏的颜色不变黑
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             }
         }
