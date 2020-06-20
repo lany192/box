@@ -1,6 +1,7 @@
 package com.github.lany192.box.sample.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class DemoFragment extends BaseFragment {
     @BindView(R.id.image)
@@ -39,8 +41,20 @@ public class DemoFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        ImageLoader.of().show(imageView, "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1905962969,819482129&fm=26&gp=0.jpg", 20, RoundedCornersTransform.CornerType.TOP_LEFT);
+        ImageLoader.of().show(imageView, "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1905962969,819482129&fm=26&gp=0.jpg", RoundedCornersTransform.CornerType.TOP_LEFT, 20);
         ImageLoader.of().circle(imageView2, R.mipmap.a);
-        ImageLoader.of().showFullWidth(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318");
+//        ImageLoader.of().showFullWidth(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318");
+    }
+
+    @OnClick(R.id.button)
+    void buttonClicked() {
+        showLoadingDialog();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ImageLoader.of().showFullWidth(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318");
+                cancelLoadingDialog();
+            }
+        }, 5 * 1000);
     }
 }
