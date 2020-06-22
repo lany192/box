@@ -30,9 +30,9 @@ public class LoadingDialog extends DialogFragment {
         super.onResume();
         Window window = getDialog().getWindow();
         if (window != null) {
-            WindowManager.LayoutParams windowParams = window.getAttributes();
-            windowParams.dimAmount = 0.0f;//设置背景全透明
-            window.setAttributes(windowParams);
+            WindowManager.LayoutParams layoutParams = window.getAttributes();
+            layoutParams.dimAmount = 0.0f;//设置背景全透明
+            window.setAttributes(layoutParams);
             window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
         }
     }

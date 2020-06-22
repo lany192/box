@@ -1,6 +1,6 @@
 [![](https://jitpack.io/v/lany192/Box.svg)](https://jitpack.io/#lany192/Box)
 
-# 快速开发框架 
+# 快速开发框架 https://github.com/lany192/Box
 
 使用MVP+rxjava3+rxandroid3+retrofit2+Dagger2+OkHttp3组合封装
 
