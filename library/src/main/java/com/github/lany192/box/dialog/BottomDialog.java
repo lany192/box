@@ -17,7 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import butterknife.ButterKnife;
 
 
-public abstract class BottomDialog extends BottomSheetDialogFragment {
+public abstract class BottomDialog {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected BottomSheetDialog mDialog;
