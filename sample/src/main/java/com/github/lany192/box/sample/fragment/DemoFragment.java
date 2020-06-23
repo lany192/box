@@ -10,6 +10,7 @@ import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.helper.ImageLoader;
 import com.github.lany192.box.sample.R;
+import com.github.lany192.box.sample.dialog.HelloDialog;
 import com.github.lany192.box.utils.RoundedCornersTransform;
 
 import butterknife.BindView;
@@ -46,5 +47,11 @@ public class DemoFragment extends BaseFragment {
             ImageLoader.of().showFullWidth(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318");
             cancelLoadingDialog();
         }, 5 * 1000);
+    }
+
+    @OnClick(R.id.button2)
+    void button2Clicked() {
+        HelloDialog dialog = new HelloDialog(getContext());
+        dialog.show();
     }
 }

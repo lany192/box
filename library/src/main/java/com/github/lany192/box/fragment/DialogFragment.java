@@ -3,7 +3,6 @@ package com.github.lany192.box.fragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,8 @@ import android.view.WindowManager;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
@@ -26,9 +27,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 
-/**
- * 这个基类要放在这个包中是为了复写父类的show(FragmentManager manager, String tag)
- */
 public abstract class DialogFragment extends androidx.fragment.app.DialogFragment {
     protected final String TAG = this.getClass().getSimpleName();
     protected View mContentView;
@@ -110,13 +108,17 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     @Override
     public void show(FragmentManager manager, String tag) {
         if (isAdded()) {
-            Log.w(TAG, "已经显示，忽略......");
+            log.w(TAG, "已经显示，忽略......");
         } else {
             super.show(manager, tag);
         }
     }
 
-    public void show(FragmentActivity activity) {
+    public void show(@NonNull Fragment fragment) {
+        show(fragment.requireActivity().getSupportFragmentManager(), TAG);
+    }
+
+    public void show(@NonNull FragmentActivity activity) {
         show(activity.getSupportFragmentManager(), TAG);
     }
 
