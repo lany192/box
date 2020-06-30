@@ -45,7 +45,7 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.5'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.fragment:fragment:1.2.5'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
