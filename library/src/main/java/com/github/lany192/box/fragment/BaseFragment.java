@@ -38,9 +38,9 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
-    private StateLayout mStateLayout;
-    private Unbinder mUnBinder;
-    private LoadingDialog mLoadingDialog = null;
+    private StateLayout stateLayout;
+    private Unbinder unbinder;
+    private LoadingDialog loadingDialog;
     /**
      * 是否执行过懒加载
      */
@@ -108,13 +108,13 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         mRootView = new RelativeLayout(self);
         mRootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
-        mStateLayout = new StateLayout(self);
-        mStateLayout.setOnRetryListener(this);
+        stateLayout = new StateLayout(self);
+        stateLayout.setOnRetryListener(this);
         View contentView = inflater.inflate(config.getLayoutId(), null);
         if (config.getContentColor() > 0) {
             contentView.setBackgroundResource(config.getContentColor());
         }
-        mStateLayout.addView(contentView);
+        stateLayout.addView(contentView);
 
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (config.isHasToolbar()) {
@@ -127,8 +127,8 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
             mRootView.addView(toolbar);
         }
 
-        mRootView.addView(mStateLayout, layoutParams);
-        mUnBinder = ButterKnife.bind(this, mRootView);
+        mRootView.addView(stateLayout, layoutParams);
+        unbinder = ButterKnife.bind(this, mRootView);
         init(savedInstanceState);
         return mRootView;
     }
@@ -157,8 +157,8 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
-        if (null != mUnBinder) {
-            mUnBinder.unbind();
+        if (null != unbinder) {
+            unbinder.unbind();
         }
         if (compositeDisposable != null && compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
@@ -179,37 +179,37 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public void showEmpty() {
-        mStateLayout.showEmpty();
+        stateLayout.showEmpty();
     }
 
     @Override
     public void showEmpty(String msg) {
-        mStateLayout.showEmpty(msg);
+        stateLayout.showEmpty(msg);
     }
 
     @Override
     public void showContent() {
-        mStateLayout.showContent();
+        stateLayout.showContent();
     }
 
     @Override
     public void showNoWifi() {
-        mStateLayout.showNetwork();
+        stateLayout.showNetwork();
     }
 
     @Override
     public void showError() {
-        mStateLayout.showError();
+        stateLayout.showError();
     }
 
     @Override
     public void showError(String msg) {
-        mStateLayout.showError(msg);
+        stateLayout.showError(msg);
     }
 
     @Override
     public void showLoading() {
-        mStateLayout.showLoading();
+        stateLayout.showLoading();
     }
 
     @Override
@@ -219,19 +219,19 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public void showLoadingDialog(CharSequence message) {
-        if (mLoadingDialog == null) {
-            mLoadingDialog = new LoadingDialog();
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog();
         }
-        mLoadingDialog.setMessage(message);
-        if (!mLoadingDialog.isAdded()) {
-            mLoadingDialog.show(self.getSupportFragmentManager(), TAG);
+        loadingDialog.setMessage(message);
+        if (!loadingDialog.isAdded()) {
+            loadingDialog.show(self.getSupportFragmentManager(), TAG);
         }
     }
 
     @Override
     public void cancelLoadingDialog() {
-        if (mLoadingDialog != null && mLoadingDialog.isAdded()) {
-            mLoadingDialog.cancel();
+        if (loadingDialog != null && loadingDialog.isAdded()) {
+            loadingDialog.cancel();
         }
     }
 

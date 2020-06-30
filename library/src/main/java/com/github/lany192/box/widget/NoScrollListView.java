@@ -7,6 +7,7 @@ import android.widget.ListView;
 /**
  * 解决ScrollView与ListView的冲突,不能滚动的ListView
  */
+@Deprecated
 public class NoScrollListView extends ListView {
 
     public NoScrollListView(Context context) {

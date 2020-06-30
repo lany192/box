@@ -52,12 +52,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
-    private View mToolbar;
-    private StateLayout mStateLayout;
-    private Unbinder mUnBinder;
-    private LoadingDialog mLoadingDialog;
+    private View toolBarView;
+    private StateLayout stateLayout;
+    private Unbinder unbinder;
+    private LoadingDialog loadingDialog;
     private ActivityConfig config;
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     /**
      * 获取Activity的界面配置
@@ -92,36 +92,36 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         initStatusBar();
         onBeforeSetContentView();
         setContentView(getContentView());
-        mUnBinder = ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         init(savedInstanceState);
     }
 
     private View getContentView() {
         RelativeLayout rootView = new RelativeLayout(this);
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        mStateLayout = new StateLayout(this);
-        mStateLayout.setOnRetryListener(this);
+        stateLayout = new StateLayout(this);
+        stateLayout.setOnRetryListener(this);
         View contentView = LayoutInflater.from(this).inflate(config.getLayoutId(), null);
         if (config.getContentColor() > 0) {
             contentView.setBackgroundResource(config.getContentColor());
         }
-        mStateLayout.addView(contentView);
+        stateLayout.addView(contentView);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (config.isHasToolbar()) {
-            mToolbar = LayoutInflater.from(this).inflate(config.getToolBarLayoutId(), null);
-            mToolbar.setId(R.id.toolbar);
-            mToolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
-            mToolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+            toolBarView = LayoutInflater.from(this).inflate(config.getToolBarLayoutId(), null);
+            toolBarView.setId(R.id.toolbar);
+            toolBarView.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
+            toolBarView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     config.getToolbarHeight()));
             if (config.getToolbarColor() > 0) {
-                mToolbar.setBackgroundResource(config.getToolbarColor());
+                toolBarView.setBackgroundResource(config.getToolbarColor());
             }
             if (config.isTransparentStatusBar()) {
-                ViewUtils.setPaddingSmart(mToolbar);
+                ViewUtils.setPaddingSmart(toolBarView);
             }
-            rootView.addView(mToolbar);
+            rootView.addView(toolBarView);
             setBarTitle(config.getTitle());
-            View backBtn = mToolbar.findViewById(R.id.toolbar_back_btn);
+            View backBtn = toolBarView.findViewById(R.id.toolbar_back_btn);
             if (config.isHasBackBtn()) {
                 if (backBtn == null) {
                     throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
@@ -136,9 +136,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                     backBtn.setVisibility(View.GONE);
                 }
             }
-            lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
+            lp.addRule(RelativeLayout.BELOW, toolBarView.getId());
         }
-        rootView.addView(mStateLayout, lp);
+        rootView.addView(stateLayout, lp);
         return rootView;
     }
 
@@ -202,7 +202,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     public void setBarTitle(CharSequence title) {
         if (config.isHasToolbar()) {
-            TextView titleText = mToolbar.findViewById(R.id.toolbar_title_text);
+            TextView titleText = toolBarView.findViewById(R.id.toolbar_title_text);
             if (titleText == null) {
                 throw new IllegalArgumentException("Please use the 'R.id.toolbar_title_text' field to set title in custom toolbar layout.");
             }
@@ -237,7 +237,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
      * @param disposable
      */
     protected void addDisposable(Disposable disposable) {
-        disposables.add(disposable);
+        compositeDisposable.add(disposable);
     }
 
     @Override
@@ -246,12 +246,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
-        if (null != mUnBinder) {
-            mUnBinder.unbind();
+        if (null != unbinder) {
+            unbinder.unbind();
         }
-        if (disposables != null && disposables.isDisposed()) {
-            disposables.dispose();
-            disposables = null;
+        if (compositeDisposable != null && compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable = null;
         }
         super.onDestroy();
     }
@@ -263,37 +263,37 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     public void showEmpty() {
-        mStateLayout.showEmpty();
+        stateLayout.showEmpty();
     }
 
     @Override
     public void showEmpty(String msg) {
-        mStateLayout.showEmpty(msg);
+        stateLayout.showEmpty(msg);
     }
 
     @Override
     public void showContent() {
-        mStateLayout.showContent();
+        stateLayout.showContent();
     }
 
     @Override
     public void showNoWifi() {
-        mStateLayout.showNetwork();
+        stateLayout.showNetwork();
     }
 
     @Override
     public void showError() {
-        mStateLayout.showError();
+        stateLayout.showError();
     }
 
     @Override
     public void showError(String msg) {
-        mStateLayout.showError(msg);
+        stateLayout.showError(msg);
     }
 
     @Override
     public void showLoading() {
-        mStateLayout.showLoading();
+        stateLayout.showLoading();
     }
 
     @Override
@@ -303,19 +303,19 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     public void showLoadingDialog(CharSequence message) {
-        if (mLoadingDialog == null) {
-            mLoadingDialog = new LoadingDialog();
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog();
         }
-        mLoadingDialog.setMessage(message);
-        if (!mLoadingDialog.isAdded()) {
-            mLoadingDialog.show(getSupportFragmentManager(), TAG);
+        loadingDialog.setMessage(message);
+        if (!loadingDialog.isAdded()) {
+            loadingDialog.show(getSupportFragmentManager(), TAG);
         }
     }
 
     @Override
     public void cancelLoadingDialog() {
-        if (mLoadingDialog != null && mLoadingDialog.isAdded()) {
-            mLoadingDialog.cancel();
+        if (loadingDialog != null && loadingDialog.isAdded()) {
+            loadingDialog.cancel();
         }
     }
 }

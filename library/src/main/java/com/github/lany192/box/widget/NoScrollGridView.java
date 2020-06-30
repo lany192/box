@@ -7,6 +7,7 @@ import android.widget.GridView;
 /**
  * 解决ScrollView与GridView的冲突,不能滚动的GridView
  */
+@Deprecated
 public class NoScrollGridView extends GridView {
 
     public NoScrollGridView(Context context) {
