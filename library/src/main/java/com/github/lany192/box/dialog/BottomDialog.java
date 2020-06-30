@@ -8,11 +8,11 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import butterknife.ButterKnife;
 
@@ -25,7 +25,7 @@ public abstract class BottomDialog {
 
     protected abstract int getLayoutId();
 
-    public BottomDialog(Context context) {
+    public BottomDialog(@NonNull Context context) {
         mDialog = new BottomSheetDialog(context);
         mContentView = LayoutInflater.from(context).inflate(getLayoutId(), null);
         ButterKnife.bind(this, mContentView);
