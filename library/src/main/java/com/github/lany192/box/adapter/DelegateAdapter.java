@@ -13,15 +13,15 @@ import java.util.List;
 /**
  * 多布局适配器
  */
-public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder> {
-    private SparseIntArray mTypeMap = new SparseIntArray();
+public class DelegateAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder> {
+    private SparseIntArray mItemTypeMap = new SparseIntArray();
     private final int TYPE_NOT_FOUND = -404;
 
-    public MultiAdapter(List<Delegate> items) {
+    public DelegateAdapter(List<Delegate> items) {
         super(items);
     }
 
-    public MultiAdapter(List<Delegate> items, GridLayoutManager layoutManager) {
+    public DelegateAdapter(List<Delegate> items, GridLayoutManager layoutManager) {
         super(items);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -38,7 +38,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHo
         if (item != null) {
             viewType = item.getItemType();
             if (getLayoutId(viewType) == TYPE_NOT_FOUND) {
-                mTypeMap.put(viewType, item.getLayoutId());
+                mItemTypeMap.put(viewType, item.getLayoutId());
             }
         }
         return viewType;
@@ -50,7 +50,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHo
     }
 
     private int getLayoutId(int viewType) {
-        return mTypeMap.get(viewType, TYPE_NOT_FOUND);
+        return mItemTypeMap.get(viewType, TYPE_NOT_FOUND);
     }
 
     @Override

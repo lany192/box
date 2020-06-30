@@ -5,9 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.github.lany192.box.adapter.MultiAdapter;
+import com.github.lany192.box.adapter.DelegateAdapter;
 import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.delegate.Delegate;
+import com.github.lany192.box.delegate.DividerDelegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.delegate.HelloDelegate;
@@ -87,7 +88,8 @@ public class HelloFragment extends BaseFragment {
 
         log.json(JsonUtils.object2json(images));
         List<Delegate> items = images.stream().map(HelloDelegate::new).collect(Collectors.toList());
-        mShowView.setAdapter(new MultiAdapter(items));
+        items.add(new DividerDelegate());
+        mShowView.setAdapter(new DelegateAdapter(items));
     }
 
 }

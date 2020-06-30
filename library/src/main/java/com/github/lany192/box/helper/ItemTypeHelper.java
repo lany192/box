@@ -9,7 +9,10 @@ import com.github.lany192.box.delegate.ItemDelegate;
 
 /**
  * 根据类名获得一个唯一的随机数，用于给多布局适配器代理获取对应的类型
+ *
+ * 用getLayoutId()代替
  */
+@Deprecated
 public final class ItemTypeHelper {
     private final String TAG = getClass().getSimpleName();
     private volatile static ItemTypeHelper instance = null;

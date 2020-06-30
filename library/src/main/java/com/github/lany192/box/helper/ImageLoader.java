@@ -20,7 +20,6 @@ import com.bumptech.glide.request.target.Target;
 import com.github.lany192.box.R;
 import com.github.lany192.box.utils.CheckUtils;
 import com.github.lany192.box.utils.RoundedCornersTransform;
-import com.github.lany192.box.utils.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +28,7 @@ public final class ImageLoader {
     private volatile static ImageLoader instance;
     private Headers headers = Headers.DEFAULT;
 
-    public static ImageLoader of() {
+    public static ImageLoader get() {
         if (instance == null) {
             synchronized (ImageLoader.class) {
                 if (instance == null) {

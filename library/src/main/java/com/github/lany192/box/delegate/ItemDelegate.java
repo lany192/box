@@ -31,7 +31,8 @@ public abstract class ItemDelegate<T> implements Delegate {
      */
     @Override
     public int getItemType() {
-        return ItemTypeHelper.getInstance().getViewType(this);
+//        return ItemTypeHelper.getInstance().getViewType(this);
+        return getLayoutId();
     }
 
     /**
