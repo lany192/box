@@ -58,12 +58,13 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     /**
      * 获取Fragment的界面配置
-     *
-     * @return FragmentConfig
      */
     @NonNull
     protected abstract FragmentConfig getConfig(FragmentConfig config);
 
+    /**
+     * 初始化
+     */
     protected abstract void init(Bundle savedInstanceState);
 
     @Override
@@ -109,24 +110,24 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
         mStateLayout = new StateLayout(self);
         mStateLayout.setOnRetryListener(this);
-        View contentView = LayoutInflater.from(self).inflate(config.getLayoutId(), null);
+        View contentView = inflater.inflate(config.getLayoutId(), null);
         if (config.getContentColor() > 0) {
             contentView.setBackgroundResource(config.getContentColor());
         }
         mStateLayout.addView(contentView);
 
-        LayoutParams slp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (config.isHasToolbar()) {
             View toolbar = inflater.inflate(config.getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, config.getToolbarHeight()));
             ViewUtils.setPaddingSmart(toolbar);
-            slp.addRule(RelativeLayout.BELOW, toolbar.getId());
+            layoutParams.addRule(RelativeLayout.BELOW, toolbar.getId());
             mRootView.addView(toolbar);
         }
 
-        mRootView.addView(mStateLayout, slp);
+        mRootView.addView(mStateLayout, layoutParams);
         mUnBinder = ButterKnife.bind(this, mRootView);
         init(savedInstanceState);
         return mRootView;
