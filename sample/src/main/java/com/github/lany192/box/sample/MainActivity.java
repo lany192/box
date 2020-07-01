@@ -9,7 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.lany192.box.activity.DaggerActivity;
-import com.github.lany192.box.config.ActivityConfig;
+import com.github.lany192.box.activity.ActivityConfig;
 import com.github.lany192.box.sample.fragment.HelloFragment;
 import com.github.lany192.box.sample.fragment.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;

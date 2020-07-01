@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.box.adapter.ItemViewHolder;
-import com.github.lany192.box.helper.ItemTypeHelper;
 
 import butterknife.ButterKnife;
 
@@ -31,7 +30,6 @@ public abstract class ItemDelegate<T> implements Delegate {
      */
     @Override
     public int getItemType() {
-//        return ItemTypeHelper.getInstance().getViewType(this);
         return getLayoutId();
     }
 

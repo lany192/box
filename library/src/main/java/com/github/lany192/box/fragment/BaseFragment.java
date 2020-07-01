@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentActivity;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
-import com.github.lany192.box.config.FragmentConfig;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;

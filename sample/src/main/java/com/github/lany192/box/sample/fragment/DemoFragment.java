@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.box.config.FragmentConfig;
+import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.helper.ImageLoader;
 import com.github.lany192.box.sample.R;

@@ -10,7 +10,6 @@ import android.util.Log;
 
 import java.util.Map;
 
-
 /**
  * SharedPreferences封装工具类
  */
@@ -19,7 +18,7 @@ public final class SPHelper {
     private volatile static SPHelper instance;
     private String mSpaceName;//默认存储空间名称
     private Context mContext;
-    private SharedPreferences sp;
+    private SharedPreferences sharedPreferences;
 
     private SPHelper() {
 
@@ -59,14 +58,14 @@ public final class SPHelper {
             Log.e(TAG, "The context is null, please call the initialization method first!");
             throw new IllegalArgumentException("The context is null, please call the initialization method first!");
         }
-        if (sp == null) {
+        if (sharedPreferences == null) {
             if (TextUtils.isEmpty(spaceName)) {
-                sp = PreferenceManager.getDefaultSharedPreferences(mContext);
+                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
             } else {
-                sp = mContext.getSharedPreferences(spaceName, Context.MODE_PRIVATE);
+                sharedPreferences = mContext.getSharedPreferences(spaceName, Context.MODE_PRIVATE);
             }
         }
-        return sp;
+        return sharedPreferences;
     }
 
     public boolean exists(String key) {
@@ -248,7 +247,7 @@ public final class SPHelper {
                 String key = entry.getKey();
                 Object value = entry.getValue();
                 if (value != null) {
-                    Class clz = value.getClass();
+                    Class<?> clz = value.getClass();
                     if (clz.equals(String.class)) {
                         editor.putString(key, (String) value);
                     } else if (clz.equals(Integer.class)) {
