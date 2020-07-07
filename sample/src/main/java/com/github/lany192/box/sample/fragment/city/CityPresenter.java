@@ -1,7 +1,7 @@
 package com.github.lany192.box.sample.fragment.city;
 
 import com.github.lany192.box.delegate.Delegate;
-import com.github.lany192.box.mvp.presenter.BasePresenter;
+import com.github.lany192.box.mvp.BasePresenter;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.delegate.AreaDelegate;
 import com.github.lany192.box.sample.http.ApiService;

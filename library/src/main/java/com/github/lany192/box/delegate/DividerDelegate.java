@@ -32,7 +32,7 @@ public class DividerDelegate extends ItemDelegate<Object> {
     }
 
     @Override
-    public void init(ItemViewHolder holder, Object data, int position) {
+    public void bind(ItemViewHolder holder, Object data, int position) {
         TextView hintText = holder.getView(R.id.type_divider_view);
         hintText.setBackgroundColor(color);
         if (!TextUtils.isEmpty(hint)) {

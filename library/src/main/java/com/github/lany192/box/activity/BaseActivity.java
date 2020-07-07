@@ -27,7 +27,7 @@ import com.github.lany192.box.R;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
-import com.github.lany192.box.mvp.view.BaseView;
+import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.ClickUtil;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
@@ -240,7 +240,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         //ImmersionBar.with(this).destroy();
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);

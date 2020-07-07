@@ -1,4 +1,4 @@
-package com.github.lany192.box.mvp.view;
+package com.github.lany192.box.mvp;
 
 import java.util.List;
 

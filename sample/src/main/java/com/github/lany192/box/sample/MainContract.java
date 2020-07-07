@@ -1,6 +1,6 @@
 package com.github.lany192.box.sample;
 
-import com.github.lany192.box.mvp.view.BaseView;
+import com.github.lany192.box.mvp.BaseView;
 
 public interface MainContract {
 
