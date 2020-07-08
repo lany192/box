@@ -19,7 +19,7 @@ public abstract class ItemDelegate<T> implements Delegate {
         this.t = t;
     }
 
-    public T getItemData() {
+    public T getItem() {
         return t;
     }
 
