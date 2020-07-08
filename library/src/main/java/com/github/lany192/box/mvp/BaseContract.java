@@ -3,33 +3,11 @@ package com.github.lany192.box.mvp;
 
 public interface BaseContract {
 
-    interface View extends BaseView {
+    interface View extends BaseView, OnLifecycle {
 
-        void onCreate();
-
-        void onStart();
-
-        void onResume();
-
-        void onPause();
-
-        void onStop();
-
-        void onDestroy();
     }
 
-    interface Presenter {
+    interface Presenter extends OnLifecycle {
 
-        void onCreate();
-
-        void onStart();
-
-        void onResume();
-
-        void onPause();
-
-        void onStop();
-
-        void onDestroy();
     }
 }
