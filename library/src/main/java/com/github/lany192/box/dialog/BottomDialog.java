@@ -1,60 +1,36 @@
 package com.github.lany192.box.dialog;
 
-import android.content.Context;
-import android.os.Build;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.github.lany192.box.R;
+import com.github.lany192.box.fragment.DialogFragment;
 
-import butterknife.ButterKnife;
+import java.util.Objects;
 
+/**
+ * 底部弹窗 基础对话框
+ */
+public abstract class BottomDialog extends DialogFragment {
 
-public abstract class BottomDialog {
-    protected final String TAG = this.getClass().getSimpleName();
-    protected Logger.Builder log = XLog.tag(TAG);
-    protected BottomSheetDialog mDialog;
-    protected View mContentView;
+    @Override
+    public int getTheme() {
+        return R.style.BottomDialogTheme;
+    }
 
-    protected abstract int getLayoutId();
+    @Override
+    protected int getDialogWidth() {
+        return WindowManager.LayoutParams.MATCH_PARENT;
+    }
 
-    public BottomDialog(@NonNull Context context) {
-        mDialog = new BottomSheetDialog(context);
-        mContentView = LayoutInflater.from(context).inflate(getLayoutId(), null);
-        ButterKnife.bind(this, mContentView);
-        mDialog.setContentView(mContentView);
-        Window window = mDialog.getWindow();
+    @Override
+    public void onResume() {
+        Window window = Objects.requireNonNull(getDialog()).getWindow();
         if (window != null) {
-            //透明背景
-            window.findViewById(com.google.android.material.R.id.design_bottom_sheet)
-                    .setBackgroundResource(android.R.color.transparent);
-            //使状态栏的颜色不变黑
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            }
+            window.setGravity(Gravity.BOTTOM);
         }
-    }
-
-    protected <T extends View> T getView(@IdRes int viewId) {
-        return mContentView.findViewById(viewId);
-    }
-
-    public void show() {
-        if (mDialog != null && !mDialog.isShowing()) {
-            mDialog.show();
-        }
-    }
-
-    public void cancel() {
-        if (mDialog != null && mDialog.isShowing()) {
-            mDialog.cancel();
-        }
+        super.onResume();
     }
 }
