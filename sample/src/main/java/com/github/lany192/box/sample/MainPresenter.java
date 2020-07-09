@@ -1,6 +1,6 @@
 package com.github.lany192.box.sample;
 
-import com.github.lany192.box.mvp.presenter.BasePresenter;
+import com.github.lany192.box.mvp.BasePresenter;
 import com.github.lany192.box.sample.http.ApiService;
 
 import javax.inject.Inject;

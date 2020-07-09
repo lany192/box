@@ -23,7 +23,7 @@ public class MenuDelegate extends ItemDelegate<Menu> {
     }
 
     @Override
-    public void init(ItemViewHolder holder, Menu area, int position) {
+    public void bind(ItemViewHolder holder, Menu area, int position) {
         holder.setText(R.id.item_menu_title, area.getName());
     }
 

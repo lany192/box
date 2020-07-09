@@ -1,4 +1,4 @@
-package com.github.lany192.box.config;
+package com.github.lany192.box.fragment;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.LayoutRes;

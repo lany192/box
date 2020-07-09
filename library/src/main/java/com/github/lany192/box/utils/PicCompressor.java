@@ -36,14 +36,13 @@ public class PicCompressor {
         this.consumer = consumer;
     }
 
-    public void start() {
-        Disposable disposable = Flowable.just(paths)
+    public Disposable start() {
+        return Flowable.just(paths)
                 .observeOn(Schedulers.io())
                 .map(this::compress)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(throwable -> Log.e(TAG, throwable.getMessage()))
                 .subscribe(consumer);
-        new CompositeDisposable().add(disposable);
     }
 
     private List<String> compress(List<String> photosPaths) throws IOException {

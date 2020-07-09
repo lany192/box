@@ -21,7 +21,7 @@ public class AreaDelegate extends ItemDelegate<Area> {
     }
 
     @Override
-    public void init(ItemViewHolder holder, Area area, int position) {
+    public void bind(ItemViewHolder holder, Area area, int position) {
         holder.setText(R.id.item_area_title, area.getName());
     }
 

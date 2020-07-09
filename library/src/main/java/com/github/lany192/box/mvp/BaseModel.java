@@ -1,4 +1,4 @@
-package com.github.lany192.box.mvp.model;
+package com.github.lany192.box.mvp;
 
 
 import androidx.lifecycle.Lifecycle;

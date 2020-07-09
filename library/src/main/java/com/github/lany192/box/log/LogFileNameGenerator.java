@@ -1,4 +1,4 @@
-package com.github.lany192.box.utils;
+package com.github.lany192.box.log;
 
 import com.elvishew.xlog.printer.file.naming.FileNameGenerator;
 

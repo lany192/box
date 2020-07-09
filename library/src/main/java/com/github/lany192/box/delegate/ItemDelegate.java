@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.box.adapter.ItemViewHolder;
-import com.github.lany192.box.helper.ItemTypeHelper;
 
 import butterknife.ButterKnife;
 
@@ -14,14 +13,14 @@ import butterknife.ButterKnife;
  */
 public abstract class ItemDelegate<T> implements Delegate {
     private Context mContext;
-    private T mData;
+    private T t;
 
-    public ItemDelegate(@NonNull final T data) {
-        this.mData = data;
+    public ItemDelegate(@NonNull final T t) {
+        this.t = t;
     }
 
-    public T getData() {
-        return mData;
+    public T getItem() {
+        return t;
     }
 
     /**
@@ -31,25 +30,24 @@ public abstract class ItemDelegate<T> implements Delegate {
      */
     @Override
     public int getItemType() {
-//        return ItemTypeHelper.getInstance().getViewType(this);
         return getLayoutId();
     }
 
     /**
-     * 初始化方法
+     * 控价和数据绑定
      */
-    public abstract void init(ItemViewHolder holder, T data, int position);
+    public abstract void bind(ItemViewHolder holder, T t, int position);
 
     @Override
     public void convert(ItemViewHolder holder, Context context) {
         this.mContext = context;
         int position = holder.getAdapterPosition();
         ButterKnife.bind(this, holder.itemView);
-        holder.itemView.setOnClickListener(v -> onItemClicked(mData, position));
-        init(holder, mData, position);
+        holder.itemView.setOnClickListener(v -> onItemClicked(t, position));
+        bind(holder, t, position);
     }
 
-    public void onItemClicked(T data, int position) {
+    public void onItemClicked(T t, int position) {
         //item 点击事件
     }
 
