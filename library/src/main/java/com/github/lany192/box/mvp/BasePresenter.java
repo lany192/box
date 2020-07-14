@@ -12,6 +12,8 @@ import com.github.lany192.box.utils.NetUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -26,6 +28,7 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
     private final M model;
     private CompositeDisposable compositeDisposable;
 
+    @Inject
     public BasePresenter(V view, M model) {
         this.view = view;
         this.model = model;

@@ -119,7 +119,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 ViewUtils.setPaddingSmart(toolBarView);
             }
             rootView.addView(toolBarView);
-            setBarTitle(config.getTitle());
+            setTitle(config.getTitle());
             View backBtn = toolBarView.findViewById(R.id.toolbar_back_btn);
             if (config.isHasBackBtn()) {
                 if (backBtn == null) {
@@ -195,11 +195,13 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         }
     }
 
-    public void setBarTitle(@StringRes int resId) {
-        setBarTitle(getString(resId));
+    @Override
+    public void setTitle(@StringRes int titleId) {
+        setTitle(getString(titleId));
     }
 
-    public void setBarTitle(CharSequence title) {
+    @Override
+    public void setTitle(CharSequence title) {
         if (config.isHasToolbar()) {
             TextView titleText = toolBarView.findViewById(R.id.toolbar_title_text);
             if (titleText == null) {
