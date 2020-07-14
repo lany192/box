@@ -12,14 +12,11 @@ import com.github.lany192.box.utils.NetUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import javax.inject.Inject;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
 
 public abstract class BasePresenter<V extends BaseView, M> implements LifecycleObserver, BaseContract {
     protected final String TAG = this.getClass().getSimpleName();
@@ -28,7 +25,6 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
     private final M model;
     private CompositeDisposable compositeDisposable;
 
-    @Inject
     public BasePresenter(V view, M model) {
         this.view = view;
         this.model = model;
@@ -77,7 +73,7 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onPause() {
-        ////log.i("onPause()");
+        //log.i("onPause()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
