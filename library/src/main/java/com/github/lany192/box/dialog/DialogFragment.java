@@ -1,4 +1,4 @@
-package com.github.lany192.box.fragment;
+package com.github.lany192.box.dialog;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -96,9 +96,13 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         super.onResume();
         Window window = getDialog().getWindow();
         if (window != null) {
-            window.setLayout(getDialogWidth(), WindowManager.LayoutParams.WRAP_CONTENT);
+            window.setLayout(getDialogWidth(), getDialogHeight());
         }
         init();
+    }
+
+    protected int getDialogHeight() {
+        return WindowManager.LayoutParams.WRAP_CONTENT;
     }
 
     protected int getDialogWidth() {

@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.elvishew.xlog.XLog;
-import com.github.lany192.box.fragment.DialogFragment;
 import com.klinker.android.link_builder.TouchableMovementMethod;
 import com.github.lany192.box.R;
 

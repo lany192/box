@@ -6,7 +6,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.github.lany192.box.fragment.DialogFragment;
 import com.github.lany192.box.R;
 
 public class LoadingDialog extends DialogFragment {

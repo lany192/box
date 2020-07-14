@@ -6,8 +6,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.fragment.BaseFragment;
+import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.helper.ImageLoader;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.dialog.HelloDialog;
@@ -51,7 +51,7 @@ public class DemoFragment extends BaseFragment {
 
     @OnClick(R.id.button2)
     void button2Clicked() {
-        HelloDialog dialog = new HelloDialog(getContext());
-        dialog.show();
+        HelloDialog dialog = new HelloDialog();
+        dialog.show(this);
     }
 }

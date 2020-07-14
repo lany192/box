@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.github.lany192.box.fragment.DialogFragment;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.SoftKeyboardUtils;
 import com.github.lany192.box.R;

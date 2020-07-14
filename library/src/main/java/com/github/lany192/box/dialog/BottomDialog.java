@@ -6,7 +6,6 @@ import android.view.WindowManager;
 
 
 import com.github.lany192.box.R;
-import com.github.lany192.box.fragment.DialogFragment;
 
 import java.util.Objects;
 
