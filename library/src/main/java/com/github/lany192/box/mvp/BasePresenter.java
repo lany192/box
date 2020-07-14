@@ -74,7 +74,7 @@ public abstract class BasePresenter<V extends BaseView, M> implements LifecycleO
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onPause() {
-        //log.i("onPause()");
+        ////log.i("onPause()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
