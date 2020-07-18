@@ -14,13 +14,24 @@ import butterknife.ButterKnife;
 public abstract class ItemDelegate<T> implements Delegate {
     private Context mContext;
     private T t;
+    private int spanSize = 2;
 
     public ItemDelegate(@NonNull final T t) {
         this.t = t;
     }
 
+    public ItemDelegate(int spanSize, @NonNull final T t) {
+        this.t = t;
+        this.spanSize = spanSize;
+    }
+
     public T getItem() {
         return t;
+    }
+
+    @Override
+    public int getSpanSize() {
+        return spanSize;
     }
 
     /**
