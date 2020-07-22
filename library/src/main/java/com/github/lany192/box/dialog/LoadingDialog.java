@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.github.lany192.box.R;
 
+import java.util.Objects;
+
 public class LoadingDialog extends DialogFragment {
     private CharSequence mMessage;
 
@@ -25,14 +27,18 @@ public class LoadingDialog extends DialogFragment {
     }
 
     @Override
+    protected int getDialogWidth() {
+        return WindowManager.LayoutParams.WRAP_CONTENT;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        Window window = getDialog().getWindow();
+        Window window = Objects.requireNonNull(getDialog()).getWindow();
         if (window != null) {
             WindowManager.LayoutParams layoutParams = window.getAttributes();
             layoutParams.dimAmount = 0.0f;//设置背景全透明
             window.setAttributes(layoutParams);
-            window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
         }
     }
 

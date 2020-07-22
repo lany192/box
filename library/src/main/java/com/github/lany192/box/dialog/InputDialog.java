@@ -35,7 +35,7 @@ public class InputDialog extends DialogFragment {
     }
 
     @Override
-    protected boolean isBottomStyle() {
+    protected boolean bottomStyle() {
         return true;
     }
 

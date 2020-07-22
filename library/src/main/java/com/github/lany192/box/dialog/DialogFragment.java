@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
@@ -28,6 +29,8 @@ import com.github.lany192.box.utils.DensityUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.Objects;
 
 import butterknife.ButterKnife;
 
@@ -45,7 +48,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
 
     @Override
     public int getTheme() {
-        if (isBottomStyle()) {
+        if (bottomStyle()) {
             return R.style.BottomDialogTheme;
         } else {
             return super.getTheme();
@@ -93,8 +96,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Window window = getDialog().getWindow();
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Window window = Objects.requireNonNull(getDialog()).getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
@@ -114,10 +117,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     @Override
     public void onResume() {
         super.onResume();
-        Window window = getDialog().getWindow();
+        Window window = Objects.requireNonNull(getDialog()).getWindow();
         if (window != null) {
             window.setLayout(getDialogWidth(), getDialogHeight());
-            if (isBottomStyle()) {
+            if (bottomStyle()) {
                 window.setGravity(Gravity.BOTTOM);
             }
         }
@@ -127,7 +130,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     /**
      * 是否为底部弹窗
      */
-    protected boolean isBottomStyle() {
+    protected boolean bottomStyle() {
         return false;
     }
 
@@ -136,7 +139,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     protected int getDialogWidth() {
-        if (isBottomStyle()) {
+        if (bottomStyle()) {
             return WindowManager.LayoutParams.MATCH_PARENT;
         } else {
             return DensityUtils.dp2px(300);
@@ -144,7 +147,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     @Override
-    public void show(FragmentManager manager, String tag) {
+    public void show(@NonNull FragmentManager manager, String tag) {
         if (isAdded()) {
             log.w(TAG, "已经显示，忽略......");
         } else {
@@ -163,6 +166,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void cancel() {
         if (getDialog() != null && getDialog().isShowing()) {
             getDialog().cancel();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(this);
+            fragmentTransaction.commit();
         }
     }
 }
