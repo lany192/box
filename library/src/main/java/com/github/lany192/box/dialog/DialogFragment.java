@@ -1,8 +1,10 @@
 package com.github.lany192.box.dialog;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +15,14 @@ import android.view.WindowManager;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.utils.DensityUtils;
 
@@ -38,6 +42,15 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     protected abstract int getLayoutId();
 
     protected abstract void init();
+
+    @Override
+    public int getTheme() {
+        if (isBottomStyle()) {
+            return R.style.BottomDialogTheme;
+        } else {
+            return super.getTheme();
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,17 +79,24 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
 
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(isCancelable());
+        dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
+        if (!isCancelable()) {
+            dialog.setOnKeyListener((dialog1, keyCode, event) -> keyCode == KeyEvent.KEYCODE_BACK);
+        }
+        return dialog;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         Window window = getDialog().getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
-        getDialog().setCancelable(isCancelable());
-        getDialog().setCanceledOnTouchOutside(canceledOnTouchOutside);
-        if (!isCancelable()) {
-            getDialog().setOnKeyListener((dialog, keyCode, event) -> keyCode == KeyEvent.KEYCODE_BACK);
         }
         mContentView = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);
@@ -97,8 +117,18 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         Window window = getDialog().getWindow();
         if (window != null) {
             window.setLayout(getDialogWidth(), getDialogHeight());
+            if (isBottomStyle()) {
+                window.setGravity(Gravity.BOTTOM);
+            }
         }
         init();
+    }
+
+    /**
+     * 是否为底部弹窗
+     */
+    protected boolean isBottomStyle() {
+        return false;
     }
 
     protected int getDialogHeight() {
@@ -106,7 +136,11 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     protected int getDialogWidth() {
-        return DensityUtils.dp2px(300);
+        if (isBottomStyle()) {
+            return WindowManager.LayoutParams.MATCH_PARENT;
+        } else {
+            return DensityUtils.dp2px(300);
+        }
     }
 
     @Override

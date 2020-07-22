@@ -35,15 +35,13 @@ public class InputDialog extends DialogFragment {
     }
 
     @Override
+    protected boolean isBottomStyle() {
+        return true;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        Window window = getDialog().getWindow();
-        if (window != null) {
-            WindowManager.LayoutParams lp = window.getAttributes();
-            lp.gravity = Gravity.BOTTOM;
-            lp.width = PhoneUtils.getDeviceWidth();
-            window.setAttributes(lp);
-        }
         new Handler().postDelayed(() -> SoftKeyboardUtils.toggle(self), 300);
     }
 
