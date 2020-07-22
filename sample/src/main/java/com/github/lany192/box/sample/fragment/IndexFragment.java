@@ -6,9 +6,9 @@ import android.view.inputmethod.EditorInfo;
 import androidx.annotation.NonNull;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.dialog.InputDialog;
 import com.github.lany192.box.fragment.BaseFragment;
+import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.fragment.TabPager;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.filter.MoneyInputFilter;

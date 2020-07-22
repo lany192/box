@@ -16,10 +16,6 @@ public class OnDoubleClickListener implements View.OnTouchListener {
 
     private DoubleClickCallback mCallback;
 
-    public interface DoubleClickCallback {
-        void onDoubleClick(View view);
-    }
-
     public OnDoubleClickListener(DoubleClickCallback callback) {
         super();
         this.mCallback = callback;
@@ -49,5 +45,9 @@ public class OnDoubleClickListener implements View.OnTouchListener {
             }
         }
         return true;
+    }
+
+    public interface DoubleClickCallback {
+        void onDoubleClick(View view);
     }
 }

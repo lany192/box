@@ -29,10 +29,10 @@ public class AreaDelegate extends ItemDelegate<Area> {
     public void onItemClicked(Area area, int position) {
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");
-        dialog.setMessage(area.getName()+ (area.getChildren().size() + 1) + "个地级市");
+        dialog.setMessage(area.getName() + (area.getChildren().size() + 1) + "个地级市");
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setRightBtn("确定", () -> ToastUtils.show(area.getName() ));
+        dialog.setRightBtn("确定", () -> ToastUtils.show(area.getName()));
         dialog.setLeftBtn("取消");
         dialog.show((FragmentActivity) getContext());
     }

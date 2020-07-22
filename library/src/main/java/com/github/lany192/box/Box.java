@@ -37,9 +37,9 @@ import org.greenrobot.eventbus.EventBus;
 
 
 public class Box {
+    private volatile static Box instance;
     private final String TAG = "Box";
     private Context context;
-    private volatile static Box instance;
 
     private Box() {
 

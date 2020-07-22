@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.github.lany192.box.adapter.DelegateAdapter;
-import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.BaseFragment;
+import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Menu;
 import com.github.lany192.box.sample.delegate.HelloDelegate;
@@ -32,7 +32,7 @@ public class SubTabFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        GridLayoutManager manager = new GridLayoutManager(getContext(),4);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
 //        manager.setOrientation(LinearLayoutManager.VERTICAL);
         mShowView.setLayoutManager(manager);
 //        mShowView.addItemDecoration(new LinearDecoration(manager.getOrientation())
@@ -76,6 +76,6 @@ public class SubTabFragment extends BaseFragment {
 //                    .hintColor(Color.BLACK)
 //                    .hint("华丽的分割线----------------------------"));
         }
-        mShowView.setAdapter(new DelegateAdapter(items,manager));
+        mShowView.setAdapter(new DelegateAdapter(items, manager));
     }
 }

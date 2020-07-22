@@ -20,9 +20,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public abstract class BasePresenter<V extends BaseView, M> implements LifecycleObserver, BaseContract {
     protected final String TAG = this.getClass().getSimpleName();
-    protected Logger.Builder log = XLog.tag(TAG);
     private final V view;
     private final M model;
+    protected Logger.Builder log = XLog.tag(TAG);
     private CompositeDisposable compositeDisposable;
 
     public BasePresenter(V view, M model) {

@@ -14,8 +14,8 @@ import java.util.List;
  * 多布局适配器
  */
 public class DelegateAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder> {
-    private SparseIntArray mItemTypeMap = new SparseIntArray();
     private final int TYPE_NOT_FOUND = -404;
+    private SparseIntArray mItemTypeMap = new SparseIntArray();
 
     public DelegateAdapter(List<Delegate> items) {
         super(items);

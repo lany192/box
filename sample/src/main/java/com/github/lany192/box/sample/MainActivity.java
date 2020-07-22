@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.github.lany192.box.activity.DaggerActivity;
 import com.github.lany192.box.activity.ActivityConfig;
+import com.github.lany192.box.activity.DaggerActivity;
 import com.github.lany192.box.sample.fragment.HelloFragment;
 import com.github.lany192.box.sample.fragment.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
@@ -43,7 +43,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
     @Override
     protected void init(Bundle savedInstanceState) {
         mViewPager2.setUserInputEnabled(false);
-        mViewPager2.setAdapter(new FragmentStateAdapter(this){
+        mViewPager2.setAdapter(new FragmentStateAdapter(this) {
 
             @Override
             public int getItemCount() {

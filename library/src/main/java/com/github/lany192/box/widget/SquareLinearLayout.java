@@ -1,12 +1,12 @@
 package com.github.lany192.box.widget;
 
 import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.LinearLayout;
+
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import android.util.AttributeSet;
-import android.widget.LinearLayout;
 
 
 public class SquareLinearLayout extends LinearLayout {

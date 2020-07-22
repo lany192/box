@@ -6,8 +6,6 @@ public interface BaseListView<T> extends BaseView {
 
     void addItems(List<T> items);
 
-    void setItems(List<T> items);
-
     void fail();
 
     void stop();
@@ -17,4 +15,6 @@ public interface BaseListView<T> extends BaseView {
     void gotoTop();
 
     List<T> getItems();
+
+    void setItems(List<T> items);
 }

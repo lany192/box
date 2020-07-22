@@ -28,8 +28,8 @@ import static android.Manifest.permission;
  * 服务维护一个唯一不变的设备id（目前做不到百分百正确，只能尽量保证唯一不变）
  */
 public class DeviceId {
-    private final String TAG = getClass().getSimpleName();
     private volatile static DeviceId instance = null;
+    private final String TAG = getClass().getSimpleName();
     private String deviceId;
 
     private DeviceId() {

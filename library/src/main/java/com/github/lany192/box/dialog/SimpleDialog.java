@@ -1,17 +1,18 @@
 package com.github.lany192.box.dialog;
 
 import android.graphics.Color;
-import androidx.annotation.ColorInt;
-import androidx.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.StringRes;
+
 import com.elvishew.xlog.XLog;
-import com.klinker.android.link_builder.TouchableMovementMethod;
 import com.github.lany192.box.R;
+import com.klinker.android.link_builder.TouchableMovementMethod;
 
 //    SimpleDialog dialog = new SimpleDialog();
 //    dialog.setTitle("提示");
@@ -149,14 +150,6 @@ public class SimpleDialog extends DialogFragment {
         this.mMsgTextSize = size;
     }
 
-    public interface OnRightListener {
-        void onClicked();
-    }
-
-    public interface OnLeftListener {
-        void onClicked();
-    }
-
     public void setRightTextColor(@ColorInt int colorIntId) {
         this.mRightTextColor = colorIntId;
     }
@@ -191,5 +184,13 @@ public class SimpleDialog extends DialogFragment {
     public void setLeftBtn(CharSequence leftText) {
         this.mLeftText = leftText;
         this.isShowDivider = true;
+    }
+
+    public interface OnRightListener {
+        void onClicked();
+    }
+
+    public interface OnLeftListener {
+        void onClicked();
     }
 }

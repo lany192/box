@@ -2,7 +2,6 @@ package com.github.lany192.box.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.AttrRes;

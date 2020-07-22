@@ -1,8 +1,9 @@
 package com.github.lany192.box.utils;
 
-import androidx.annotation.Keep;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.Keep;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

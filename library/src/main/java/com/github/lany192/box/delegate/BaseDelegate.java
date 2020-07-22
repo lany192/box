@@ -6,8 +6,6 @@ import androidx.lifecycle.OnLifecycleEvent;
 
 import com.github.lany192.box.mvp.BaseView;
 
-import javax.inject.Inject;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;

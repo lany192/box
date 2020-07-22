@@ -1,9 +1,10 @@
 package com.github.lany192.box.delegate;
 
 import android.graphics.Color;
-import androidx.annotation.ColorInt;
 import android.text.TextUtils;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
 
 import com.github.lany192.box.R;
 import com.github.lany192.box.adapter.ItemViewHolder;

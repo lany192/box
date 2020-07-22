@@ -8,11 +8,12 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.Settings;
-import androidx.fragment.app.FragmentActivity;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.box.Box;
 import com.github.lany192.box.dialog.SimpleDialog;

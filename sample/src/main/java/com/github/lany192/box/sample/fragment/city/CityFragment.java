@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.lany192.box.adapter.DelegateAdapter;
-import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.DaggerFragment;
+import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.decoration.LinearItemDecoration;
 

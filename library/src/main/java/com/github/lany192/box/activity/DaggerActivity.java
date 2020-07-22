@@ -1,6 +1,7 @@
 package com.github.lany192.box.activity;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 
 import javax.inject.Inject;

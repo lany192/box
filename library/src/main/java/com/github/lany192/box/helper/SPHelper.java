@@ -14,8 +14,8 @@ import java.util.Map;
  * SharedPreferences封装工具类
  */
 public final class SPHelper {
-    private final String TAG = getClass().getSimpleName();
     private volatile static SPHelper instance;
+    private final String TAG = getClass().getSimpleName();
     private String mSpaceName;//默认存储空间名称
     private Context mContext;
     private SharedPreferences sharedPreferences;

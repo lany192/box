@@ -1,11 +1,12 @@
 package com.github.lany192.box.sample.fragment;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.widget.ImageView;
 
-import com.github.lany192.box.fragment.FragmentConfig;
+import androidx.annotation.NonNull;
+
 import com.github.lany192.box.fragment.BaseFragment;
+import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 
 import butterknife.BindView;

@@ -13,16 +13,13 @@ import java.util.regex.Pattern;
  */
 
 public class MoneyInputFilter implements InputFilter {
-    private Pattern mPattern;
-
     //输入的最大金额
     private static final int MAX_VALUE = Integer.MAX_VALUE;
     //小数点后的位数
     private static final int POINTER_LENGTH = 2;
-
     private static final String POINTER = ".";
-
     private static final String ZERO = "0";
+    private Pattern mPattern;
 
     public MoneyInputFilter() {
         mPattern = Pattern.compile("([0-9]|\\.)*");

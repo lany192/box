@@ -28,6 +28,9 @@ public final class ImageLoader {
     private volatile static ImageLoader instance;
     private Headers headers = Headers.DEFAULT;
 
+    private ImageLoader() {
+    }
+
     public static ImageLoader get() {
         if (instance == null) {
             synchronized (ImageLoader.class) {
@@ -37,9 +40,6 @@ public final class ImageLoader {
             }
         }
         return instance;
-    }
-
-    private ImageLoader() {
     }
 
     /**

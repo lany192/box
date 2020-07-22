@@ -1,4 +1,5 @@
 package com.github.lany192.box.sample.bean;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

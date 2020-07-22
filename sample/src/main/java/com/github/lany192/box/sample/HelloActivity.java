@@ -1,8 +1,8 @@
 package com.github.lany192.box.sample;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HelloActivity extends AppCompatActivity {
 

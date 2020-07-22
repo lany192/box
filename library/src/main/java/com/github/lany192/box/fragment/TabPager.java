@@ -20,9 +20,9 @@ import java.util.List;
  * 简化ViewPager2和TabLayout的绑定
  */
 public class TabPager {
-    private List<PagerItem> items = new ArrayList<>();
     private final ViewPager2 viewPager2;
     private final TabLayout tabLayout;
+    private List<PagerItem> items = new ArrayList<>();
     private FragmentStateAdapter adapter;
 
     public TabPager(FragmentActivity fragmentActivity, final ViewPager2 viewPager2, final TabLayout tabLayout) {

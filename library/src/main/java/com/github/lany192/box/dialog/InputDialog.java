@@ -4,16 +4,12 @@ import android.os.Handler;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.github.lany192.box.utils.PhoneUtils;
-import com.github.lany192.box.utils.SoftKeyboardUtils;
 import com.github.lany192.box.R;
+import com.github.lany192.box.utils.SoftKeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,11 +86,6 @@ public class InputDialog extends DialogFragment {
         findViewById(R.id.dialog_input_close_btn).setOnClickListener(v -> cancel());
     }
 
-
-    public interface OnInputListener {
-        void onResult(CharSequence result);
-    }
-
     public void setInputType(int inputType) {
         this.inputType = inputType;
     }
@@ -125,5 +116,9 @@ public class InputDialog extends DialogFragment {
 
     public void setContent(CharSequence content) {
         this.content = content;
+    }
+
+    public interface OnInputListener {
+        void onResult(CharSequence result);
     }
 }

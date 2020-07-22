@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.lany192.box.adapter.DelegateAdapter;
-import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.delegate.DividerDelegate;
 import com.github.lany192.box.fragment.BaseFragment;
+import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.delegate.HelloDelegate;
 import com.github.lany192.box.utils.JsonUtils;
