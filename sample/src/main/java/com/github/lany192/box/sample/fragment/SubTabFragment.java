@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.github.lany192.box.adapter.DelegateAdapter;
+import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
@@ -76,6 +76,6 @@ public class SubTabFragment extends BaseFragment {
 //                    .hintColor(Color.BLACK)
 //                    .hint("华丽的分割线----------------------------"));
         }
-        mShowView.setAdapter(new DelegateAdapter(items, manager));
+        mShowView.setAdapter(new MultiAdapter(items, manager));
     }
 }

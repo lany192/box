@@ -2,7 +2,6 @@ package com.github.lany192.box.mvp;
 
 
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 
 import com.elvishew.xlog.Logger;
@@ -13,9 +12,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public abstract class BaseModel implements LifecycleObserver {
-    protected final String TAG = this.getClass().getSimpleName();
-    protected Logger.Builder log = XLog.tag(TAG);
+public abstract class BaseModel implements BaseContract.Model {
+    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {

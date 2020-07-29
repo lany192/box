@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.lany192.box.adapter.DelegateAdapter;
+import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.DaggerFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
@@ -27,7 +27,7 @@ public class CityFragment extends DaggerFragment implements CityContract.View {
     @Inject
     CityPresenter mCityPresenter;
 
-    private DelegateAdapter mMultiAdapter;
+    private MultiAdapter mMultiAdapter;
 
     @NonNull
     @Override
@@ -43,7 +43,7 @@ public class CityFragment extends DaggerFragment implements CityContract.View {
         mShowView.addItemDecoration(new LinearItemDecoration(manager.getOrientation())
                 .setColor(Color.GRAY)
                 .setWidth(1));
-        mMultiAdapter = new DelegateAdapter(new ArrayList<>());
+        mMultiAdapter = new MultiAdapter(new ArrayList<>());
         mShowView.setAdapter(mMultiAdapter);
         onRetry();
     }

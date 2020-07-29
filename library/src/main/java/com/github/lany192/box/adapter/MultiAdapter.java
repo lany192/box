@@ -13,15 +13,15 @@ import java.util.List;
 /**
  * 多布局适配器
  */
-public class DelegateAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder> {
+public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder> {
     private final int TYPE_NOT_FOUND = -404;
     private SparseIntArray mItemTypeMap = new SparseIntArray();
 
-    public DelegateAdapter(List<Delegate> items) {
+    public MultiAdapter(List<Delegate> items) {
         super(items);
     }
 
-    public DelegateAdapter(List<Delegate> items, GridLayoutManager layoutManager) {
+    public MultiAdapter(List<Delegate> items, GridLayoutManager layoutManager) {
         super(items);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override

@@ -1,6 +1,8 @@
 package com.github.lany192.box.mvp;
 
-public interface OnLifecycle {
+import androidx.lifecycle.LifecycleObserver;
+
+public interface OnLifecycle extends LifecycleObserver {
 
     void onCreate();
 

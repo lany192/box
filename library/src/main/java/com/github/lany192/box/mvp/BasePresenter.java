@@ -18,11 +18,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public abstract class BasePresenter<V extends PageView, M> implements LifecycleObserver, BaseContract {
-    protected final String TAG = this.getClass().getSimpleName();
+public abstract class BasePresenter<V extends BaseView, M> implements BaseContract.Presenter {
     private final V view;
     private final M model;
-    protected Logger.Builder log = XLog.tag(TAG);
+    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private CompositeDisposable compositeDisposable;
 
     public BasePresenter(V view, M model) {
