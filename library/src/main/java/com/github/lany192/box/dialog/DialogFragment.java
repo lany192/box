@@ -25,7 +25,6 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.view.StateLayout;
@@ -47,14 +46,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     protected FragmentActivity self;
     private StateLayout stateLayout;
     private Unbinder unbinder;
-
-    protected boolean canceledOnTouchOutside = true;
-
-    /**
-     * 是否执行过懒加载
-     */
-    private boolean isLazyLoaded;
-
+    private boolean canceledOnTouchOutside = true;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     protected abstract int getLayoutId();
@@ -129,11 +121,6 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
                 window.setGravity(Gravity.BOTTOM);
             }
         }
-        //需要在FragmentStatePagerAdapter构造方法中配置
-        if (!isLazyLoaded) {
-            isLazyLoaded = true;
-            init();
-        }
     }
 
 
@@ -144,6 +131,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         stateLayout.setOnRetryListener(this);
         stateLayout.addView(inflater.inflate(getLayoutId(), null));
         unbinder = ButterKnife.bind(this, stateLayout);
+        init();
         return stateLayout;
     }
 
@@ -153,7 +141,6 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
 
     @Override
     public void onDestroy() {
-        log.i(TAG + " onDestroy()");
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
@@ -219,7 +206,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
         if (isAdded()) {
-            log.w(TAG, "已经显示，忽略......");
+            log.w("已经显示，忽略......");
         } else {
             super.show(manager, tag);
         }
