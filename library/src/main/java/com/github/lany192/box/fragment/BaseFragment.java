@@ -19,7 +19,7 @@ import com.github.lany192.box.R;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
-import com.github.lany192.box.mvp.BaseView;
+import com.github.lany192.box.mvp.PageView;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.view.StateLayout;
@@ -33,7 +33,7 @@ import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, PageView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;

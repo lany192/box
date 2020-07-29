@@ -18,7 +18,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public abstract class BasePresenter<V extends BaseView, M> implements LifecycleObserver, BaseContract {
+public abstract class BasePresenter<V extends PageView, M> implements LifecycleObserver, BaseContract {
     protected final String TAG = this.getClass().getSimpleName();
     private final V view;
     private final M model;

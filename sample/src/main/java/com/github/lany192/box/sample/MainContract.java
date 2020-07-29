@@ -1,10 +1,10 @@
 package com.github.lany192.box.sample;
 
-import com.github.lany192.box.mvp.BaseView;
+import com.github.lany192.box.mvp.PageView;
 
 public interface MainContract {
 
-    interface View extends BaseView {
+    interface View extends PageView {
     }
 
     interface Presenter {

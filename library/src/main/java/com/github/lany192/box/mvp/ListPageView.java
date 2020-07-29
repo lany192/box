@@ -2,7 +2,10 @@ package com.github.lany192.box.mvp;
 
 import java.util.List;
 
-public interface BaseListView<T> extends BaseView {
+/**
+ * 分页列表页视图
+ */
+public interface ListPageView<T> extends PageView {
 
     void addItems(List<T> items);
 

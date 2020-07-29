@@ -17,12 +17,4 @@ public interface BaseView extends LifecycleOwner {
     void showError(String msg);
 
     void showLoading();
-
-    void showLoadingDialog();
-
-    void showLoadingDialog(CharSequence message);
-
-    void cancelLoadingDialog();
-
-    void finish();
 }
