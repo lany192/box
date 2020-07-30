@@ -11,7 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.RelativeLayout.LayoutParams;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -45,9 +46,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
     private StateLayout stateLayout;
+    private LinearLayout contentView;
     private Unbinder unbinder;
     private boolean canceledOnTouchOutside = true;
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private CompositeDisposable disposable = new CompositeDisposable();
 
     protected abstract int getLayoutId();
 
@@ -121,22 +123,43 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
                 window.setGravity(Gravity.BOTTOM);
             }
         }
+        init();
     }
 
+    protected View createTopView(LayoutInflater inflater) {
+        return null;
+    }
+
+    protected View createBottomView(LayoutInflater inflater) {
+        return null;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        contentView = new LinearLayout(self);
+        contentView.setOrientation(LinearLayout.VERTICAL);
+        contentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
+        View topView = createTopView(inflater);
+        if (topView!=null) {
+            contentView.addView(topView);
+        }
+
         stateLayout = new StateLayout(self);
-        stateLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         stateLayout.setOnRetryListener(this);
         stateLayout.addView(inflater.inflate(getLayoutId(), null));
-        unbinder = ButterKnife.bind(this, stateLayout);
-        init();
-        return stateLayout;
+        contentView.addView(stateLayout);
+
+        View bottomView = createBottomView(inflater);
+        if (bottomView!=null) {
+            contentView.addView(bottomView);
+        }
+        unbinder = ButterKnife.bind(this, contentView);
+        return contentView;
     }
 
     public <T extends View> T findViewById(@IdRes int id) {
-        return stateLayout.findViewById(id);
+        return contentView.findViewById(id);
     }
 
     @Override
@@ -147,9 +170,9 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         if (null != unbinder) {
             unbinder.unbind();
         }
-        if (compositeDisposable != null && compositeDisposable.isDisposed()) {
-            compositeDisposable.dispose();
-            compositeDisposable = null;
+        if (disposable != null && disposable.isDisposed()) {
+            disposable.dispose();
+            disposable = null;
         }
         super.onDestroy();
     }
@@ -200,7 +223,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     protected void manageDisposable(Disposable disposable) {
-        compositeDisposable.add(disposable);
+        this.disposable.add(disposable);
     }
 
     @Override
