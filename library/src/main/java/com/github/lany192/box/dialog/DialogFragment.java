@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -126,7 +125,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       View view = inflater.inflate(getLayoutId(), container,true);
+        View view = inflater.inflate(getLayoutId(), container, true);
         stateLayout = view.findViewById(R.id.id_state_layout);
         if (stateLayout != null) {
             stateLayout.setOnRetryListener(this);
@@ -168,6 +167,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void showEmpty() {
         if (stateLayout != null) {
             stateLayout.showEmpty();
+        } else {
+            throw new IllegalArgumentException("请在布局文件中配置id为‘id_state_layout’的StateLayout控件");
         }
     }
 
@@ -175,6 +176,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void showEmpty(String msg) {
         if (stateLayout != null) {
             stateLayout.showEmpty(msg);
+        } else {
+            throw new IllegalArgumentException("请在布局文件中配置id为‘id_state_layout’的StateLayout控件");
         }
     }
 
@@ -182,6 +185,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void showContent() {
         if (stateLayout != null) {
             stateLayout.showContent();
+        } else {
+            throw new IllegalArgumentException("请在布局文件中配置id为‘id_state_layout’的StateLayout控件");
         }
     }
 
@@ -189,6 +194,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void showNoWifi() {
         if (stateLayout != null) {
             stateLayout.showNetwork();
+        } else {
+            throw new IllegalArgumentException("请在布局文件中配置id为‘id_state_layout’的StateLayout控件");
         }
     }
 
@@ -196,6 +203,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void showError() {
         if (stateLayout != null) {
             stateLayout.showError();
+        } else {
+            throw new IllegalArgumentException("请在布局文件中配置id为‘id_state_layout’的StateLayout控件");
         }
     }
 
@@ -203,6 +212,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void showError(String msg) {
         if (stateLayout != null) {
             stateLayout.showError(msg);
+        } else {
+            throw new IllegalArgumentException("请在布局文件中配置id为‘id_state_layout’的StateLayout控件");
         }
     }
 
@@ -210,6 +221,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void showLoading() {
         if (stateLayout != null) {
             stateLayout.showLoading();
+        } else {
+            throw new IllegalArgumentException("请在布局文件中配置id为‘id_state_layout’的StateLayout控件");
         }
     }
 

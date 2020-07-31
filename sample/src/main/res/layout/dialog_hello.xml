@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
-    android:background="@color/blue"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_dialog_bg"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".HelloActivity">
@@ -17,5 +17,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="按钮1" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="按钮2" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="按钮3" />
+    </LinearLayout>
+
+    <com.github.lany192.view.StateLayout
+        android:id="@+id/id_state_layout"
+        android:layout_width="match_parent"
+        android:minHeight="200dp"
+        android:layout_height="wrap_content">
+
+        <com.github.lany192.box.widget.ShowView
+            android:id="@+id/show_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.github.lany192.view.StateLayout>
 
 </LinearLayout>
