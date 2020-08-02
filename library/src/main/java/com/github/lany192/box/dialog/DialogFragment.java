@@ -47,6 +47,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     private Unbinder unbinder;
     private boolean canceledOnTouchOutside = true;
     private CompositeDisposable disposable = new CompositeDisposable();
+    private boolean isInitLoaded;
 
     protected abstract int getLayoutId();
 
@@ -120,7 +121,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
                 window.setGravity(Gravity.BOTTOM);
             }
         }
-        init();
+        if (!isInitLoaded) {
+            isInitLoaded = true;
+            init();
+        }
     }
 
     @Override
