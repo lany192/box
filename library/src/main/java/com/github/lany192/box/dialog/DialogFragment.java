@@ -1,6 +1,8 @@
 package com.github.lany192.box.dialog;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -243,8 +245,17 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         }
     }
 
+    public void show(@NonNull Context context) {
+        FragmentActivity activity = context2activity(context);
+        if (activity != null) {
+            show(activity);
+        } else {
+            log.e("没有context，不能调起对话框");
+        }
+    }
+
     public void show(@NonNull Fragment fragment) {
-        show(fragment.requireActivity().getSupportFragmentManager(), TAG);
+        show(fragment.requireActivity());
     }
 
     public void show(@NonNull FragmentActivity activity) {
@@ -259,5 +270,16 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
             fragmentTransaction.remove(this);
             fragmentTransaction.commit();
         }
+    }
+
+    private FragmentActivity context2activity(Context context) {
+        if (context == null) {
+            return null;
+        } else if (context instanceof FragmentActivity) {
+            return (FragmentActivity) context;
+        } else if (context instanceof ContextWrapper) {
+            return context2activity(((ContextWrapper) context).getBaseContext());
+        }
+        return null;
     }
 }
