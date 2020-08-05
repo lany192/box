@@ -53,6 +53,6 @@ public class IndexFragment extends BaseFragment {
         dialog.setMaxLength(5);
         dialog.setButtonText("提交");
         dialog.setOnInputListener(ToastUtils::show);
-        dialog.show(self);
+        dialog.show(this);
     }
 }

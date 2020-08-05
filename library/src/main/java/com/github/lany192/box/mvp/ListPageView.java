@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 分页列表页视图
  */
-public interface ListPageView<T> extends PageView {
+public interface ListPageView<T> extends BaseView {
 
     void addItems(List<T> items);
 

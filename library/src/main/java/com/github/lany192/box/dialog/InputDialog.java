@@ -38,12 +38,12 @@ public class InputDialog extends DialogFragment {
     @Override
     public void onResume() {
         super.onResume();
-        new Handler().postDelayed(() -> SoftKeyboardUtils.toggle(self), 300);
+        new Handler().postDelayed(() -> SoftKeyboardUtils.toggle(requireActivity()), 300);
     }
 
     @Override
     public void cancel() {
-        SoftKeyboardUtils.hideSoftInput(self, editText);
+        SoftKeyboardUtils.hideSoftInput(requireActivity(), editText);
         super.cancel();
     }
 
