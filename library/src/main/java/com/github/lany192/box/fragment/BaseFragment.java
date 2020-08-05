@@ -34,7 +34,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, PageView {
-    protected final String TAG = this.getClass().getSimpleName();
+    protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
     private StateLayout stateLayout;
@@ -152,7 +152,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public void onDestroy() {
-        log.i(TAG + " onDestroy()");
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }

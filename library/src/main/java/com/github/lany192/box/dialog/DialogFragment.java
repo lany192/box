@@ -42,7 +42,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public abstract class DialogFragment extends androidx.fragment.app.DialogFragment implements StateLayout.OnRetryListener, BaseView {
-    protected final String TAG = this.getClass().getSimpleName();
+    protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
     private StateLayout stateLayout;
