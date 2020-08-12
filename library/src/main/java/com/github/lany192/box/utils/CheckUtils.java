@@ -13,7 +13,7 @@ public class CheckUtils {
      * 验证手机格式
      */
     public static boolean checkPhone(String mobiles) {
-        String telRegex = "[1][345678]\\d{9}";
+        String telRegex = "[1][3456789]\\d{9}";
         return !TextUtils.isEmpty(mobiles) && mobiles.matches(telRegex);
     }
 
