@@ -91,6 +91,7 @@ public class ShowView extends FrameLayout {
     public void setAdapter(BaseQuickAdapter adapter) {
         this.mAdapter = adapter;
         loadMoreModule = new BaseLoadMoreModule(mAdapter);
+        loadMoreModule.setEnableLoadMore(true);
         loadMoreModule.setLoadMoreView(new FooterView());
         loadMoreModule.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
