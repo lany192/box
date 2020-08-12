@@ -41,15 +41,16 @@ import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class DialogFragment extends androidx.fragment.app.DialogFragment implements StateLayout.OnRetryListener, BaseView {
-    protected final String TAG = this.getClass().getSimpleName();
+public abstract class DialogFragment extends androidx.fragment.app.DialogFragment
+        implements StateLayout.OnRetryListener, BaseView {
+    protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
-    protected FragmentActivity self;
     private StateLayout stateLayout;
     private Unbinder unbinder;
     private boolean canceledOnTouchOutside = true;
     private CompositeDisposable disposable = new CompositeDisposable();
     private boolean isInitLoaded;
+    private LoadingDialog loadingDialog;
 
     protected abstract int getLayoutId();
 
@@ -106,7 +107,6 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        this.self = getActivity();
     }
 
     public void setCanceledOnTouchOutside(boolean canceledOnTouchOutside) {
@@ -234,6 +234,29 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
 
     protected void manageDisposable(Disposable disposable) {
         this.disposable.add(disposable);
+    }
+
+    @Override
+    public void showLoadingDialog() {
+        showLoadingDialog(getString(R.string.loading));
+    }
+
+    @Override
+    public void showLoadingDialog(CharSequence message) {
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog();
+        }
+        loadingDialog.setMessage(message);
+        if (!loadingDialog.isAdded()) {
+            loadingDialog.show(getParentFragmentManager(), TAG);
+        }
+    }
+
+    @Override
+    public void cancelLoadingDialog() {
+        if (loadingDialog != null && loadingDialog.isAdded()) {
+            loadingDialog.cancel();
+        }
     }
 
     @Override

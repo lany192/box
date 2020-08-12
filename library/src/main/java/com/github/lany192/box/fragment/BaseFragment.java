@@ -1,6 +1,5 @@
 package com.github.lany192.box.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.RelativeLayout.LayoutParams;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
@@ -19,7 +17,7 @@ import com.github.lany192.box.R;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
-import com.github.lany192.box.mvp.PageView;
+import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.view.StateLayout;
@@ -33,10 +31,9 @@ import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, PageView {
-    protected final String TAG = this.getClass().getSimpleName();
+public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
+    protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
-    protected FragmentActivity self;
     private StateLayout stateLayout;
     private Unbinder unbinder;
     private LoadingDialog loadingDialog;
@@ -72,7 +69,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        this.self = getActivity();
         config = getConfig(new FragmentConfig()
                 .layoutId(R.layout.ui_default)
                 .toolbarHeight(DensityUtils.dp2px(48)));
@@ -104,10 +100,10 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRootView = new RelativeLayout(self);
+        mRootView = new RelativeLayout(getContext());
         mRootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
-        stateLayout = new StateLayout(self);
+        stateLayout = new StateLayout(getContext());
         stateLayout.setOnRetryListener(this);
         View contentView = inflater.inflate(config.getLayoutId(), null);
         if (config.getContentColor() > 0) {
@@ -152,7 +148,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public void onDestroy() {
-        log.i(TAG + " onDestroy()");
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
@@ -223,7 +218,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         }
         loadingDialog.setMessage(message);
         if (!loadingDialog.isAdded()) {
-            loadingDialog.show(self.getSupportFragmentManager(), TAG);
+            loadingDialog.show(getParentFragmentManager(), TAG);
         }
     }
 
@@ -231,14 +226,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     public void cancelLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isAdded()) {
             loadingDialog.cancel();
-        }
-    }
-
-    @Override
-    public void finish() {
-        Activity activity = getActivity();
-        if (activity != null) {
-            activity.finish();
         }
     }
 
