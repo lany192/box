@@ -101,6 +101,7 @@ public class ShowView extends FrameLayout {
                 }
             }
         });
+        loadMoreModule.setAutoLoadMore(true);
         mRecyclerView.setAdapter(adapter);
     }
 
