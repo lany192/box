@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
+import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.github.lany192.box.delegate.Delegate;
 
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.List;
 /**
  * 多布局适配器
  */
-public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder> {
+public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder>
+        implements LoadMoreModule {
     private final int TYPE_NOT_FOUND = -404;
     private SparseIntArray mItemTypeMap = new SparseIntArray();
 

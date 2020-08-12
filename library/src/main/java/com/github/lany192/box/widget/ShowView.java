@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnLoadMoreListener;
-import com.chad.library.adapter.base.module.BaseLoadMoreModule;
+import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.github.lany192.box.R;
 import com.github.lany192.box.interfaces.OnRefreshMoreListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -27,9 +26,8 @@ public class ShowView extends FrameLayout {
     private ImageView mGotoTopBtn;
 
     private int gotoTopCount = 5;
-    private BaseQuickAdapter mAdapter;
+    private BaseQuickAdapter<?, ?> mAdapter;
     private OnRefreshMoreListener mListener;
-    private BaseLoadMoreModule loadMoreModule;
 
     public ShowView(Context context) {
         super(context);
@@ -71,12 +69,12 @@ public class ShowView extends FrameLayout {
             }
         });
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            loadMoreModule.setEnableLoadMore(false);
+            mAdapter.getLoadMoreModule().setEnableLoadMore(false);
             if (mListener != null) {
                 mListener.onRefresh();
             }
             mRefreshLayout.finishRefresh();
-            loadMoreModule.setEnableLoadMore(true);
+            mAdapter.getLoadMoreModule().setEnableLoadMore(true);
         });
     }
 
@@ -88,21 +86,27 @@ public class ShowView extends FrameLayout {
         mRefreshLayout.setEnabled(enabled);
     }
 
-    public void setAdapter(BaseQuickAdapter adapter) {
-        this.mAdapter = adapter;
-        loadMoreModule = new BaseLoadMoreModule(mAdapter);
-        loadMoreModule.setAutoLoadMore(true);
-        loadMoreModule.setEnableLoadMore(true);
-        loadMoreModule.setLoadMoreView(new FooterView());
-        loadMoreModule.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
+    public void setEnableLoadMore(boolean enable) {
+        if (mAdapter != null) {
+            mAdapter.getLoadMoreModule().setEnableLoadMore(enable);
+        }
+    }
+
+    public void setAdapter(BaseQuickAdapter<?, ?> adapter) {
+        if (adapter instanceof LoadMoreModule) {
+            this.mAdapter = adapter;
+            mAdapter.getLoadMoreModule().setAutoLoadMore(true);
+            mAdapter.getLoadMoreModule().setEnableLoadMore(true);
+            mAdapter.getLoadMoreModule().setLoadMoreView(new FooterView());
+            mAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
                 if (mListener != null) {
                     mListener.onLoadMore();
                 }
-            }
-        });
-        mRecyclerView.setAdapter(adapter);
+            });
+            mRecyclerView.setAdapter(mAdapter);
+        } else {
+            throw new IllegalArgumentException("Please first implements LoadMoreModule");
+        }
     }
 
     public void addOnScrollListener(RecyclerView.OnScrollListener listener) {
@@ -136,7 +140,7 @@ public class ShowView extends FrameLayout {
     public void stop() {
         mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
-            loadMoreModule.loadMoreComplete();
+            mAdapter.getLoadMoreModule().loadMoreComplete();
         }
     }
 
@@ -146,16 +150,16 @@ public class ShowView extends FrameLayout {
     public void end() {
         mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
-            loadMoreModule.loadMoreComplete();
-            loadMoreModule.loadMoreEnd();
+            mAdapter.getLoadMoreModule().loadMoreComplete();
+            mAdapter.getLoadMoreModule().loadMoreEnd();
         }
     }
 
     public void loadMoreFail() {
         mRefreshLayout.finishRefresh();
         if (mAdapter != null) {
-            loadMoreModule.loadMoreComplete();
-            loadMoreModule.loadMoreFail();
+            mAdapter.getLoadMoreModule().loadMoreComplete();
+            mAdapter.getLoadMoreModule().loadMoreFail();
         }
     }
 
