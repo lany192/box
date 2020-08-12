@@ -91,6 +91,7 @@ public class ShowView extends FrameLayout {
     public void setAdapter(BaseQuickAdapter adapter) {
         this.mAdapter = adapter;
         loadMoreModule = new BaseLoadMoreModule(mAdapter);
+        loadMoreModule.setAutoLoadMore(true);
         loadMoreModule.setEnableLoadMore(true);
         loadMoreModule.setLoadMoreView(new FooterView());
         loadMoreModule.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -101,7 +102,6 @@ public class ShowView extends FrameLayout {
                 }
             }
         });
-        loadMoreModule.setAutoLoadMore(true);
         mRecyclerView.setAdapter(adapter);
     }
 
