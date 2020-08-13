@@ -126,23 +126,23 @@ public class Box {
             }
 
             @Override
-            public int getPaddingLeft() {
+            public int getPaddingStart() {
                 return 16;
             }
 
             @Override
             public int getPaddingTop() {
-                return getPaddingLeft();
+                return getPaddingStart();
             }
 
             @Override
-            public int getPaddingRight() {
-                return getPaddingLeft();
+            public int getPaddingEnd() {
+                return getPaddingStart();
             }
 
             @Override
             public int getPaddingBottom() {
-                return getPaddingLeft();
+                return getPaddingStart();
             }
         });
     }
