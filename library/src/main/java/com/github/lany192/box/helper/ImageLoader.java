@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
@@ -16,7 +17,9 @@ import com.bumptech.glide.load.model.Headers;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.github.lany192.box.R;
 import com.github.lany192.box.utils.CheckUtils;
 import com.github.lany192.box.utils.RoundedCornersTransform;
@@ -134,38 +137,29 @@ public final class ImageLoader {
     }
 
     /**
-     * 显示图片
-     */
-    public void show(ImageView imageView, Object model, RequestOptions options) {
-        load(imageView, model, options, null);
-    }
-
-    /**
      * 显示图片原始比例，宽顶满显示控件
      */
     public void showFullWidth(ImageView imageView, Object model) {
-        load(imageView, model, new RequestOptions(), new RequestListener<Drawable>() {
-
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                imageView.setVisibility(View.VISIBLE);
-                imageView.getLayoutParams().height = imageView.getWidth() * resource.getIntrinsicHeight() / resource.getIntrinsicWidth();
-                imageView.setImageDrawable(resource);
-                imageView.requestLayout();
-                return true;
-            }
-        });
+        Glide.with(imageView.getContext())
+                .load(model)
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.default_pic)
+                        .error(R.drawable.default_pic))
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        imageView.setVisibility(View.VISIBLE);
+                        imageView.getLayoutParams().height = imageView.getWidth() * resource.getIntrinsicHeight() / resource.getIntrinsicWidth();
+                        imageView.setImageDrawable(resource);
+                        imageView.requestLayout();
+                    }
+                });
     }
 
     /**
      * 通用加载项
      */
-    private void load(ImageView imageView, Object model, RequestOptions options, RequestListener<Drawable> listener) {
+    public void show(ImageView imageView, Object model, RequestOptions options) {
         if (imageView == null) {
             return;
         }
@@ -187,17 +181,11 @@ public final class ImageLoader {
         }
         if (model instanceof String) {
             String url = (String) model;
-            Glide.with(imageView.getContext())
-                    .load(CheckUtils.isWebUrl(url) ? new GlideUrl(url, headers) : url)
-                    .apply(options)
-                    .addListener(listener)
-                    .into(imageView);
-        } else {
-            Glide.with(imageView.getContext())
-                    .load(model)
-                    .apply(options)
-                    .addListener(listener)
-                    .into(imageView);
+            model = CheckUtils.isWebUrl(url) ? new GlideUrl(url, headers) : url;
         }
+        Glide.with(imageView.getContext())
+                .load(model)
+                .apply(options)
+                .into(imageView);
     }
 }
