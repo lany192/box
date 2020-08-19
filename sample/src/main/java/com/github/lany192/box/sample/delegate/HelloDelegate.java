@@ -17,6 +17,6 @@ public class HelloDelegate extends ItemDelegate<String> {
 
     @Override
     public void bind(ItemViewHolder holder, String pic, int position) {
-        holder.setImageFullWidth(R.id.my_image_view, pic);
+        holder.setImage(R.id.my_image_view, pic,true);
     }
 }

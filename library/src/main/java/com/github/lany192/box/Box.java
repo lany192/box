@@ -24,7 +24,6 @@ import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.helper.SPHelper;
 import com.github.lany192.box.log.LogFileFormat;
 import com.github.lany192.box.log.LogFileNameGenerator;
-import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.OtherUtils;
 import com.github.lany192.box.utils.PermissionUtils;
@@ -103,7 +102,7 @@ public class Box {
 
             @Override
             public int getCornerRadius() {
-                return DensityUtils.dp2px(5);
+                return 5;
             }
 
             @Override
@@ -118,7 +117,7 @@ public class Box {
 
             @Override
             public float getTextSize() {
-                return DensityUtils.sp2px(14);
+                return 14;
             }
 
             @Override
@@ -127,23 +126,23 @@ public class Box {
             }
 
             @Override
-            public int getPaddingStart() {
-                return DensityUtils.dp2px(16);
+            public int getPaddingLeft() {
+                return 16;
             }
 
             @Override
             public int getPaddingTop() {
-                return getPaddingStart();
+                return getPaddingLeft();
             }
 
             @Override
-            public int getPaddingEnd() {
-                return getPaddingStart();
+            public int getPaddingRight() {
+                return getPaddingLeft();
             }
 
             @Override
             public int getPaddingBottom() {
-                return getPaddingStart();
+                return getPaddingLeft();
             }
         });
     }

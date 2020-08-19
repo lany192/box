@@ -44,7 +44,7 @@ public class DemoFragment extends BaseFragment {
     void buttonClicked() {
         showLoadingDialog();
         new Handler().postDelayed(() -> {
-            ImageLoader.get().showFullWidth(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318");
+            ImageLoader.get().show(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318",true);
             cancelLoadingDialog();
         }, 5 * 1000);
     }

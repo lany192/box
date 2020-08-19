@@ -16,12 +16,12 @@ public abstract class ItemDelegate<T> implements Delegate {
     private T t;
     private int spanSize = 2;
 
-    public ItemDelegate(@NonNull final T t) {
-        this.t = t;
+    public ItemDelegate(@NonNull final T item) {
+        this.t = item;
     }
 
-    public ItemDelegate(int spanSize, @NonNull final T t) {
-        this.t = t;
+    public ItemDelegate(int spanSize, @NonNull final T item) {
+        this.t = item;
         this.spanSize = spanSize;
     }
 
@@ -47,7 +47,7 @@ public abstract class ItemDelegate<T> implements Delegate {
     /**
      * 控价和数据绑定
      */
-    public abstract void bind(ItemViewHolder holder, T t, int position);
+    public abstract void bind(ItemViewHolder holder, T item, int position);
 
     @Override
     public void convert(ItemViewHolder holder, Context context) {
@@ -58,7 +58,7 @@ public abstract class ItemDelegate<T> implements Delegate {
         bind(holder, t, position);
     }
 
-    public void onItemClicked(T t, int position) {
+    public void onItemClicked(T item, int position) {
         //item 点击事件
     }
 

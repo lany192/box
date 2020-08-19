@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -62,12 +63,14 @@ public final class ImageLoader {
                 .load(resId)
                 .addListener(new RequestListener<GifDrawable>() {
                     @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model,
+                                                Target<GifDrawable> target, boolean isFirstResource) {
                         return false;
                     }
 
                     @Override
-                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target,
+                                                   DataSource dataSource, boolean isFirstResource) {
                         resource.setLoopCount(1);
                         return false;
                     }
@@ -137,29 +140,23 @@ public final class ImageLoader {
     }
 
     /**
+     * 显示图片
+     */
+    public void show(ImageView imageView, Object model, RequestOptions options) {
+        load(imageView, model, options, false);
+    }
+
+    /**
      * 显示图片原始比例，宽顶满显示控件
      */
-    public void showFullWidth(ImageView imageView, Object model) {
-        Glide.with(imageView.getContext())
-                .load(model)
-                .apply(new RequestOptions()
-                        .placeholder(R.drawable.default_pic)
-                        .error(R.drawable.default_pic))
-                .into(new SimpleTarget<Drawable>() {
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        imageView.setVisibility(View.VISIBLE);
-                        imageView.getLayoutParams().height = imageView.getWidth() * resource.getIntrinsicHeight() / resource.getIntrinsicWidth();
-                        imageView.setImageDrawable(resource);
-                        imageView.requestLayout();
-                    }
-                });
+    public void show(ImageView imageView, Object model, boolean fullWidth) {
+        load(imageView, model, new RequestOptions(), fullWidth);
     }
 
     /**
      * 通用加载项
      */
-    public void show(ImageView imageView, Object model, RequestOptions options) {
+    private void load(ImageView imageView, Object model, RequestOptions options, boolean fullWidth) {
         if (imageView == null) {
             return;
         }
@@ -183,9 +180,22 @@ public final class ImageLoader {
             String url = (String) model;
             model = CheckUtils.isWebUrl(url) ? new GlideUrl(url, headers) : url;
         }
-        Glide.with(imageView.getContext())
+        RequestBuilder<Drawable> requestBuilder = Glide.with(imageView.getContext())
                 .load(model)
-                .apply(options)
-                .into(imageView);
+                .apply(options);
+        //是否原图比例显示
+        if (fullWidth) {
+            requestBuilder.into(new SimpleTarget<Drawable>() {
+                @Override
+                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                    imageView.setVisibility(View.VISIBLE);
+                    imageView.getLayoutParams().height = imageView.getWidth() * resource.getIntrinsicHeight() / resource.getIntrinsicWidth();
+                    imageView.setImageDrawable(resource);
+                    imageView.requestLayout();
+                }
+            });
+        } else {
+            requestBuilder.into(imageView);
+        }
     }
 }

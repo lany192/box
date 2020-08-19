@@ -3,6 +3,7 @@ package com.github.lany192.box.sample.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.lany192.box.adapter.MultiAdapter;
@@ -34,8 +35,8 @@ public class HelloFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        GridLayoutManager manager = new GridLayoutManager(getContext(),2);
+        manager.setOrientation(GridLayoutManager.VERTICAL);
         mShowView.setLayoutManager(manager);
 //        mShowView.addItemDecoration(new LinearDecoration(manager.getOrientation())
 //                .setPadding(DensityUtils.dp2px(8))
