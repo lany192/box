@@ -1,5 +1,7 @@
 package com.github.lany192.box.helper;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +29,7 @@ import com.github.lany192.box.utils.RoundedCornersTransform;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public final class ImageLoader {
     private volatile static ImageLoader instance;
@@ -166,11 +169,11 @@ public final class ImageLoader {
         }
         //判断是否添加占位资源
         if (options.getPlaceholderDrawable() == null && options.getPlaceholderId() == 0) {
-            options = options.placeholder(R.drawable.default_pic);
+            options = options.placeholder(new ColorDrawable(getRandomColor()));
         }
         //判断是否添加error资源
         if (options.getErrorPlaceholder() == null && options.getErrorId() == 0) {
-            options = options.error(R.drawable.default_pic);
+            options = options.error(new ColorDrawable(getRandomColor()));
         }
         //判断缓存类型
         if (options.getDiskCacheStrategy() == DiskCacheStrategy.AUTOMATIC) {
@@ -197,5 +200,24 @@ public final class ImageLoader {
         } else {
             requestBuilder.into(imageView);
         }
+    }
+
+    /**
+     * 随机颜色
+     */
+    private int getRandomColor() {
+        Random random = new Random();
+        int r = 0;
+        int g = 0;
+        int b = 0;
+        for (int i = 0; i < 2; i++) {
+            int temp = random.nextInt(16);
+            r = r * 16 + temp;
+            temp = random.nextInt(16);
+            g = g * 16 + temp;
+            temp = random.nextInt(16);
+            b = b * 16 + temp;
+        }
+        return Color.rgb(r, g, b);
     }
 }
