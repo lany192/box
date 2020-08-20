@@ -169,11 +169,11 @@ public final class ImageLoader {
         }
         //判断是否添加占位资源
         if (options.getPlaceholderDrawable() == null && options.getPlaceholderId() == 0) {
-            options = options.placeholder(new ColorDrawable(getRandomColor()));
+            options = options.placeholder(getRandomColorDrawable(imageView));
         }
         //判断是否添加error资源
         if (options.getErrorPlaceholder() == null && options.getErrorId() == 0) {
-            options = options.error(new ColorDrawable(getRandomColor()));
+            options = options.error(getRandomColorDrawable(imageView));
         }
         //判断缓存类型
         if (options.getDiskCacheStrategy() == DiskCacheStrategy.AUTOMATIC) {
@@ -183,12 +183,12 @@ public final class ImageLoader {
             String url = (String) model;
             model = CheckUtils.isWebUrl(url) ? new GlideUrl(url, headers) : url;
         }
-        RequestBuilder<Drawable> requestBuilder = Glide.with(imageView.getContext())
+        RequestBuilder<Drawable> builder = Glide.with(imageView.getContext())
                 .load(model)
                 .apply(options);
         //是否原图比例显示
         if (fullWidth) {
-            requestBuilder.into(new SimpleTarget<Drawable>() {
+            builder.into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                     imageView.setVisibility(View.VISIBLE);
@@ -198,26 +198,21 @@ public final class ImageLoader {
                 }
             });
         } else {
-            requestBuilder.into(imageView);
+            builder.into(imageView);
         }
     }
 
     /**
      * 随机颜色
      */
-    private int getRandomColor() {
+    private Drawable getRandomColorDrawable(ImageView imageView) {
         Random random = new Random();
-        int r = 0;
-        int g = 0;
-        int b = 0;
-        for (int i = 0; i < 2; i++) {
-            int temp = random.nextInt(16);
-            r = r * 16 + temp;
-            temp = random.nextInt(16);
-            g = g * 16 + temp;
-            temp = random.nextInt(16);
-            b = b * 16 + temp;
-        }
-        return Color.rgb(r, g, b);
+        int r = random.nextInt(256);
+        int g = random.nextInt(256);
+        int b = random.nextInt(256);
+        int alpha = random.nextInt(256);
+        Drawable drawable = new ColorDrawable(Color.argb(alpha,r, g, b));
+        drawable.setBounds(0, 0, imageView.getHeight(), imageView.getWidth());
+        return drawable;
     }
 }
