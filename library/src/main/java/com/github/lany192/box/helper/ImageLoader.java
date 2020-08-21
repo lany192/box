@@ -23,7 +23,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.github.lany192.box.R;
 import com.github.lany192.box.utils.CheckUtils;
 import com.github.lany192.box.utils.RoundedCornersTransform;
 
@@ -134,15 +133,6 @@ public final class ImageLoader {
     }
 
     /**
-     * 显示头像，圆形
-     */
-    public void avatar(ImageView imageView, Object model) {
-        show(imageView, model, RequestOptions.circleCropTransform()
-                .placeholder(R.drawable.default_avatar)
-                .error(R.drawable.default_avatar));
-    }
-
-    /**
      * 显示图片
      */
     public void show(ImageView imageView, Object model, RequestOptions options) {
@@ -211,7 +201,7 @@ public final class ImageLoader {
         int g = random.nextInt(256);
         int b = random.nextInt(256);
         int alpha = random.nextInt(256);
-        Drawable drawable = new ColorDrawable(Color.argb(alpha,r, g, b));
+        Drawable drawable = new ColorDrawable(Color.argb(alpha, r, g, b));
         drawable.setBounds(0, 0, imageView.getHeight(), imageView.getWidth());
         return drawable;
     }

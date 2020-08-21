@@ -52,10 +52,10 @@ public class ItemViewHolder extends BaseViewHolder {
         return this;
     }
 
-    public ItemViewHolder setAvatarUrl(@IdRes int viewId, String picUrl) {
+    public ItemViewHolder setAvatar(@IdRes int viewId, String picUrl) {
         ImageView imageView = getView(viewId);
         imageView.getLayoutParams().height = imageView.getLayoutParams().width;
-        ImageLoader.get().avatar(imageView, picUrl);
+        ImageLoader.get().circle(imageView, picUrl);
         return this;
     }
 
