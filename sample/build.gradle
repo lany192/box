@@ -57,7 +57,7 @@ dependencies {
     implementation 'androidx.fragment:fragment:1.2.5'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'com.google.android.material:material:1.3.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.exifinterface:exifinterface:1.3.0'
     implementation project(':library')
 
@@ -65,8 +65,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     //-------------------------------------------------------------------------------------------
     //butterknife依赖
-    implementation 'com.jakewharton:butterknife:10.2.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     //dagger2
     implementation 'com.google.dagger:dagger-android-support:2.28.3'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.28.3'
