@@ -200,8 +200,8 @@ public final class ImageLoader {
         int r = random.nextInt(256);
         int g = random.nextInt(256);
         int b = random.nextInt(256);
-        int alpha = random.nextInt(256);
-        Drawable drawable = new ColorDrawable(Color.argb(alpha, r, g, b));
+        int color = Color.argb(20, r, g, b);
+        Drawable drawable = new ColorDrawable(color);
         drawable.setBounds(0, 0, imageView.getHeight(), imageView.getWidth());
         return drawable;
     }
