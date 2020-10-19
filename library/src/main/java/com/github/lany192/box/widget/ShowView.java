@@ -76,6 +76,11 @@ public class ShowView extends FrameLayout {
             mRefreshLayout.finishRefresh();
             mAdapter.getLoadMoreModule().setEnableLoadMore(true);
         });
+        if (mRecyclerView.getRecycledViewPool() != null) {
+            RecyclerView.RecycledViewPool pool = mRecyclerView.getRecycledViewPool();
+            pool.setMaxRecycledViews(0, 10);
+            mRecyclerView.setRecycledViewPool(pool);
+        }
     }
 
     public void setLayoutManager(RecyclerView.LayoutManager layout) {
