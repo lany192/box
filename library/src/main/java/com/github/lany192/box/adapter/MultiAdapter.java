@@ -17,7 +17,7 @@ import java.util.List;
 public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHolder>
         implements LoadMoreModule {
     private final int TYPE_NOT_FOUND = -404;
-    private SparseIntArray mItemTypeMap = new SparseIntArray();
+    private final SparseIntArray mItemTypeMap = new SparseIntArray();
 
     public MultiAdapter(List<Delegate> items) {
         super(items);
