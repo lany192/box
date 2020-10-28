@@ -9,8 +9,8 @@ import android.util.Log;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 
+import com.github.lany192.KVUtils;
 import com.github.lany192.box.Box;
-import com.github.lany192.box.helper.SPHelper;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -56,11 +56,11 @@ public class DeviceId {
         //如果系统有自带id，保存到SP中
         String KEY_DEVICE_ID = "ANDROID_DEVICE_ID";
         if (!TextUtils.isEmpty(deviceId)) {
-            SPHelper.of().putString(KEY_DEVICE_ID, deviceId);
+            KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
             return deviceId;
         }
         //如果系统没有自带id，从SP中读取id
-        deviceId = SPHelper.of().getString(KEY_DEVICE_ID);
+        deviceId = KVUtils.get().getString(KEY_DEVICE_ID);
         if (!TextUtils.isEmpty(deviceId)) {
             String id = getDeviceIdFromExternalStorage();
             //如果SP中可以读取到id，与从存储卡中读取id进行比较是否相等
@@ -74,7 +74,7 @@ public class DeviceId {
             deviceId = getDeviceIdFromExternalStorage();
             if (!TextUtils.isEmpty(deviceId)) {
                 //如果能读取到存储卡上的id，保存到SP中
-                SPHelper.of().putString(KEY_DEVICE_ID, deviceId);
+                KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
                 return deviceId;
             }
         }
@@ -83,7 +83,7 @@ public class DeviceId {
         if (!TextUtils.isEmpty(deviceId)) {
             //新生成的id要保存起来
             save2ExternalStorage(deviceId);
-            SPHelper.of().putString(KEY_DEVICE_ID, deviceId);
+            KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
         }
         return deviceId;
     }

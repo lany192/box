@@ -21,7 +21,6 @@ import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.helper.SPHelper;
 import com.github.lany192.box.log.LogFileFormat;
 import com.github.lany192.box.log.LogFileNameGenerator;
 import com.github.lany192.box.utils.NetUtils;
@@ -68,7 +67,6 @@ public class Box {
             this.context = ((Application) app).getBaseContext();
         }
         initToast(ctx);
-        SPHelper.of().init(ctx);
         initLog(debug);
         initCatchException();
         initRefreshView();
