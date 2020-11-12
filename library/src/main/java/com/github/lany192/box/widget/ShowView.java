@@ -15,7 +15,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.github.lany192.box.R;
 import com.github.lany192.box.interfaces.OnRefreshMoreListener;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 /**
  * RecyclerView的下拉刷新和上拉加载及置顶功能封装
@@ -51,10 +51,6 @@ public class ShowView extends FrameLayout {
         mGotoTopBtn = view.findViewById(R.id.show_view_goto_top_img);
         mGotoTopBtn.setOnClickListener(v -> gotoTop());
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -76,11 +72,7 @@ public class ShowView extends FrameLayout {
             mRefreshLayout.finishRefresh();
             mAdapter.getLoadMoreModule().setEnableLoadMore(true);
         });
-        if (mRecyclerView.getRecycledViewPool() != null) {
-            RecyclerView.RecycledViewPool pool = mRecyclerView.getRecycledViewPool();
-            pool.setMaxRecycledViews(0, 10);
-            mRecyclerView.setRecycledViewPool(pool);
-        }
+        mRecyclerView.getRecycledViewPool().setMaxRecycledViews(0, 10);
     }
 
     public void setLayoutManager(RecyclerView.LayoutManager layout) {

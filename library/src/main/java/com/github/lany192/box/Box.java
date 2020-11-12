@@ -29,8 +29,14 @@ import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.scwang.smart.refresh.footer.ClassicsFooter;
+import com.scwang.smart.refresh.header.ClassicsHeader;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshFooter;
+import com.scwang.smart.refresh.layout.api.RefreshHeader;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.DefaultRefreshFooterCreator;
+import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -186,10 +192,17 @@ public class Box {
     }
 
     private void initRefreshView() {
+        //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
-            layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);
-            return new ClassicsHeader(context).setArrowResource(R.drawable.vector_arrow_gray);
+            layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);//全局设置主题颜色
+            return new ClassicsHeader(context)
+                    .setArrowResource(R.drawable.vector_arrow_gray);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
         });
+//        //设置全局的Footer构建器
+//        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
+//            //指定为经典Footer，默认是 BallPulseFooter
+//            return new ClassicsFooter(context).setDrawableSize(20);
+//        });
     }
 
     private void initLog(boolean debug) {
