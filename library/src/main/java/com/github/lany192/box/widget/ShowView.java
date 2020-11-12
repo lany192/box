@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.github.lany192.box.R;
 import com.github.lany192.box.interfaces.OnRefreshMoreListener;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
@@ -21,30 +20,23 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
  * RecyclerView的下拉刷新和上拉加载及置顶功能封装
  */
 public class ShowView extends FrameLayout {
-    private SmartRefreshLayout mRefreshLayout;
-    private RecyclerView mRecyclerView;
-    private ImageView mGotoTopBtn;
+    private final SmartRefreshLayout mRefreshLayout;
+    private final RecyclerView mRecyclerView;
+    private final ImageView mGotoTopBtn;
 
     private int gotoTopCount = 5;
-    private BaseQuickAdapter<?, ?> mAdapter;
     private OnRefreshMoreListener mListener;
 
     public ShowView(Context context) {
-        super(context);
-        init();
+        this(context, null, 0);
     }
 
     public ShowView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public ShowView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
-    }
-
-    private void init() {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.show_view, this, true);
         mRefreshLayout = view.findViewById(R.id.show_view_refresh_layout);
         mRecyclerView = view.findViewById(R.id.show_view_recycler_view);
@@ -65,45 +57,38 @@ public class ShowView extends FrameLayout {
             }
         });
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mAdapter.getLoadMoreModule().setEnableLoadMore(false);
             if (mListener != null) {
                 mListener.onRefresh();
             }
             mRefreshLayout.finishRefresh();
-            mAdapter.getLoadMoreModule().setEnableLoadMore(true);
+        });
+        mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
+            if (mListener != null) {
+                mListener.onLoadMore();
+            }
+            mRefreshLayout.finishLoadMore();
         });
         mRecyclerView.getRecycledViewPool().setMaxRecycledViews(0, 10);
+    }
+
+    public SmartRefreshLayout getRefreshLayout() {
+        return mRefreshLayout;
     }
 
     public void setLayoutManager(RecyclerView.LayoutManager layout) {
         mRecyclerView.setLayoutManager(layout);
     }
 
-    public void setRefreshEnabled(boolean enabled) {
-        mRefreshLayout.setEnabled(enabled);
+    public void setEnableRefresh(boolean enable) {
+        mRefreshLayout.setEnableRefresh(enable);
     }
 
     public void setEnableLoadMore(boolean enable) {
-        if (mAdapter != null) {
-            mAdapter.getLoadMoreModule().setEnableLoadMore(enable);
-        }
+        mRefreshLayout.setEnableLoadMore(enable);
     }
 
     public void setAdapter(BaseQuickAdapter<?, ?> adapter) {
-        if (adapter instanceof LoadMoreModule) {
-            this.mAdapter = adapter;
-            mAdapter.getLoadMoreModule().setAutoLoadMore(true);
-            mAdapter.getLoadMoreModule().setEnableLoadMore(true);
-            mAdapter.getLoadMoreModule().setLoadMoreView(new FooterView());
-            mAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
-                if (mListener != null) {
-                    mListener.onLoadMore();
-                }
-            });
-            mRecyclerView.setAdapter(mAdapter);
-        } else {
-            throw new IllegalArgumentException("Please first implements LoadMoreModule");
-        }
+        mRecyclerView.setAdapter(adapter);
     }
 
     public void addOnScrollListener(RecyclerView.OnScrollListener listener) {
@@ -130,34 +115,9 @@ public class ShowView extends FrameLayout {
         this.mListener = listener;
     }
 
-    public void finishRefresh() {
+    public void finish() {
         mRefreshLayout.finishRefresh();
-    }
-
-    public void stop() {
-        mRefreshLayout.finishRefresh();
-        if (mAdapter != null) {
-            mAdapter.getLoadMoreModule().loadMoreComplete();
-        }
-    }
-
-    /**
-     * 显示没有更多
-     */
-    public void end() {
-        mRefreshLayout.finishRefresh();
-        if (mAdapter != null) {
-            mAdapter.getLoadMoreModule().loadMoreComplete();
-            mAdapter.getLoadMoreModule().loadMoreEnd();
-        }
-    }
-
-    public void loadMoreFail() {
-        mRefreshLayout.finishRefresh();
-        if (mAdapter != null) {
-            mAdapter.getLoadMoreModule().loadMoreComplete();
-            mAdapter.getLoadMoreModule().loadMoreFail();
-        }
+        mRefreshLayout.finishLoadMore();
     }
 
     public void gotoTop() {
