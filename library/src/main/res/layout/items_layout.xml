@@ -6,12 +6,15 @@
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/show_view_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipChildren="true"
+        android:clipToPadding="true">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/show_view_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
             android:scrollbars="vertical" />
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>

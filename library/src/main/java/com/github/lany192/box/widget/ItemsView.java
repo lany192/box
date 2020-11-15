@@ -37,7 +37,7 @@ public class ItemsView extends FrameLayout {
 
     public ItemsView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.show_view, this, true);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.items_layout, this, true);
         refreshLayout = view.findViewById(R.id.show_view_refresh_layout);
         recyclerView = view.findViewById(R.id.show_view_recycler_view);
         gotoTopBtn = view.findViewById(R.id.show_view_goto_top_img);
@@ -73,6 +73,11 @@ public class ItemsView extends FrameLayout {
 
     public SmartRefreshLayout getRefreshLayout() {
         return refreshLayout;
+    }
+
+    public void setToolbarHeight(int height) {
+        recyclerView.setPadding(recyclerView.getLeft(), recyclerView.getTop() + height,
+                recyclerView.getRight(), recyclerView.getBottom());
     }
 
     public void setLayoutManager(RecyclerView.LayoutManager layout) {

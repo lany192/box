@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.delegate.DividerDelegate;
-import com.github.lany192.box.delegate.HeightDelegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
@@ -37,6 +36,7 @@ public class HelloFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        mItemsView.setToolbarHeight(getToolbarHeight());
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
         manager.setOrientation(GridLayoutManager.VERTICAL);
         mItemsView.setLayoutManager(manager);
@@ -87,7 +87,6 @@ public class HelloFragment extends BaseFragment {
 
         log.json(JsonUtils.object2json(images));
         List<Delegate> items = new ArrayList<>();
-        items.add(new HeightDelegate(getToolbarHeight()));
         items.addAll(images.stream().map(ImageDelegate::new).collect(Collectors.toList()));
         items.add(new DividerDelegate());
         mItemsView.setAdapter(new MultiAdapter(items, manager));
