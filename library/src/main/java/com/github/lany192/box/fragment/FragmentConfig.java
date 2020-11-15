@@ -37,7 +37,16 @@ public class FragmentConfig {
     /**
      * 是否需要Toolbar模糊化
      */
-    private boolean toolbarBlur = true;
+    private boolean toolbarBlur;
+    /**
+     * 是否toolbar覆盖方式
+     */
+    private boolean coverStyle;
+
+    public FragmentConfig coverStyle(boolean cover) {
+        this.coverStyle = cover;
+        return this;
+    }
 
     public FragmentConfig toolbarBlur(boolean blur) {
         this.toolbarBlur = blur;

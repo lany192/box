@@ -18,6 +18,7 @@ import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
+import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.view.StateLayout;
 import com.github.mmin18.widget.RealtimeBlurView;
@@ -95,8 +96,9 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         RelativeLayout rootView = new RelativeLayout(getContext());
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         stateLayout = new StateLayout(getContext());
-        stateLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        stateLayout.setLayoutParams(layoutParams);
         stateLayout.setOnRetryListener(this);
         stateLayout.addView(inflater.inflate(getConfig().getLayoutId(), null));
         rootView.addView(stateLayout);
@@ -109,15 +111,27 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
                 rootView.addView(blurView);
             }
             View toolbar = inflater.inflate(getConfig().getToolBarLayoutId(), null);
+            toolbar.setId(R.id.toolbar);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight()));
             ViewUtils.setPaddingSmart(toolbar);
             rootView.addView(toolbar);
-        }
 
+            if (!getConfig().isCoverStyle()) {
+                layoutParams.addRule(RelativeLayout.BELOW, toolbar.getId());
+                stateLayout.setLayoutParams(layoutParams);
+            }
+        }
         unbinder = ButterKnife.bind(this, rootView);
         init(savedInstanceState);
         return rootView;
+    }
+
+    public int getToolbarHeight() {
+        if (getConfig().isHasToolbar()) {
+            return getConfig().getToolbarHeight() + PhoneUtils.getStatusBarHeight();
+        }
+        return 0;
     }
 
     public <T extends View> T getView(@IdRes int viewId) {
