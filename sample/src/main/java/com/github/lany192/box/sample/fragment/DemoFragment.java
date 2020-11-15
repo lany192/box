@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import com.github.lany192.box.dialog.SimpleDialog;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.helper.ImageLoader;
@@ -52,6 +53,15 @@ public class DemoFragment extends BaseFragment {
     @OnClick(R.id.button2)
     void button2Clicked() {
         HelloDialog dialog = new HelloDialog();
+        dialog.show(this);
+    }
+
+    @OnClick(R.id.button3)
+    void button3Clicked() {
+        SimpleDialog dialog = new SimpleDialog();
+        dialog.setTitle("haha");
+        dialog.setMessage("这里是呃逆荣");
+        dialog.setRightBtn("点我");
         dialog.show(this);
     }
 }

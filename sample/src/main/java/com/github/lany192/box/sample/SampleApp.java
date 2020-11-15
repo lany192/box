@@ -24,7 +24,7 @@ public class SampleApp extends DaggerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        Box.of().init(this, BuildConfig.DEBUG);
+        Box.get().init(this, BuildConfig.DEBUG);
         FileDownloader.setupOnApplicationOnCreate(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             initShortcuts();

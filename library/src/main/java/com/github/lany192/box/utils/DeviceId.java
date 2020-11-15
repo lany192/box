@@ -52,7 +52,7 @@ public class DeviceId {
             return deviceId;
         }
         //如果内存中没有id,读取设备系统自带id
-        deviceId = getAndroidDeviceId(Box.of().getContext());
+        deviceId = getAndroidDeviceId(Box.get().getContext());
         //如果系统有自带id，保存到SP中
         String KEY_DEVICE_ID = "ANDROID_DEVICE_ID";
         if (!TextUtils.isEmpty(deviceId)) {

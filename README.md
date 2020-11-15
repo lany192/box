@@ -35,7 +35,7 @@
         @Override
         public void onCreate() {
             super.onCreate();
-            Box.of().init(this);
+            Box.get().init(this);
         }
     
     }

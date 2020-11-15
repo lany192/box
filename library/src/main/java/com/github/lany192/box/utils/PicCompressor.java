@@ -45,8 +45,8 @@ public class PicCompressor {
     }
 
     private List<String> compress(List<String> photosPaths) throws IOException {
-        List<File> files = Luban.with(Box.of().getContext())
-                .setTargetDir(Box.of().getContext().getCacheDir().getPath())
+        List<File> files = Luban.with(Box.get().getContext())
+                .setTargetDir(Box.get().getContext().getCacheDir().getPath())
                 .load(photosPaths)
                 .ignoreBy(100)//小于100kb不压缩
                 .get();

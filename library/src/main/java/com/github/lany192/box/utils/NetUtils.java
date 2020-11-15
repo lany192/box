@@ -12,7 +12,7 @@ public class NetUtils {
      * 判断当前网络是否可用
      */
     public static boolean isNetWorkAvailable() {
-        ConnectivityManager manager = (ConnectivityManager) Box.of().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager = (ConnectivityManager) Box.get().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (manager != null) {
             NetworkInfo info = manager.getActiveNetworkInfo();
             return info != null && info.isConnected();

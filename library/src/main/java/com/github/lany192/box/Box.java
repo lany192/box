@@ -46,7 +46,7 @@ public class Box {
 
     }
 
-    public static Box of() {
+    public static Box get() {
         if (instance == null) {
             synchronized (Box.class) {
                 if (instance == null) {
