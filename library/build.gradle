@@ -73,12 +73,15 @@ dependencies {
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
     //日志
     api 'com.elvishew:xlog:1.6.1'
+
     //状态栏工具 https://github.com/gyf-dev/ImmersionBar
     api 'com.gyf.immersionbar:immersionbar:3.0.0'
+
     //圆角图片
     api 'com.makeramen:roundedimageview:2.3.0'
     //下载框架
     api 'com.liulishuo.filedownloader:library:1.7.7'
+
     //刷新套件 https://github.com/scwang90/SmartRefreshLayout
     api 'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
     api 'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
@@ -99,6 +102,7 @@ dependencies {
     api 'com.noober.background:core:1.6.5'
 
     api 'com.github.lany192:KVUtils:1.0.1'
+
     //模糊视图 https://github.com/mmin18/RealtimeBlurView
     api 'com.github.mmin18:realtimeblurview:1.2.1'
 }
