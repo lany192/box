@@ -3,6 +3,9 @@ package com.github.lany192.box.fragment;
 import androidx.annotation.ColorRes;
 import androidx.annotation.LayoutRes;
 
+import com.github.lany192.box.R;
+import com.github.lany192.box.utils.DensityUtils;
+
 import lombok.Getter;
 
 @Getter
@@ -16,7 +19,7 @@ public class FragmentConfig {
      * Toolbar布局文件id
      */
     @LayoutRes
-    private int toolBarLayoutId;
+    private int toolBarLayoutId = R.layout.ui_default;
     /**
      * 是否需要Toolbar
      */
@@ -24,17 +27,22 @@ public class FragmentConfig {
     /**
      * toolbar的高度
      */
-    private int toolbarHeight;
+    private int toolbarHeight = DensityUtils.dp2px(48);
     /**
      * Toolbar颜色
      */
     @ColorRes
     private int toolbarColor;
+
     /**
-     * 内容的背景颜色
+     * 是否需要Toolbar模糊化
      */
-    @ColorRes
-    private int contentColor;
+    private boolean toolbarBlur = true;
+
+    public FragmentConfig toolbarBlur(boolean blur) {
+        this.toolbarBlur = blur;
+        return this;
+    }
 
     public FragmentConfig layoutId(int layoutId) {
         this.layoutId = layoutId;
@@ -54,11 +62,6 @@ public class FragmentConfig {
 
     public FragmentConfig toolbarColor(int color) {
         this.toolbarColor = color;
-        return this;
-    }
-
-    public FragmentConfig contentColor(@ColorRes int color) {
-        this.contentColor = color;
         return this;
     }
 }

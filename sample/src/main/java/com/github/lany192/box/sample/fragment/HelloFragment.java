@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.delegate.Delegate;
@@ -28,8 +27,8 @@ public class HelloFragment extends BaseFragment {
 
     @NonNull
     @Override
-    protected FragmentConfig getConfig(FragmentConfig config) {
-        return config.layoutId(R.layout.hello)
+    public FragmentConfig getConfig() {
+        return new FragmentConfig().layoutId(R.layout.hello)
                 .toolBarLayoutId(R.layout.toolbar_hello);
     }
 

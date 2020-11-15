@@ -25,8 +25,8 @@ public class GirlFragment extends BaseFragment {
 
     @NonNull
     @Override
-    protected FragmentConfig getConfig(FragmentConfig config) {
-        return config.layoutId(R.layout.fragment_girl);
+    public FragmentConfig getConfig() {
+        return new FragmentConfig().layoutId(R.layout.fragment_girl);
     }
 
     @Override

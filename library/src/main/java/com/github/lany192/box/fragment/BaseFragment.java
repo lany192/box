@@ -18,9 +18,9 @@ import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
-import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.view.StateLayout;
+import com.github.mmin18.widget.RealtimeBlurView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -41,11 +41,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
      * 是否执行过懒加载
      */
     private boolean isLazyLoaded;
-    private RelativeLayout mRootView;
-    /**
-     * 配置信息
-     */
-    private FragmentConfig config;
+
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     /**
      * 本界面用户是否可见
@@ -53,10 +49,10 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     private boolean userVisible;
 
     /**
-     * 获取Fragment的界面配置
+     * 配置信息
      */
     @NonNull
-    protected abstract FragmentConfig getConfig(FragmentConfig config);
+    public abstract FragmentConfig getConfig();
 
     /**
      * 初始化
@@ -69,16 +65,12 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        config = getConfig(new FragmentConfig()
-                .layoutId(R.layout.ui_default)
-                .toolbarHeight(DensityUtils.dp2px(48)));
     }
 
     @Override
     public void onResume() {
         super.onResume();
         userVisible = true;
-        //需要在FragmentStatePagerAdapter构造方法中配置
         if (!isLazyLoaded) {
             isLazyLoaded = true;
             onLazyLoad();
@@ -100,36 +92,36 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRootView = new RelativeLayout(getContext());
-        mRootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        RelativeLayout rootView = new RelativeLayout(getContext());
+        rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
         stateLayout = new StateLayout(getContext());
+        stateLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         stateLayout.setOnRetryListener(this);
-        View contentView = inflater.inflate(config.getLayoutId(), null);
-        if (config.getContentColor() > 0) {
-            contentView.setBackgroundResource(config.getContentColor());
-        }
-        stateLayout.addView(contentView);
+        stateLayout.addView(inflater.inflate(getConfig().getLayoutId(), null));
+        rootView.addView(stateLayout);
 
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        if (config.isHasToolbar()) {
-            View toolbar = inflater.inflate(config.getToolBarLayoutId(), null);
-            toolbar.setId(R.id.toolbar);
+        if (getConfig().isHasToolbar()) {
+            if (getConfig().isToolbarBlur()) {
+                RealtimeBlurView blurView = new RealtimeBlurView(getContext(), null);
+                blurView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight()));
+                ViewUtils.setPaddingSmart(blurView);
+                rootView.addView(blurView);
+            }
+            View toolbar = inflater.inflate(getConfig().getToolBarLayoutId(), null);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
-            toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, config.getToolbarHeight()));
+            toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight()));
             ViewUtils.setPaddingSmart(toolbar);
-            layoutParams.addRule(RelativeLayout.BELOW, toolbar.getId());
-            mRootView.addView(toolbar);
+            rootView.addView(toolbar);
         }
 
-        mRootView.addView(stateLayout, layoutParams);
-        unbinder = ButterKnife.bind(this, mRootView);
+        unbinder = ButterKnife.bind(this, rootView);
         init(savedInstanceState);
-        return mRootView;
+        return rootView;
     }
 
-    public <T extends View> T findView(@IdRes int viewId) {
-        return mRootView.findViewById(viewId);
+    public <T extends View> T getView(@IdRes int viewId) {
+        return getView().findViewById(viewId);
     }
 
     /**

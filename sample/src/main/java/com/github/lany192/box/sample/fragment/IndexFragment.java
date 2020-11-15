@@ -27,8 +27,8 @@ public class IndexFragment extends BaseFragment {
 
     @NonNull
     @Override
-    protected FragmentConfig getConfig(FragmentConfig config) {
-        return config.layoutId(R.layout.fragment_index)
+    public FragmentConfig getConfig() {
+        return new FragmentConfig().layoutId(R.layout.fragment_index)
                 .toolBarLayoutId(R.layout.toolbar_index);
     }
 

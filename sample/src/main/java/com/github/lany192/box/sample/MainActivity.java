@@ -78,7 +78,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
                     mViewPager2.setCurrentItem(0, true);
                     return true;
                 case R.id.menu_main_pic:
-                    ImmersionBar.with(this).statusBarDarkFont(false).init();
+                    ImmersionBar.with(this).statusBarDarkFont(true).init();
                     mViewPager2.setCurrentItem(1, true);
                     return true;
                 case R.id.menu_main_my:

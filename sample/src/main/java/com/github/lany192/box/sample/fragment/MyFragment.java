@@ -18,8 +18,8 @@ public class MyFragment extends BaseFragment {
 
     @NonNull
     @Override
-    protected FragmentConfig getConfig(FragmentConfig config) {
-        return config.layoutId(R.layout.fragment_my);
+    public FragmentConfig getConfig() {
+        return new FragmentConfig().layoutId(R.layout.fragment_my);
     }
 
     @Override
