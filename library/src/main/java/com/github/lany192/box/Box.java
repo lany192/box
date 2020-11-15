@@ -23,6 +23,7 @@ import com.elvishew.xlog.printer.file.FilePrinter;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.log.LogFileFormat;
 import com.github.lany192.box.log.LogFileNameGenerator;
+import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.OtherUtils;
 import com.github.lany192.box.utils.PermissionUtils;
@@ -101,7 +102,7 @@ public class Box {
 
             @Override
             public int getCornerRadius() {
-                return 5;
+                return DensityUtils.dp2px(5);
             }
 
             @Override
@@ -116,7 +117,7 @@ public class Box {
 
             @Override
             public float getTextSize() {
-                return 14;
+                return DensityUtils.sp2px(14);
             }
 
             @Override
@@ -126,7 +127,7 @@ public class Box {
 
             @Override
             public int getPaddingStart() {
-                return 16;
+                return DensityUtils.dp2px(16);
             }
 
             @Override
