@@ -10,7 +10,7 @@ import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
-import com.github.lany192.box.sample.delegate.HelloDelegate;
+import com.github.lany192.box.sample.delegate.ImageDelegate;
 import com.github.lany192.box.widget.ItemsView;
 
 import java.util.ArrayList;
@@ -71,6 +71,6 @@ public class GirlFragment extends BaseFragment {
         images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/4c46903d26.jpg");
         images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/3f3a4f3ba3.jpg");
         images.add("https://img.tupianzj.com/uploads/allimg/161210/9-161210204631.jpg");
-        mItemsView.setAdapter(new MultiAdapter(images.stream().map(HelloDelegate::new).collect(Collectors.toList())));
+        mItemsView.setAdapter(new MultiAdapter(images.stream().map(ImageDelegate::new).collect(Collectors.toList())));
     }
 }

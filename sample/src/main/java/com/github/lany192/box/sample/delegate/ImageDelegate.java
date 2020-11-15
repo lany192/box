@@ -4,15 +4,20 @@ import com.github.lany192.box.adapter.ItemViewHolder;
 import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.sample.R;
 
-public class HelloDelegate extends ItemDelegate<String> {
+public class ImageDelegate extends ItemDelegate<String> {
 
-    public HelloDelegate(String data) {
+    public ImageDelegate(String data) {
         super(data);
     }
 
     @Override
+    public int getSpanSize() {
+        return 1;
+    }
+
+    @Override
     public int getLayoutId() {
-        return R.layout.item_hello;
+        return R.layout.item_image;
     }
 
     @Override

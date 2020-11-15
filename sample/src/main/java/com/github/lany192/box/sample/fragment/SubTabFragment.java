@@ -11,7 +11,7 @@ import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Menu;
-import com.github.lany192.box.sample.delegate.HelloDelegate;
+import com.github.lany192.box.sample.delegate.ImageDelegate;
 import com.github.lany192.box.sample.delegate.MenuDelegate;
 import com.github.lany192.box.widget.ItemsView;
 
@@ -70,7 +70,7 @@ public class SubTabFragment extends BaseFragment {
                 "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g22ffs63lhj30u0140gv0.jpg"};
 
         for (String pic : pics) {
-            items.add(new HelloDelegate(pic));
+            items.add(new ImageDelegate(pic));
 //            items.add(new Divider()
 //                    .color(Color.WHITE)
 //                    .hintColor(Color.BLACK)

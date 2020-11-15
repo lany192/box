@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.delegate.DividerDelegate;
+import com.github.lany192.box.delegate.HeightDelegate;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
-import com.github.lany192.box.sample.delegate.HelloDelegate;
+import com.github.lany192.box.sample.delegate.ImageDelegate;
 import com.github.lany192.box.utils.JsonUtils;
 import com.github.lany192.box.widget.ItemsView;
 
@@ -29,18 +30,16 @@ public class HelloFragment extends BaseFragment {
     @Override
     public FragmentConfig getConfig() {
         return new FragmentConfig().layoutId(R.layout.hello)
-                .toolBarLayoutId(R.layout.toolbar_hello);
+                .toolBarLayoutId(R.layout.toolbar_hello)
+                .coverStyle(true)
+                .toolbarBlur(true);
     }
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        GridLayoutManager manager = new GridLayoutManager(getContext(),2);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
         manager.setOrientation(GridLayoutManager.VERTICAL);
         mItemsView.setLayoutManager(manager);
-//        mItemsView.addItemDecoration(new LinearDecoration(manager.getOrientation())
-//                .setPadding(DensityUtils.dp2px(8))
-//                .setColor(Color.GRAY)
-//                .setWidth(1));
         List<String> images = new ArrayList<>();
         images.add("https://taoduorou.cn/files/images/2019-09-27/0bc183f272e366fc0415cbe83d2ba08e.jpg");
         images.add("https://taoduorou.cn/files/images/2019-10-18/8d6ac435c042e812544429cc5a9dee59.jpg");
@@ -87,9 +86,11 @@ public class HelloFragment extends BaseFragment {
         images.add("https://taoduorou.cn/files/images/2019-12-20/9f3e6637197c89ef3af86c5507e8b8e0.jpg");
 
         log.json(JsonUtils.object2json(images));
-        List<Delegate> items = images.stream().map(HelloDelegate::new).collect(Collectors.toList());
+        List<Delegate> items = new ArrayList<>();
+        items.add(new HeightDelegate(getToolbarHeight()));
+        items.addAll(images.stream().map(ImageDelegate::new).collect(Collectors.toList()));
         items.add(new DividerDelegate());
-        mItemsView.setAdapter(new MultiAdapter(items));
+        mItemsView.setAdapter(new MultiAdapter(items, manager));
     }
 
 }
