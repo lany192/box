@@ -48,7 +48,7 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -78,4 +78,6 @@ dependencies {
     implementation 'com.github.lany192:MenuView:1.0.3'
 
     implementation 'com.github.lany192:ClearEditText:1.0.6'
+
+    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 }
