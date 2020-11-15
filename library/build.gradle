@@ -86,7 +86,7 @@ dependencies {
     api 'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
     api 'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
 
-    api 'com.hjq:toast:5.5'
+    api 'com.hjq:toast:8.6'
 
     //压缩图片
     api 'top.zibin:Luban:1.1.8'

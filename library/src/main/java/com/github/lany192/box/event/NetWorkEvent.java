@@ -1,17 +1,23 @@
 package com.github.lany192.box.event;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 /**
  * 网络事件
  */
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class NetWorkEvent {
     private boolean available;
+
+    public NetWorkEvent() {
+    }
+
+    public NetWorkEvent(boolean available) {
+        this.available = available;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 }

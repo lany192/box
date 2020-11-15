@@ -78,6 +78,4 @@ dependencies {
     implementation 'com.github.lany192:MenuView:1.0.3'
 
     implementation 'com.github.lany192:ClearEditText:1.0.6'
-
-    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 }

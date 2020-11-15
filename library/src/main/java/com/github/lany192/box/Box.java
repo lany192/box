@@ -32,11 +32,6 @@ import com.hjq.toast.ToastUtils;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
-import com.scwang.smart.refresh.layout.api.RefreshFooter;
-import com.scwang.smart.refresh.layout.api.RefreshHeader;
-import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.DefaultRefreshFooterCreator;
-import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -130,23 +125,23 @@ public class Box {
             }
 
             @Override
-            public int getPaddingLeft() {
+            public int getPaddingStart() {
                 return 16;
             }
 
             @Override
             public int getPaddingTop() {
-                return getPaddingLeft();
+                return getPaddingStart();
             }
 
             @Override
-            public int getPaddingRight() {
-                return getPaddingLeft();
+            public int getPaddingEnd() {
+                return getPaddingStart();
             }
 
             @Override
             public int getPaddingBottom() {
-                return getPaddingLeft();
+                return getPaddingStart();
             }
         });
     }
