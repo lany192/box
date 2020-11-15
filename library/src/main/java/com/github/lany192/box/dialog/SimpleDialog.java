@@ -40,7 +40,7 @@ public class SimpleDialog extends DialogFragment {
     private CharSequence mMessage;
     private CharSequence mLeftText;
     private CharSequence mRightText;
-    private boolean isShowDivider = false;
+    private boolean isShowDivider;
     private int gravity = Gravity.CENTER;
     @ColorInt
     private int mTitleColor = Color.BLACK;
@@ -88,13 +88,10 @@ public class SimpleDialog extends DialogFragment {
             if (mRightTextColor != 0) {
                 rightBtn.setTextColor(mRightTextColor);
             }
-            rightBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getDialog().cancel();
-                    if (null != mOnRightListener) {
-                        mOnRightListener.onClicked();
-                    }
+            rightBtn.setOnClickListener(v -> {
+                cancel();
+                if (null != mOnRightListener) {
+                    mOnRightListener.onClicked();
                 }
             });
         } else {
@@ -106,13 +103,10 @@ public class SimpleDialog extends DialogFragment {
             if (mLeftTextColor != 0) {
                 leftBtn.setTextColor(mLeftTextColor);
             }
-            leftBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getDialog().cancel();
-                    if (null != mOnLeftListener) {
-                        mOnLeftListener.onClicked();
-                    }
+            leftBtn.setOnClickListener(v -> {
+                cancel();
+                if (null != mOnLeftListener) {
+                    mOnLeftListener.onClicked();
                 }
             });
         } else {

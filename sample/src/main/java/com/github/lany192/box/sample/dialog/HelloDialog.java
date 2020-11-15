@@ -1,6 +1,7 @@
 package com.github.lany192.box.sample.dialog;
 
 import android.os.Handler;
+import android.os.Looper;
 
 import com.github.lany192.box.dialog.DialogFragment;
 import com.github.lany192.box.sample.R;
@@ -27,12 +28,7 @@ public class HelloDialog extends DialogFragment {
     @OnClick(R.id.button0)
     void button0Clicked() {
         showLoadingDialog();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                cancelLoadingDialog();
-            }
-        }, 2000);
+        new Handler(Looper.myLooper()).postDelayed(this::cancelLoadingDialog, 2000);
     }
 
     @OnClick(R.id.button1)

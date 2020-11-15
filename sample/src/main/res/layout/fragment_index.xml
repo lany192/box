@@ -1,8 +1,18 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/index_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/index_tab_layout"
@@ -13,9 +23,4 @@
         app:tabIndicatorHeight="2dp"
         app:tabSelectedTextColor="@android:color/black"
         app:tabTextColor="#999999" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/index_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+</FrameLayout>

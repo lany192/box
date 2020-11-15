@@ -99,4 +99,6 @@ dependencies {
     api 'com.noober.background:core:1.6.5'
 
     api 'com.github.lany192:KVUtils:1.0.1'
+    //模糊视图 https://github.com/mmin18/RealtimeBlurView
+    api 'com.github.mmin18:realtimeblurview:1.2.1'
 }
