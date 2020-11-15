@@ -22,8 +22,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 
 public class CityFragment extends DaggerFragment implements CityContract.View {
-    @BindView(R.id.showView)
-    RecyclerView mShowView;
+    @BindView(R.id.ItemsView)
+    RecyclerView mItemsView;
     @Inject
     CityPresenter mCityPresenter;
 
@@ -39,12 +39,12 @@ public class CityFragment extends DaggerFragment implements CityContract.View {
     protected void init(Bundle savedInstanceState) {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        mShowView.setLayoutManager(manager);
-        mShowView.addItemDecoration(new LinearItemDecoration(manager.getOrientation())
+        mItemsView.setLayoutManager(manager);
+        mItemsView.addItemDecoration(new LinearItemDecoration(manager.getOrientation())
                 .setColor(Color.GRAY)
                 .setWidth(1));
         mMultiAdapter = new MultiAdapter(new ArrayList<>());
-        mShowView.setAdapter(mMultiAdapter);
+        mItemsView.setAdapter(mMultiAdapter);
         onRetry();
     }
 

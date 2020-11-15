@@ -14,7 +14,7 @@ import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.delegate.HelloDelegate;
 import com.github.lany192.box.utils.JsonUtils;
-import com.github.lany192.box.widget.ShowView;
+import com.github.lany192.box.widget.ItemsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 import butterknife.BindView;
 
 public class HelloFragment extends BaseFragment {
-    @BindView(R.id.showView)
-    ShowView mShowView;
+    @BindView(R.id.ItemsView)
+    ItemsView mItemsView;
 
     @NonNull
     @Override
@@ -37,8 +37,8 @@ public class HelloFragment extends BaseFragment {
     protected void init(Bundle savedInstanceState) {
         GridLayoutManager manager = new GridLayoutManager(getContext(),2);
         manager.setOrientation(GridLayoutManager.VERTICAL);
-        mShowView.setLayoutManager(manager);
-//        mShowView.addItemDecoration(new LinearDecoration(manager.getOrientation())
+        mItemsView.setLayoutManager(manager);
+//        mItemsView.addItemDecoration(new LinearDecoration(manager.getOrientation())
 //                .setPadding(DensityUtils.dp2px(8))
 //                .setColor(Color.GRAY)
 //                .setWidth(1));
@@ -90,7 +90,7 @@ public class HelloFragment extends BaseFragment {
         log.json(JsonUtils.object2json(images));
         List<Delegate> items = images.stream().map(HelloDelegate::new).collect(Collectors.toList());
         items.add(new DividerDelegate());
-        mShowView.setAdapter(new MultiAdapter(items));
+        mItemsView.setAdapter(new MultiAdapter(items));
     }
 
 }
