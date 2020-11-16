@@ -98,7 +98,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
-    //背景控件 https://github.com/JavaNoober/BackgroundLibrary
+    //背景控件 https://github.com/JavaNoober/BackgroundLibrary  C:\Users\Administrator\AppData\Roaming\Google\AndroidStudio4.1\templates\BackgroundLibrary.xml
     api 'com.noober.background:core:1.6.5'
 
     api 'com.github.lany192:KVUtils:1.0.1'
