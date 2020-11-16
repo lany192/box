@@ -1,6 +1,5 @@
 package com.github.lany192.box.activity;
 
-
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
@@ -55,27 +54,11 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private StateLayout stateLayout;
     private Unbinder unbinder;
     private LoadingDialog loadingDialog;
-    private ActivityConfig config;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    /**
-     * 获取Activity的界面配置
-     *
-     * @return ActivityConfig
-     */
     @NonNull
-    protected abstract ActivityConfig getConfig(ActivityConfig config);
-
-    protected abstract void init(Bundle savedInstanceState);
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.self = this;
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
-        config = getConfig(new ActivityConfig()
+    public ActivityConfig getConfig(){
+        return new ActivityConfig()
                 .layoutId(R.layout.ui_default)
                 .fullscreen(false)
                 .hasToolbar(true)
@@ -86,8 +69,18 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                 .statusBarDarkFont(true)
                 .toolbarHeight(DensityUtils.dp2px(48))
                 .transparentStatusBar(true)
-                .title(getTitle())//hasToolbar为true,以及能找到title id时该设置生效
-        );
+                .title(getTitle());//hasToolbar为true,以及能找到title id时该设置生效
+    }
+
+    protected abstract void init(Bundle savedInstanceState);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.self = this;
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         initStatusBar();
         onBeforeSetContentView();
         setContentView(getContentView());
@@ -100,28 +93,28 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         stateLayout = new StateLayout(this);
         stateLayout.setOnRetryListener(this);
-        View contentView = LayoutInflater.from(this).inflate(config.getLayoutId(), null);
-        if (config.getContentColor() > 0) {
-            contentView.setBackgroundResource(config.getContentColor());
+        View contentView = LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null);
+        if (getConfig().getContentColor() > 0) {
+            contentView.setBackgroundResource(getConfig().getContentColor());
         }
         stateLayout.addView(contentView);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        if (config.isHasToolbar()) {
-            toolBarView = LayoutInflater.from(this).inflate(config.getToolBarLayoutId(), null);
+        if (getConfig().isHasToolbar()) {
+            toolBarView = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId(), null);
             toolBarView.setId(R.id.toolbar);
             toolBarView.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolBarView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    config.getToolbarHeight()));
-            if (config.getToolbarColor() > 0) {
-                toolBarView.setBackgroundResource(config.getToolbarColor());
+                    getConfig().getToolbarHeight()));
+            if (getConfig().getToolbarColor() > 0) {
+                toolBarView.setBackgroundResource(getConfig().getToolbarColor());
             }
-            if (config.isTransparentStatusBar()) {
+            if (getConfig().isTransparentStatusBar()) {
                 ViewUtils.setPaddingSmart(toolBarView);
             }
             rootView.addView(toolBarView);
-            setTitle(config.getTitle());
+            setTitle(getConfig().getTitle());
             View backBtn = toolBarView.findViewById(R.id.toolbar_back_btn);
-            if (config.isHasBackBtn()) {
+            if (getConfig().isHasBackBtn()) {
                 if (backBtn == null) {
                     throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
                 }
@@ -146,20 +139,20 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
      */
     private void initStatusBar() {
         ImmersionBar bar = ImmersionBar.with(this);
-        if (config.isFullscreen()) {
+        if (getConfig().isFullscreen()) {
             bar.hideBar(BarHide.FLAG_HIDE_BAR);//隐藏状态栏或导航栏或两者，不写默认不隐藏
         } else {
             bar.navigationBarColorInt(Color.WHITE);
             bar.navigationBarDarkIcon(true);
             if (ImmersionBar.isSupportStatusBarDarkFont()) {
-                bar.statusBarDarkFont(config.isStatusBarDarkFont());
+                bar.statusBarDarkFont(getConfig().isStatusBarDarkFont());
             }
-            if (config.isTransparentStatusBar()) {
+            if (getConfig().isTransparentStatusBar()) {
                 bar.statusBarAlpha(0.0f).statusBarColor(android.R.color.transparent);
             } else {
-                bar.statusBarColor(config.getStatusBarColor()).fitsSystemWindows(true);
+                bar.statusBarColor(getConfig().getStatusBarColor()).fitsSystemWindows(true);
             }
-            bar.keyboardEnable(config.isKeyboardEnable());
+            bar.keyboardEnable(getConfig().isKeyboardEnable());
             //特殊机型处理,状态栏背景改成黑色
             if (!TextUtils.isEmpty(Build.MODEL) && Build.MODEL.contains("A33")) {
                 bar.statusBarColor(android.R.color.black);
@@ -202,12 +195,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     public void setTitle(CharSequence title) {
-        if (config.isHasToolbar()) {
+        if (getConfig().isHasToolbar()) {
             TextView titleText = toolBarView.findViewById(R.id.toolbar_title_text);
             if (titleText == null) {
                 throw new IllegalArgumentException("Please use the 'R.id.toolbar_title_text' field to set title in custom toolbar layout.");
             }
-            if (config.isHasToolbar() && !TextUtils.isEmpty(title)) {
+            if (getConfig().isHasToolbar() && !TextUtils.isEmpty(title)) {
                 titleText.setText(title);
             }
         }
