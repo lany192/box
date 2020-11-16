@@ -69,40 +69,39 @@ dependencies {
     api 'com.github.lany192:StateLayout:1.2.4'
     api 'com.github.lany192:ItemDecoration:1.19'
 
-    //RecyclerView适配器
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
     //日志
     api 'com.elvishew:xlog:1.6.1'
 
-    //状态栏工具 https://github.com/gyf-dev/ImmersionBar
-    api 'com.gyf.immersionbar:immersionbar:3.0.0'
 
-    //圆角图片
-    api 'com.makeramen:roundedimageview:2.3.0'
+
     //下载框架
     api 'com.liulishuo.filedownloader:library:1.7.7'
 
-    //刷新套件 https://github.com/scwang90/SmartRefreshLayout
-    api 'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
-    api 'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
-
     api 'com.hjq:toast:8.6'
 
-    //压缩图片
-    api 'top.zibin:Luban:1.1.8'
-    //超链接处理
-    api 'com.klinkerapps:link_builder:2.0.5'
-
     compileOnly 'com.jakewharton:butterknife:10.2.3'
-    compileOnly 'com.google.dagger:dagger-android-support:2.28.3'
+    compileOnly 'com.google.dagger:dagger-android-support:2.29.1'
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
+    //圆角图片 https://github.com/vinc3m1/RoundedImageView
+    api 'com.makeramen:roundedimageview:2.3.0'
+    //压缩图片 https://github.com/Curzibn/Luban
+    api 'top.zibin:Luban:1.1.8'
+    //超链接处理 https://github.com/klinker24/Android-TextView-LinkBuilder
+    api 'com.klinkerapps:link_builder:2.0.5'
+    //RecyclerView适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    //状态栏工具 https://github.com/gyf-dev/ImmersionBar
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+    //刷新套件 https://github.com/scwang90/SmartRefreshLayout
+    api 'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
+    api 'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
     //背景控件 https://github.com/JavaNoober/BackgroundLibrary
     api 'com.noober.background:core:1.6.5'
-
-    api 'com.github.lany192:KVUtils:1.0.1'
-
+    //存储控件 https://github.com/lany192/KVUtils
+    api 'com.github.lany192:KVUtils:1.0.3'
     //模糊视图 https://github.com/mmin18/RealtimeBlurView
     api 'com.github.mmin18:realtimeblurview:1.2.1'
 }

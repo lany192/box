@@ -20,6 +20,7 @@ import com.elvishew.xlog.XLog;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
+import com.github.lany192.KVUtils;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.log.LogFileFormat;
 import com.github.lany192.box.log.LogFileNameGenerator;
@@ -43,7 +44,6 @@ public class Box {
     private Context context;
 
     private Box() {
-
     }
 
     public static Box get() {
@@ -68,6 +68,7 @@ public class Box {
         } else {
             this.context = ((Application) app).getBaseContext();
         }
+        KVUtils.get().init(ctx);
         initToast(ctx);
         initLog(debug);
         initCatchException();
