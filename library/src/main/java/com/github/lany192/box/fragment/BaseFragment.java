@@ -18,6 +18,7 @@ import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
+import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.view.StateLayout;
@@ -49,11 +50,14 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
      */
     private boolean userVisible;
 
-    /**
-     * 配置信息
-     */
     @NonNull
-    public abstract FragmentConfig getConfig();
+    public FragmentConfig getConfig(){
+        return new FragmentConfig()
+                .layoutId(R.layout.ui_default)
+                .coverStyle(true)
+                .toolbarBlur(true)
+                .toolbarHeight(DensityUtils.dp2px(48));
+    }
 
     /**
      * 初始化

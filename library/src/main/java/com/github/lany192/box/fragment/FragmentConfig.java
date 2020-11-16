@@ -19,7 +19,7 @@ public class FragmentConfig {
      * Toolbar布局文件id
      */
     @LayoutRes
-    private int toolBarLayoutId = R.layout.ui_default;
+    private int toolBarLayoutId;
     /**
      * 是否需要Toolbar
      */
@@ -27,7 +27,7 @@ public class FragmentConfig {
     /**
      * toolbar的高度
      */
-    private int toolbarHeight = DensityUtils.dp2px(48);
+    private int toolbarHeight;
     /**
      * Toolbar颜色
      */
