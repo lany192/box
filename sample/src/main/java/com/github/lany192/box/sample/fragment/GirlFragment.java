@@ -71,6 +71,14 @@ public class GirlFragment extends BaseFragment {
         images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/4c46903d26.jpg");
         images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/3f3a4f3ba3.jpg");
         images.add("https://img.tupianzj.com/uploads/allimg/161210/9-161210204631.jpg");
+
+
+
+        images.add("https://img.tupianzj.com/uploads/allimg/190301/9-1Z301155925.jpg");
+        images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/1a32fce732.jpg");
+        images.add("https://img.tupianzj.com/uploads/allimg/170108/9-1F10PR424.jpg");
+        images.add("https://img.tupianzj.com/uploads/allimg/151014/9-1510141Q214.jpg");
+        images.add("https://img.tupianzj.com/uploads/allimg/151014/9-1510141S623.jpg");
         mItemsView.setAdapter(new MultiAdapter(images.stream().map(ImageDelegate::new).collect(Collectors.toList())));
     }
 }
