@@ -34,11 +34,6 @@ public class ActivityConfig {
      */
     private int toolbarHeight;
     /**
-     * Toolbar颜色
-     */
-    @ColorRes
-    private int toolbarColor;
-    /**
      * 是否处理软键盘
      */
     private boolean keyboardEnable;
@@ -60,11 +55,6 @@ public class ActivityConfig {
      * toolbar标题
      */
     private CharSequence title;
-    /**
-     * 内容的背景颜色
-     */
-    @ColorRes
-    private int contentColor;
 
     public ActivityConfig layoutId(int layoutId) {
         this.layoutId = layoutId;
@@ -96,11 +86,6 @@ public class ActivityConfig {
         return this;
     }
 
-    public ActivityConfig toolbarColor(@ColorRes int color) {
-        this.toolbarColor = color;
-        return this;
-    }
-
     public ActivityConfig keyboardEnable(boolean keyboardEnable) {
         this.keyboardEnable = keyboardEnable;
         return this;
@@ -123,11 +108,6 @@ public class ActivityConfig {
 
     public ActivityConfig title(CharSequence title) {
         this.title = title;
-        return this;
-    }
-
-    public ActivityConfig contentColor(@ColorRes int color) {
-        this.contentColor = color;
         return this;
     }
 }

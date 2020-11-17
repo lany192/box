@@ -93,21 +93,13 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         stateLayout = new StateLayout(this);
         stateLayout.setOnRetryListener(this);
-        View contentView = LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null);
-        if (getConfig().getContentColor() > 0) {
-            contentView.setBackgroundResource(getConfig().getContentColor());
-        }
-        stateLayout.addView(contentView);
+        stateLayout.addView(LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null));
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (getConfig().isHasToolbar()) {
             toolBarView = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId(), null);
             toolBarView.setId(R.id.toolbar);
             toolBarView.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
-            toolBarView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    getConfig().getToolbarHeight()));
-            if (getConfig().getToolbarColor() > 0) {
-                toolBarView.setBackgroundResource(getConfig().getToolbarColor());
-            }
+            toolBarView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight()));
             if (getConfig().isTransparentStatusBar()) {
                 ViewUtils.setPaddingSmart(toolBarView);
             }
