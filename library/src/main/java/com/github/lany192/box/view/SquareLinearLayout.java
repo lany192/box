@@ -1,4 +1,4 @@
-package com.github.lany192.box.widget;
+package com.github.lany192.box.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

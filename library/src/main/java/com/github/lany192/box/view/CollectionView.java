@@ -1,4 +1,4 @@
-package com.github.lany192.box.widget;
+package com.github.lany192.box.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -19,7 +19,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 /**
  * RecyclerView的下拉刷新和上拉加载及置顶功能封装
  */
-public class ItemsView extends FrameLayout {
+public class CollectionView extends FixDragFrameLayout {
     private final SmartRefreshLayout refreshLayout;
     private final RecyclerView recyclerView;
     private final ImageView gotoTopBtn;
@@ -27,15 +27,15 @@ public class ItemsView extends FrameLayout {
     private int gotoTopCount = 5;
     private OnRefreshMoreListener mListener;
 
-    public ItemsView(Context context) {
+    public CollectionView(Context context) {
         this(context, null, 0);
     }
 
-    public ItemsView(Context context, AttributeSet attrs) {
+    public CollectionView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ItemsView(Context context, AttributeSet attrs, int defStyle) {
+    public CollectionView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.items_layout, this, true);
         refreshLayout = view.findViewById(R.id.show_view_refresh_layout);
@@ -47,8 +47,8 @@ public class ItemsView extends FrameLayout {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (ItemsView.this.recyclerView.getLayoutManager() instanceof LinearLayoutManager || ItemsView.this.recyclerView.getLayoutManager() instanceof GridLayoutManager) {
-                    LinearLayoutManager layoutManager = (LinearLayoutManager) ItemsView.this.recyclerView.getLayoutManager();
+                if (CollectionView.this.recyclerView.getLayoutManager() instanceof LinearLayoutManager || CollectionView.this.recyclerView.getLayoutManager() instanceof GridLayoutManager) {
+                    LinearLayoutManager layoutManager = (LinearLayoutManager) CollectionView.this.recyclerView.getLayoutManager();
                     int firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
                     gotoTopBtn.setVisibility(firstVisibleItem > gotoTopCount ? View.VISIBLE : View.GONE);
                 } else {

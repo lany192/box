@@ -1,24 +1,24 @@
-package com.github.lany192.box.widget;
+package com.github.lany192.box.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.makeramen.roundedimageview.RoundedImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * 正方形ImageView
  */
-public class SquaredRoundedImageView extends RoundedImageView {
+public class SquaredImageView extends AppCompatImageView {
 
-    public SquaredRoundedImageView(Context context) {
+    public SquaredImageView(Context context) {
         super(context);
     }
 
-    public SquaredRoundedImageView(Context context, AttributeSet attrs) {
+    public SquaredImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SquaredRoundedImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SquaredImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

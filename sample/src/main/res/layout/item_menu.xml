@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <com.github.lany192.box.widget.SquaredRoundedImageView
+    <com.github.lany192.box.view.SquaredRoundedImageView
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@color/blue"

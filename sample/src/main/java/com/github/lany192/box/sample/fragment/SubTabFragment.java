@@ -13,7 +13,7 @@ import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Menu;
 import com.github.lany192.box.sample.delegate.ImageDelegate;
 import com.github.lany192.box.sample.delegate.MenuDelegate;
-import com.github.lany192.box.widget.ItemsView;
+import com.github.lany192.box.view.CollectionView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,8 @@ import java.util.List;
 import butterknife.BindView;
 
 public class SubTabFragment extends BaseFragment {
-    @BindView(R.id.items_view)
-    ItemsView mShowView;
+    @BindView(R.id.collection_view)
+    CollectionView mShowView;
 
     @NonNull
     @Override

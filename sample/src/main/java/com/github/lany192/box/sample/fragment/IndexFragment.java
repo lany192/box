@@ -38,10 +38,7 @@ public class IndexFragment extends BaseFragment {
                 .addTab("精选", new DemoFragment())
                 .addTab("妹子", new GirlFragment())
                 .addTab("标题1", new SubTabFragment())
-                .addTab("标题2", new CityFragment())
-                .addTab("标题3", new SubTabFragment())
-                .addTab("标题4", new CityFragment())
-                .addTab("标题5", new SubTabFragment());
+                .addTab("城市", new CityFragment());
     }
 
     @OnClick(R.id.custom_toolbar_edit_btn)

@@ -1,17 +1,13 @@
-package com.github.lany192.box.widget;
+package com.github.lany192.box.view;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import androidx.annotation.AttrRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.annotation.StyleRes;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
@@ -26,27 +22,15 @@ public abstract class BaseLayout extends FrameLayout implements LifecycleObserve
     protected Logger.Builder log = XLog.tag(TAG);
 
     public BaseLayout(@NonNull Context context) {
-        super(context);
-        initView(null);
+        this(context, null, 0);
     }
 
     public BaseLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initView(attrs);
+        this(context, attrs, 0);
     }
 
-    public BaseLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+    public BaseLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView(attrs);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public BaseLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr, @StyleRes int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initView(attrs);
-    }
-
-    private void initView(@Nullable AttributeSet attrs) {
         View view = View.inflate(getContext(), getLayoutId(), this);
         ButterKnife.bind(this, view);
         init(attrs);

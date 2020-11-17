@@ -13,7 +13,7 @@ import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.delegate.ImageDelegate;
 import com.github.lany192.box.utils.JsonUtils;
-import com.github.lany192.box.widget.ItemsView;
+import com.github.lany192.box.view.CollectionView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 import butterknife.BindView;
 
 public class HelloFragment extends BaseFragment {
-    @BindView(R.id.ItemsView)
-    ItemsView mItemsView;
+    @BindView(R.id.collection_view)
+    CollectionView mCollectionView;
 
     @NonNull
     @Override
@@ -36,10 +36,10 @@ public class HelloFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mItemsView.setToolbarHeight(getToolbarHeight());
+        mCollectionView.setToolbarHeight(getToolbarHeight());
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
         manager.setOrientation(GridLayoutManager.VERTICAL);
-        mItemsView.setLayoutManager(manager);
+        mCollectionView.setLayoutManager(manager);
         List<String> images = new ArrayList<>();
         images.add("https://taoduorou.cn/files/images/2019-09-27/0bc183f272e366fc0415cbe83d2ba08e.jpg");
         images.add("https://taoduorou.cn/files/images/2019-10-18/8d6ac435c042e812544429cc5a9dee59.jpg");
@@ -89,7 +89,7 @@ public class HelloFragment extends BaseFragment {
         List<Delegate> items = new ArrayList<>();
         items.addAll(images.stream().map(ImageDelegate::new).collect(Collectors.toList()));
         items.add(new DividerDelegate());
-        mItemsView.setAdapter(new MultiAdapter(items, manager));
+        mCollectionView.setAdapter(new MultiAdapter(items, manager));
     }
 
 }
