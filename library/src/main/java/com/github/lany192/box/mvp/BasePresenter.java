@@ -1,5 +1,6 @@
 package com.github.lany192.box.mvp;
 
+import androidx.annotation.CallSuper;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
@@ -52,6 +53,7 @@ public abstract class BasePresenter<V extends BaseView, M> implements BaseContra
         return model;
     }
 
+    @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {
         log.i("onCreate()");
@@ -60,26 +62,31 @@ public abstract class BasePresenter<V extends BaseView, M> implements BaseContra
         }
     }
 
+    @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
         //log.i("onStart()");
     }
 
+    @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
         //log.i("onResume()");
     }
 
+    @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onPause() {
         //log.i("onPause()");
     }
 
+    @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onStop() {
         //log.i("onStop()");
     }
 
+    @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
         log.i("onDestroy()");
