@@ -75,7 +75,7 @@ public class LoadingDialog extends androidx.fragment.app.DialogFragment {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(this);
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
         }
     }
 }
