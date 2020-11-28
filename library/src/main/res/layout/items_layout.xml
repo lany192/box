@@ -10,7 +10,7 @@
         android:clipChildren="true"
         android:clipToPadding="true">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.github.lany192.box.view.FixRecyclerView
             android:id="@+id/show_view_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

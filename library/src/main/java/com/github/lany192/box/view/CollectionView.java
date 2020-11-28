@@ -4,12 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.lany192.box.R;
@@ -21,7 +20,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
  */
 public class CollectionView extends FixDragFrameLayout {
     private final SmartRefreshLayout refreshLayout;
-    private final RecyclerView recyclerView;
+    private final FixRecyclerView recyclerView;
     private final ImageView gotoTopBtn;
 
     private int gotoTopCount = 5;
@@ -47,12 +46,16 @@ public class CollectionView extends FixDragFrameLayout {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (CollectionView.this.recyclerView.getLayoutManager() instanceof LinearLayoutManager || CollectionView.this.recyclerView.getLayoutManager() instanceof GridLayoutManager) {
-                    LinearLayoutManager layoutManager = (LinearLayoutManager) CollectionView.this.recyclerView.getLayoutManager();
-                    int firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
+                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+                if (layoutManager instanceof LinearLayoutManager) {
+                    int firstVisibleItem = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
                     gotoTopBtn.setVisibility(firstVisibleItem > gotoTopCount ? View.VISIBLE : View.GONE);
                 } else {
                     gotoTopBtn.setVisibility(View.GONE);
+                }
+                if (layoutManager instanceof StaggeredGridLayoutManager) {
+                    //防止第一行到顶部有空白区域
+                    ((StaggeredGridLayoutManager) layoutManager).invalidateSpanAssignments();
                 }
             }
         });
@@ -69,6 +72,13 @@ public class CollectionView extends FixDragFrameLayout {
             this.refreshLayout.finishLoadMore();
         });
         recyclerView.getRecycledViewPool().setMaxRecycledViews(0, 10);
+    }
+
+    /**
+     * 回复状态，如果状态存在
+     */
+    public void restoreSaveState() {
+        recyclerView.restoreSaveState();
     }
 
     public SmartRefreshLayout getRefreshLayout() {

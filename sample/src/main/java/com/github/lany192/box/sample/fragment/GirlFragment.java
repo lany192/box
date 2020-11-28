@@ -1,9 +1,11 @@
 package com.github.lany192.box.sample.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.github.lany192.box.adapter.MultiAdapter;
@@ -23,6 +25,8 @@ public class GirlFragment extends BaseFragment {
     @BindView(R.id.collection_view)
     CollectionView mCollectionView;
 
+    private StaggeredGridLayoutManager layoutManager;
+
     @NonNull
     @Override
     public FragmentConfig getConfig() {
@@ -30,17 +34,20 @@ public class GirlFragment extends BaseFragment {
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (layoutManager != null) {
+            mCollectionView.setLayoutManager(layoutManager);
+            mCollectionView.restoreSaveState();
+        }
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mCollectionView.setLayoutManager(layoutManager);
-        mCollectionView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                layoutManager.invalidateSpanAssignments(); //防止第一行到顶部有空白区域
-            }
-        });
+
         List<String> images = new ArrayList<>();
         images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/fda6ef1bcc.jpg");
         images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/3d7174cee3.jpg");
