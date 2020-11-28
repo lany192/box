@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,7 +22,11 @@ import com.github.lany192.box.R;
 
 import java.util.Objects;
 
+/**
+ * 加载对话框
+ */
 public class LoadingDialog extends androidx.fragment.app.DialogFragment {
+    private final String TAG = this.getClass().getName();
     private CharSequence mMessage;
 
     @Override
@@ -51,10 +56,14 @@ public class LoadingDialog extends androidx.fragment.app.DialogFragment {
         this.mMessage = message;
     }
 
+    public void setMessage(@StringRes int resId) {
+        this.mMessage = getString(resId);
+    }
+
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
         if (isAdded()) {
-            XLog.tag("LoadingDialog").w("已经显示，忽略......");
+            XLog.tag(TAG).w("已经显示，忽略......");
         } else {
             super.show(manager, tag);
         }
