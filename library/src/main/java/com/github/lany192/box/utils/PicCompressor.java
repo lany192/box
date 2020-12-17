@@ -21,21 +21,23 @@ import top.zibin.luban.Luban;
  */
 public class PicCompressor {
     private final String TAG = getClass().getSimpleName();
-    private List<String> paths;
-    private Consumer<List<String>> consumer;
+    private final List<String> paths;
+    private int limitSize = 100;
 
-    public PicCompressor(String path, Consumer<List<String>> consumer) {
+    public PicCompressor(String path) {
         this.paths = new ArrayList<>();
         this.paths.add(path);
-        this.consumer = consumer;
     }
 
-    public PicCompressor(List<String> paths, Consumer<List<String>> consumer) {
+    public PicCompressor(List<String> paths) {
         this.paths = paths;
-        this.consumer = consumer;
     }
 
-    public Disposable start() {
+    public void setLimitSize(int limitSize) {
+        this.limitSize = limitSize;
+    }
+
+    public Disposable start(Consumer<List<String>> consumer) {
         return Flowable.just(paths)
                 .observeOn(Schedulers.io())
                 .map(this::compress)
@@ -48,7 +50,7 @@ public class PicCompressor {
         List<File> files = Luban.with(Box.get().getContext())
                 .setTargetDir(Box.get().getContext().getCacheDir().getPath())
                 .load(photosPaths)
-                .ignoreBy(100)//小于100kb不压缩
+                .ignoreBy(limitSize)//小于100kb不压缩
                 .get();
         List<String> paths = new ArrayList<>();
         for (File item : files) {
