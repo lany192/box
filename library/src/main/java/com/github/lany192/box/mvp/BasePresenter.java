@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.Subscribe;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -35,14 +36,21 @@ public abstract class BasePresenter<V extends BaseView, M> implements BaseContra
     }
 
     protected <T> void request(Observable<T> observable, DisposableObserver<T> observer) {
-        if (compositeDisposable == null) {
-            compositeDisposable = new CompositeDisposable();
-        }
-        compositeDisposable.add(observable
+        addDisposable(observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeWith(observer));
+    }
+
+    /**
+     * 处理disposable
+     */
+    public void addDisposable(Disposable disposable) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
     }
 
     protected V getView() {
@@ -93,8 +101,9 @@ public abstract class BasePresenter<V extends BaseView, M> implements BaseContra
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
-        if (compositeDisposable != null) {
+        if (compositeDisposable != null && compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
+            compositeDisposable = null;
         }
     }
 

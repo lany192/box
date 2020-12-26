@@ -44,7 +44,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
      */
     private boolean isLazyLoaded;
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private CompositeDisposable compositeDisposable;
     /**
      * 本界面用户是否可见
      */
@@ -240,11 +240,13 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     }
 
     /**
-     * 接收处理Disposable对象
-     *
-     * @param disposable
+     * 处理disposable
      */
-    protected void manageDisposable(Disposable disposable) {
+    public void addDisposable(Disposable disposable) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
         compositeDisposable.add(disposable);
     }
+
 }

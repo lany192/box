@@ -54,7 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private StateLayout stateLayout;
     private Unbinder unbinder;
     private LoadingDialog loadingDialog;
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private CompositeDisposable compositeDisposable;
 
     @NonNull
     public ActivityConfig getConfig(){
@@ -217,12 +217,14 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         log.i("点击重试");
     }
 
+
     /**
-     * 接收处理Disposable对象
-     *
-     * @param disposable
+     * 处理disposable
      */
-    protected void addDisposable(Disposable disposable) {
+    public void addDisposable(Disposable disposable) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
         compositeDisposable.add(disposable);
     }
 
