@@ -256,6 +256,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     public void cancelLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isAdded()) {
             loadingDialog.cancel();
+            loadingDialog = null;
         }
     }
 
@@ -291,7 +292,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(this);
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
         }
     }
 
