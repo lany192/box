@@ -230,7 +230,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     public void onDestroy() {
-        //ImmersionBar.with(this).destroy();
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
@@ -294,8 +293,8 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (loadingDialog == null) {
             loadingDialog = new LoadingDialog();
         }
-        loadingDialog.setMessage(message);
         if (!loadingDialog.isAdded()) {
+            loadingDialog.setMessage(message);
             loadingDialog.show(getSupportFragmentManager(), TAG);
         }
     }
