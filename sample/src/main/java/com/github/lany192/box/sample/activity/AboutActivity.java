@@ -9,10 +9,18 @@ import com.github.lany192.box.activity.BaseActivity;
 import com.github.lany192.box.sample.R;
 
 public class AboutActivity extends BaseActivity {
+
     @NonNull
     @Override
     public ActivityConfig getConfig() {
-        return super.getConfig().layoutId(R.layout.activity_about);
+        return ActivityConfig.builder()
+                .layoutId(R.layout.activity_about)
+                .statusBarDarkFont(true)
+                .transparentStatusBar(true)
+                .hasToolbar(true)
+                .keyboardEnable(true)
+                .hasBackBtn(true)
+                .build();
     }
 
     @Override

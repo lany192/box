@@ -3,8 +3,10 @@ package com.github.lany192.box.activity;
 import androidx.annotation.ColorRes;
 import androidx.annotation.LayoutRes;
 
+import lombok.Builder;
 import lombok.Getter;
 
+@Builder
 @Getter
 public class ActivityConfig {
     /**
@@ -55,59 +57,4 @@ public class ActivityConfig {
      * toolbar标题
      */
     private CharSequence title;
-
-    public ActivityConfig layoutId(int layoutId) {
-        this.layoutId = layoutId;
-        return this;
-    }
-
-    public ActivityConfig toolBarLayoutId(int toolBarLayoutId) {
-        this.toolBarLayoutId = toolBarLayoutId;
-        return this;
-    }
-
-    public ActivityConfig statusBarDarkFont(boolean statusBarDarkFont) {
-        this.statusBarDarkFont = statusBarDarkFont;
-        return this;
-    }
-
-    public ActivityConfig hasToolbar(boolean hasToolbar) {
-        this.hasToolbar = hasToolbar;
-        return this;
-    }
-
-    public ActivityConfig hasBackBtn(boolean hasBackBtn) {
-        this.hasBackBtn = hasBackBtn;
-        return this;
-    }
-
-    public ActivityConfig toolbarHeight(int toolbarHeight) {
-        this.toolbarHeight = toolbarHeight;
-        return this;
-    }
-
-    public ActivityConfig keyboardEnable(boolean keyboardEnable) {
-        this.keyboardEnable = keyboardEnable;
-        return this;
-    }
-
-    public ActivityConfig statusBarColor(@ColorRes int color) {
-        this.statusBarColor = color;
-        return this;
-    }
-
-    public ActivityConfig transparentStatusBar(boolean transparentStatusBar) {
-        this.transparentStatusBar = transparentStatusBar;
-        return this;
-    }
-
-    public ActivityConfig fullscreen(boolean fullscreen) {
-        this.fullscreen = fullscreen;
-        return this;
-    }
-
-    public ActivityConfig title(CharSequence title) {
-        this.title = title;
-        return this;
-    }
 }

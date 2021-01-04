@@ -57,20 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     private CompositeDisposable compositeDisposable;
 
     @NonNull
-    public ActivityConfig getConfig(){
-        return new ActivityConfig()
-                .layoutId(R.layout.ui_default)
-                .fullscreen(false)
-                .hasToolbar(true)
-                .toolBarLayoutId(R.layout.toolbar_default)//hasToolbar值为true时，该值无效
-                .hasBackBtn(true)//hasToolbar值为true时，该值无效
-                .keyboardEnable(true)
-                .statusBarColor(android.R.color.white)//如果transparentStatusBar为true，该值无效
-                .statusBarDarkFont(true)
-                .toolbarHeight(DensityUtils.dp2px(48))
-                .transparentStatusBar(true)
-                .title(getTitle());//hasToolbar为true,以及能找到title id时该设置生效
-    }
+    public abstract ActivityConfig getConfig();
 
     protected abstract void init(Bundle savedInstanceState);
 
@@ -96,15 +83,15 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         stateLayout.addView(LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null));
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         if (getConfig().isHasToolbar()) {
-            toolBarView = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId(), null);
+            toolBarView = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
             toolBarView.setId(R.id.toolbar);
             toolBarView.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
-            toolBarView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight()));
+            toolBarView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight() == 0 ? DensityUtils.dp2px(48) : getConfig().getToolbarHeight()));
             if (getConfig().isTransparentStatusBar()) {
                 ViewUtils.setPaddingSmart(toolBarView);
             }
             rootView.addView(toolBarView);
-            setTitle(getConfig().getTitle());
+            setTitle(TextUtils.isEmpty(getConfig().getTitle()) ? getTitle() : getConfig().getTitle());
             View backBtn = toolBarView.findViewById(R.id.toolbar_back_btn);
             if (getConfig().isHasBackBtn()) {
                 if (backBtn == null) {
@@ -142,7 +129,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             if (getConfig().isTransparentStatusBar()) {
                 bar.statusBarAlpha(0.0f).statusBarColor(android.R.color.transparent);
             } else {
-                bar.statusBarColor(getConfig().getStatusBarColor()).fitsSystemWindows(true);
+                bar.statusBarColor(getConfig().getStatusBarColor() == 0 ? android.R.color.white : getConfig().getStatusBarColor()).fitsSystemWindows(true);
             }
             bar.keyboardEnable(getConfig().isKeyboardEnable());
             //特殊机型处理,状态栏背景改成黑色
