@@ -27,9 +27,10 @@ public class SubTabFragment extends BaseFragment {
     @NonNull
     @Override
     public FragmentConfig getConfig() {
-        return new FragmentConfig().layoutId(R.layout.fragment_hello);
+        return FragmentConfig.builder()
+                .layoutId(R.layout.fragment_hello)
+                .build();
     }
-
     @Override
     protected void init(Bundle savedInstanceState) {
         GridLayoutManager manager = new GridLayoutManager(getContext(), 4);

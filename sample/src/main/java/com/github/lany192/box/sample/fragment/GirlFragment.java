@@ -30,9 +30,10 @@ public class GirlFragment extends BaseFragment {
     @NonNull
     @Override
     public FragmentConfig getConfig() {
-        return new FragmentConfig().layoutId(R.layout.fragment_girl);
+        return FragmentConfig.builder()
+                .layoutId(R.layout.fragment_girl)
+                .build();
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (layoutManager != null) {

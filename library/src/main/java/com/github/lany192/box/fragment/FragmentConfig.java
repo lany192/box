@@ -3,11 +3,10 @@ package com.github.lany192.box.fragment;
 import androidx.annotation.ColorRes;
 import androidx.annotation.LayoutRes;
 
-import com.github.lany192.box.R;
-import com.github.lany192.box.utils.DensityUtils;
-
+import lombok.Builder;
 import lombok.Getter;
 
+@Builder
 @Getter
 public class FragmentConfig {
     /**
@@ -42,35 +41,4 @@ public class FragmentConfig {
      * 是否toolbar覆盖方式
      */
     private boolean coverStyle;
-
-    public FragmentConfig coverStyle(boolean cover) {
-        this.coverStyle = cover;
-        return this;
-    }
-
-    public FragmentConfig toolbarBlur(boolean blur) {
-        this.toolbarBlur = blur;
-        return this;
-    }
-
-    public FragmentConfig layoutId(int layoutId) {
-        this.layoutId = layoutId;
-        return this;
-    }
-
-    public FragmentConfig toolBarLayoutId(int toolBarLayoutId) {
-        this.toolBarLayoutId = toolBarLayoutId;
-        this.hasToolbar = true;
-        return this;
-    }
-
-    public FragmentConfig toolbarHeight(int toolbarHeight) {
-        this.toolbarHeight = toolbarHeight;
-        return this;
-    }
-
-    public FragmentConfig toolbarColor(int color) {
-        this.toolbarColor = color;
-        return this;
-    }
 }

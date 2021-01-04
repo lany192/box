@@ -21,9 +21,10 @@ public class MyFragment extends BaseFragment {
     @NonNull
     @Override
     public FragmentConfig getConfig() {
-        return new FragmentConfig().layoutId(R.layout.fragment_my);
+        return FragmentConfig.builder()
+                .layoutId(R.layout.fragment_my)
+                .build();
     }
-
     @Override
     protected void init(Bundle savedInstanceState) {
 

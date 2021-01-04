@@ -30,7 +30,9 @@ public class DemoFragment extends BaseFragment {
     @NonNull
     @Override
     public FragmentConfig getConfig() {
-        return new FragmentConfig().layoutId(R.layout.fragment_demo);
+        return FragmentConfig.builder()
+                .layoutId(R.layout.fragment_demo)
+                .build();
     }
 
     @Override

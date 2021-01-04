@@ -32,7 +32,9 @@ public class CityFragment extends DaggerFragment implements CityContract.View {
     @NonNull
     @Override
     public FragmentConfig getConfig() {
-        return new FragmentConfig().layoutId(R.layout.fragment_city);
+        return FragmentConfig.builder()
+                .layoutId(R.layout.fragment_city)
+                .build();
     }
 
     @Override

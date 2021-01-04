@@ -51,13 +51,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     private boolean userVisible;
 
     @NonNull
-    public FragmentConfig getConfig(){
-        return new FragmentConfig()
-                .layoutId(R.layout.ui_default)
-                .coverStyle(true)
-                .toolbarBlur(true)
-                .toolbarHeight(DensityUtils.dp2px(48));
-    }
+    public abstract FragmentConfig getConfig();
 
     /**
      * 初始化
@@ -114,10 +108,10 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
                 ViewUtils.setPaddingSmart(blurView);
                 rootView.addView(blurView);
             }
-            View toolbar = inflater.inflate(getConfig().getToolBarLayoutId(), null);
+            View toolbar = LayoutInflater.from(getContext()).inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
-            toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight()));
+            toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight() == 0 ? DensityUtils.dp2px(48) : getConfig().getToolbarHeight()));
             ViewUtils.setPaddingSmart(toolbar);
             rootView.addView(toolbar);
 
@@ -226,8 +220,8 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (loadingDialog == null) {
             loadingDialog = new LoadingDialog();
         }
-        loadingDialog.setMessage(message);
         if (!loadingDialog.isAdded()) {
+            loadingDialog.setMessage(message);
             loadingDialog.show(getParentFragmentManager(), TAG);
         }
     }
@@ -236,6 +230,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     public void cancelLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isAdded()) {
             loadingDialog.cancel();
+            loadingDialog = null;
         }
     }
 

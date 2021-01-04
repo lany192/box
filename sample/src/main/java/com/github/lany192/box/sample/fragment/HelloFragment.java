@@ -28,12 +28,13 @@ public class HelloFragment extends BaseFragment {
     @NonNull
     @Override
     public FragmentConfig getConfig() {
-        return new FragmentConfig().layoutId(R.layout.hello)
+        return FragmentConfig.builder()
+                .layoutId(R.layout.hello)
                 .toolBarLayoutId(R.layout.toolbar_hello)
                 .coverStyle(true)
-                .toolbarBlur(true);
+                .toolbarBlur(true)
+                .build();
     }
-
     @Override
     protected void init(Bundle savedInstanceState) {
         mCollectionView.setToolbarHeight(getToolbarHeight());
