@@ -31,6 +31,7 @@ public class HelloFragment extends BaseFragment {
         return FragmentConfig.builder()
                 .layoutId(R.layout.hello)
                 .toolBarLayoutId(R.layout.toolbar_hello)
+                .hasToolbar(true)
                 .coverStyle(true)
                 .toolbarBlur(true)
                 .build();

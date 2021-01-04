@@ -290,6 +290,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     public void cancelLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isAdded()) {
             loadingDialog.cancel();
+            loadingDialog = null;
         }
     }
 }
