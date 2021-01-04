@@ -32,8 +32,6 @@ public class IndexFragment extends BaseFragment {
                 .layoutId(R.layout.fragment_index)
                 .toolBarLayoutId(R.layout.toolbar_index)
                 .hasToolbar(true)
-                .coverStyle(true)
-                .toolbarBlur(true)
                 .build();
     }
     @Override

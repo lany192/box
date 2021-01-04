@@ -33,9 +33,9 @@ public class HelloFragment extends BaseFragment {
                 .toolBarLayoutId(R.layout.toolbar_hello)
                 .hasToolbar(true)
                 .coverStyle(true)
-                .toolbarBlur(true)
                 .build();
     }
+
     @Override
     protected void init(Bundle savedInstanceState) {
         mCollectionView.setToolbarHeight(getToolbarHeight());

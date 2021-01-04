@@ -22,7 +22,6 @@ import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.view.StateLayout;
-import com.github.mmin18.widget.RealtimeBlurView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -102,13 +101,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         rootView.addView(stateLayout);
 
         if (getConfig().isHasToolbar()) {
-            if (getConfig().isToolbarBlur()) {
-                RealtimeBlurView blurView = new RealtimeBlurView(getContext(), null);
-                blurView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight()));
-                ViewUtils.setPaddingSmart(blurView);
-                rootView.addView(blurView);
-            }
-            View toolbar = LayoutInflater.from(getContext()).inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
+            View toolbar = inflater.inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight() == 0 ? DensityUtils.dp2px(48) : getConfig().getToolbarHeight()));

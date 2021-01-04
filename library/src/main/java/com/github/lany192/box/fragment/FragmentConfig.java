@@ -32,11 +32,6 @@ public class FragmentConfig {
      */
     @ColorRes
     private int toolbarColor;
-
-    /**
-     * 是否需要Toolbar模糊化
-     */
-    private boolean toolbarBlur;
     /**
      * 是否toolbar覆盖方式
      */

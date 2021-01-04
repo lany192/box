@@ -5,6 +5,11 @@
     android:gravity="bottom"
     android:minHeight="@dimen/actionbar_height">
 
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/toolbar_title_text"
         android:layout_width="wrap_content"
