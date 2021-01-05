@@ -6,7 +6,7 @@
     android:background="@drawable/bottom_dialog_bg"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".HelloActivity">
+    tools:context=".activity.HelloActivity">
 
     <Button
         android:id="@+id/button0"

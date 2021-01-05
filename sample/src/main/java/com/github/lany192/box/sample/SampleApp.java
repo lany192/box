@@ -10,6 +10,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.github.lany192.box.Box;
+import com.github.lany192.box.sample.activity.HelloActivity;
 import com.github.lany192.box.sample.di.component.DaggerAppComponent;
 import com.liulishuo.filedownloader.FileDownloader;
 
