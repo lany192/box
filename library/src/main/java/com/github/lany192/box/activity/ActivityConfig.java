@@ -24,10 +24,6 @@ public class ActivityConfig {
      */
     private boolean statusBarDarkFont;
     /**
-     * 是否需要Toolbar
-     */
-    private boolean hasToolbar;
-    /**
      * Toolbar是否需要显示返回键
      */
     private boolean hasBackBtn;
@@ -57,4 +53,11 @@ public class ActivityConfig {
      * toolbar标题
      */
     private CharSequence title;
+
+    /**
+     * 是否需要Toolbar
+     */
+    public boolean hasToolbar() {
+        return toolBarLayoutId != 0;
+    }
 }

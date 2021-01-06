@@ -31,7 +31,6 @@ public class IndexFragment extends BaseFragment {
         return FragmentConfig.builder()
                 .layoutId(R.layout.fragment_index)
                 .toolBarLayoutId(R.layout.toolbar_index)
-                .hasToolbar(true)
                 .build();
     }
     @Override

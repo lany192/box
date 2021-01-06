@@ -100,7 +100,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         stateLayout.addView(inflater.inflate(getConfig().getLayoutId(), null));
         rootView.addView(stateLayout);
 
-        if (getConfig().isHasToolbar()) {
+        if (getConfig().hasToolbar()) {
             View toolbar = inflater.inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
@@ -119,7 +119,7 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     }
 
     public int getToolbarHeight() {
-        if (getConfig().isHasToolbar()) {
+        if (getConfig().hasToolbar()) {
             return getConfig().getToolbarHeight() + PhoneUtils.getStatusBarHeight();
         }
         return 0;

@@ -17,7 +17,7 @@ public class AboutActivity extends BaseActivity {
                 .layoutId(R.layout.activity_about)
                 .statusBarDarkFont(true)
                 .transparentStatusBar(true)
-                .hasToolbar(true)
+                .toolBarLayoutId(R.layout.toolbar_default)
                 .keyboardEnable(true)
                 .hasBackBtn(true)
                 .build();

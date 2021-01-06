@@ -20,10 +20,6 @@ public class FragmentConfig {
     @LayoutRes
     private int toolBarLayoutId;
     /**
-     * 是否需要Toolbar
-     */
-    private boolean hasToolbar;
-    /**
      * toolbar的高度
      */
     private int toolbarHeight;
@@ -36,4 +32,11 @@ public class FragmentConfig {
      * 是否toolbar覆盖方式
      */
     private boolean coverStyle;
+
+    /**
+     * 是否需要Toolbar
+     */
+    public boolean hasToolbar() {
+        return toolBarLayoutId != 0;
+    }
 }

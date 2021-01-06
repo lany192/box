@@ -82,7 +82,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         stateLayout.setOnRetryListener(this);
         stateLayout.addView(LayoutInflater.from(this).inflate(getConfig().getLayoutId(), null));
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        if (getConfig().isHasToolbar()) {
+        if (getConfig().hasToolbar()) {
             toolBarView = LayoutInflater.from(this).inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
             toolBarView.setId(R.id.toolbar);
             toolBarView.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
@@ -174,12 +174,12 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     public void setTitle(CharSequence title) {
-        if (getConfig().isHasToolbar()) {
+        if (getConfig().hasToolbar()) {
             TextView titleText = toolBarView.findViewById(R.id.toolbar_title_text);
             if (titleText == null) {
                 throw new IllegalArgumentException("Please use the 'R.id.toolbar_title_text' field to set title in custom toolbar layout.");
             }
-            if (getConfig().isHasToolbar() && !TextUtils.isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 titleText.setText(title);
             }
         }
