@@ -14,10 +14,12 @@ public class ClipboardUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             android.content.ClipboardManager manager = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             if (manager.hasPrimaryClip()) {
-                return manager.getPrimaryClip().getItemAt(0).getText();
-            } else {
-                return null;
+                ClipData clipData = manager.getPrimaryClip();
+                if (clipData != null) {
+                    return clipData.getItemAt(0).getText();
+                }
             }
+            return "";
         } else {
             android.text.ClipboardManager manager = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             return manager.getText();
@@ -27,7 +29,7 @@ public class ClipboardUtils {
     /**
      * 判断粘贴板上是否有内容
      */
-    public static boolean isClipboardEmpty(Context context) {
+    public static boolean isEmpty(Context context) {
         return TextUtils.isEmpty(getText(context));
     }
 
