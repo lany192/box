@@ -71,14 +71,14 @@ dependencies {
 
 
     //日志
-    api 'com.elvishew:xlog:1.6.1'
+    api 'com.elvishew:xlog:1.8.0'
     //下载框架 https://github.com/lingochamp/FileDownloader
     api 'com.liulishuo.filedownloader:library:1.7.7'
 
     api 'com.hjq:toast:8.6'
 
     compileOnly 'com.jakewharton:butterknife:10.2.3'
-    compileOnly 'com.google.dagger:dagger-android-support:2.29.1'
+    compileOnly 'com.google.dagger:dagger-android-support:2.30.1'
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 

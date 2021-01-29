@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    ndkVersion "22.0.7026061"
     defaultConfig {
         applicationId "com.github.lany192.box.sample"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -12,7 +13,9 @@ android {
         versionName "1.0.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        ndk {
+            abiFilters "armeabi", 'armeabi-v7a', 'arm64-v8a'
+        }
         renderscriptTargetApi rootProject.ext.minSdkVersion
         renderscriptSupportModeEnabled true
     }
@@ -44,6 +47,9 @@ android {
         exclude 'META-INF/groovy/org.codehaus.groovy.runtime.ExtensionModule'
         exclude 'META-INF/groovy-release-info.properties'
         exclude 'META-INF/library_release.kotlin_module'
+        //排除lombok文件
+        exclude 'Class50/**'
+        exclude 'lombok/**'
     }
 }
 
@@ -71,9 +77,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     //dagger2
-    implementation 'com.google.dagger:dagger-android-support:2.29.1'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.29.1'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.29.1'
+    implementation 'com.google.dagger:dagger-android-support:2.30.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.30.1'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.30.1'
     //菜单控件
     implementation 'com.github.lany192:MenuView:1.0.3'
 
