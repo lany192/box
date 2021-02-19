@@ -85,8 +85,6 @@ dependencies {
 
     compileOnly 'com.jakewharton:butterknife:10.2.3'
     compileOnly 'com.google.dagger:dagger-android-support:2.30.1'
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     //圆角图片 https://github.com/vinc3m1/RoundedImageView
     api 'com.makeramen:roundedimageview:2.3.0'

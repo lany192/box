@@ -1,42 +1,41 @@
-package com.github.lany192.box.fragment;
+package com.github.lany192.box.fragment
 
-import androidx.annotation.ColorRes;
-import androidx.annotation.LayoutRes;
+import androidx.annotation.ColorRes
+import androidx.annotation.LayoutRes
 
-import lombok.Builder;
-import lombok.Getter;
-
-@Builder
-@Getter
-public class FragmentConfig {
+class FragmentConfig {
     /**
      * 布局文件id
      */
     @LayoutRes
-    private int layoutId;
+    var layoutId = 0
+
     /**
      * Toolbar布局文件id
      */
     @LayoutRes
-    private int toolBarLayoutId;
+    var toolBarLayoutId = 0
+
     /**
      * toolbar的高度
      */
-    private int toolbarHeight;
+    var toolbarHeight = 0
+
     /**
      * Toolbar颜色
      */
     @ColorRes
-    private int toolbarColor;
+    var toolbarColor = 0
+
     /**
      * 是否toolbar覆盖方式
      */
-    private boolean coverStyle;
+    var isCoverStyle = false
 
     /**
      * 是否需要Toolbar
      */
-    public boolean hasToolbar() {
-        return toolBarLayoutId != 0;
+    fun hasToolbar(): Boolean {
+        return toolBarLayoutId != 0
     }
 }

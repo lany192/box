@@ -1,16 +1,16 @@
-package com.github.lany192.box.sample.bean;
+package com.github.lany192.box.sample.bean
 
-import lombok.Getter;
-import lombok.Setter;
+class Result<T> {
+    var code = 0
+    var msg: String? = null
 
-@Setter
-@Getter
-public class Result<T> {
-    private int code;
-    private String msg;
-    private T data;
+    var data: T? = null
+        private set
 
-    public boolean isSuccess() {
-        return code == 200;
+    fun setData(data: T) {
+        this.data = data
     }
+
+    val isSuccess: Boolean
+        get() = code == 200
 }

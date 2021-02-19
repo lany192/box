@@ -1,63 +1,66 @@
-package com.github.lany192.box.activity;
+package com.github.lany192.box.activity
 
-import androidx.annotation.ColorRes;
-import androidx.annotation.LayoutRes;
+import androidx.annotation.ColorRes
+import androidx.annotation.LayoutRes
 
-import lombok.Builder;
-import lombok.Getter;
-
-@Builder
-@Getter
-public class ActivityConfig {
+class ActivityConfig {
     /**
      * 布局文件id
      */
     @LayoutRes
-    private int layoutId;
+    var layoutId = 0
+
     /**
      * Toolbar布局文件id
      */
     @LayoutRes
-    private int toolBarLayoutId;
+    var toolBarLayoutId = 0
+
     /**
      * 状态栏的文字和图标是否改成黑色
      */
-    private boolean statusBarDarkFont;
+    var statusBarDarkFont = false
+
     /**
      * Toolbar是否需要显示返回键
      */
-    private boolean hasBackBtn;
+    var hasBackBtn = false
+
     /**
      * toolbar的高度
      */
-    private int toolbarHeight;
+    var toolbarHeight = 0
+
     /**
      * 是否处理软键盘
      */
-    private boolean keyboardEnable;
+    var keyboardEnable = false
+
     /**
      * 状态栏颜色
      */
     @ColorRes
-    private int statusBarColor;
+    var statusBarColor = 0
+
     /**
      * 状态栏是否透明
      */
-    private boolean transparentStatusBar;
+    var transparentStatusBar = false
+
     /**
      * 是否全屏
      */
-    private boolean fullscreen;
+    var fullscreen = false
 
     /**
      * toolbar标题
      */
-    private CharSequence title;
+    var title: CharSequence? = null
 
     /**
      * 是否需要Toolbar
      */
-    public boolean hasToolbar() {
-        return toolBarLayoutId != 0;
+    fun hasToolbar(): Boolean {
+        return toolBarLayoutId != 0
     }
 }
