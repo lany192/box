@@ -1,30 +1,22 @@
-package com.github.lany192.box.sample.activity;
+package com.github.lany192.box.sample.activity
 
-import android.os.Bundle;
+import android.os.Bundle
+import com.github.lany192.box.activity.ActivityConfig
+import com.github.lany192.box.activity.BaseActivity
+import com.github.lany192.box.sample.R
 
-import androidx.annotation.NonNull;
+class AboutActivity : BaseActivity() {
 
-import com.github.lany192.box.activity.ActivityConfig;
-import com.github.lany192.box.activity.BaseActivity;
-import com.github.lany192.box.sample.R;
-
-public class AboutActivity extends BaseActivity {
-
-    @NonNull
-    @Override
-    public ActivityConfig getConfig() {
-        return ActivityConfig.builder()
-                .layoutId(R.layout.activity_about)
-                .statusBarDarkFont(true)
-                .transparentStatusBar(true)
-                .toolBarLayoutId(R.layout.toolbar_default)
-                .keyboardEnable(true)
-                .hasBackBtn(true)
-                .build();
+    override fun getConfig(): ActivityConfig {
+        return ActivityConfig().apply {
+            layoutId = R.layout.activity_about
+            statusBarDarkFont = true
+            transparentStatusBar = true
+            toolBarLayoutId = R.layout.toolbar_default
+            keyboardEnable = true
+            hasBackBtn = true
+        }
     }
 
-    @Override
-    protected void init(Bundle savedInstanceState) {
-
-    }
+    override fun init(savedInstanceState: Bundle) {}
 }
