@@ -65,6 +65,7 @@ public class LoadingDialog extends androidx.fragment.app.DialogFragment {
         if (isAdded()) {
             XLog.tag(TAG).w("已经显示，忽略......");
         } else {
+            cancel();
             super.show(manager, tag);
         }
     }

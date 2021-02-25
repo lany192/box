@@ -248,8 +248,9 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         }
         loadingDialog.setMessage(message);
         if (!loadingDialog.isAdded()) {
-            loadingDialog.show(getParentFragmentManager(), TAG);
+            loadingDialog.cancel();
         }
+        loadingDialog.show(getParentFragmentManager(), TAG);
     }
 
     @Override
@@ -265,6 +266,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         if (isAdded()) {
             log.w("已经显示，忽略......");
         } else {
+            cancel();
             super.show(manager, tag);
         }
     }
