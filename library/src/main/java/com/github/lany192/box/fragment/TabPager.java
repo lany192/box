@@ -22,8 +22,8 @@ import java.util.List;
 public class TabPager {
     private final ViewPager2 viewPager2;
     private final TabLayout tabLayout;
-    private final List<PagerItem> items = new ArrayList<>();
-    private final FragmentStateAdapter adapter;
+    private List<PagerItem> items = new ArrayList<>();
+    private FragmentStateAdapter adapter;
 
     public TabPager(FragmentActivity fragmentActivity, final ViewPager2 viewPager2, final TabLayout tabLayout) {
         this.viewPager2 = viewPager2;

@@ -87,13 +87,13 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             toolBarView.setId(R.id.toolbar);
             toolBarView.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolBarView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight() == 0 ? DensityUtils.dp2px(48) : getConfig().getToolbarHeight()));
-            if (getConfig().getTransparentStatusBar()) {
+            if (getConfig().isTransparentStatusBar()) {
                 ViewUtils.setPaddingSmart(toolBarView);
             }
             rootView.addView(toolBarView);
             setTitle(TextUtils.isEmpty(getConfig().getTitle()) ? getTitle() : getConfig().getTitle());
             View backBtn = toolBarView.findViewById(R.id.toolbar_back_btn);
-            if (getConfig().getHasBackBtn()) {
+            if (getConfig().isHasBackBtn()) {
                 if (backBtn == null) {
                     throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
                 }
@@ -118,20 +118,20 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
      */
     private void initStatusBar() {
         ImmersionBar bar = ImmersionBar.with(this);
-        if (getConfig().getFullscreen()) {
+        if (getConfig().isFullscreen()) {
             bar.hideBar(BarHide.FLAG_HIDE_BAR);//隐藏状态栏或导航栏或两者，不写默认不隐藏
         } else {
             bar.navigationBarColorInt(Color.WHITE);
             bar.navigationBarDarkIcon(true);
             if (ImmersionBar.isSupportStatusBarDarkFont()) {
-                bar.statusBarDarkFont(getConfig().getStatusBarDarkFont());
+                bar.statusBarDarkFont(getConfig().isStatusBarDarkFont());
             }
-            if (getConfig().getTransparentStatusBar()) {
+            if (getConfig().isTransparentStatusBar()) {
                 bar.statusBarAlpha(0.0f).statusBarColor(android.R.color.transparent);
             } else {
                 bar.statusBarColor(getConfig().getStatusBarColor() == 0 ? android.R.color.white : getConfig().getStatusBarColor()).fitsSystemWindows(true);
             }
-            bar.keyboardEnable(getConfig().getKeyboardEnable());
+            bar.keyboardEnable(getConfig().isKeyboardEnable());
             //特殊机型处理,状态栏背景改成黑色
             if (!TextUtils.isEmpty(Build.MODEL) && Build.MODEL.contains("A33")) {
                 bar.statusBarColor(android.R.color.black);
@@ -203,6 +203,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     public void onRetry() {
         log.i("点击重试");
     }
+
 
     /**
      * 处理disposable
