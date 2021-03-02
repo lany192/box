@@ -17,14 +17,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.dialog.LoadingDialog;
-import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.ClickUtil;
@@ -33,10 +31,6 @@ import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.view.StateLayout;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
