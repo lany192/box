@@ -9,13 +9,11 @@ import android.widget.RelativeLayout.LayoutParams;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.dialog.LoadingDialog;
-import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.DensityUtils;
@@ -23,16 +21,12 @@ import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.view.StateLayout;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseFragment extends EventBusFragment implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;
@@ -57,13 +51,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
      */
     protected abstract void init(Bundle savedInstanceState);
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
-    }
 
     @Override
     public void onResume() {
@@ -145,9 +132,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public void onDestroy() {
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
         if (null != unbinder) {
             unbinder.unbind();
         }
@@ -158,10 +142,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         super.onDestroy();
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(NetWorkEvent event) {
-        //log.i(" 网络状态发送变化");
-    }
 
     @Override
     public void onRetry() {

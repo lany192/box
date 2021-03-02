@@ -46,7 +46,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 /**
  * 通用基类
  */
-public abstract class BaseActivity extends AppCompatActivity implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseActivity extends EventBusActivity implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
@@ -65,9 +65,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.self = this;
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
         initStatusBar();
         onBeforeSetContentView();
         setContentView(getContentView());
@@ -217,9 +214,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
 
     @Override
     public void onDestroy() {
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
         if (null != unbinder) {
             unbinder.unbind();
         }
@@ -228,11 +222,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             compositeDisposable = null;
         }
         super.onDestroy();
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(NetWorkEvent event) {
-        //log.i("onEvent: 网络发生了变化");
     }
 
     @Override
