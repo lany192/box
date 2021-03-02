@@ -18,7 +18,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.FragmentActivity;
-import androidx.viewbinding.ViewBinding;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
@@ -41,7 +40,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 /**
  * 通用基类
  */
-public abstract class BaseActivity<T extends ViewBinding> extends ViewBindingActivity<T>
+public abstract class BaseActivity extends EventBusActivity
         implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
