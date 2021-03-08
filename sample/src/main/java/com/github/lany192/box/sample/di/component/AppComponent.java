@@ -3,9 +3,9 @@ package com.github.lany192.box.sample.di.component;
 import android.app.Application;
 
 import com.github.lany192.box.sample.SampleApp;
-import com.github.lany192.box.sample.di.module.ActivityModule;
 import com.github.lany192.box.sample.di.module.FragmentModule;
 import com.github.lany192.box.sample.di.module.HttpModule;
+import com.github.lany192.dagger.ActivityModule;
 
 import javax.inject.Singleton;
 
