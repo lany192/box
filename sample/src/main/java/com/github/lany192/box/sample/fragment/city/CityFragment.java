@@ -12,6 +12,7 @@ import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.fragment.DaggerFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
+import com.github.lany192.dagger.annotation.DaggerInject;
 import com.github.lany192.decoration.LinearItemDecoration;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
+@DaggerInject
 public class CityFragment extends DaggerFragment implements CityContract.View {
     @BindView(R.id.collection_view)
     RecyclerView mCollectionView;

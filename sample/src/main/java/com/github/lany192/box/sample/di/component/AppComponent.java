@@ -3,7 +3,6 @@ package com.github.lany192.box.sample.di.component;
 import android.app.Application;
 
 import com.github.lany192.box.sample.SampleApp;
-import com.github.lany192.box.sample.di.module.FragmentModule;
 import com.github.lany192.box.sample.di.module.HttpModule;
 import com.github.lany192.dagger.ActivityModule;
 
@@ -20,7 +19,6 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AndroidInjectionModule.class,
         AndroidSupportInjectionModule.class,
         ActivityModule.class,
-        FragmentModule.class,
         HttpModule.class,
 })
 public interface AppComponent extends AndroidInjector<SampleApp> {
