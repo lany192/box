@@ -264,10 +264,12 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
         if (isAdded()) {
-            log.w("已经显示，忽略......");
-        } else {
-            cancel();
+            manager.beginTransaction().remove(this).commitAllowingStateLoss();
+        }
+        if (!manager.isStateSaved() && !manager.isDestroyed()) {
             super.show(manager, tag);
+        } else {
+            log.i("对话框忽略......");
         }
     }
 
