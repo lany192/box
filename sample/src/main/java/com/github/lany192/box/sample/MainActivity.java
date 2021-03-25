@@ -13,7 +13,7 @@ import com.github.lany192.box.activity.DaggerActivity;
 import com.github.lany192.box.sample.fragment.HelloFragment;
 import com.github.lany192.box.sample.fragment.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
-import com.github.lany192.dagger.annotation.DaggerInject;
+import com.github.lany192.dagger.annotation.Dagger;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
@@ -22,7 +22,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-@DaggerInject
+@Dagger
 public class MainActivity extends DaggerActivity implements MainContract.View {
     @BindView(R.id.main_viewpager)
     ViewPager2 mViewPager2;

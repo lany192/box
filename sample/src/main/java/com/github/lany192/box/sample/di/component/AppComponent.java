@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.github.lany192.box.sample.SampleApp;
 import com.github.lany192.box.sample.di.module.HttpModule;
-import com.github.lany192.dagger.ActivityModule;
+import com.github.lany192.dagger.AndroidModule;
 
 import javax.inject.Singleton;
 
@@ -18,7 +18,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         AndroidInjectionModule.class,
         AndroidSupportInjectionModule.class,
-        ActivityModule.class,
+        AndroidModule.class,
         HttpModule.class,
 })
 public interface AppComponent extends AndroidInjector<SampleApp> {
