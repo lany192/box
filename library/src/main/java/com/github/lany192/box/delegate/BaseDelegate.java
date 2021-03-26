@@ -23,13 +23,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 /**
  * 具有请求调用接口能力的代理
  *
+ * @author Administrator
  * @param <T> 数据类型
  * @param <M> app请求接口
  */
 public abstract class BaseDelegate<T, M, V extends BaseView> extends ItemDelegate<T> implements LifecycleObserver {
     protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
-    private M model;
-    private V view;
+    private final M model;
+    private final V view;
     private CompositeDisposable compositeDisposable;
 
     public BaseDelegate(T data, M model, V view) {

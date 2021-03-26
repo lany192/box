@@ -10,10 +10,11 @@ import butterknife.ButterKnife;
 
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
+ * @author Administrator
  */
 public abstract class ItemDelegate<T> implements Delegate {
     private Context mContext;
-    private T t;
+    private final T t;
     private int spanSize = 2;
 
     public ItemDelegate(@NonNull final T item) {

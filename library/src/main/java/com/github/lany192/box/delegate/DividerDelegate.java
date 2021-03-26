@@ -13,6 +13,7 @@ import com.github.lany192.box.adapter.ItemViewHolder;
  * 分割线代理
  * <p>
  * 高度和内容属性互斥，只能同时设置一个
+ * @author Administrator
  */
 public class DividerDelegate extends ItemDelegate<Object> {
     private int size = 4;

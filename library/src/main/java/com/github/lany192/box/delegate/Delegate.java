@@ -7,6 +7,9 @@ import androidx.annotation.LayoutRes;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.github.lany192.box.adapter.ItemViewHolder;
 
+/**
+ * @author Administrator
+ */
 public interface Delegate extends MultiItemEntity {
     /**
      * 返回布局文件id
