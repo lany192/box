@@ -13,7 +13,10 @@ abstract class ViewBindingActivity<VB : ViewBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = getViewBinding()
         setContentView(_binding.root)
+        init(savedInstanceState)
     }
 
-    protected abstract fun getViewBinding(): VB
+    abstract fun getViewBinding(): VB
+
+    abstract fun init(savedInstanceState: Bundle?)
 }
