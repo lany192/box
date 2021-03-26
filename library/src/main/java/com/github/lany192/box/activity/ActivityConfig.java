@@ -3,6 +3,9 @@ package com.github.lany192.box.activity;
 import androidx.annotation.ColorRes;
 import androidx.annotation.LayoutRes;
 
+/**
+ * @author Administrator
+ */
 public class ActivityConfig {
     /**
      * 布局文件id

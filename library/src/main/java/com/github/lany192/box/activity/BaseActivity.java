@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import com.elvishew.xlog.Logger;
@@ -32,6 +33,10 @@ import com.github.lany192.view.StateLayout;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -39,8 +44,10 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * 通用基类
+ *
+ * @author Administrator
  */
-public abstract class BaseActivity extends EventBusActivity
+public abstract class BaseActivity extends AppCompatActivity
         implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
@@ -60,6 +67,9 @@ public abstract class BaseActivity extends EventBusActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.self = this;
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         initStatusBar();
         onBeforeSetContentView();
         setContentView(getContentView());
@@ -216,7 +226,14 @@ public abstract class BaseActivity extends EventBusActivity
             compositeDisposable.dispose();
             compositeDisposable = null;
         }
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
         super.onDestroy();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(Void event) {
     }
 
     @Override

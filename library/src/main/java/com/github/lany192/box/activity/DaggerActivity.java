@@ -13,6 +13,8 @@ import dagger.android.HasAndroidInjector;
 
 /**
  * 如果使用了dagger，用这个基类
+ *
+ * @author Administrator
  */
 public abstract class DaggerActivity extends BaseActivity implements HasAndroidInjector {
     @Inject
