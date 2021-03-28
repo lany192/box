@@ -76,9 +76,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     //dagger2
-    implementation 'com.google.dagger:dagger-android-support:2.32'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.32'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.32'
+    implementation 'com.google.dagger:dagger-android-support:2.33'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.33'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.33'
     //界面路由 https://github.com/lany192/dagger
     implementation 'com.github.lany192.dagger:annotations:1.0.3'
     annotationProcessor 'com.github.lany192.dagger:compiler:1.0.3'
