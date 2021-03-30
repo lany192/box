@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.github.lany192.box.activity.ViewBindingActivity;
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding;
+import com.github.lany192.box.view.ActivityBinding;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -13,29 +14,14 @@ import org.jetbrains.annotations.Nullable;
  */
 public class AboutActivity extends ViewBindingActivity<ActivityAboutBinding> {
 
-    @NotNull
-    @Override
-    public ActivityAboutBinding getViewBinding() {
-        return ActivityAboutBinding.inflate(getLayoutInflater());
-    }
-
     @Override
     public void init(@Nullable Bundle savedInstanceState) {
-
+//        getBinding().getContent().ge
     }
-//
-//    @NonNull
-//    @Override
-//    public ActivityConfig getConfig() {
-//        return ActivityConfig.builder()
-//                .layoutId(R.layout.activity_about)
-//                .statusBarDarkFont(true)
-//                .transparentStatusBar(true)
-//                .toolBarLayoutId(R.layout.toolbar_default)
-//                .keyboardEnable(true)
-//                .hasBackBtn(true)
-//                .build();
-//    }
-//
 
+    @NotNull
+    @Override
+    public ActivityAboutBinding getContentView() {
+        return ActivityAboutBinding.inflate(getLayoutInflater());
+    }
 }

@@ -1,45 +1,53 @@
 package com.github.lany192.box.view;
 
-import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
+
+import com.github.lany192.box.databinding.ToolbarDefaultBinding;
+import com.github.lany192.box.utils.DensityUtils;
 
 /**
  * @author Administrator
  */
 public final class ActivityBinding implements ViewBinding {
-    private final Context context;
-    private ViewBinding toolbar;
-    private ViewBinding content;
+    private final LayoutInflater layoutInflater;
+    private final ViewBinding toolbar;
+    private final ViewBinding content;
 
-    public ActivityBinding(Context context) {
-        this.context = context;
+    public ActivityBinding(LayoutInflater layoutInflater, @NonNull ViewBinding content) {
+        this.layoutInflater = layoutInflater;
+        this.content = content;
+        this.toolbar = ToolbarDefaultBinding.inflate(layoutInflater);
+    }
+
+    public ActivityBinding(LayoutInflater layoutInflater, ViewBinding toolbar, @NonNull ViewBinding content) {
+        this.layoutInflater = layoutInflater;
+        this.toolbar = toolbar;
+        this.content = content;
+    }
+
+    public <T extends ViewBinding> T getToolbar() {
+        return (T) toolbar;
+    }
+
+    public <T extends ViewBinding> T getContent() {
+        return (T) content;
     }
 
     @Override
     @NonNull
-    public RelativeLayout getRoot() {
-        RelativeLayout contentView = new RelativeLayout(context);
-        contentView.setLayoutParams(new ViewGroup.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+    public LinearLayout getRoot() {
+        LinearLayout contentView = new LinearLayout(layoutInflater.getContext());
+        contentView.setOrientation(LinearLayout.VERTICAL);
+        contentView.setLayoutParams(new ViewGroup.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        if (toolbar != null) {
+            contentView.addView(toolbar.getRoot(), new ViewGroup.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DensityUtils.dp2px(48)));
+        }
+        contentView.addView(content.getRoot(), new ViewGroup.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         return contentView;
-    }
-
-    public ViewBinding getToolbar() {
-        return toolbar;
-    }
-
-    public void setToolbar(ViewBinding toolbar) {
-        this.toolbar = toolbar;
-    }
-
-    public ViewBinding getContent() {
-        return content;
-    }
-
-    public void setContent(ViewBinding content) {
-        this.content = content;
     }
 }
