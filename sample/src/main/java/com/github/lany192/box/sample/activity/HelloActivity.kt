@@ -16,4 +16,8 @@ class HelloActivity : ViewBindingActivity<ActivityHelloBinding>() {
     override fun getContentView(): ActivityHelloBinding {
         return ActivityHelloBinding.inflate(layoutInflater)
     }
+
+    override fun init(savedInstanceState: Bundle?) {
+        //
+    }
 }
