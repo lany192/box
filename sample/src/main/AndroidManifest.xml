@@ -23,10 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.AboutActivity"
-            android:label="关于" />
-        <activity android:name=".activity.HelloActivity" />
+        <activity android:name=".activity.HelloActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
