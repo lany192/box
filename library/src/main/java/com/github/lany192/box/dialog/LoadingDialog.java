@@ -71,7 +71,7 @@ public class LoadingDialog extends androidx.fragment.app.DialogFragment {
     }
 
     public void cancel() {
-        if (getDialog() != null && getDialog().isShowing()) {
+        if (getDialog() != null) {
             getDialog().cancel();
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
