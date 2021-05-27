@@ -28,6 +28,7 @@ import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.OtherUtils;
 import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.box.utils.PhoneUtils;
+import com.github.lany192.box.utils.SafeUtils;
 import com.github.lany192.kv.KVUtils;
 import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
@@ -74,6 +75,7 @@ public class Box {
         initRefreshView();
         registerNetwork();
         OtherUtils.closeAndroidPWarningDialog(debug);
+        SafeUtils.safeCheck(ctx, debug);
     }
 
     private void initToast(Application ctx) {
