@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi", 'armeabi-v7a', "x86"
+            abiFilters "armeabi", 'armeabi-v7a','arm64-v8a', "x86"
         }
     }
     buildFeatures {
@@ -116,8 +116,6 @@ publishing {
             groupId = 'com.github.lany192'
             artifactId = 'box'
             version = '3.8.4'
-
-            from components.java
         }
     }
 }
