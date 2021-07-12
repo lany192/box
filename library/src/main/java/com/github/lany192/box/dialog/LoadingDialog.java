@@ -17,7 +17,6 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 
 import java.util.Objects;
@@ -62,12 +61,12 @@ public class LoadingDialog extends androidx.fragment.app.DialogFragment {
 
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
-        if (isAdded()) {
-            XLog.tag(TAG).w("已经显示，忽略......");
-        } else {
+        if (isAdded() || null != manager.findFragmentByTag(tag)) {
             cancel();
-            super.show(manager, tag);
         }
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.add(this, tag);
+        ft.commitNowAllowingStateLoss();
     }
 
     public void cancel() {
