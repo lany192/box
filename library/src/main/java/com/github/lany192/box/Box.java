@@ -6,13 +6,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
 import android.os.Build;
 import android.util.Log;
-import android.view.Gravity;
 
 import com.elvishew.xlog.LogConfiguration;
 import com.elvishew.xlog.LogLevel;
@@ -23,25 +21,26 @@ import com.elvishew.xlog.printer.file.FilePrinter;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.log.LogFileFormat;
 import com.github.lany192.box.log.LogFileNameGenerator;
-import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.OtherUtils;
 import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.SafeUtils;
 import com.github.lany192.kv.KVUtils;
-import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
+import com.hjq.toast.style.BlackToastStyle;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.lang.ref.WeakReference;
+
 public class Box {
     private volatile static Box instance;
     private final String TAG = "Box";
-    private Context context;
+    private WeakReference<Context> reference;
 
     private Box() {
     }
@@ -64,89 +63,18 @@ public class Box {
     public void init(Application ctx, boolean debug) {
         Context app = ctx.getApplicationContext();
         if (app == null) {
-            this.context = ctx;
+            this.reference = new WeakReference<>(ctx);
         } else {
-            this.context = ((Application) app).getBaseContext();
+            this.reference = new WeakReference<>(((Application) app).getBaseContext());
         }
         KVUtils.get().init(ctx);
-        initToast(ctx);
+        ToastUtils.init(ctx, new BlackToastStyle());
         initLog(debug);
         initCatchException();
         initRefreshView();
         registerNetwork();
         OtherUtils.closeAndroidPWarningDialog(debug);
         SafeUtils.safeCheck(ctx, debug);
-    }
-
-    private void initToast(Application ctx) {
-        ToastUtils.init(ctx);
-        ToastUtils.initStyle(new IToastStyle() {
-
-            @Override
-            public int getGravity() {
-                return Gravity.CENTER;
-            }
-
-            @Override
-            public int getXOffset() {
-                return 0;
-            }
-
-            @Override
-            public int getYOffset() {
-                return 0;
-            }
-
-            @Override
-            public int getZ() {
-                return 4;
-            }
-
-            @Override
-            public int getCornerRadius() {
-                return DensityUtils.dp2px(5);
-            }
-
-            @Override
-            public int getBackgroundColor() {
-                return 0xa0000000;
-            }
-
-            @Override
-            public int getTextColor() {
-                return Color.WHITE;
-            }
-
-            @Override
-            public float getTextSize() {
-                return DensityUtils.sp2px(14);
-            }
-
-            @Override
-            public int getMaxLines() {
-                return 5;
-            }
-
-            @Override
-            public int getPaddingStart() {
-                return DensityUtils.dp2px(16);
-            }
-
-            @Override
-            public int getPaddingTop() {
-                return getPaddingStart();
-            }
-
-            @Override
-            public int getPaddingEnd() {
-                return getPaddingStart();
-            }
-
-            @Override
-            public int getPaddingBottom() {
-                return getPaddingStart();
-            }
-        });
     }
 
     private void registerNetwork() {
@@ -209,7 +137,7 @@ public class Box {
                 .logLevel(LogLevel.ALL)
                 .tag("XLog")
                 .build();
-        String logPath = context.getFilesDir().getPath() + "/log/";
+        String logPath = reference.get().getFilesDir().getPath() + "/log/";
         Log.i(TAG, "初始化日志文件路径:" + logPath);
         Printer filePrinter = new FilePrinter
                 .Builder(logPath)
@@ -224,6 +152,6 @@ public class Box {
     }
 
     public Context getContext() {
-        return context;
+        return reference.get();
     }
 }
