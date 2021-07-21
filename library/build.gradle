@@ -84,7 +84,6 @@ dependencies {
     //https://github.com/google/dagger
     compileOnly 'com.google.dagger:dagger-android-support:2.37'
 
-
     //圆角图片 https://github.com/vinc3m1/RoundedImageView
     api 'com.makeramen:roundedimageview:2.3.0'
     //压缩图片 https://github.com/Curzibn/Luban
@@ -101,7 +100,7 @@ dependencies {
     //背景控件 https://github.com/JavaNoober/BackgroundLibrary
     api 'com.noober.background:core:1.6.5'
     //存储控件 https://github.com/lany192/KVUtils
-    api 'com.github.lany192:KVUtils:1.0.5'
+    api 'com.github.lany192:KVUtils:1.0.6'
     //模糊视图 https://github.com/mmin18/RealtimeBlurView
     api 'com.github.mmin18:realtimeblurview:1.2.1'
     //https://github.com/lany192/TabLayout
