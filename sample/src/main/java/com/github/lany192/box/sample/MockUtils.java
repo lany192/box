@@ -9,6 +9,7 @@ import java.util.List;
 public class MockUtils {
 
     public static List<String> getItems(int page) {
+        System.out.println("页码:" + page);
         List<String> images = new ArrayList<>();
         if (page == 1) {
             images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/fda6ef1bcc.jpg");

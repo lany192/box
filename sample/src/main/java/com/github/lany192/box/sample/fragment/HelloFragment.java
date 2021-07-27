@@ -62,7 +62,7 @@ public class HelloFragment extends BaseFragment {
                 List<Delegate> items = images.stream().map(ImageDelegate::new).collect(Collectors.toList());
                 if (items.size() < 20) {
                     items.add(new DividerDelegate());
-                    mCollectionView.setEnableLoadMore(false);
+                    mCollectionView.stop();
                 }
                 adapter.addData(items);
             }

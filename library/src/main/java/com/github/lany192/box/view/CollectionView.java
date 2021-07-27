@@ -146,7 +146,7 @@ public class CollectionView extends FixDragFrameLayout {
 
     public void stop() {
         refreshLayout.finishRefresh();
-        refreshLayout.finishLoadMore();
+        refreshLayout.finishLoadMoreWithNoMoreData();
     }
 
     /**
