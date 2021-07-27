@@ -66,6 +66,10 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //配置方向
+        if (getConfig().needOrientationRestriction()) {
+            setRequestedOrientation(getConfig().getOrientation());
+        }
         this.self = this;
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);

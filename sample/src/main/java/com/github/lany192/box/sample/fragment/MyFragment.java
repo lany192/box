@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
+import com.github.lany192.box.sample.activity.HelloActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,6 +39,6 @@ public class MyFragment extends BaseFragment {
     @OnClick(R.id.my_debug_view)
     void debugClicked() {
         log.i("我点击了进入调试模式");
-//        startActivity(new Intent(getContext(), HelloActivity.class));
+        startActivity(new Intent(getContext(), HelloActivity.class));
     }
 }

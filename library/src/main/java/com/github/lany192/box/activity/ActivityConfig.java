@@ -1,5 +1,7 @@
 package com.github.lany192.box.activity;
 
+import android.content.pm.ActivityInfo;
+
 import androidx.annotation.ColorRes;
 import androidx.annotation.LayoutRes;
 
@@ -51,13 +53,28 @@ public class ActivityConfig {
      * toolbar标题
      */
     private CharSequence title;
-
+    /**
+     * 屏幕方向配置
+     */
+    private int orientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
     /**
      * 是否需要Toolbar
      */
     public boolean hasToolbar() {
         return toolBarLayoutId != 0;
+    }
+
+    public boolean needOrientationRestriction() {
+        return orientation != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+    }
+
+    public int getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
     }
 
     public int getLayoutId() {
@@ -155,6 +172,7 @@ public class ActivityConfig {
         private boolean transparentStatusBar;
         private boolean fullscreen;
         private CharSequence title;
+        private int orientation;
 
         private Builder() {
         }
@@ -212,6 +230,10 @@ public class ActivityConfig {
             this.title = title;
             return this;
         }
+        public Builder orientation(int orientation) {
+            this.orientation = orientation;
+            return this;
+        }
 
         public ActivityConfig build() {
             ActivityConfig hello = new ActivityConfig();
@@ -225,6 +247,7 @@ public class ActivityConfig {
             hello.setTransparentStatusBar(transparentStatusBar);
             hello.setFullscreen(fullscreen);
             hello.setTitle(title);
+            hello.setOrientation(orientation);
             return hello;
         }
     }

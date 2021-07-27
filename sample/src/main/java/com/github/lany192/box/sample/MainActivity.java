@@ -1,5 +1,6 @@
 package com.github.lany192.box.sample;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
@@ -40,6 +41,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
                 .layoutId(R.layout.activity_main)
                 .statusBarDarkFont(true)
                 .transparentStatusBar(true)
+                .orientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                 .build();
     }
 
@@ -88,6 +90,7 @@ public class MainActivity extends DaggerActivity implements MainContract.View {
                     ImmersionBar.with(this).statusBarDarkFont(false).init();
                     mViewPager2.setCurrentItem(2, false);
                     return true;
+                default:
             }
             return false;
         });
