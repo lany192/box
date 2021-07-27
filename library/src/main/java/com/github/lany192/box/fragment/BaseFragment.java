@@ -109,7 +109,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (getConfig().hasToolbar()) {
             View toolbar = inflater.inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
-            toolbar.setBackgroundColor(Color.RED);
             toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
             toolbar.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getConfig().getToolbarHeight() == 0 ? DensityUtils.dp2px(48) : getConfig().getToolbarHeight()));
             ViewUtils.setPaddingSmart(toolbar);
