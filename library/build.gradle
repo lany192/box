@@ -9,11 +9,11 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi", 'armeabi-v7a','arm64-v8a', "x86"
+            abiFilters 'armeabi-v7a','arm64-v8a', "x86"
         }
     }
     buildFeatures {
-        viewBinding = true
+        viewBinding true
     }
     buildTypes {
         release {
