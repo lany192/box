@@ -8,8 +8,8 @@ import androidx.viewbinding.ViewBinding
 /**
  * ViewBinding实现基类
  */
-abstract class BindingActivity<V : ViewBinding> : AppCompatActivity() {
-    lateinit var binding: V
+abstract class BindingActivity<VB : ViewBinding> : AppCompatActivity() {
+    lateinit var binding: VB
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {

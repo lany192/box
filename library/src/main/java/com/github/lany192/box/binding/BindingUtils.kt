@@ -73,3 +73,10 @@ internal fun <V : ViewBinding> BindingFragment<V>.getBinding(
 ): V {
     return findClass().getBinding(inflater, container)
 }
+
+internal fun <V : ViewBinding> BindingDialogFragment<V>.getBinding(
+    inflater: LayoutInflater,
+    container: ViewGroup?
+): V {
+    return findClass().getBinding(inflater, container)
+}
