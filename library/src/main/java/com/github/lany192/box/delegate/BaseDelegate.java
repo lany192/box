@@ -7,8 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.mvp.BaseView;
-import com.github.lany192.box.utils.NetUtils;
+import com.github.lany192.box.mvp.BaseContract;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -23,11 +22,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 /**
  * 具有请求调用接口能力的代理
  *
- * @author Administrator
  * @param <T> 数据类型
  * @param <M> app请求接口
+ * @author Administrator
  */
-public abstract class BaseDelegate<T, M, V extends BaseView> extends ItemDelegate<T> implements LifecycleObserver {
+public abstract class BaseDelegate<T, M, V extends BaseContract.View> extends ItemDelegate<T> implements LifecycleObserver {
     protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private final M model;
     private final V view;
