@@ -15,7 +15,6 @@ buildscript {
 
 allprojects {
     repositories {
-        //阿里镜像仓库（聚合central和jcenter）
         maven { url 'https://maven.aliyun.com/repository/public' }
         google()
         mavenCentral()

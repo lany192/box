@@ -27,7 +27,6 @@ import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.fragment.FragmentContract;
-import com.github.lany192.box.mvp.BaseContract;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.view.StateLayout;
 
@@ -37,8 +36,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Objects;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -47,7 +44,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;
-    private Unbinder unbinder;
+
     private boolean canceledOnTouchOutside = true;
     private CompositeDisposable disposable = new CompositeDisposable();
     private boolean isInitLoaded;
@@ -137,7 +134,6 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         if (stateLayout != null) {
             stateLayout.setOnRetryListener(this);
         }
-        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -150,9 +146,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
-        if (null != unbinder) {
-            unbinder.unbind();
-        }
+
         if (disposable != null && disposable.isDisposed()) {
             disposable.dispose();
             disposable = null;
