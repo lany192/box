@@ -26,7 +26,8 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.mvp.BaseView;
+import com.github.lany192.box.fragment.FragmentContract;
+import com.github.lany192.box.mvp.BaseContract;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.view.StateLayout;
 
@@ -42,7 +43,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public abstract class DialogFragment extends androidx.fragment.app.DialogFragment
-        implements StateLayout.OnRetryListener, BaseView {
+        implements StateLayout.OnRetryListener, FragmentContract.View {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;

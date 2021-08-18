@@ -78,9 +78,8 @@ dependencies {
     // 吐司框架：https://github.com/getActivity/ToastUtils
     api 'com.github.getActivity:ToastUtils:9.5'
 
-    compileOnly 'com.jakewharton:butterknife:10.2.3'
-    //https://github.com/google/dagger
-    compileOnly 'com.google.dagger:dagger-android-support:2.37'
+    //注入框架 https://github.com/google/dagger
+    compileOnly 'com.google.dagger:hilt-android:2.38.1'
 
     //圆角图片 https://github.com/vinc3m1/RoundedImageView
     api 'com.makeramen:roundedimageview:2.3.0'
