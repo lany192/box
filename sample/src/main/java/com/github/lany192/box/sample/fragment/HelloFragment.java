@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 import butterknife.BindView;
 
+
 public class HelloFragment extends BaseFragment {
     @BindView(R.id.collection_view)
     CollectionView mCollectionView;

@@ -16,7 +16,6 @@ import com.github.lany192.box.sample.fragment.city.CityFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.hjq.toast.ToastUtils;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 public class IndexFragment extends BaseFragment {

@@ -20,7 +20,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 
 @Dagger
 public class CityFragment extends DaggerFragment implements CityContract.View {

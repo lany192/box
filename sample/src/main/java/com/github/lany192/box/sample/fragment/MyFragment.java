@@ -11,7 +11,6 @@ import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.activity.HelloActivity;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MyFragment extends BaseFragment {

@@ -14,7 +14,6 @@ import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.dialog.HelloDialog;
 import com.github.lany192.box.utils.RoundedCornersTransform;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 public class DemoFragment extends BaseFragment {

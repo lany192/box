@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import butterknife.BindView;
 
 public class GirlFragment extends BaseFragment {
     @BindView(R.id.collection_view)

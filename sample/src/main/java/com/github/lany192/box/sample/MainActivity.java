@@ -21,7 +21,6 @@ import com.hjq.toast.ToastUtils;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 
 @Dagger
 public class MainActivity extends DaggerActivity implements MainContract.View {
