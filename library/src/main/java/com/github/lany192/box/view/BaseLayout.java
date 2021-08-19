@@ -15,8 +15,6 @@ import androidx.lifecycle.OnLifecycleEvent;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 
-import butterknife.ButterKnife;
-
 public abstract class BaseLayout extends FrameLayout implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
@@ -32,7 +30,6 @@ public abstract class BaseLayout extends FrameLayout implements LifecycleObserve
     public BaseLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         View view = View.inflate(getContext(), getLayoutId(), this);
-        ButterKnife.bind(this, view);
         init(attrs);
     }
 

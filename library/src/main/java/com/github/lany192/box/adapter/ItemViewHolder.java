@@ -11,13 +11,10 @@ import androidx.annotation.IdRes;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.box.helper.ImageLoader;
 
-import butterknife.ButterKnife;
-
 public class ItemViewHolder extends BaseViewHolder {
 
     public ItemViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
     }
 
     @Override
