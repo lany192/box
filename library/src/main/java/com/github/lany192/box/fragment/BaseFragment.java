@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.viewbinding.ViewBinding;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
+import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
@@ -29,7 +29,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, FragmentContract.View {
+public abstract class BaseFragment<VB extends ViewBinding> extends BindingFragment<VB> implements StateLayout.OnRetryListener, FragmentContract.View {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;
@@ -40,10 +40,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     private boolean isLazyLoaded;
 
     private CompositeDisposable compositeDisposable;
-    /**
-     * 本界面用户是否可见
-     */
-    private boolean userVisible;
 
     @NonNull
     public abstract FragmentConfig getConfig();
@@ -69,7 +65,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     @Override
     public void onResume() {
         super.onResume();
-        userVisible = true;
         if (!isLazyLoaded) {
             isLazyLoaded = true;
             onLazyLoad();
@@ -77,30 +72,15 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        userVisible = false;
-    }
-
-    /**
-     * 用户是否可见
-     */
-    public boolean isUserVisible() {
-        return userVisible;
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RelativeLayout rootView = new RelativeLayout(getContext());
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         stateLayout = new StateLayout(getContext());
         stateLayout.setLayoutParams(layoutParams);
         stateLayout.setOnRetryListener(this);
-        stateLayout.addView(inflater.inflate(getConfig().getLayoutId(), null));
+        stateLayout.addView(super.onCreateView(inflater, container, savedInstanceState));
         rootView.addView(stateLayout);
-
         if (getConfig().hasToolbar()) {
             View toolbar = inflater.inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
@@ -123,10 +103,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
             return getConfig().getToolbarHeight() + PhoneUtils.getStatusBarHeight();
         }
         return 0;
-    }
-
-    public <T extends View> T getView(@IdRes int viewId) {
-        return getView().findViewById(viewId);
     }
 
     /**
