@@ -14,17 +14,18 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewbinding.ViewBinding;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
+import com.github.lany192.box.binding.BindingDialogFragment;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.fragment.FragmentContract;
 import com.github.lany192.box.utils.DensityUtils;
@@ -39,7 +40,7 @@ import java.util.Objects;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class DialogFragment extends androidx.fragment.app.DialogFragment
+public abstract class DialogFragment<VB extends ViewBinding> extends BindingDialogFragment<VB>
         implements StateLayout.OnRetryListener, FragmentContract.View {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
@@ -48,8 +49,6 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     private CompositeDisposable disposable = new CompositeDisposable();
     private boolean isInitLoaded;
     private LoadingDialog loadingDialog;
-
-    protected abstract int getLayoutId();
 
     protected abstract void init();
 
@@ -128,16 +127,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayoutId(), container, true);
-        stateLayout = view.findViewById(R.id.id_state_layout);
-        if (stateLayout != null) {
-            stateLayout.setOnRetryListener(this);
-        }
-        return view;
-    }
-
-    public <T extends View> T findViewById(@IdRes int id) {
-        return getView().findViewById(id);
+        stateLayout = new StateLayout(getContext());
+        stateLayout.addView(super.onCreateView(inflater, container, savedInstanceState));
+        stateLayout.setOnRetryListener(this);
+        return stateLayout;
     }
 
     @Override

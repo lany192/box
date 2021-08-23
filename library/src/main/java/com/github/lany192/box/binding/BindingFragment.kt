@@ -14,7 +14,6 @@ import androidx.viewbinding.ViewBinding
  */
 abstract class BindingFragment<VB : ViewBinding> : Fragment() {
     lateinit var binding: VB
-    lateinit var controller: WindowInsetsControllerCompat
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +21,6 @@ abstract class BindingFragment<VB : ViewBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = getBinding(inflater, container)
-        controller = ViewCompat.getWindowInsetsController(binding.root)!!
         return binding.root
     }
 }

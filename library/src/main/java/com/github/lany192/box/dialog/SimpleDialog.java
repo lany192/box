@@ -12,6 +12,7 @@ import androidx.annotation.StringRes;
 
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
+import com.github.lany192.box.databinding.DialogSimpleBinding;
 import com.klinker.android.link_builder.TouchableMovementMethod;
 
 //    SimpleDialog dialog = new SimpleDialog();
@@ -33,7 +34,7 @@ import com.klinker.android.link_builder.TouchableMovementMethod;
 //    });
 //    dialog.show(this);
 
-public class SimpleDialog extends DialogFragment {
+public class SimpleDialog extends DialogFragment<DialogSimpleBinding> {
     private OnRightListener mOnRightListener;
     private OnLeftListener mOnLeftListener;
     private CharSequence mTitle;
@@ -52,65 +53,56 @@ public class SimpleDialog extends DialogFragment {
     private int mLeftTextColor = 0;
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.dialog_simple;
-    }
-
-    @Override
     protected void init() {
-        TextView titleText = findViewById(R.id.dialog_simple_title);
-        TextView msgText = findViewById(R.id.dialog_simple_content);
-        Button leftBtn = findViewById(R.id.dialog_simple_left_btn);
-        Button rightBtn = findViewById(R.id.dialog_simple_right_btn);
-        View dividerView = findViewById(R.id.dialog_simple_divider_view);
+
         if (TextUtils.isEmpty(mTitle)) {
-            titleText.setVisibility(View.GONE);
+            binding.title.setVisibility(View.GONE);
         } else {
-            titleText.setText(mTitle);
-            titleText.setTextSize(titleSize);
-            titleText.setVisibility(View.VISIBLE);
-            titleText.setTextColor(mTitleColor);
+            binding.title.setText(mTitle);
+            binding.title.setTextSize(titleSize);
+            binding.title.setVisibility(View.VISIBLE);
+            binding.title.setTextColor(mTitleColor);
         }
         if (!TextUtils.isEmpty(mMessage)) {
-            msgText.setText(mMessage);
-            msgText.setGravity(gravity);
-            msgText.setTextSize(mMsgTextSize);
-            msgText.setMovementMethod(TouchableMovementMethod.getInstance());//为了预防能后点击
+            binding.content.setText(mMessage);
+            binding.content.setGravity(gravity);
+            binding.content.setTextSize(mMsgTextSize);
+            binding.content.setMovementMethod(TouchableMovementMethod.getInstance());//为了预防能后点击
         }
         if (isShowDivider) {
-            dividerView.setVisibility(View.VISIBLE);
+            binding.dividerView.setVisibility(View.VISIBLE);
         } else {
-            dividerView.setVisibility(View.GONE);
+            binding.dividerView.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(mRightText)) {
-            rightBtn.setText(mRightText);
-            rightBtn.setVisibility(View.VISIBLE);
+            binding.rightBtn.setText(mRightText);
+            binding.rightBtn.setVisibility(View.VISIBLE);
             if (mRightTextColor != 0) {
-                rightBtn.setTextColor(mRightTextColor);
+                binding.rightBtn.setTextColor(mRightTextColor);
             }
-            rightBtn.setOnClickListener(v -> {
+            binding.rightBtn.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnRightListener) {
                     mOnRightListener.onClicked();
                 }
             });
         } else {
-            rightBtn.setVisibility(View.GONE);
+            binding.rightBtn.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(mLeftText)) {
-            leftBtn.setText(mLeftText);
-            leftBtn.setVisibility(View.VISIBLE);
+            binding.leftBtn.setText(mLeftText);
+            binding.leftBtn.setVisibility(View.VISIBLE);
             if (mLeftTextColor != 0) {
-                leftBtn.setTextColor(mLeftTextColor);
+                binding.leftBtn.setTextColor(mLeftTextColor);
             }
-            leftBtn.setOnClickListener(v -> {
+            binding.leftBtn.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnLeftListener) {
                     mOnLeftListener.onClicked();
                 }
             });
         } else {
-            leftBtn.setVisibility(View.GONE);
+            binding.leftBtn.setVisibility(View.GONE);
         }
     }
 

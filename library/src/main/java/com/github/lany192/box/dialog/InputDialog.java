@@ -4,31 +4,23 @@ import android.os.Handler;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.github.lany192.box.R;
+import com.github.lany192.box.databinding.DialogInputBinding;
 import com.github.lany192.box.utils.SoftKeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class InputDialog extends DialogFragment {
+public class InputDialog extends DialogFragment<DialogInputBinding> {
     private OnInputListener mOnInputListener;
     private CharSequence hint;
     private CharSequence title;
     private CharSequence btnText;
     private CharSequence content;
     private int inputType = InputType.TYPE_NULL;
-    private EditText editText;
-    private List<InputFilter> filters = new ArrayList<>();
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.dialog_input;
-    }
+    private final List<InputFilter> filters = new ArrayList<>();
 
     @Override
     protected boolean bottomStyle() {
@@ -43,47 +35,43 @@ public class InputDialog extends DialogFragment {
 
     @Override
     public void cancel() {
-        SoftKeyboardUtils.hideSoftInput(requireActivity(), editText);
+        SoftKeyboardUtils.hideSoftInput(requireActivity(), binding.inputEdit);
         super.cancel();
     }
 
     @Override
     protected void init() {
-        TextView titleText = findViewById(R.id.dialog_input_title);
-        editText = findViewById(R.id.dialog_input_input_edit);
-        Button button = findViewById(R.id.dialog_input_ok_btn);
-
-        editText.setFocusable(true);
-        editText.setFocusableInTouchMode(true);
-        editText.requestFocus();
+        binding.inputEdit.setFocusable(true);
+        binding.inputEdit.setFocusableInTouchMode(true);
+        binding.inputEdit.requestFocus();
         if (inputType != InputType.TYPE_NULL) {
-            editText.setInputType(inputType);
+            binding.inputEdit.setInputType(inputType);
         }
         if (filters.size() > 0) {
-            editText.setFilters(filters.toArray(new InputFilter[0]));
+            binding.inputEdit.setFilters(filters.toArray(new InputFilter[0]));
         }
         if (!TextUtils.isEmpty(content)) {
-            editText.setText(content);
-            editText.setSelection(content.length());
+            binding.inputEdit.setText(content);
+            binding.inputEdit.setSelection(content.length());
         }
         if (!TextUtils.isEmpty(hint)) {
-            editText.setHint(hint);
+            binding.inputEdit.setHint(hint);
         }
         if (!TextUtils.isEmpty(title)) {
-            titleText.setText(title);
+            binding.title.setText(title);
         } else {
-            titleText.setText("");
+            binding.title.setText("");
         }
         if (!TextUtils.isEmpty(btnText)) {
-            button.setText(btnText);
+            binding.okBtn.setText(btnText);
         }
-        button.setOnClickListener(v -> {
+        binding.okBtn.setOnClickListener(v -> {
             getDialog().cancel();
             if (null != mOnInputListener) {
-                mOnInputListener.onResult(Objects.requireNonNull(editText.getText()).toString());
+                mOnInputListener.onResult(Objects.requireNonNull(binding.inputEdit.getText()).toString());
             }
         });
-        findViewById(R.id.dialog_input_close_btn).setOnClickListener(v -> cancel());
+        binding.closeBtn.setOnClickListener(v -> cancel());
     }
 
     public void setInputType(int inputType) {

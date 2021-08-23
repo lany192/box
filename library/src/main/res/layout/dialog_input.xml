@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/dialog_input_close_btn"
+            android:id="@+id/close_btn"
             android:layout_width="60dp"
             android:layout_height="@dimen/actionbar_height"
             android:background="?android:attr/selectableItemBackground"
@@ -22,7 +22,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/dialog_input_title"
+            android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -32,7 +32,7 @@
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/dialog_input_ok_btn"
+            android:id="@+id/ok_btn"
             android:layout_width="60dp"
             android:layout_height="@dimen/actionbar_height"
             android:background="?android:attr/selectableItemBackground"
@@ -43,7 +43,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/dialog_input_input_edit"
+        android:id="@+id/input_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
