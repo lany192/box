@@ -8,7 +8,6 @@ import androidx.lifecycle.OnLifecycleEvent;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.fragment.FragmentContract;
 import com.github.lany192.box.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -21,8 +20,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public abstract class BasePresenter<V extends BaseContract.View, M>
-        implements BaseContract.Presenter {
+public abstract class BasePresenter<V extends BaseView, M> implements BaseContract.Presenter {
     private final V view;
     private final M model;
     protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
@@ -110,7 +108,9 @@ public abstract class BasePresenter<V extends BaseContract.View, M>
     }
 
     @Subscribe
-    public void onEvent(Void event) {
-
+    public void onEvent(NetWorkEvent event) {
+        if (!NetUtils.isNetWorkAvailable()) {
+            getView().showNoWifi();
+        }
     }
 }

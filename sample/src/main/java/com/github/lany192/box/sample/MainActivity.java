@@ -1,6 +1,5 @@
 package com.github.lany192.box.sample;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
@@ -10,7 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.lany192.box.activity.ActivityConfig;
-import com.github.lany192.box.activity.BaseActivity;
+import com.github.lany192.box.activity.DaggerActivity;
 import com.github.lany192.box.sample.fragment.HelloFragment;
 import com.github.lany192.box.sample.fragment.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
@@ -20,10 +19,9 @@ import com.hjq.toast.ToastUtils;
 
 import javax.inject.Inject;
 
-import dagger.hilt.android.AndroidEntryPoint;
+import butterknife.BindView;
 
-@AndroidEntryPoint
-public class MainActivity extends BaseActivity implements MainContract.View {
+public class MainActivity extends DaggerActivity implements MainContract.View {
     @BindView(R.id.main_viewpager)
     ViewPager2 mViewPager2;
     @BindView(R.id.main_navigation_bar)
@@ -31,7 +29,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Inject
     MainPresenter mPresenter;
 
-    private long mLastClickTime = 0; // 第一次按退出的时间
+    // 第一次按退出的时间
+    private long mLastClickTime = 0;
 
     @NonNull
     @Override
@@ -40,7 +39,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 .layoutId(R.layout.activity_main)
                 .statusBarDarkFont(true)
                 .transparentStatusBar(true)
-                .orientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                 .build();
     }
 
@@ -106,5 +104,4 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }

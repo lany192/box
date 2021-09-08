@@ -6,14 +6,14 @@ import androidx.annotation.NonNull;
 
 import com.github.lany192.box.adapter.ItemViewHolder;
 
+import butterknife.ButterKnife;
 
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
- * @author Administrator
  */
 public abstract class ItemDelegate<T> implements Delegate {
     private Context mContext;
-    private final T t;
+    private T t;
     private int spanSize = 2;
 
     public ItemDelegate(@NonNull final T item) {
@@ -52,7 +52,8 @@ public abstract class ItemDelegate<T> implements Delegate {
     @Override
     public void convert(ItemViewHolder holder, Context context) {
         this.mContext = context;
-        int position = holder.getBindingAdapterPosition();
+        int position = holder.getAdapterPosition();
+        ButterKnife.bind(this, holder.itemView);
         holder.itemView.setOnClickListener(v -> onItemClicked(t, position));
         bind(holder, t, position);
     }

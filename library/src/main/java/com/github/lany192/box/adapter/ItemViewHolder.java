@@ -11,10 +11,13 @@ import androidx.annotation.IdRes;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.box.helper.ImageLoader;
 
+import butterknife.ButterKnife;
+
 public class ItemViewHolder extends BaseViewHolder {
 
     public ItemViewHolder(View itemView) {
         super(itemView);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override
@@ -22,7 +25,6 @@ public class ItemViewHolder extends BaseViewHolder {
         return super.setText(viewId, TextUtils.isEmpty(value) ? "" : value);
     }
 
-    @Override
     public BaseViewHolder setText(@IdRes int viewId, int value) {
         return setText(viewId, String.valueOf(value));
     }
@@ -33,7 +35,6 @@ public class ItemViewHolder extends BaseViewHolder {
         return this;
     }
 
-    @Override
     public BaseViewHolder setTextColor(@IdRes int viewId, @ColorInt int color) {
         TextView view = getView(viewId);
         view.setTextColor(color);

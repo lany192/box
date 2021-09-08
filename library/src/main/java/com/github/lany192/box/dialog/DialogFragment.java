@@ -14,20 +14,19 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewbinding.ViewBinding;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
-import com.github.lany192.box.binding.BindingDialogFragment;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.fragment.FragmentContract;
+import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.view.StateLayout;
 
@@ -37,18 +36,23 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Objects;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class DialogFragment<VB extends ViewBinding> extends BindingDialogFragment<VB>
-        implements StateLayout.OnRetryListener, FragmentContract.View {
+public abstract class DialogFragment extends androidx.fragment.app.DialogFragment
+        implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;
+    private Unbinder unbinder;
     private boolean canceledOnTouchOutside = true;
     private CompositeDisposable disposable = new CompositeDisposable();
     private boolean isInitLoaded;
     private LoadingDialog loadingDialog;
+
+    protected abstract int getLayoutId();
 
     protected abstract void init();
 
@@ -127,16 +131,26 @@ public abstract class DialogFragment<VB extends ViewBinding> extends BindingDial
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        stateLayout = new StateLayout(getContext());
-        stateLayout.addView(super.onCreateView(inflater, container, savedInstanceState));
-        stateLayout.setOnRetryListener(this);
-        return stateLayout;
+        View view = inflater.inflate(getLayoutId(), container, true);
+        stateLayout = view.findViewById(R.id.id_state_layout);
+        if (stateLayout != null) {
+            stateLayout.setOnRetryListener(this);
+        }
+        unbinder = ButterKnife.bind(this, view);
+        return view;
+    }
+
+    public <T extends View> T findViewById(@IdRes int id) {
+        return getView().findViewById(id);
     }
 
     @Override
     public void onDestroy() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
+        }
+        if (null != unbinder) {
+            unbinder.unbind();
         }
         if (disposable != null && disposable.isDisposed()) {
             disposable.dispose();
@@ -234,9 +248,8 @@ public abstract class DialogFragment<VB extends ViewBinding> extends BindingDial
         }
         loadingDialog.setMessage(message);
         if (!loadingDialog.isAdded()) {
-            loadingDialog.cancel();
+            loadingDialog.show(getParentFragmentManager(), TAG);
         }
-        loadingDialog.show(getParentFragmentManager(), TAG);
     }
 
     @Override
@@ -250,12 +263,9 @@ public abstract class DialogFragment<VB extends ViewBinding> extends BindingDial
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
         if (isAdded()) {
-            manager.beginTransaction().remove(this).commitAllowingStateLoss();
-        }
-        if (!manager.isStateSaved() && !manager.isDestroyed()) {
-            super.show(manager, tag);
+            log.w("已经显示，忽略......");
         } else {
-            log.i("对话框忽略......");
+            super.show(manager, tag);
         }
     }
 

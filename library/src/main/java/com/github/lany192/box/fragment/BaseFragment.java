@@ -7,16 +7,17 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.viewbinding.ViewBinding;
+import androidx.fragment.app.Fragment;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
-import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
+import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.ViewUtils;
@@ -26,13 +27,16 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class BaseFragment<VB extends ViewBinding> extends BindingFragment<VB> implements StateLayout.OnRetryListener, FragmentContract.View {
+public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;
+    private Unbinder unbinder;
     private LoadingDialog loadingDialog;
     /**
      * 是否执行过懒加载
@@ -40,6 +44,10 @@ public abstract class BaseFragment<VB extends ViewBinding> extends BindingFragme
     private boolean isLazyLoaded;
 
     private CompositeDisposable compositeDisposable;
+    /**
+     * 本界面用户是否可见
+     */
+    private boolean userVisible;
 
     @NonNull
     public abstract FragmentConfig getConfig();
@@ -57,14 +65,10 @@ public abstract class BaseFragment<VB extends ViewBinding> extends BindingFragme
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(NetWorkEvent event) {
-        //log.i(" 网络状态发送变化");
-    }
-
     @Override
     public void onResume() {
         super.onResume();
+        userVisible = true;
         if (!isLazyLoaded) {
             isLazyLoaded = true;
             onLazyLoad();
@@ -72,15 +76,30 @@ public abstract class BaseFragment<VB extends ViewBinding> extends BindingFragme
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        userVisible = false;
+    }
+
+    /**
+     * 用户是否可见
+     */
+    public boolean isUserVisible() {
+        return userVisible;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RelativeLayout rootView = new RelativeLayout(getContext());
         rootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         stateLayout = new StateLayout(getContext());
         stateLayout.setLayoutParams(layoutParams);
         stateLayout.setOnRetryListener(this);
-        stateLayout.addView(super.onCreateView(inflater, container, savedInstanceState));
+        stateLayout.addView(inflater.inflate(getConfig().getLayoutId(), null));
         rootView.addView(stateLayout);
+
         if (getConfig().hasToolbar()) {
             View toolbar = inflater.inflate(getConfig().getToolBarLayoutId() == 0 ? R.layout.toolbar_default : getConfig().getToolBarLayoutId(), null);
             toolbar.setId(R.id.toolbar);
@@ -94,6 +113,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends BindingFragme
                 stateLayout.setLayoutParams(layoutParams);
             }
         }
+        unbinder = ButterKnife.bind(this, rootView);
         init(savedInstanceState);
         return rootView;
     }
@@ -103,6 +123,10 @@ public abstract class BaseFragment<VB extends ViewBinding> extends BindingFragme
             return getConfig().getToolbarHeight() + PhoneUtils.getStatusBarHeight();
         }
         return 0;
+    }
+
+    public <T extends View> T getView(@IdRes int viewId) {
+        return getView().findViewById(viewId);
     }
 
     /**
@@ -121,16 +145,23 @@ public abstract class BaseFragment<VB extends ViewBinding> extends BindingFragme
 
     @Override
     public void onDestroy() {
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+        if (null != unbinder) {
+            unbinder.unbind();
+        }
         if (compositeDisposable != null && compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
             compositeDisposable = null;
         }
         super.onDestroy();
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(NetWorkEvent event) {
+        //log.i(" 网络状态发送变化");
+    }
 
     @Override
     public void onRetry() {

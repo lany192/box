@@ -5,13 +5,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.delegate.Delegate;
-import com.github.lany192.box.fragment.BaseFragment;
+import com.github.lany192.box.fragment.DaggerFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
-import com.github.lany192.box.sample.databinding.FragmentCityBinding;
 import com.github.lany192.decoration.LinearItemDecoration;
 
 import java.util.ArrayList;
@@ -19,7 +19,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class CityFragment extends BaseFragment<FragmentCityBinding> implements CityContract.View {
+import butterknife.BindView;
+
+public class CityFragment extends DaggerFragment implements CityContract.View {
+    @BindView(R.id.collection_view)
+    RecyclerView mCollectionView;
     @Inject
     CityPresenter mCityPresenter;
 
@@ -37,12 +41,12 @@ public class CityFragment extends BaseFragment<FragmentCityBinding> implements C
     protected void init(Bundle savedInstanceState) {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        binding.collectionView.setLayoutManager(manager);
-        binding.collectionView.addItemDecoration(new LinearItemDecoration(manager.getOrientation())
+        mCollectionView.setLayoutManager(manager);
+        mCollectionView.addItemDecoration(new LinearItemDecoration(manager.getOrientation())
                 .setColor(Color.GRAY)
                 .setWidth(1));
         mMultiAdapter = new MultiAdapter(new ArrayList<>());
-        binding.collectionView.setAdapter(mMultiAdapter);
+        mCollectionView.setAdapter(mMultiAdapter);
         onRetry();
     }
 

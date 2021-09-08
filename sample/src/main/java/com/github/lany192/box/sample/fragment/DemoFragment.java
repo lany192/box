@@ -11,24 +11,27 @@ import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.helper.ImageLoader;
 import com.github.lany192.box.sample.R;
-import com.github.lany192.box.sample.databinding.FragmentDemoBinding;
 import com.github.lany192.box.sample.dialog.HelloDialog;
 import com.github.lany192.box.utils.RoundedCornersTransform;
 
-public class DemoFragment extends BaseFragment<FragmentDemoBinding> {
-//    @BindView(R.id.image)
-//    ImageView imageView;
-//    @BindView(R.id.image2)
-//    ImageView imageView2;
-//    @BindView(R.id.image3)
-//    ImageView imageView3;
-//    @BindView(R.id.image4)
-//    ImageView imageView4;
+import butterknife.BindView;
+import butterknife.OnClick;
+
+public class DemoFragment extends BaseFragment {
+    @BindView(R.id.image)
+    ImageView imageView;
+    @BindView(R.id.image2)
+    ImageView imageView2;
+    @BindView(R.id.image3)
+    ImageView imageView3;
+    @BindView(R.id.image4)
+    ImageView imageView4;
 
     @NonNull
     @Override
     public FragmentConfig getConfig() {
         return FragmentConfig.builder()
+                .layoutId(R.layout.fragment_demo)
                 .build();
     }
 

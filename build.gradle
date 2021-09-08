@@ -1,21 +1,17 @@
 buildscript {
-    ext.kotlin_version = "1.5.21"
     repositories {
         maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38.1'
+        classpath "com.android.tools.build:gradle:7.0.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
     }
 }
 
 allprojects {
     repositories {
-        //阿里镜像仓库（聚合central和jcenter）
         maven { url 'https://maven.aliyun.com/repository/public' }
         google()
         mavenCentral()
@@ -30,5 +26,5 @@ task clean(type: Delete) {
 ext {
     minSdkVersion = 16
     targetSdkVersion = 30
-    compileSdkVersion = 30
+    compileSdkVersion = 31
 }
