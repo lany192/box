@@ -26,7 +26,7 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.fragment.FragmentContract;
+import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.view.StateLayout;
 
@@ -36,15 +36,16 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Objects;
 
+
+
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public abstract class DialogFragment extends androidx.fragment.app.DialogFragment
-        implements StateLayout.OnRetryListener, FragmentContract.View {
+        implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;
-
     private boolean canceledOnTouchOutside = true;
     private CompositeDisposable disposable = new CompositeDisposable();
     private boolean isInitLoaded;
@@ -146,7 +147,6 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
-
         if (disposable != null && disposable.isDisposed()) {
             disposable.dispose();
             disposable = null;
@@ -243,9 +243,8 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         }
         loadingDialog.setMessage(message);
         if (!loadingDialog.isAdded()) {
-            loadingDialog.cancel();
+            loadingDialog.show(getParentFragmentManager(), TAG);
         }
-        loadingDialog.show(getParentFragmentManager(), TAG);
     }
 
     @Override
@@ -259,12 +258,9 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
         if (isAdded()) {
-            manager.beginTransaction().remove(this).commitAllowingStateLoss();
-        }
-        if (!manager.isStateSaved() && !manager.isDestroyed()) {
-            super.show(manager, tag);
+            log.w("已经显示，忽略......");
         } else {
-            log.i("对话框忽略......");
+            super.show(manager, tag);
         }
     }
 

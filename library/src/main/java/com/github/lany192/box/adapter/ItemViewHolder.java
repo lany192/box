@@ -12,6 +12,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.box.helper.ImageLoader;
 
 
+
 public class ItemViewHolder extends BaseViewHolder {
 
     public ItemViewHolder(View itemView) {
@@ -23,7 +24,6 @@ public class ItemViewHolder extends BaseViewHolder {
         return super.setText(viewId, TextUtils.isEmpty(value) ? "" : value);
     }
 
-    @Override
     public BaseViewHolder setText(@IdRes int viewId, int value) {
         return setText(viewId, String.valueOf(value));
     }
@@ -34,7 +34,6 @@ public class ItemViewHolder extends BaseViewHolder {
         return this;
     }
 
-    @Override
     public BaseViewHolder setTextColor(@IdRes int viewId, @ColorInt int color) {
         TextView view = getView(viewId);
         view.setTextColor(color);

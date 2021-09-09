@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -15,10 +14,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.lany192.box.R;
 import com.github.lany192.box.interfaces.OnRefreshMoreListener;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
-import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
-
-import org.jetbrains.annotations.NotNull;
 
 /**
  * RecyclerView的下拉刷新和上拉加载及置顶功能封装
@@ -64,22 +59,17 @@ public class CollectionView extends FixDragFrameLayout {
                 }
             }
         });
-        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                if (mListener != null) {
-                    mListener.onLoadMore();
-                }
-                refreshLayout.finishLoadMore();
+        refreshLayout.setOnRefreshListener(refreshLayout -> {
+            if (mListener != null) {
+                mListener.onRefresh();
             }
-
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                if (mListener != null) {
-                    mListener.onRefresh();
-                }
-                refreshLayout.finishRefresh();
+            this.refreshLayout.finishRefresh();
+        });
+        refreshLayout.setOnLoadMoreListener(refreshLayout -> {
+            if (mListener != null) {
+                mListener.onLoadMore();
             }
+            this.refreshLayout.finishLoadMore();
         });
         recyclerView.getRecycledViewPool().setMaxRecycledViews(0, 10);
     }
@@ -146,7 +136,7 @@ public class CollectionView extends FixDragFrameLayout {
 
     public void stop() {
         refreshLayout.finishRefresh();
-        refreshLayout.finishLoadMoreWithNoMoreData();
+        refreshLayout.finishLoadMore();
     }
 
     /**

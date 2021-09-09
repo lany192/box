@@ -6,9 +6,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
-
 import com.github.lany192.box.Box;
 import com.github.lany192.kv.KVUtils;
 
@@ -23,6 +20,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 import static android.Manifest.permission;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 
 /**
  * 服务维护一个唯一不变的设备id（目前做不到百分百正确，只能尽量保证唯一不变）

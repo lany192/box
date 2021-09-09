@@ -24,7 +24,9 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.dialog.LoadingDialog;
+import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
+import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.ClickUtil;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
@@ -36,22 +38,20 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+
+
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * 通用基类
- *
- * @author Administrator
  */
-public abstract class BaseActivity extends AppCompatActivity
-        implements StateLayout.OnRetryListener, ActivityContract.View {
+public abstract class BaseActivity extends AppCompatActivity implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);
     protected FragmentActivity self;
     private View toolBarView;
     private StateLayout stateLayout;
-
     private LoadingDialog loadingDialog;
     private CompositeDisposable compositeDisposable;
 
@@ -63,10 +63,6 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //配置方向
-        if (getConfig().needOrientationRestriction()) {
-            setRequestedOrientation(getConfig().getOrientation());
-        }
         this.self = this;
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
@@ -74,7 +70,6 @@ public abstract class BaseActivity extends AppCompatActivity
         initStatusBar();
         onBeforeSetContentView();
         setContentView(getContentView());
-
         init(savedInstanceState);
     }
 
@@ -220,18 +215,19 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void onDestroy() {
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
         if (compositeDisposable != null && compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
             compositeDisposable = null;
-        }
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
         }
         super.onDestroy();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(Void event) {
+    public void onEvent(NetWorkEvent event) {
+        //log.i("onEvent: 网络发生了变化");
     }
 
     @Override

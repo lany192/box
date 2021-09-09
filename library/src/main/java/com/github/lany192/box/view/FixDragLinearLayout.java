@@ -14,7 +14,7 @@ import com.github.lany192.box.utils.DragHelper;
  * 优化ViewPager/ViewPager2和LinearLayout的子类控件滑动冲突
  */
 public class FixDragLinearLayout extends LinearLayout {
-    private final DragHelper dragHelper;
+    private DragHelper dragHelper;
 
     public FixDragLinearLayout(@NonNull Context context) {
         super(context);

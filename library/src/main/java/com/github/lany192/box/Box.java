@@ -16,7 +16,6 @@ import com.elvishew.xlog.LogConfiguration;
 import com.elvishew.xlog.LogLevel;
 import com.elvishew.xlog.XLog;
 import com.elvishew.xlog.printer.AndroidPrinter;
-import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.log.LogFileFormat;
@@ -25,22 +24,18 @@ import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.OtherUtils;
 import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.box.utils.PhoneUtils;
-import com.github.lany192.box.utils.SafeUtils;
 import com.github.lany192.kv.KVUtils;
 import com.hjq.toast.ToastUtils;
-import com.hjq.toast.style.BlackToastStyle;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.lang.ref.WeakReference;
-
 public class Box {
     private volatile static Box instance;
     private final String TAG = "Box";
-    private WeakReference<Context> reference;
+    private Context context;
 
     private Box() {
     }
@@ -63,18 +58,17 @@ public class Box {
     public void init(Application ctx, boolean debug) {
         Context app = ctx.getApplicationContext();
         if (app == null) {
-            this.reference = new WeakReference<>(ctx);
+            this.context = ctx;
         } else {
-            this.reference = new WeakReference<>(((Application) app).getBaseContext());
+            this.context = ((Application) app).getBaseContext();
         }
         KVUtils.get().init(ctx);
-        ToastUtils.init(ctx, new BlackToastStyle());
+        ToastUtils.init(ctx);
         initLog(debug);
         initCatchException();
         initRefreshView();
         registerNetwork();
         OtherUtils.closeAndroidPWarningDialog(debug);
-        SafeUtils.safeCheck(ctx, debug);
     }
 
     private void registerNetwork() {
@@ -137,9 +131,9 @@ public class Box {
                 .logLevel(LogLevel.ALL)
                 .tag("XLog")
                 .build();
-        String logPath = reference.get().getFilesDir().getPath() + "/log/";
+        String logPath = context.getFilesDir().getPath() + "/log/";
         Log.i(TAG, "初始化日志文件路径:" + logPath);
-        Printer filePrinter = new FilePrinter
+        FilePrinter filePrinter = new FilePrinter
                 .Builder(logPath)
                 .fileNameGenerator(new LogFileNameGenerator())
                 .flattener(new LogFileFormat())
@@ -152,6 +146,6 @@ public class Box {
     }
 
     public Context getContext() {
-        return reference.get();
+        return context;
     }
 }

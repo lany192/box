@@ -7,13 +7,13 @@ import androidx.annotation.NonNull;
 import com.github.lany192.box.adapter.ItemViewHolder;
 
 
+
 /**
  * 多布局代理基类，适用于MultiAdapter适配器
- * @author Administrator
  */
 public abstract class ItemDelegate<T> implements Delegate {
     private Context mContext;
-    private final T t;
+    private T t;
     private int spanSize = 2;
 
     public ItemDelegate(@NonNull final T item) {

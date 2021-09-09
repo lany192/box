@@ -17,7 +17,6 @@ import com.elvishew.xlog.XLog;
 
 
 
-
 public abstract class BaseLayout extends FrameLayout implements LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
     protected Logger.Builder log = XLog.tag(TAG);

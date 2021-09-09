@@ -1,10 +1,5 @@
 package com.github.lany192.box.utils;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Build;
 
 import java.lang.reflect.Constructor;
@@ -34,22 +29,5 @@ public class OtherUtils {
                 e.printStackTrace();
             }
         }
-    }
-
-    /**
-     * 获取签名hashCode
-     */
-    @SuppressLint("PackageManagerGetSignatures")
-    public static int getSignaturesHashCode(Context context) {
-        PackageInfo packageInfo = null;
-        try {
-            packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
-            Signature[] signs = packageInfo.signatures;
-            Signature sign = signs[0];
-            return sign.hashCode();
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
     }
 }

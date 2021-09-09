@@ -17,6 +17,7 @@ import com.github.lany192.box.R;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
+import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.ViewUtils;
@@ -29,11 +30,10 @@ import org.greenrobot.eventbus.ThreadMode;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, FragmentContract.View {
+public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;
-
     private LoadingDialog loadingDialog;
     /**
      * 是否执行过懒加载
@@ -60,11 +60,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(NetWorkEvent event) {
-        //log.i(" 网络状态发送变化");
     }
 
     @Override
@@ -146,17 +141,20 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
 
     @Override
     public void onDestroy() {
-
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
         if (compositeDisposable != null && compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
             compositeDisposable = null;
         }
         super.onDestroy();
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(NetWorkEvent event) {
+        //log.i(" 网络状态发送变化");
+    }
 
     @Override
     public void onRetry() {
@@ -231,5 +229,4 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         }
         compositeDisposable.add(disposable);
     }
-
 }

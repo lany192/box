@@ -7,7 +7,6 @@
     tools:context=".activity.HelloActivity">
 
     <TextView
-        android:id="@+id/showTextVew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="测试hello"

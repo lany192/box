@@ -1,6 +1,5 @@
 package com.github.lany192.box.sample.bean;
 
-
 public class Result<T> {
     private int code;
     private String msg;

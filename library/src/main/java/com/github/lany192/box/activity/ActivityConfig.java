@@ -1,13 +1,8 @@
 package com.github.lany192.box.activity;
 
-import android.content.pm.ActivityInfo;
-
 import androidx.annotation.ColorRes;
 import androidx.annotation.LayoutRes;
 
-/**
- * @author Administrator
- */
 public class ActivityConfig {
     /**
      * 布局文件id
@@ -53,10 +48,6 @@ public class ActivityConfig {
      * toolbar标题
      */
     private CharSequence title;
-    /**
-     * 屏幕方向配置
-     */
-    private int orientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
     /**
      * 是否需要Toolbar
@@ -65,100 +56,48 @@ public class ActivityConfig {
         return toolBarLayoutId != 0;
     }
 
-    public boolean needOrientationRestriction() {
-        return orientation != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
-    }
-
-    public int getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(int orientation) {
-        this.orientation = orientation;
-    }
-
     public int getLayoutId() {
         return layoutId;
-    }
-
-    public void setLayoutId(int layoutId) {
-        this.layoutId = layoutId;
     }
 
     public int getToolBarLayoutId() {
         return toolBarLayoutId;
     }
 
-    public void setToolBarLayoutId(int toolBarLayoutId) {
-        this.toolBarLayoutId = toolBarLayoutId;
-    }
-
     public boolean isStatusBarDarkFont() {
         return statusBarDarkFont;
-    }
-
-    public void setStatusBarDarkFont(boolean statusBarDarkFont) {
-        this.statusBarDarkFont = statusBarDarkFont;
     }
 
     public boolean isHasBackBtn() {
         return hasBackBtn;
     }
 
-    public void setHasBackBtn(boolean hasBackBtn) {
-        this.hasBackBtn = hasBackBtn;
-    }
-
     public int getToolbarHeight() {
         return toolbarHeight;
-    }
-
-    public void setToolbarHeight(int toolbarHeight) {
-        this.toolbarHeight = toolbarHeight;
     }
 
     public boolean isKeyboardEnable() {
         return keyboardEnable;
     }
 
-    public void setKeyboardEnable(boolean keyboardEnable) {
-        this.keyboardEnable = keyboardEnable;
-    }
-
     public int getStatusBarColor() {
         return statusBarColor;
-    }
-
-    public void setStatusBarColor(int statusBarColor) {
-        this.statusBarColor = statusBarColor;
     }
 
     public boolean isTransparentStatusBar() {
         return transparentStatusBar;
     }
 
-    public void setTransparentStatusBar(boolean transparentStatusBar) {
-        this.transparentStatusBar = transparentStatusBar;
-    }
-
     public boolean isFullscreen() {
         return fullscreen;
-    }
-
-    public void setFullscreen(boolean fullscreen) {
-        this.fullscreen = fullscreen;
     }
 
     public CharSequence getTitle() {
         return title;
     }
 
-    public void setTitle(CharSequence title) {
-        this.title = title;
-    }
-
     public static Builder builder() {
-        return Builder.builder();
+        return new Builder();
     }
 
     public static final class Builder {
@@ -172,13 +111,8 @@ public class ActivityConfig {
         private boolean transparentStatusBar;
         private boolean fullscreen;
         private CharSequence title;
-        private int orientation;
 
         private Builder() {
-        }
-
-        public static Builder builder() {
-            return new Builder();
         }
 
         public Builder layoutId(int layoutId) {
@@ -230,25 +164,20 @@ public class ActivityConfig {
             this.title = title;
             return this;
         }
-        public Builder orientation(int orientation) {
-            this.orientation = orientation;
-            return this;
-        }
 
         public ActivityConfig build() {
-            ActivityConfig hello = new ActivityConfig();
-            hello.setLayoutId(layoutId);
-            hello.setToolBarLayoutId(toolBarLayoutId);
-            hello.setStatusBarDarkFont(statusBarDarkFont);
-            hello.setHasBackBtn(hasBackBtn);
-            hello.setToolbarHeight(toolbarHeight);
-            hello.setKeyboardEnable(keyboardEnable);
-            hello.setStatusBarColor(statusBarColor);
-            hello.setTransparentStatusBar(transparentStatusBar);
-            hello.setFullscreen(fullscreen);
-            hello.setTitle(title);
-            hello.setOrientation(orientation);
-            return hello;
+            ActivityConfig activityConfig = new ActivityConfig();
+            activityConfig.statusBarDarkFont = this.statusBarDarkFont;
+            activityConfig.layoutId = this.layoutId;
+            activityConfig.toolBarLayoutId = this.toolBarLayoutId;
+            activityConfig.statusBarColor = this.statusBarColor;
+            activityConfig.transparentStatusBar = this.transparentStatusBar;
+            activityConfig.fullscreen = this.fullscreen;
+            activityConfig.title = this.title;
+            activityConfig.hasBackBtn = this.hasBackBtn;
+            activityConfig.toolbarHeight = this.toolbarHeight;
+            activityConfig.keyboardEnable = this.keyboardEnable;
+            return activityConfig;
         }
     }
 }

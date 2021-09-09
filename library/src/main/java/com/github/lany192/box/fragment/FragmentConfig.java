@@ -39,44 +39,26 @@ public class FragmentConfig {
         return layoutId;
     }
 
-    public void setLayoutId(int layoutId) {
-        this.layoutId = layoutId;
-    }
-
     public int getToolBarLayoutId() {
         return toolBarLayoutId;
-    }
-
-    public void setToolBarLayoutId(int toolBarLayoutId) {
-        this.toolBarLayoutId = toolBarLayoutId;
     }
 
     public int getToolbarHeight() {
         return toolbarHeight;
     }
 
-    public void setToolbarHeight(int toolbarHeight) {
-        this.toolbarHeight = toolbarHeight;
-    }
-
     public int getToolbarColor() {
         return toolbarColor;
-    }
-
-    public void setToolbarColor(int toolbarColor) {
-        this.toolbarColor = toolbarColor;
     }
 
     public boolean isCoverStyle() {
         return coverStyle;
     }
 
-    public void setCoverStyle(boolean coverStyle) {
-        this.coverStyle = coverStyle;
-    }
     public static Builder builder() {
-        return Builder.builder();
+        return new Builder();
     }
+
     public static final class Builder {
         private int layoutId;
         private int toolBarLayoutId;
@@ -85,10 +67,6 @@ public class FragmentConfig {
         private boolean coverStyle;
 
         private Builder() {
-        }
-
-        public static Builder builder() {
-            return new Builder();
         }
 
         public Builder layoutId(int layoutId) {
@@ -117,13 +95,13 @@ public class FragmentConfig {
         }
 
         public FragmentConfig build() {
-            FragmentConfig hello = new FragmentConfig();
-            hello.toolbarColor = this.toolbarColor;
-            hello.toolbarHeight = this.toolbarHeight;
-            hello.toolBarLayoutId = this.toolBarLayoutId;
-            hello.layoutId = this.layoutId;
-            hello.coverStyle = this.coverStyle;
-            return hello;
+            FragmentConfig fragmentConfig = new FragmentConfig();
+            fragmentConfig.layoutId = this.layoutId;
+            fragmentConfig.coverStyle = this.coverStyle;
+            fragmentConfig.toolBarLayoutId = this.toolBarLayoutId;
+            fragmentConfig.toolbarHeight = this.toolbarHeight;
+            fragmentConfig.toolbarColor = this.toolbarColor;
+            return fragmentConfig;
         }
     }
 }
