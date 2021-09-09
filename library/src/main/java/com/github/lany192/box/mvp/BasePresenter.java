@@ -61,7 +61,6 @@ public abstract class BasePresenter<V extends BaseView, M> implements BaseContra
         return model;
     }
 
-    @Override
     @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {
