@@ -11,7 +11,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.github.lany192.box.Box;
-import com.github.lany192.box.sample.activity.HelloActivity;
+import com.github.lany192.box.sample.mvp.about.AboutActivity;
 import com.liulishuo.filedownloader.FileDownloader;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class SampleApp extends Application {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initShortcuts() {
         List<ShortcutInfo> shortcuts = new ArrayList<>();
-        Intent intent = new Intent(this, HelloActivity.class);
+        Intent intent = new Intent(this, AboutActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
 
         shortcuts.add(new ShortcutInfo.Builder(this, "id" + 0)

@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample;
+package com.github.lany192.box.sample.mvp.main;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.lany192.box.activity.ActivityConfig;
 import com.github.lany192.box.activity.BaseActivity;
+import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.fragment.HelloFragment;
 import com.github.lany192.box.sample.fragment.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;

@@ -1,16 +1,16 @@
-package com.github.lany192.box.sample.activity;
-
-import android.os.Bundle;
+package com.github.lany192.box.sample.mvp.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Bundle;
+
 import com.github.lany192.box.sample.R;
 
-public class HelloActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hello);
+        setContentView(R.layout.activity_login);
     }
 }
