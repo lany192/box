@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#ViewBinding混淆----------------------------------------------
+-keepclassmembers class * implements androidx.viewbinding.ViewBinding {
+  public static ** inflate(...);
+  public static ** bind(***);
+}
