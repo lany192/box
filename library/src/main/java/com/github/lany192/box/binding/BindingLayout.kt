@@ -15,10 +15,9 @@ abstract class BindingLayout<VB : ViewBinding> @JvmOverloads constructor(
     @AttrRes defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    lateinit var binding: VB
+    var binding: VB = getBinding()
 
     init {
-        binding = getBinding()
         addView(binding.root)
         init(attrs)
     }
