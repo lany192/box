@@ -63,16 +63,12 @@ public class Box {
             this.context = ((Application) app).getBaseContext();
         }
         KVUtils.get().init(ctx);
-        initToast(ctx);
+        ToastUtils.init(ctx);
         initLog(debug);
         initCatchException();
         initRefreshView();
         registerNetwork();
         OtherUtils.closeAndroidPWarningDialog(debug);
-    }
-
-    private void initToast(Application ctx) {
-        ToastUtils.init(ctx);
     }
 
     private void registerNetwork() {
