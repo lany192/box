@@ -15,7 +15,7 @@
         android:indeterminateDrawable="@drawable/ico_loading" />
 
     <TextView
-        android:id="@+id/loading_dialog_msg_text"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loading"

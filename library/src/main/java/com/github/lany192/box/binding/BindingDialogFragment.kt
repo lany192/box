@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import androidx.viewbinding.ViewBinding
 
-/**
- * ViewBinding实现基类
- * 注：子类不能使用ButterKnife/getLayoutId()/findView()
- */
 abstract class BindingDialogFragment<VB : ViewBinding> : DialogFragment() {
     lateinit var binding: VB
 
@@ -21,5 +18,13 @@ abstract class BindingDialogFragment<VB : ViewBinding> : DialogFragment() {
     ): View {
         binding = getBinding(inflater, container)
         return binding.root
+    }
+
+    override fun show(manager: FragmentManager, tag: String?) {
+        try {
+            super.show(manager, tag)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
