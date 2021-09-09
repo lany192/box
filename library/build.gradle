@@ -67,7 +67,8 @@ dependencies {
     //下载框架 https://github.com/lingochamp/FileDownloader
     api 'com.liulishuo.filedownloader:library:1.7.7'
 
-    api 'com.hjq:toast:8.8'
+    //Toast工具 https://github.com/getActivity/ToastUtils
+    api 'com.github.getActivity:ToastUtils:9.5'
 
     compileOnly 'com.jakewharton:butterknife:10.2.3'
     compileOnly 'com.google.dagger:dagger-android-support:2.38.1'
