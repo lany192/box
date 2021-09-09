@@ -21,8 +21,8 @@ import io.reactivex.rxjava3.observers.DisposableObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public abstract class BasePresenter<V extends BaseView, M> implements BaseContract.Presenter {
-    private final V view;
-    private final M model;
+    private V view;
+    private M model;
     protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private CompositeDisposable compositeDisposable;
 
@@ -61,6 +61,7 @@ public abstract class BasePresenter<V extends BaseView, M> implements BaseContra
         return model;
     }
 
+    @Override
     @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {

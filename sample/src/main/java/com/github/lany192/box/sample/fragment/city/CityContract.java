@@ -7,19 +7,15 @@ import java.util.List;
 
 public interface CityContract {
 
-    interface View extends BaseContract.View {
+    interface View {
 
-        void showCities(List<Delegate> items);
     }
 
-    interface Presenter extends BaseContract.Presenter {
+    interface Presenter {
 
-        void init();
-
-        void request();
     }
 
-    interface Model  extends BaseContract.Model {
+    interface Model {
 
     }
 }

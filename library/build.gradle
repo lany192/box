@@ -71,7 +71,6 @@ dependencies {
     api 'com.github.getActivity:ToastUtils:9.5'
 
     compileOnly 'com.jakewharton:butterknife:10.2.3'
-    compileOnly 'com.google.dagger:dagger-android-support:2.38.1'
 
     //圆角图片 https://github.com/vinc3m1/RoundedImageView
     api 'com.makeramen:roundedimageview:2.3.0'
