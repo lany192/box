@@ -27,8 +27,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -36,7 +34,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private StateLayout stateLayout;
-    private Unbinder unbinder;
     private LoadingDialog loadingDialog;
     /**
      * 是否执行过懒加载
@@ -113,7 +110,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
                 stateLayout.setLayoutParams(layoutParams);
             }
         }
-        unbinder = ButterKnife.bind(this, rootView);
         init(savedInstanceState);
         return rootView;
     }
@@ -147,9 +143,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     public void onDestroy() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
-        }
-        if (null != unbinder) {
-            unbinder.unbind();
         }
         if (compositeDisposable != null && compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
@@ -236,5 +229,4 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
         }
         compositeDisposable.add(disposable);
     }
-
 }

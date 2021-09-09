@@ -19,14 +19,11 @@ import com.hjq.toast.ToastUtils;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MainActivity extends BaseActivity implements MainContract.View {
-    @BindView(R.id.main_viewpager)
     ViewPager2 mViewPager2;
-    @BindView(R.id.main_navigation_bar)
     BottomNavigationView mBottomNavigationView;
     @Inject
     MainPresenter mPresenter;
@@ -46,6 +43,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        mViewPager2 = findViewById(R.id.main_viewpager);
+        mBottomNavigationView = findViewById(R.id.main_navigation_bar);
         mViewPager2.setUserInputEnabled(false);
         mViewPager2.setAdapter(new FragmentStateAdapter(this) {
 

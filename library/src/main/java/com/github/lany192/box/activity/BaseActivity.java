@@ -38,8 +38,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+
+
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -52,7 +52,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     protected FragmentActivity self;
     private View toolBarView;
     private StateLayout stateLayout;
-    private Unbinder unbinder;
     private LoadingDialog loadingDialog;
     private CompositeDisposable compositeDisposable;
 
@@ -71,7 +70,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         initStatusBar();
         onBeforeSetContentView();
         setContentView(getContentView());
-        unbinder = ButterKnife.bind(this);
         init(savedInstanceState);
     }
 
@@ -219,9 +217,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     public void onDestroy() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
-        }
-        if (null != unbinder) {
-            unbinder.unbind();
         }
         if (compositeDisposable != null && compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
