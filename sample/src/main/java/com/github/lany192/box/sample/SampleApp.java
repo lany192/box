@@ -12,7 +12,6 @@ import androidx.annotation.RequiresApi;
 
 import com.github.lany192.box.Box;
 import com.github.lany192.box.sample.mvp.about.AboutActivity;
-import com.liulishuo.filedownloader.FileDownloader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,6 @@ public class SampleApp extends Application {
     public void onCreate() {
         super.onCreate();
         Box.get().init(this, BuildConfig.DEBUG);
-        FileDownloader.setupOnApplicationOnCreate(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             initShortcuts();
         }
