@@ -25,9 +25,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.AboutActivity"
+            android:exported="true"
             android:label="关于" />
-        <activity android:name=".activity.HelloActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".activity.HelloActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
