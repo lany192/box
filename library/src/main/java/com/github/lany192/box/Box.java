@@ -6,30 +6,25 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
 import android.os.Build;
 import android.util.Log;
-import android.view.Gravity;
 
 import com.elvishew.xlog.LogConfiguration;
 import com.elvishew.xlog.LogLevel;
 import com.elvishew.xlog.XLog;
 import com.elvishew.xlog.printer.AndroidPrinter;
-import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
-import com.github.lany192.KVUtils;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.log.LogFileFormat;
 import com.github.lany192.box.log.LogFileNameGenerator;
-import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.OtherUtils;
 import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.box.utils.PhoneUtils;
-import com.hjq.toast.IToastStyle;
+import com.github.lany192.kv.KVUtils;
 import com.hjq.toast.ToastUtils;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
@@ -78,73 +73,6 @@ public class Box {
 
     private void initToast(Application ctx) {
         ToastUtils.init(ctx);
-        ToastUtils.initStyle(new IToastStyle() {
-
-            @Override
-            public int getGravity() {
-                return Gravity.CENTER;
-            }
-
-            @Override
-            public int getXOffset() {
-                return 0;
-            }
-
-            @Override
-            public int getYOffset() {
-                return 0;
-            }
-
-            @Override
-            public int getZ() {
-                return 4;
-            }
-
-            @Override
-            public int getCornerRadius() {
-                return DensityUtils.dp2px(5);
-            }
-
-            @Override
-            public int getBackgroundColor() {
-                return 0xa0000000;
-            }
-
-            @Override
-            public int getTextColor() {
-                return Color.WHITE;
-            }
-
-            @Override
-            public float getTextSize() {
-                return DensityUtils.sp2px(14);
-            }
-
-            @Override
-            public int getMaxLines() {
-                return 5;
-            }
-
-            @Override
-            public int getPaddingStart() {
-                return DensityUtils.dp2px(16);
-            }
-
-            @Override
-            public int getPaddingTop() {
-                return getPaddingStart();
-            }
-
-            @Override
-            public int getPaddingEnd() {
-                return getPaddingStart();
-            }
-
-            @Override
-            public int getPaddingBottom() {
-                return getPaddingStart();
-            }
-        });
     }
 
     private void registerNetwork() {
@@ -209,7 +137,7 @@ public class Box {
                 .build();
         String logPath = context.getFilesDir().getPath() + "/log/";
         Log.i(TAG, "初始化日志文件路径:" + logPath);
-        Printer filePrinter = new FilePrinter
+        FilePrinter filePrinter = new FilePrinter
                 .Builder(logPath)
                 .fileNameGenerator(new LogFileNameGenerator())
                 .flattener(new LogFileFormat())
