@@ -22,7 +22,6 @@ public class CityPresenter implements CityContract.Presenter {
 
     @Override
     public void requestCityInfo() {
-        ToastUtils.show("开始");
         apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
 
             @Override
