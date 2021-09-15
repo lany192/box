@@ -4,19 +4,17 @@ import android.util.Log;
 
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.bean.Area;
-import com.github.lany192.box.sample.bean.Result;
 import com.github.lany192.box.sample.databinding.FragmentCityBinding;
 import com.github.lany192.box.sample.http.ApiService;
+import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.utils.JsonUtils;
+import com.hjq.toast.ToastUtils;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 @AndroidEntryPoint
 public class CityFragment extends BindingFragment<FragmentCityBinding> implements CityContract.View {
@@ -28,24 +26,16 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> implement
     @Override
     public void onResume() {
         super.onResume();
-        apiService.cityInfo().subscribe(new Observer<Result<List<Area>>>() {
+        apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
+
             @Override
-            public void onSubscribe(@NonNull Disposable d) {
+            public void onSuccess(String msg, List<Area> areas) {
+                Log.i("数据:", JsonUtils.object2json(areas));
             }
 
             @Override
-            public void onNext(@NonNull Result<List<Area>> result) {
-                Log.i("数据:", JsonUtils.object2json(result));
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.i("数据:", e.getMessage());
-            }
-
-            @Override
-            public void onComplete() {
-
+            public void onFailure(String msg, int code) {
+                ToastUtils.show(msg);
             }
         });
     }
