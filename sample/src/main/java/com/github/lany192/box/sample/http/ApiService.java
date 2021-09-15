@@ -12,6 +12,6 @@ public interface ApiService {
     /**
      * 获取省市县数据
      */
-    @GET("json/city.json")
+    @GET("https://xzwcn.oss-cn-shanghai.aliyuncs.com/config/city.json")
     Observable<Result<List<Area>>> getCityInfo();
 }
