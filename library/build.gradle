@@ -58,9 +58,10 @@ dependencies {
     //网络请求
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+//    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+//    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
 
     api 'com.github.lany192:StateLayout:1.2.4'
     api 'com.github.lany192:ItemDecoration:1.19'
