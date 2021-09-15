@@ -12,7 +12,7 @@ import com.github.lany192.box.activity.ActivityConfig;
 import com.github.lany192.box.activity.BaseActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.fragment.HelloFragment;
-import com.github.lany192.box.sample.fragment.city.CityFragment;
+import com.github.lany192.box.sample.mvp.main.city.CityFragment;
 import com.github.lany192.box.sample.mvp.main.index.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

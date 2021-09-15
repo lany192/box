@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.fragment.city;
+package com.github.lany192.box.sample.mvp.main.city;
 
 import javax.inject.Inject;
 
