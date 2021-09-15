@@ -14,6 +14,7 @@
         android:background="@android:color/white"
         app:itemIconTint="@color/selector_item_gray_color"
         app:itemTextColor="@color/selector_item_gray_color"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/main_navigation_menu" />
 
     <androidx.viewpager2.widget.ViewPager2

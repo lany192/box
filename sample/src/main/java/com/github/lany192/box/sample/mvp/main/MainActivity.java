@@ -12,7 +12,8 @@ import com.github.lany192.box.activity.ActivityConfig;
 import com.github.lany192.box.activity.BaseActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.fragment.HelloFragment;
-import com.github.lany192.box.sample.fragment.IndexFragment;
+import com.github.lany192.box.sample.fragment.city.CityFragment;
+import com.github.lany192.box.sample.mvp.main.index.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gyf.immersionbar.ImmersionBar;
@@ -63,6 +64,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                     case 1:
                         return new HelloFragment();
                     case 2:
+                        return new CityFragment();
+                    case 3:
                         return new MyFragment();
                     default:
                         return null;
@@ -85,9 +88,13 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                     ImmersionBar.with(this).statusBarDarkFont(true).init();
                     mViewPager2.setCurrentItem(1, false);
                     return true;
+                case R.id.menu_main_city:
+                    ImmersionBar.with(this).statusBarDarkFont(true).init();
+                    mViewPager2.setCurrentItem(2, false);
+                    return true;
                 case R.id.menu_main_my:
                     ImmersionBar.with(this).statusBarDarkFont(false).init();
-                    mViewPager2.setCurrentItem(2, false);
+                    mViewPager2.setCurrentItem(3, false);
                     return true;
                 default:
             }
