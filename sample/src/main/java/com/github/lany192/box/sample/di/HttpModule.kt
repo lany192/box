@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.di.module
+package com.github.lany192.box.sample.di
 
 import com.github.lany192.box.sample.http.ApiService
 import com.google.gson.GsonBuilder
