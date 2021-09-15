@@ -10,11 +10,11 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class CityFragment extends BindingFragment<FragmentCityBinding> implements CityContract.View {
     @Inject
-    CityPresenter mCityPresenter;
+    CityPresenter presenter;
 
     @Override
     public void onResume() {
         super.onResume();
-        mCityPresenter.requestCityInfo();
+        presenter.requestCityInfo();
     }
 }
