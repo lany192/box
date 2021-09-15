@@ -88,7 +88,7 @@ dependencies {
     //权限工具 https://github.com/tbruyelle/RxPermissions
     api 'com.github.tbruyelle:rxpermissions:0.12'
     //下载框架 https://github.com/lingochamp/okdownload
-    api 'com.liulishuo.okdownload:okdownload:1.0.8'
+    api 'com.liulishuo.okdownload:okdownload:1.0.7'
 }
 
 afterEvaluate {
