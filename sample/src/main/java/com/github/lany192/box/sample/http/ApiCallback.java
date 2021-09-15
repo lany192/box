@@ -18,7 +18,7 @@ public interface ApiCallback<T> extends Observer<Result<T>> {
 
     @Override
     default void onNext(Result<T> result) {
-        if (result.getCode() == 200) {
+        if (result.getCode() == 0) {
             onSuccess(result.getMsg(), result.getData());
         } else {
             onFailure(result.getMsg(), result.getCode());

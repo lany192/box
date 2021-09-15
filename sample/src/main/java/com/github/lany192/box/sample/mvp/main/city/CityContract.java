@@ -8,6 +8,7 @@ public interface CityContract {
 
     interface Presenter {
 
+        void requestCityInfo();
     }
 
     interface Model {
