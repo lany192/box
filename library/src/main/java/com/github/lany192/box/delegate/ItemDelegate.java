@@ -13,7 +13,7 @@ import com.github.lany192.box.adapter.ItemViewHolder;
  */
 public abstract class ItemDelegate<T> implements Delegate {
     private Context mContext;
-    private T t;
+    private final T t;
     private int spanSize = 2;
 
     public ItemDelegate(@NonNull final T item) {
