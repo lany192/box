@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                     case 3:
                         return new MyFragment();
                     default:
-                        return null;
+                        return new IndexFragment();
                 }
             }
         });
@@ -100,6 +100,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             }
             return false;
         });
+        mPresenter.hello();
     }
 
     @Override
