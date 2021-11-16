@@ -15,9 +15,12 @@ import javax.inject.Inject;
 public class CityPresenter implements CityContract.Presenter {
     @Inject
     ApiService apiService;
+//    @Inject
+//    CityContract.View view;
 
     @Inject
     public CityPresenter() {
+
     }
 
     @Override
@@ -28,6 +31,7 @@ public class CityPresenter implements CityContract.Presenter {
             @Override
             public void onSuccess(String msg, List<Area> areas) {
                 Log.i("数据:", JsonUtils.object2json(areas));
+//                view.showItems(areas);
             }
 
             @Override
