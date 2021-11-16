@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
             @Override
             public int getItemCount() {
-                return 3;
+                return 4;
             }
 
             @NonNull

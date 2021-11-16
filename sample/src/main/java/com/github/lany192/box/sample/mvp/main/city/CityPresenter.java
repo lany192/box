@@ -22,6 +22,7 @@ public class CityPresenter implements CityContract.Presenter {
 
     @Override
     public void requestCityInfo() {
+        Log.i("TAG:", "请求城市数据接口");
         apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
 
             @Override
