@@ -15,18 +15,23 @@ import javax.inject.Inject;
 public class CityPresenter implements CityContract.Presenter {
     @Inject
     ApiService apiService;
+//    @Inject
+//    CityContract.View view;
 
     @Inject
     public CityPresenter() {
+
     }
 
     @Override
     public void requestCityInfo() {
+        Log.i("TAG:", "请求城市数据接口");
         apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
 
             @Override
             public void onSuccess(String msg, List<Area> areas) {
                 Log.i("数据:", JsonUtils.object2json(areas));
+//                view.showItems(areas);
             }
 
             @Override
