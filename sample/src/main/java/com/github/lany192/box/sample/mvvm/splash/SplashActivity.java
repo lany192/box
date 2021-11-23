@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvp.splash;
+package com.github.lany192.box.sample.mvvm.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.lany192.box.sample.R;
-import com.github.lany192.box.sample.mvp.main.MainActivity;
+import com.github.lany192.box.sample.mvvm.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

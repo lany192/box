@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvp.main;
+package com.github.lany192.box.sample.mvvm.main;
 
 import com.elvishew.xlog.XLog;
 

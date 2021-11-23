@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvp.main.index;
+package com.github.lany192.box.sample.mvvm.main.index;
 
 import android.os.Bundle;
 

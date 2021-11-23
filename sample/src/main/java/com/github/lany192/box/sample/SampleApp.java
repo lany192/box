@@ -11,7 +11,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.github.lany192.box.Box;
-import com.github.lany192.box.sample.mvp.about.AboutActivity;
+import com.github.lany192.box.sample.mvvm.about.AboutActivity;
 
 import java.util.ArrayList;
 import java.util.List;

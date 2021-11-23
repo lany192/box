@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvp.main.city;
+package com.github.lany192.box.sample.mvvm.main.city;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
