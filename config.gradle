@@ -3,9 +3,9 @@ ext {
             "glide"     : "com.github.bumptech.glide:compiler:4.12.0",
             "room"      : "androidx.room:room-compiler:2.3.0",
             //路由增强 https://github.com/lany192/app-router
-            "app-router": 'com.github.lany192:app-router:1.3.2',
+//            "app-router": 'com.github.lany192:app-router:1.3.2',
             //阿里路由 https://github.com/alibaba/ARouter
-            "arouter"   : 'com.alibaba:arouter-compiler:1.5.2',
+//            "arouter"   : 'com.alibaba:arouter-compiler:1.5.2',
     ]
     androidTestDependencies = [
             "junit"   : 'androidx.test.ext:junit:1.1.3',
@@ -22,7 +22,7 @@ ext {
             "androidx-constraint"   : 'androidx.constraintlayout:constraintlayout:2.1.2',
             "androidx-palette"      : 'androidx.palette:palette:1.0.0',
             "androidx-multidex"     : 'androidx.multidex:multidex:2.0.1',
-//            "androidx-core-ktx"     : 'androidx.core:core-ktx:1.3.2',
+            "androidx-core-ktx"     : 'androidx.core:core-ktx:1.7.0',
             "androidx-exifinterface": 'androidx.exifinterface:exifinterface:1.3.3',
             "androidx-fragment-ktx" : 'androidx.fragment:fragment-ktx:1.4.0',
             "androidx-activity"     : 'androidx.activity:activity:1.3.1',
@@ -84,7 +84,7 @@ ext {
             //日志工具 https://github.com/elvishew/xLog
             "xlog"                  : 'com.elvishew:xlog:1.11.0',
             //阿里界面路由 https://github.com/alibaba/ARouter
-            "arouter"               : 'com.alibaba:arouter-api:1.5.2',
+//            "arouter"               : 'com.alibaba:arouter-api:1.5.2',
             //权限工具 https://github.com/tbruyelle/RxPermissions
             "permission"            : 'com.github.tbruyelle:rxpermissions:0.12',
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
