@@ -20,13 +20,25 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildFeatures {
         viewBinding true
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
