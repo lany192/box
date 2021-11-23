@@ -47,7 +47,7 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     processorDependencies.each { k, v -> kapt v }
-    compileOnlyDependencies.each { k, v -> compileOnly v }
+    testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
 }
 
