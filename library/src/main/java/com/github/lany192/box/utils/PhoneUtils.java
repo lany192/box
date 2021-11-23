@@ -270,7 +270,7 @@ public class PhoneUtils {
     /**
      * 获取状态栏高度
      */
-    public int getStatusBarHeight() {
+    public static int getStatusBarHeight() {
         int result = 24;
         int resId = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0) {
