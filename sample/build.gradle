@@ -74,9 +74,9 @@ dependencies {
 
     implementation project(':library')
 
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0'
+//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+//    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0'
     //-------------------------------------------------------------------------------------------
     //菜单控件
     implementation 'com.github.lany192:MenuView:1.0.3'
