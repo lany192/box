@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvvm.splash;
+package com.github.lany192.box.sample.ui.splash;
 
 import androidx.lifecycle.ViewModel;
 

@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvvm.login;
+package com.github.lany192.box.sample.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 

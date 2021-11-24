@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".mvvm.splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,14 +33,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mvvm.login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".mvvm.about.AboutActivity"
+            android:name=".ui.about.AboutActivity"
             android:exported="true"
             android:label="关于" />
         <activity
-            android:name=".mvvm.main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvvm.main;
+package com.github.lany192.box.sample.ui.main;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,8 +12,8 @@ import com.github.lany192.box.activity.ActivityConfig;
 import com.github.lany192.box.activity.BaseActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.fragment.HelloFragment;
-import com.github.lany192.box.sample.mvvm.main.city.CityFragment;
-import com.github.lany192.box.sample.mvvm.main.index.IndexFragment;
+import com.github.lany192.box.sample.ui.main.city.CityFragment;
+import com.github.lany192.box.sample.ui.main.index.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gyf.immersionbar.ImmersionBar;

@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvvm.main.city;
+package com.github.lany192.box.sample.ui.main.city;
 
 import com.github.lany192.box.sample.bean.Area;
 
