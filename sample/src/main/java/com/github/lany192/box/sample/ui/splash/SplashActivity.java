@@ -10,19 +10,27 @@ import androidx.lifecycle.ViewModelProvider;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.ui.about.AboutViewModel;
 import com.github.lany192.box.sample.ui.main.MainActivity;
+import com.hjq.toast.ToastUtils;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
+//    @Inject
+//    SplashViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         SplashViewModel vm = new ViewModelProvider(this).get(SplashViewModel.class);
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+
+        ToastUtils.show(vm.toString());
+
+//        startActivity(new Intent(this, MainActivity.class));
+//        finish();
     }
 }
