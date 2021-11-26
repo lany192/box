@@ -27,6 +27,7 @@ import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
+import com.github.lany192.box.network.NetworkHelper;
 import com.github.lany192.box.utils.ClickUtil;
 import com.github.lany192.box.utils.DensityUtils;
 import com.github.lany192.box.utils.ViewUtils;
@@ -67,6 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+        getLifecycle().addObserver(NetworkHelper.getInstance());
         initStatusBar();
         onBeforeSetContentView();
         setContentView(getContentView());

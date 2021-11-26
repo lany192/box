@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class AboutActivity extends BaseActivity {
+    AboutViewModel aboutViewModel;
 
     @NonNull
     @Override

@@ -67,39 +67,7 @@ public class Box {
         initLog(debug);
         initCatchException();
         initRefreshView();
-        registerNetwork();
         OtherUtils.closeAndroidPWarningDialog(debug);
-    }
-
-    private void registerNetwork() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                && PermissionUtils.checkPermission(getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
-                && PermissionUtils.checkPermission(getContext(), Manifest.permission.WRITE_SETTINGS)) {
-            ConnectivityManager manager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-            manager.requestNetwork(new NetworkRequest.Builder().build(),
-                    new ConnectivityManager.NetworkCallback() {
-
-                        @Override
-                        public void onLost(Network network) {
-                            super.onLost(network);
-                            EventBus.getDefault().post(new NetWorkEvent(false));
-                        }
-
-                        @Override
-                        public void onAvailable(Network network) {
-                            super.onAvailable(network);
-                            EventBus.getDefault().post(new NetWorkEvent(true));
-                        }
-                    });
-        } else {
-            getContext().registerReceiver(new BroadcastReceiver() {
-
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
-                }
-            }, new IntentFilter("android.net.conn.CONNECTIVTY_CHANGE"));
-        }
     }
 
     private void initCatchException() {
