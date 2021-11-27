@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.lany192.box.binding.BindingFragment;
-import com.github.lany192.box.network.NetworkHelper;
+import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.sample.databinding.FragmentCityBinding;
 
 import java.util.ArrayList;
@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class CityFragment extends BindingFragment<FragmentCityBinding> {
     private CityViewModel viewModel;
     private CityAdapter adapter;
+    private LoadingDialog loadingDialog;
 
     @NonNull
     @Override
@@ -35,6 +36,21 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
         adapter = new CityAdapter(new ArrayList<>());
         binding.collectionView.setAdapter(adapter);
         viewModel.getLiveData().observe(this, areas -> adapter.setNewInstance(areas));
+        viewModel.getLoading().observe(this, loading -> {
+            if (loading) {
+                if (loadingDialog == null) {
+                    loadingDialog = new LoadingDialog();
+                }
+                if (!loadingDialog.isAdded()) {
+                    loadingDialog.show(getParentFragmentManager(), "TAG" + System.currentTimeMillis());
+                }
+            } else {
+                if (loadingDialog != null && loadingDialog.isAdded()) {
+                    loadingDialog.cancel();
+                    loadingDialog = null;
+                }
+            }
+        });
         return root;
     }
 }

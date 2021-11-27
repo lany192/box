@@ -31,6 +31,7 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         binding.mainViewpager.setUserInputEnabled(false);
+//        binding.mainViewpager.setOffscreenPageLimit(4);
         binding.mainViewpager.setAdapter(new FragmentStateAdapter(this) {
 
             @Override

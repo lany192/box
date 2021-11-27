@@ -23,6 +23,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class CityViewModel extends ViewModel implements DefaultLifecycleObserver {
     private final MutableLiveData<List<Area>> liveData = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
     private final ApiService apiService;
 
     @Inject
@@ -31,21 +32,28 @@ public class CityViewModel extends ViewModel implements DefaultLifecycleObserver
         requestCityInfo();
     }
 
+    public MutableLiveData<Boolean> getLoading() {
+        return loading;
+    }
+
     public MutableLiveData<List<Area>> getLiveData() {
         return liveData;
     }
 
     public void requestCityInfo() {
         Log.i("TAG:", "请求城市数据接口");
+        loading.postValue(true);
         apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
 
             @Override
             public void onSuccess(String msg, List<Area> areas) {
+                loading.postValue(false);
                 liveData.postValue(areas);
             }
 
             @Override
             public void onFailure(String msg, int code) {
+                loading.postValue(false);
                 ToastUtils.show(msg);
             }
         });
