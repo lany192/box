@@ -22,7 +22,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class CityViewModel extends ViewModel implements DefaultLifecycleObserver {
-    private final MutableLiveData<List<Area>> liveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Area>> items = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
     private final ApiService apiService;
 
@@ -36,8 +36,8 @@ public class CityViewModel extends ViewModel implements DefaultLifecycleObserver
         return loading;
     }
 
-    public MutableLiveData<List<Area>> getLiveData() {
-        return liveData;
+    public MutableLiveData<List<Area>> getItems() {
+        return items;
     }
 
     public void requestCityInfo() {
@@ -48,7 +48,7 @@ public class CityViewModel extends ViewModel implements DefaultLifecycleObserver
             @Override
             public void onSuccess(String msg, List<Area> areas) {
                 loading.postValue(false);
-                liveData.postValue(areas);
+                items.postValue(areas);
             }
 
             @Override

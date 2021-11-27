@@ -33,7 +33,7 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
 
         adapter = new CityAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
-        viewModel.getLiveData().observe(this, areas -> adapter.setNewInstance(areas));
+        viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 if (loadingDialog == null) {

@@ -19,5 +19,6 @@ public class CityAdapter extends BaseQuickAdapter<Area, BaseViewHolder> {
     @Override
     protected void convert(@NonNull BaseViewHolder holder, Area area) {
         holder.setText(R.id.item_area_title, area.getName());
+        holder.setImageResource(R.id.item_poster_post, R.mipmap.ic_launcher);
     }
 }

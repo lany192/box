@@ -23,7 +23,7 @@
             android:id="@+id/item_poster_post"
             android:layout_width="112dp"
             android:layout_height="112dp"
-            android:scaleType="center"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
