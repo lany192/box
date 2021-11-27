@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:background="#424242"
+    android:layout_margin="3dp"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="#424242"
+    app:cardBackgroundColor="#f2f2f2"
     app:cardCornerRadius="8dp"
-    app:cardElevation="3dp">
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -39,8 +38,8 @@
             android:maxLines="1"
             android:padding="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textColor="@android:color/white"
-            android:textSize="21sp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +53,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-            android:textColor="#ddffffff"
+            android:textColor="#dd000000"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

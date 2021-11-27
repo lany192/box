@@ -59,8 +59,6 @@ ext {
             'number-picker'        : 'io.github.ShawnLin013:number-picker:2.4.13',
             //日历控件 https://github.com/prolificinteractive/material-calendarview
             'material-calendarview': 'com.prolificinteractive:material-calendarview:1.4.3',
-            //圆形/圆角图片 https://github.com/vinc3m1/RoundedImageView
-            'rounded-imageview'    : 'com.makeramen:roundedimageview:2.3.0',
             //缩放图片 https://github.com/MikeOrtiz/TouchImageView
             'touch-imageview'      : 'com.github.MikeOrtiz:TouchImageView:3.0.5',
             //图片剪切 https://github.com/naver/android-imagecropview
