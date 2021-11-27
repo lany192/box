@@ -1,11 +1,17 @@
 package com.github.lany192.box.sample.ui.main.index;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.lany192.box.binding.BindingFragment;
+import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.fragment.TabPager;
@@ -14,48 +20,48 @@ import com.github.lany192.box.sample.databinding.FragmentIndexBinding;
 import com.github.lany192.box.sample.fragment.DemoFragment;
 import com.github.lany192.box.sample.fragment.GirlFragment;
 import com.github.lany192.box.sample.fragment.SubTabFragment;
+import com.github.lany192.box.sample.ui.main.city.CityAdapter;
 import com.github.lany192.box.sample.ui.main.city.CityFragment;
+import com.github.lany192.box.sample.ui.main.city.CityViewModel;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
-//    @BindView(R.id.index_tab_layout)
-//    TabLayout mTabLayout;
-//    @BindView(R.id.index_view_pager)
-//    ViewPager2 mViewPager2;
+    private IndexViewModel viewModel;
+    private CityAdapter adapter;
+    private LoadingDialog loadingDialog;
 
+    @NonNull
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = super.onCreateView(inflater, container, savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(IndexViewModel.class);
+        getLifecycle().addObserver(viewModel);
 
-//    @NonNull
-//    @Override
-//    public FragmentConfig getConfig() {
-//        return FragmentConfig.builder()
-//                .layoutId(R.layout.fragment_index)
-//                .toolBarLayoutId(R.layout.toolbar_index)
-//                .build();
-//    }
-//
-//    @Override
-//    protected void init(Bundle savedInstanceState) {
-//
-//        new TabPager(this, mViewPager2, mTabLayout)
-//                .addTab("精选", new DemoFragment())
-//                .addTab("妹子", new GirlFragment())
-//                .addTab("标题1", new SubTabFragment())
-//                .addTab("城市", new CityFragment());
-//    }
-//
-//    @OnClick(R.id.custom_toolbar_edit_btn)
-//    void btnClicked() {
-//        InputDialog dialog = new InputDialog();
-//        dialog.setTitle("金额");
-//        dialog.setHint("请输入金额");
-//        dialog.setInputType(EditorInfo.TYPE_CLASS_NUMBER | EditorInfo.TYPE_NUMBER_FLAG_DECIMAL);
-//        dialog.addInputFilter(new MoneyInputFilter());
-//        dialog.setMaxLength(5);
-//        dialog.setButtonText("提交");
-//        dialog.setOnInputListener(ToastUtils::show);
-//        dialog.show(this);
-//    }
+        binding.toolbar.setTitle("首页");
+
+        adapter = new CityAdapter(new ArrayList<>());
+        binding.recyclerView.setAdapter(adapter);
+        viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));
+        viewModel.getLoading().observe(this, loading -> {
+            if (loading) {
+                if (loadingDialog == null) {
+                    loadingDialog = new LoadingDialog();
+                }
+                if (!loadingDialog.isAdded()) {
+                    loadingDialog.show(getParentFragmentManager(), "TAG" + System.currentTimeMillis());
+                }
+            } else {
+                if (loadingDialog != null && loadingDialog.isAdded()) {
+                    loadingDialog.cancel();
+                    loadingDialog = null;
+                }
+            }
+        });
+        return root;
+    }
 }
