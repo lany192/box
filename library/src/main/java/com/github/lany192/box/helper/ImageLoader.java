@@ -24,7 +24,6 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.github.lany192.box.utils.CheckUtils;
-import com.github.lany192.box.utils.RoundedCornersTransform;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -102,13 +101,6 @@ public final class ImageLoader {
      */
     public void show(ImageView imageView, Object model, @DrawableRes int errorResId, int size) {
         show(imageView, model, new RequestOptions().error(errorResId).override(size));
-    }
-
-    /**
-     * 指定角显示圆角
-     */
-    public void show(ImageView imageView, Object model, RoundedCornersTransform.CornerType cornerType, int radiusDp) {
-        show(imageView, model, RequestOptions.bitmapTransform(new RoundedCornersTransform(radiusDp, cornerType)));
     }
 
     /**
