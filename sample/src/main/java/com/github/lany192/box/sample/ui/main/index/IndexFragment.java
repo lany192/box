@@ -3,35 +3,48 @@ package com.github.lany192.box.sample.ui.main.index;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
+import com.github.lany192.box.fragment.TabPager;
 import com.github.lany192.box.sample.R;
+import com.github.lany192.box.sample.databinding.FragmentIndexBinding;
+import com.github.lany192.box.sample.fragment.DemoFragment;
+import com.github.lany192.box.sample.fragment.GirlFragment;
+import com.github.lany192.box.sample.fragment.SubTabFragment;
+import com.github.lany192.box.sample.ui.main.city.CityFragment;
+import com.google.android.material.tabs.TabLayout;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
-public class IndexFragment extends BaseFragment {
+@AndroidEntryPoint
+public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
 //    @BindView(R.id.index_tab_layout)
 //    TabLayout mTabLayout;
 //    @BindView(R.id.index_view_pager)
 //    ViewPager2 mViewPager2;
 
-    @NonNull
-    @Override
-    public FragmentConfig getConfig() {
-        return FragmentConfig.builder()
-                .layoutId(R.layout.fragment_index)
-                .toolBarLayoutId(R.layout.toolbar_index)
-                .build();
-    }
 
-    @Override
-    protected void init(Bundle savedInstanceState) {
+//    @NonNull
+//    @Override
+//    public FragmentConfig getConfig() {
+//        return FragmentConfig.builder()
+//                .layoutId(R.layout.fragment_index)
+//                .toolBarLayoutId(R.layout.toolbar_index)
+//                .build();
+//    }
+//
+//    @Override
+//    protected void init(Bundle savedInstanceState) {
+//
 //        new TabPager(this, mViewPager2, mTabLayout)
 //                .addTab("精选", new DemoFragment())
 //                .addTab("妹子", new GirlFragment())
 //                .addTab("标题1", new SubTabFragment())
 //                .addTab("城市", new CityFragment());
-    }
+//    }
 //
 //    @OnClick(R.id.custom_toolbar_edit_btn)
 //    void btnClicked() {

@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -15,6 +16,7 @@ import com.github.lany192.box.sample.fragment.HelloFragment;
 import com.github.lany192.box.sample.ui.main.city.CityFragment;
 import com.github.lany192.box.sample.ui.main.index.IndexFragment;
 import com.github.lany192.box.sample.fragment.MyFragment;
+import com.github.lany192.box.sample.ui.splash.SplashViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
@@ -33,6 +35,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     // 第一次按退出的时间
     private long mLastClickTime = 0;
 
+    MainViewModel viewModel;
+
     @NonNull
     @Override
     public ActivityConfig getConfig() {
@@ -45,6 +49,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewPager2 = findViewById(R.id.main_viewpager);
         mBottomNavigationView = findViewById(R.id.main_navigation_bar);
         mViewPager2.setUserInputEnabled(false);
@@ -60,15 +65,15 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             public Fragment createFragment(int position) {
                 switch (position) {
                     case 0:
-                        return new IndexFragment();
+                        return new CityFragment();
                     case 1:
-                        return new HelloFragment();
+                        return new CityFragment();
                     case 2:
                         return new CityFragment();
                     case 3:
-                        return new MyFragment();
+                        return new CityFragment();
                     default:
-                        return new IndexFragment();
+                        return new CityFragment();
                 }
             }
         });
@@ -78,7 +83,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 mBottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
         });
-        mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+        mBottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_main_index:
                     ImmersionBar.with(this).statusBarDarkFont(true).init();

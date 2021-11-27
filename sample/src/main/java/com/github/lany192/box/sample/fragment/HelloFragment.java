@@ -8,7 +8,9 @@ import com.github.lany192.box.fragment.BaseFragment;
 import com.github.lany192.box.fragment.FragmentConfig;
 import com.github.lany192.box.sample.R;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class HelloFragment extends BaseFragment {
 //    @BindView(R.id.collection_view)
 //    CollectionView mCollectionView;
