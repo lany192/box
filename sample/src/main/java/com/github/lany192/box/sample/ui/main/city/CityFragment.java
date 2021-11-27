@@ -7,24 +7,20 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.box.binding.BindingFragment;
-import com.github.lany192.box.sample.R;
-import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.databinding.FragmentCityBinding;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class CityFragment extends BindingFragment<FragmentCityBinding> {
     private CityViewModel viewModel;
+    private CityAdapter adapter;
 
     @NonNull
     @Override
@@ -34,18 +30,9 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.collectionView.setLayoutManager(layoutManager);
-        viewModel.getLiveData().observe(this, new Observer<List<Area>>() {
-            @Override
-            public void onChanged(List<Area> areas) {
-                binding.collectionView.setAdapter(new BaseQuickAdapter<Area, BaseViewHolder>(R.layout.item_area, areas) {
-
-                    @Override
-                    protected void convert(@NonNull BaseViewHolder holder, Area area) {
-                        holder.setText(R.id.item_area_title, area.getName());
-                    }
-                });
-            }
-        });
+        adapter = new CityAdapter(new ArrayList<>());
+        binding.collectionView.setAdapter(adapter);
+        viewModel.getLiveData().observe(this, areas -> adapter.setNewInstance(areas));
         return root;
     }
 }
