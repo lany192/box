@@ -19,6 +19,8 @@ public class CityAdapter extends BaseQuickAdapter<Area, BaseViewHolder> {
     @Override
     protected void convert(@NonNull BaseViewHolder holder, Area area) {
         holder.setText(R.id.item_area_title, area.getName());
+        int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
+        holder.setText(R.id.item_poster_running_time, "下辖" + count + "个区/市");
         holder.setImageResource(R.id.item_poster_post, R.mipmap.ic_launcher);
     }
 }
