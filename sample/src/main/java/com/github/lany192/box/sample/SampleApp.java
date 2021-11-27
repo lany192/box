@@ -9,6 +9,7 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.multidex.MultiDexApplication;
 
 import com.github.lany192.box.Box;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
@@ -19,7 +20,7 @@ import java.util.List;
 import dagger.hilt.android.HiltAndroidApp;
 
 @HiltAndroidApp
-public class SampleApp extends Application {
+public class SampleApp extends MultiDexApplication {
 
     @Override
     public void onCreate() {
