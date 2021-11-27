@@ -30,11 +30,9 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(CityViewModel.class);
         getLifecycle().addObserver(viewModel);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        binding.collectionView.setLayoutManager(layoutManager);
+
         adapter = new CityAdapter(new ArrayList<>());
-        binding.collectionView.setAdapter(adapter);
+        binding.recyclerView.setAdapter(adapter);
         viewModel.getLiveData().observe(this, areas -> adapter.setNewInstance(areas));
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {

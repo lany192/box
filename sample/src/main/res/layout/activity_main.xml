@@ -7,7 +7,7 @@
     tools:context=".ui.main.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main_navigation_bar"
+        android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -18,8 +18,8 @@
         app:menu="@menu/main_navigation_menu" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/main_viewpager"
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/main_navigation_bar" />
+        android:layout_above="@id/navigation_view" />
 </RelativeLayout>

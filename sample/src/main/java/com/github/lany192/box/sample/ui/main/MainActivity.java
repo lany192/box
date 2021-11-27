@@ -24,15 +24,15 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     // 第一次按退出的时间
     private long mLastClickTime = 0;
 
-    MainViewModel viewModel;
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        binding.mainViewpager.setUserInputEnabled(false);
-//        binding.mainViewpager.setOffscreenPageLimit(4);
-        binding.mainViewpager.setAdapter(new FragmentStateAdapter(this) {
+        binding.viewpager.setUserInputEnabled(false);
+//        binding.viewpager.setOffscreenPageLimit(4);
+        binding.viewpager.setAdapter(new FragmentStateAdapter(this) {
 
             @Override
             public int getItemCount() {
@@ -56,29 +56,29 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
                 }
             }
         });
-        binding.mainViewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        binding.viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                binding.mainNavigationBar.getMenu().getItem(position).setChecked(true);
+                binding.navigationView.getMenu().getItem(position).setChecked(true);
             }
         });
-        binding.mainNavigationBar.setOnItemSelectedListener(item -> {
+        binding.navigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_main_index:
                     ImmersionBar.with(this).statusBarDarkFont(true).init();
-                    binding.mainViewpager.setCurrentItem(0, false);
+                    binding.viewpager.setCurrentItem(0, false);
                     return true;
                 case R.id.menu_main_pic:
                     ImmersionBar.with(this).statusBarDarkFont(true).init();
-                    binding.mainViewpager.setCurrentItem(1, false);
+                    binding.viewpager.setCurrentItem(1, false);
                     return true;
                 case R.id.menu_main_city:
                     ImmersionBar.with(this).statusBarDarkFont(true).init();
-                    binding.mainViewpager.setCurrentItem(2, false);
+                    binding.viewpager.setCurrentItem(2, false);
                     return true;
                 case R.id.menu_main_my:
                     ImmersionBar.with(this).statusBarDarkFont(false).init();
-                    binding.mainViewpager.setCurrentItem(3, false);
+                    binding.viewpager.setCurrentItem(3, false);
                     return true;
                 default:
             }
