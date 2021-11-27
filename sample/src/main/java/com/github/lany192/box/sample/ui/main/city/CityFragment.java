@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.lany192.box.binding.BindingFragment;
+import com.github.lany192.box.network.NetworkHelper;
 import com.github.lany192.box.sample.databinding.FragmentCityBinding;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(CityViewModel.class);
+        getLifecycle().addObserver(viewModel);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.collectionView.setLayoutManager(layoutManager);

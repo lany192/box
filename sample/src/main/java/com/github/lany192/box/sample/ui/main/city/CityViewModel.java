@@ -2,13 +2,16 @@ package com.github.lany192.box.sample.ui.main.city;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.elvishew.xlog.XLog;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
-import com.github.lany192.box.utils.JsonUtils;
 import com.hjq.toast.ToastUtils;
 
 import java.util.List;
@@ -18,7 +21,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class CityViewModel extends ViewModel {
+public class CityViewModel extends ViewModel implements DefaultLifecycleObserver {
     private final MutableLiveData<List<Area>> liveData = new MutableLiveData<>();
     private final ApiService apiService;
 
@@ -38,15 +41,24 @@ public class CityViewModel extends ViewModel {
 
             @Override
             public void onSuccess(String msg, List<Area> areas) {
-                Log.i("数据:", JsonUtils.object2json(areas));
                 liveData.postValue(areas);
             }
 
             @Override
             public void onFailure(String msg, int code) {
-                Log.i("错误:", code + "," + msg);
                 ToastUtils.show(msg);
             }
         });
+    }
+
+
+    @Override
+    public void onResume(@NonNull LifecycleOwner owner) {
+        XLog.i("onResume");
+    }
+
+    @Override
+    public void onPause(@NonNull LifecycleOwner owner) {
+        XLog.i("onPause");
     }
 }
