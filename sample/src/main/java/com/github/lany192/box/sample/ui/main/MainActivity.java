@@ -15,6 +15,7 @@ import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivityMainBinding;
 import com.github.lany192.box.sample.ui.main.city.CityFragment;
 import com.github.lany192.box.sample.ui.main.index.IndexFragment;
+import com.github.lany192.box.sample.ui.main.my.MyFragment;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
@@ -51,9 +52,9 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
                     case 2:
                         return new CityFragment();
                     case 3:
-                        return new CityFragment();
+                        return new MyFragment();
                     default:
-                        return new CityFragment();
+                        return new IndexFragment();
                 }
             }
         });
