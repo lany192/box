@@ -21,13 +21,16 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/item_poster_post"
-            android:layout_width="112dp"
-            android:layout_height="112dp"
-            android:scaleType="fitXY"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:padding="1dp"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/CircleImageStyle" />
+            app:shapeAppearanceOverlay="@style/CircleStyle"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="1dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_area_title"
