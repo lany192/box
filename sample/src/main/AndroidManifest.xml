@@ -33,15 +33,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".ui.about.AboutActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="关于" />
-        <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true" />
     </application>
-
 </manifest>
