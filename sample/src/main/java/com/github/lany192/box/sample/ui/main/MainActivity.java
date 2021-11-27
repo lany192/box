@@ -14,6 +14,7 @@ import com.github.lany192.box.binding.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivityMainBinding;
 import com.github.lany192.box.sample.ui.main.city.CityFragment;
+import com.github.lany192.box.sample.ui.main.discover.DiscoverFragment;
 import com.github.lany192.box.sample.ui.main.index.IndexFragment;
 import com.github.lany192.box.sample.ui.main.my.MyFragment;
 import com.gyf.immersionbar.ImmersionBar;
@@ -48,7 +49,7 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
                     case 0:
                         return new IndexFragment();
                     case 1:
-                        return new CityFragment();
+                        return new DiscoverFragment();
                     case 2:
                         return new CityFragment();
                     case 3:
