@@ -31,6 +31,8 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
         viewModel = new ViewModelProvider(this).get(CityViewModel.class);
         getLifecycle().addObserver(viewModel);
 
+        binding.toolbar.setTitle("省份");
+
         adapter = new CityAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));
