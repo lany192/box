@@ -37,44 +37,20 @@ public class DiscoverViewModel extends ViewModel implements DefaultLifecycleObse
     public void requestCityInfo() {
         loading.postValue(true);
         List<String> images = new ArrayList<>();
-        images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/fda6ef1bcc.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/3d7174cee3.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/46ff3ad1f2.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/151002/9-151002114P3.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/200224/37-200224113113-52.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/200224/37-200224113114-53.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/200224/37-200224113527.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/200224/37-200224113528-52.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/200224/37-200224113528-53.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/f07d8a8801.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/ab484a269c.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/42929d3f98.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/151002/9-151002114P7.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/151002/9-151002114Q0.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/151002/9-151002114Q1.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/160209/9-160209105409.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/160209/9-160209105415.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/160209/9-160209105418.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/160209/9-160209105421.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/160209/9-160209105431.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/13944db09d.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/b3dacc5656.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/0a299d5bdc.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/71883dd7fe.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/1e2832a665.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/010e4c81a0.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/4c46903d26.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202002/9999/3f3a4f3ba3.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/161210/9-161210204631.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/190301/9-1Z301155925.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/202011/9999/1a32fce732.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/170108/9-1F10PR424.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/151014/9-1510141Q214.jpg");
-        images.add("https://img.tupianzj.com/uploads/allimg/151014/9-1510141S623.jpg");
+        images.add("https://hbimg.huabanimg.com/9c7b8969e5367d70a4c854f9aa079a76df4471a1190837-dd65JF_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/e31425fa46a743a3dbf6d8c17537fa3cb49fa90a2007db-GntkV2_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/b33e1e43d63c67d94dd29da844b34cd61d1b48761a98ec-VbMRjB_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/f8a89497f69af76dfecfa2626b7f8e7fd1de434919959d-FVr4jB_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/fb95cb5b653671063c46059eef75ec6851dfd65b5ef43-9dFusw_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/f686b52dc260d153003ca05c71cecd43686c14787ddae8-ySCn0w_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/6b494213e4132613c9eb89215347c82b66453e5ca37bb-nBfPC7_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/5b8ea8580475b23443f4f4449b1db93c655148de10b5c1-U58xWF_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/991880d1919e2b77d6493eed235d4ce838c696652158b3-0BekcG_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/e8cde189321a974090eef2d27861c46bada6eee0110aba-axLQ4L_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/759ad84955b7be26f9a1c0121d76feb0a973a5e7f9375-Ki1IRC_fw658/format/webp");
         loading.postValue(false);
         items.postValue(images);
     }
-
 
     @Override
     public void onResume(@NonNull LifecycleOwner owner) {

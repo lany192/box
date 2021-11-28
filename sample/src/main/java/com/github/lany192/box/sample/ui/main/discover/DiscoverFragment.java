@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.dialog.LoadingDialog;
-import com.github.lany192.box.sample.databinding.FragmentCityBinding;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
 
         adapter = new DiscoverAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
-        viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));
+        viewModel.getItems().observe(this, items -> adapter.setNewInstance(items));
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 if (loadingDialog == null) {
