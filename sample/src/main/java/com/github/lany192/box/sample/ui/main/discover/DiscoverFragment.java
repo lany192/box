@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
@@ -20,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     private DiscoverViewModel viewModel;
-    private DiscoverAdapter adapter;
+    private MultiAdapter adapter;
     private LoadingDialog loadingDialog;
 
     @NonNull
@@ -32,23 +34,36 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
 
         binding.toolbar.setTitle("发现");
 
-        adapter = new DiscoverAdapter(new ArrayList<>());
+        adapter = new MultiAdapter(new ArrayList<>());
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
+//        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
-        viewModel.getItems().observe(this, items -> adapter.setNewInstance(items));
+
+        viewModel.getItems().observe(this, items -> {
+            adapter.setNewInstance(items);
+            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    return items.get(position).getSpanSize();
+                }
+            });
+        });
         viewModel.getLoading().observe(this, loading -> {
-            if (loading) {
-                if (loadingDialog == null) {
-                    loadingDialog = new LoadingDialog();
-                }
-                if (!loadingDialog.isAdded()) {
-                    loadingDialog.show(getParentFragmentManager(), "TAG" + System.currentTimeMillis());
-                }
-            } else {
-                if (loadingDialog != null && loadingDialog.isAdded()) {
-                    loadingDialog.cancel();
-                    loadingDialog = null;
-                }
-            }
+//            if (loading) {
+//                if (loadingDialog == null) {
+//                    loadingDialog = new LoadingDialog();
+//                }
+//                if (!loadingDialog.isAdded()) {
+//                    loadingDialog.show(getParentFragmentManager(), "TAG" + System.currentTimeMillis());
+//                }
+//            } else {
+//                if (loadingDialog != null && loadingDialog.isAdded()) {
+//                    loadingDialog.cancel();
+//                    loadingDialog = null;
+//                }
+//            }
         });
         return root;
     }

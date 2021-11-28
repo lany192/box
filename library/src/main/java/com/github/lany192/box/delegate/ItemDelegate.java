@@ -42,6 +42,7 @@ public abstract class ItemDelegate<T> implements Delegate {
     @Override
     public int getItemType() {
         return getLayoutId();
+//        return getClass().getName().hashCode();
     }
 
     /**

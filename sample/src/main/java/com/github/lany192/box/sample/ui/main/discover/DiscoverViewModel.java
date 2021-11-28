@@ -7,9 +7,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.elvishew.xlog.XLog;
+import com.github.lany192.box.delegate.Delegate;
+import com.github.lany192.box.sample.delegate.ImageDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -17,7 +20,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class DiscoverViewModel extends ViewModel implements DefaultLifecycleObserver {
-    private final MutableLiveData<List<String>> items = new MutableLiveData<>();
+    private final MutableLiveData<List<Delegate>> items = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
 
 
@@ -30,12 +33,12 @@ public class DiscoverViewModel extends ViewModel implements DefaultLifecycleObse
         return loading;
     }
 
-    public MutableLiveData<List<String>> getItems() {
+    public MutableLiveData<List<Delegate>> getItems() {
         return items;
     }
 
     public void requestCityInfo() {
-        loading.postValue(true);
+//        loading.postValue(true);
         List<String> images = new ArrayList<>();
         images.add("https://hbimg.huabanimg.com/9c7b8969e5367d70a4c854f9aa079a76df4471a1190837-dd65JF_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/e31425fa46a743a3dbf6d8c17537fa3cb49fa90a2007db-GntkV2_fw658/format/webp");
@@ -48,8 +51,10 @@ public class DiscoverViewModel extends ViewModel implements DefaultLifecycleObse
         images.add("https://hbimg.huabanimg.com/991880d1919e2b77d6493eed235d4ce838c696652158b3-0BekcG_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/e8cde189321a974090eef2d27861c46bada6eee0110aba-axLQ4L_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/759ad84955b7be26f9a1c0121d76feb0a973a5e7f9375-Ki1IRC_fw658/format/webp");
+
+        items.postValue(images.stream().map(ImageDelegate::new).collect(Collectors.toList()));
+
         loading.postValue(false);
-        items.postValue(images);
     }
 
     @Override
