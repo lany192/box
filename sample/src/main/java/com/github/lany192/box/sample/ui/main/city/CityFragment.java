@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.sample.databinding.FragmentCityBinding;
+import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,8 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
         getLifecycle().addObserver(viewModel);
 
         binding.toolbar.setTitle("省份");
+        ImmersionBar.with(this).titleBar(binding.toolbar).init();
+
         adapter = new CityAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));

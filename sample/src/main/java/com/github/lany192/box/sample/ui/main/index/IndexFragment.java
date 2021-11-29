@@ -24,6 +24,7 @@ import com.github.lany192.box.sample.ui.main.city.CityAdapter;
 import com.github.lany192.box.sample.ui.main.city.CityFragment;
 import com.github.lany192.box.sample.ui.main.city.CityViewModel;
 import com.google.android.material.tabs.TabLayout;
+import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
         getLifecycle().addObserver(viewModel);
 
         binding.toolbar.setTitle("首页");
-
+        ImmersionBar.with(this).titleBar(binding.toolbar).statusBarDarkFont(false).init();
         adapter = new CityAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));

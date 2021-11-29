@@ -14,6 +14,7 @@ import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
+import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         getLifecycle().addObserver(viewModel);
 
         binding.toolbar.setTitle("发现");
-
+        ImmersionBar.with(this).titleBar(binding.toolbar).statusBarDarkFont(true).init();
         adapter = new MultiAdapter(new ArrayList<>());
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
