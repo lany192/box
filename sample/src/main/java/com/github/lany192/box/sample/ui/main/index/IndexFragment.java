@@ -25,8 +25,7 @@ public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(IndexViewModel.class);
         getLifecycle().addObserver(viewModel);
-        binding.toolbar.setTitle("首页");
-        ImmersionBar.with(this).titleBar(binding.toolbar).statusBarDarkFont(false).init();
+        ImmersionBar.with(this).titleBar(binding.tabLayout).statusBarDarkFont(true).init();
         binding.viewpager.setAdapter(new IndexAdapter(requireActivity()));
         binding.tabLayout.setViewPager2(binding.viewpager, new CharSequence[]{"精选", "测试", "测试", "测试"});
         return root;
