@@ -20,8 +20,8 @@ public class DiscoverAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(@NonNull BaseViewHolder holder, String area) {
-        holder.setText(R.id.item_area_title, "图片");
-        ImageView imageView = holder.getView(R.id.item_poster_post);
+        holder.setText(R.id.title, "图片");
+        ImageView imageView = holder.getView(R.id.image);
         ImageLoader.get().show(imageView,area);
     }
 }
