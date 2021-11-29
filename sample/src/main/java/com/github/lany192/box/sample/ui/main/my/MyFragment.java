@@ -24,6 +24,12 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(MyViewModel.class);
         getLifecycle().addObserver(viewModel);
+        binding.myOrderView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return root;
     }
 }
