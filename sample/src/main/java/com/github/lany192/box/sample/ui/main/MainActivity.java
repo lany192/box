@@ -3,20 +3,13 @@ package com.github.lany192.box.sample.ui.main;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.lany192.box.binding.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivityMainBinding;
-import com.github.lany192.box.sample.ui.main.discover.DiscoverFragment;
-import com.github.lany192.box.sample.ui.main.index.IndexFragment;
-import com.github.lany192.box.sample.ui.main.message.MessageFragment;
-import com.github.lany192.box.sample.ui.main.my.MyFragment;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
@@ -38,30 +31,7 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
 
         binding.viewpager.setUserInputEnabled(false);
 //        binding.viewpager.setOffscreenPageLimit(4);
-        binding.viewpager.setAdapter(new FragmentStateAdapter(this) {
-
-            @Override
-            public int getItemCount() {
-                return 4;
-            }
-
-            @NonNull
-            @Override
-            public Fragment createFragment(int position) {
-                switch (position) {
-                    case 0:
-                        return new IndexFragment();
-                    case 1:
-                        return new DiscoverFragment();
-                    case 2:
-                        return new MessageFragment();
-                    case 3:
-                        return new MyFragment();
-                    default:
-                        return new IndexFragment();
-                }
-            }
-        });
+        binding.viewpager.setAdapter(new MainAdapter(this));
         binding.viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
