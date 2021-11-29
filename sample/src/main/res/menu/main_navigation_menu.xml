@@ -11,8 +11,8 @@
         android:title="发现" />
     <item
         android:id="@+id/menu_main_city"
-        android:icon="@drawable/ic_backup_black_24dp"
-        android:title="地区" />
+        android:icon="@drawable/ic_msg_black_24dp"
+        android:title="消息" />
     <item
         android:id="@+id/menu_main_my"
         android:icon="@drawable/ic_camera_black_24dp"
