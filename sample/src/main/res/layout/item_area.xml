@@ -19,7 +19,7 @@
         tools:ignore="UnusedAttribute">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/item_poster_post"
+            android:id="@+id/image"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:padding="1dp"
@@ -32,7 +32,7 @@
             app:strokeWidth="1dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/item_area_title"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -43,11 +43,11 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_poster_post"
+            app:layout_constraintTop_toBottomOf="@id/image"
             tools:text="Zootopia" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/item_poster_running_time"
+            android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
@@ -57,7 +57,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_area_title"
+            app:layout_constraintTop_toBottomOf="@id/title"
             tools:text="1 h 45 min" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

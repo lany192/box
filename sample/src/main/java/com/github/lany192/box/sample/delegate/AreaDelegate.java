@@ -22,7 +22,7 @@ public class AreaDelegate extends ItemDelegate<Area> {
 
     @Override
     public void bind(ItemViewHolder holder, Area area, int position) {
-        holder.setText(R.id.item_area_title, area.getName());
+        holder.setText(R.id.title, area.getName());
     }
 
     @Override

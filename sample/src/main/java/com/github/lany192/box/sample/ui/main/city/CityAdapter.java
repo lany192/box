@@ -1,30 +1,33 @@
 package com.github.lany192.box.sample.ui.main.city;
 
-import android.widget.ImageView;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.github.lany192.box.adapter.ViewBindingAdapter;
 import com.github.lany192.box.helper.ImageLoader;
-import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Area;
+import com.github.lany192.box.sample.databinding.ItemAreaBinding;
 
 import java.util.List;
 
-public class CityAdapter extends BaseQuickAdapter<Area, BaseViewHolder> {
+public class CityAdapter extends ViewBindingAdapter<Area, ItemAreaBinding> {
 
-    public CityAdapter(@Nullable List<Area> data) {
-        super(R.layout.item_area, data);
+    public CityAdapter(List<Area> items) {
+        super(items);
     }
 
     @Override
-    protected void convert(@NonNull BaseViewHolder holder, Area area) {
-        holder.setText(R.id.item_area_title, area.getName());
+    protected ItemAreaBinding getBinding(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+        return ItemAreaBinding.inflate(inflater, parent, false);
+    }
+
+    @Override
+    protected void bind(ItemAreaBinding binding, Area area, int position) {
+        binding.title.setText(area.getName());
         int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
-        holder.setText(R.id.item_poster_running_time, "下辖" + count + "个区/市");
-        ImageView imageView = holder.getView(R.id.item_poster_post);
-        ImageLoader.get().show(imageView,"https://drimg02.scbao.com/190602/330471-1Z60214395123.jpg");
+        binding.desc.setText("下辖" + count + "个区/市");
+        ImageLoader.get().show(binding.image, "https://drimg02.scbao.com/190602/330471-1Z60214395123.jpg");
     }
 }
