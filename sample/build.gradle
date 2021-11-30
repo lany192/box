@@ -72,7 +72,7 @@ dependencies {
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
 
-    implementation project(':library')
+    implementation project(':arch')
     implementation project(':core')
     implementation project(':view')
     implementation project(':dialog')

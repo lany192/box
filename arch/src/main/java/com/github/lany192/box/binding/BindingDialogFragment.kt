@@ -19,12 +19,4 @@ abstract class BindingDialogFragment<VB : ViewBinding> : DialogFragment() {
         binding = getBinding(inflater, container)
         return binding.root
     }
-
-    override fun show(manager: FragmentManager, tag: String?) {
-        try {
-            super.show(manager, tag)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
 }
