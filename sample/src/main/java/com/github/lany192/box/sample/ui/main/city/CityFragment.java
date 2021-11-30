@@ -34,14 +34,14 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));
         viewModel.getLoading().observe(this, loading -> {
-//            if (loading) {
-//                if (loadingDialog == null) {
-//                    loadingDialog = new LoadingDialog();
-//                }
-//                loadingDialog.show(this);
-//            } else {
-//                loadingDialog.cancel();
-//            }
+            if (loading) {
+                if (loadingDialog == null) {
+                    loadingDialog = new LoadingDialog();
+                }
+                loadingDialog.show(this);
+            } else {
+                loadingDialog.cancel();
+            }
         });
         return root;
     }

@@ -2,6 +2,7 @@ package com.github.lany192.dialog;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -19,13 +20,16 @@ import com.elvishew.xlog.XLog;
 public abstract class BaseDialogFragment extends DialogFragment {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
+    private boolean flag;
 
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
-        if (isAdded() || null != manager.findFragmentByTag(tag)) {
-            log.w("已经显示，忽略......");
+        if (flag || isAdded() || null != manager.findFragmentByTag(tag)) {
+            log.d("已经显示，忽略......");
         } else {
+            flag = true;
             super.show(manager, tag);
+            new Handler().post(() -> flag = false);
         }
     }
 

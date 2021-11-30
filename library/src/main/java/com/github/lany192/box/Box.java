@@ -61,7 +61,7 @@ public class Box {
         Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
             XLog.tag(TAG).i("手机基本信息:" + PhoneUtils.getBaseInfo());
             XLog.tag(TAG).e(e.getLocalizedMessage());
-            XLog.tag(TAG).st(10).e(TAG, "程序崩溃退出", e);
+            XLog.tag(TAG).enableStackTrace(10).e(TAG, "程序崩溃退出", e);
             Log.e(TAG, "程序崩溃退出", e);
         });
     }
