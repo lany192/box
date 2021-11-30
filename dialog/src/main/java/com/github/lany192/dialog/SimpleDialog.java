@@ -1,7 +1,8 @@
-package com.github.lany192.box.dialog;
+package com.github.lany192.dialog;
 
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.text.method.MovementMethod;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.StringRes;
 
 import com.elvishew.xlog.XLog;
-import com.github.lany192.box.R;
-import com.klinker.android.link_builder.TouchableMovementMethod;
 
 //    SimpleDialog dialog = new SimpleDialog();
 //    dialog.setTitle("提示");
@@ -33,7 +32,7 @@ import com.klinker.android.link_builder.TouchableMovementMethod;
 //    });
 //    dialog.show(this);
 
-public class SimpleDialog extends DialogFragment {
+public class SimpleDialog extends BaseDialog {
     private OnRightListener mOnRightListener;
     private OnLeftListener mOnLeftListener;
     private CharSequence mTitle;
@@ -50,6 +49,8 @@ public class SimpleDialog extends DialogFragment {
     private int mRightTextColor = 0;
     @ColorInt
     private int mLeftTextColor = 0;
+
+    private MovementMethod movementMethod;
 
     @Override
     protected int getLayoutId() {
@@ -75,7 +76,9 @@ public class SimpleDialog extends DialogFragment {
             msgText.setText(mMessage);
             msgText.setGravity(gravity);
             msgText.setTextSize(mMsgTextSize);
-            msgText.setMovementMethod(TouchableMovementMethod.getInstance());//为了预防能后点击
+            if(movementMethod!=null){
+                msgText.setMovementMethod(movementMethod);
+            }
         }
         if (isShowDivider) {
             dividerView.setVisibility(View.VISIBLE);
@@ -112,6 +115,10 @@ public class SimpleDialog extends DialogFragment {
         } else {
             leftBtn.setVisibility(View.GONE);
         }
+    }
+
+    public void setMovementMethod(MovementMethod movementMethod) {
+        this.movementMethod = movementMethod;
     }
 
     public void setTitle(CharSequence title) {
