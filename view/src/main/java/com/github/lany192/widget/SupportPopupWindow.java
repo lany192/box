@@ -1,4 +1,4 @@
-package com.github.lany192.box.widget;
+package com.github.lany192.widget;
 
 import android.graphics.Rect;
 import android.os.Build;
