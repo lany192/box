@@ -22,7 +22,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
-        if (isAdded()) {
+        if (isAdded() || null != manager.findFragmentByTag(tag)) {
             log.w("已经显示，忽略......");
         } else {
             super.show(manager, tag);
@@ -31,8 +31,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     public void show(@NonNull Context context) {
         FragmentActivity activity = context2activity(context);
-        if (activity != null) {
-            show(activity);
+        if (activity != null && !activity.isFinishing() && !activity.isDestroyed()) {
+            show(activity.getSupportFragmentManager());
         } else {
             log.e("没有context，不能调起对话框");
         }
@@ -42,8 +42,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
         show(fragment.requireActivity());
     }
 
-    public void show(@NonNull FragmentActivity activity) {
-        show(activity.getSupportFragmentManager(), TAG);
+    public void show(FragmentManager manager) {
+        show(manager, TAG);
     }
 
     public void cancel() {

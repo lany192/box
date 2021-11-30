@@ -56,14 +56,9 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
 //                if (loadingDialog == null) {
 //                    loadingDialog = new LoadingDialog();
 //                }
-//                if (!loadingDialog.isAdded()) {
-//                    loadingDialog.show(getParentFragmentManager(), "TAG" + System.currentTimeMillis());
-//                }
+//                loadingDialog.show(this);
 //            } else {
-//                if (loadingDialog != null && loadingDialog.isAdded()) {
-//                    loadingDialog.cancel();
-//                    loadingDialog = null;
-//                }
+//                loadingDialog.cancel();
 //            }
         });
         return root;
