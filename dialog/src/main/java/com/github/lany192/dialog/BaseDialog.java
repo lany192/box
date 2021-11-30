@@ -6,9 +6,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -71,6 +75,15 @@ public abstract class BaseDialog extends BaseDialogFragment {
 
     public void setCanceledOnTouchOutside(boolean canceledOnTouchOutside) {
         this.canceledOnTouchOutside = canceledOnTouchOutside;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(getLayoutId(), container, true);
+    }
+
+    public <T extends View> T findViewById(@IdRes int id) {
+        return getView().findViewById(id);
     }
 
     @Override

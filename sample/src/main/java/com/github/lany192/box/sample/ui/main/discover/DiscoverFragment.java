@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.binding.BindingFragment;
-import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
+import com.github.lany192.dialog.LoadingDialog;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;

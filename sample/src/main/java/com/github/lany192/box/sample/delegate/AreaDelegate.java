@@ -4,9 +4,9 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.box.adapter.ItemViewHolder;
 import com.github.lany192.box.delegate.ItemDelegate;
-import com.github.lany192.box.dialog.SimpleDialog;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Area;
+import com.github.lany192.dialog.SimpleDialog;
 import com.hjq.toast.ToastUtils;
 
 public class AreaDelegate extends ItemDelegate<Area> {

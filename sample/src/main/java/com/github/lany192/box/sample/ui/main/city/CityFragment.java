@@ -10,9 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.github.lany192.box.binding.BindingFragment;
-import com.github.lany192.box.dialog.LoadingDialog;
 import com.github.lany192.box.sample.databinding.FragmentCityBinding;
-import com.gyf.immersionbar.ImmersionBar;
+import com.github.lany192.dialog.LoadingDialog;
 
 import java.util.ArrayList;
 

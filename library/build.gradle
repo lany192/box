@@ -48,6 +48,7 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation project(':core')
     implementation project(':view')
+    implementation project(':dialog')
 
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     testImplementationDependencies.each { k, v -> testImplementation v }

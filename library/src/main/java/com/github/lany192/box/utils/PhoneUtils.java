@@ -16,7 +16,7 @@ import android.util.TypedValue;
 import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.box.Box;
-import com.github.lany192.box.dialog.SimpleDialog;
+import com.github.lany192.dialog.SimpleDialog;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
