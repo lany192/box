@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.lany192.box.R;
 import com.github.lany192.box.interfaces.OnRefreshMoreListener;
+import com.github.lany192.layout.FixDragFrameLayout;
+import com.github.lany192.widget.StaggeredGridRecyclerView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 /**
@@ -20,7 +22,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
  */
 public class CollectionView extends FixDragFrameLayout {
     private final SmartRefreshLayout refreshLayout;
-    private final FixRecyclerView recyclerView;
+    private final StaggeredGridRecyclerView recyclerView;
     private final ImageView gotoTopBtn;
 
     private int gotoTopCount = 5;

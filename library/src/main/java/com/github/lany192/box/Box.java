@@ -1,15 +1,7 @@
 package com.github.lany192.box;
 
-import android.Manifest;
 import android.app.Application;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkRequest;
-import android.os.Build;
 import android.util.Log;
 
 import com.elvishew.xlog.LogConfiguration;
@@ -17,20 +9,15 @@ import com.elvishew.xlog.LogLevel;
 import com.elvishew.xlog.XLog;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.file.FilePrinter;
-import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.log.LogFileFormat;
-import com.github.lany192.box.log.LogFileNameGenerator;
-import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.OtherUtils;
-import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.kv.KVUtils;
+import com.github.lany192.log.LogFileFormat;
+import com.github.lany192.log.LogFileNameGenerator;
 import com.hjq.toast.ToastUtils;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
-
-import org.greenrobot.eventbus.EventBus;
 
 public class Box {
     private volatile static Box instance;

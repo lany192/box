@@ -1,4 +1,4 @@
-package com.github.lany192.layout;
+package com.github.lany192.widget;
 
 import android.content.Context;
 import android.os.Parcelable;

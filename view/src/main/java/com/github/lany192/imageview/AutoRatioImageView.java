@@ -10,19 +10,20 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 
 /**
+ * 自适应图片比例，以宽为基准
  * 描述：宽需固定 高度按图片宽高比自适应
  */
-public class RatioImageView extends ShapeableImageView {
+public class AutoRatioImageView extends ShapeableImageView {
 
-    public RatioImageView(Context context) {
+    public AutoRatioImageView(Context context) {
         super(context);
     }
 
-    public RatioImageView(Context context, @Nullable AttributeSet attrs) {
+    public AutoRatioImageView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public RatioImageView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public AutoRatioImageView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
