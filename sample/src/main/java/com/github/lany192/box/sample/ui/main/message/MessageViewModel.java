@@ -12,6 +12,7 @@ import com.elvishew.xlog.XLog;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
+import com.github.lany192.box.sample.mvvm.BaseViewModel;
 import com.hjq.toast.ToastUtils;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class MessageViewModel extends ViewModel implements DefaultLifecycleObserver {
+public class MessageViewModel extends BaseViewModel implements DefaultLifecycleObserver {
     private final MutableLiveData<List<Area>> items = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
     private final ApiService apiService;
