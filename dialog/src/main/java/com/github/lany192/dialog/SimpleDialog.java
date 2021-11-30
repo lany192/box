@@ -11,28 +11,28 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.StringRes;
 
+import com.github.lany192.interfaces.OnSimpleListener;
+
 //    SimpleDialog dialog = new SimpleDialog();
 //    dialog.setTitle("提示");
 //    dialog.setMessage("猜猜我是谁");
-//    dialog.setCancelable(true);
-//    dialog.setCanceledOnTouchOutside(true);
-//    dialog.setRightBtn("确定", new SimpleDialog.OnRightListener() {
+//    dialog.setRightBtn("确定", new OnSimpleListener() {
 //        @Override
-//        public void onClicked() {
+//        public void onCallback() {
 //
 //        }
 //    });
-//    dialog.setLeftBtn("取消", new SimpleDialog.OnLeftListener() {
+//    dialog.setLeftBtn("取消", new OnSimpleListener() {
 //        @Override
-//        public void onClicked() {
+//        public void onCallback() {
 //
 //        }
 //    });
 //    dialog.show(this);
 
 public class SimpleDialog extends BaseDialog {
-    private OnRightListener mOnRightListener;
-    private OnLeftListener mOnLeftListener;
+    private OnSimpleListener mOnRightListener;
+    private OnSimpleListener mOnLeftListener;
     private CharSequence mTitle;
     private CharSequence mMessage;
     private CharSequence mLeftText;
@@ -59,8 +59,8 @@ public class SimpleDialog extends BaseDialog {
     protected void init() {
         TextView titleText = findViewById(R.id.title);
         TextView msgText = findViewById(R.id.content);
-        Button leftBtn = findViewById(R.id.left_btn);
-        Button rightBtn = findViewById(R.id.right_btn);
+        Button leftBtn = findViewById(R.id.left_button);
+        Button rightBtn = findViewById(R.id.right_button);
         View dividerView = findViewById(R.id.divider_view);
         if (TextUtils.isEmpty(mTitle)) {
             titleText.setVisibility(View.GONE);
@@ -92,7 +92,7 @@ public class SimpleDialog extends BaseDialog {
             rightBtn.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnRightListener) {
-                    mOnRightListener.onClicked();
+                    mOnRightListener.onCallback();
                 }
             });
         } else {
@@ -107,7 +107,7 @@ public class SimpleDialog extends BaseDialog {
             leftBtn.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnLeftListener) {
-                    mOnLeftListener.onClicked();
+                    mOnLeftListener.onCallback();
                 }
             });
         } else {
@@ -151,20 +151,20 @@ public class SimpleDialog extends BaseDialog {
         this.mLeftTextColor = leftTextColor;
     }
 
-    public void setRightBtn(@StringRes int rightStringRes, OnRightListener listener) {
+    public void setRightBtn(@StringRes int rightStringRes, OnSimpleListener listener) {
         setRightBtn(getString(rightStringRes), listener);
     }
 
-    public void setLeftBtn(@StringRes int leftStringRes, OnLeftListener listener) {
+    public void setLeftBtn(@StringRes int leftStringRes, OnSimpleListener listener) {
         setLeftBtn(getString(leftStringRes), listener);
     }
 
-    public void setRightBtn(CharSequence rightText, OnRightListener listener) {
+    public void setRightBtn(CharSequence rightText, OnSimpleListener listener) {
         this.mRightText = rightText;
         this.mOnRightListener = listener;
     }
 
-    public void setLeftBtn(CharSequence leftText, OnLeftListener listener) {
+    public void setLeftBtn(CharSequence leftText, OnSimpleListener listener) {
         this.mLeftText = leftText;
         this.mOnLeftListener = listener;
         this.isShowDivider = true;
@@ -177,13 +177,5 @@ public class SimpleDialog extends BaseDialog {
     public void setLeftBtn(CharSequence leftText) {
         this.mLeftText = leftText;
         this.isShowDivider = true;
-    }
-
-    public interface OnRightListener {
-        void onClicked();
-    }
-
-    public interface OnLeftListener {
-        void onClicked();
     }
 }

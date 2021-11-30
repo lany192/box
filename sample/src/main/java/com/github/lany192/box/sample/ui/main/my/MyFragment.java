@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
 import com.github.lany192.dialog.SimpleDialog;
+import com.github.lany192.interfaces.OnSimpleListener;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -32,18 +33,16 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
     private void showDialog(){
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");
-        dialog.setMessage("猜猜我是谁");
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setRightBtn("确定", new SimpleDialog.OnRightListener() {
+        dialog.setMessage("猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁");
+        dialog.setRightBtn("确定", new OnSimpleListener() {
             @Override
-            public void onClicked() {
+            public void onCallback() {
 
             }
         });
-        dialog.setLeftBtn("取消", new SimpleDialog.OnLeftListener() {
+        dialog.setLeftBtn("取消", new OnSimpleListener() {
             @Override
-            public void onClicked() {
+            public void onCallback() {
 
             }
         });
