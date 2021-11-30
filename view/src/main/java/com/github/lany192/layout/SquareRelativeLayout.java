@@ -1,27 +1,24 @@
-package com.github.lany192.box.view;
+package com.github.lany192.layout;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/**
- * 正方形布局
- */
-public class SquareFrameLayout extends FrameLayout {
+public class SquareRelativeLayout extends RelativeLayout {
 
-    public SquareFrameLayout(@NonNull Context context) {
+    public SquareRelativeLayout(@NonNull Context context) {
         super(context);
     }
 
-    public SquareFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public SquareRelativeLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SquareFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+    public SquareRelativeLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

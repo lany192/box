@@ -1,24 +1,25 @@
-package com.github.lany192.box.view;
+package com.github.lany192.layout;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class SquareRelativeLayout extends RelativeLayout {
 
-    public SquareRelativeLayout(@NonNull Context context) {
+public class SquareLinearLayout extends LinearLayout {
+
+    public SquareLinearLayout(@NonNull Context context) {
         super(context);
     }
 
-    public SquareRelativeLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public SquareLinearLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SquareRelativeLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+    public SquareLinearLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

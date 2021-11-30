@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpanTextView">
+        <attr name="selected_text" format="string|reference" />
+        <attr name="selected_text_color" format="color|reference" />
+        <attr name="selected_under_line" format="boolean|reference" />
+        <attr name="selected_clickable" format="boolean|reference" />
+        <attr name="selected_strike_through" format="boolean|reference" />
+        <attr name="selected_background_color" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ApproveListLayout">
+        <attr name="pic_count" format="integer" />
+        <attr name="pic_size" format="dimension" />
+        <attr name="pic_offset" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="RepeatScrollView">
+        <!-- 轮播背景图 -->
+        <attr name="src" format="reference" />
+        <!-- 滚动一屏时间 单位ms -->
+        <attr name="scroll_screen_time" format="float" />
+    </declare-styleable>
+
+    <!-- 比例图片视图属性 -->
+    <declare-styleable name="RatioRoundImageView">
+        <attr name="image_ratio" format="float" />
+        <attr name="image_roundRadius" format="dimension"/>
+    </declare-styleable>
+</resources>

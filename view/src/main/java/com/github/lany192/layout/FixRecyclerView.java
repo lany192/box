@@ -1,4 +1,4 @@
-package com.github.lany192.box.view;
+package com.github.lany192.layout;
 
 import android.content.Context;
 import android.os.Parcelable;

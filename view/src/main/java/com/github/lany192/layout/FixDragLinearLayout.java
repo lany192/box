@@ -1,32 +1,33 @@
-package com.github.lany192.box.view;
+package com.github.lany192.layout;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.github.lany192.box.utils.DragHelper;
+import com.github.lany192.helper.DragHelper;
+
 
 /**
- * 优化ViewPager/ViewPager2和RelativeLayout的子类控件滑动冲突
+ * 优化ViewPager/ViewPager2和LinearLayout的子类控件滑动冲突
  */
-public class FixDragRelativeLayout extends RelativeLayout {
+public class FixDragLinearLayout extends LinearLayout {
     private DragHelper dragHelper;
 
-    public FixDragRelativeLayout(@NonNull Context context) {
+    public FixDragLinearLayout(@NonNull Context context) {
         super(context);
         dragHelper = new DragHelper(this);
     }
 
-    public FixDragRelativeLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FixDragLinearLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         dragHelper = new DragHelper(this);
     }
 
-    public FixDragRelativeLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public FixDragLinearLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         dragHelper = new DragHelper(this);
     }
