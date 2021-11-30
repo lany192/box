@@ -12,18 +12,18 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 /**
  * 适配StaggeredGridLayoutManager
  */
-public class FixRecyclerView extends RecyclerView {
+public class StaggeredGridRecyclerView extends RecyclerView {
     private Parcelable savedState;
 
-    public FixRecyclerView(@NonNull Context context) {
+    public StaggeredGridRecyclerView(@NonNull Context context) {
         super(context);
     }
 
-    public FixRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public StaggeredGridRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FixRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public StaggeredGridRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
