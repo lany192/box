@@ -1,13 +1,13 @@
 package com.github.lany192.box.sample.ui.main;
 
-import androidx.lifecycle.ViewModel;
+import com.github.lany192.box.sample.mvvm.BaseViewModel;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class MainViewModel extends ViewModel {
+public class MainViewModel extends BaseViewModel {
     @Inject
     public MainViewModel() {
 
