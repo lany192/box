@@ -1,4 +1,4 @@
-package com.github.lany192.box.utils;
+package com.github.lany192.utils;
 
 import android.content.res.Resources;
 import android.util.TypedValue;

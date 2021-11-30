@@ -1,3 +1,4 @@
 include ':sample'
 include ':library'
 include ':view'
+include ':core'
