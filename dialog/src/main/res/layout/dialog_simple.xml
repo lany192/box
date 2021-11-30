@@ -22,7 +22,7 @@
         android:paddingBottom="30dp">
 
         <TextView
-            android:id="@+id/dialog_simple_title"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -32,7 +32,7 @@
             android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/dialog_simple_content"
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -50,11 +50,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/dialog_simple_left_btn"
+            android:id="@+id/left_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -67,7 +67,7 @@
             tools:visibility="visible" />
 
         <View
-            android:id="@+id/dialog_simple_divider_view"
+            android:id="@+id/divider_view"
             android:layout_width="1px"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -76,7 +76,7 @@
             tools:visibility="visible" />
 
         <Button
-            android:id="@+id/dialog_simple_right_btn"
+            android:id="@+id/right_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

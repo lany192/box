@@ -11,8 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.StringRes;
 
-import com.elvishew.xlog.XLog;
-
 //    SimpleDialog dialog = new SimpleDialog();
 //    dialog.setTitle("提示");
 //    dialog.setMessage("猜猜我是谁");
@@ -59,11 +57,11 @@ public class SimpleDialog extends BaseDialog {
 
     @Override
     protected void init() {
-        TextView titleText = findViewById(R.id.dialog_simple_title);
-        TextView msgText = findViewById(R.id.dialog_simple_content);
-        Button leftBtn = findViewById(R.id.dialog_simple_left_btn);
-        Button rightBtn = findViewById(R.id.dialog_simple_right_btn);
-        View dividerView = findViewById(R.id.dialog_simple_divider_view);
+        TextView titleText = findViewById(R.id.title);
+        TextView msgText = findViewById(R.id.content);
+        Button leftBtn = findViewById(R.id.left_btn);
+        Button rightBtn = findViewById(R.id.right_btn);
+        View dividerView = findViewById(R.id.divider_view);
         if (TextUtils.isEmpty(mTitle)) {
             titleText.setVisibility(View.GONE);
         } else {
@@ -130,9 +128,6 @@ public class SimpleDialog extends BaseDialog {
     }
 
     public void setTitleSize(float titleSize) {
-        if (titleSize < 8) {//字体最小不能小于8sp
-            XLog.tag(TAG).w(TAG + "  字体太小，请设置合理的字体大小");
-        }
         this.titleSize = titleSize;
     }
 
@@ -145,9 +140,6 @@ public class SimpleDialog extends BaseDialog {
     }
 
     public void setMessageTextSize(float size) {
-        if (mMsgTextSize < 8) {//字体最小不能小于8sp
-            XLog.tag(TAG).w(TAG + "  字体太小，请设置合理的字体大小");
-        }
         this.mMsgTextSize = size;
     }
 

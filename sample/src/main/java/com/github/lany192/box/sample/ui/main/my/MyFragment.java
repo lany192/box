@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
+import com.github.lany192.dialog.SimpleDialog;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -24,12 +25,28 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(MyViewModel.class);
         getLifecycle().addObserver(viewModel);
-        binding.myOrderView.setOnClickListener(new View.OnClickListener() {
+        binding.myOrderView.setOnClickListener(v -> showDialog());
+        return root;
+    }
+
+    private void showDialog(){
+        SimpleDialog dialog = new SimpleDialog();
+        dialog.setTitle("提示");
+        dialog.setMessage("猜猜我是谁");
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setRightBtn("确定", new SimpleDialog.OnRightListener() {
             @Override
-            public void onClick(View v) {
+            public void onClicked() {
 
             }
         });
-        return root;
+        dialog.setLeftBtn("取消", new SimpleDialog.OnLeftListener() {
+            @Override
+            public void onClicked() {
+
+            }
+        });
+        dialog.show(MyFragment.this);
     }
 }
