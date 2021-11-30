@@ -1,4 +1,4 @@
-package com.github.lany192.box.log;
+package com.github.lany192.log;
 
 
 import com.elvishew.xlog.LogLevel;
