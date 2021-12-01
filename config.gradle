@@ -76,7 +76,7 @@ ext {
             //Json工具 https://github.com/google/gson
             'gson'                 : 'com.google.code.gson:gson:2.8.6',
             //Toast工具 https://github.com/getActivity/ToastUtils
-            'toast'                : 'com.github.getActivity:ToastUtils:9.5',
+            'toast'                : 'com.github.getActivity:ToastUtils:10.0',
             //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
             'background-core'      : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.2',
             //状态栏工具 https://github.com/gyf-dev/ImmersionBar

@@ -1,10 +1,15 @@
 package com.github.lany192.box.utils;
 
+import static android.Manifest.permission;
+
 import android.content.Context;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 
 import com.github.lany192.box.Box;
 import com.github.lany192.kv.KVUtils;
@@ -16,13 +21,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
-
-import static android.Manifest.permission;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
 
 /**
  * 服务维护一个唯一不变的设备id（目前做不到百分百正确，只能尽量保证唯一不变）
@@ -113,7 +113,7 @@ public class DeviceId {
         } else {
             dirPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "Documents" + File.separator;
         }
-        File file = new File(dirPath + ".DEVICE_ID.txt");
+        File file = new File(dirPath + ".basics_info");
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -158,22 +158,20 @@ public class DeviceId {
         String filePath = getDeviceIdFilePath();
         BufferedWriter writer = null;
         try {
-            File f = new File(filePath);
-            OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(f, false), "UTF-8");
+            File file = new File(filePath);
+            OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8);
             writer = new BufferedWriter(write);
             writer.write(content);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (writer != null) {
-                try {
+            try {
+                if (writer != null) {
                     writer.flush();
                     writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

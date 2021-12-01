@@ -27,9 +27,9 @@ import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.network.NetworkHelper;
-import com.github.lany192.box.utils.ClickUtil;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.dialog.LoadingDialog;
+import com.github.lany192.utils.ClickUtils;
 import com.github.lany192.utils.DensityUtils;
 import com.github.lany192.view.StateLayout;
 import com.gyf.immersionbar.BarHide;
@@ -98,7 +98,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
                     throw new IllegalArgumentException("Please use the 'R.id.toolbar_back_btn' field to back in custom toolbar layout.");
                 }
                 backBtn.setOnClickListener(v -> {
-                    if (!ClickUtil.isFast()) {
+                    if (!ClickUtils.isFast()) {
                         backAction();
                     }
                 });
