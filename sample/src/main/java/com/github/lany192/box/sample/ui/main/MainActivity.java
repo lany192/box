@@ -30,7 +30,7 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         binding.viewpager.setUserInputEnabled(false);
-//        binding.viewpager.setOffscreenPageLimit(4);
+        binding.viewpager.setOffscreenPageLimit(4);
         binding.viewpager.setAdapter(new MainAdapter(this));
         binding.viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

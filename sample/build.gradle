@@ -87,8 +87,8 @@ dependencies {
     implementation 'com.github.lany192:ClearEditText:1.0.6'
 
     //https://dagger.dev/hilt/
-    implementation 'com.google.dagger:hilt-android:2.40.2'
-    kapt 'com.google.dagger:hilt-android-compiler:2.40.2'
+    implementation 'com.google.dagger:hilt-android:2.40.3'
+    kapt 'com.google.dagger:hilt-android-compiler:2.40.3'
 
 //    implementation 'com.afollestad.material-dialogs:core:3.3.0'
 //    implementation 'com.afollestad.material-dialogs:input:3.3.0'
@@ -97,4 +97,10 @@ dependencies {
 //    implementation 'com.afollestad.material-dialogs:datetime:3.3.0'
 //    implementation 'com.afollestad.material-dialogs:bottomsheets:3.3.0'
 //    implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
+
+    //https://github.com/DylanCaiCoding/ViewBindingKTX
+    implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:1.2.6'
+    implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-nonreflection-ktx:1.2.6'
+    implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:1.2.6'
+    implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-brvah:1.2.6'
 }

@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
@@ -38,8 +40,6 @@ import com.gyf.immersionbar.ImmersionBar;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -290,4 +290,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
             loadingDialog = null;
         }
     }
+
+    protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
+        return new ViewModelProvider(this).get(modelClass);
+    }
+
 }
