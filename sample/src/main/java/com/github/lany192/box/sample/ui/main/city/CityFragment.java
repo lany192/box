@@ -29,15 +29,12 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(CityViewModel.class);
         getLifecycle().addObserver(viewModel);
-
+        loadingDialog = new LoadingDialog();
         adapter = new CityAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
-                if (loadingDialog == null) {
-                    loadingDialog = new LoadingDialog();
-                }
                 loadingDialog.show(this);
             } else {
                 loadingDialog.cancel();

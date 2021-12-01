@@ -22,6 +22,6 @@ public class ImageDelegate extends ItemDelegate<String> {
 
     @Override
     public void bind(ItemViewHolder holder, String pic, int position) {
-        holder.setImage(R.id.my_image_view, pic,true);
+        holder.setImage(R.id.my_image_view, pic);
     }
 }

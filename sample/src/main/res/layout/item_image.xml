@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/holo_orange_light"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <ImageView
+    <com.github.lany192.imageview.AutoRatioImageView
         android:id="@+id/my_image_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

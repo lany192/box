@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 
 import com.github.lany192.box.sample.R;
+import com.github.lany192.utils.ImageUtils;
 
 import java.util.List;
 
