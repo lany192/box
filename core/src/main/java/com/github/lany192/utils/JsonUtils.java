@@ -1,4 +1,4 @@
-package com.github.lany192.box.utils;
+package com.github.lany192.utils;
 
 import android.text.TextUtils;
 
@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * json工具
+ */
 public class JsonUtils {
 
     /**
@@ -49,9 +52,15 @@ public class JsonUtils {
      * 对象转json
      */
     public static String object2json(Object object) {
+        if (object == null) {
+            return "";
+        }
         return new Gson().toJson(object);
     }
 
+    /**
+     * json转list
+     */
     public static <T> List<T> json2List(String json, Class<T[]> clazz) {
         if (TextUtils.isEmpty(json)) {
             return null;
@@ -61,6 +70,9 @@ public class JsonUtils {
         return Arrays.asList(array);
     }
 
+    /**
+     * json转ArrayList
+     */
     public static <T> ArrayList<T> json2ArrayList(String json, Class<T> clazz) {
         if (TextUtils.isEmpty(json)) {
             return null;

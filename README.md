@@ -23,14 +23,9 @@
 ## 添加依赖
 
 	dependencies {
-	        //必须
-	        implementation 'com.github.lany192:Box:latest.integration'
-            implementation 'com.jakewharton:butterknife:10.2.1'
-            annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
-            //选择加入，如果使用了dagger2需要添加
-            implementation 'com.google.dagger:dagger-android-support:2.24'
-            annotationProcessor 'com.google.dagger:dagger-compiler:2.24'
-            annotationProcessor 'com.google.dagger:dagger-android-processor:2.24'
+	    implementation 'com.github.lany192.box:arch:3.8.3'
+        implementation 'com.github.lany192.box:view:3.8.3'
+        implementation 'com.github.lany192.box:dialog:3.8.3'
 	}
 	
 ## 初始化

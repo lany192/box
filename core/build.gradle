@@ -29,6 +29,9 @@ android {
 dependencies {
     //日志工具 https://github.com/elvishew/xLog
     implementation 'com.elvishew:xlog:1.11.0'
+    //Json库 https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

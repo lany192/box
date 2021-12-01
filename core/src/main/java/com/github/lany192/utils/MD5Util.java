@@ -1,4 +1,4 @@
-package com.github.lany192.box.utils;
+package com.github.lany192.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,16 +8,16 @@ import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * MD5工具
+ */
 public class MD5Util {
 
     public static String md5(String str) {
         byte[] hash;
         try {
             hash = MessageDigest.getInstance("MD5").digest(str.getBytes("UTF-8"));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return "";
-        } catch (UnsupportedEncodingException e) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
             return "";
         }
