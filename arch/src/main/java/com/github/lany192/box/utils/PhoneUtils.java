@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.box.Box;
 import com.github.lany192.dialog.SimpleDialog;
-import com.github.lany192.interfaces.OnSimpleListener;
+import com.github.lany192.utils.MD5Utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -159,7 +159,7 @@ public class PhoneUtils {
         sb.append(getDeviceId());
         sb.append(getAndroidId());
         sb.append(getSerial());
-        return MD5Util.md5(sb.toString());
+        return MD5Utils.md5(sb.toString());
     }
 
     /**

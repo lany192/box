@@ -17,8 +17,8 @@ import androidx.lifecycle.LifecycleOwner;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.Box;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.utils.NetUtils;
 import com.github.lany192.box.utils.PermissionUtils;
+import com.github.lany192.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -85,7 +85,7 @@ public class NetworkHelper implements DefaultLifecycleObserver {
         public void onReceive(Context context, Intent intent) {
             if (Objects.equals(intent.getAction(), ConnectivityManager.CONNECTIVITY_ACTION)) {
                 XLog.tag("TAG").i("网络变化了--------------------");
-                EventBus.getDefault().post(new NetWorkEvent(NetUtils.isNetWorkAvailable()));
+                EventBus.getDefault().post(new NetWorkEvent(NetUtils.isAvailable(context)));
             }
         }
     };

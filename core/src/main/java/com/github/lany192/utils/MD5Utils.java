@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * MD5工具
  */
-public class MD5Util {
+public class MD5Utils {
 
     public static String md5(String str) {
         byte[] hash;
