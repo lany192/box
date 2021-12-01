@@ -5,20 +5,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.hjq.toast.ToastUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class FileUtils {
-    private static Logger.Builder log = XLog.tag("FileUtils");
 
     /**
      * 获取APP的工作路径
@@ -107,7 +105,7 @@ public class FileUtils {
             StringBuilder builder = new StringBuilder();
             try {
                 FileInputStream fileInputStream = new FileInputStream(file);
-                InputStreamReader isr = new InputStreamReader(fileInputStream, "UTF-8");
+                InputStreamReader isr = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
                 String tmp;
                 while ((tmp = br.readLine()) != null) {
@@ -128,8 +126,7 @@ public class FileUtils {
     public static String getLogPathByDate(Context context, Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String fileName = sdf.format(date);
-        String path = context.getFilesDir().getPath() + "/log/app_log_" + fileName + ".log";
-        log.i("日志文件路径:" + path);
+        String path = context.getFilesDir().getPath() + "/logs/app_log_" + fileName + ".log";
         return readTextByPath(path);
     }
 }
