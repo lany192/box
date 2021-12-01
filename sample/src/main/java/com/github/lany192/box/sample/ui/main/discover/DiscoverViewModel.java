@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.sample.delegate.ImageDelegate;
-import com.github.lany192.box.sample.mvvm.BaseViewModel;
+import com.github.lany192.box.mvvm.BaseViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

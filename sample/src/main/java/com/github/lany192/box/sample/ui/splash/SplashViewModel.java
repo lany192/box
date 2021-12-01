@@ -1,6 +1,6 @@
 package com.github.lany192.box.sample.ui.splash;
 
-import com.github.lany192.box.sample.mvvm.BaseViewModel;
+import com.github.lany192.box.mvvm.BaseViewModel;
 
 import javax.inject.Inject;
 

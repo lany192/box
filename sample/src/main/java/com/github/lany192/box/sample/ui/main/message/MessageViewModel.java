@@ -12,7 +12,7 @@ import com.elvishew.xlog.XLog;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
-import com.github.lany192.box.sample.mvvm.BaseViewModel;
+import com.github.lany192.box.mvvm.BaseViewModel;
 import com.hjq.toast.ToastUtils;
 
 import java.util.List;

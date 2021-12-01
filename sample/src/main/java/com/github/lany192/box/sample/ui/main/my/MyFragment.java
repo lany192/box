@@ -1,5 +1,6 @@
 package com.github.lany192.box.sample.ui.main.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
+import com.github.lany192.box.sample.ui.about.AboutActivity;
+import com.github.lany192.box.sample.ui.login.LoginActivity;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.interfaces.OnSimpleListener;
 
@@ -27,6 +30,8 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         viewModel = new ViewModelProvider(this).get(MyViewModel.class);
         getLifecycle().addObserver(viewModel);
         binding.myOrderView.setOnClickListener(v -> showDialog());
+        binding.myWalletView.setOnClickListener(v -> startActivity(new Intent(getActivity(), AboutActivity.class)));
+        binding.myReleaseView.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginActivity.class)));
         return root;
     }
 

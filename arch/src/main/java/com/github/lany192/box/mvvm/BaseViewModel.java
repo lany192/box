@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.mvvm;
+package com.github.lany192.box.mvvm;
 
 import androidx.lifecycle.ViewModel;
 
