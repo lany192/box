@@ -29,17 +29,17 @@ public class DemoFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-//        ImageLoader.get().show(imageView, "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1905962969,819482129&fm=26&gp=0.jpg", RoundedCornersTransform.CornerType.TOP_LEFT, 20);
-//        ImageLoader.get().circle(imageView2, R.mipmap.a);
-////        ImageLoader.get().showFullWidth(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318");
-//        ImageLoader.get().showOneTimeGif(imageView4, R.mipmap.test);
+//        ImageUtils.show(imageView, "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1905962969,819482129&fm=26&gp=0.jpg", RoundedCornersTransform.CornerType.TOP_LEFT, 20);
+//        ImageUtils.circle(imageView2, R.mipmap.a);
+////        ImageUtils.showFullWidth(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318");
+//        ImageUtils.showOneTimeGif(imageView4, R.mipmap.test);
     }
 //
 //    @OnClick(R.id.button)
 //    void buttonClicked() {
 //        showLoadingDialog();
 //        new Handler().postDelayed(() -> {
-//            ImageLoader.get().show(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318",true);
+//            ImageUtils.show(imageView3, "https://iknow-pic.cdn.bcebos.com/b3119313b07eca806b025475902397dda1448318",true);
 //            cancelLoadingDialog();
 //        }, 5 * 1000);
 //    }

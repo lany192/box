@@ -9,8 +9,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IdRes;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import com.github.lany192.box.helper.ImageLoader;
-
+import com.github.lany192.utils.ImageUtils;
 
 
 public class ItemViewHolder extends BaseViewHolder {
@@ -41,20 +40,8 @@ public class ItemViewHolder extends BaseViewHolder {
     }
 
     public ItemViewHolder setImage(@IdRes int viewId, String picUrl) {
-        setImage(viewId, picUrl, false);
-        return this;
-    }
-
-    public ItemViewHolder setImage(@IdRes int viewId, String picUrl, boolean fullWidth) {
         ImageView imageView = getView(viewId);
-        ImageLoader.get().show(imageView, picUrl, fullWidth);
-        return this;
-    }
-
-    public ItemViewHolder setAvatar(@IdRes int viewId, String picUrl) {
-        ImageView imageView = getView(viewId);
-        imageView.getLayoutParams().height = imageView.getLayoutParams().width;
-        ImageLoader.get().circle(imageView, picUrl);
+        ImageUtils.show(imageView, picUrl);
         return this;
     }
 

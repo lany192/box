@@ -1,4 +1,4 @@
-package com.github.lany192.box.utils;
+package com.github.lany192.utils;
 
 import android.text.TextUtils;
 
@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 /**
  * 正则表达式，可参考：https://github.com/klinker24/talon-twitter-holo/blob/master/app/src/main/java/com/klinker/android/twitter/utils/text/Regex.java
  */
-public class CheckUtils {
+public class FormatUtils {
     /**
      * 验证手机格式
      */
-    public static boolean checkPhone(String mobiles) {
+    public static boolean isPhone(String mobiles) {
         String telRegex = "[1][3456789]\\d{9}";
         return !TextUtils.isEmpty(mobiles) && mobiles.matches(telRegex);
     }
@@ -80,25 +80,5 @@ public class CheckUtils {
         Pattern p = Pattern.compile(strPattern);
         Matcher m = p.matcher(strEmail);
         return m.matches();
-    }
-
-    /**
-     * 是否为姓名格式,真实姓名(2~7个中文或者3~10个英文)
-     */
-    public static boolean checkName(String name) {
-        if (TextUtils.isEmpty(name)) {
-            return false;
-        }
-        String regx = "(([\u4E00-\u9FA5]{2,7})|([a-zA-Z]{3,10}))";
-        Pattern p = Pattern.compile(regx);
-        Matcher m = p.matcher(name);
-        return m.matches();
-    }
-
-    /**
-     * 检查密码格式
-     */
-    public static boolean checkPassword(String password) {
-        return !TextUtils.isEmpty(password) && password.length() >= 6 && password.length() <= 20;
     }
 }

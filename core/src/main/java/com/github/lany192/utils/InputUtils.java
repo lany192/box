@@ -5,7 +5,10 @@ import android.content.Context;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-public class SoftKeyboardUtils {
+/**
+ * 输入法工具
+ */
+public class InputUtils {
 
     /**
      * 开启软键盘
