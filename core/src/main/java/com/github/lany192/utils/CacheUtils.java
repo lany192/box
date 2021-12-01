@@ -1,5 +1,4 @@
-package com.github.lany192.box.helper;
-
+package com.github.lany192.utils;
 
 import android.content.Context;
 import android.os.Environment;
@@ -7,24 +6,14 @@ import android.os.Environment;
 import java.io.File;
 import java.math.BigDecimal;
 
-public final class CleanHelper {
-    private volatile static CleanHelper instance = null;
-
-    private CleanHelper() {
-    }
-
-    public static CleanHelper getInstance() {
-        if (instance == null) {
-            synchronized (CleanHelper.class) {
-                if (instance == null) {
-                    instance = new CleanHelper();
-                }
-            }
-        }
-        return instance;
-    }
-
-    public String getCacheSize(Context context) {
+/**
+ * 缓存工具
+ */
+public class CacheUtils {
+    /**
+     * 获取缓存大小
+     */
+    public static String getCacheSize(Context context) {
         try {
             return getFormatSize(getFolderSize(context.getCacheDir().getParentFile()));
         } catch (Exception e) {
@@ -36,60 +25,25 @@ public final class CleanHelper {
     /**
      * * 清除本应用所有的数据
      */
-    public void clean(Context context) {
-        //清除沙盒缓存数据
-        cleanInternalCache(context);
-        //清除外部SD缓存数据
-        cleanExternalCache(context);
-        //清除内部缓存数据
-        cleanDatabases(context);
-        //清除SP数据
-        //cleanSharedPreference(context);
-        //清除沙盒文件缓存
-        cleanFiles(context);
-    }
-
-    /**
-     * * 清除本应用内部缓存(/data/data/com.xxx.xxx/cache)
-     */
-    private void cleanInternalCache(Context context) {
+    public static void clean(Context context) {
+        //清除沙盒缓存数据 清除本应用内部缓存(/data/data/com.xxx.xxx/cache)
         deleteFilesByDirectory(context.getCacheDir());
-    }
-
-    /**
-     * * 清除本应用所有数据库(/data/data/com.xxx.xxx/databases)
-     */
-    private void cleanDatabases(Context context) {
-        deleteFilesByDirectory(new File("/data/data/" + context.getPackageName() + "/databases"));
-    }
-
-    /**
-     * * 清除本应用SharedPreference(/data/data/com.xxx.xxx/shared_prefs)
-     */
-    private void cleanSharedPreference(Context context) {
-        deleteFilesByDirectory(new File("/data/data/" + context.getPackageName() + "/shared_prefs"));
-    }
-
-    /**
-     * * 清除/data/data/com.xxx.xxx/files下的内容
-     */
-    private void cleanFiles(Context context) {
-        deleteFilesByDirectory(context.getFilesDir());
-    }
-
-    /**
-     * * 清除外部cache下的内容(/mnt/sdcard/android/data/com.xxx.xxx/cache)
-     */
-    private void cleanExternalCache(Context context) {
+        //清除外部SD缓存数据 清除外部cache下的内容(/mnt/sdcard/android/data/com.xxx.xxx/cache)
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             deleteFilesByDirectory(context.getExternalCacheDir());
         }
+        //清除内部缓存数据 清除本应用所有数据库(/data/data/com.xxx.xxx/databases)
+        deleteFilesByDirectory(new File("/data/data/" + context.getPackageName() + "/databases"));
+        //清除沙盒文件缓存 清除/data/data/com.xxx.xxx/files下的内容
+        deleteFilesByDirectory(context.getFilesDir());
+        //清除本应用SharedPreference(/data/data/com.xxx.xxx/shared_prefs)
+//        deleteFilesByDirectory(new File("/data/data/" + context.getPackageName() + "/shared_prefs"));
     }
 
     /**
      * * 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理
      */
-    private void deleteFilesByDirectory(File directory) {
+    private static void deleteFilesByDirectory(File directory) {
         if (directory != null && directory.exists() && directory.isDirectory()) {
             for (File item : directory.listFiles()) {
                 item.delete();
@@ -100,7 +54,7 @@ public final class CleanHelper {
     // 获取文件
     //Context.getExternalFilesDir() --> SDCard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据
     //Context.getExternalCacheDir() --> SDCard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据
-    private long getFolderSize(File file) throws Exception {
+    private static long getFolderSize(File file) {
         long size = 0;
         try {
             File[] fileList = file.listFiles();
@@ -121,7 +75,7 @@ public final class CleanHelper {
     /**
      * 格式化单位
      */
-    private String getFormatSize(double size) {
+    private static String getFormatSize(double size) {
         double kiloByte = size / 1024;
         if (kiloByte < 1) {
             return size + " Byte";
