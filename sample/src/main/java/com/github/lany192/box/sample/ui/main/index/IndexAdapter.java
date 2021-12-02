@@ -7,6 +7,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.github.lany192.box.sample.ui.main.city.CityFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class IndexAdapter extends FragmentStateAdapter {
 
     public IndexAdapter(@NonNull FragmentActivity activity) {
@@ -15,7 +18,7 @@ public class IndexAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 10;
     }
 
     @NonNull
@@ -33,5 +36,13 @@ public class IndexAdapter extends FragmentStateAdapter {
             default:
                 return new CityFragment();
         }
+    }
+
+    public String[] getTitles() {
+        List<String> items = new ArrayList<>();
+        for (int i = 0; i < getItemCount(); i++) {
+            items.add("标题");
+        }
+        return items.toArray(new String[0]);
     }
 }

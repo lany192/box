@@ -13,6 +13,8 @@ import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentIndexBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
+import java.util.ArrayList;
+
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
@@ -26,8 +28,9 @@ public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
         viewModel = new ViewModelProvider(this).get(IndexViewModel.class);
         getLifecycle().addObserver(viewModel);
         ImmersionBar.with(this).titleBar(binding.tabLayout).statusBarDarkFont(true).init();
-        binding.viewpager.setAdapter(new IndexAdapter(requireActivity()));
-        binding.tabLayout.setViewPager2(binding.viewpager, new CharSequence[]{"精选", "测试", "测试", "测试"});
+        IndexAdapter indexAdapter=new IndexAdapter(requireActivity());
+        binding.viewpager.setAdapter(indexAdapter);
+        binding.tabLayout.setViewPager2(binding.viewpager, indexAdapter.getTitles());
         return root;
     }
 }
