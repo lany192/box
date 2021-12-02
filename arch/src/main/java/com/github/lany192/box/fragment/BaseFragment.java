@@ -9,17 +9,13 @@ import android.widget.RelativeLayout.LayoutParams;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.ViewUtils;
-import com.github.lany192.dialog.LoadingDialog;
 import com.github.lany192.utils.DensityUtils;
 import com.github.lany192.view.StateLayout;
 
@@ -30,11 +26,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class BaseFragment extends Fragment implements StateLayout.OnRetryListener, BaseView {
-    protected final String TAG = this.getClass().getName();
-    protected Logger.Builder log = XLog.tag(TAG);
+public abstract class BaseFragment extends BasicFragment implements StateLayout.OnRetryListener, BaseView {
     private StateLayout stateLayout;
-    private LoadingDialog loadingDialog;
     /**
      * 是否执行过懒加载
      */
@@ -194,30 +187,6 @@ public abstract class BaseFragment extends Fragment implements StateLayout.OnRet
     @Override
     public void showLoading() {
         stateLayout.showLoading();
-    }
-
-    @Override
-    public void showLoadingDialog() {
-        showLoadingDialog(getString(R.string.loading));
-    }
-
-    @Override
-    public void showLoadingDialog(CharSequence message) {
-        if (loadingDialog == null) {
-            loadingDialog = new LoadingDialog();
-        }
-        if (!loadingDialog.isAdded()) {
-            loadingDialog.setMessage(message);
-            loadingDialog.show(getParentFragmentManager(), TAG);
-        }
-    }
-
-    @Override
-    public void cancelLoadingDialog() {
-        if (loadingDialog != null && loadingDialog.isAdded()) {
-            loadingDialog.cancel();
-            loadingDialog = null;
-        }
     }
 
     /**

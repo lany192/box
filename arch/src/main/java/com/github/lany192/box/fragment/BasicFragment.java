@@ -1,25 +1,16 @@
-package com.github.lany192.box.activity;
+package com.github.lany192.box.fragment;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
-import com.github.lany192.box.network.NetworkHelper;
 import com.github.lany192.dialog.LoadingDialog;
 
-public class BasicActivity extends AppCompatActivity {
-    protected final String TAG = this.getClass().getSimpleName();
+public class BasicFragment extends Fragment {
+    protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private LoadingDialog loadingDialog;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getLifecycle().addObserver(NetworkHelper.getInstance());
-    }
 
     public void showLoadingDialog() {
         showLoadingDialog(getString(R.string.loading));
