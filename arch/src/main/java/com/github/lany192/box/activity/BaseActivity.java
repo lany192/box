@@ -1,16 +1,13 @@
 package com.github.lany192.box.activity;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
@@ -135,24 +132,6 @@ public abstract class BaseActivity extends BasicActivity implements StateLayout.
 
     protected void onToolbarDoubleClick() {
         //要实现复写该方法
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            hideSoftInput();
-        }
-        return super.onTouchEvent(event);
-    }
-
-    protected void hideSoftInput() {
-        //点击空白区域收起输入法
-        if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
-            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (manager != null) {
-                manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-            }
-        }
     }
 
     @Override
