@@ -30,7 +30,6 @@ public class CityViewModel extends BaseViewModel implements DefaultLifecycleObse
     @Inject
     public CityViewModel(ApiService apiService) {
         this.apiService = apiService;
-        requestCityInfo();
     }
 
     public MutableLiveData<Boolean> getLoading() {
