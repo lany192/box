@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.elvishew.xlog.Logger
+import com.elvishew.xlog.XLog
+import com.github.lany192.view.StateLayout
 
 /**
  * ViewBinding实现基类
  */
-abstract class BindingFragment<VB : ViewBinding> : Fragment() {
+abstract class BindingFragment<VB : ViewBinding> : Fragment() , StateLayout.OnRetryListener {
+    protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
     lateinit var binding: VB
 
     override fun onCreateView(
@@ -18,7 +22,14 @@ abstract class BindingFragment<VB : ViewBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val stateLayout = StateLayout(context)
+        stateLayout.setOnRetryListener(this)
         binding = getBinding(inflater, container)
-        return binding.root
+        stateLayout.addView(binding.root)
+        return stateLayout
+    }
+
+    override fun onRetry() {
+        log.i("点击重试")
     }
 }

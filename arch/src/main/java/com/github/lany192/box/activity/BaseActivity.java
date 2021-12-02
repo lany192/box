@@ -17,20 +17,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
 import com.github.lany192.box.mvp.BaseView;
-import com.github.lany192.box.network.NetworkHelper;
 import com.github.lany192.box.utils.ViewUtils;
-import com.github.lany192.dialog.LoadingDialog;
 import com.github.lany192.utils.ClickUtils;
 import com.github.lany192.utils.DensityUtils;
 import com.github.lany192.view.StateLayout;
@@ -47,13 +41,9 @@ import io.reactivex.rxjava3.disposables.Disposable;
 /**
  * 通用基类
  */
-public abstract class BaseActivity extends AppCompatActivity implements StateLayout.OnRetryListener, BaseView {
-    protected final String TAG = this.getClass().getSimpleName();
-    protected Logger.Builder log = XLog.tag(TAG);
-    protected FragmentActivity self;
+public abstract class BaseActivity extends BasicActivity implements StateLayout.OnRetryListener, BaseView {
     private View toolBarView;
     private StateLayout stateLayout;
-    private LoadingDialog loadingDialog;
     private CompositeDisposable compositeDisposable;
 
     @NonNull
@@ -64,11 +54,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.self = this;
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        getLifecycle().addObserver(NetworkHelper.getInstance());
         initStatusBar();
         onBeforeSetContentView();
         setContentView(getContentView());
@@ -267,32 +255,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StateLay
         stateLayout.showLoading();
     }
 
-    @Override
-    public void showLoadingDialog() {
-        showLoadingDialog(getString(R.string.loading));
-    }
-
-    @Override
-    public void showLoadingDialog(CharSequence message) {
-        if (loadingDialog == null) {
-            loadingDialog = new LoadingDialog();
-        }
-        if (!loadingDialog.isAdded()) {
-            loadingDialog.setMessage(message);
-            loadingDialog.show(getSupportFragmentManager(), TAG);
-        }
-    }
-
-    @Override
-    public void cancelLoadingDialog() {
-        if (loadingDialog != null && loadingDialog.isAdded()) {
-            loadingDialog.cancel();
-            loadingDialog = null;
-        }
-    }
-
     protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
         return new ViewModelProvider(this).get(modelClass);
     }
-
 }
