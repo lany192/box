@@ -25,17 +25,10 @@ public class IndexAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0:
-                return new CityFragment();
-            case 1:
-                return new GirlFragment();
-            case 2:
-                return new CityFragment();
-            case 3:
-                return new CityFragment();
-            default:
-                return new GirlFragment();
+        if (position % 2 == 1) {
+            return new CityFragment();
+        } else {
+            return new GirlFragment();
         }
     }
 
