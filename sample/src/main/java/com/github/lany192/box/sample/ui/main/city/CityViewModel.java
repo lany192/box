@@ -6,13 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.elvishew.xlog.XLog;
+import com.github.lany192.box.mvvm.LifecycleViewModel;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
-import com.github.lany192.box.mvvm.BaseViewModel;
 import com.hjq.toast.ToastUtils;
 
 import java.util.List;
@@ -22,7 +21,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class CityViewModel extends BaseViewModel implements DefaultLifecycleObserver {
+public class CityViewModel extends LifecycleViewModel{
     private final MutableLiveData<List<Area>> items = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
     private final ApiService apiService;

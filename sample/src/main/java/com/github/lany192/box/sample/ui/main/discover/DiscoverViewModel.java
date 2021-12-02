@@ -4,12 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.delegate.Delegate;
+import com.github.lany192.box.mvvm.LifecycleViewModel;
 import com.github.lany192.box.sample.delegate.ImageDelegate;
-import com.github.lany192.box.mvvm.BaseViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class DiscoverViewModel extends BaseViewModel implements DefaultLifecycleObserver {
+public class DiscoverViewModel extends LifecycleViewModel{
     private final MutableLiveData<List<Delegate>> items = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
 
