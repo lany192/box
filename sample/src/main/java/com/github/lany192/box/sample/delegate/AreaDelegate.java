@@ -1,7 +1,5 @@
 package com.github.lany192.box.sample.delegate;
 
-import androidx.fragment.app.FragmentActivity;
-
 import com.github.lany192.box.adapter.ItemViewHolder;
 import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.sample.R;
@@ -32,8 +30,8 @@ public class AreaDelegate extends ItemDelegate<Area> {
         dialog.setMessage(area.getName() + (area.getSubarea().size() + 1) + "个地级市");
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setRightBtn("确定", () -> ToastUtils.show(area.getName()));
-        dialog.setLeftBtn("取消");
-        dialog.show((FragmentActivity) getContext());
+        dialog.setRightButton("确定", () -> ToastUtils.show(area.getName()));
+        dialog.setLeftButton("取消");
+        dialog.show(getContext());
     }
 }

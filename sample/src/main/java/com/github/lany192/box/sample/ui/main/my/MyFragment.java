@@ -37,18 +37,18 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");
         dialog.setMessage("猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁");
-        dialog.setRightBtn("确定", new OnSimpleListener() {
+        dialog.setRightButton("确定", new OnSimpleListener() {
             @Override
             public void onCallback() {
 
             }
         });
-        dialog.setLeftBtn("取消", new OnSimpleListener() {
+        dialog.setLeftButton("取消", new OnSimpleListener() {
             @Override
             public void onCallback() {
 
             }
         });
-        dialog.show(MyFragment.this);
+        dialog.show(this);
     }
 }

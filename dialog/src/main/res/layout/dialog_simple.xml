@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingExtra="8dp"
+            android:scrollbars="vertical"
             android:textColor="#333333"
             android:textSize="15sp"
             tools:text="这里显示对话框的消息内容这里显示对话框的消息内容这里显示对话框的消息内容这里显示对话框的消息内容这" />

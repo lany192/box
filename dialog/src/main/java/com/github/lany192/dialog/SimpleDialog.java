@@ -3,6 +3,7 @@ package com.github.lany192.dialog;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.text.method.MovementMethod;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -74,8 +75,10 @@ public class SimpleDialog extends BaseDialog {
             msgText.setText(mMessage);
             msgText.setGravity(gravity);
             msgText.setTextSize(mMsgTextSize);
-            if(movementMethod!=null){
+            if (movementMethod != null) {
                 msgText.setMovementMethod(movementMethod);
+            } else {
+                msgText.setMovementMethod(ScrollingMovementMethod.getInstance());
             }
         }
         if (isShowDivider) {
@@ -151,30 +154,30 @@ public class SimpleDialog extends BaseDialog {
         this.mLeftTextColor = leftTextColor;
     }
 
-    public void setRightBtn(@StringRes int rightStringRes, OnSimpleListener listener) {
-        setRightBtn(getString(rightStringRes), listener);
+    public void setRightButton(@StringRes int rightStringRes, OnSimpleListener listener) {
+        setRightButton(getString(rightStringRes), listener);
     }
 
-    public void setLeftBtn(@StringRes int leftStringRes, OnSimpleListener listener) {
-        setLeftBtn(getString(leftStringRes), listener);
+    public void setLeftButton(@StringRes int leftStringRes, OnSimpleListener listener) {
+        setLeftButton(getString(leftStringRes), listener);
     }
 
-    public void setRightBtn(CharSequence rightText, OnSimpleListener listener) {
+    public void setRightButton(CharSequence rightText, OnSimpleListener listener) {
         this.mRightText = rightText;
         this.mOnRightListener = listener;
     }
 
-    public void setLeftBtn(CharSequence leftText, OnSimpleListener listener) {
+    public void setLeftButton(CharSequence leftText, OnSimpleListener listener) {
         this.mLeftText = leftText;
         this.mOnLeftListener = listener;
         this.isShowDivider = true;
     }
 
-    public void setRightBtn(CharSequence rightText) {
+    public void setRightButton(CharSequence rightText) {
         this.mRightText = rightText;
     }
 
-    public void setLeftBtn(CharSequence leftText) {
+    public void setLeftButton(CharSequence leftText) {
         this.mLeftText = leftText;
         this.isShowDivider = true;
     }
