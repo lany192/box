@@ -3,8 +3,11 @@ package com.github.lany192.box.sample.ui.main.index.article;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Article;
+import com.github.lany192.box.utils.DateUtils;
 import com.github.lany192.multitype.adapter.ItemViewHolder;
 import com.github.lany192.multitype.delegate.ItemDelegate;
+
+import java.util.Date;
 
 public class ArticleDelegate extends ItemDelegate<Article> {
 
@@ -14,7 +17,7 @@ public class ArticleDelegate extends ItemDelegate<Article> {
 
     @Override
     public int getSpanSize() {
-        return 1;
+        return 2;
     }
 
     @Override
@@ -25,6 +28,8 @@ public class ArticleDelegate extends ItemDelegate<Article> {
     @Override
     public void bind(ItemViewHolder holder, Article item, int position) {
         holder.setText(R.id.title, item.getTitle());
+        holder.setText(R.id.desc, item.getAuthor());
+        holder.setText(R.id.time, DateUtils.format(new Date(item.getPublishTime())));
         holder.setImage(R.id.image, MockUtils.getImageUrl());
     }
 }

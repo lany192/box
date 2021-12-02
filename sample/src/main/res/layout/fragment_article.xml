@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:padding="6dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/item_area" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_article" />
 </LinearLayout>
