@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.ui.main.city;
+package com.github.lany192.box.sample.ui.main.index.city;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
