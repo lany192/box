@@ -28,16 +28,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 public abstract class BaseFragment extends BasicFragment implements StateLayout.OnRetryListener, BaseView {
     private StateLayout stateLayout;
-    /**
-     * 是否执行过懒加载
-     */
-    private boolean isLazyLoaded;
-
     private CompositeDisposable compositeDisposable;
-    /**
-     * 本界面用户是否可见
-     */
-    private boolean userVisible;
 
     @NonNull
     public abstract FragmentConfig getConfig();
@@ -53,29 +44,6 @@ public abstract class BaseFragment extends BasicFragment implements StateLayout.
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        userVisible = true;
-        if (!isLazyLoaded) {
-            isLazyLoaded = true;
-            onLazyLoad();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        userVisible = false;
-    }
-
-    /**
-     * 用户是否可见
-     */
-    public boolean isUserVisible() {
-        return userVisible;
     }
 
     @Override
@@ -123,13 +91,6 @@ public abstract class BaseFragment extends BasicFragment implements StateLayout.
      */
     protected void onToolbarDoubleClick() {
         log.i(" 双击了toolbar");
-    }
-
-    /**
-     * 如果需要懒加载，逻辑写在这里,只被调用一次
-     */
-    protected void onLazyLoad() {
-        log.i("懒加载...");
     }
 
     @Override
