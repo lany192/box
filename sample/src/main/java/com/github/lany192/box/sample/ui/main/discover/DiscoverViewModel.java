@@ -1,11 +1,7 @@
 package com.github.lany192.box.sample.ui.main.discover;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
-import com.elvishew.xlog.XLog;
 import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.mvvm.LifecycleViewModel;
 import com.github.lany192.box.sample.delegate.ImageDelegate;
@@ -21,16 +17,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class DiscoverViewModel extends LifecycleViewModel{
     private final MutableLiveData<List<Delegate>> items = new MutableLiveData<>();
-    private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
-
 
     @Inject
     public DiscoverViewModel() {
         requestCityInfo();
-    }
-
-    public MutableLiveData<Boolean> getLoading() {
-        return loading;
     }
 
     public MutableLiveData<List<Delegate>> getItems() {
@@ -38,7 +28,7 @@ public class DiscoverViewModel extends LifecycleViewModel{
     }
 
     public void requestCityInfo() {
-        loading.postValue(true);
+        showLoading(true);
         List<String> images = new ArrayList<>();
         images.add("https://hbimg.huabanimg.com/9c7b8969e5367d70a4c854f9aa079a76df4471a1190837-dd65JF_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/e31425fa46a743a3dbf6d8c17537fa3cb49fa90a2007db-GntkV2_fw658/format/webp");
@@ -54,16 +44,7 @@ public class DiscoverViewModel extends LifecycleViewModel{
 
         items.postValue(images.stream().map(ImageDelegate::new).collect(Collectors.toList()));
 
-        loading.postValue(false);
+        showLoading(false);
     }
 
-    @Override
-    public void onResume(@NonNull LifecycleOwner owner) {
-        XLog.i("onResume");
-    }
-
-    @Override
-    public void onPause(@NonNull LifecycleOwner owner) {
-        XLog.i("onPause");
-    }
 }
