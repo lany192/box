@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.box.fragment.BasicFragment
 import com.github.lany192.box.fragment.ModelFragment
-import com.github.lany192.box.mvp.BaseView
+import com.github.lany192.box.interfaces.BaseView
 import com.github.lany192.view.StateLayout
 
 /**
  * ViewBinding实现基类
  */
-abstract class BindingFragment<VB : ViewBinding> : ModelFragment(), StateLayout.OnRetryListener, BaseView {
+abstract class BindingFragment<VB : ViewBinding> : ModelFragment(), StateLayout.OnRetryListener,
+    BaseView {
     lateinit var binding: VB
     lateinit var stateLayout: StateLayout
 

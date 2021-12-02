@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
 import com.github.lany192.box.interfaces.OnDoubleClickListener;
-import com.github.lany192.box.mvp.BaseView;
+import com.github.lany192.box.interfaces.BaseView;
 import com.github.lany192.box.utils.PhoneUtils;
 import com.github.lany192.box.utils.ViewUtils;
 import com.github.lany192.utils.DensityUtils;
