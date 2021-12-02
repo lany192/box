@@ -1,12 +1,10 @@
-package com.github.lany192.box.delegate;
+package com.github.lany192.multitype.delegate;
 
 import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.box.adapter.ItemViewHolder;
-
-
+import com.github.lany192.multitype.adapter.ItemViewHolder;
 
 /**
  * 多布局代理基类，适用于MultiAdapter适配器

@@ -1,4 +1,4 @@
-package com.github.lany192.box.adapter;
+package com.github.lany192.multitype.adapter;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -10,7 +10,6 @@ import androidx.annotation.IdRes;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.utils.ImageUtils;
-
 
 public class ItemViewHolder extends BaseViewHolder {
 

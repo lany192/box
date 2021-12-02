@@ -2,9 +2,9 @@ package com.github.lany192.box.sample.ui.main.discover;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.box.delegate.Delegate;
 import com.github.lany192.box.mvvm.LifecycleViewModel;
 import com.github.lany192.box.sample.delegate.ImageDelegate;
+import com.github.lany192.multitype.delegate.Delegate;
 
 import java.util.ArrayList;
 import java.util.List;

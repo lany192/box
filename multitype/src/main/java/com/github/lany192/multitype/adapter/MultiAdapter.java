@@ -1,4 +1,4 @@
-package com.github.lany192.box.adapter;
+package com.github.lany192.multitype.adapter;
 
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
-import com.github.lany192.box.delegate.Delegate;
+import com.github.lany192.multitype.delegate.Delegate;
 
 import java.util.List;
 

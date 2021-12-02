@@ -1,11 +1,11 @@
-package com.github.lany192.box.delegate;
+package com.github.lany192.multitype.delegate;
 
 import android.content.Context;
 
 import androidx.annotation.LayoutRes;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.github.lany192.box.adapter.ItemViewHolder;
+import com.github.lany192.multitype.adapter.ItemViewHolder;
 
 public interface Delegate extends MultiItemEntity {
     /**

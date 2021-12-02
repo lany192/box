@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
+import com.github.lany192.multitype.adapter.MultiAdapter;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;

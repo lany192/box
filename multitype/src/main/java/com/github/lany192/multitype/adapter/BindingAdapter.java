@@ -1,4 +1,4 @@
-package com.github.lany192.box.adapter;
+package com.github.lany192.multitype.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

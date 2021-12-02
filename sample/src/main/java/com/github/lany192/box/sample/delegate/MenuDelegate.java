@@ -1,9 +1,9 @@
 package com.github.lany192.box.sample.delegate;
 
-import com.github.lany192.box.adapter.ItemViewHolder;
-import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Menu;
+import com.github.lany192.multitype.adapter.ItemViewHolder;
+import com.github.lany192.multitype.delegate.ItemDelegate;
 import com.hjq.toast.ToastUtils;
 
 public class MenuDelegate extends ItemDelegate<Menu> {

@@ -1,8 +1,8 @@
 package com.github.lany192.box.sample.delegate;
 
-import com.github.lany192.box.adapter.ItemViewHolder;
-import com.github.lany192.box.delegate.ItemDelegate;
 import com.github.lany192.box.sample.R;
+import com.github.lany192.multitype.adapter.ItemViewHolder;
+import com.github.lany192.multitype.delegate.ItemDelegate;
 
 public class ImageDelegate extends ItemDelegate<String> {
 

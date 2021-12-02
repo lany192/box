@@ -5,11 +5,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.box.adapter.BindingAdapter;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.databinding.ItemAreaBinding;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.interfaces.OnSimpleListener;
+import com.github.lany192.multitype.adapter.BindingAdapter;
 import com.github.lany192.utils.ImageUtils;
 import com.github.lany192.utils.JsonUtils;
 

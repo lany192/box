@@ -1,4 +1,4 @@
-package com.github.lany192.box.delegate;
+package com.github.lany192.multitype.delegate;
 
 import android.graphics.Color;
 import android.text.TextUtils;
@@ -6,8 +6,9 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 
-import com.github.lany192.box.R;
-import com.github.lany192.box.adapter.ItemViewHolder;
+import com.github.lany192.multitype.R;
+import com.github.lany192.multitype.adapter.ItemViewHolder;
+
 
 /**
  * 分割线代理
