@@ -33,7 +33,7 @@ class HttpModule {
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://lany192.github.io/")
+            .baseUrl("https://www.wanandroid.com")
             .client(client)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .addConverterFactory(
