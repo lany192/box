@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample;
+package com.github.lany192;
 
 import androidx.annotation.Keep;
 
