@@ -21,7 +21,7 @@ public class MessageFragment extends BindingFragment<FragmentMessageBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = getViewModel(MessageViewModel.class);
+        viewModel = getFragmentViewModel(MessageViewModel.class);
         return root;
     }
 }

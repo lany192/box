@@ -27,7 +27,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = getViewModel(DiscoverViewModel.class);
+        viewModel = getFragmentViewModel(DiscoverViewModel.class);
 
         binding.toolbar.setTitle("发现");
         ImmersionBar.with(this).titleBar(binding.toolbar).transparentStatusBar().statusBarDarkFont(true).init();

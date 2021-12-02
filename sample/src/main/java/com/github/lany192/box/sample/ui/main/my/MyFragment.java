@@ -26,7 +26,7 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = getViewModel(MyViewModel.class);
+        viewModel = getFragmentViewModel(MyViewModel.class);
         binding.myOrderView.setOnClickListener(v -> showDialog());
         binding.myWalletView.setOnClickListener(v -> startActivity(new Intent(getActivity(), AboutActivity.class)));
         binding.myReleaseView.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginActivity.class)));

@@ -8,6 +8,8 @@ import com.github.lany192.box.mvvm.LifecycleViewModel;
 public class ModelActivity extends BasicActivity {
 
     protected <T extends LifecycleViewModel> T getViewModel(@NonNull Class<T> modelClass) {
-        return new ViewModelProvider(this).get(modelClass);
+        T viewModel =  new ViewModelProvider(this).get(modelClass);
+        getLifecycle().addObserver(viewModel);
+        return viewModel;
     }
 }

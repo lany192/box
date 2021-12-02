@@ -22,7 +22,7 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        CityViewModel viewModel = getViewModel(CityViewModel.class);
+        CityViewModel viewModel = getFragmentViewModel(CityViewModel.class);
         CityAdapter adapter = new CityAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, adapter::setNewInstance);

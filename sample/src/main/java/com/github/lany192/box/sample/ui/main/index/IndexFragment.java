@@ -22,7 +22,7 @@ public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = getViewModel(IndexViewModel.class);
+        viewModel = getFragmentViewModel(IndexViewModel.class);
         ImmersionBar.with(this).titleBar(binding.tabLayout).transparentStatusBar().statusBarDarkFont(true).init();
         IndexAdapter indexAdapter=new IndexAdapter(requireActivity());
         binding.viewpager.setAdapter(indexAdapter);
