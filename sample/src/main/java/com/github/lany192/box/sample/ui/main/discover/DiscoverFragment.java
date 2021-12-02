@@ -30,7 +30,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         viewModel = getViewModel(DiscoverViewModel.class);
 
         binding.toolbar.setTitle("发现");
-        ImmersionBar.with(this).titleBar(binding.toolbar).statusBarDarkFont(true).init();
+        ImmersionBar.with(this).titleBar(binding.toolbar).transparentStatusBar().statusBarDarkFont(true).init();
         adapter = new MultiAdapter(new ArrayList<>());
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);

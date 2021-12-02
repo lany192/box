@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.box.adapter.ViewBindingAdapter;
+import com.github.lany192.box.adapter.BindingAdapter;
 
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.databinding.ItemAreaBinding;
@@ -13,7 +13,7 @@ import com.github.lany192.utils.ImageUtils;
 
 import java.util.List;
 
-public class CityAdapter extends ViewBindingAdapter<Area, ItemAreaBinding> {
+public class CityAdapter extends BindingAdapter<Area, ItemAreaBinding> {
 
     public CityAdapter(List<Area> items) {
         super(items);

@@ -16,22 +16,22 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ViewBindingAdapter<T extends Object, VB extends ViewBinding> extends BaseQuickAdapter<T, BaseViewHolder> {
+public abstract class BindingAdapter<T extends Object, VB extends ViewBinding> extends BaseQuickAdapter<T, BaseViewHolder> {
     private VB binding;
 
-    public ViewBindingAdapter() {
+    public BindingAdapter() {
         super(0, new ArrayList<T>());
     }
 
-    public ViewBindingAdapter(List<T> data) {
+    public BindingAdapter(List<T> data) {
         super(0, data);
     }
 
-    private ViewBindingAdapter(@LayoutRes int layoutResId) {
+    private BindingAdapter(@LayoutRes int layoutResId) {
         super(0);
     }
 
-    private ViewBindingAdapter(int layoutResId, @Nullable List<T> data) {
+    private BindingAdapter(int layoutResId, @Nullable List<T> data) {
         super(0, data);
     }
 

@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.github.lany192.box.binding.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivityMainBinding;
-import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -24,7 +23,7 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImmersionBar.with(this).transparentStatusBar().init();
+//        ImmersionBar.with(this).transparentStatusBar().init();
 
         viewModel = getViewModel(MainViewModel.class);
 
