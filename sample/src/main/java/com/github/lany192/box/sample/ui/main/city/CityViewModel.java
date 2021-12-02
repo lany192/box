@@ -30,6 +30,11 @@ public class CityViewModel extends LifecycleViewModel{
         return items;
     }
 
+    @Override
+    protected void onLazyLoad() {
+        requestCityInfo();
+    }
+
     public void requestCityInfo() {
         Log.i("TAG:", "请求城市数据接口");
         showLoading(true);
@@ -48,4 +53,5 @@ public class CityViewModel extends LifecycleViewModel{
             }
         });
     }
+
 }

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
@@ -27,8 +26,7 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(MyViewModel.class);
-        getLifecycle().addObserver(viewModel);
+        viewModel = getViewModel(MyViewModel.class);
         binding.myOrderView.setOnClickListener(v -> showDialog());
         binding.myWalletView.setOnClickListener(v -> startActivity(new Intent(getActivity(), AboutActivity.class)));
         binding.myReleaseView.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginActivity.class)));

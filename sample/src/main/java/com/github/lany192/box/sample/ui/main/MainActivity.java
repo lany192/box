@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.lany192.box.binding.BindingActivity;
@@ -27,7 +26,7 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
         super.onCreate(savedInstanceState);
         ImmersionBar.with(this).transparentStatusBar().init();
 
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        viewModel = getViewModel(MainViewModel.class);
 
         binding.viewpager.setUserInputEnabled(false);
         binding.viewpager.setOffscreenPageLimit(4);

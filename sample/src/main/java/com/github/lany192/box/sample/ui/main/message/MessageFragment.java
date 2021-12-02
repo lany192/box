@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMessageBinding;
-import com.github.lany192.box.sample.databinding.FragmentMyBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -23,8 +21,7 @@ public class MessageFragment extends BindingFragment<FragmentMessageBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(MessageViewModel.class);
-        getLifecycle().addObserver(viewModel);
+        viewModel = getViewModel(MessageViewModel.class);
         return root;
     }
 }

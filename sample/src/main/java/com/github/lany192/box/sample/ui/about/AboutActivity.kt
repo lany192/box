@@ -13,6 +13,6 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AboutViewModel::class.java)
+        viewModel = getViewModel(AboutViewModel::class.java)
     }
 }

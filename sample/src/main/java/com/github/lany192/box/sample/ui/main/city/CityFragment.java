@@ -17,18 +17,15 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class CityFragment extends BindingFragment<FragmentCityBinding> {
-    private CityViewModel viewModel;
-    private CityAdapter adapter;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = getViewModel(CityViewModel.class);
-        getLifecycle().addObserver(viewModel);
-        adapter = new CityAdapter(new ArrayList<>());
+        CityViewModel viewModel = getViewModel(CityViewModel.class);
+        CityAdapter adapter = new CityAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
-        viewModel.getItems().observe(this, areas -> adapter.setNewInstance(areas));
+        viewModel.getItems().observe(this, adapter::setNewInstance);
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 showLoading();
@@ -37,10 +34,5 @@ public class CityFragment extends BindingFragment<FragmentCityBinding> {
             }
         });
         return root;
-    }
-
-    @Override
-    protected void onLazyLoad() {
-        viewModel.requestCityInfo();
     }
 }

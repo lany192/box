@@ -7,13 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.github.lany192.box.adapter.MultiAdapter;
 import com.github.lany192.box.binding.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
-import com.github.lany192.dialog.LoadingDialog;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
@@ -30,7 +28,6 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getViewModel(DiscoverViewModel.class);
-        getLifecycle().addObserver(viewModel);
 
         binding.toolbar.setTitle("发现");
         ImmersionBar.with(this).titleBar(binding.toolbar).statusBarDarkFont(true).init();

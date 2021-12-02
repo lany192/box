@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.github.lany192.box.binding.BindingActivity;
 import com.github.lany192.box.sample.databinding.ActivityLoginBinding;
@@ -21,7 +20,7 @@ public class SplashActivity extends BindingActivity<ActivityLoginBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(SplashViewModel.class);
+        viewModel = getViewModel(SplashViewModel.class);
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

@@ -21,6 +21,13 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
         loading.postValue(show);
     }
 
+    /**
+     * 如果需要懒加载，逻辑写在这里,只被调用一次
+     */
+    protected void onLazyLoad() {
+        log.i("懒加载...");
+    }
+
     @CallSuper
     @Override
     public void onResume(@NonNull LifecycleOwner owner) {
@@ -28,12 +35,31 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
             lazyLoaded = true;
             onLazyLoad();
         }
+        log.i("onResume");
     }
 
-    /**
-     * 如果需要懒加载，逻辑写在这里,只被调用一次
-     */
-    protected void onLazyLoad() {
-        log.i("懒加载...");
+    @Override
+    public void onCreate(@NonNull LifecycleOwner owner) {
+        log.i("onCreate");
+    }
+
+    @Override
+    public void onStart(@NonNull LifecycleOwner owner) {
+        log.i("onStart");
+    }
+
+    @Override
+    public void onPause(@NonNull LifecycleOwner owner) {
+        log.i("onPause");
+    }
+
+    @Override
+    public void onStop(@NonNull LifecycleOwner owner) {
+        log.i("onStop");
+    }
+
+    @Override
+    public void onDestroy(@NonNull LifecycleOwner owner) {
+        log.i("onDestroy");
     }
 }
