@@ -24,13 +24,12 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     private DiscoverViewModel viewModel;
     private MultiAdapter adapter;
-    private LoadingDialog loadingDialog;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(DiscoverViewModel.class);
+        viewModel = getViewModel(DiscoverViewModel.class);
         getLifecycle().addObserver(viewModel);
 
         binding.toolbar.setTitle("发现");
@@ -52,14 +51,11 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
             });
         });
         viewModel.getLoading().observe(this, loading -> {
-//            if (loading) {
-//                if (loadingDialog == null) {
-//                    loadingDialog = new LoadingDialog();
-//                }
-//                loadingDialog.show(this);
-//            } else {
-//                loadingDialog.cancel();
-//            }
+            if (loading) {
+                showLoading();
+            } else {
+                showContent();
+            }
         });
         return root;
     }
