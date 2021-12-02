@@ -19,6 +19,23 @@ public class MockUtils {
         images.add("https://hbimg.huabanimg.com/991880d1919e2b77d6493eed235d4ce838c696652158b3-0BekcG_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/e8cde189321a974090eef2d27861c46bada6eee0110aba-axLQ4L_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/759ad84955b7be26f9a1c0121d76feb0a973a5e7f9375-Ki1IRC_fw658/format/webp");
+
+
+        images.add("https://hbimg.huabanimg.com/e81b92a0757f795995d2cf69dfde7263c3fcd3337ae4e-10b7Fb_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/394b21f65231d58497a68c1bf6dd5f18a202999c77a42-VA7hkV_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/006e306584baca4e30358249aa76f7aa034a0e2041fe7-6T0LHm_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/fca593bf19614d98d3ba9ae19d7822e1bc65ad3811004d-KfPhoi_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/7194d3a14f6416217085ad35f9ce529dd27018ac1160cb-uBM2rj_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/69fd9fc0d3b88c50caff394e5b37075fe8ed4713110870-cQf756_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/5d521d5eecfb41a36c4258b4573fcdfca7c1d56d1215b0-dBjec8_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/66a7465918bc0c7d01a216097de0bbb154e5d9f910d991-HAky6L_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/6f2233e2db8608514c5b1ea861305efcab40bff1d289b-oCVpex_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/8262e48e4146b437ea5f52338cc37371fe8c0df9155614-5yrAOD_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/3f1ffad94c9ad21a67a6dba071c7f91a98b0dd8c11c3d3-hFudgL_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/5e5d3a558e48b87c812d842b6a7f2036d0d96f07eb821-osEJkt_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/5ff1993c79bf1748d194125428593d2cc2b0628c122b70-oNFzVs_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/3ab369418ec3ffb619c2f5c1a6dbe775eb6faf3aec55f-ZcfYkZ_fw658/format/webp");
+
         int i = new Random().nextInt(images.size());
         return images.get(i);
     }
