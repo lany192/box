@@ -53,12 +53,4 @@ public class BasicFragment extends Fragment {
             loadingDialog = null;
         }
     }
-
-    protected <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
-        return new ViewModelProvider(this).get(modelClass);
-    }
-
-    protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
-        return new ViewModelProvider(requireActivity()).get(modelClass);
-    }
 }

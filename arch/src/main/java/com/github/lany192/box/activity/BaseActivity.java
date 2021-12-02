@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.github.lany192.box.R;
 import com.github.lany192.box.event.NetWorkEvent;
@@ -32,13 +30,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
-
 /**
  * 通用基类
  */
-public abstract class BaseActivity extends BasicActivity
+public abstract class BaseActivity extends ViewModelActivity
         implements StateLayout.OnRetryListener, BaseView {
     private View toolBarView;
     private StateLayout stateLayout;
@@ -217,9 +212,5 @@ public abstract class BaseActivity extends BasicActivity
     @Override
     public void showLoading() {
         stateLayout.showLoading();
-    }
-
-    protected <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
-        return new ViewModelProvider(this).get(modelClass);
     }
 }
