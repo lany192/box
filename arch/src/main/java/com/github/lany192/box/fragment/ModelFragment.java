@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public abstract class ViewModelFragment extends BasicFragment {
+public abstract class ModelFragment extends BasicFragment {
 
     protected <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
         return new ViewModelProvider(this).get(modelClass);

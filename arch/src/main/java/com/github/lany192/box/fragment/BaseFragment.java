@@ -26,7 +26,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public abstract class BaseFragment extends ViewModelFragment implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseFragment extends ModelFragment implements StateLayout.OnRetryListener, BaseView {
     private StateLayout stateLayout;
     private CompositeDisposable compositeDisposable;
 

@@ -15,7 +15,6 @@ import com.github.lany192.view.StateLayout
  * ViewBinding实现基类
  */
 abstract class BindingFragment<VB : ViewBinding> : BasicFragment() , StateLayout.OnRetryListener {
-    protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
     lateinit var binding: VB
 
     override fun onCreateView(

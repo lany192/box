@@ -82,6 +82,7 @@ public abstract class BaseDialog extends BaseDialogFragment {
         return inflater.inflate(getLayoutId(), container, true);
     }
 
+    @Deprecated
     public <T extends View> T findViewById(@IdRes int id) {
         return getView().findViewById(id);
     }

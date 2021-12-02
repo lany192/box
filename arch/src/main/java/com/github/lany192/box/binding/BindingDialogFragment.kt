@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentManager
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.dialog.BaseDialog
 
-abstract class BindingDialogFragment<VB : ViewBinding> : DialogFragment() {
+abstract class BindingDialogFragment<VB : ViewBinding> : BaseDialog() {
     lateinit var binding: VB
 
     override fun onCreateView(
@@ -18,5 +17,9 @@ abstract class BindingDialogFragment<VB : ViewBinding> : DialogFragment() {
     ): View {
         binding = getBinding(inflater, container)
         return binding.root
+    }
+
+    override fun getLayoutId(): Int{
+        return 0
     }
 }

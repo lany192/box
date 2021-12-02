@@ -14,7 +14,6 @@ import com.github.lany192.view.StateLayout.OnRetryListener
  * ViewBinding实现基类
  */
 abstract class BindingActivity<VB : ViewBinding> : BasicActivity(), OnRetryListener {
-    protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
     lateinit var binding: VB
 
     @CallSuper

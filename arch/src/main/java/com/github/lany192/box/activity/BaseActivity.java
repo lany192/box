@@ -33,7 +33,7 @@ import org.greenrobot.eventbus.ThreadMode;
 /**
  * 通用基类
  */
-public abstract class BaseActivity extends ViewModelActivity
+public abstract class BaseActivity extends ModelActivity
         implements StateLayout.OnRetryListener, BaseView {
     private View toolBarView;
     private StateLayout stateLayout;
