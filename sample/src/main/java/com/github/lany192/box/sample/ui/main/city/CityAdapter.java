@@ -11,7 +11,6 @@ import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.interfaces.OnSimpleListener;
 import com.github.lany192.multitype.adapter.BindingAdapter;
 import com.github.lany192.utils.ImageUtils;
-import com.github.lany192.utils.JsonUtils;
 
 import java.util.List;
 
@@ -36,9 +35,10 @@ public class CityAdapter extends BindingAdapter<Area, ItemAreaBinding> {
     }
 
     private void showDialog(Area area) {
+        int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle(area.getName());
-        dialog.setMessage(JsonUtils.object2json(area.getSubarea()));
+        dialog.setMessage("下辖" + count + "个区/市");
         dialog.setRightButton("确定", new OnSimpleListener() {
             @Override
             public void onCallback() {
