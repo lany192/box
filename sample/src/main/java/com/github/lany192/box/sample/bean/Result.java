@@ -1,8 +1,13 @@
 package com.github.lany192.box.sample.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Result<T> {
+    @SerializedName(value = "code", alternate = "errorCode")
     private int code;
+    @SerializedName(value = "msg", alternate = "errorMsg")
     private String msg;
+
     private T data;
 
     public int getCode() {
