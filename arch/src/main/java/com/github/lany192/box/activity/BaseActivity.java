@@ -42,7 +42,6 @@ public abstract class BaseActivity extends BasicActivity
         implements StateLayout.OnRetryListener, BaseView {
     private View toolBarView;
     private StateLayout stateLayout;
-    private CompositeDisposable compositeDisposable;
 
     @NonNull
     public abstract ActivityConfig getConfig();
@@ -172,25 +171,10 @@ public abstract class BaseActivity extends BasicActivity
         log.i("点击重试");
     }
 
-
-    /**
-     * 处理disposable
-     */
-    public void addDisposable(Disposable disposable) {
-        if (compositeDisposable == null) {
-            compositeDisposable = new CompositeDisposable();
-        }
-        compositeDisposable.add(disposable);
-    }
-
     @Override
     public void onDestroy() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
-        }
-        if (compositeDisposable != null && compositeDisposable.isDisposed()) {
-            compositeDisposable.dispose();
-            compositeDisposable = null;
         }
         super.onDestroy();
     }
@@ -235,7 +219,7 @@ public abstract class BaseActivity extends BasicActivity
         stateLayout.showLoading();
     }
 
-    protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
+    protected <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
         return new ViewModelProvider(this).get(modelClass);
     }
 }

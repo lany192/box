@@ -1,6 +1,9 @@
 package com.github.lany192.box.fragment;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
@@ -49,5 +52,13 @@ public class BasicFragment extends Fragment {
             loadingDialog.cancel();
             loadingDialog = null;
         }
+    }
+
+    protected <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
+        return new ViewModelProvider(this).get(modelClass);
+    }
+
+    protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
+        return new ViewModelProvider(requireActivity()).get(modelClass);
     }
 }
