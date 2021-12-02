@@ -3,7 +3,6 @@ package com.github.lany192.box.sample.ui.main.index.girl;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.box.mvvm.LifecycleViewModel;
-import com.github.lany192.box.sample.delegate.ImageDelegate;
 import com.github.lany192.box.sample.http.ApiService;
 import com.github.lany192.multitype.delegate.Delegate;
 
@@ -18,11 +17,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class GirlViewModel extends LifecycleViewModel {
     private final MutableLiveData<List<Delegate>> items = new MutableLiveData<>();
-//    private final ApiService apiService;
+    private final ApiService apiService;
 
     @Inject
     public GirlViewModel(ApiService apiService) {
-//        this.apiService = apiService;
+        this.apiService = apiService;
     }
 
     public MutableLiveData<List<Delegate>> getItems() {
@@ -50,7 +49,7 @@ public class GirlViewModel extends LifecycleViewModel {
         images.add("https://hbimg.huabanimg.com/759ad84955b7be26f9a1c0121d76feb0a973a5e7f9375-Ki1IRC_fw658/format/webp");
         showLoading(false);
 
-        items.postValue(images.stream().map(ImageDelegate::new).collect(Collectors.toList()));
+        items.postValue(images.stream().map(GirlDelegate::new).collect(Collectors.toList()));
     }
 
 }
