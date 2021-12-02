@@ -3,6 +3,10 @@ package com.github.lany192.box.binding
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.box.activity.BindingActivity
+import com.github.lany192.box.fragment.BindingDialogFragment
+import com.github.lany192.box.fragment.BindingFragment
+import com.github.lany192.box.view.BindingLayout
 import java.lang.reflect.ParameterizedType
 
 internal fun <V : ViewBinding> Class<*>.getBinding(layoutInflater: LayoutInflater): V {

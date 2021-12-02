@@ -1,10 +1,11 @@
-package com.github.lany192.box.binding
+package com.github.lany192.box.view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.annotation.AttrRes
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.box.binding.getBinding
 
 /**
  * ViewBinding实现基类

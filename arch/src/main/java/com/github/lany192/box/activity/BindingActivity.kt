@@ -1,9 +1,9 @@
-package com.github.lany192.box.binding
+package com.github.lany192.box.activity
 
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.box.activity.ModelActivity
+import com.github.lany192.box.binding.getBinding
 import com.github.lany192.box.interfaces.BaseView
 import com.github.lany192.view.StateLayout
 import com.github.lany192.view.StateLayout.OnRetryListener
@@ -11,8 +11,7 @@ import com.github.lany192.view.StateLayout.OnRetryListener
 /**
  * ViewBinding实现基类
  */
-abstract class BindingActivity<VB : ViewBinding> : ModelActivity(), OnRetryListener,
-    BaseView {
+abstract class BindingActivity<VB : ViewBinding> : ModelActivity(), OnRetryListener, BaseView {
     lateinit var binding: VB
     lateinit var stateLayout: StateLayout
 

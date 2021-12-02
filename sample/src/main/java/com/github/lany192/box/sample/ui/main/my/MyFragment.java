@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.github.lany192.box.binding.BindingFragment;
+import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.login.LoginActivity;

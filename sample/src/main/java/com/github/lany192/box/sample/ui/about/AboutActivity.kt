@@ -1,8 +1,7 @@
 package com.github.lany192.box.sample.ui.about
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
-import com.github.lany192.box.binding.BindingActivity
+import com.github.lany192.box.activity.BindingActivity
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
 import dagger.hilt.android.AndroidEntryPoint
 

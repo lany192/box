@@ -1,10 +1,11 @@
-package com.github.lany192.box.binding
+package com.github.lany192.box.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.box.binding.getBinding
 import com.github.lany192.dialog.BaseDialog
 
 abstract class BindingDialogFragment<VB : ViewBinding> : BaseDialog() {

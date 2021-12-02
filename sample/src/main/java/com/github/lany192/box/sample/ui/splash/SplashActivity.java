@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.github.lany192.box.binding.BindingActivity;
+import com.github.lany192.box.activity.BindingActivity;
 import com.github.lany192.box.sample.databinding.ActivityLoginBinding;
 import com.github.lany192.box.sample.ui.main.MainActivity;
 
