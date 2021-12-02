@@ -1,8 +1,6 @@
 package com.github.lany192.box.mvp;
 
-import androidx.lifecycle.LifecycleOwner;
-
-public interface BaseView extends LifecycleOwner {
+public interface BaseView {
 
     void showEmpty();
 

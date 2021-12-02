@@ -8,12 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
+import com.github.lany192.box.fragment.BasicFragment
 import com.github.lany192.view.StateLayout
 
 /**
  * ViewBinding实现基类
  */
-abstract class BindingFragment<VB : ViewBinding> : Fragment() , StateLayout.OnRetryListener {
+abstract class BindingFragment<VB : ViewBinding> : BasicFragment() , StateLayout.OnRetryListener {
     protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
     lateinit var binding: VB
 

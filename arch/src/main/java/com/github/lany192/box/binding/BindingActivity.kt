@@ -6,13 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
+import com.github.lany192.box.activity.BasicActivity
 import com.github.lany192.view.StateLayout
 import com.github.lany192.view.StateLayout.OnRetryListener
 
 /**
  * ViewBinding实现基类
  */
-abstract class BindingActivity<VB : ViewBinding> : AppCompatActivity(), OnRetryListener {
+abstract class BindingActivity<VB : ViewBinding> : BasicActivity(), OnRetryListener {
     protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
     lateinit var binding: VB
 

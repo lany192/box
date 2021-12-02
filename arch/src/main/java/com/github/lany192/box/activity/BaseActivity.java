@@ -38,7 +38,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 /**
  * 通用基类
  */
-public abstract class BaseActivity extends BasicActivity implements StateLayout.OnRetryListener, BaseView {
+public abstract class BaseActivity extends BasicActivity
+        implements StateLayout.OnRetryListener, BaseView {
     private View toolBarView;
     private StateLayout stateLayout;
     private CompositeDisposable compositeDisposable;
