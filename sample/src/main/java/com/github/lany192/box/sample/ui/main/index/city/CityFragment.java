@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.github.lany192.box.sample.ui.main.index.article.ItemsFragment;
+import com.github.lany192.box.items.ItemsFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

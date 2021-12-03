@@ -1,5 +1,6 @@
 package com.github.lany192.box.sample.ui.main.index.article;
 
+import com.github.lany192.box.items.ItemsViewModel;
 import com.github.lany192.box.sample.bean.ArticleList;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;

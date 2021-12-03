@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.ui.main.index.article;
+package com.github.lany192.box.items;
 
 import androidx.lifecycle.MutableLiveData;
 

@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.ui.main.index.article;
+package com.github.lany192.box.items;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.lany192.box.databinding.FragmentItemsBinding;
 import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.sample.databinding.FragmentItemsBinding;
 import com.github.lany192.multitype.adapter.MultiAdapter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;

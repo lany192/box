@@ -34,9 +34,10 @@ public class AreaDelegate extends ItemDelegate<Area> {
 
     @Override
     public void onItemClicked(Area area, int position) {
+        int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");
-        dialog.setMessage(area.getName() + (area.getSubarea().size() + 1) + "个地级市");
+        dialog.setMessage(area.getName() + count+ "个地级市");
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setRightButton("确定", () -> ToastUtils.show(area.getName()));
