@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.github.lany192.multitype.delegate.ViewDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MultiTypeAdapter<T, VH extends BaseViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class MultiTypeAdapter<T extends ViewDelegate, VH extends BaseViewHolder>
+        extends RecyclerView.Adapter<VH> {
     private List<T> items = new ArrayList<>();
     private RecyclerView recyclerView;
 
@@ -36,7 +38,7 @@ public abstract class MultiTypeAdapter<T, VH extends BaseViewHolder> extends Rec
             ((GridLayoutManager) layoutManager).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    return 0;
+                    return getItem(position).getSpanSize();
                 }
             });
         }
@@ -57,6 +59,10 @@ public abstract class MultiTypeAdapter<T, VH extends BaseViewHolder> extends Rec
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
 
+    }
+
+    public T getItem(int position) {
+        return items.get(position);
     }
 
     @Override

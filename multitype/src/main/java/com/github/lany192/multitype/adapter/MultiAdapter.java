@@ -3,8 +3,6 @@ package com.github.lany192.multitype.adapter;
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.github.lany192.multitype.delegate.Delegate;
 
@@ -19,16 +17,6 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<Delegate, ItemViewHo
 
     public MultiAdapter(List<Delegate> items) {
         super(items);
-    }
-
-    public MultiAdapter(List<Delegate> items, GridLayoutManager layoutManager) {
-        super(items);
-        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return getItem(position).getSpanSize();
-            }
-        });
     }
 
     @Override
