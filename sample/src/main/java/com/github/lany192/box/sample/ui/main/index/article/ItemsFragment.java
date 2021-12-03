@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentItemsBinding;
@@ -22,15 +23,25 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         extends BindingFragment<FragmentItemsBinding> {
     protected VM viewModel;
 
+    public RecyclerView.LayoutManager getLayoutManager() {
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        layoutManager.setOrientation(GridLayoutManager.VERTICAL);
+        return layoutManager;
+    }
+
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        RecyclerView.LayoutManager layoutManager = getLayoutManager();
+        MultiAdapter adapter;
+        if (layoutManager instanceof GridLayoutManager) {
+            adapter = new MultiAdapter(new ArrayList<>(), (GridLayoutManager) layoutManager);
+        } else {
+            adapter = new MultiAdapter(new ArrayList<>());
+        }
         binding.recyclerView.setLayoutManager(layoutManager);
-        MultiAdapter adapter = new MultiAdapter(new ArrayList<>());
         binding.recyclerView.setAdapter(adapter);
         binding.refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
