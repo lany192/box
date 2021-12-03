@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.delegate;
+package com.github.lany192.box.sample.ui.main.discover;
 
 import com.github.lany192.box.sample.R;
 import com.github.lany192.multitype.adapter.ItemViewHolder;
