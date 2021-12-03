@@ -8,24 +8,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.sample.databinding.FragmentCityBinding;
-
-import java.util.ArrayList;
+import com.github.lany192.box.sample.ui.main.index.article.ItemsFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class CityFragment extends BindingFragment<FragmentCityBinding> {
+public class CityFragment extends ItemsFragment<CityViewModel> {
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        CityViewModel viewModel = getFragmentViewModel(CityViewModel.class);
-        CityAdapter adapter = new CityAdapter(new ArrayList<>());
-        binding.recyclerView.setAdapter(adapter);
-        viewModel.getItems().observe(this, adapter::setNewInstance);
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 showLoading();
