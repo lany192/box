@@ -1,38 +1,68 @@
 package com.github.lany192.box.sample.ui.main.index.article;
 
+import androidx.annotation.CallSuper;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.box.mvvm.LifecycleViewModel;
 import com.github.lany192.multitype.delegate.Delegate;
-import com.hjq.toast.ToastUtils;
 
 import java.util.List;
 
-public class ItemsViewModel extends LifecycleViewModel {
-    private final MutableLiveData<List<Delegate>> items = new MutableLiveData<>();
-    private int page;
+public abstract class ItemsViewModel extends LifecycleViewModel {
+    private final ItemsLiveData itemsLiveData = new ItemsLiveData();
+    private final MutableLiveData<Boolean> refreshState = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> loadMoreState = new MutableLiveData<>();
+    private int page = 1;
 
     public int getPage() {
         return page;
     }
 
-    public void setPage(int page) {
-        this.page = page;
+    public ItemsLiveData getItems() {
+        return itemsLiveData;
     }
 
-    public MutableLiveData<List<Delegate>> getItems() {
-        return items;
+    public MutableLiveData<Boolean> getRefreshState() {
+        return refreshState;
     }
 
-    public void setItems(List<Delegate> items) {
-        this.items.postValue(items);
+    public MutableLiveData<Boolean> getLoadMoreState() {
+        return loadMoreState;
+    }
+
+    public void finishRefresh() {
+        this.refreshState.postValue(false);
+    }
+
+    public void finishLoadMore() {
+        this.loadMoreState.postValue(false);
+    }
+
+    public void resetItems(List<Delegate> items) {
+        this.itemsLiveData.setItems(items);
+    }
+
+    public void addItems(List<Delegate> items) {
+        this.itemsLiveData.addItems(items);
     }
 
     public void onRefresh() {
-        ToastUtils.show("onRefresh");
+        refreshState.postValue(true);
+        page = 1;
+        request(true);
     }
 
     public void onLoadMore() {
-        ToastUtils.show("onLoadMore");
+        loadMoreState.postValue(true);
+        page += 1;
+        request(false);
+    }
+
+    public abstract void request(boolean refresh);
+
+    @CallSuper
+    @Override
+    protected void onLazyLoad() {
+        request(true);
     }
 }

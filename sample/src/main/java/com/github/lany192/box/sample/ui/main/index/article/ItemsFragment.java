@@ -1,7 +1,6 @@
 package com.github.lany192.box.sample.ui.main.index.article;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = getFragmentViewModel((Class<VM>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+        viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.recyclerView.setLayoutManager(layoutManager);
@@ -37,23 +36,34 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 viewModel.onLoadMore();
-                new Handler().postDelayed(refreshLayout::finishLoadMore, 2000);
             }
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 viewModel.onRefresh();
-                new Handler().postDelayed(refreshLayout::finishRefresh, 2000);
             }
         });
-        viewModel.getItems().observe(this, adapter::setNewInstance);
-        viewModel.getLoading().observe(this, loading -> {
-            if (loading) {
-                showLoading();
-            } else {
-                showContent();
+        viewModel.getRefreshState().observe(this, refreshing -> {
+            if (!refreshing) {
+                binding.refreshLayout.finishRefresh();
             }
         });
+        viewModel.getLoadMoreState().observe(this, moreLoading -> {
+            if (!moreLoading) {
+                binding.refreshLayout.finishLoadMore();
+            }
+        });
+        viewModel.getItems().observe(this, data -> adapter.setNewInstance(data.getItems()));
+
+//        viewModel.getLoading().observe(this, loading -> {
+//            if (loading) {
+//                showLoading();
+//            } else {
+//                showContent();
+//            }
+//        });
         return root;
     }
+
+
 }

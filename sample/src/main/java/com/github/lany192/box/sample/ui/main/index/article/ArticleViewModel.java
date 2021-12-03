@@ -21,27 +21,24 @@ public class ArticleViewModel extends ItemsViewModel {
     }
 
     @Override
-    protected void onLazyLoad() {
-        requestCityInfo();
-    }
-
-    public void requestCityInfo() {
-        showLoading(true);
-        apiService.getHomeArticles(1).subscribe(new ApiCallback<ArticleList>() {
+    public void request(boolean refresh) {
+        apiService.getHomeArticles(getPage()).subscribe(new ApiCallback<ArticleList>() {
 
             @Override
             public void onSuccess(String msg, ArticleList result) {
-                showLoading(false);
-
-                setItems(result.getDatas().stream().map(ArticleDelegate::new).collect(Collectors.toList()));
+                if (refresh) {
+                    resetItems(result.getDatas().stream().map(ArticleDelegate::new).collect(Collectors.toList()));
+                    finishRefresh();
+                } else {
+                    addItems(result.getDatas().stream().map(ArticleDelegate::new).collect(Collectors.toList()));
+                    finishLoadMore();
+                }
             }
 
             @Override
             public void onFailure(String msg, int code) {
-                showLoading(false);
                 ToastUtils.show(msg);
             }
         });
     }
-
 }
