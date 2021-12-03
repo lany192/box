@@ -53,7 +53,13 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
                 binding.refreshLayout.finishLoadMore();
             }
         });
-        viewModel.getItems().observe(this, data -> adapter.setNewInstance(data.getItems()));
+        viewModel.getItems().observe(this, data -> {
+            if (data.isRefresh()) {
+                adapter.setNewInstance(data.getItems());
+            } else {
+                adapter.addData(data.getItems());
+            }
+        });
 
 //        viewModel.getLoading().observe(this, loading -> {
 //            if (loading) {

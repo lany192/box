@@ -38,6 +38,7 @@ public class ArticleViewModel extends ItemsViewModel {
             @Override
             public void onFailure(String msg, int code) {
                 ToastUtils.show(msg);
+                stopRequest();
             }
         });
     }

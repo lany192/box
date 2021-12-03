@@ -111,4 +111,6 @@ dependencies {
     implementation 'com.github.lany192.webview:x5web:1.0.2'
     //tencent x5 https://x5.tencent.com/docs/index.html
     implementation 'com.tencent.tbs:tbssdk:54002-beta'
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.9'
 }

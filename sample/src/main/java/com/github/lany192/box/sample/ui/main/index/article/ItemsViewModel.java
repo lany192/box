@@ -38,6 +38,11 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
         this.loadMoreState.postValue(false);
     }
 
+    public void stopRequest() {
+        this.refreshState.postValue(false);
+        this.loadMoreState.postValue(false);
+    }
+
     public void resetItems(List<Delegate> items) {
         this.itemsLiveData.setItems(items);
     }
