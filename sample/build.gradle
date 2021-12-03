@@ -103,4 +103,7 @@ dependencies {
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-nonreflection-ktx:1.2.6'
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:1.2.6'
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-brvah:1.2.6'
+
+    //tencent x5 https://x5.tencent.com/docs/index.html
+    implementation 'com.tencent.tbs:tbssdk:44132'
 }
