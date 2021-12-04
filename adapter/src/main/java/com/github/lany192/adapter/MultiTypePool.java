@@ -11,13 +11,12 @@ import java.util.List;
  * An List implementation of TypePool.
  */
 public class MultiTypePool implements TypePool {
-
-    private final @NonNull
-    List<Class<?>> classes;
-    private final @NonNull
-    List<ItemViewBinder<?, ?>> binders;
-    private final @NonNull
-    List<Linker<?>> linkers;
+    @NonNull
+    private final List<Class<?>> classes;
+    @NonNull
+    private final List<ItemViewBinder<?, ?>> binders;
+    @NonNull
+    private final List<Linker<?>> linkers;
 
 
     /**

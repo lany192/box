@@ -19,11 +19,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private static final String TAG = "MultiTypeAdapter";
-
-    private @NonNull
-    List<?> items;
-    private @NonNull
-    TypePool typePool;
+    @NonNull
+    private List<?> items;
+    @NonNull
+    private TypePool typePool;
 
 
     /**
