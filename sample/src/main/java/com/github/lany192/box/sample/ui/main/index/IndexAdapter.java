@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.github.lany192.box.sample.ui.main.discover.DiscoverFragment;
+import com.github.lany192.box.sample.ui.main.index.article.ArticleFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class IndexAdapter extends FragmentStateAdapter {
         if (position % 2 == 1) {
             return new DiscoverFragment();
         } else {
-            return new DiscoverFragment();
+            return new ArticleFragment();
         }
     }
 

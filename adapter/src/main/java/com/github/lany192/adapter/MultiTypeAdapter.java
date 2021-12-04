@@ -192,9 +192,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     @Override
-    public final ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
+    public final ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ItemViewBinder<?, ?> binder = typePool.getItemViewBinder(indexViewType);
+        ItemViewBinder<?, ?> binder = typePool.getItemViewBinder(viewType);
         return binder.onCreateViewHolder(inflater, parent);
     }
 
