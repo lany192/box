@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.github.lany192.box.sample.ui.main.index.article.ArticleFragment;
-import com.github.lany192.box.sample.ui.main.index.city.CityFragment;
-import com.github.lany192.box.sample.ui.main.index.girl.GirlFragment;
+import com.github.lany192.box.sample.ui.main.discover.DiscoverFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +25,12 @@ public class IndexAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if (position == 0) {
-            return new ArticleFragment();
+            return new DiscoverFragment();
         }
         if (position % 2 == 1) {
-            return new CityFragment();
+            return new DiscoverFragment();
         } else {
-            return new GirlFragment();
+            return new DiscoverFragment();
         }
     }
 
