@@ -10,29 +10,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.multitype.delegate.ViewDelegate;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public abstract class MultiTypeAdapter<T extends ViewDelegate, VH extends BaseViewHolder>
-        extends RecyclerView.Adapter<VH> {
-    private List<T> items = new ArrayList<>();
-    private RecyclerView recyclerView;
+public class MultiTypeAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+    private List<ViewDelegate> items;
+    private Context context;
+    private final HashMap<Integer, ViewDelegate> itemTypeMap = new HashMap<>();
 
-    public MultiTypeAdapter(List<T> items) {
+    public MultiTypeAdapter(List<ViewDelegate> items) {
         this.items = items;
     }
 
+    public void setItems(List<ViewDelegate> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
+    public void addItems(List<ViewDelegate> items) {
+        this.items.addAll(items);
+        notifyItemRangeChanged(items.size(), items.size());
+    }
+
     public Context getContext() {
-        if (recyclerView != null) {
-            return recyclerView.getContext();
-        }
-        return null;
+        return context;
     }
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        this.recyclerView = recyclerView;
+        this.context = recyclerView.getContext();
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {
             ((GridLayoutManager) layoutManager).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -47,28 +54,40 @@ public abstract class MultiTypeAdapter<T extends ViewDelegate, VH extends BaseVi
     @Override
     public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onDetachedFromRecyclerView(recyclerView);
-        this.recyclerView = null;
+        this.itemTypeMap.clear();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        ViewDelegate delegate = getItem(position);
+        if (!itemTypeMap.containsKey(delegate.getItemType())) {
+            itemTypeMap.put(delegate.getItemType(), delegate);
+        }
+        return delegate.getItemType();
     }
 
     @NonNull
     @Override
-    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        ViewDelegate delegate = itemTypeMap.get(viewType);
+        return new BaseViewHolder(delegate.getView());
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VH holder, int position) {
-
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+        ViewDelegate delegate = getItem(position);
+        delegate.onBindView(getContext(), holder, position);
     }
 
-    public T getItem(int position) {
-        return items.get(position);
+    public ViewDelegate getItem(int position) {
+        if (position >= 0 && position < items.size()) {
+            return items.get(position);
+        }
+        throw new RuntimeException("数组越界，position=" + position + ",size=" + items.size());
     }
 
     @Override
     public int getItemCount() {
         return items.size();
     }
-
-    public abstract void convert(VH holder, int position);
 }

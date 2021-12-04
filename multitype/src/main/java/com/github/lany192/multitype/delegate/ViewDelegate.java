@@ -1,8 +1,10 @@
 package com.github.lany192.multitype.delegate;
 
 import android.content.Context;
+import android.view.View;
 
-import com.github.lany192.multitype.adapter.ItemViewHolder;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+
 
 public interface ViewDelegate {
 
@@ -13,9 +15,9 @@ public interface ViewDelegate {
      *
      * @return 大小
      */
-    default int getSpanSize() {
-        return 2;
-    }
+    int getSpanSize();
 
-    void convert(ItemViewHolder holder, Context context);
+    View getView();
+
+    void onBindView(Context context, BaseViewHolder holder, int position);
 }
