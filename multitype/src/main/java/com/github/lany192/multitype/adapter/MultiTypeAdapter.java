@@ -1,6 +1,7 @@
 package com.github.lany192.multitype.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public void addItems(List<ViewDelegate> items) {
         this.items.addAll(items);
+
+
         notifyItemRangeChanged(items.size(), items.size());
     }
 
@@ -70,13 +73,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ViewDelegate delegate = itemTypeMap.get(viewType);
-        return new BaseViewHolder(delegate.getView());
+        View view = delegate.getView(context, parent);
+        return new BaseViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         ViewDelegate delegate = getItem(position);
-        delegate.onBindView(getContext(), holder, position);
+        delegate.onBind(holder, position);
     }
 
     public ViewDelegate getItem(int position) {

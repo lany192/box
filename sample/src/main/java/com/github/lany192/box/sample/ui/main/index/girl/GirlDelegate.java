@@ -2,7 +2,6 @@ package com.github.lany192.box.sample.ui.main.index.girl;
 
 import android.view.LayoutInflater;
 
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.box.sample.databinding.ItemGirlBinding;
 import com.github.lany192.multitype.delegate.ItemDelegate;
 import com.github.lany192.utils.ImageUtils;
@@ -14,12 +13,12 @@ public class GirlDelegate extends ItemDelegate<String, ItemGirlBinding> {
     }
 
     @Override
-    public ItemGirlBinding getViewBinding() {
-        return ItemGirlBinding.inflate(LayoutInflater.from(getContext()));
+    public ItemGirlBinding getViewBinding(LayoutInflater inflater) {
+        return ItemGirlBinding.inflate(inflater);
     }
 
     @Override
-    public void onBindItem(ItemGirlBinding binding, BaseViewHolder holder, String url, int position) {
+    public void onBind(ItemGirlBinding binding, String url, int position) {
         ImageUtils.show(binding.myImageView, url);
     }
 

@@ -3,9 +3,7 @@ package com.github.lany192.box.sample.ui.main.index.article;
 import android.content.Intent;
 import android.view.LayoutInflater;
 
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.box.sample.MockUtils;
-import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Article;
 import com.github.lany192.box.sample.databinding.ItemArticleBinding;
 import com.github.lany192.box.sample.ui.browser.BrowserActivity;
@@ -22,21 +20,16 @@ public class ArticleDelegate extends ItemDelegate<Article, ItemArticleBinding> {
     }
 
     @Override
-    public int getSpanSize() {
-        return 2;
+    public ItemArticleBinding getViewBinding(LayoutInflater inflater) {
+        return ItemArticleBinding.inflate(inflater);
     }
 
     @Override
-    public ItemArticleBinding getViewBinding() {
-        return ItemArticleBinding.inflate(LayoutInflater.from(getContext()));
-    }
-
-    @Override
-    public void onBindItem(ItemArticleBinding binding, BaseViewHolder holder, Article item, int position) {
-        holder.setText(R.id.title, item.getTitle());
-        holder.setText(R.id.desc, item.getAuthor());
-        holder.setText(R.id.time, DateUtils.format(new Date(item.getPublishTime())));
-        ImageUtils.show(binding.image,MockUtils.getImageUrl());
+    public void onBind(ItemArticleBinding binding, Article item, int position) {
+        binding.title.setText(item.getTitle());
+        binding.desc.setText(item.getAuthor());
+        binding.time.setText(DateUtils.format(new Date(item.getPublishTime())));
+        ImageUtils.show(binding.image, MockUtils.getImageUrl());
     }
 
     @Override
