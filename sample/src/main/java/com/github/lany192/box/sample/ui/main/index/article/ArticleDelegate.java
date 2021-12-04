@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.drakeet.multitype.ItemViewBinder;
+import com.github.lany192.adapter.ItemViewBinder;
 import com.github.lany192.box.items.BaseViewHolder;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;

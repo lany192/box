@@ -76,6 +76,7 @@ dependencies {
     implementation project(':core')
     implementation project(':view')
     implementation project(':dialog')
+    implementation project(':adapter')
 
 
 //    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
