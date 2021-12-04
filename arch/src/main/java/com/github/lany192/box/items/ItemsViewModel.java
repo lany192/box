@@ -4,7 +4,6 @@ import androidx.annotation.CallSuper;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.box.mvvm.LifecycleViewModel;
-import com.github.lany192.multitype.delegate.ViewDelegate;
 
 import java.util.List;
 
@@ -43,11 +42,11 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
         this.loadMoreState.postValue(false);
     }
 
-    public void resetItems(List<ViewDelegate> items) {
+    public void resetItems(List<Object> items) {
         this.itemsLiveData.setItems(items);
     }
 
-    public void addItems(List<ViewDelegate> items) {
+    public void addItems(List<Object> items) {
         this.itemsLiveData.addItems(items);
     }
 

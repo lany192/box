@@ -3,11 +3,9 @@ package com.github.lany192.box.sample.ui.main.discover;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.box.mvvm.LifecycleViewModel;
-import com.github.lany192.multitype.delegate.ViewDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -15,14 +13,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class DiscoverViewModel extends LifecycleViewModel{
-    private final MutableLiveData<List<ViewDelegate>> items = new MutableLiveData<>();
+    private final MutableLiveData<List<String>> items = new MutableLiveData<>();
 
     @Inject
     public DiscoverViewModel() {
         requestCityInfo();
     }
 
-    public MutableLiveData<List<ViewDelegate>> getItems() {
+    public MutableLiveData<List<String>> getItems() {
         return items;
     }
 
@@ -41,7 +39,7 @@ public class DiscoverViewModel extends LifecycleViewModel{
         images.add("https://hbimg.huabanimg.com/e8cde189321a974090eef2d27861c46bada6eee0110aba-axLQ4L_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/759ad84955b7be26f9a1c0121d76feb0a973a5e7f9375-Ki1IRC_fw658/format/webp");
 
-        items.postValue(images.stream().map(ImageDelegate::new).collect(Collectors.toList()));
+        items.postValue(images);
 
         showLoading(false);
     }

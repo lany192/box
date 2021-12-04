@@ -1,42 +1,46 @@
 package com.github.lany192.box.sample.ui.main.index.article;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
+import com.drakeet.multitype.ItemViewBinder;
+import com.github.lany192.box.items.BaseViewHolder;
 import com.github.lany192.box.sample.MockUtils;
+import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Article;
-import com.github.lany192.box.sample.databinding.ItemArticleBinding;
-import com.github.lany192.box.sample.ui.browser.BrowserActivity;
 import com.github.lany192.box.utils.DateUtils;
-import com.github.lany192.multitype.delegate.ItemDelegate;
 import com.github.lany192.utils.ImageUtils;
 
 import java.util.Date;
 
-public class ArticleDelegate extends ItemDelegate<Article, ItemArticleBinding> {
+public class ArticleDelegate extends ItemViewBinder<Article, BaseViewHolder> {
 
-    public ArticleDelegate(Article data) {
-        super(data);
+    @Override
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, Article item) {
+        ImageView imageView = holder.getView(R.id.image);
+        ImageUtils.show(imageView, MockUtils.getImageUrl());
+
+        holder.setText(R.id.title, item.getTitle());
+        holder.setText(R.id.desc, item.getAuthor());
+        holder.setText(R.id.time, DateUtils.format(new Date(item.getPublishTime())));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getContext(), BrowserActivity.class);
+//                intent.putExtra("url", item.getLink());
+//                getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
-    public ItemArticleBinding getViewBinding(LayoutInflater inflater, ViewGroup parent) {
-        return ItemArticleBinding.inflate(inflater, parent, false);
-    }
-
-    @Override
-    public void onBind(ItemArticleBinding binding, Article item, int position) {
-        binding.title.setText(item.getTitle());
-        binding.desc.setText(item.getAuthor());
-        binding.time.setText(DateUtils.format(new Date(item.getPublishTime())));
-        ImageUtils.show(binding.image, MockUtils.getImageUrl());
-    }
-
-    @Override
-    public void onItemClicked(Article item, int position) {
-        Intent intent = new Intent(getContext(), BrowserActivity.class);
-        intent.putExtra("url", item.getLink());
-        getContext().startActivity(intent);
+    public BaseViewHolder onCreateViewHolder(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup parent) {
+        View view = layoutInflater.inflate(R.layout.item_article, parent, false);
+        return new BaseViewHolder(view);
     }
 }

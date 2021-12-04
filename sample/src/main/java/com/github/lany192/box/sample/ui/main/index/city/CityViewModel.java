@@ -6,8 +6,8 @@ import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
 import com.hjq.toast.ToastUtils;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -30,10 +30,10 @@ public class CityViewModel extends ItemsViewModel {
             @Override
             public void onSuccess(String msg, List<Area> items) {
                 if (refresh) {
-                    resetItems(items.stream().map(AreaDelegate::new).collect(Collectors.toList()));
+                    resetItems(Collections.singletonList(items));
                     finishRefresh();
                 } else {
-                    addItems(items.stream().map(AreaDelegate::new).collect(Collectors.toList()));
+                    addItems(Collections.singletonList(items));
                     finishLoadMore();
                 }
                 showLoading(false);

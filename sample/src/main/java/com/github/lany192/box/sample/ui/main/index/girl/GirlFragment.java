@@ -10,11 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.drakeet.multitype.MultiTypeAdapter;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentGirlBinding;
-import com.github.lany192.multitype.adapter.MultiTypeAdapter;
-
-import java.util.ArrayList;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -43,7 +41,8 @@ public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
             }
         });
 
-        MultiTypeAdapter adapter = new MultiTypeAdapter(new ArrayList<>());
+        MultiTypeAdapter adapter = new MultiTypeAdapter();
+        adapter.register(String.class,new GirlDelegate());
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, adapter::setItems);
         viewModel.getLoading().observe(this, loading -> {

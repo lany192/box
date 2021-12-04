@@ -9,12 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.drakeet.multitype.MultiTypeAdapter;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
-import com.github.lany192.multitype.adapter.MultiTypeAdapter;
 import com.gyf.immersionbar.ImmersionBar;
-
-import java.util.ArrayList;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -31,7 +29,8 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
 
         binding.toolbar.setTitle("发现");
         ImmersionBar.with(requireActivity()).titleBar(binding.toolbar).statusBarDarkFont(true).init();
-        adapter = new MultiTypeAdapter(new ArrayList<>());
+        adapter = new MultiTypeAdapter();
+        adapter.register(String.class,new ImageDelegate());
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
 //        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
@@ -40,12 +39,12 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
 
         viewModel.getItems().observe(this, items -> {
             adapter.setItems(items);
-            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int position) {
-                    return items.get(position).getSpanSize();
-                }
-            });
+//            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+//                @Override
+//                public int getSpanSize(int position) {
+//                    return items.get(position).getSpanSize();
+//                }
+//            });
         });
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {

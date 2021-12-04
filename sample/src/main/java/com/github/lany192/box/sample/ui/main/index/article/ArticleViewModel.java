@@ -6,7 +6,7 @@ import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
 import com.hjq.toast.ToastUtils;
 
-import java.util.stream.Collectors;
+import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -28,10 +28,10 @@ public class ArticleViewModel extends ItemsViewModel {
             @Override
             public void onSuccess(String msg, ArticleList result) {
                 if (refresh) {
-                    resetItems(result.getDatas().stream().map(ArticleDelegate::new).collect(Collectors.toList()));
+                    resetItems(Collections.singletonList(result.getDatas()));
                     finishRefresh();
                 } else {
-                    addItems(result.getDatas().stream().map(ArticleDelegate::new).collect(Collectors.toList()));
+                    addItems(Collections.singletonList(result.getDatas()));
                     finishLoadMore();
                 }
             }
