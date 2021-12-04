@@ -20,4 +20,6 @@ public interface ViewDelegate {
     View getView();
 
     void onBindView(Context context, BaseViewHolder holder, int position);
+
+
 }

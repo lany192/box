@@ -1,35 +1,41 @@
 package com.github.lany192.box.sample.ui.main.index.city;
 
+import android.view.LayoutInflater;
+
+import androidx.annotation.NonNull;
+
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Area;
+import com.github.lany192.box.sample.databinding.ItemAreaBinding;
 import com.github.lany192.dialog.SimpleDialog;
-import com.github.lany192.multitype.adapter.ItemViewHolder;
 import com.github.lany192.multitype.delegate.ItemDelegate;
+import com.github.lany192.utils.ImageUtils;
 import com.hjq.toast.ToastUtils;
 
-public class AreaDelegate extends ItemDelegate<Area> {
+public class AreaDelegate extends ItemDelegate<Area, ItemAreaBinding> {
 
     public AreaDelegate(Area data) {
         super(data);
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.item_area;
+    public ItemAreaBinding getViewBinding() {
+        return ItemAreaBinding.inflate(LayoutInflater.from(getContext()));
+    }
+
+    @Override
+    public void onBindItem(ItemAreaBinding binding, BaseViewHolder holder, Area area, int position) {
+        holder.setText(R.id.title, area.getName());
+        int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
+        holder.setText(R.id.desc, "下辖" + count + "个区/市");
+        ImageUtils.show(binding.image,MockUtils.getImageUrl());
     }
 
     @Override
     public int getSpanSize() {
         return 1;
-    }
-
-    @Override
-    public void bind(ItemViewHolder holder, Area area, int position) {
-        holder.setText(R.id.title, area.getName());
-        int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
-        holder.setText(R.id.desc, "下辖" + count + "个区/市");
-        holder.setImage(R.id.image, MockUtils.getImageUrl());
     }
 
     @Override

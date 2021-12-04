@@ -1,10 +1,13 @@
 package com.github.lany192.box.sample.ui.main.discover;
 
-import com.github.lany192.box.sample.R;
-import com.github.lany192.multitype.adapter.ItemViewHolder;
-import com.github.lany192.multitype.delegate.ItemDelegate;
+import android.view.LayoutInflater;
 
-public class ImageDelegate extends ItemDelegate<String> {
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.github.lany192.box.sample.databinding.ItemImageBinding;
+import com.github.lany192.multitype.delegate.ItemDelegate;
+import com.github.lany192.utils.ImageUtils;
+
+public class ImageDelegate extends ItemDelegate<String, ItemImageBinding> {
 
     public ImageDelegate(String data) {
         super(data);
@@ -16,12 +19,12 @@ public class ImageDelegate extends ItemDelegate<String> {
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.item_image;
+    public ItemImageBinding getViewBinding() {
+        return ItemImageBinding.inflate(LayoutInflater.from(getContext()));
     }
 
     @Override
-    public void bind(ItemViewHolder holder, String pic, int position) {
-        holder.setImage(R.id.my_image_view, pic);
+    public void onBindItem(ItemImageBinding binding, BaseViewHolder holder, String url, int position) {
+        ImageUtils.show(binding.myImageView, url);
     }
 }

@@ -3,7 +3,7 @@ package com.github.lany192.box.sample.ui.main.discover;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.box.mvvm.LifecycleViewModel;
-import com.github.lany192.multitype.delegate.Delegate;
+import com.github.lany192.multitype.delegate.ViewDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class DiscoverViewModel extends LifecycleViewModel{
-    private final MutableLiveData<List<Delegate>> items = new MutableLiveData<>();
+    private final MutableLiveData<List<ViewDelegate>> items = new MutableLiveData<>();
 
     @Inject
     public DiscoverViewModel() {
         requestCityInfo();
     }
 
-    public MutableLiveData<List<Delegate>> getItems() {
+    public MutableLiveData<List<ViewDelegate>> getItems() {
         return items;
     }
 

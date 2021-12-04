@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.lany192.box.databinding.FragmentItemsBinding;
 import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.multitype.adapter.MultiAdapter;
+import com.github.lany192.multitype.adapter.MultiTypeAdapter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
@@ -35,12 +35,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
         RecyclerView.LayoutManager layoutManager = getLayoutManager();
-        MultiAdapter adapter;
-        if (layoutManager instanceof GridLayoutManager) {
-            adapter = new MultiAdapter(new ArrayList<>(), (GridLayoutManager) layoutManager);
-        } else {
-            adapter = new MultiAdapter(new ArrayList<>());
-        }
+        MultiTypeAdapter adapter = new MultiTypeAdapter(new ArrayList<>());
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
         binding.refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
@@ -66,9 +61,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         });
         viewModel.getItems().observe(this, data -> {
             if (data.isRefresh()) {
-                adapter.setNewInstance(data.getItems());
+                adapter.setItems(data.getItems());
             } else {
-                adapter.addData(data.getItems());
+                adapter.addItems(data.getItems());
             }
         });
 
