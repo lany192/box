@@ -1,6 +1,7 @@
 package com.github.lany192.box.sample.ui.main.discover;
 
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.github.lany192.box.sample.databinding.ItemImageBinding;
 import com.github.lany192.multitype.delegate.ItemDelegate;
@@ -13,8 +14,8 @@ public class ImageDelegate extends ItemDelegate<String, ItemImageBinding> {
     }
 
     @Override
-    public ItemImageBinding getViewBinding(LayoutInflater inflater) {
-        return ItemImageBinding.inflate(inflater);
+    public ItemImageBinding getViewBinding(LayoutInflater inflater, ViewGroup parent) {
+        return ItemImageBinding.inflate(inflater, parent, false);
     }
 
     @Override

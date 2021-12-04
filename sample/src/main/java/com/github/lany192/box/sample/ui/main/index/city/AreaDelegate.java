@@ -1,6 +1,7 @@
 package com.github.lany192.box.sample.ui.main.index.city;
 
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.bean.Area;
@@ -17,8 +18,8 @@ public class AreaDelegate extends ItemDelegate<Area, ItemAreaBinding> {
     }
 
     @Override
-    public ItemAreaBinding getViewBinding(LayoutInflater inflater) {
-        return ItemAreaBinding.inflate(inflater);
+    public ItemAreaBinding getViewBinding(LayoutInflater inflater, ViewGroup parent) {
+        return ItemAreaBinding.inflate(inflater, parent, false);
     }
 
     @Override

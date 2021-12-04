@@ -41,7 +41,7 @@ public abstract class ItemDelegate<T, VB extends ViewBinding> implements ViewDel
     @Override
     public View getView(Context context, ViewGroup parent) {
         this.context = context;
-        this.binding = getViewBinding(LayoutInflater.from(context));
+        this.binding = getViewBinding(LayoutInflater.from(context), parent);
         return binding.getRoot();
     }
 
@@ -50,7 +50,7 @@ public abstract class ItemDelegate<T, VB extends ViewBinding> implements ViewDel
         return 1;
     }
 
-    public abstract VB getViewBinding(LayoutInflater inflater);
+    public abstract VB getViewBinding(LayoutInflater inflater, ViewGroup parent);
 
     public abstract void onBind(VB binding, T t, int position);
 

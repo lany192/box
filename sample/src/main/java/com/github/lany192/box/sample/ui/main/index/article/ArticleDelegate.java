@@ -2,6 +2,7 @@ package com.github.lany192.box.sample.ui.main.index.article;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.bean.Article;
@@ -20,8 +21,8 @@ public class ArticleDelegate extends ItemDelegate<Article, ItemArticleBinding> {
     }
 
     @Override
-    public ItemArticleBinding getViewBinding(LayoutInflater inflater) {
-        return ItemArticleBinding.inflate(inflater);
+    public ItemArticleBinding getViewBinding(LayoutInflater inflater, ViewGroup parent) {
+        return ItemArticleBinding.inflate(inflater, parent, false);
     }
 
     @Override
