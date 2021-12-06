@@ -12,12 +12,13 @@ import com.github.lany192.box.items.ItemDelegate;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Article;
+import com.github.lany192.box.sample.databinding.ItemArticleBinding;
 import com.github.lany192.box.utils.DateUtils;
 import com.github.lany192.utils.ImageUtils;
 
 import java.util.Date;
 
-public class ArticleDelegate extends ItemDelegate<Article> {
+public class ArticleDelegate extends ItemDelegate<Article, ItemArticleBinding> {
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, Article item) {
@@ -39,8 +40,13 @@ public class ArticleDelegate extends ItemDelegate<Article> {
     }
 
     @Override
-    public BaseViewHolder onCreateViewHolder(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup parent) {
-        View view = layoutInflater.inflate(R.layout.item_article, parent, false);
-        return new BaseViewHolder(view);
+    public ItemArticleBinding getViewBinding(LayoutInflater inflater, ViewGroup parent) {
+        return ItemArticleBinding.inflate(inflater,parent,false);
     }
+
+//    @Override
+//    public BaseViewHolder onCreateViewHolder(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup parent) {
+//        View view = layoutInflater.inflate(R.layout.item_article, parent, false);
+//        return new BaseViewHolder(view);
+//    }
 }

@@ -1,7 +1,6 @@
 package com.github.lany192.box.sample.ui.main.index.city;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -12,8 +11,10 @@ import com.github.lany192.box.items.ItemDelegate;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Area;
+import com.github.lany192.box.sample.databinding.ItemAreaBinding;
 import com.github.lany192.utils.ImageUtils;
-public class AreaDelegate extends ItemDelegate<Area> {
+
+public class AreaDelegate extends ItemDelegate<Area, ItemAreaBinding> {
 
 //    @Override
 //    public void onItemClicked(Area area, int position) {
@@ -28,18 +29,16 @@ public class AreaDelegate extends ItemDelegate<Area> {
 //        dialog.show(getContext());
 //    }
 
-    @NonNull
     @Override
-    public BaseViewHolder onCreateViewHolder(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup parent) {
-        View view = layoutInflater.inflate(R.layout.item_area, parent, false);
-        return new BaseViewHolder(view);
+    public ItemAreaBinding getViewBinding(LayoutInflater inflater, ViewGroup parent) {
+        return ItemAreaBinding.inflate(inflater, parent, false);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, Area area) {
-        holder.setText(R.id.title,area.getName());
+        holder.setText(R.id.title, area.getName());
         int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
-        holder.setText(R.id.desc,"下辖" + count + "个区/市");
+        holder.setText(R.id.desc, "下辖" + count + "个区/市");
 
         ImageView imageView = holder.getView(R.id.image);
         ImageUtils.show(imageView, MockUtils.getImageUrl());
