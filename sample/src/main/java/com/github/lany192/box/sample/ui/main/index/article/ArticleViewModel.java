@@ -28,10 +28,10 @@ public class ArticleViewModel extends ItemsViewModel {
             @Override
             public void onSuccess(String msg, ArticleList result) {
                 if (refresh) {
-                    resetItems(Collections.singletonList(result.getDatas()));
+                    resetItems(result.getDatas());
                     finishRefresh();
                 } else {
-                    addItems(Collections.singletonList(result.getDatas()));
+                    addItems(result.getDatas());
                     finishLoadMore();
                 }
             }

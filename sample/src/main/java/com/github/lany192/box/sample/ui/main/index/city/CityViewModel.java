@@ -30,10 +30,10 @@ public class CityViewModel extends ItemsViewModel {
             @Override
             public void onSuccess(String msg, List<Area> items) {
                 if (refresh) {
-                    resetItems(Collections.singletonList(items));
+                    resetItems(items);
                     finishRefresh();
                 } else {
-                    addItems(Collections.singletonList(items));
+                    addItems(items);
                     finishLoadMore();
                 }
                 showLoading(false);
