@@ -42,12 +42,12 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
         this.loadMoreState.postValue(false);
     }
 
-    public void resetItems(List<Object> items) {
-        this.itemsLiveData.setItems(items);
+    public void resetItems(List<?> items) {
+        this.itemsLiveData.setItems((List<Object>) items);
     }
 
-    public void addItems(List<Object> items) {
-        this.itemsLiveData.addItems(items);
+    public void addItems(List<?> items) {
+        this.itemsLiveData.addItems((List<Object>) items);
     }
 
     public void onRefresh() {

@@ -21,13 +21,13 @@ public class CityFragment extends ItemsFragment<CityViewModel> {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         adapter.register(Area.class, new AreaDelegate());
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel.getLoading().observe(this, loading -> {
-            if (loading) {
-                showLoading();
-            } else {
-                showContent();
-            }
-        });
+//        viewModel.getLoading().observe(this, loading -> {
+//            if (loading) {
+//                showLoading();
+//            } else {
+//                showContent();
+//            }
+//        });
         return root;
     }
 }

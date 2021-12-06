@@ -17,11 +17,14 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ItemsFragment<VM extends ItemsViewModel>
         extends BindingFragment<FragmentItemsBinding> {
     protected VM viewModel;
-    protected MultiTypeAdapter adapter = new MultiTypeAdapter();
+    private final List<Object> items = new ArrayList<>();
+    protected MultiTypeAdapter adapter = new MultiTypeAdapter(items);
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
@@ -59,11 +62,13 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
             }
         });
         viewModel.getItems().observe(this, data -> {
-
             if (data.isRefresh()) {
-                adapter.setItems(data.getItems());
+                items.clear();
+                items.addAll(data.getItems());
+                adapter.notifyDataSetChanged();
             } else {
-                adapter.setItems(data.getItems());
+                items.addAll(data.getItems());
+                adapter.notifyItemRangeChanged(items.size(), data.getItems().size());
             }
         });
 
