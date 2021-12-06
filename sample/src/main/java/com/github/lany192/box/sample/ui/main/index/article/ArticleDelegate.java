@@ -7,7 +7,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.elvishew.xlog.XLog;
 import com.github.lany192.box.items.BaseViewHolder;
 import com.github.lany192.box.items.ItemDelegate;
 import com.github.lany192.box.sample.MockUtils;
@@ -15,7 +14,6 @@ import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Article;
 import com.github.lany192.box.utils.DateUtils;
 import com.github.lany192.utils.ImageUtils;
-import com.github.lany192.utils.JsonUtils;
 
 import java.util.Date;
 
