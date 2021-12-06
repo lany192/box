@@ -5,7 +5,7 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.box.binding.getBinding
-import com.github.lany192.box.mvvm.LifecycleViewModel
+import com.github.lany192.box.viewmodel.LifecycleViewModel
 
 /**
  * ViewBinding实现基类

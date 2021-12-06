@@ -3,7 +3,7 @@ package com.github.lany192.box.items;
 import androidx.annotation.CallSuper;
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.box.mvvm.LifecycleViewModel;
+import com.github.lany192.box.viewmodel.LifecycleViewModel;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.github.lany192.box.mvvm;
+package com.github.lany192.box.viewmodel;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;

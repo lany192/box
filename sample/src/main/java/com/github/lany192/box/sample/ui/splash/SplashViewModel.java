@@ -2,7 +2,7 @@ package com.github.lany192.box.sample.ui.splash;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.box.mvvm.LifecycleViewModel;
+import com.github.lany192.box.viewmodel.LifecycleViewModel;
 
 import javax.inject.Inject;
 

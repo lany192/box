@@ -7,7 +7,7 @@ import com.elvishew.xlog.XLog;
 
 
 /**
- * 处理双击事件
+ * 处理双击事件  toolbar.setOnTouchListener(new OnDoubleClickListener(view -> onToolbarDoubleClick()));
  */
 public class OnDoubleClickListener implements View.OnTouchListener {
     private final String TAG = this.getClass().getSimpleName();

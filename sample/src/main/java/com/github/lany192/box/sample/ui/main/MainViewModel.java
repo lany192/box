@@ -1,6 +1,6 @@
 package com.github.lany192.box.sample.ui.main;
 
-import com.github.lany192.box.mvvm.LifecycleViewModel;
+import com.github.lany192.box.viewmodel.LifecycleViewModel;
 
 import javax.inject.Inject;
 
