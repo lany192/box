@@ -19,12 +19,10 @@ import com.github.lany192.utils.JsonUtils;
 
 import java.util.Date;
 
-public class ArticleDelegate extends ItemDelegate<Article, BaseViewHolder> {
+public class ArticleDelegate extends ItemDelegate<Article> {
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, Article item) {
-        XLog.i("测试：", JsonUtils.object2json(item));
-
         ImageView imageView = holder.getView(R.id.image);
         ImageUtils.show(imageView, MockUtils.getImageUrl());
 

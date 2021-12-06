@@ -13,7 +13,7 @@ import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.utils.ImageUtils;
-public class AreaDelegate extends ItemDelegate<Area, BaseViewHolder> {
+public class AreaDelegate extends ItemDelegate<Area> {
 
 //    @Override
 //    public void onItemClicked(Area area, int position) {
