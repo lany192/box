@@ -15,7 +15,7 @@ import com.github.lany192.box.R;
 import com.github.lany192.dialog.LoadingDialog;
 import com.github.lany192.view.StateLayout;
 
-public class BasicFragment extends Fragment {
+public abstract class BasicFragment extends Fragment {
     protected Logger.Builder log = XLog.tag(getClass().getName());
     private LoadingDialog loadingDialog;
     private StateLayout stateLayout;
@@ -25,8 +25,11 @@ public class BasicFragment extends Fragment {
         stateLayout = new StateLayout(getContext());
         stateLayout.setLayoutParams(new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         stateLayout.setOnRetryListener(this::onRetry);
+        stateLayout.addView(getContentView( inflater,  container,  savedInstanceState));
         return stateLayout;
     }
+
+    public abstract View getContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
 
     public void setRootView(View view) {
         stateLayout.addView(view);

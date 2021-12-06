@@ -15,7 +15,7 @@ import com.github.lany192.box.network.NetworkHelper;
 import com.github.lany192.dialog.LoadingDialog;
 import com.github.lany192.view.StateLayout;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private LoadingDialog loadingDialog;
     private StateLayout stateLayout;
