@@ -2,7 +2,7 @@
 
 # 快速开发框架
 
-> * MVP
+> * MVVM
 > * rxjava3
 > * rxandroid3
 > * retrofit2
@@ -24,8 +24,8 @@
 
 	dependencies {
 	    implementation 'com.github.lany192.box:arch:3.8.3'
-        implementation 'com.github.lany192.box:view:3.8.3'
-        implementation 'com.github.lany192.box:dialog:3.8.3'
+            implementation 'com.github.lany192.box:view:3.8.3'
+            implementation 'com.github.lany192.box:dialog:3.8.3'
 	}
 	
 ## 初始化
