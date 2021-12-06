@@ -84,7 +84,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
             if (data.isRefresh()) {
                 items.clear();
                 items.addAll(data.getItems());
-                adapter.notifyDataSetChanged();
+                adapter.notifyItemRangeChanged(0, items.size());
             } else {
                 items.addAll(data.getItems());
                 adapter.notifyItemRangeChanged(items.size(), data.getItems().size());
