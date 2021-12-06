@@ -6,7 +6,7 @@
 > * rxjava3
 > * rxandroid3
 > * retrofit2
-> * Dagger2
+> * Hilt
 > * OkHttp3
 > 
 使用MVP+rxjava3+rxandroid3+retrofit2+Dagger2+OkHttp3组合封装
