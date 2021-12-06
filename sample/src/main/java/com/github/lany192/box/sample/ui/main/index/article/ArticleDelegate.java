@@ -7,13 +7,15 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.adapter.ItemViewBinder;
+import com.drakeet.multitype.ItemViewBinder;
+import com.elvishew.xlog.XLog;
 import com.github.lany192.box.items.BaseViewHolder;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Article;
 import com.github.lany192.box.utils.DateUtils;
 import com.github.lany192.utils.ImageUtils;
+import com.github.lany192.utils.JsonUtils;
 
 import java.util.Date;
 
@@ -21,6 +23,8 @@ public class ArticleDelegate extends ItemViewBinder<Article, BaseViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, Article item) {
+        XLog.i("测试：", JsonUtils.object2json(item));
+
         ImageView imageView = holder.getView(R.id.image);
         ImageUtils.show(imageView, MockUtils.getImageUrl());
 
