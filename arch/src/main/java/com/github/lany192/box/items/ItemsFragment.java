@@ -32,7 +32,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         return layoutManager;
     }
 
-    public abstract List<ItemDelegate> getDelegates();
+    public <T extends ItemDelegate> void register(T delegate){
+        adapter.register(delegate.getTargetClass(),delegate);
+    }
 
     public int getSpanCount() {
         return 2;
@@ -43,10 +45,6 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
-
-        for (ItemDelegate item : getDelegates()) {
-            adapter.register(item.getTargetClass(), item);
-        }
 
         RecyclerView.LayoutManager layoutManager = getLayoutManager();
         binding.recyclerView.setLayoutManager(layoutManager);
