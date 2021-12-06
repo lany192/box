@@ -7,9 +7,9 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.drakeet.multitype.ItemViewBinder;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.items.BaseViewHolder;
+import com.github.lany192.box.items.ItemDelegate;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Article;
@@ -19,7 +19,7 @@ import com.github.lany192.utils.JsonUtils;
 
 import java.util.Date;
 
-public class ArticleDelegate extends ItemViewBinder<Article, BaseViewHolder> {
+public class ArticleDelegate extends ItemDelegate<Article, BaseViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, Article item) {

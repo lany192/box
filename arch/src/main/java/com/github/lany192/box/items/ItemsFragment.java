@@ -24,12 +24,18 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         extends BindingFragment<FragmentItemsBinding> {
     protected VM viewModel;
     private final List<Object> items = new ArrayList<>();
-    protected MultiTypeAdapter adapter = new MultiTypeAdapter(items);
+    private final MultiTypeAdapter adapter = new MultiTypeAdapter(items);
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         return layoutManager;
+    }
+
+    public abstract List<ItemDelegate> getDelegates();
+
+    public int getSpanCount() {
+        return 2;
     }
 
     @NonNull
@@ -37,6 +43,11 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+
+        for (ItemDelegate item : getDelegates()) {
+            adapter.register(item.getTargetClass(), item);
+        }
+
         RecyclerView.LayoutManager layoutManager = getLayoutManager();
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);

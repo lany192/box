@@ -7,13 +7,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.drakeet.multitype.ItemViewBinder;
 import com.github.lany192.box.items.BaseViewHolder;
+import com.github.lany192.box.items.ItemDelegate;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.utils.ImageUtils;
-public class AreaDelegate extends ItemViewBinder<Area, BaseViewHolder> {
+public class AreaDelegate extends ItemDelegate<Area, BaseViewHolder> {
 
 //    @Override
 //    public void onItemClicked(Area area, int position) {

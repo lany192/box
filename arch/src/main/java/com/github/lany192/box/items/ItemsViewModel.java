@@ -42,10 +42,12 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
         this.loadMoreState.postValue(false);
     }
 
+    @SuppressWarnings("unchecked")
     public void resetItems(List<?> items) {
         this.itemsLiveData.setItems((List<Object>) items);
     }
 
+    @SuppressWarnings("unchecked")
     public void addItems(List<?> items) {
         this.itemsLiveData.addItems((List<Object>) items);
     }
