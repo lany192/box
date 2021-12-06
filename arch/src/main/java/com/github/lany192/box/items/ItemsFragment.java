@@ -18,6 +18,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class ItemsFragment<VM extends ItemsViewModel>
@@ -25,6 +26,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
     protected VM viewModel;
     private final List<Object> items = new ArrayList<>();
     private final MultiTypeAdapter adapter = new MultiTypeAdapter(items);
+    private final HashMap<Class<?>, Integer> spanSizeMap = new HashMap<>();
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
@@ -32,8 +34,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         return layoutManager;
     }
 
-    public <T extends ItemDelegate> void register(T delegate){
-        adapter.register(delegate.getTargetClass(),delegate);
+    public <D extends ItemDelegate> void register(D delegate) {
+        spanSizeMap.put(delegate.getTargetClass(), delegate.getSpanCount());
+        adapter.register(delegate.getTargetClass(), delegate);
     }
 
     public int getSpanCount() {
@@ -45,8 +48,15 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
-
         RecyclerView.LayoutManager layoutManager = getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            ((GridLayoutManager) layoutManager).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    return spanSizeMap.get(items.get(position).getClass());
+                }
+            });
+        }
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
         binding.refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
