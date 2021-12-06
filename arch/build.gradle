@@ -33,7 +33,7 @@ dependencies {
     implementation project(':core')
     implementation project(':view')
     implementation project(':dialog')
-//    implementation project(':adapter')
+    implementation project(':adapter')
 
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     testImplementationDependencies.each { k, v -> testImplementation v }

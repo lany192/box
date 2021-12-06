@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.drakeet.multitype.MultiTypeAdapter;
+import com.github.lany192.adapter.MultiTypeAdapter;
 import com.github.lany192.box.databinding.FragmentItemsBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;

@@ -107,7 +107,7 @@ ext {
             //转场动画 https://github.com/skydoves/TransformationLayout
 //            'transformation-layout': 'com.github.skydoves:transformationlayout:1.1.1',
             //多布局 https://github.com/drakeet/MultiType
-            'multi-type'           : 'com.drakeet.multitype:multitype:4.3.0',
+//            'multi-type'           : 'com.drakeet.multitype:multitype:4.3.0',
             //多布局 https://github.com/lany192/TabLayout
             'flycoTabLayout'       : 'com.github.lany192:TabLayout:3.1.0',
     ]

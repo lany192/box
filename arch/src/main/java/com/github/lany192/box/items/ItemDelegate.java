@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
 
-import com.drakeet.multitype.ItemViewBinder;
+import com.github.lany192.adapter.ItemViewBinder;
 
 import java.lang.reflect.ParameterizedType;
 
