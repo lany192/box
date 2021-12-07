@@ -9,4 +9,9 @@ public class CityFragment extends PageFragment<CityViewModel> {
     {
         register(new AreaBinder());
     }
+
+    @Override
+    public int getItemSpanSize(int viewType, int position) {
+        return 1;
+    }
 }
