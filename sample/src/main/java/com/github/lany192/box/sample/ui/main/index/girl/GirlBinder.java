@@ -5,11 +5,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder;
+import com.github.lany192.box.items.ItemDelegate;
 import com.github.lany192.box.sample.databinding.ItemGirlBinding;
 import com.github.lany192.utils.ImageUtils;
 
-public class GirlBinder extends QuickViewBindingItemBinder<String, ItemGirlBinding> {
+public class GirlBinder extends ItemDelegate<String, ItemGirlBinding> {
 
     @Override
     public void convert(@NonNull BinderVBHolder<ItemGirlBinding> holder, String url) {

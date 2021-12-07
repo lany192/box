@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder;
+import com.github.lany192.box.items.ItemDelegate;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.bean.Article;
 import com.github.lany192.box.sample.databinding.ItemArticleBinding;
@@ -17,7 +17,7 @@ import com.github.lany192.utils.ImageUtils;
 
 import java.util.Date;
 
-public class ArticleBinder extends QuickViewBindingItemBinder<Article, ItemArticleBinding> {
+public class ArticleBinder extends ItemDelegate<Article, ItemArticleBinding> {
 
     @Override
     public void convert(@NonNull BinderVBHolder<ItemArticleBinding> holder, Article article) {
