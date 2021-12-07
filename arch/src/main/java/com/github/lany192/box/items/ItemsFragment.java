@@ -31,7 +31,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         return layoutManager;
     }
 
-    public <D extends ItemDelegate> void register(D delegate) {
+    public <B extends ItemBinder> void register(B delegate) {
         spanSizeMap.put(delegate.getTargetClass(), delegate.getSpanCount());
         adapter.addItemBinder(delegate.getTargetClass(), delegate);
     }

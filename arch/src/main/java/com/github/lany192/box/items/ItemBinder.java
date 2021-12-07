@@ -6,7 +6,7 @@ import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder;
 
 import java.lang.reflect.ParameterizedType;
 
-public abstract class ItemDelegate<T, VB extends ViewBinding> extends QuickViewBindingItemBinder<T, VB> {
+public abstract class ItemBinder<T, VB extends ViewBinding> extends QuickViewBindingItemBinder<T, VB> {
 
     public Class<T> getTargetClass() {
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
