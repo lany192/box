@@ -35,7 +35,7 @@ public class GirlViewModel extends LifecycleViewModel {
     public void requestCityInfo() {
         showLoading(true);
         List<String> images = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 50; i++) {
             images.add(MockUtils.getImageUrl());
         }
         showLoading(false);
