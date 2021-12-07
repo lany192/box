@@ -19,7 +19,7 @@ import java.util.HashMap;
 public abstract class ItemsFragment<VM extends ItemsViewModel>
         extends BindingFragment<FragmentItemsBinding> {
     protected VM viewModel;
-    private final TypeBinderAdapter adapter = new TypeBinderAdapter();
+    private final ItemsAdapter adapter = new ItemsAdapter();
     private final HashMap<Class<?>, Integer> spanSizeMap = new HashMap<>();
 
     public RecyclerView.LayoutManager getLayoutManager() {

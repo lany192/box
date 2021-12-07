@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.BaseLoadMoreModule;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 
-public class TypeBinderAdapter extends BaseBinderAdapter implements LoadMoreModule {
+public class ItemsAdapter extends BaseBinderAdapter implements LoadMoreModule {
     @NonNull
     @Override
     public BaseLoadMoreModule addLoadMoreModule(@NonNull BaseQuickAdapter<?, ?> baseQuickAdapter) {

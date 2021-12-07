@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.github.lany192.box.items.TypeBinderAdapter;
+import com.github.lany192.box.items.ItemsAdapter;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
 import com.gyf.immersionbar.ImmersionBar;
@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     private DiscoverViewModel viewModel;
-    private TypeBinderAdapter adapter;
+    private ItemsAdapter adapter;
 
     @NonNull
     @Override
@@ -29,7 +29,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
 
         binding.toolbar.setTitle("发现");
         ImmersionBar.with(requireActivity()).titleBar(binding.toolbar).statusBarDarkFont(true).init();
-        adapter = new TypeBinderAdapter();
+        adapter = new ItemsAdapter();
         adapter.addItemBinder(String.class, new ImageBinder());
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
