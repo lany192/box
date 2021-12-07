@@ -30,7 +30,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         binding.toolbar.setTitle("发现");
         ImmersionBar.with(requireActivity()).titleBar(binding.toolbar).statusBarDarkFont(true).init();
         adapter = new BaseBinderAdapter();
-        adapter.addItemBinder(String.class, new ImageDelegate());
+        adapter.addItemBinder(String.class, new ImageBinder());
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);

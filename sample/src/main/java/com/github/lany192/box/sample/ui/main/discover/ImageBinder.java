@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.utils.ImageUtils;
 
-public class ImageDelegate extends QuickItemBinder<String> {
+public class ImageBinder extends QuickItemBinder<String> {
 
     @Override
     public void convert(@NonNull BaseViewHolder holder, String url) {
