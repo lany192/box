@@ -14,7 +14,7 @@ import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ImageUtils;
 import com.hjq.toast.ToastUtils;
 
-public class AreaDelegate extends QuickViewBindingItemBinder<Area, ItemAreaBinding> {
+public class AreaBinder extends QuickViewBindingItemBinder<Area, ItemAreaBinding> {
 
     @Override
     public void onClick(@NonNull BinderVBHolder<ItemAreaBinding> holder, @NonNull View view, Area area, int position) {

@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder;
 import com.github.lany192.box.sample.databinding.ItemGirlBinding;
 import com.github.lany192.utils.ImageUtils;
 
-public class GirlDelegate extends QuickViewBindingItemBinder<String, ItemGirlBinding> {
+public class GirlBinder extends QuickViewBindingItemBinder<String, ItemGirlBinding> {
 
     @Override
     public void convert(@NonNull BinderVBHolder<ItemGirlBinding> holder, String url) {

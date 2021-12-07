@@ -7,6 +7,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class CityFragment extends ItemsFragment<CityViewModel> {
     {
-        register(new AreaDelegate());
+        register(new AreaBinder());
     }
 }

@@ -42,7 +42,7 @@ public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
         });
 
         BaseBinderAdapter adapter = new BaseBinderAdapter();
-        adapter.addItemBinder(String.class, new GirlDelegate());
+        adapter.addItemBinder(String.class, new GirlBinder());
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, adapter::setList);
         viewModel.getLoading().observe(this, loading -> {

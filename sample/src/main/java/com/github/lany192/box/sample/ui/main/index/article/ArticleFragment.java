@@ -7,6 +7,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ArticleFragment extends ItemsFragment<ArticleViewModel> {
     {
-        register(new ArticleDelegate());
+        register(new ArticleBinder());
     }
 }

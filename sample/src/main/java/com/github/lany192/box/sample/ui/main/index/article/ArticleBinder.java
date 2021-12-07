@@ -17,7 +17,7 @@ import com.github.lany192.utils.ImageUtils;
 
 import java.util.Date;
 
-public class ArticleDelegate extends QuickViewBindingItemBinder<Article, ItemArticleBinding> {
+public class ArticleBinder extends QuickViewBindingItemBinder<Article, ItemArticleBinding> {
 
     @Override
     public void convert(@NonNull BinderVBHolder<ItemArticleBinding> holder, Article article) {
