@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.items.ItemsAdapter;
+import com.github.lany192.box.items.PageAdapter;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     private DiscoverViewModel viewModel;
-    private ItemsAdapter adapter;
+    private PageAdapter adapter;
 
     @NonNull
     @Override
@@ -29,7 +29,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         viewModel = getFragmentViewModel(DiscoverViewModel.class);
 
         ImmersionBar.with(requireActivity()).statusBarDarkFont(true).init();
-        adapter = new ItemsAdapter();
+        adapter = new PageAdapter();
         adapter.addItemBinder(String.class, new ImageBinder());
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

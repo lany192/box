@@ -10,14 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.lany192.box.databinding.FragmentItemsBinding;
+import com.github.lany192.box.databinding.FragmentPageBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 
-public abstract class ItemsFragment<VM extends ItemsViewModel>
-        extends BindingFragment<FragmentItemsBinding> {
+public abstract class PageFragment<VM extends PageViewModel>
+        extends BindingFragment<FragmentPageBinding> {
     protected VM viewModel;
     private final PageAdapter adapter = new PageAdapter();
     private final HashMap<Class<?>, Integer> spanSizeMap = new HashMap<>();
