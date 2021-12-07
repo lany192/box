@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/holo_orange_light" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.github.lany192.widget.StaggeredGridRecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -10,12 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseBinderAdapter;
 import com.github.lany192.box.databinding.FragmentItemsBinding;
 import com.github.lany192.box.fragment.BindingFragment;
-import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
-import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
@@ -23,7 +19,7 @@ import java.util.HashMap;
 public abstract class ItemsFragment<VM extends ItemsViewModel>
         extends BindingFragment<FragmentItemsBinding> {
     protected VM viewModel;
-    private final BaseBinderAdapter adapter = new BaseBinderAdapter();
+    private final TypeBinderAdapter adapter = new TypeBinderAdapter();
     private final HashMap<Class<?>, Integer> spanSizeMap = new HashMap<>();
 
     public RecyclerView.LayoutManager getLayoutManager() {
@@ -57,32 +53,17 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         }
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
-        binding.refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                viewModel.onLoadMore();
-            }
-        });
+        binding.refreshLayout.setOnRefreshListener(() -> viewModel.onRefresh());
+        adapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
 
-        binding.refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                viewModel.onLoadMore();
-            }
-
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                viewModel.onRefresh();
-            }
-        });
         viewModel.getRefreshState().observe(this, refreshing -> {
             if (!refreshing) {
-                binding.refreshLayout.finishRefresh();
+                binding.refreshLayout.setRefreshing(false);
             }
         });
         viewModel.getLoadMoreState().observe(this, moreLoading -> {
             if (!moreLoading) {
-                binding.refreshLayout.finishLoadMore();
+                adapter.getLoadMoreModule().loadMoreComplete();
             }
         });
         viewModel.getItems().observe(this, data -> {

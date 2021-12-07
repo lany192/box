@@ -15,14 +15,14 @@ import java.util.List;
  */
 public abstract class ItemViewBinder<T, VH extends ViewHolder> {
 
-    /* internal */ BaseBinderAdapter adapter;
+    /* internal */ TypeBinderAdapter adapter;
 
 
     protected abstract @NonNull
     VH onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
     /**
-     * Called by BaseBinderAdapter to display the data with its view holder. This method should
+     * Called by TypeBinderAdapter to display the data with its view holder. This method should
      * update the contents of the {@link ViewHolder#itemView} to reflect the given item.
      * <p>
      * If you need the position of an item later on (e.g. in a click listener), use
@@ -33,13 +33,13 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      *
      * @param holder The ViewHolder which should be updated to represent the contents of the
      *               given item in the items data set.
-     * @param item   The item within the BaseBinderAdapter's items data set.
+     * @param item   The item within the TypeBinderAdapter's items data set.
      */
     protected abstract void onBindViewHolder(@NonNull VH holder, @NonNull T item);
 
 
     /**
-     * Called by BaseBinderAdapter to display the data with its view holder. This method should
+     * Called by TypeBinderAdapter to display the data with its view holder. This method should
      * update the contents of the {@link ViewHolder#itemView} to reflect the given item.
      * <p>
      * If you need the position of an item later on (e.g. in a click listener), use
@@ -47,8 +47,8 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * <p>
      * Partial bind vs full bind:
      * <p>
-     * The payloads parameter is a merge list from {@link BaseBinderAdapter#notifyItemChanged(int,
-     * Object)} {@link BaseBinderAdapter#notifyItemRangeChanged(int, int, Object)}.
+     * The payloads parameter is a merge list from {@link TypeBinderAdapter#notifyItemChanged(int,
+     * Object)} {@link TypeBinderAdapter#notifyItemRangeChanged(int, int, Object)}.
      * If the payloads list is not empty, the ViewHolder is currently bound to old data and
      * ItemViewBinder may run an efficient partial update using the payload info.
      * If the payload is empty, ItemViewBinder must run a full bind.
@@ -60,7 +60,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      *
      * @param holder   The ViewHolder which should be updated to represent the contents of the
      *                 given item in the items data set.
-     * @param item     The item within the BaseBinderAdapter's items data set.
+     * @param item     The item within the TypeBinderAdapter's items data set.
      * @param payloads A non-null list of merged payloads. Can be empty list if requires full
      *                 update.
      * @since v2.5.0
@@ -88,22 +88,22 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
 
 
     /**
-     * Get the {@link BaseBinderAdapter} for sending notifications or getting item count, etc.
+     * Get the {@link TypeBinderAdapter} for sending notifications or getting item count, etc.
      * <p>
      * Note that if you need to change the item's parent items, you could call this method
-     * to get the {@link BaseBinderAdapter}, and call {@link BaseBinderAdapter#getItems()} to get
+     * to get the {@link TypeBinderAdapter}, and call {@link TypeBinderAdapter#getItems()} to get
      * a list that can not be added any new item, so that you should copy the items and just use
-     * {@link BaseBinderAdapter#setItems(List)} to replace the original items list and update the
+     * {@link TypeBinderAdapter#setItems(List)} to replace the original items list and update the
      * views.
      * </p>
      *
-     * @return The BaseBinderAdapter this item is currently associated with.
+     * @return The TypeBinderAdapter this item is currently associated with.
      * @since v2.3.4
      */
     protected final @NonNull
-    BaseBinderAdapter getAdapter() {
+    TypeBinderAdapter getAdapter() {
         if (adapter == null) {
-            throw new IllegalStateException("ItemViewBinder " + this + " not attached to BaseBinderAdapter. " +
+            throw new IllegalStateException("ItemViewBinder " + this + " not attached to TypeBinderAdapter. " +
                     "You should not call the method before registering the binder.");
         }
         return adapter;
@@ -115,7 +115,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * would return false this method should return {@link RecyclerView#NO_ID}. The default
      * implementation of this method returns {@link RecyclerView#NO_ID}.
      *
-     * @param item The item within the BaseBinderAdapter's items data set to query
+     * @param item The item within the TypeBinderAdapter's items data set to query
      * @return the stable ID of the item
      * @see RecyclerView.Adapter#setHasStableIds(boolean)
      * @since v3.2.0
