@@ -25,9 +25,13 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel(DiscoverViewModel.class);
+        initView(rootView);
+        return rootView;
+    }
 
+    private void initView(View rootView){
         ImmersionBar.with(requireActivity()).statusBarDarkFont(true).init();
         DiscoverAdapter adapter = new DiscoverAdapter(new ArrayList<>());
 
@@ -43,9 +47,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
                 layoutManager.invalidateSpanAssignments(); //防止第一行到顶部有空白区域
             }
         });
-        viewModel.getItems().observe(this, items -> {
-            adapter.setList(items);
-        });
+        viewModel.getItems().observe(this, adapter::setList);
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 showLoading();
@@ -53,6 +55,5 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
                 showContent();
             }
         });
-        return root;
     }
 }
