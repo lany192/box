@@ -7,10 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.github.lany192.box.items.ItemsAdapter;
 import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.box.items.ItemsAdapter;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -35,15 +36,15 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
-
+        binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                layoutManager.invalidateSpanAssignments(); //防止第一行到顶部有空白区域
+            }
+        });
         viewModel.getItems().observe(this, items -> {
             adapter.setList(items);
-//            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//                @Override
-//                public int getSpanSize(int position) {
-//                    return items.get(position).getSpanSize();
-//                }
-//            });
         });
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
