@@ -36,6 +36,19 @@ public class MockUtils {
         images.add("https://hbimg.huabanimg.com/5ff1993c79bf1748d194125428593d2cc2b0628c122b70-oNFzVs_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/3ab369418ec3ffb619c2f5c1a6dbe775eb6faf3aec55f-ZcfYkZ_fw658/format/webp");
 
+
+        images.add("https://hbimg.huabanimg.com/2c82749d0e9536d86939ea27a9f475f0e9eee68eb9191-bIyaYD_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/80a5f8ac7977c67c10b502621a2ea6a5bfeef78658dac-WQi5TJ_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/e3a1723544081ed04c4e3181bbfdf2ccf572b456116fd0-ZIk6vi_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/761e1f5fa35328df3e73722f3cf61a89edc196b310e64a-irXCcR_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/7a790823b1a1990a87205cd1c905d856a5dd01f6419a3-CTJ6xx_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/b566c0d29cc8f93a44a205d5368e6e74a86c45b0f35e1-gmYWT4_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/7ea1b70cd0aca607126b8898bc73a17a253e8ea013d59-hVZVUR_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/9060f89322f5b0f7c2acd56c4006b772bd4795e323731-3IIZRd_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/22524a732a08e76fa73ff63d50fd06e21f4f1d58c51bf-VGUK4e_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/d343f44f4074c5959ebeab6e1cfd3b12135cb7a02e911-SVmbAT_fw658/format/webp");
+        images.add("https://hbimg.huabanimg.com/7c0ef944a951b8b05c8a7d7141ee024adce531de1018f-iagTge_fw658/format/webp");
+
         int i = new Random().nextInt(images.size());
         return images.get(i);
     }
