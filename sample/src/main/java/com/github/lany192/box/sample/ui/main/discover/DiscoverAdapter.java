@@ -13,7 +13,7 @@ import java.util.List;
 public class DiscoverAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     public DiscoverAdapter(@Nullable List<String> data) {
-        super(R.layout.item_image, data);
+        super(R.layout.item_disvocer, data);
     }
 
     @Override
