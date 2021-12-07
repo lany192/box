@@ -27,8 +27,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel(DiscoverViewModel.class);
 
-        binding.toolbar.setTitle("发现");
-        ImmersionBar.with(requireActivity()).titleBar(binding.toolbar).statusBarDarkFont(true).init();
+        ImmersionBar.with(requireActivity()).statusBarDarkFont(true).init();
         adapter = new ItemsAdapter();
         adapter.addItemBinder(String.class, new ImageBinder());
 
