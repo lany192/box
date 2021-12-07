@@ -53,12 +53,15 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         }
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
-        binding.refreshLayout.setOnRefreshListener(() -> viewModel.onRefresh());
+
+        binding.refreshLayout.setEnableLoadMore(false);
+        binding.refreshLayout.setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
+
         adapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
 
         viewModel.getRefreshState().observe(this, refreshing -> {
             if (!refreshing) {
-                binding.refreshLayout.setRefreshing(false);
+                binding.refreshLayout.finishRefresh();
             }
         });
         viewModel.getLoadMoreState().observe(this, moreLoading -> {
