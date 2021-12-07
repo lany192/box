@@ -14,13 +14,11 @@ import com.github.lany192.box.databinding.FragmentPageBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.HashMap;
 
 public abstract class PageFragment<VM extends PageViewModel>
         extends BindingFragment<FragmentPageBinding> {
     protected VM viewModel;
     private final PageAdapter adapter = new PageAdapter();
-    private final HashMap<Class<?>, Integer> spanSizeMap = new HashMap<>();
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
@@ -28,13 +26,16 @@ public abstract class PageFragment<VM extends PageViewModel>
         return layoutManager;
     }
 
-    public <B extends ItemBinder> void register(B delegate) {
-        spanSizeMap.put(delegate.getTargetClass(), delegate.getSpanCount());
-        adapter.addItemBinder(delegate.getTargetClass(), delegate);
+    public void addItemBinder(Class<?> clazz, ItemBinder binder) {
+        adapter.addItemBinder(clazz, binder);
     }
 
     public int getSpanCount() {
         return 2;
+    }
+
+    public int getItemSpanSize(int viewType, int position) {
+        return getSpanCount();
     }
 
     @NonNull
@@ -42,16 +43,10 @@ public abstract class PageFragment<VM extends PageViewModel>
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
-        RecyclerView.LayoutManager layoutManager = getLayoutManager();
-        if (layoutManager instanceof GridLayoutManager) {
-            ((GridLayoutManager) layoutManager).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int position) {
-                    return spanSizeMap.get(adapter.getItem(position).getClass());
-                }
-            });
-        }
-        binding.recyclerView.setLayoutManager(layoutManager);
+
+        adapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
+
+        binding.recyclerView.setLayoutManager(getLayoutManager());
         binding.recyclerView.setAdapter(adapter);
 
         binding.refreshLayout.setEnableLoadMore(false);
