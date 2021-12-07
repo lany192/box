@@ -14,6 +14,7 @@ import com.chad.library.adapter.base.BaseBinderAdapter;
 import com.github.lany192.box.databinding.FragmentItemsBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.lang.reflect.ParameterizedType;
@@ -56,6 +57,13 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         }
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
+        binding.refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                viewModel.onLoadMore();
+            }
+        });
+
         binding.refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
