@@ -25,10 +25,15 @@ public class DiscoverViewModel extends LifecycleViewModel {
         return items;
     }
 
+    @Override
+    protected void onLazyLoad() {
+        requestCityInfo();
+    }
+
     public void requestCityInfo() {
         showLoading(true);
         List<String> images = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 100; i++) {
             images.add(MockUtils.getImageUrl());
         }
         items.postValue(images);
