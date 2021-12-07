@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.github.lany192.adapter.MultiTypeAdapter;
+
 import com.github.lany192.box.R;
 import com.github.lany192.box.interfaces.OnRefreshMoreListener;
 import com.github.lany192.layout.FixDragFrameLayout;
@@ -104,7 +104,7 @@ public class CollectionView extends FixDragFrameLayout {
         refreshLayout.setEnableLoadMore(enable);
     }
 
-    public void setAdapter(MultiTypeAdapter adapter) {
+    public void setAdapter(BaseBinderAdapter adapter) {
         recyclerView.setAdapter(adapter);
     }
 

@@ -3,19 +3,22 @@ package com.github.lany192.box.sample.ui.main.index.girl;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.github.lany192.box.items.ItemDelegate;
+import androidx.annotation.NonNull;
+
+import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder;
 import com.github.lany192.box.sample.databinding.ItemGirlBinding;
 import com.github.lany192.utils.ImageUtils;
 
-public class GirlDelegate extends ItemDelegate<String, ItemGirlBinding> {
+public class GirlDelegate extends QuickViewBindingItemBinder<String, ItemGirlBinding> {
 
     @Override
-    public ItemGirlBinding getViewBinding(LayoutInflater inflater, ViewGroup parent) {
-        return ItemGirlBinding.inflate(inflater, parent, false);
+    public void convert(@NonNull BinderVBHolder<ItemGirlBinding> holder, String url) {
+        ImageUtils.show(holder.getViewBinding().image, url);
     }
 
+    @NonNull
     @Override
-    public void onBind(ItemGirlBinding binding, String url, int position) {
-        ImageUtils.show(binding.image, url);
+    public ItemGirlBinding onCreateViewBinding(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent, int i) {
+        return ItemGirlBinding.inflate(inflater, parent, false);
     }
 }

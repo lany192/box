@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.github.lany192.adapter.MultiTypeAdapter;
+import com.chad.library.adapter.base.BaseBinderAdapter;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentGirlBinding;
 
@@ -41,10 +41,10 @@ public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
             }
         });
 
-        MultiTypeAdapter adapter = new MultiTypeAdapter();
-        adapter.register(String.class,new GirlDelegate());
+        BaseBinderAdapter adapter = new BaseBinderAdapter();
+        adapter.addItemBinder(String.class, new GirlDelegate());
         binding.recyclerView.setAdapter(adapter);
-        viewModel.getItems().observe(this, adapter::setItems);
+        viewModel.getItems().observe(this, adapter::setList);
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 showLoading();

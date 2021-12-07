@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.github.lany192.adapter.MultiTypeAdapter;
+import com.chad.library.adapter.base.BaseBinderAdapter;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
 import com.gyf.immersionbar.ImmersionBar;
@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     private DiscoverViewModel viewModel;
-    private MultiTypeAdapter adapter;
+    private BaseBinderAdapter adapter;
 
     @NonNull
     @Override
@@ -29,16 +29,16 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
 
         binding.toolbar.setTitle("发现");
         ImmersionBar.with(requireActivity()).titleBar(binding.toolbar).statusBarDarkFont(true).init();
-        adapter = new MultiTypeAdapter();
-        adapter.register(String.class,new ImageDelegate());
+        adapter = new BaseBinderAdapter();
+        adapter.addItemBinder(String.class, new ImageDelegate());
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
-//        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
 
         viewModel.getItems().observe(this, items -> {
-            adapter.setItems(items);
+            adapter.setList(items);
 //            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 //                @Override
 //                public int getSpanSize(int position) {

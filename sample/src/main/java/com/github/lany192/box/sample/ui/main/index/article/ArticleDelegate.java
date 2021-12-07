@@ -1,39 +1,42 @@
 package com.github.lany192.box.sample.ui.main.index.article;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.lany192.box.items.ItemDelegate;
+import androidx.annotation.NonNull;
+
+import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.bean.Article;
 import com.github.lany192.box.sample.databinding.ItemArticleBinding;
+import com.github.lany192.box.sample.ui.browser.BrowserActivity;
 import com.github.lany192.box.utils.DateUtils;
 import com.github.lany192.utils.ImageUtils;
-import com.github.lany192.utils.JsonUtils;
-import com.hjq.toast.ToastUtils;
 
 import java.util.Date;
 
-public class ArticleDelegate extends ItemDelegate<Article, ItemArticleBinding> {
+public class ArticleDelegate extends QuickViewBindingItemBinder<Article, ItemArticleBinding> {
 
     @Override
-    public ItemArticleBinding getViewBinding(LayoutInflater inflater, ViewGroup parent) {
-        return ItemArticleBinding.inflate(inflater, parent, false);
+    public void convert(@NonNull BinderVBHolder<ItemArticleBinding> holder, Article article) {
+        ImageUtils.show(holder.getViewBinding().image, MockUtils.getImageUrl());
+        holder.getViewBinding().title.setText(article.getTitle());
+        holder.getViewBinding().desc.setText(article.getAuthor());
+        holder.getViewBinding().time.setText(DateUtils.format(new Date(article.getPublishTime())));
+    }
+
+    @NonNull
+    @Override
+    public ItemArticleBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
+        return ItemArticleBinding.inflate(layoutInflater, viewGroup, false);
     }
 
     @Override
-    public void onBind(ItemArticleBinding binding, Article item, int position) {
-        ImageUtils.show(binding.image, MockUtils.getImageUrl());
-        binding.title.setText(item.getTitle());
-        binding.desc.setText(item.getAuthor());
-        binding.time.setText(DateUtils.format(new Date(item.getPublishTime())));
-    }
-
-    @Override
-    public void onItemClicked(Article item, int position) {
-        ToastUtils.show(JsonUtils.object2json(item));
-//        Intent intent = new Intent(getContext(), BrowserActivity.class);
-//        intent.putExtra("url", item.getLink());
-//        getContext().startActivity(intent);
+    public void onClick(@NonNull BinderVBHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
+        Intent intent = new Intent(getContext(), BrowserActivity.class);
+        intent.putExtra("url", item.getLink());
+        getContext().startActivity(intent);
     }
 }

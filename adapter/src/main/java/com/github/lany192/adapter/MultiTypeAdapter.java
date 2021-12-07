@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
-public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class BaseBinderAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    private static final String TAG = "MultiTypeAdapter";
+    private static final String TAG = "BaseBinderAdapter";
     @NonNull
     private List<?> items;
     @NonNull
@@ -26,41 +26,41 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Constructs a MultiTypeAdapter with an empty items list.
+     * Constructs a BaseBinderAdapter with an empty items list.
      */
-    public MultiTypeAdapter() {
+    public BaseBinderAdapter() {
         this(Collections.emptyList());
     }
 
 
     /**
-     * Constructs a MultiTypeAdapter with a items list.
+     * Constructs a BaseBinderAdapter with a items list.
      *
      * @param items the items list
      */
-    public MultiTypeAdapter(@NonNull List<?> items) {
+    public BaseBinderAdapter(@NonNull List<?> items) {
         this(items, new MultiTypePool());
     }
 
 
     /**
-     * Constructs a MultiTypeAdapter with a items list and an initial capacity of TypePool.
+     * Constructs a BaseBinderAdapter with a items list and an initial capacity of TypePool.
      *
      * @param items           the items list
      * @param initialCapacity the initial capacity of TypePool
      */
-    public MultiTypeAdapter(@NonNull List<?> items, int initialCapacity) {
+    public BaseBinderAdapter(@NonNull List<?> items, int initialCapacity) {
         this(items, new MultiTypePool(initialCapacity));
     }
 
 
     /**
-     * Constructs a MultiTypeAdapter with a items list and a TypePool.
+     * Constructs a BaseBinderAdapter with a items list and a TypePool.
      *
      * @param items the items list
      * @param pool  the type pool
      */
-    public MultiTypeAdapter(@NonNull List<?> items, @NonNull TypePool pool) {
+    public BaseBinderAdapter(@NonNull List<?> items, @NonNull TypePool pool) {
         checkNotNull(items);
         checkNotNull(pool);
         this.items = items;

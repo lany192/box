@@ -6,7 +6,6 @@ import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
 import com.hjq.toast.ToastUtils;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;

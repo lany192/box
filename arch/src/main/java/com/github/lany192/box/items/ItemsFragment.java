@@ -10,22 +10,19 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.lany192.adapter.MultiTypeAdapter;
+import com.chad.library.adapter.base.BaseBinderAdapter;
 import com.github.lany192.box.databinding.FragmentItemsBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public abstract class ItemsFragment<VM extends ItemsViewModel>
         extends BindingFragment<FragmentItemsBinding> {
     protected VM viewModel;
-    private final List<Object> items = new ArrayList<>();
-    private final MultiTypeAdapter adapter = new MultiTypeAdapter(items);
+    private final BaseBinderAdapter adapter = new BaseBinderAdapter();
     private final HashMap<Class<?>, Integer> spanSizeMap = new HashMap<>();
 
     public RecyclerView.LayoutManager getLayoutManager() {
@@ -36,7 +33,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
 
     public <D extends ItemDelegate> void register(D delegate) {
         spanSizeMap.put(delegate.getTargetClass(), delegate.getSpanCount());
-        adapter.register(delegate.getTargetClass(), delegate);
+        adapter.addItemBinder(delegate.getTargetClass(), delegate);
     }
 
     public int getSpanCount() {
@@ -53,7 +50,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
             ((GridLayoutManager) layoutManager).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    return spanSizeMap.get(items.get(position).getClass());
+                    return spanSizeMap.get(adapter.getItem(position).getClass());
                 }
             });
         }
@@ -82,12 +79,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel>
         });
         viewModel.getItems().observe(this, data -> {
             if (data.isRefresh()) {
-                items.clear();
-                items.addAll(data.getItems());
-                adapter.notifyItemRangeChanged(0, items.size());
+                adapter.setNewInstance(data.getItems());
             } else {
-                items.addAll(data.getItems());
-                adapter.notifyItemRangeChanged(items.size(), data.getItems().size());
+                adapter.addData(data.getItems());
             }
         });
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.CallSuper;
 import androidx.fragment.app.Fragment;
 
 import com.elvishew.xlog.Logger;
@@ -20,6 +21,7 @@ public abstract class BasicFragment extends Fragment {
     private LoadingDialog loadingDialog;
     private StateLayout stateLayout;
 
+    @CallSuper
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         stateLayout = new StateLayout(getContext());
