@@ -26,8 +26,8 @@ public abstract class PageFragment<VM extends PageViewModel>
         return layoutManager;
     }
 
-    public void addItemBinder(Class<?> clazz, ItemBinder binder) {
-        adapter.addItemBinder(clazz, binder);
+    public void register(ItemBinder binder) {
+        adapter.addItemBinder(binder.getTargetClass(), binder);
     }
 
     public int getSpanCount() {
