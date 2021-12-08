@@ -12,13 +12,13 @@
         android:background="@android:color/holo_orange_light"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        app:tl_indicatorColor="#FFF4B4"
-        app:tl_indicatorCornerRadius="3dp"
-        app:tl_indicatorHeight="6dp"
-        app:tl_indicatorMarginBottom="10dp"
+        app:tl_indicatorColor="#06142E"
+        app:tl_indicatorCornerRadius="1dp"
+        app:tl_indicatorHeight="2dp"
+        app:tl_indicatorMarginBottom="5dp"
         app:tl_indicatorWidthEqualTitle="true"
         app:tl_selectedTextColor="#06142E"
-        app:tl_selectedTextSize="22sp"
+        app:tl_selectedTextSize="20sp"
         app:tl_unselectedTextColor="#666666"
         app:tl_unselectedTextSize="18sp" />
 
