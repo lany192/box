@@ -15,10 +15,16 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
 
     private val viewModel: AboutViewModel by viewModels()
 
+    override fun initImmersionBar() {
+        ImmersionBar.with(this)
+            .transparentStatusBar()
+            .statusBarDarkFont(true)
+            .titleBar(binding.toolbar)
+            .init()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).titleBar(binding.toolbar).init()
-
         binding.toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material)
         binding.toolbar.setNavigationOnClickListener { finish() }
 

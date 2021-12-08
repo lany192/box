@@ -22,10 +22,15 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     private MainViewModel viewModel;
 
     @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .init();
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ImmersionBar.with(this).transparentStatusBar().init();
-
         viewModel = getViewModel(MainViewModel.class);
 
         binding.viewpager.setUserInputEnabled(false);
@@ -40,19 +45,15 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
         binding.navigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_main_index:
-//                    ImmersionBar.with(this).statusBarDarkFont(false).init();
                     binding.viewpager.setCurrentItem(0, false);
                     return true;
                 case R.id.menu_main_pic:
-//                    ImmersionBar.with(this).statusBarDarkFont(false).init();
                     binding.viewpager.setCurrentItem(1, false);
                     return true;
                 case R.id.menu_main_city:
-//                    ImmersionBar.with(this).statusBarDarkFont(true).init();
                     binding.viewpager.setCurrentItem(2, false);
                     return true;
                 case R.id.menu_main_my:
-//                    ImmersionBar.with(this).statusBarDarkFont(false).init();
                     binding.viewpager.setCurrentItem(3, false);
                     return true;
                 default:
@@ -73,10 +74,4 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void initImmersionBar() {
-        ImmersionBar.with(this)
-                .transparentStatusBar()
-                .init();
-    }
 }
