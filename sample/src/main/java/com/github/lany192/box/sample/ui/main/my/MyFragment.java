@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.login.LoginActivity;
@@ -57,9 +56,8 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
     @Override
     public void initImmersionBar() {
         ImmersionBar.with(this)
-                .statusBarDarkFont(false, 0.8f)
+                .statusBarDarkFont(false)
                 .navigationBarColor(android.R.color.holo_green_light)
-                .titleBar(R.id.toolbar)
                 .init();
     }
 }
