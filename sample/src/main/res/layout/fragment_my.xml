@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f2f2f2"
     android:orientation="vertical">
 
     <ImageView
@@ -12,110 +13,125 @@
         android:scaleType="fitXY"
         android:src="@mipmap/a" />
 
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_order_view"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="我的订单" />
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="30dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_wallet_view"
+            <com.github.lany192.view.MenuView
+                android:id="@+id/version_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="版本检查" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/cache_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="清除缓存" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/permission_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="授权设置" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="我的钱包" />
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="30dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_1">
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_release_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="我发布的" />
+            <com.github.lany192.view.MenuView
+                android:id="@+id/protocol_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="用户协议" />
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
 
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_coupon_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="优惠券" />
+            <com.github.lany192.view.MenuView
+                android:id="@+id/privacy_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="隐私政策" />
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
 
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_sell_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="我的小店" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
-
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_plant_life_cycle_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:visibility="gone"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="植物成长记" />
-
-
-    <com.github.lany192.view.MenuView
-        android:id="@+id/settings_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="设置" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
+            <com.github.lany192.view.MenuView
+                android:id="@+id/settings_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="settings" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

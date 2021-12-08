@@ -36,12 +36,12 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         binding.permissionView.setOnClickListener(v -> ToastUtils.show("设置权限"));
         binding.protocolView.setOnClickListener(v -> {
             Intent intent = new Intent(this, BrowserActivity.class);
-            intent.putExtra("url", "http://www.baidu.com");
+            intent.putExtra("url", "https://www.baidu.com");
             startActivity(intent);
         });
         binding.privacyView.setOnClickListener(v -> {
             Intent intent = new Intent(this, BrowserActivity.class);
-            intent.putExtra("url", "http://www.baidu.com");
+            intent.putExtra("url", "https://www.baidu.com");
             startActivity(intent);
         });
         binding.aboutView.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
