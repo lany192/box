@@ -31,7 +31,8 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         binding.toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
         binding.versionView.setOnClickListener(v -> ToastUtils.show("已经是最新版本"));
-        binding.permissionView.setOnClickListener(v -> ToastUtils.show("已经是最新版本"));
+        binding.cacheView.setOnClickListener(v -> ToastUtils.show("清除成功"));
+        binding.permissionView.setOnClickListener(v -> ToastUtils.show("设置权限"));
         binding.aboutView.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
     }
 }
