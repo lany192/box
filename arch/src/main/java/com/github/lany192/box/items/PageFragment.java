@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.lany192.box.R;
 import com.github.lany192.box.databinding.FragmentPageBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 
@@ -72,13 +73,13 @@ public abstract class PageFragment<VM extends PageViewModel>
             }
         });
 
-//        viewModel.getLoading().observe(this, loading -> {
-//            if (loading) {
-//                showLoading();
-//            } else {
+        viewModel.getLoading().observe(this, loading -> {
+            if (loading) {
+                adapter.setEmptyView(R.layout.view_loading);
+            } else {
 //                showContent();
-//            }
-//        });
+            }
+        });
         return root;
     }
 
