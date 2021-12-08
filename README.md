@@ -8,7 +8,7 @@
 > * retrofit2
 > * Hilt
 > * OkHttp3
-> 
+>
 使用MVP+rxjava3+rxandroid3+retrofit2+Dagger2+OkHttp3组合封装
 
 ## 引入代码仓库
@@ -19,7 +19,7 @@
             maven { url 'https://jitpack.io' }
         }
     }
-	
+
 ## 添加依赖
 
 	dependencies {
@@ -28,7 +28,7 @@
         implementation 'com.github.lany192.box:dialog:3.8.5'
         implementation 'com.github.lany192.box:arch:3.8.5'
 	}
-	
+
 ## 初始化
 
 在Application类中的onCreate初始化

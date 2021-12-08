@@ -10,7 +10,7 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@color/blue"/>
+        android:src="@color/blue" />
 
     <TextView
         android:id="@+id/item_menu_title"

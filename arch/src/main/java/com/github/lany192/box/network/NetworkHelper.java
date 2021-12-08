@@ -26,6 +26,29 @@ import java.util.Objects;
 
 public class NetworkHelper implements DefaultLifecycleObserver {
     private volatile static NetworkHelper instance = null;
+    private final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
+
+        @Override
+        public void onLost(Network network) {
+            super.onLost(network);
+            EventBus.getDefault().post(new NetWorkEvent(false));
+        }
+
+        @Override
+        public void onAvailable(Network network) {
+            super.onAvailable(network);
+            EventBus.getDefault().post(new NetWorkEvent(true));
+        }
+    };
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Objects.equals(intent.getAction(), ConnectivityManager.CONNECTIVITY_ACTION)) {
+                XLog.tag("TAG").i("网络变化了--------------------");
+                EventBus.getDefault().post(new NetWorkEvent(NetUtils.isAvailable(context)));
+            }
+        }
+    };
 
     private NetworkHelper() {
     }
@@ -64,29 +87,4 @@ public class NetworkHelper implements DefaultLifecycleObserver {
             Box.get().getContext().unregisterReceiver(receiver);
         }
     }
-
-    private final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
-
-        @Override
-        public void onLost(Network network) {
-            super.onLost(network);
-            EventBus.getDefault().post(new NetWorkEvent(false));
-        }
-
-        @Override
-        public void onAvailable(Network network) {
-            super.onAvailable(network);
-            EventBus.getDefault().post(new NetWorkEvent(true));
-        }
-    };
-
-    private final BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Objects.equals(intent.getAction(), ConnectivityManager.CONNECTIVITY_ACTION)) {
-                XLog.tag("TAG").i("网络变化了--------------------");
-                EventBus.getDefault().post(new NetWorkEvent(NetUtils.isAvailable(context)));
-            }
-        }
-    };
 }

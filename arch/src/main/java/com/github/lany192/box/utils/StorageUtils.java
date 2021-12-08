@@ -1,6 +1,8 @@
 package com.github.lany192.box.utils;
 
 
+import static android.os.Environment.MEDIA_MOUNTED;
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Environment;
@@ -8,8 +10,6 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
-
-import static android.os.Environment.MEDIA_MOUNTED;
 
 public class StorageUtils {
     private static final String TAG = "StorageUtils";

@@ -36,7 +36,7 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         return root;
     }
 
-    private void showDialog(){
+    private void showDialog() {
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");
         dialog.setMessage("猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁猜猜我是谁");

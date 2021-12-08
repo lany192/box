@@ -21,7 +21,7 @@ class Extensions {
                 && this.isAdded
                 && !this.isDetached
     }
-    
+
     fun Context.getColorCompat(color: Int) = ContextCompat.getColor(this, color)
 
     val Context.screenWidthPx: Int

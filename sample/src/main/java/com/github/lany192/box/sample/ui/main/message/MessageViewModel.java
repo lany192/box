@@ -4,10 +4,10 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.box.viewmodel.LifecycleViewModel;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
+import com.github.lany192.box.viewmodel.LifecycleViewModel;
 import com.hjq.toast.ToastUtils;
 
 import java.util.List;

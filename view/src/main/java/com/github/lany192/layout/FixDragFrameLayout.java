@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.github.lany192.helper.DragHelper;
+
 /**
  * 优化ViewPager/ViewPager2和LinearLayout的子类控件滑动冲突
  */

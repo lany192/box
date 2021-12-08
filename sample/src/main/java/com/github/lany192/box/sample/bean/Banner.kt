@@ -13,11 +13,13 @@ package com.github.lany192.box.sample.bean
 //　　　　　　"title":"一起来做个App吧",
 //　　　　　　"type":0,
 //　　　　　　"url":"http://www.wanandroid.com/blog/show/2"
-data class Banner(val desc: String,
-                  val id: Int,
-                  val imagePath: String,
-                  val isVisible: Int,
-                  val order: Int,
-                  val title: String,
-                  val type: Int,
-                  val url: String)
+data class Banner(
+    val desc: String,
+    val id: Int,
+    val imagePath: String,
+    val isVisible: Int,
+    val order: Int,
+    val title: String,
+    val type: Int,
+    val url: String
+)

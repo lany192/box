@@ -12,7 +12,7 @@ import com.github.lany192.box.viewmodel.LifecycleViewModel
 /**
  * ViewBinding实现基类
  */
-abstract class BindingFragment<VB : ViewBinding> : BasicFragment(){
+abstract class BindingFragment<VB : ViewBinding> : BasicFragment() {
     lateinit var binding: VB
 
     override fun onCreateView(

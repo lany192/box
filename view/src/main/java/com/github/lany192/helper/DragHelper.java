@@ -7,8 +7,8 @@ import android.view.View;
  * 处理ViewPager2和Pager左右上下滑动事件的关系
  */
 public class DragHelper {
-    private int startX, startY;
     private final View layout;
+    private int startX, startY;
     /**
      * 是否直接剥夺父view 对touch 事件的处理权
      */

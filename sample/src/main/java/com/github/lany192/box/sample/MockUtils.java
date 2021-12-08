@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class MockUtils {
 
-    public static String getImageUrl(){
+    public static String getImageUrl() {
         List<String> images = new ArrayList<>();
         images.add("https://hbimg.huabanimg.com/9c7b8969e5367d70a4c854f9aa079a76df4471a1190837-dd65JF_fw658/format/webp");
         images.add("https://hbimg.huabanimg.com/e31425fa46a743a3dbf6d8c17537fa3cb49fa90a2007db-GntkV2_fw658/format/webp");

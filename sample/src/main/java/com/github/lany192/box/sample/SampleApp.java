@@ -1,7 +1,6 @@
 package com.github.lany192.box.sample;
 
 import android.annotation.TargetApi;
-import android.app.Application;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;

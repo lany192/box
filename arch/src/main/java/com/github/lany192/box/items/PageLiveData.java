@@ -13,14 +13,14 @@ public class PageLiveData extends MutableLiveData<PageLiveData> {
         return items;
     }
 
-    public boolean isRefresh() {
-        return refresh;
-    }
-
     public void setItems(List<Object> items) {
         this.items = items;
         this.refresh = true;
         postValue(this);
+    }
+
+    public boolean isRefresh() {
+        return refresh;
     }
 
     public void addItems(List<Object> items) {

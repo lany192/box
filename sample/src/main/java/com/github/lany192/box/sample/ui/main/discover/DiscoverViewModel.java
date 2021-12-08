@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.viewmodel.LifecycleViewModel;
 
 import java.util.ArrayList;
@@ -34,16 +35,16 @@ public class DiscoverViewModel extends LifecycleViewModel {
     public void requestCityInfo() {
         showLoading(true);
         List<String> images = new ArrayList<>();
-//        for (int i = 0; i < 50; i++) {
-//            images.add(MockUtils.getImageUrl());
-//        }
+        for (int i = 0; i < 50; i++) {
+            images.add(MockUtils.getImageUrl());
+        }
         new Handler().postDelayed(() -> {
             showLoading(false);
             items.postValue(images);
         }, 1000);
     }
 
-    public void retry(){
+    public void retry() {
         requestCityInfo();
     }
 }

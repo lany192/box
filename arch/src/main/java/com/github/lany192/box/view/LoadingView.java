@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.github.lany192.box.R;
 
-public class LoadingView extends BaseLayout{
+public class LoadingView extends BaseLayout {
 
     public LoadingView(@NonNull Context context) {
         super(context);

@@ -44,7 +44,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         return rootView;
     }
 
-    private void initView(View rootView){
+    private void initView(View rootView) {
         DiscoverAdapter adapter = new DiscoverAdapter(new ArrayList<>());
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -60,13 +60,13 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
             }
         });
         viewModel.getItems().observe(this, strings -> {
-            if(ListUtils.isEmpty(strings)){
+            if (ListUtils.isEmpty(strings)) {
                 EmptyView emptyView = new EmptyView(requireContext());
                 emptyView.setMessage("没有发现数据");
                 emptyView.setHint("重新点击试试");
                 emptyView.setOnRetryListener(() -> viewModel.retry());
                 adapter.setEmptyView(emptyView);
-            }else{
+            } else {
                 adapter.setNewInstance(strings);
             }
         });

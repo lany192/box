@@ -25,6 +25,6 @@
     <!-- 比例图片视图属性 -->
     <declare-styleable name="RatioRoundImageView">
         <attr name="image_ratio" format="float" />
-        <attr name="image_roundRadius" format="dimension"/>
+        <attr name="image_roundRadius" format="dimension" />
     </declare-styleable>
 </resources>

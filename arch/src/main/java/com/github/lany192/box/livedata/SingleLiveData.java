@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SingleLiveData<T> extends MutableLiveData<T> {
     private final AtomicBoolean mPending = new AtomicBoolean(false);
+
     @Override
     public void observe(@NonNull LifecycleOwner owner, @NonNull final Observer<? super T> observer) {
         super.observe(owner, new Observer<T>() {

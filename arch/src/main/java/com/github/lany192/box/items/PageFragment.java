@@ -18,8 +18,8 @@ import java.lang.reflect.ParameterizedType;
 
 public abstract class PageFragment<VM extends PageViewModel>
         extends BindingFragment<FragmentPageBinding> {
-    protected VM viewModel;
     private final PageAdapter adapter = new PageAdapter();
+    protected VM viewModel;
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
