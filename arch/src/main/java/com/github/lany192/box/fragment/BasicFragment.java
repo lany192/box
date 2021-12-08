@@ -9,7 +9,6 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.dialog.LoadingDialog;
-import com.gyf.immersionbar.ImmersionBar;
 
 public abstract class BasicFragment extends Fragment {
     protected Logger.Builder log = XLog.tag(getClass().getName());
@@ -63,6 +62,5 @@ public abstract class BasicFragment extends Fragment {
     }
 
     public void initImmersionBar() {
-        ImmersionBar.with(this).keyboardEnable(true).init();
     }
 }
