@@ -56,6 +56,10 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
 
     @Override
     public void initImmersionBar() {
-        ImmersionBar.with(this).titleBar(R.id.toolbar).autoDarkModeEnable(true).init();
+        ImmersionBar.with(this)
+                .statusBarDarkFont(false, 0.8f)
+                .navigationBarColor(android.R.color.holo_green_light)
+                .titleBar(R.id.toolbar)
+                .init();
     }
 }

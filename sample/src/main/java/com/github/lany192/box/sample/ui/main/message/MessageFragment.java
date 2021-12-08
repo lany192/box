@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentMessageBinding;
+import com.gyf.immersionbar.ImmersionBar;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -17,10 +19,14 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class MessageFragment extends BindingFragment<FragmentMessageBinding> {
     private MessageViewModel viewModel;
 
-//    @Override
-//    public void initImmersionBar() {
-//        ImmersionBar.with(this).titleBar(R.id.toolbar).autoDarkModeEnable(true).init();
-//    }
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+                .statusBarDarkFont(true, 0.2f)
+                .navigationBarColor(android.R.color.holo_blue_dark)
+                .titleBar(R.id.toolbar)
+                .init();
+    }
 
     @NonNull
     @Override

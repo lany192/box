@@ -81,7 +81,6 @@ ext {
             'background-core'         : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.2',
             //状态栏工具 https://github.com/gyf-dev/ImmersionBar
             'immersion-bar'           : 'com.gyf.immersionbar:immersionbar:3.0.0',
-            'immersion-bar-components': 'com.gyf.immersionbar:immersionbar-components:3.0.0',
             'immersion-bar-ktx'       : 'com.gyf.immersionbar:immersionbar-ktx:3.0.0',
             //超链接处理 https://github.com/klinker24/Android-TextView-LinkBuilder
             'link-builder'            : 'com.klinkerapps:link_builder:2.0.5',

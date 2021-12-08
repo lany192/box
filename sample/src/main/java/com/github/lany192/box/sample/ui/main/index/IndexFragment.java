@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentIndexBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -18,12 +19,21 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
     private IndexViewModel viewModel;
 
+    @Override
+    public void initImmersionBar() {
+        super.initImmersionBar();
+        ImmersionBar.with(this)
+                .statusBarDarkFont(true, 0.2f)
+                .navigationBarColor(android.R.color.holo_red_light)
+                .titleBar(R.id.tab_layout)
+                .init();
+    }
+
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel(IndexViewModel.class);
-        ImmersionBar.with(this).titleBar(binding.tabLayout).transparentStatusBar().statusBarDarkFont(true).init();
         IndexAdapter indexAdapter=new IndexAdapter(requireActivity());
         binding.viewpager.setAdapter(indexAdapter);
         binding.tabLayout.setViewPager2(binding.viewpager, indexAdapter.getTitles());
