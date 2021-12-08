@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
+import com.github.lany192.box.utils.ListUtils;
+import com.github.lany192.box.view.EmptyView;
+import com.github.lany192.box.view.LoadingView;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
@@ -57,12 +59,20 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
                 layoutManager.invalidateSpanAssignments(); //防止第一行到顶部有空白区域
             }
         });
-        viewModel.getItems().observe(this, adapter::setList);
+        viewModel.getItems().observe(this, strings -> {
+            if(ListUtils.isEmpty(strings)){
+                EmptyView emptyView = new EmptyView(requireContext());
+                emptyView.setMessage("没有发现数据");
+                emptyView.setHint("重新点击试试");
+                emptyView.setOnRetryListener(() -> viewModel.retry());
+                adapter.setEmptyView(emptyView);
+            }else{
+                adapter.setNewInstance(strings);
+            }
+        });
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
-                adapter.setEmptyView(R.layout.view_loading);
-            } else {
-//                showContent();
+                adapter.setEmptyView(new LoadingView(requireContext()));
             }
         });
     }
