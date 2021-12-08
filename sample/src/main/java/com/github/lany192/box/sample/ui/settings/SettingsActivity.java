@@ -9,6 +9,7 @@ import com.github.lany192.box.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
+import com.github.lany192.box.sample.ui.browser.BrowserActivity;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
@@ -33,6 +34,16 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         binding.versionView.setOnClickListener(v -> ToastUtils.show("已经是最新版本"));
         binding.cacheView.setOnClickListener(v -> ToastUtils.show("清除成功"));
         binding.permissionView.setOnClickListener(v -> ToastUtils.show("设置权限"));
+        binding.protocolView.setOnClickListener(v -> {
+            Intent intent = new Intent(this, BrowserActivity.class);
+            intent.putExtra("url", "http://www.baidu.com");
+            startActivity(intent);
+        });
+        binding.privacyView.setOnClickListener(v -> {
+            Intent intent = new Intent(this, BrowserActivity.class);
+            intent.putExtra("url", "http://www.baidu.com");
+            startActivity(intent);
+        });
         binding.aboutView.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
     }
 }

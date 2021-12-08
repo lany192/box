@@ -73,7 +73,7 @@
             android:layout_height="16dp" />
 
         <com.github.lany192.view.MenuView
-            android:id="@+id/my_coupon_view"
+            android:id="@+id/protocol_view"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="?android:attr/selectableItemBackground"
@@ -89,7 +89,7 @@
             android:background="#dddddd" />
 
         <com.github.lany192.view.MenuView
-            android:id="@+id/my_sell_view"
+            android:id="@+id/privacy_view"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="?android:attr/selectableItemBackground"
