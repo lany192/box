@@ -12,7 +12,7 @@
         android:layout_height="36dp"
         android:layout_marginRight="8dp"
         android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/ico_loading" />
+        android:indeterminateDrawable="@drawable/icon_loading_white" />
 
     <TextView
         android:id="@+id/message"

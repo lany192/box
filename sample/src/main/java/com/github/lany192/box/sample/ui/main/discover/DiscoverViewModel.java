@@ -1,5 +1,7 @@
 package com.github.lany192.box.sample.ui.main.discover;
 
+import android.os.Handler;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.box.sample.MockUtils;
@@ -33,10 +35,12 @@ public class DiscoverViewModel extends LifecycleViewModel {
     public void requestCityInfo() {
         showLoading(true);
         List<String> images = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             images.add(MockUtils.getImageUrl());
         }
-        items.postValue(images);
-        showLoading(false);
+        new Handler().postDelayed(() -> {
+            showLoading(false);
+            items.postValue(images);
+        }, 1000);
     }
 }
