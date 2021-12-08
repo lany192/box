@@ -1,10 +1,12 @@
 package com.github.lany192.box.sample.ui.main.index.girl;
 
+import android.os.Handler;
+
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.box.viewmodel.LifecycleViewModel;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.http.ApiService;
+import com.github.lany192.box.viewmodel.LifecycleViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +40,10 @@ public class GirlViewModel extends LifecycleViewModel {
         for (int i = 0; i < 50; i++) {
             images.add(MockUtils.getImageUrl());
         }
-        showLoading(false);
-
-        items.postValue(images);
+        new Handler().postDelayed(() -> {
+            showLoading(false);
+            items.postValue(images);
+        }, 1000);
     }
 
 }
