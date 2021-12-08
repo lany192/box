@@ -10,8 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.github.lany192.box.items.PageAdapter;
 import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.box.items.PageAdapter;
+import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentGirlBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -46,11 +47,11 @@ public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, adapter::setList);
         viewModel.getLoading().observe(this, loading -> {
-//            if (loading) {
-//                showLoading();
-//            } else {
+            if (loading) {
+                adapter.setEmptyView(R.layout.view_loading);
+            } else {
 //                showContent();
-//            }
+            }
         });
         return root;
     }
