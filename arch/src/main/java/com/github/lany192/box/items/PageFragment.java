@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.lany192.box.R;
 import com.github.lany192.box.databinding.FragmentPageBinding;
 import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.box.utils.ListUtils;
+import com.github.lany192.box.view.EmptyView;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -67,7 +69,15 @@ public abstract class PageFragment<VM extends PageViewModel>
         });
         viewModel.getItems().observe(this, data -> {
             if (data.isRefresh()) {
-                adapter.setNewInstance(data.getItems());
+                if (ListUtils.isEmpty(data.getItems())) {
+                    EmptyView emptyView = new EmptyView(requireContext());
+                    emptyView.setMessage("没有发现数据");
+                    emptyView.setHint("重新点击试试");
+                    emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                    adapter.setEmptyView(emptyView);
+                } else {
+                    adapter.setNewInstance(data.getItems());
+                }
             } else {
                 adapter.addData(data.getItems());
             }
@@ -76,8 +86,6 @@ public abstract class PageFragment<VM extends PageViewModel>
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 adapter.setEmptyView(R.layout.view_loading);
-            } else {
-//                showContent();
             }
         });
         return root;
