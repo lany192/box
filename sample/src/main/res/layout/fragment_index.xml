@@ -9,7 +9,7 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_light"
+        android:background="@android:color/holo_orange_light"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         app:tl_indicatorColor="#FFF4B4"

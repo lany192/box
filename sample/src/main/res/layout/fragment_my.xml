@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/holo_green_light"
         app:title="我的"
         app:titleTextColor="@android:color/white" />
 

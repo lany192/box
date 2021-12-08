@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/holo_blue_light"
+        android:background="@android:color/holo_red_light"
         app:title="发现"
         app:titleTextColor="@android:color/white" />
 

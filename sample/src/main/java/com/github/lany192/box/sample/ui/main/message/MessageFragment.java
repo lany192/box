@@ -23,7 +23,7 @@ public class MessageFragment extends BindingFragment<FragmentMessageBinding> {
     public void initImmersionBar() {
         ImmersionBar.with(this)
                 .statusBarDarkFont(true, 0.2f)
-                .navigationBarColor(android.R.color.holo_blue_dark)
+                .navigationBarColor(android.R.color.white)
                 .titleBar(R.id.toolbar)
                 .init();
     }
