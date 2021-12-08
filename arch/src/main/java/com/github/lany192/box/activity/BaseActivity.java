@@ -11,6 +11,7 @@ import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.network.NetworkHelper;
 import com.github.lany192.dialog.LoadingDialog;
+import com.gyf.immersionbar.ImmersionBar;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
@@ -71,6 +72,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void initImmersionBar() {
-
+        ImmersionBar.with(this).transparentStatusBar().init();
     }
 }

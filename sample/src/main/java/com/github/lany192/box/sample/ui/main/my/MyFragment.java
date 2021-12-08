@@ -13,6 +13,7 @@ import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.login.LoginActivity;
+import com.github.lany192.box.sample.ui.settings.SettingsActivity;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.interfaces.OnSimpleListener;
 import com.gyf.immersionbar.ImmersionBar;
@@ -31,6 +32,7 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         binding.myOrderView.setOnClickListener(v -> showDialog());
         binding.myWalletView.setOnClickListener(v -> startActivity(new Intent(getActivity(), AboutActivity.class)));
         binding.myReleaseView.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginActivity.class)));
+        binding.settingsView.setOnClickListener(v -> startActivity(new Intent(getActivity(), SettingsActivity.class)));
         return root;
     }
 
