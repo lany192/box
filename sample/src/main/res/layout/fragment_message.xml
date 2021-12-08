@@ -14,19 +14,14 @@
         app:title="消息"
         app:titleTextColor="@android:color/black" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我的" />
-
     <com.github.lany192.view.MenuView
         android:id="@+id/my_order_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?android:attr/actionBarItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         app:menu_hintColor="#999999"
         app:menu_isShowIcon="false"
-        app:menu_name="我的订单" />
+        app:menu_name="消息1" />
 
     <View
         android:layout_width="wrap_content"
@@ -39,10 +34,10 @@
         android:id="@+id/my_wallet_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?android:attr/actionBarItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         app:menu_hintColor="#999999"
         app:menu_isShowIcon="false"
-        app:menu_name="我的钱包" />
+        app:menu_name="消息1" />
 
     <View
         android:layout_width="wrap_content"
@@ -55,10 +50,10 @@
         android:id="@+id/my_release_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?android:attr/actionBarItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         app:menu_hintColor="#999999"
         app:menu_isShowIcon="false"
-        app:menu_name="我发布的" />
+        app:menu_name="消息1" />
 
     <View
         android:layout_width="wrap_content"
@@ -71,10 +66,10 @@
         android:id="@+id/my_coupon_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?android:attr/actionBarItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         app:menu_hintColor="#999999"
         app:menu_isShowIcon="false"
-        app:menu_name="优惠券" />
+        app:menu_name="消息1" />
 
     <View
         android:layout_width="wrap_content"
@@ -87,10 +82,10 @@
         android:id="@+id/my_sell_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?android:attr/actionBarItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         app:menu_hintColor="#999999"
         app:menu_isShowIcon="false"
-        app:menu_name="我的小店" />
+        app:menu_name="消息1" />
 
     <View
         android:layout_width="wrap_content"
@@ -103,21 +98,21 @@
         android:id="@+id/my_plant_life_cycle_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?android:attr/actionBarItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         android:visibility="gone"
         app:menu_hintColor="#999999"
         app:menu_isShowIcon="false"
-        app:menu_name="植物成长记" />
+        app:menu_name="消息1" />
 
 
     <com.github.lany192.view.MenuView
         android:id="@+id/my_debug_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?android:attr/actionBarItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         app:menu_hintColor="#999999"
         app:menu_isShowIcon="false"
-        app:menu_name="调试" />
+        app:menu_name="消息1" />
 
     <View
         android:layout_width="wrap_content"

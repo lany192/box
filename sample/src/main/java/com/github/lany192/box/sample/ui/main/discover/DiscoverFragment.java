@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -29,7 +28,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         ImmersionBar.with(this)
                 .statusBarDarkFont(false)
                 .navigationBarColor(android.R.color.holo_red_light)
-                .titleBar(R.id.toolbar)
+                .titleBar(binding.toolbar)
                 .init();
     }
 

@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentMessageBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -25,7 +24,7 @@ public class MessageFragment extends BindingFragment<FragmentMessageBinding> {
                 .statusBarDarkFont(true, 0.2f)
                 .navigationBarColor(android.R.color.white)
                 .navigationBarDarkIcon(true)
-                .titleBar(R.id.toolbar)
+                .titleBar(binding.toolbar)
                 .init();
     }
 

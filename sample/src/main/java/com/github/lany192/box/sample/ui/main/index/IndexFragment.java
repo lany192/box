@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentIndexBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -24,7 +23,7 @@ public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
         ImmersionBar.with(this)
                 .statusBarDarkFont(false)
                 .navigationBarColor(android.R.color.holo_orange_light)
-                .titleBar(R.id.tab_layout)
+                .titleBar(binding.tabLayout)
                 .init();
     }
 
