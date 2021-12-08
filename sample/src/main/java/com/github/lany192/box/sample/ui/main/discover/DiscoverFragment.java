@@ -27,7 +27,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     public void initImmersionBar() {
         super.initImmersionBar();
         ImmersionBar.with(this)
-                .statusBarDarkFont(true, 0.2f)
+                .statusBarDarkFont(false)
                 .navigationBarColor(android.R.color.holo_red_light)
                 .titleBar(R.id.toolbar)
                 .init();
