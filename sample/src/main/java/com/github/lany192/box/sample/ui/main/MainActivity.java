@@ -77,7 +77,6 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     public void initImmersionBar() {
         ImmersionBar.with(this)
                 .transparentStatusBar()
-                .navigationBarColor(android.R.color.holo_orange_light)
                 .init();
     }
 }
