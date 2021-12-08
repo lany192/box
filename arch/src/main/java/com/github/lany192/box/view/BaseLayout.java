@@ -15,8 +15,7 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 
 public abstract class BaseLayout extends FrameLayout implements DefaultLifecycleObserver {
-    protected final String TAG = this.getClass().getSimpleName();
-    protected Logger.Builder log = XLog.tag(TAG);
+    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
 
     public BaseLayout(@NonNull Context context) {
         this(context, null, 0);
