@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -49,11 +50,16 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         });
         viewModel.getItems().observe(this, adapter::setList);
         viewModel.getLoading().observe(this, loading -> {
-            if (loading) {
-                showLoading();
-            } else {
-                showContent();
-            }
+//            if (loading) {
+//                showLoading();
+//            } else {
+//                showContent();
+//            }
         });
+    }
+
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this).titleBar(R.id.toolbar).autoDarkModeEnable(true).init();
     }
 }

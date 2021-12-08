@@ -15,7 +15,11 @@ import com.github.lany192.box.viewmodel.LifecycleViewModel
 abstract class BindingFragment<VB : ViewBinding> : BasicFragment(){
     lateinit var binding: VB
 
-    override fun getContentView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = getBinding(inflater, container)
         return binding.root
     }

@@ -46,11 +46,11 @@ public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, adapter::setList);
         viewModel.getLoading().observe(this, loading -> {
-            if (loading) {
-                showLoading();
-            } else {
-                showContent();
-            }
+//            if (loading) {
+//                showLoading();
+//            } else {
+//                showContent();
+//            }
         });
         return root;
     }

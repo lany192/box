@@ -10,11 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.login.LoginActivity;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.interfaces.OnSimpleListener;
+import com.gyf.immersionbar.ImmersionBar;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -50,5 +52,10 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
             }
         });
         dialog.show(this);
+    }
+
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this).titleBar(R.id.toolbar).autoDarkModeEnable(true).init();
     }
 }
