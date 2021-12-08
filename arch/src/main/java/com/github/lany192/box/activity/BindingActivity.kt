@@ -17,7 +17,7 @@ abstract class BindingActivity<VB : ViewBinding> : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = getBinding()
-        setRootView(binding.root)
+        setContentView(binding.root)
     }
 
     fun <T : LifecycleViewModel?> getViewModel(modelClass: Class<T>): T {

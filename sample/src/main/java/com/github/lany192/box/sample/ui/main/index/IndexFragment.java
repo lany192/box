@@ -21,10 +21,9 @@ public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
 
     @Override
     public void initImmersionBar() {
-        super.initImmersionBar();
         ImmersionBar.with(this)
-                .statusBarDarkFont(true, 0.2f)
-                .navigationBarColor(android.R.color.holo_red_light)
+                .statusBarDarkFont(false)
+                .navigationBarColor(android.R.color.holo_orange_light)
                 .titleBar(R.id.tab_layout)
                 .init();
     }

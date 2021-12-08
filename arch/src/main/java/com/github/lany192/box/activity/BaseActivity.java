@@ -1,9 +1,7 @@
 package com.github.lany192.box.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,30 +11,16 @@ import com.elvishew.xlog.XLog;
 import com.github.lany192.box.R;
 import com.github.lany192.box.network.NetworkHelper;
 import com.github.lany192.dialog.LoadingDialog;
-import com.github.lany192.view.StateLayout;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private LoadingDialog loadingDialog;
-    private StateLayout stateLayout;
 
     @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentView());
         getLifecycle().addObserver(NetworkHelper.getInstance());
-    }
-
-    private View getContentView() {
-        stateLayout = new StateLayout(this);
-        stateLayout.setLayoutParams(new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-        stateLayout.setOnRetryListener(this::onRetry);
-        return stateLayout;
-    }
-
-    public void setRootView(View view) {
-        stateLayout.addView(view);
     }
 
     public void showLoadingDialog() {
@@ -58,35 +42,35 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void onRetry() {
-        log.i("点击重试");
+    @CallSuper
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (immersionBarEnabled()) {
+            initImmersionBar();
+        }
     }
 
-    public void showEmpty() {
-        stateLayout.showEmpty();
+    @CallSuper
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (immersionBarEnabled()) {
+            initImmersionBar();
+        }
     }
 
-    public void showEmpty(String msg) {
-        stateLayout.showEmpty(msg);
+    /**
+     * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
+     * Immersion bar enabled boolean.
+     *
+     * @return the boolean
+     */
+    public boolean immersionBarEnabled() {
+        return true;
     }
 
-    public void showContent() {
-        stateLayout.showContent();
-    }
+    public void initImmersionBar() {
 
-    public void showNoWifi() {
-        stateLayout.showNetwork();
-    }
-
-    public void showError() {
-        stateLayout.showError();
-    }
-
-    public void showError(String msg) {
-        stateLayout.showError(msg);
-    }
-
-    public void showLoading() {
-        stateLayout.showLoading();
     }
 }

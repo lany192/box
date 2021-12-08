@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.github.lany192.box.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivityMainBinding;
+import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -70,5 +71,12 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .init();
     }
 }
