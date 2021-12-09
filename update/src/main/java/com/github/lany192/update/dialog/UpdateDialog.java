@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfiguration;
 import com.github.lany192.update.listener.OnButtonClickListener;
@@ -27,13 +29,14 @@ import com.github.lany192.update.manager.DownloadManager;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
-import com.github.lany192.update.utils.DensityUtil;
 import com.github.lany192.update.utils.ScreenUtil;
+import com.github.lany192.utils.DensityUtils;
 
 import java.io.File;
 
 public class UpdateDialog extends Dialog implements View.OnClickListener, OnDownloadListener {
-
+    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
+    private final int install = 0x45F;
     private Context context;
     private DownloadManager manager;
     private boolean forcedUpgrade;
@@ -42,7 +45,6 @@ public class UpdateDialog extends Dialog implements View.OnClickListener, OnDown
     private OnButtonClickListener buttonClickListener;
     private int dialogImage, dialogButtonTextColor, dialogButtonColor, dialogProgressBarColor;
     private File apk;
-    private final int install = 0x45F;
 
     public UpdateDialog(@NonNull Context context) {
         super(context, R.style.UpdateDialog);
@@ -93,7 +95,7 @@ public class UpdateDialog extends Dialog implements View.OnClickListener, OnDown
             StateListDrawable drawable = new StateListDrawable();
             GradientDrawable colorDrawable = new GradientDrawable();
             colorDrawable.setColor(dialogButtonColor);
-            colorDrawable.setCornerRadius(DensityUtil.dip2px(context, 3));
+            colorDrawable.setCornerRadius(DensityUtils.dp2px(3));
             drawable.addState(new int[]{android.R.attr.state_pressed}, colorDrawable);
             drawable.addState(new int[]{}, colorDrawable);
             update.setBackgroundDrawable(drawable);

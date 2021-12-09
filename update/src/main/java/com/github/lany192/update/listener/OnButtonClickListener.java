@@ -5,16 +5,6 @@ import androidx.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/**
- * 项目名:    AppUpdate
- * 包名       com.github.lany192.update.listener
- * 文件名:    OnButtonClickListener
- * 创建时间:  2018/5/7 on 20:00
- * 描述:     TODO
- *
- * @author 阿钟
- */
-
 public interface OnButtonClickListener {
 
     /**
@@ -26,12 +16,6 @@ public interface OnButtonClickListener {
      */
     int CANCEL = 1;
 
-    @IntDef({UPDATE, CANCEL})
-    @Retention(RetentionPolicy.SOURCE)
-    @interface ID {
-
-    }
-
     /**
      * 按钮点击回调
      *
@@ -39,4 +23,10 @@ public interface OnButtonClickListener {
      *           {@link OnButtonClickListener#CANCEL}
      */
     void onButtonClick(@ID int id);
+
+    @IntDef({UPDATE, CANCEL})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface ID {
+
+    }
 }

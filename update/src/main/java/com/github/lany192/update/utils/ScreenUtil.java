@@ -3,16 +3,6 @@ package com.github.lany192.update.utils;
 import android.content.Context;
 import android.util.DisplayMetrics;
 
-/**
- * 项目名:    AppUpdate
- * 包名       com.github.lany192.update.utils
- * 文件名:    ScreenUtil
- * 创建时间:  2018/1/30 on 16:13
- * 描述:     TODO 获取屏幕 宽 高
- *
- * @author 阿钟
- */
-
 
 public final class ScreenUtil {
 

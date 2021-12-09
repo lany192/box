@@ -13,7 +13,6 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 
 
-
 public final class ApkUtil {
     /**
      * 安装一个apk

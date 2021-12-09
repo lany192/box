@@ -2,16 +2,6 @@ package com.github.lany192.update.listener;
 
 import java.io.File;
 
-/**
- * 项目名:    AppUpdate
- * 包名       com.github.lany192.update.listener
- * 文件名:    OnDownloadListenerAdapter
- * 创建时间:  2020/9/30 on 09:09
- * 描述:     TODO
- *
- * @author 阿钟
- */
-
 public abstract class OnDownloadListenerAdapter implements OnDownloadListener {
     /**
      * 开始下载

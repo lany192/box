@@ -7,21 +7,9 @@ import androidx.annotation.ColorInt;
 import com.github.lany192.update.base.BaseHttpDownloadManager;
 import com.github.lany192.update.listener.OnButtonClickListener;
 import com.github.lany192.update.listener.OnDownloadListener;
-import com.github.lany192.update.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * 项目名:    AppUpdate
- * 包名       com.github.lany192.update.config
- * 文件名:    UpdateConfiguration
- * 创建时间:  2018/1/27 on 10:42
- * 描述:     TODO 版本更新的一些配置信息,配置一些必须要的默认信息
- *
- * @author 阿钟
- */
-
 
 public class UpdateConfiguration {
     /**
@@ -79,6 +67,13 @@ public class UpdateConfiguration {
     private int dialogProgressBarColor = -1;
 
     /**
+     * 获取通知栏消息id
+     */
+    public int getNotifyId() {
+        return notifyId;
+    }
+
+    /**
      * 设置通知栏消息id
      */
     public UpdateConfiguration setNotifyId(int notifyId) {
@@ -87,10 +82,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 获取通知栏消息id
+     * 获取下载管理器
      */
-    public int getNotifyId() {
-        return notifyId;
+    public BaseHttpDownloadManager getHttpManager() {
+        return httpManager;
     }
 
     /**
@@ -102,19 +97,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 获取下载管理器
+     * 获取下载监听器
      */
-    public BaseHttpDownloadManager getHttpManager() {
-        return httpManager;
-    }
-
-
-    /**
-     * 设置是否输出日志信息
-     */
-    public UpdateConfiguration setEnableLog(boolean enableLog) {
-        LogUtil.enable(enableLog);
-        return this;
+    public List<OnDownloadListener> getOnDownloadListener() {
+        return onDownloadListeners;
     }
 
     /**
@@ -126,10 +112,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 获取下载监听器
+     * apk下载完成是否跳转至安装界面
      */
-    public List<OnDownloadListener> getOnDownloadListener() {
-        return onDownloadListeners;
+    public boolean isJumpInstallPage() {
+        return jumpInstallPage;
     }
 
     /**
@@ -141,10 +127,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * apk下载完成是否跳转至安装界面
+     * 获取Android O的通知渠道
      */
-    public boolean isJumpInstallPage() {
-        return jumpInstallPage;
+    public NotificationChannel getNotificationChannel() {
+        return notificationChannel;
     }
 
     /**
@@ -156,10 +142,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 获取Android O的通知渠道
+     * 是否在通知栏显示信息
      */
-    public NotificationChannel getNotificationChannel() {
-        return notificationChannel;
+    public boolean isShowNotification() {
+        return showNotification;
     }
 
     /**
@@ -171,10 +157,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 是否在通知栏显示信息
+     * 是否强制升级
      */
-    public boolean isShowNotification() {
-        return showNotification;
+    public boolean isForcedUpgrade() {
+        return forcedUpgrade;
     }
 
     /**
@@ -186,10 +172,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 是否强制升级
+     * 是否提示 "正在后台下载新版本…"
      */
-    public boolean isForcedUpgrade() {
-        return forcedUpgrade;
+    public boolean isShowBgdToast() {
+        return showBgdToast;
     }
 
     /**
@@ -201,10 +187,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 是否提示 "正在后台下载新版本…"
+     * 获取内置对话框背景图片资源id
      */
-    public boolean isShowBgdToast() {
-        return showBgdToast;
+    public int getDialogImage() {
+        return dialogImage;
     }
 
     /**
@@ -216,10 +202,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 获取内置对话框背景图片资源id
+     * 获取内置对话框按钮的颜色
      */
-    public int getDialogImage() {
-        return dialogImage;
+    public int getDialogButtonColor() {
+        return dialogButtonColor;
     }
 
     /**
@@ -231,10 +217,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 获取内置对话框按钮的颜色
+     * 获取内置对话框按钮文字的颜色
      */
-    public int getDialogButtonColor() {
-        return dialogButtonColor;
+    public int getDialogButtonTextColor() {
+        return dialogButtonTextColor;
     }
 
     /**
@@ -246,10 +232,10 @@ public class UpdateConfiguration {
     }
 
     /**
-     * 获取内置对话框按钮文字的颜色
+     * 获取内置对话框强制更新时进度条和文字的颜色
      */
-    public int getDialogButtonTextColor() {
-        return dialogButtonTextColor;
+    public int getDialogProgressBarColor() {
+        return dialogProgressBarColor;
     }
 
     /**
@@ -258,13 +244,6 @@ public class UpdateConfiguration {
     public UpdateConfiguration setDialogProgressBarColor(int dialogProgressBarColor) {
         this.dialogProgressBarColor = dialogProgressBarColor;
         return this;
-    }
-
-    /**
-     * 获取内置对话框强制更新时进度条和文字的颜色
-     */
-    public int getDialogProgressBarColor() {
-        return dialogProgressBarColor;
     }
 
     /**

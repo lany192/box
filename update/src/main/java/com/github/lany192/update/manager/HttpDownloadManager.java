@@ -2,11 +2,12 @@ package com.github.lany192.update.manager;
 
 import androidx.annotation.NonNull;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.github.lany192.update.base.BaseHttpDownloadManager;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.utils.Constant;
 import com.github.lany192.update.utils.FileUtil;
-import com.github.lany192.update.utils.LogUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,13 +32,8 @@ import java.util.concurrent.TimeUnit;
 
 
 public class HttpDownloadManager extends BaseHttpDownloadManager {
-
-    private static final String TAG = Constant.TAG + "HttpDownloadManager";
-    private String apkUrl;
-    private String apkName;
-    private boolean shutdown = false;
+    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private final String downloadPath;
-    private OnDownloadListener listener;
     private final ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1,
             0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new ThreadFactory() {
         @Override
@@ -47,6 +43,20 @@ public class HttpDownloadManager extends BaseHttpDownloadManager {
             return thread;
         }
     });
+    private String apkUrl;
+    private String apkName;
+    private boolean shutdown = false;
+    private OnDownloadListener listener;
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            //删除之前的安装包
+            if (FileUtil.fileExists(downloadPath, apkName)) {
+                FileUtil.delete(downloadPath, apkName);
+            }
+            fullDownload();
+        }
+    };
 
     public HttpDownloadManager(String downloadPath) {
         this.downloadPath = downloadPath;
@@ -70,17 +80,6 @@ public class HttpDownloadManager extends BaseHttpDownloadManager {
         listener = null;
         executor.shutdown();
     }
-
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            //删除之前的安装包
-            if (FileUtil.fileExists(downloadPath, apkName)) {
-                FileUtil.delete(downloadPath, apkName);
-            }
-            fullDownload();
-        }
-    };
 
     /**
      * 全部下载
@@ -112,7 +111,7 @@ public class HttpDownloadManager extends BaseHttpDownloadManager {
                 if (shutdown) {
                     //取消了下载 同时再恢复状态
                     shutdown = false;
-                    LogUtil.d(TAG, "fullDownload: 取消了下载");
+                    log.d("fullDownload: 取消了下载");
                     if (listener != null) listener.cancel();
                 } else {
                     if (listener != null) listener.done(file);
@@ -126,7 +125,7 @@ public class HttpDownloadManager extends BaseHttpDownloadManager {
                     con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
                 apkUrl = con.getHeaderField("Location");
                 con.disconnect();
-                LogUtil.d(TAG, "fullDownload: 当前地址是重定向Url，定向后的地址：" + apkUrl);
+                log.d("fullDownload: 当前地址是重定向Url，定向后的地址：" + apkUrl);
                 fullDownload();
             } else {
                 if (listener != null)

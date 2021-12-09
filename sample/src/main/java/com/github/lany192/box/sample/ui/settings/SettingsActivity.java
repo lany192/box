@@ -58,8 +58,6 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
          * 非必选
          */
         UpdateConfiguration configuration = new UpdateConfiguration()
-                //输出错误日志
-                .setEnableLog(true)
                 //设置自定义的下载
                 //.setHttpManager()
                 //下载完成自动跳动安装页面

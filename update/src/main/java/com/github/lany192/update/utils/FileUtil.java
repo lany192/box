@@ -2,20 +2,8 @@ package com.github.lany192.update.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-
-/**
- * 项目名:    AppUpdate
- * 包名       com.github.lany192.update.utils
- * 文件名:    FileUtil
- * 创建时间:  2018/1/27 on 16:34
- * 描述:     TODO
- *
- * @author 阿钟
- */
 
 
 public final class FileUtil {
@@ -28,19 +16,6 @@ public final class FileUtil {
         if (!dirDirectory.exists()) {
             dirDirectory.mkdirs();
         }
-    }
-
-    /**
-     * 创建一个随机读写
-     */
-    public static RandomAccessFile createRAFile(String downloadPath, String fileName) {
-        //断点读写
-        try {
-            return new RandomAccessFile(createFile(downloadPath, fileName), "rwd");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     /**

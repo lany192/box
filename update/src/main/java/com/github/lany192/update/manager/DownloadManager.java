@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.base.BaseHttpDownloadManager;
 import com.github.lany192.update.config.UpdateConfiguration;
@@ -12,7 +14,6 @@ import com.github.lany192.update.dialog.UpdateDialog;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
-import com.github.lany192.update.utils.LogUtil;
 
 import java.lang.ref.SoftReference;
 
@@ -28,13 +29,12 @@ import java.lang.ref.SoftReference;
 
 
 public class DownloadManager {
-
-    private static final String TAG = Constant.TAG + "DownloadManager";
-
     /**
      * 上下文
      */
     private static SoftReference<Context> context;
+    private static DownloadManager manager;
+    private Logger.Builder log = XLog.tag(getClass().getSimpleName());
     /**
      * 要更新apk的下载地址
      */
@@ -85,13 +85,10 @@ public class DownloadManager {
      * 当前下载状态
      */
     private boolean state = false;
-
     /**
      * 内置对话框
      */
     private UpdateDialog dialog;
-
-    private static DownloadManager manager;
 
     /**
      * 框架初始化
@@ -184,18 +181,18 @@ public class DownloadManager {
     }
 
     /**
+     * 获取是否提示用户"当前已是最新版本"
+     */
+    public boolean isShowNewerToast() {
+        return showNewerToast;
+    }
+
+    /**
      * 设置是否提示用户"当前已是最新版本"
      */
     public DownloadManager setShowNewerToast(boolean showNewerToast) {
         this.showNewerToast = showNewerToast;
         return this;
-    }
-
-    /**
-     * 获取是否提示用户"当前已是最新版本"
-     */
-    public boolean isShowNewerToast() {
-        return showNewerToast;
     }
 
     /**
@@ -214,6 +211,15 @@ public class DownloadManager {
     }
 
     /**
+     * 获取这个库的额外配置信息
+     *
+     * @see UpdateConfiguration
+     */
+    public UpdateConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    /**
      * 设置这个库的额外配置信息
      *
      * @see UpdateConfiguration
@@ -221,15 +227,6 @@ public class DownloadManager {
     public DownloadManager setConfiguration(UpdateConfiguration configuration) {
         this.configuration = configuration;
         return this;
-    }
-
-    /**
-     * 获取这个库的额外配置信息
-     *
-     * @see UpdateConfiguration
-     */
-    public UpdateConfiguration getConfiguration() {
-        return configuration;
     }
 
     /**
@@ -280,18 +277,17 @@ public class DownloadManager {
     /**
      * 新安装包md5文件校验
      */
-    public DownloadManager setApkMD5(String apkMD5) {
-        this.apkMD5 = apkMD5;
-        return this;
+    public String getApkMD5() {
+        return apkMD5;
     }
 
     /**
      * 新安装包md5文件校验
      */
-    public String getApkMD5() {
-        return apkMD5;
+    public DownloadManager setApkMD5(String apkMD5) {
+        this.apkMD5 = apkMD5;
+        return this;
     }
-
 
     /**
      * 设置当前状态
@@ -335,7 +331,7 @@ public class DownloadManager {
                 if (showNewerToast) {
                     Toast.makeText(context.get(), R.string.latest_version, Toast.LENGTH_SHORT).show();
                 }
-                LogUtil.e(TAG, "当前已是最新版本");
+                log.e("当前已是最新版本");
             }
         }
     }
@@ -345,12 +341,12 @@ public class DownloadManager {
      */
     public void cancel() {
         if (configuration == null) {
-            LogUtil.e(TAG, "还未开始下载");
+            log.e("还未开始下载");
             return;
         }
         BaseHttpDownloadManager httpManager = configuration.getHttpManager();
         if (httpManager == null) {
-            LogUtil.e(TAG, "还未开始下载");
+            log.e("还未开始下载");
             return;
         }
         httpManager.cancel();
@@ -361,20 +357,20 @@ public class DownloadManager {
      */
     private boolean checkParams() {
         if (TextUtils.isEmpty(apkUrl)) {
-            LogUtil.e(TAG, "apkUrl can not be empty!");
+            log.e("apkUrl can not be empty!");
             return false;
         }
         if (TextUtils.isEmpty(apkName)) {
-            LogUtil.e(TAG, "apkName can not be empty!");
+            log.e("apkName can not be empty!");
             return false;
         }
         if (!apkName.endsWith(Constant.APK_SUFFIX)) {
-            LogUtil.e(TAG, "apkName must endsWith .apk!");
+            log.e("apkName must endsWith .apk!");
             return false;
         }
         downloadPath = context.get().getExternalCacheDir().getPath();
         if (smallIcon == -1) {
-            LogUtil.e(TAG, "smallIcon can not be empty!");
+            log.e("smallIcon can not be empty!");
             return false;
         }
         //加载用户设置的authorities
@@ -396,7 +392,7 @@ public class DownloadManager {
         }
         //设置了 VersionCode 则库中进行对话框逻辑处理
         if (TextUtils.isEmpty(apkDescription)) {
-            LogUtil.e(TAG, "apkDescription can not be empty!");
+            log.e("apkDescription can not be empty!");
         }
         return false;
     }

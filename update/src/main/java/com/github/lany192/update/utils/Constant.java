@@ -5,10 +5,7 @@ public final class Constant {
      * 网络连接超时时间
      */
     public static final int HTTP_TIME_OUT = 30_000;
-    /**
-     * Logcat日志输出Tag
-     */
-    public static final String TAG = "AppUpdate.";
+
     /**
      * 渠道通知id
      */
