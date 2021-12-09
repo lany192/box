@@ -1,6 +1,7 @@
 package com.github.lany192.box.sample.ui.settings;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -35,21 +36,17 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         viewModel = getViewModel(SettingsViewModel.class);
         binding.toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
-        binding.versionView.setOnClickListener(v ->checkVersion());
+        binding.versionView.setOnClickListener(v -> checkVersion());
         binding.cacheView.setOnClickListener(v -> ToastUtils.show("清除成功"));
         binding.permissionView.setOnClickListener(v -> {
-
-//            Intent intent =  new Intent();
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-//            intent.setData(Uri.fromParts("package", getPackageName(), null));
-//            startActivity(intent);
-
-
             try {
                 PermissionUtils.toPermissionSetting(this);
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Intent intent = new Intent();
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                intent.setData(Uri.fromParts("package", getPackageName(), null));
+                startActivity(intent);
             }
         });
         binding.protocolView.setOnClickListener(v -> {
@@ -65,7 +62,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         binding.aboutView.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
     }
 
-    private void checkVersion(){
+    private void checkVersion() {
         UpdateConfig configuration = new UpdateConfig()
                 //设置自定义的下载
                 //.setHttpManager()
