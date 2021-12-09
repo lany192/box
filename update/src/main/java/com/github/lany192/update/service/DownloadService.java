@@ -15,7 +15,7 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.base.BaseHttpDownloadManager;
-import com.github.lany192.update.config.UpdateConfiguration;
+import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.DownloadManager;
 import com.github.lany192.update.manager.HttpDownloadManager;
@@ -105,7 +105,7 @@ public final class DownloadService extends Service implements OnDownloadListener
         //创建apk文件存储文件夹
         FileUtil.createDirDirectory(downloadPath);
 
-        UpdateConfiguration configuration = downloadManager.getConfiguration();
+        UpdateConfig configuration = downloadManager.getConfiguration();
         listeners = configuration.getOnDownloadListener();
         showNotification = configuration.isShowNotification();
         showBgdToast = configuration.isShowBgdToast();
@@ -139,7 +139,7 @@ public final class DownloadService extends Service implements OnDownloadListener
     /**
      * 获取下载管理者
      */
-    private synchronized void download(UpdateConfiguration configuration) {
+    private synchronized void download(UpdateConfig configuration) {
         if (downloadManager.isDownloading()) {
             log.e("download: 当前正在下载，请务重复下载！");
             return;

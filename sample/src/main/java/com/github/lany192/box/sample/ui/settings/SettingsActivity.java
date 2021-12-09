@@ -11,7 +11,7 @@ import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.browser.BrowserActivity;
-import com.github.lany192.update.config.UpdateConfiguration;
+import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnButtonClickListener;
 import com.github.lany192.update.listener.OnDownloadListenerAdapter;
 import com.github.lany192.update.manager.DownloadManager;
@@ -57,7 +57,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
          * 整个库允许配置的内容
          * 非必选
          */
-        UpdateConfiguration configuration = new UpdateConfiguration()
+        UpdateConfig configuration = new UpdateConfig()
                 //设置自定义的下载
                 //.setHttpManager()
                 //下载完成自动跳动安装页面

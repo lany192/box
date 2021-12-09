@@ -11,7 +11,7 @@ import com.github.lany192.update.listener.OnDownloadListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdateConfiguration {
+public class UpdateConfig {
     /**
      * 通知栏id
      */
@@ -76,7 +76,7 @@ public class UpdateConfiguration {
     /**
      * 设置通知栏消息id
      */
-    public UpdateConfiguration setNotifyId(int notifyId) {
+    public UpdateConfig setNotifyId(int notifyId) {
         this.notifyId = notifyId;
         return this;
     }
@@ -91,7 +91,7 @@ public class UpdateConfiguration {
     /**
      * 设置下载管理器
      */
-    public UpdateConfiguration setHttpManager(BaseHttpDownloadManager httpManager) {
+    public UpdateConfig setHttpManager(BaseHttpDownloadManager httpManager) {
         this.httpManager = httpManager;
         return this;
     }
@@ -106,7 +106,7 @@ public class UpdateConfiguration {
     /**
      * 设置下载监听器
      */
-    public UpdateConfiguration setOnDownloadListener(OnDownloadListener onDownloadListener) {
+    public UpdateConfig setOnDownloadListener(OnDownloadListener onDownloadListener) {
         this.onDownloadListeners.add(onDownloadListener);
         return this;
     }
@@ -121,7 +121,7 @@ public class UpdateConfiguration {
     /**
      * 设置apk下载完成是否跳转至安装界面
      */
-    public UpdateConfiguration setJumpInstallPage(boolean jumpInstallPage) {
+    public UpdateConfig setJumpInstallPage(boolean jumpInstallPage) {
         this.jumpInstallPage = jumpInstallPage;
         return this;
     }
@@ -136,7 +136,7 @@ public class UpdateConfiguration {
     /**
      * 设置Android O的通知渠道
      */
-    public UpdateConfiguration setNotificationChannel(NotificationChannel notificationChannel) {
+    public UpdateConfig setNotificationChannel(NotificationChannel notificationChannel) {
         this.notificationChannel = notificationChannel;
         return this;
     }
@@ -151,7 +151,7 @@ public class UpdateConfiguration {
     /**
      * 设置是否在通知栏显示信息
      */
-    public UpdateConfiguration setShowNotification(boolean showNotification) {
+    public UpdateConfig setShowNotification(boolean showNotification) {
         this.showNotification = showNotification;
         return this;
     }
@@ -166,7 +166,7 @@ public class UpdateConfiguration {
     /**
      * 设置是否强制升级
      */
-    public UpdateConfiguration setForcedUpgrade(boolean forcedUpgrade) {
+    public UpdateConfig setForcedUpgrade(boolean forcedUpgrade) {
         this.forcedUpgrade = forcedUpgrade;
         return this;
     }
@@ -181,7 +181,7 @@ public class UpdateConfiguration {
     /**
      * 设置是否提示 "正在后台下载新版本…"
      */
-    public UpdateConfiguration setShowBgdToast(boolean showBgdToast) {
+    public UpdateConfig setShowBgdToast(boolean showBgdToast) {
         this.showBgdToast = showBgdToast;
         return this;
     }
@@ -196,7 +196,7 @@ public class UpdateConfiguration {
     /**
      * 设置内置对话框背景图片资源id
      */
-    public UpdateConfiguration setDialogImage(int dialogImage) {
+    public UpdateConfig setDialogImage(int dialogImage) {
         this.dialogImage = dialogImage;
         return this;
     }
@@ -211,7 +211,7 @@ public class UpdateConfiguration {
     /**
      * 设置内置对话框按钮的颜色
      */
-    public UpdateConfiguration setDialogButtonColor(@ColorInt int dialogButtonColor) {
+    public UpdateConfig setDialogButtonColor(@ColorInt int dialogButtonColor) {
         this.dialogButtonColor = dialogButtonColor;
         return this;
     }
@@ -226,7 +226,7 @@ public class UpdateConfiguration {
     /**
      * 设置内置对话框按钮文字的颜色
      */
-    public UpdateConfiguration setDialogButtonTextColor(int dialogButtonTextColor) {
+    public UpdateConfig setDialogButtonTextColor(int dialogButtonTextColor) {
         this.dialogButtonTextColor = dialogButtonTextColor;
         return this;
     }
@@ -241,7 +241,7 @@ public class UpdateConfiguration {
     /**
      * 设置内置对话框强制更新时进度条和文字的颜色
      */
-    public UpdateConfiguration setDialogProgressBarColor(int dialogProgressBarColor) {
+    public UpdateConfig setDialogProgressBarColor(int dialogProgressBarColor) {
         this.dialogProgressBarColor = dialogProgressBarColor;
         return this;
     }
@@ -249,7 +249,7 @@ public class UpdateConfiguration {
     /**
      * 设置内置对话框按钮点击事件监听
      */
-    public UpdateConfiguration setButtonClickListener(OnButtonClickListener onButtonClickListener) {
+    public UpdateConfig setButtonClickListener(OnButtonClickListener onButtonClickListener) {
         this.onButtonClickListener = onButtonClickListener;
         return this;
     }

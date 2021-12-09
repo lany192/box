@@ -22,7 +22,7 @@ import androidx.annotation.NonNull;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
-import com.github.lany192.update.config.UpdateConfiguration;
+import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnButtonClickListener;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.DownloadManager;
@@ -57,7 +57,7 @@ public class UpdateDialog extends Dialog implements View.OnClickListener, OnDown
     private void init(Context context) {
         this.context = context;
         manager = DownloadManager.getInstance();
-        UpdateConfiguration configuration = manager.getConfiguration();
+        UpdateConfig configuration = manager.getConfiguration();
         configuration.setOnDownloadListener(this);
         forcedUpgrade = configuration.isForcedUpgrade();
         buttonClickListener = configuration.getOnButtonClickListener();

@@ -9,7 +9,7 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.base.BaseHttpDownloadManager;
-import com.github.lany192.update.config.UpdateConfiguration;
+import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.dialog.UpdateDialog;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
@@ -49,7 +49,7 @@ public class DownloadManager {
     /**
      * 整个库的一些配置属性，可以从这里配置
      */
-    private UpdateConfiguration configuration;
+    private UpdateConfig configuration;
     /**
      * 要更新apk的versionCode
      */
@@ -202,18 +202,18 @@ public class DownloadManager {
     /**
      * 获取这个库的额外配置信息
      *
-     * @see UpdateConfiguration
+     * @see UpdateConfig
      */
-    public UpdateConfiguration getConfiguration() {
+    public UpdateConfig getConfiguration() {
         return configuration;
     }
 
     /**
      * 设置这个库的额外配置信息
      *
-     * @see UpdateConfiguration
+     * @see UpdateConfig
      */
-    public DownloadManager setConfiguration(UpdateConfiguration configuration) {
+    public DownloadManager setConfiguration(UpdateConfig configuration) {
         this.configuration = configuration;
         return this;
     }
@@ -366,7 +366,7 @@ public class DownloadManager {
         Constant.AUTHORITIES = context.get().getPackageName() + ".fileProvider";
         //如果用户没有进行配置，则使用默认的配置
         if (configuration == null) {
-            configuration = new UpdateConfiguration();
+            configuration = new UpdateConfig();
         }
         return true;
     }

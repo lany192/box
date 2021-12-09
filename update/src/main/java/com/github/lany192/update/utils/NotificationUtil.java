@@ -16,7 +16,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.FileProvider;
 
-import com.github.lany192.update.config.UpdateConfiguration;
+import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.manager.DownloadManager;
 import com.github.lany192.update.service.DownloadService;
 
@@ -168,7 +168,7 @@ public final class NotificationUtil {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     private static void afterO(NotificationManager manager) {
-        UpdateConfiguration config = requireManagerNotNull();
+        UpdateConfig config = requireManagerNotNull();
         NotificationChannel channel = config.getNotificationChannel();
         //如果用户没有设置
         if (channel == null) {
@@ -204,9 +204,9 @@ public final class NotificationUtil {
     }
 
     @NonNull
-    private static UpdateConfiguration requireManagerNotNull() {
+    private static UpdateConfig requireManagerNotNull() {
         if (DownloadManager.getInstance() == null) {
-            return new UpdateConfiguration();
+            return new UpdateConfig();
         }
         return DownloadManager.getInstance().getConfiguration();
     }
