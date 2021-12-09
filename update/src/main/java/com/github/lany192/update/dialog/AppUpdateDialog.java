@@ -10,7 +10,7 @@ import com.github.lany192.dialog.BaseDialog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
-import com.github.lany192.update.manager.DownloadManager;
+import com.github.lany192.update.manager.UpdateManager;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
@@ -19,7 +19,7 @@ import java.io.File;
 
 public class AppUpdateDialog extends BaseDialog implements View.OnClickListener, OnDownloadListener {
     private final int install = 0x45F;
-    private DownloadManager manager;
+    private UpdateManager manager;
     private boolean forcedUpgrade;
     private Button update;
     private NumberProgressBar progressBar;
@@ -33,17 +33,17 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
 
     @Override
     protected int getLayoutId() {
-        return R.layout.dialog_update;
+        return R.layout.dialog_app_update;
     }
 
     @Override
     protected void init() {
-        manager = DownloadManager.getInstance();
+        manager = UpdateManager.getInstance();
         UpdateConfig configuration = manager.getConfiguration();
         configuration.setOnDownloadListener(this);
         forcedUpgrade = configuration.isForcedUpgrade();
         dialogProgressBarColor = configuration.getDialogProgressBarColor();
-        View ibClose = findViewById(R.id.ib_close);
+        View ibClose = findViewById(R.id.btn_cancel);
         TextView title = findViewById(R.id.tv_title);
         TextView size = findViewById(R.id.tv_size);
         TextView description = findViewById(R.id.tv_description);
@@ -80,7 +80,7 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.ib_close) {
+        if (id == R.id.btn_cancel) {
             if (!forcedUpgrade) {
                 dismiss();
             }

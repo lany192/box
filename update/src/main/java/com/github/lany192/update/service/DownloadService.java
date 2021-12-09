@@ -17,7 +17,7 @@ import com.github.lany192.update.R;
 import com.github.lany192.update.manager.BaseHttpDownloadManager;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
-import com.github.lany192.update.manager.DownloadManager;
+import com.github.lany192.update.manager.UpdateManager;
 import com.github.lany192.update.manager.HttpDownloadManager;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
@@ -38,7 +38,7 @@ public final class DownloadService extends Service implements OnDownloadListener
     private boolean showBgdToast;
     private boolean jumpInstallPage;
     private int lastProgress;
-    private DownloadManager downloadManager;
+    private UpdateManager updateManager;
     private BaseHttpDownloadManager httpManager;
 
     @SuppressLint("HandlerLeak")
@@ -93,19 +93,19 @@ public final class DownloadService extends Service implements OnDownloadListener
     }
 
     private void init() {
-        downloadManager = DownloadManager.getInstance();
-        if (downloadManager == null) {
+        updateManager = UpdateManager.getInstance();
+        if (updateManager == null) {
             log.d("init DownloadManager.getInstance() = null ,请先调用 getInstance(Context context) !");
             return;
         }
-        apkUrl = downloadManager.getApkUrl();
-        apkName = downloadManager.getApkName();
-        downloadPath = downloadManager.getDownloadPath();
-        smallIcon = downloadManager.getSmallIcon();
+        apkUrl = updateManager.getApkUrl();
+        apkName = updateManager.getApkName();
+        downloadPath = updateManager.getDownloadPath();
+        smallIcon = updateManager.getSmallIcon();
         //创建apk文件存储文件夹
         FileUtil.createDirDirectory(downloadPath);
 
-        UpdateConfig configuration = downloadManager.getConfiguration();
+        UpdateConfig configuration = updateManager.getConfiguration();
         listeners = configuration.getOnDownloadListener();
         showNotification = configuration.isShowNotification();
         showBgdToast = configuration.isShowBgdToast();
@@ -131,7 +131,7 @@ public final class DownloadService extends Service implements OnDownloadListener
     private boolean checkApkMD5() {
         if (FileUtil.fileExists(downloadPath, apkName)) {
             String fileMD5 = FileUtil.getFileMD5(FileUtil.createFile(downloadPath, apkName));
-            return fileMD5.equalsIgnoreCase(downloadManager.getApkMD5());
+            return fileMD5.equalsIgnoreCase(updateManager.getApkMD5());
         }
         return false;
     }
@@ -140,7 +140,7 @@ public final class DownloadService extends Service implements OnDownloadListener
      * 获取下载管理者
      */
     private synchronized void download(UpdateConfig configuration) {
-        if (downloadManager.isDownloading()) {
+        if (updateManager.isDownloading()) {
             log.e("download: 当前正在下载，请务重复下载！");
             return;
         }
@@ -152,7 +152,7 @@ public final class DownloadService extends Service implements OnDownloadListener
         }
         //如果用户自己定义了下载过程
         httpManager.download(apkUrl, apkName, this);
-        downloadManager.setState(true);
+        updateManager.setState(true);
     }
 
     @Override
@@ -188,7 +188,7 @@ public final class DownloadService extends Service implements OnDownloadListener
     @Override
     public void done(File apk) {
         log.d("done: 文件已下载至" + apk.toString());
-        downloadManager.setState(false);
+        updateManager.setState(false);
         //如果是android Q（api=29）及其以上版本showNotification=false也会发送一个下载完成通知
         if (showNotification || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             String downloadCompleted = getResources().getString(R.string.download_completed);
@@ -205,7 +205,7 @@ public final class DownloadService extends Service implements OnDownloadListener
 
     @Override
     public void cancel() {
-        downloadManager.setState(false);
+        updateManager.setState(false);
         if (showNotification) {
             NotificationUtil.cancelNotification(this);
         }
@@ -215,7 +215,7 @@ public final class DownloadService extends Service implements OnDownloadListener
     @Override
     public void error(Exception e) {
         log.e("error: " + e);
-        downloadManager.setState(false);
+        updateManager.setState(false);
         if (showNotification) {
             String downloadError = getResources().getString(R.string.download_error);
             String conDownloading = getResources().getString(R.string.continue_downloading);
@@ -235,7 +235,7 @@ public final class DownloadService extends Service implements OnDownloadListener
             httpManager.release();
         }
         stopSelf();
-        downloadManager.release();
+        updateManager.release();
     }
 
     @Nullable

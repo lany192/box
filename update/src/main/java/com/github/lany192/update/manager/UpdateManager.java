@@ -16,12 +16,9 @@ import com.github.lany192.update.utils.Constant;
 
 import java.lang.ref.SoftReference;
 
-public class DownloadManager {
-    /**
-     * 上下文
-     */
+public class UpdateManager {
     private static SoftReference<Context> context;
-    private static DownloadManager manager;
+    private static UpdateManager manager;
     private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
     /**
      * 要更新apk的下载地址
@@ -78,12 +75,12 @@ public class DownloadManager {
      */
     private AppUpdateDialog dialog;
 
-    public static DownloadManager getInstance(Context context) {
-        DownloadManager.context = new SoftReference<>(context);
+    public static UpdateManager getInstance(Context context) {
+        UpdateManager.context = new SoftReference<>(context);
         if (manager == null) {
-            synchronized (DownloadManager.class) {
+            synchronized (UpdateManager.class) {
                 if (manager == null) {
-                    manager = new DownloadManager();
+                    manager = new UpdateManager();
                 }
             }
         }
@@ -93,10 +90,10 @@ public class DownloadManager {
     /**
      * 供此依赖库自己使用.
      *
-     * @return {@link DownloadManager}
+     * @return {@link UpdateManager}
      * @hide
      */
-    public static DownloadManager getInstance() {
+    public static UpdateManager getInstance() {
         return manager;
     }
 
@@ -110,7 +107,7 @@ public class DownloadManager {
     /**
      * 设置apk下载地址
      */
-    public DownloadManager setApkUrl(String apkUrl) {
+    public UpdateManager setApkUrl(String apkUrl) {
         this.apkUrl = apkUrl;
         return this;
     }
@@ -125,7 +122,7 @@ public class DownloadManager {
     /**
      * 设置apk的VersionCode
      */
-    public DownloadManager setApkVersionCode(int apkVersionCode) {
+    public UpdateManager setApkVersionCode(int apkVersionCode) {
         this.apkVersionCode = apkVersionCode;
         return this;
     }
@@ -140,7 +137,7 @@ public class DownloadManager {
     /**
      * 设置apk的名称
      */
-    public DownloadManager setApkName(String apkName) {
+    public UpdateManager setApkName(String apkName) {
         this.apkName = apkName;
         return this;
     }
@@ -158,7 +155,7 @@ public class DownloadManager {
      * 使用的路径为:/storage/emulated/0/Android/data/ your packageName /cache
      */
     @Deprecated
-    public DownloadManager setDownloadPath(String downloadPath) {
+    public UpdateManager setDownloadPath(String downloadPath) {
         return this;
     }
 
@@ -172,7 +169,7 @@ public class DownloadManager {
     /**
      * 设置是否提示用户"当前已是最新版本"
      */
-    public DownloadManager setShowNewerToast(boolean showNewerToast) {
+    public UpdateManager setShowNewerToast(boolean showNewerToast) {
         this.showNewerToast = showNewerToast;
         return this;
     }
@@ -187,7 +184,7 @@ public class DownloadManager {
     /**
      * 设置通知栏图片资源id
      */
-    public DownloadManager setSmallIcon(int smallIcon) {
+    public UpdateManager setSmallIcon(int smallIcon) {
         this.smallIcon = smallIcon;
         return this;
     }
@@ -206,7 +203,7 @@ public class DownloadManager {
      *
      * @see UpdateConfig
      */
-    public DownloadManager setConfiguration(UpdateConfig configuration) {
+    public UpdateManager setConfiguration(UpdateConfig configuration) {
         this.configuration = configuration;
         return this;
     }
@@ -221,7 +218,7 @@ public class DownloadManager {
     /**
      * 设置apk的versionName
      */
-    public DownloadManager setApkVersionName(String apkVersionName) {
+    public UpdateManager setApkVersionName(String apkVersionName) {
         this.apkVersionName = apkVersionName;
         return this;
     }
@@ -236,7 +233,7 @@ public class DownloadManager {
     /**
      * 设置新版本描述信息
      */
-    public DownloadManager setApkDescription(String apkDescription) {
+    public UpdateManager setApkDescription(String apkDescription) {
         this.apkDescription = apkDescription;
         return this;
     }
@@ -251,7 +248,7 @@ public class DownloadManager {
     /**
      * 设置新版本文件大小
      */
-    public DownloadManager setApkSize(String apkSize) {
+    public UpdateManager setApkSize(String apkSize) {
         this.apkSize = apkSize;
         return this;
     }
@@ -266,7 +263,7 @@ public class DownloadManager {
     /**
      * 新安装包md5文件校验
      */
-    public DownloadManager setApkMD5(String apkMD5) {
+    public UpdateManager setApkMD5(String apkMD5) {
         this.apkMD5 = apkMD5;
         return this;
     }
@@ -285,13 +282,6 @@ public class DownloadManager {
      */
     public boolean isDownloading() {
         return state;
-    }
-
-    /**
-     * 获取内置对话框
-     */
-    public AppUpdateDialog getDefaultDialog() {
-        return dialog;
     }
 
     /**

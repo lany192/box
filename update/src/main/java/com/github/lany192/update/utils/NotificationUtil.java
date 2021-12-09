@@ -17,7 +17,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.FileProvider;
 
 import com.github.lany192.update.config.UpdateConfig;
-import com.github.lany192.update.manager.DownloadManager;
+import com.github.lany192.update.manager.UpdateManager;
 import com.github.lany192.update.service.DownloadService;
 
 import java.io.File;
@@ -205,9 +205,9 @@ public final class NotificationUtil {
 
     @NonNull
     private static UpdateConfig requireManagerNotNull() {
-        if (DownloadManager.getInstance() == null) {
+        if (UpdateManager.getInstance() == null) {
             return new UpdateConfig();
         }
-        return DownloadManager.getInstance().getConfiguration();
+        return UpdateManager.getInstance().getConfiguration();
     }
 }

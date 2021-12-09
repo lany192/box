@@ -12,7 +12,7 @@ import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.browser.BrowserActivity;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
-import com.github.lany192.update.manager.DownloadManager;
+import com.github.lany192.update.manager.UpdateManager;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
@@ -74,7 +74,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
                     }
                 });
         String url = "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.7.0.5295_537068059.apk";
-        DownloadManager.getInstance(this)
+        UpdateManager.getInstance(this)
                 .setApkName("ESFileExplorer.apk")
                 .setApkUrl(url)
                 .setSmallIcon(R.mipmap.ic_launcher)

@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:bl_corners_radius="8dp"
+    app:bl_corners_bottomLeftRadius="0dp"
+    app:bl_corners_bottomRightRadius="0dp"
+    app:bl_corners_topLeftRadius="10dp"
+    app:bl_corners_topRightRadius="10dp"
     app:bl_solid_color="#ffffff"
     tools:background="@android:color/holo_orange_dark"
     tools:ignore="MissingPrefix">
@@ -69,7 +72,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/ib_close"
+            android:id="@+id/btn_cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
