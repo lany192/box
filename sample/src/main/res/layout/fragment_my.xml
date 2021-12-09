@@ -38,7 +38,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="版本检查" />
+                app:menu_name="功能x" />
 
             <View
                 android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="清除缓存" />
+                app:menu_name="功能x" />
 
             <View
                 android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="授权设置" />
+                app:menu_name="功能x" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -99,7 +99,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="用户协议" />
+                app:menu_name="功能x" />
 
             <View
                 android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="隐私政策" />
+                app:menu_name="功能x" />
 
             <View
                 android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="settings" />
+                app:menu_name="设置" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
