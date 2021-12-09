@@ -38,6 +38,14 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         binding.versionView.setOnClickListener(v ->checkVersion());
         binding.cacheView.setOnClickListener(v -> ToastUtils.show("清除成功"));
         binding.permissionView.setOnClickListener(v -> {
+
+//            Intent intent =  new Intent();
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+//            intent.setData(Uri.fromParts("package", getPackageName(), null));
+//            startActivity(intent);
+
+
             try {
                 PermissionUtils.toPermissionSetting(this);
             } catch (NoSuchFieldException | IllegalAccessException e) {
