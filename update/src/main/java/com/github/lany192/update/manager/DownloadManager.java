@@ -10,7 +10,7 @@ import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.base.BaseHttpDownloadManager;
 import com.github.lany192.update.config.UpdateConfig;
-import com.github.lany192.update.dialog.UpdateDialog;
+import com.github.lany192.update.dialog.AppUpdateDialog;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
@@ -77,14 +77,8 @@ public class DownloadManager {
     /**
      * 内置对话框
      */
-    private UpdateDialog dialog;
+    private AppUpdateDialog dialog;
 
-    /**
-     * 框架初始化
-     *
-     * @param context 上下文
-     * @return {@link DownloadManager}
-     */
     public static DownloadManager getInstance(Context context) {
         DownloadManager.context = new SoftReference<>(context);
         if (manager == null) {
@@ -297,7 +291,7 @@ public class DownloadManager {
     /**
      * 获取内置对话框
      */
-    public UpdateDialog getDefaultDialog() {
+    public AppUpdateDialog getDefaultDialog() {
         return dialog;
     }
 
@@ -314,8 +308,8 @@ public class DownloadManager {
         } else {
             //对版本进行判断，是否显示升级对话框
             if (apkVersionCode > ApkUtil.getVersionCode(context.get())) {
-                dialog = new UpdateDialog(context.get());
-                dialog.show();
+                dialog = new AppUpdateDialog();
+                dialog.show(context.get());
             } else {
                 if (showNewerToast) {
                     Toast.makeText(context.get(), R.string.latest_version, Toast.LENGTH_SHORT).show();

@@ -50,10 +50,6 @@ public class UpdateConfig {
     private boolean forcedUpgrade = false;
 
     /**
-     * 内置对话框背景图片资源id （图片规范参照demo中的示例图大小）
-     */
-    private int dialogImage = -1;
-    /**
      * 内置对话框按钮的颜色
      */
     private int dialogButtonColor = -1;
@@ -183,21 +179,6 @@ public class UpdateConfig {
      */
     public UpdateConfig setShowBgdToast(boolean showBgdToast) {
         this.showBgdToast = showBgdToast;
-        return this;
-    }
-
-    /**
-     * 获取内置对话框背景图片资源id
-     */
-    public int getDialogImage() {
-        return dialogImage;
-    }
-
-    /**
-     * 设置内置对话框背景图片资源id
-     */
-    public UpdateConfig setDialogImage(int dialogImage) {
-        this.dialogImage = dialogImage;
         return this;
     }
 

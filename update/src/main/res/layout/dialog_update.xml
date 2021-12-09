@@ -1,96 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:bl_corners_radius="8dp"
+    app:bl_solid_color="#ffffff"
+    tools:background="@android:color/holo_orange_dark"
+    tools:ignore="MissingPrefix">
 
-    <ImageView
-        android:id="@+id/iv_bg"
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        tools:text="发现新版v2.0.1可以下载啦！" />
+
+    <TextView
+        android:id="@+id/tv_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="新版本大小：5M"
+        tools:visibility="visible" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:background="@drawable/ic_dialog_default" />
+        android:layout_height="90dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:overScrollMode="never">
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.1"
+            android:textColor="#757575"
+            android:textSize="14sp"
+            tools:text="" />
+    </ScrollView>
+
+    <com.github.lany192.update.dialog.NumberProgressBar
+        android:id="@+id/np_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e2e2e2" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_white_radius_6"
-        android:orientation="vertical">
+        android:layout_height="48dp"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            tools:text="发现新版v2.0.1可以下载啦！" />
+        <Button
+            android:id="@+id/ib_close"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@android:string/cancel"
+            android:textColor="#333333"
+            android:textSize="14sp"/>
 
-        <TextView
-            android:id="@+id/tv_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:textColor="#757575"
-            android:textSize="14sp"
-            android:visibility="gone"
-            tools:text="新版本大小：5M" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:overScrollMode="never">
-
-            <TextView
-                android:id="@+id/tv_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingMultiplier="1.1"
-                android:textColor="#757575"
-                android:textSize="14sp"
-                tools:text="" />
-        </ScrollView>
-
-        <com.github.lany192.update.dialog.NumberProgressBar
-            android:id="@+id/np_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp" />
+        <View
+            android:id="@+id/divider_view"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="#e2e2e2" />
 
         <Button
             android:id="@+id/btn_update"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
             android:text="@string/update"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
+            android:textColor="#333333"
+            android:textSize="14sp" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/line"
-        android:layout_width="2dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:background="@android:color/white" />
-
-    <ImageButton
-        android:id="@+id/ib_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:background="@drawable/ic_dialog_close" />
 </LinearLayout>

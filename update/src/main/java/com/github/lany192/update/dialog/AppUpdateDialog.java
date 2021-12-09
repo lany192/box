@@ -1,26 +1,14 @@
 package com.github.lany192.update.dialog;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
+import com.github.lany192.dialog.BaseDialog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnButtonClickListener;
@@ -29,65 +17,45 @@ import com.github.lany192.update.manager.DownloadManager;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
-import com.github.lany192.update.utils.ScreenUtil;
 import com.github.lany192.utils.DensityUtils;
 
 import java.io.File;
 
-public class UpdateDialog extends Dialog implements View.OnClickListener, OnDownloadListener {
-    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
+public class AppUpdateDialog extends BaseDialog implements View.OnClickListener, OnDownloadListener {
     private final int install = 0x45F;
-    private Context context;
     private DownloadManager manager;
     private boolean forcedUpgrade;
     private Button update;
     private NumberProgressBar progressBar;
     private OnButtonClickListener buttonClickListener;
-    private int dialogImage, dialogButtonTextColor, dialogButtonColor, dialogProgressBarColor;
+    private int  dialogButtonTextColor, dialogButtonColor, dialogProgressBarColor;
     private File apk;
 
-    public UpdateDialog(@NonNull Context context) {
-        super(context, R.style.UpdateDialog);
-        init(context);
+    @Override
+    protected int getLayoutId() {
+        return R.layout.dialog_update;
     }
 
-    /**
-     * 初始化布局
-     */
-    private void init(Context context) {
-        this.context = context;
+    @Override
+    protected void init() {
         manager = DownloadManager.getInstance();
         UpdateConfig configuration = manager.getConfiguration();
         configuration.setOnDownloadListener(this);
         forcedUpgrade = configuration.isForcedUpgrade();
         buttonClickListener = configuration.getOnButtonClickListener();
-        dialogImage = configuration.getDialogImage();
         dialogButtonTextColor = configuration.getDialogButtonTextColor();
         dialogButtonColor = configuration.getDialogButtonColor();
         dialogProgressBarColor = configuration.getDialogProgressBarColor();
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_update, null);
-        setContentView(view);
-        setWindowSize(context);
-        initView(view);
-    }
-
-    private void initView(View view) {
-        View ibClose = view.findViewById(R.id.ib_close);
-        ImageView ivBg = view.findViewById(R.id.iv_bg);
-        TextView title = view.findViewById(R.id.tv_title);
-        TextView size = view.findViewById(R.id.tv_size);
-        TextView description = view.findViewById(R.id.tv_description);
-        progressBar = view.findViewById(R.id.np_bar);
+        View ibClose = findViewById(R.id.ib_close);
+        TextView title = findViewById(R.id.tv_title);
+        TextView size = findViewById(R.id.tv_size);
+        TextView description = findViewById(R.id.tv_description);
+        progressBar = findViewById(R.id.np_bar);
         progressBar.setVisibility(forcedUpgrade ? View.VISIBLE : View.GONE);
-        update = view.findViewById(R.id.btn_update);
+        update = findViewById(R.id.btn_update);
         update.setTag(0);
-        View line = view.findViewById(R.id.line);
         update.setOnClickListener(this);
         ibClose.setOnClickListener(this);
-        //自定义
-        if (dialogImage != -1) {
-            ivBg.setBackgroundResource(dialogImage);
-        }
         if (dialogButtonTextColor != -1) {
             update.setTextColor(dialogButtonTextColor);
         }
@@ -106,37 +74,21 @@ public class UpdateDialog extends Dialog implements View.OnClickListener, OnDown
         }
         //强制升级
         if (forcedUpgrade) {
-            line.setVisibility(View.GONE);
             ibClose.setVisibility(View.GONE);
-            setOnKeyListener(new OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    //屏蔽返回键
-                    return keyCode == KeyEvent.KEYCODE_BACK;
-                }
-            });
         }
         //设置界面数据
         if (!TextUtils.isEmpty(manager.getApkVersionName())) {
-            String newVersion = context.getResources().getString(R.string.dialog_new);
+            String newVersion = getString(R.string.dialog_new);
             title.setText(String.format(newVersion, manager.getApkVersionName()));
         }
         if (!TextUtils.isEmpty(manager.getApkSize())) {
-            String newVersionSize = context.getResources().getString(R.string.dialog_new_size);
+            String newVersionSize = getString(R.string.dialog_new_size);
             size.setText(String.format(newVersionSize, manager.getApkSize()));
             size.setVisibility(View.VISIBLE);
         }
         description.setText(manager.getApkDescription());
     }
 
-    private void setWindowSize(Context context) {
-        Window dialogWindow = this.getWindow();
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = (int) (ScreenUtil.getWith(context) * 0.7f);
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.gravity = Gravity.CENTER;
-        dialogWindow.setAttributes(lp);
-    }
 
     @Override
     public void onClick(View v) {
@@ -164,7 +116,7 @@ public class UpdateDialog extends Dialog implements View.OnClickListener, OnDown
             if (buttonClickListener != null) {
                 buttonClickListener.onButtonClick(OnButtonClickListener.UPDATE);
             }
-            context.startService(new Intent(context, DownloadService.class));
+            getContext().startService(new Intent(getContext(), DownloadService.class));
         }
     }
 
@@ -172,7 +124,7 @@ public class UpdateDialog extends Dialog implements View.OnClickListener, OnDown
      * 强制更新，点击进行安装
      */
     private void installApk() {
-        ApkUtil.installApk(context, Constant.AUTHORITIES, apk);
+        ApkUtil.installApk(getContext(), Constant.AUTHORITIES, apk);
     }
 
     @Override
