@@ -53,23 +53,13 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
     }
 
     private void checkVersion(){
-        /*
-         * 整个库允许配置的内容
-         * 非必选
-         */
         UpdateConfig configuration = new UpdateConfig()
                 //设置自定义的下载
                 //.setHttpManager()
                 //下载完成自动跳动安装页面
                 .setJumpInstallPage(true)
-                //设置对话框背景图片 (图片规范参照demo中的示例图)
-                //.setDialogImage(R.drawable.ic_dialog)
-                //设置按钮的颜色
-                //.setDialogButtonColor(Color.parseColor("#E743DA"))
                 //设置对话框强制更新时进度条和文字的颜色
                 //.setDialogProgressBarColor(Color.parseColor("#E743DA"))
-                //设置按钮的文字颜色
-                .setDialogButtonTextColor(Color.WHITE)
                 //设置是否显示通知栏进度
                 .setShowNotification(true)
                 //设置是否提示后台下载toast
@@ -95,7 +85,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
                 .setApkVersionCode(2)
                 .setApkVersionName("2.1.8")
                 .setApkSize("20.4")
-                .setApkDescription("1.支持Android M N O P Q\\n2.支持自定义下载过程\\n3.支持 设备>=Android M 动态权限的申请\\n4.支持通知栏进度条展示\\n5.支持文字国际化")
+                .setApkDescription("1.支持Android M N O P Q\n2.支持自定义下载过程\n3.支持 设备>=Android M 动态权限的申请\n4.支持通知栏进度条展示\n5.支持文字国际化")
 //                .setApkMD5("DC501F04BBAA458C9DC33008EFED5E7F")
                 .download();
     }

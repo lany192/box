@@ -1,8 +1,6 @@
 package com.github.lany192.update.dialog;
 
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +15,6 @@ import com.github.lany192.update.manager.DownloadManager;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
-import com.github.lany192.utils.DensityUtils;
 
 import java.io.File;
 
@@ -28,7 +25,7 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
     private Button update;
     private NumberProgressBar progressBar;
     private OnButtonClickListener buttonClickListener;
-    private int  dialogButtonTextColor, dialogButtonColor, dialogProgressBarColor;
+    private int dialogProgressBarColor;
     private File apk;
 
     @Override
@@ -43,8 +40,6 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
         configuration.setOnDownloadListener(this);
         forcedUpgrade = configuration.isForcedUpgrade();
         buttonClickListener = configuration.getOnButtonClickListener();
-        dialogButtonTextColor = configuration.getDialogButtonTextColor();
-        dialogButtonColor = configuration.getDialogButtonColor();
         dialogProgressBarColor = configuration.getDialogProgressBarColor();
         View ibClose = findViewById(R.id.ib_close);
         TextView title = findViewById(R.id.tv_title);
@@ -56,18 +51,7 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
         update.setTag(0);
         update.setOnClickListener(this);
         ibClose.setOnClickListener(this);
-        if (dialogButtonTextColor != -1) {
-            update.setTextColor(dialogButtonTextColor);
-        }
-        if (dialogButtonColor != -1) {
-            StateListDrawable drawable = new StateListDrawable();
-            GradientDrawable colorDrawable = new GradientDrawable();
-            colorDrawable.setColor(dialogButtonColor);
-            colorDrawable.setCornerRadius(DensityUtils.dp2px(3));
-            drawable.addState(new int[]{android.R.attr.state_pressed}, colorDrawable);
-            drawable.addState(new int[]{}, colorDrawable);
-            update.setBackgroundDrawable(drawable);
-        }
+
         if (dialogProgressBarColor != -1) {
             progressBar.setReachedBarColor(dialogProgressBarColor);
             progressBar.setProgressTextColor(dialogProgressBarColor);

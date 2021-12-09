@@ -2,8 +2,6 @@ package com.github.lany192.update.config;
 
 import android.app.NotificationChannel;
 
-import androidx.annotation.ColorInt;
-
 import com.github.lany192.update.base.BaseHttpDownloadManager;
 import com.github.lany192.update.listener.OnButtonClickListener;
 import com.github.lany192.update.listener.OnDownloadListener;
@@ -49,14 +47,6 @@ public class UpdateConfig {
      */
     private boolean forcedUpgrade = false;
 
-    /**
-     * 内置对话框按钮的颜色
-     */
-    private int dialogButtonColor = -1;
-    /**
-     * 内置对话框按钮的文字颜色
-     */
-    private int dialogButtonTextColor = -1;
     /**
      * 内置对话框强制更新时进度条和文字的颜色
      */
@@ -179,36 +169,6 @@ public class UpdateConfig {
      */
     public UpdateConfig setShowBgdToast(boolean showBgdToast) {
         this.showBgdToast = showBgdToast;
-        return this;
-    }
-
-    /**
-     * 获取内置对话框按钮的颜色
-     */
-    public int getDialogButtonColor() {
-        return dialogButtonColor;
-    }
-
-    /**
-     * 设置内置对话框按钮的颜色
-     */
-    public UpdateConfig setDialogButtonColor(@ColorInt int dialogButtonColor) {
-        this.dialogButtonColor = dialogButtonColor;
-        return this;
-    }
-
-    /**
-     * 获取内置对话框按钮文字的颜色
-     */
-    public int getDialogButtonTextColor() {
-        return dialogButtonTextColor;
-    }
-
-    /**
-     * 设置内置对话框按钮文字的颜色
-     */
-    public UpdateConfig setDialogButtonTextColor(int dialogButtonTextColor) {
-        this.dialogButtonTextColor = dialogButtonTextColor;
         return this;
     }
 
