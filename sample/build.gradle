@@ -80,6 +80,7 @@ dependencies {
     implementation project(':core')
     implementation project(':view')
     implementation project(':dialog')
+    implementation project(':update')
 
     //https://github.com/DylanCaiCoding/ViewBindingKTX
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:1.2.6'
