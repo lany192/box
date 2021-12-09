@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.lany192.box.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
+import com.github.lany192.box.sample.bean.UserInfo;
 import com.github.lany192.box.sample.databinding.ActivityMainBinding;
+import com.github.lany192.box.sample.model.UserViewModel;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
@@ -19,7 +22,8 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     // 第一次按退出的时间
     private long mLastClickTime = 0;
 
-    private MainViewModel viewModel;
+    private MainViewModel mainViewModel;
+    private UserViewModel userViewModel;
 
     @Override
     public void initImmersionBar() {
@@ -31,7 +35,15 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = getViewModel(MainViewModel.class);
+        mainViewModel = getViewModel(MainViewModel.class);
+        userViewModel = getAndroidViewModel(UserViewModel.class);
+
+        userViewModel.getUserInfo().observe(this, new Observer<UserInfo>() {
+            @Override
+            public void onChanged(UserInfo userInfo) {
+                ToastUtils.show("" + userInfo.getName());
+            }
+        });
 
         binding.viewpager.setUserInputEnabled(false);
         binding.viewpager.setOffscreenPageLimit(4);

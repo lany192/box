@@ -10,16 +10,17 @@ import com.allen.android.lib.PermissionUtils;
 import com.github.lany192.box.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
+import com.github.lany192.box.sample.model.UserViewModel;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.browser.BrowserActivity;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.UpdateManager;
 import com.gyf.immersionbar.ImmersionBar;
-import com.hjq.toast.ToastUtils;
 
 public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
     private SettingsViewModel viewModel;
+    private UserViewModel userViewModel;
 
     @Override
     public void initImmersionBar() {
@@ -34,10 +35,14 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = getViewModel(SettingsViewModel.class);
+        userViewModel = getAndroidViewModel(UserViewModel.class);
+
         binding.toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
         binding.versionView.setOnClickListener(v -> checkVersion());
-        binding.cacheView.setOnClickListener(v -> ToastUtils.show("清除成功"));
+        binding.cacheView.setOnClickListener(v -> {
+            userViewModel.setName("点击了清楚缓存");
+        });
         binding.permissionView.setOnClickListener(v -> {
             try {
                 PermissionUtils.toPermissionSetting(this);

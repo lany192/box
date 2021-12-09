@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.box.binding.getBinding
@@ -36,4 +37,7 @@ abstract class BindingFragment<VB : ViewBinding> : BasicFragment() {
         return viewModel
     }
 
+    fun <T : AndroidViewModel?> getAndroidViewModel(modelClass: Class<T>): T {
+        return ViewModelProvider(requireActivity())[modelClass]
+    }
 }
