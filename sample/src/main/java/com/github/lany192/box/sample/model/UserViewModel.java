@@ -28,7 +28,6 @@ public class UserViewModel extends AndroidViewModel {
     public void setName(String name) {
         UserInfo info = new UserInfo();
         info.setName(name);
-        info.setId(userInfo.getValue().getId());
         userInfo.postValue(info);
     }
 }

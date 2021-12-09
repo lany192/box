@@ -33,6 +33,12 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainViewModel = getViewModel(MainViewModel.class);
@@ -41,7 +47,7 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
         userViewModel.getUserInfo().observe(this, new Observer<UserInfo>() {
             @Override
             public void onChanged(UserInfo userInfo) {
-                ToastUtils.show("" + userInfo.getName());
+                ToastUtils.show("首页：" + userInfo.getName());
             }
         });
 
