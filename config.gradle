@@ -79,7 +79,7 @@ ext {
             'converter-gson'       : 'com.squareup.retrofit2:converter-gson:2.9.0',
             'adapter-rxjava3'      : 'com.squareup.retrofit2:adapter-rxjava3:2.9.0',
             //日志打印 https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
-            'okhttp-log'            : 'com.squareup.okhttp3:logging-interceptor:3.14.9',
+            'okhttp-log'           : 'com.squareup.okhttp3:logging-interceptor:3.14.9',
             //通知事件 https://github.com/greenrobot/EventBus
             'event-bus'            : 'org.greenrobot:eventbus:3.2.0',
             //Json工具 https://github.com/google/gson
@@ -99,6 +99,8 @@ ext {
 //            "arouter"               : 'com.alibaba:arouter-api:1.5.2',
             //权限工具 https://github.com/tbruyelle/RxPermissions
             'permission'           : 'com.github.tbruyelle:rxpermissions:0.12',
+            //设置权限工具 https://github.com/ly-android/PermissionUtils
+            'permission-utils'     : 'com.github.ly-android:PermissionUtils:1.0.3',
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
             'refresh-layout'       : 'com.scwang.smart:refresh-layout-kernel:2.0.3',
             'refresh-header'       : 'com.scwang.smart:refresh-header-classics:2.0.3',

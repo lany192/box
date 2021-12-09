@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.allen.android.lib.PermissionUtils;
 import com.github.lany192.box.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
@@ -36,7 +37,13 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
         binding.versionView.setOnClickListener(v ->checkVersion());
         binding.cacheView.setOnClickListener(v -> ToastUtils.show("清除成功"));
-        binding.permissionView.setOnClickListener(v -> ToastUtils.show("设置权限"));
+        binding.permissionView.setOnClickListener(v -> {
+            try {
+                PermissionUtils.toPermissionSetting(this);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        });
         binding.protocolView.setOnClickListener(v -> {
             Intent intent = new Intent(this, BrowserActivity.class);
             intent.putExtra("url", "https://www.baidu.com");
