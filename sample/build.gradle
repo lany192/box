@@ -72,6 +72,10 @@ dependencies {
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
 
+    //https://dagger.dev/hilt/
+    implementation 'com.google.dagger:hilt-android:2.40.3'
+    kapt 'com.google.dagger:hilt-android-compiler:2.40.3'
+
     implementation project(':arch')
     implementation project(':core')
     implementation project(':view')
