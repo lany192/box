@@ -27,6 +27,11 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
     private File apk;
 
     @Override
+    protected boolean bottomStyle() {
+        return true;
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.dialog_update;
     }
@@ -56,6 +61,8 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
         //强制升级
         if (forcedUpgrade) {
             ibClose.setVisibility(View.GONE);
+            setCanceledOnTouchOutside(false);
+            setCancelable(false);
         }
         //设置界面数据
         if (!TextUtils.isEmpty(manager.getApkVersionName())) {
@@ -69,7 +76,6 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
         }
         description.setText(manager.getApkDescription());
     }
-
 
     @Override
     public void onClick(View v) {
