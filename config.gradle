@@ -78,8 +78,8 @@ ext {
             'retrofit'             : 'com.squareup.retrofit2:retrofit:2.9.0',
             'converter-gson'       : 'com.squareup.retrofit2:converter-gson:2.9.0',
             'adapter-rxjava3'      : 'com.squareup.retrofit2:adapter-rxjava3:2.9.0',
-            //磁盘缓存 https://github.com/JakeWharton/DiskLruCache
-            'disk-lru-cache'       : 'com.jakewharton:disklrucache:2.0.2',
+            //日志打印 https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
+            'okhttp-log'            : 'com.squareup.okhttp3:logging-interceptor:3.14.9',
             //通知事件 https://github.com/greenrobot/EventBus
             'event-bus'            : 'org.greenrobot:eventbus:3.2.0',
             //Json工具 https://github.com/google/gson
