@@ -77,10 +77,6 @@ dependencies {
     implementation project(':view')
     implementation project(':dialog')
 
-//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-//    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0'
-    //-------------------------------------------------------------------------------------------
     //菜单控件
     implementation 'com.github.lany192:MenuView:1.0.3'
     implementation 'com.github.lany192:ClearEditText:1.0.6'
@@ -89,24 +85,11 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.40.3'
     kapt 'com.google.dagger:hilt-android-compiler:2.40.3'
 
-//    implementation 'com.afollestad.material-dialogs:core:3.3.0'
-//    implementation 'com.afollestad.material-dialogs:input:3.3.0'
-//    implementation 'com.afollestad.material-dialogs:files:3.3.0'
-//    implementation 'com.afollestad.material-dialogs:color:3.3.0'
-//    implementation 'com.afollestad.material-dialogs:datetime:3.3.0'
-//    implementation 'com.afollestad.material-dialogs:bottomsheets:3.3.0'
-//    implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
-
     //https://github.com/DylanCaiCoding/ViewBindingKTX
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:1.2.6'
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-nonreflection-ktx:1.2.6'
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:1.2.6'
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-brvah:1.2.6'
-
-    //选择2：腾讯X5内核
-    implementation 'com.github.lany192.webview:x5web:1.0.2'
-    //tencent x5 https://x5.tencent.com/docs/index.html
-    implementation 'com.tencent.tbs:tbssdk:54002-beta'
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.14.9'
 }
