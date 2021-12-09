@@ -11,7 +11,6 @@ import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
 import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.browser.BrowserActivity;
 import com.github.lany192.update.config.UpdateConfig;
-import com.github.lany192.update.listener.OnButtonClickListener;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.DownloadManager;
 import com.gyf.immersionbar.ImmersionBar;
@@ -65,13 +64,6 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
                 .setShowBgdToast(false)
                 //设置强制更新
                 .setForcedUpgrade(false)
-                //设置对话框按钮的点击监听
-                .setButtonClickListener(new OnButtonClickListener() {
-                    @Override
-                    public void onButtonClick(int id) {
-
-                    }
-                })
                 //设置下载过程的监听
                 .setOnDownloadListener(new OnDownloadListener() {
                     @Override

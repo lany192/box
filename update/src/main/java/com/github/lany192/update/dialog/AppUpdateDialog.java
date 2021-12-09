@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.github.lany192.dialog.BaseDialog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
-import com.github.lany192.update.listener.OnButtonClickListener;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.DownloadManager;
 import com.github.lany192.update.service.DownloadService;
@@ -24,7 +23,6 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
     private boolean forcedUpgrade;
     private Button update;
     private NumberProgressBar progressBar;
-    private OnButtonClickListener buttonClickListener;
     private int dialogProgressBarColor;
     private File apk;
 
@@ -39,7 +37,6 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
         UpdateConfig configuration = manager.getConfiguration();
         configuration.setOnDownloadListener(this);
         forcedUpgrade = configuration.isForcedUpgrade();
-        buttonClickListener = configuration.getOnButtonClickListener();
         dialogProgressBarColor = configuration.getDialogProgressBarColor();
         View ibClose = findViewById(R.id.ib_close);
         TextView title = findViewById(R.id.tv_title);
@@ -81,10 +78,6 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
             if (!forcedUpgrade) {
                 dismiss();
             }
-            //回调点击事件
-            if (buttonClickListener != null) {
-                buttonClickListener.onButtonClick(OnButtonClickListener.CANCEL);
-            }
         } else if (id == R.id.btn_update) {
             if ((int) update.getTag() == install) {
                 installApk();
@@ -95,10 +88,6 @@ public class AppUpdateDialog extends BaseDialog implements View.OnClickListener,
                 update.setText(R.string.background_downloading);
             } else {
                 dismiss();
-            }
-            //回调点击事件
-            if (buttonClickListener != null) {
-                buttonClickListener.onButtonClick(OnButtonClickListener.UPDATE);
             }
             getContext().startService(new Intent(getContext(), DownloadService.class));
         }

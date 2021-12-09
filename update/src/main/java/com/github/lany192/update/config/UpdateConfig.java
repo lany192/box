@@ -2,9 +2,8 @@ package com.github.lany192.update.config;
 
 import android.app.NotificationChannel;
 
-import com.github.lany192.update.manager.BaseHttpDownloadManager;
-import com.github.lany192.update.listener.OnButtonClickListener;
 import com.github.lany192.update.listener.OnDownloadListener;
+import com.github.lany192.update.manager.BaseHttpDownloadManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +29,7 @@ public class UpdateConfig {
      * 下载过程回调
      */
     private List<OnDownloadListener> onDownloadListeners = new ArrayList<>();
-    /**
-     * 按钮点击事件回调
-     */
-    private OnButtonClickListener onButtonClickListener;
+
     /**
      * 下载完成是否自动弹出安装页面 (默认为true)
      */
@@ -185,20 +181,5 @@ public class UpdateConfig {
     public UpdateConfig setDialogProgressBarColor(int dialogProgressBarColor) {
         this.dialogProgressBarColor = dialogProgressBarColor;
         return this;
-    }
-
-    /**
-     * 设置内置对话框按钮点击事件监听
-     */
-    public UpdateConfig setButtonClickListener(OnButtonClickListener onButtonClickListener) {
-        this.onButtonClickListener = onButtonClickListener;
-        return this;
-    }
-
-    /**
-     * 获取内置对话框按钮点击事件监听
-     */
-    public OnButtonClickListener getOnButtonClickListener() {
-        return onButtonClickListener;
     }
 }
