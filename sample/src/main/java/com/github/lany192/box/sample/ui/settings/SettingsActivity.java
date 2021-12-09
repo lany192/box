@@ -1,7 +1,6 @@
 package com.github.lany192.box.sample.ui.settings;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,7 +12,7 @@ import com.github.lany192.box.sample.ui.about.AboutActivity;
 import com.github.lany192.box.sample.ui.browser.BrowserActivity;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnButtonClickListener;
-import com.github.lany192.update.listener.OnDownloadListenerAdapter;
+import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.DownloadManager;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
@@ -74,7 +73,14 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
                     }
                 })
                 //设置下载过程的监听
-                .setOnDownloadListener(listenerAdapter);
+                .setOnDownloadListener(new OnDownloadListener() {
+                    @Override
+                    public void downloading(int max, int progress) {
+                        int curr = (int) (progress / (double) max * 100.0);
+//            progressBar.setMax(100);
+//            progressBar.setProgress(curr);
+                    }
+                });
         String url = "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.7.0.5295_537068059.apk";
         DownloadManager.getInstance(this)
                 .setApkName("ESFileExplorer.apk")
@@ -89,21 +95,4 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
 //                .setApkMD5("DC501F04BBAA458C9DC33008EFED5E7F")
                 .download();
     }
-
-
-    private OnDownloadListenerAdapter listenerAdapter = new OnDownloadListenerAdapter() {
-        /**
-         * 下载中
-         *
-         * @param max      总进度
-         * @param progress 当前进度
-         */
-        @Override
-        public void downloading(int max, int progress) {
-            int curr = (int) (progress / (double) max * 100.0);
-//            progressBar.setMax(100);
-//            progressBar.setProgress(curr);
-        }
-    };
-
 }
