@@ -8,7 +8,6 @@ import android.widget.Toast;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
-import com.github.lany192.update.base.BaseHttpDownloadManager;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.dialog.AppUpdateDialog;
 import com.github.lany192.update.service.DownloadService;

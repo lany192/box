@@ -1,4 +1,4 @@
-package com.github.lany192.update.base;
+package com.github.lany192.update.manager;
 
 import com.github.lany192.update.listener.OnDownloadListener;
 

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
-import com.github.lany192.update.base.BaseHttpDownloadManager;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.utils.Constant;
 import com.github.lany192.update.utils.FileUtil;
@@ -24,7 +23,7 @@ public class HttpDownloadManager extends BaseHttpDownloadManager {
     private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private final String downloadPath;
     private final ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1,
-            0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new ThreadFactory() {
+            0L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new ThreadFactory() {
         @Override
         public Thread newThread(@NonNull Runnable r) {
             Thread thread = new Thread(r);

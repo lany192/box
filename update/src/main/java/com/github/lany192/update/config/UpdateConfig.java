@@ -2,7 +2,7 @@ package com.github.lany192.update.config;
 
 import android.app.NotificationChannel;
 
-import com.github.lany192.update.base.BaseHttpDownloadManager;
+import com.github.lany192.update.manager.BaseHttpDownloadManager;
 import com.github.lany192.update.listener.OnButtonClickListener;
 import com.github.lany192.update.listener.OnDownloadListener;
 
