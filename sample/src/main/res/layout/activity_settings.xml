@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?android:attr/selectableItemBackground"
+                app:menu_hint="发现新版本"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="版本检查" />

@@ -27,17 +27,6 @@ import com.github.lany192.update.utils.NotificationUtil;
 import java.io.File;
 import java.util.List;
 
-/**
- * 项目名:    AppUpdate
- * 包名       com.github.lany192.update.service
- * 文件名:    DownloadService
- * 创建时间:  2018/1/27 on 13:22
- * 描述:     TODO apk 下载服务
- *
- * @author 阿钟
- */
-
-
 public final class DownloadService extends Service implements OnDownloadListener {
     private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private int smallIcon;
@@ -51,6 +40,7 @@ public final class DownloadService extends Service implements OnDownloadListener
     private int lastProgress;
     private DownloadManager downloadManager;
     private BaseHttpDownloadManager httpManager;
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override

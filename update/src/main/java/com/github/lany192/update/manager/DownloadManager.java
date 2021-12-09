@@ -17,24 +17,13 @@ import com.github.lany192.update.utils.Constant;
 
 import java.lang.ref.SoftReference;
 
-/**
- * 项目名:    AppUpdate
- * 包名       com.github.lany192.update.manager
- * 文件名:    DownloadManager
- * 创建时间:  2018/1/27 on 10:27
- * 描述:     TODO
- *
- * @author 阿钟
- */
-
-
 public class DownloadManager {
     /**
      * 上下文
      */
     private static SoftReference<Context> context;
     private static DownloadManager manager;
-    private Logger.Builder log = XLog.tag(getClass().getSimpleName());
+    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
     /**
      * 要更新apk的下载地址
      */
