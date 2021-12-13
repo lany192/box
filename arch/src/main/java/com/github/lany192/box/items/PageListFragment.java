@@ -21,9 +21,9 @@ import com.hjq.toast.ToastUtils;
 
 import java.lang.reflect.ParameterizedType;
 
-public abstract class PageFragment<VM extends PageViewModel>
+public abstract class PageListFragment<VM extends PageListViewModel>
         extends BindingFragment<FragmentPageBinding> {
-    private final PageAdapter adapter = new PageAdapter();
+    private final PageListAdapter adapter = new PageListAdapter();
     protected VM viewModel;
 
     public RecyclerView.LayoutManager getLayoutManager() {

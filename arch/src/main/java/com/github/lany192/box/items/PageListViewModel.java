@@ -7,7 +7,7 @@ import com.github.lany192.box.viewmodel.LifecycleViewModel;
 
 import java.util.List;
 
-public abstract class PageViewModel extends LifecycleViewModel {
+public abstract class PageListViewModel extends LifecycleViewModel {
     private final PageLiveData pageLiveData = new PageLiveData();
     private final MutableLiveData<Boolean> refreshState = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loadMoreState = new MutableLiveData<>();

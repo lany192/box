@@ -1,11 +1,11 @@
 package com.github.lany192.box.sample.ui.main.index.article;
 
-import com.github.lany192.box.items.PageFragment;
+import com.github.lany192.box.items.PageListFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class ArticleFragment extends PageFragment<ArticleViewModel> {
+public class ArticleListFragment extends PageListFragment<ArticleListViewModel> {
     {
         register(new ArticleBinder());
     }

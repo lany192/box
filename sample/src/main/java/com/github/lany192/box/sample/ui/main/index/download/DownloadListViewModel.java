@@ -1,6 +1,6 @@
-package com.github.lany192.box.sample.ui.main.index.city;
+package com.github.lany192.box.sample.ui.main.index.download;
 
-import com.github.lany192.box.items.PageViewModel;
+import com.github.lany192.box.items.PageListViewModel;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
@@ -13,11 +13,11 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class CityViewModel extends PageViewModel {
+public class DownloadListViewModel extends PageListViewModel {
     private final ApiService apiService;
 
     @Inject
-    public CityViewModel(ApiService apiService) {
+    public DownloadListViewModel(ApiService apiService) {
         this.apiService = apiService;
     }
 
