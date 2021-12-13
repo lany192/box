@@ -9,8 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.box.tab.TabAdapter;
+import com.github.lany192.box.tab.TabItem;
 import com.github.lany192.box.sample.databinding.FragmentIndexBinding;
+import com.github.lany192.box.sample.ui.main.index.article.ArticleFragment;
+import com.github.lany192.box.sample.ui.main.index.city.CityFragment;
+import com.github.lany192.box.sample.ui.main.index.girl.GirlFragment;
 import com.gyf.immersionbar.ImmersionBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -32,9 +40,15 @@ public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel(IndexViewModel.class);
-        IndexAdapter indexAdapter = new IndexAdapter(requireActivity());
-        binding.viewpager.setAdapter(indexAdapter);
-        binding.tabLayout.setViewPager2(binding.viewpager, indexAdapter.getTitles());
+
+        List<TabItem> items = new ArrayList<>();
+        items.add(new TabItem("推荐", new ArticleFragment()));
+        items.add(new TabItem("地区", new CityFragment()));
+        items.add(new TabItem("图片", new GirlFragment()));
+
+        TabAdapter tabAdapter = new TabAdapter(requireActivity(), items);
+        binding.viewpager.setAdapter(tabAdapter);
+        binding.tabLayout.setViewPager2(binding.viewpager, tabAdapter.getTitles());
         return root;
     }
 }

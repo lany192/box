@@ -1,4 +1,4 @@
-package com.github.lany192.box.fragment;
+package com.github.lany192.box.tab;
 
 import android.text.TextUtils;
 
@@ -22,7 +22,7 @@ import java.util.List;
 public class TabPager {
     private final ViewPager2 viewPager2;
     private final TabLayout tabLayout;
-    private List<PagerItem> items = new ArrayList<>();
+    private final List<TabItem> items = new ArrayList<>();
     private FragmentStateAdapter adapter;
 
     public TabPager(FragmentActivity fragmentActivity, final ViewPager2 viewPager2, final TabLayout tabLayout) {
@@ -38,7 +38,7 @@ public class TabPager {
             @NotNull
             @Override
             public Fragment createFragment(int position) {
-                return items.get(position).fragment;
+                return items.get(position).getFragment();
             }
         };
         bind();
@@ -57,7 +57,7 @@ public class TabPager {
             @NotNull
             @Override
             public Fragment createFragment(int position) {
-                return items.get(position).fragment;
+                return items.get(position).getFragment();
             }
         };
         bind();
@@ -78,11 +78,11 @@ public class TabPager {
             throw new RuntimeException("addTab: 添加tab失败，fragment不能为null！");
         }
         for (int i = 0; i < items.size(); i++) {
-            if (title.equals(items.get(i).title)) {
+            if (title.equals(items.get(i).getTitle())) {
                 return this;
             }
         }
-        items.add(new PagerItem(title, fragment));
+        items.add(new TabItem(title, fragment));
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
@@ -98,10 +98,10 @@ public class TabPager {
         if (TextUtils.isEmpty(title)) {
             return;
         }
-        Iterator<PagerItem> iterator = items.iterator();
+        Iterator<TabItem> iterator = items.iterator();
         while (iterator.hasNext()) {
-            PagerItem item = iterator.next();
-            if (title.equals(item.title)) {
+            TabItem item = iterator.next();
+            if (title.equals(item.getTitle())) {
                 iterator.remove();
             }
         }
@@ -130,17 +130,7 @@ public class TabPager {
         }
         this.viewPager2.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
-            tab.setText(items.get(position).title);
+            tab.setText(items.get(position).getTitle());
         }).attach();
-    }
-
-    public static class PagerItem {
-        String title;
-        Fragment fragment;
-
-        public PagerItem(String title, Fragment fragment) {
-            this.title = title;
-            this.fragment = fragment;
-        }
     }
 }
