@@ -5,7 +5,7 @@ import com.github.lany192.box.items.PageListFragment;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class ArticleListFragment extends PageListFragment<ArticleListViewModel> {
+public class ArticleFragment extends PageListFragment<ArticleViewModel> {
     {
         register(new ArticleBinder());
     }

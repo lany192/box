@@ -5,7 +5,7 @@ import com.github.lany192.box.items.PageListFragment;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class CityListFragment extends PageListFragment<CityListViewModel> {
+public class CityFragment extends PageListFragment<CityViewModel> {
     {
         register(new AreaBinder());
     }

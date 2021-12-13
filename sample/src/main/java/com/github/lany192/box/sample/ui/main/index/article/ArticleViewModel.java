@@ -1,48 +1,43 @@
-package com.github.lany192.box.sample.ui.main.index.download;
+package com.github.lany192.box.sample.ui.main.index.article;
 
 import com.github.lany192.box.items.PageListViewModel;
-import com.github.lany192.box.sample.bean.Area;
+import com.github.lany192.box.sample.bean.ArticleList;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
 import com.hjq.toast.ToastUtils;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class DownloadListViewModel extends PageListViewModel {
+public class ArticleViewModel extends PageListViewModel {
     private final ApiService apiService;
 
     @Inject
-    public DownloadListViewModel(ApiService apiService) {
+    public ArticleViewModel(ApiService apiService) {
         this.apiService = apiService;
     }
 
     @Override
     public void request(boolean refresh) {
-        showLoading(true);
-        apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
+        apiService.getHomeArticles(getPage()).subscribe(new ApiCallback<ArticleList>() {
 
             @Override
-            public void onSuccess(String msg, List<Area> items) {
+            public void onSuccess(String msg, ArticleList result) {
                 if (refresh) {
-                    resetItems(items);
+                    resetItems(result.getDatas());
                     finishRefresh();
                 } else {
-                    addItems(items);
+                    addItems(result.getDatas());
                     finishLoadMore();
                 }
-                showLoading(false);
             }
 
             @Override
             public void onFailure(String msg, int code) {
                 ToastUtils.show(msg);
                 stopRequest();
-                showLoading(false);
             }
         });
     }

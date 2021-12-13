@@ -5,7 +5,7 @@ import com.github.lany192.box.items.PageListFragment;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class DownloadListFragment extends PageListFragment<DownloadListViewModel> {
+public class DownloadFragment extends PageListFragment<DownloadViewModel> {
     {
         register(new DownloadBinder());
     }
