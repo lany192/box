@@ -20,11 +20,11 @@ import java.util.Date;
 public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
 
     @Override
-    public void convert(@NonNull BinderVBHolder<ItemArticleBinding> holder, Article article) {
-        ImageUtils.show(holder.getViewBinding().image, MockUtils.getImageUrl());
-        holder.getViewBinding().title.setText(article.getTitle());
-        holder.getViewBinding().desc.setText(article.getAuthor());
-        holder.getViewBinding().time.setText(DateUtils.format(new Date(article.getPublishTime())));
+    public void bind(ItemArticleBinding binding, Article article, int position) {
+        ImageUtils.show(binding.image, MockUtils.getImageUrl());
+        binding.title.setText(article.getTitle());
+        binding.desc.setText(article.getAuthor());
+        binding.time.setText(DateUtils.format(new Date(article.getPublishTime())));
     }
 
     @NonNull

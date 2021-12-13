@@ -12,8 +12,8 @@ import com.github.lany192.utils.ImageUtils;
 public class GirlBinder extends ItemBinder<String, ItemGirlBinding> {
 
     @Override
-    public void convert(@NonNull BinderVBHolder<ItemGirlBinding> holder, String url) {
-        ImageUtils.show(holder.getViewBinding().image, url);
+    public void bind(ItemGirlBinding binding, String url, int position) {
+        ImageUtils.show(binding.image, url);
     }
 
     @NonNull

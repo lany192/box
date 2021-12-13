@@ -33,11 +33,11 @@ public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
     }
 
     @Override
-    public void convert(@NonNull BinderVBHolder<ItemAreaBinding> holder, Area item) {
+    public void bind(ItemAreaBinding binding, Area item, int position) {
         int count = item.getSubarea() != null ? item.getSubarea().size() : 0;
-        ImageUtils.show(holder.getViewBinding().image, MockUtils.getImageUrl());
-        holder.getViewBinding().title.setText(item.getName());
-        holder.getViewBinding().desc.setText("下辖" + count + "个区/市");
+        ImageUtils.show(binding.image, MockUtils.getImageUrl());
+        binding.title.setText(item.getName());
+        binding.desc.setText("下辖" + count + "个区/市");
     }
 
     @NonNull
