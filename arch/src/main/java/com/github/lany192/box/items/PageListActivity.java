@@ -8,19 +8,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.lany192.box.R;
 import com.github.lany192.box.activity.BindingActivity;
-import com.github.lany192.box.databinding.FragmentPageBinding;
+import com.github.lany192.box.databinding.ActivityPageBinding;
 import com.github.lany192.box.utils.ListUtils;
 import com.github.lany192.box.view.EmptyView;
 import com.github.lany192.box.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
+import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
 import java.lang.reflect.ParameterizedType;
 
-public abstract class PageListActivity<VM extends PageListViewModel>
-        extends BindingActivity<FragmentPageBinding> {
+public abstract class PageListActivity<VM extends PageListViewModel> extends BindingActivity<ActivityPageBinding> {
     private final BinderAdapter binderAdapter = new BinderAdapter();
     protected VM viewModel;
+
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .titleBar(binding.toolbar)
+                .init();
+    }
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(this, getSpanCount());
@@ -44,6 +52,9 @@ public abstract class PageListActivity<VM extends PageListViewModel>
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = getViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+
+        binding.toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
+        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
 
