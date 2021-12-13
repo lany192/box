@@ -11,20 +11,20 @@ import androidx.annotation.Nullable;
 import com.github.lany192.box.R;
 import com.github.lany192.interfaces.OnSimpleListener;
 
-public class NoNetworkView extends BaseLayout {
+public class NetworkView extends BaseLayout {
     private OnSimpleListener listener;
     private TextView msgText;
     private TextView hintText;
 
-    public NoNetworkView(@NonNull Context context) {
+    public NetworkView(@NonNull Context context) {
         super(context);
     }
 
-    public NoNetworkView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public NetworkView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public NoNetworkView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public NetworkView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

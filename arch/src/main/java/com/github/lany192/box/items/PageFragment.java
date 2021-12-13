@@ -15,7 +15,7 @@ import com.github.lany192.box.databinding.FragmentPageBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.utils.ListUtils;
 import com.github.lany192.box.view.EmptyView;
-import com.github.lany192.box.view.NoNetworkView;
+import com.github.lany192.box.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
 import com.hjq.toast.ToastUtils;
 
@@ -104,7 +104,7 @@ public abstract class PageFragment<VM extends PageViewModel>
     }
 
     private void showNetView(){
-        NoNetworkView emptyView = new NoNetworkView(requireContext());
+        NetworkView emptyView = new NetworkView(requireContext());
         emptyView.setMessage("当前网络异常");
         emptyView.setHint("重新点击试试");
         emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
