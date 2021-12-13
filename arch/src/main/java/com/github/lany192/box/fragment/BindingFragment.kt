@@ -25,19 +25,19 @@ abstract class BindingFragment<VB : ViewBinding> : BasicFragment() {
         return binding.root
     }
 
-    fun <T : LifecycleViewModel?> getFragmentViewModel(modelClass: Class<T>): T {
+    fun <T : LifecycleViewModel> getFragmentViewModel(modelClass: Class<T>): T {
         val viewModel = ViewModelProvider(this)[modelClass]
-        lifecycle.addObserver(viewModel!!)
+        lifecycle.addObserver(viewModel)
         return viewModel
     }
 
-    fun <T : LifecycleViewModel?> getActivityViewModel(modelClass: Class<T>): T {
+    fun <T : LifecycleViewModel> getActivityViewModel(modelClass: Class<T>): T {
         val viewModel = ViewModelProvider(requireActivity())[modelClass]
-        lifecycle.addObserver(viewModel!!)
+        lifecycle.addObserver(viewModel)
         return viewModel
     }
 
-    fun <T : AndroidViewModel?> getAndroidViewModel(modelClass: Class<T>): T {
+    fun <T : AndroidViewModel> getAndroidViewModel(modelClass: Class<T>): T {
         return ViewModelProvider(requireActivity())[modelClass]
     }
 }

@@ -11,7 +11,7 @@ import com.github.lany192.box.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.bean.UserInfo;
 import com.github.lany192.box.sample.databinding.ActivityMainBinding;
-import com.github.lany192.box.sample.model.UserViewModel;
+import com.github.lany192.box.sample.viewmodel.UserViewModel;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 

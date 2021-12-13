@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.model;
+package com.github.lany192.box.sample.viewmodel;
 
 import android.app.Application;
 
