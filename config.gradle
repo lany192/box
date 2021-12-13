@@ -41,6 +41,10 @@ ext {
             "lifecycle-livedata-ktx" : 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0',
             "lifecycle-viewmodel-ktx": 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0',
 
+            //协程
+            'coroutines-core'        : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2',
+            'coroutines-android'     : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2',
+
             //https://github.com/ReactiveX/RxJava
             'rxjava'                 : 'io.reactivex.rxjava3:rxjava:3.0.13',
             //https://github.com/ReactiveX/RxAndroid
@@ -111,7 +115,11 @@ ext {
             //模糊视图 https://github.com/mmin18/RealtimeBlurView
             'realtime-blur-view'     : 'com.github.mmin18:realtimeblurview:1.2.1',
             //下载框架 https://github.com/lingochamp/okdownload
-            'ok-download'            : 'com.liulishuo.okdownload:okdownload:1.0.7',
+            'okdownload'             : 'com.liulishuo.okdownload:okdownload:1.0.8-SNAPSHOT',
+            'okdownload-sqlite'      : 'com.liulishuo.okdownload:sqlite:1.0.8-SNAPSHOT',
+            'okdownload-okhttp'      : 'com.liulishuo.okdownload:okhttp:1.0.8-SNAPSHOT',
+            'okdownload-ktx'         : 'com.liulishuo.okdownload:ktx:1.0.8-SNAPSHOT',
+
             //https://github.com/lany192/StateLayout
 //            'state-Layout'            : 'com.github.lany192:StateLayout:1.2.5',
             //友盟 https://github.com/lany192/umeng
