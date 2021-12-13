@@ -7,13 +7,13 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/network_wifi_image_view"
+        android:id="@+id/logo"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:background="@drawable/wifi_error" />
 
     <TextView
-        android:id="@+id/network_msg_text_view"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -22,7 +22,7 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/network_hint_text_view"
+        android:id="@+id/hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

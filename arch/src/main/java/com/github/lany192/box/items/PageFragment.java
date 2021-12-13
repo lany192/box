@@ -15,6 +15,7 @@ import com.github.lany192.box.databinding.FragmentPageBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.utils.ListUtils;
 import com.github.lany192.box.view.EmptyView;
+import com.github.lany192.box.view.NoNetworkView;
 import com.github.lany192.utils.NetUtils;
 import com.hjq.toast.ToastUtils;
 
@@ -59,8 +60,8 @@ public abstract class PageFragment<VM extends PageViewModel>
             if (NetUtils.isAvailable(requireContext())) {
                 viewModel.onRefresh();
             } else {
-                ToastUtils.show("网络异常");
                 binding.refreshLayout.finishRefresh();
+                showNetView();
             }
         });
         adapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
@@ -69,6 +70,7 @@ public abstract class PageFragment<VM extends PageViewModel>
             } else {
                 ToastUtils.show("网络异常");
                 adapter.getLoadMoreModule().loadMoreComplete();
+//                showNetView();
             }
         });
         viewModel.getRefreshState().observe(this, refreshing -> {
@@ -84,11 +86,7 @@ public abstract class PageFragment<VM extends PageViewModel>
         viewModel.getItems().observe(this, data -> {
             if (data.isRefresh()) {
                 if (ListUtils.isEmpty(data.getItems())) {
-                    EmptyView emptyView = new EmptyView(requireContext());
-                    emptyView.setMessage("没有发现数据");
-                    emptyView.setHint("重新点击试试");
-                    emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                    adapter.setEmptyView(emptyView);
+                    showEmptyView();
                 } else {
                     adapter.setNewInstance(data.getItems());
                 }
@@ -105,5 +103,19 @@ public abstract class PageFragment<VM extends PageViewModel>
         return root;
     }
 
+    private void showNetView(){
+        NoNetworkView emptyView = new NoNetworkView(requireContext());
+        emptyView.setMessage("当前网络异常");
+        emptyView.setHint("重新点击试试");
+        emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
+        adapter.setEmptyView(emptyView);
+    }
 
+    private void showEmptyView(){
+        EmptyView emptyView = new EmptyView(requireContext());
+        emptyView.setMessage("没有发现数据");
+        emptyView.setHint("重新点击试试");
+        emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
+        adapter.setEmptyView(emptyView);
+    }
 }
