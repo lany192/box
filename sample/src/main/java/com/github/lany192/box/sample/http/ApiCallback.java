@@ -1,5 +1,6 @@
 package com.github.lany192.box.sample.http;
 
+import com.elvishew.xlog.XLog;
 import com.github.lany192.box.sample.bean.Result;
 
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -21,12 +22,14 @@ public interface ApiCallback<T> extends Observer<Result<T>> {
         if (result.getCode() == 0) {
             onSuccess(result.getMsg(), result.getData());
         } else {
+            XLog.i("接口错误:" + result.getMsg());
             onFailure(result.getMsg(), result.getCode());
         }
     }
 
     @Override
     default void onError(Throwable e) {
+        XLog.i("接口错误:" + e.getMessage());
         onFailure(e.getMessage(), 400);
     }
 
