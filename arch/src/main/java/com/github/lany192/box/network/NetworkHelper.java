@@ -14,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
+import com.allen.android.lib.PermissionUtils;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.Box;
 import com.github.lany192.box.event.NetWorkEvent;
-import com.github.lany192.box.utils.PermissionUtils;
 import com.github.lany192.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -67,8 +67,8 @@ public class NetworkHelper implements DefaultLifecycleObserver {
     @Override
     public void onResume(@NonNull LifecycleOwner owner) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                && PermissionUtils.checkPermission(Box.get().getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
-                && PermissionUtils.checkPermission(Box.get().getContext(), Manifest.permission.WRITE_SETTINGS)) {
+                && PermissionUtils.hasPermission(Box.get().getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
+                && PermissionUtils.hasPermission(Box.get().getContext(), Manifest.permission.WRITE_SETTINGS)) {
             ConnectivityManager manager = (ConnectivityManager) Box.get().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             manager.requestNetwork(new NetworkRequest.Builder().build(), networkCallback);
         } else {
@@ -79,8 +79,8 @@ public class NetworkHelper implements DefaultLifecycleObserver {
     @Override
     public void onPause(@NonNull LifecycleOwner owner) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                && PermissionUtils.checkPermission(Box.get().getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
-                && PermissionUtils.checkPermission(Box.get().getContext(), Manifest.permission.WRITE_SETTINGS)) {
+                && PermissionUtils.hasPermission(Box.get().getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
+                && PermissionUtils.hasPermission(Box.get().getContext(), Manifest.permission.WRITE_SETTINGS)) {
             ConnectivityManager manager = (ConnectivityManager) Box.get().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             manager.unregisterNetworkCallback(networkCallback);
         } else {
