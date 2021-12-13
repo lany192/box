@@ -23,7 +23,7 @@ import java.lang.reflect.ParameterizedType;
 
 public abstract class PageListFragment<VM extends PageListViewModel>
         extends BindingFragment<FragmentPageBinding> {
-    private final PageListAdapter adapter = new PageListAdapter();
+    private final BinderAdapter binderAdapter = new BinderAdapter();
     protected VM viewModel;
 
     public RecyclerView.LayoutManager getLayoutManager() {
@@ -33,7 +33,7 @@ public abstract class PageListFragment<VM extends PageListViewModel>
     }
 
     public void register(ItemBinder binder) {
-        adapter.addItemBinder(binder.getTargetClass(), binder);
+        binderAdapter.addItemBinder(binder.getTargetClass(), binder);
     }
 
     public int getSpanCount() {
@@ -50,10 +50,10 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
 
-        adapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
+        binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
 
         binding.recyclerView.setLayoutManager(getLayoutManager());
-        binding.recyclerView.setAdapter(adapter);
+        binding.recyclerView.setAdapter(binderAdapter);
 
         binding.refreshLayout.setEnableLoadMore(false);
         binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
@@ -64,12 +64,12 @@ public abstract class PageListFragment<VM extends PageListViewModel>
                 showNetView();
             }
         });
-        adapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
+        binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
             if (NetUtils.isAvailable(requireContext())) {
                 viewModel.onLoadMore();
             } else {
                 ToastUtils.show("网络异常");
-                adapter.getLoadMoreModule().loadMoreComplete();
+                binderAdapter.getLoadMoreModule().loadMoreComplete();
 //                showNetView();
             }
         });
@@ -80,7 +80,7 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         });
         viewModel.getLoadMoreState().observe(this, moreLoading -> {
             if (!moreLoading) {
-                adapter.getLoadMoreModule().loadMoreComplete();
+                binderAdapter.getLoadMoreModule().loadMoreComplete();
             }
         });
         viewModel.getItems().observe(this, data -> {
@@ -88,16 +88,16 @@ public abstract class PageListFragment<VM extends PageListViewModel>
                 if (ListUtils.isEmpty(data.getItems())) {
                     showEmptyView();
                 } else {
-                    adapter.setNewInstance(data.getItems());
+                    binderAdapter.setNewInstance(data.getItems());
                 }
             } else {
-                adapter.addData(data.getItems());
+                binderAdapter.addData(data.getItems());
             }
         });
 
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
-                adapter.setEmptyView(R.layout.view_loading);
+                binderAdapter.setEmptyView(R.layout.view_loading);
             }
         });
         return root;
@@ -108,7 +108,7 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         emptyView.setMessage("当前网络异常");
         emptyView.setHint("重新点击试试");
         emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-        adapter.setEmptyView(emptyView);
+        binderAdapter.setEmptyView(emptyView);
     }
 
     private void showEmptyView(){
@@ -116,6 +116,6 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         emptyView.setMessage("没有发现数据");
         emptyView.setHint("重新点击试试");
         emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-        adapter.setEmptyView(emptyView);
+        binderAdapter.setEmptyView(emptyView);
     }
 }
