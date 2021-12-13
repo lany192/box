@@ -15,6 +15,8 @@ import com.github.lany192.box.databinding.FragmentPageBinding;
 import com.github.lany192.box.fragment.BindingFragment;
 import com.github.lany192.box.utils.ListUtils;
 import com.github.lany192.box.view.EmptyView;
+import com.github.lany192.utils.NetUtils;
+import com.hjq.toast.ToastUtils;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -53,10 +55,22 @@ public abstract class PageFragment<VM extends PageViewModel>
         binding.recyclerView.setAdapter(adapter);
 
         binding.refreshLayout.setEnableLoadMore(false);
-        binding.refreshLayout.setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
-
-        adapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
-
+        binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
+            if (NetUtils.isAvailable(requireContext())) {
+                viewModel.onRefresh();
+            } else {
+                ToastUtils.show("网络异常");
+                binding.refreshLayout.finishRefresh();
+            }
+        });
+        adapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
+            if (NetUtils.isAvailable(requireContext())) {
+                viewModel.onLoadMore();
+            } else {
+                ToastUtils.show("网络异常");
+                adapter.getLoadMoreModule().loadMoreComplete();
+            }
+        });
         viewModel.getRefreshState().observe(this, refreshing -> {
             if (!refreshing) {
                 binding.refreshLayout.finishRefresh();

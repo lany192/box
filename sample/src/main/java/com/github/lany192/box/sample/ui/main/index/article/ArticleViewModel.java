@@ -6,8 +6,6 @@ import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;
 import com.hjq.toast.ToastUtils;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
@@ -39,11 +37,6 @@ public class ArticleViewModel extends PageViewModel {
             @Override
             public void onFailure(String msg, int code) {
                 ToastUtils.show(msg);
-                if (refresh) {
-                    resetItems(new ArrayList<>());
-                } else {
-                    addItems(new ArrayList<>());
-                }
                 stopRequest();
             }
         });
