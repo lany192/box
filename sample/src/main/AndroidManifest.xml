@@ -45,7 +45,7 @@
             android:name=".ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.about.AboutActivity"
+            android:name="com.github.lany192.box.sample.ui.settings.about.AboutActivity"
             android:exported="false"
             android:label="关于" />
     </application>

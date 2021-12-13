@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.ui.about
+package com.github.lany192.box.sample.ui.settings.about
 
 import android.os.Bundle
 import androidx.activity.viewModels

@@ -11,7 +11,7 @@ import com.github.lany192.box.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
 import com.github.lany192.box.sample.viewmodel.UserViewModel;
-import com.github.lany192.box.sample.ui.about.AboutActivity;
+import com.github.lany192.box.sample.ui.settings.about.AboutActivity;
 import com.github.lany192.box.sample.ui.browser.BrowserActivity;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
