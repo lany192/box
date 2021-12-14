@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.box.sample.bean.UserInfo;
+import com.github.lany192.box.sample.data.bean.UserInfo;
 
 import javax.inject.Inject;
 

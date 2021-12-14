@@ -10,7 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.utils.DateUtils;
 import com.github.lany192.box.sample.MockUtils;
-import com.github.lany192.box.sample.bean.Article;
+import com.github.lany192.box.sample.data.bean.Article;
 import com.github.lany192.box.sample.databinding.ItemArticleBinding;
 import com.github.lany192.utils.ImageUtils;
 

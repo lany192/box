@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.bean
+package com.github.lany192.box.sample.data.bean
 
 import java.io.Serializable
 

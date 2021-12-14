@@ -1,9 +1,9 @@
 package com.github.lany192.box.sample.ui.main.index.city;
 
 import com.github.lany192.arch.items.PageListViewModel;
-import com.github.lany192.box.sample.bean.Area;
-import com.github.lany192.box.sample.api.ApiCallback;
-import com.github.lany192.box.sample.api.ApiService;
+import com.github.lany192.box.sample.data.bean.Area;
+import com.github.lany192.box.sample.data.api.ApiCallback;
+import com.github.lany192.box.sample.data.api.ApiService;
 import com.hjq.toast.ToastUtils;
 
 import java.util.List;

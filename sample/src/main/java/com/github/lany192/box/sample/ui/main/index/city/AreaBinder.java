@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.box.sample.MockUtils;
-import com.github.lany192.box.sample.bean.Area;
+import com.github.lany192.box.sample.data.bean.Area;
 import com.github.lany192.box.sample.databinding.ItemAreaBinding;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ImageUtils;

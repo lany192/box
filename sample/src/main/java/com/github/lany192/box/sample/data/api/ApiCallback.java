@@ -1,7 +1,7 @@
-package com.github.lany192.box.sample.api;
+package com.github.lany192.box.sample.data.api;
 
 import com.elvishew.xlog.XLog;
-import com.github.lany192.box.sample.bean.Result;
+import com.github.lany192.box.sample.data.bean.Result;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;

@@ -1,7 +1,7 @@
 package com.github.lany192.box.sample.di
 
 import com.github.lany192.box.sample.BuildConfig
-import com.github.lany192.box.sample.api.ApiService
+import com.github.lany192.box.sample.data.api.ApiService
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

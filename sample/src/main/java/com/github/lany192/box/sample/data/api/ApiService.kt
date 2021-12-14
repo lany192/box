@@ -1,6 +1,6 @@
-package com.github.lany192.box.sample.api
+package com.github.lany192.box.sample.data.api
 
-import com.github.lany192.box.sample.bean.*
+import com.github.lany192.box.sample.data.bean.*
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.*
 
