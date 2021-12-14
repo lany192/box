@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -14,110 +13,25 @@
         app:title="消息"
         app:titleTextColor="@android:color/black" />
 
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_order_view"
+    <com.flyco.tablayout.PagerTabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="消息1" />
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:tl_tabSpaceEqual="true"
+        app:tl_indicatorColor="#06142E"
+        app:tl_indicatorCornerRadius="1dp"
+        app:tl_indicatorHeight="2dp"
+        app:tl_indicatorMarginBottom="5dp"
+        app:tl_indicatorWidthEqualTitle="true"
+        app:tl_selectedTextColor="#06142E"
+        app:tl_selectedTextSize="15sp"
+        app:tl_unselectedTextColor="#666666"
+        app:tl_unselectedTextSize="15sp" />
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
-
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_wallet_view"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="消息1" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
-
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_release_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="消息1" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
-
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_coupon_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="消息1" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
-
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_sell_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="消息1" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
-
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_plant_life_cycle_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:visibility="gone"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="消息1" />
-
-
-    <com.github.lany192.view.MenuView
-        android:id="@+id/my_debug_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:menu_hintColor="#999999"
-        app:menu_isShowIcon="false"
-        app:menu_name="消息1" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#dddddd" />
+        android:layout_height="match_parent" />
 </LinearLayout>
