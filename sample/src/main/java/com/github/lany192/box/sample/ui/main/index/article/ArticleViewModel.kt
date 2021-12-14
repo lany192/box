@@ -16,6 +16,7 @@ class ArticleViewModel @Inject constructor() : PageListViewModel() {
     override fun request(refresh: Boolean) {
         apiService.getHomeArticles(page)
             .subscribe(object : ApiCallback<ArticleList> {
+
                 override fun onSuccess(msg: String, result: ArticleList) {
                     if (refresh) {
                         resetItems(result.datas)
