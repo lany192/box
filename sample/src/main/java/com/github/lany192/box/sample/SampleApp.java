@@ -10,7 +10,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.multidex.MultiDexApplication;
 
-import com.github.lany192.box.Box;
+import com.github.lany192.arch.Box;
 import com.github.lany192.box.sample.ui.settings.about.AboutActivity;
 
 import java.util.ArrayList;
