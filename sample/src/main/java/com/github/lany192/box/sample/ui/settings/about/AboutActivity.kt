@@ -28,8 +28,9 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.toolbar.setNavigationOnClickListener { finish() }
-
+        //
         viewModel.loading.observe(this, Observer { it ->
+            //是是是
             ToastUtils.show(it)
         })
     }

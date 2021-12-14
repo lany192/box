@@ -6,8 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.AppRouter;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.allen.android.lib.PermissionUtils;
 import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
@@ -59,18 +59,12 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
             }
         });
         binding.protocolView.setOnClickListener(v -> {
-            ARouter.getInstance().build("/ui/browser")
-                    .withString("title","百度也不知道")
-                    .withString("url", "https://www.baidu.com")
-                    .navigation();
+            AppRouter.get().browser("百度也不知道", "https://www.baidu.com");
         });
         binding.privacyView.setOnClickListener(v -> {
-            ARouter.getInstance().build("/ui/browser")
-                    .withString("title","百度也不知道")
-                    .withString("url", "https://www.baidu.com")
-                    .navigation();
+            AppRouter.get().browser("百度也不知道", "https://www.baidu.com");
         });
-        binding.aboutView.setOnClickListener(v -> ARouter.getInstance().build("/ui/about").navigation());
+        binding.aboutView.setOnClickListener(v -> AppRouter.get().about());
     }
 
     private void checkVersion() {
