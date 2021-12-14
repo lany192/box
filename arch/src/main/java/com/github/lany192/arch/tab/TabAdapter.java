@@ -27,11 +27,11 @@ public class TabAdapter extends FragmentStateAdapter {
         return items.get(position).getFragment();
     }
 
-    public String[] getTitles() {
-        List<String> titles = new ArrayList<>();
+    public List<CharSequence> getTitles() {
+        List<CharSequence> titles = new ArrayList<>();
         for (int i = 0; i < getItemCount(); i++) {
             titles.add(items.get(i).getTitle().toString());
         }
-        return titles.toArray(new String[0]);
+        return titles;
     }
 }

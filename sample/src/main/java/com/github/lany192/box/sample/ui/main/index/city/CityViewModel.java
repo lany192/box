@@ -40,9 +40,9 @@ public class CityViewModel extends PageListViewModel {
 
             @Override
             public void onFailure(String msg, int code) {
+                showLoading(false);
                 ToastUtils.show(msg);
                 stopRequest();
-                showLoading(false);
             }
         });
     }

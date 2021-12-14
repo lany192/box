@@ -28,4 +28,9 @@ public class PageLiveData extends MutableLiveData<PageLiveData> {
         this.refresh = false;
         postValue(this);
     }
+
+    public void stopRequest() {
+        this.refresh = false;
+        postValue(this);
+    }
 }

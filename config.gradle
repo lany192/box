@@ -129,7 +129,7 @@ ext {
             //转场动画 https://github.com/skydoves/TransformationLayout
 //            'transformation-layout': 'com.github.skydoves:transformationlayout:1.1.1',
             //多布局 https://github.com/lany192/TabLayout
-            'flycoTabLayout'           : 'com.github.lany192:TabLayout:3.1.0',
+            'flycoTabLayout'           : 'com.github.lany192:TabLayout:3.1.1',
             //腾讯X5内核 https://github.com/lany192/webview
             'webview'                  : 'com.github.lany192.webview:x5web:1.0.2',
             //tencent x5 https://x5.tencent.com/docs/index.html

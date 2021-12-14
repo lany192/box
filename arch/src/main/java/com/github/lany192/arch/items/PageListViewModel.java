@@ -40,6 +40,7 @@ public abstract class PageListViewModel extends LifecycleViewModel {
     public void stopRequest() {
         this.refreshState.postValue(false);
         this.loadMoreState.postValue(false);
+        this.pageLiveData.stopRequest();
     }
 
     @SuppressWarnings("unchecked")
