@@ -1,6 +1,5 @@
 package com.github.lany192.box.sample.ui.main.my;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.AppRouter;
 import com.github.lany192.arch.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
-import com.github.lany192.box.sample.ui.settings.SettingsActivity;
 import com.github.lany192.box.sample.viewmodel.UserViewModel;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.interfaces.OnSimpleListener;
@@ -30,20 +29,14 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         viewModel = getFragmentViewModel(MyViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
+        userViewModel.getUserInfo().observe(this, userInfo -> binding.testView.hint(userInfo.getName()));
 
-//        binding.myOrderView.setOnClickListener(v -> showDialog());
-//        binding.myWalletView.setOnClickListener(v -> startActivity(new Intent(getActivity(), AboutActivity.class)));
-//        binding.myReleaseView.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginActivity.class)));
-
+        binding.dialogView.setOnClickListener(v -> showDialog());
+        binding.loginView.setOnClickListener(v -> AppRouter.get().login());
+        binding.settingsView.setOnClickListener(v -> AppRouter.get().settings());
         binding.testView.setOnClickListener(v -> {
             userViewModel.setName("我是张三");
         });
-
-        binding.settingsView.setOnClickListener(v -> startActivity(new Intent(getActivity(), SettingsActivity.class)));
-
-
-
-
         return root;
     }
 

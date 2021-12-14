@@ -32,13 +32,13 @@
             android:orientation="vertical">
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/version_view"
+                android:id="@+id/dialog_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="功能x" />
+                app:menu_name="对话框测试" />
 
             <View
                 android:layout_width="wrap_content"
@@ -48,13 +48,13 @@
                 android:background="#dddddd" />
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/cache_view"
+                android:id="@+id/login_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="功能x" />
+                app:menu_name="登录测试" />
 
             <View
                 android:layout_width="wrap_content"
