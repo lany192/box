@@ -3,11 +3,18 @@ package com.github.lany192.arch.fragment;
 import android.content.res.Configuration;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.R;
+import com.github.lany192.arch.viewmodel.BaseViewModel;
+import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.dialog.LoadingDialog;
 
 public abstract class BasicFragment extends Fragment {
@@ -62,5 +69,21 @@ public abstract class BasicFragment extends Fragment {
     }
 
     public void initImmersionBar() {
+    }
+
+    public <T extends LifecycleViewModel> T getFragmentViewModel(@NonNull Class<T> modelClass) {
+        T viewModel = new ViewModelProvider(this).get(modelClass);
+        getLifecycle().addObserver(viewModel);
+        return viewModel;
+    }
+
+    public <T extends LifecycleViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
+        T viewModel = new ViewModelProvider(requireActivity()).get(modelClass);
+        getLifecycle().addObserver(viewModel);
+        return viewModel;
+    }
+
+    public <T extends ViewModel> T getAndroidViewModel(@NonNull Class<T> modelClass) {
+        return new ViewModelProvider((BoxApplication) requireActivity().getApplicationContext()).get(modelClass);
     }
 }

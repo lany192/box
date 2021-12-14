@@ -1,15 +1,20 @@
 package com.github.lany192.arch;
 
 import android.app.Application;
-import android.content.Context;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.elvishew.xlog.LogConfiguration;
 import com.elvishew.xlog.LogLevel;
 import com.elvishew.xlog.XLog;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.file.FilePrinter;
-import com.github.lany192.arch.utils.OtherUtils;
+import com.github.lany192.arch.utils.ContextUtils;
 import com.github.lany192.arch.utils.PhoneUtils;
 import com.github.lany192.kv.KVUtils;
 import com.github.lany192.log.LogFileFormat;
@@ -19,42 +24,26 @@ import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
-public class Box {
-    private volatile static Box instance;
+public class BoxApplication extends Application implements ViewModelStoreOwner {
+    private ViewModelStore mAppViewModelStore;
     private final String TAG = "Box";
-    private Context context;
 
-    private Box() {
-    }
-
-    public static Box get() {
-        if (instance == null) {
-            synchronized (Box.class) {
-                if (instance == null) {
-                    instance = new Box();
-                }
-            }
-        }
-        return instance;
-    }
-
-    public void init(Application ctx) {
-        init(ctx, false);
-    }
-
-    public void init(Application ctx, boolean debug) {
-        Context app = ctx.getApplicationContext();
-        if (app == null) {
-            this.context = ctx;
-        } else {
-            this.context = ((Application) app).getBaseContext();
-        }
-        KVUtils.get().init(ctx);
-        ToastUtils.init(ctx);
-        initLog(debug);
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ContextUtils.setApplicationContext(this);
+        mAppViewModelStore = new ViewModelStore();
+        KVUtils.get().init(this);
+        ToastUtils.init(this);
+        initLog();
         initCatchException();
         initRefreshView();
-        OtherUtils.closeAndroidPWarningDialog(debug);
+    }
+
+    @NonNull
+    @Override
+    public ViewModelStore getViewModelStore() {
+        return mAppViewModelStore;
     }
 
     private void initCatchException() {
@@ -80,27 +69,19 @@ public class Box {
         });
     }
 
-    private void initLog(boolean debug) {
+    private void initLog() {
         LogConfiguration config = new LogConfiguration
                 .Builder()
                 .logLevel(LogLevel.ALL)
                 .tag("XLog")
                 .build();
-        String logPath = context.getFilesDir().getPath() + "/log/";
+        String logPath = getFilesDir().getPath() + "/log/";
         Log.i(TAG, "初始化日志文件路径:" + logPath);
         FilePrinter filePrinter = new FilePrinter
                 .Builder(logPath)
                 .fileNameGenerator(new LogFileNameGenerator())
                 .flattener(new LogFileFormat())
                 .build();
-        if (debug) {
-            XLog.init(config, new AndroidPrinter(), filePrinter);
-        } else {
-            XLog.init(config, filePrinter);
-        }
-    }
-
-    public Context getContext() {
-        return context;
+        XLog.init(config, new AndroidPrinter(), filePrinter);
     }
 }

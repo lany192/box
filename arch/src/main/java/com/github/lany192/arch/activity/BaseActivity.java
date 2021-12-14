@@ -4,12 +4,19 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.network.NetworkHelper;
+import com.github.lany192.arch.viewmodel.BaseViewModel;
+import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.dialog.LoadingDialog;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -22,6 +29,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLifecycle().addObserver(NetworkHelper.getInstance());
+    }
+
+    public <T extends LifecycleViewModel> T getViewModel(@NonNull Class<T> modelClass) {
+        T viewModel = new ViewModelProvider(this).get(modelClass);
+        getLifecycle().addObserver(viewModel);
+        return viewModel;
+    }
+
+    public <T extends ViewModel> T getAndroidViewModel(@NonNull Class<T> modelClass) {
+        return new ViewModelProvider((BoxApplication) getApplicationContext()).get(modelClass);
     }
 
     public void showLoadingDialog() {

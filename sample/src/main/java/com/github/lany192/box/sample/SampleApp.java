@@ -1,6 +1,7 @@
 package com.github.lany192.box.sample;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
@@ -8,10 +9,10 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
-import androidx.multidex.MultiDexApplication;
+import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.github.lany192.arch.Box;
+import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.box.sample.lifecycle.ActivityLifecycle;
 import com.github.lany192.box.sample.ui.settings.about.AboutActivity;
 
@@ -21,12 +22,17 @@ import java.util.List;
 import dagger.hilt.android.HiltAndroidApp;
 
 @HiltAndroidApp
-public class SampleApp extends MultiDexApplication {
+public class SampleApp extends BoxApplication {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Box.get().init(this, BuildConfig.DEBUG);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             initShortcuts();
         }

@@ -5,7 +5,9 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.BoxApplication
 import com.github.lany192.arch.binding.getBinding
+import com.github.lany192.arch.viewmodel.BaseViewModel
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
 
 /**
@@ -19,15 +21,5 @@ abstract class BindingActivity<VB : ViewBinding> : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = getBinding()
         setContentView(binding.root)
-    }
-
-    fun <T : LifecycleViewModel> getViewModel(modelClass: Class<T>): T {
-        val viewModel = ViewModelProvider(this)[modelClass]
-        lifecycle.addObserver(viewModel)
-        return viewModel
-    }
-
-    fun <T : AndroidViewModel> getAndroidViewModel(modelClass: Class<T>): T {
-        return ViewModelProvider(this)[modelClass]
     }
 }

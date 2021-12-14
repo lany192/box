@@ -2,7 +2,7 @@ package com.github.lany192.arch.utils;
 
 import android.util.Log;
 
-import com.github.lany192.arch.Box;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -47,8 +47,8 @@ public class PicCompressor {
     }
 
     private List<String> compress(List<String> photosPaths) throws IOException {
-        List<File> files = Luban.with(Box.get().getContext())
-                .setTargetDir(Box.get().getContext().getCacheDir().getPath())
+        List<File> files = Luban.with(ContextUtils.getContext())
+                .setTargetDir(ContextUtils.getContext().getCacheDir().getPath())
                 .load(photosPaths)
                 .ignoreBy(limitSize)//小于100kb不压缩
                 .get();
