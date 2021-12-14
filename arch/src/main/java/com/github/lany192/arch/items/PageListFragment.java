@@ -87,11 +87,7 @@ public abstract class PageListFragment<VM extends PageListViewModel>
             if (ListUtils.isEmpty(data.getItems())) {
                 showEmptyView();
             } else {
-                if (data.isRefresh()) {
-                    binderAdapter.setNewInstance(data.getItems());
-                } else {
-                    binderAdapter.addData(data.getItems());
-                }
+                binderAdapter.setNewInstance(data.getItems());
             }
         });
 

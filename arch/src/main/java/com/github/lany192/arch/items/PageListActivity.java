@@ -93,11 +93,7 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
             if (ListUtils.isEmpty(data.getItems())) {
                 showEmptyView();
             } else {
-                if (data.isRefresh()) {
-                    binderAdapter.setNewInstance(data.getItems());
-                } else {
-                    binderAdapter.addData(data.getItems());
-                }
+                binderAdapter.setNewInstance(data.getItems());
             }
         });
 
