@@ -31,6 +31,7 @@ public class BrowserActivity extends BindingActivity<ActivityBrowserBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding.toolbar.setNavigationOnClickListener(v -> finish());
+        binding.toolbar.setTitle(title);
         binding.webview.loadUrl(url);
     }
 }

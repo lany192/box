@@ -15,6 +15,8 @@ import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.view.EmptyView;
 import com.github.lany192.arch.view.LoadingView;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
+import com.github.lany192.decoration.Divider;
+import com.github.lany192.decoration.ItemDecoration;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
@@ -49,6 +51,22 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         binding.recyclerView.setLayoutManager(layoutManager);
+        binding.recyclerView.addItemDecoration(new ItemDecoration() {
+            @Override
+            public Divider getDivider(int position) {
+                if (position % 2==0) {
+                    return new Divider.Builder()
+                            .setBottomWidth(6)
+                            .setLeftWidth(6)
+                            .build();
+                }else{
+                    return new Divider.Builder()
+                            .setBottomWidth(6)
+                            .setRightWidth(6)
+                            .build();
+                }
+            }
+        });
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -80,5 +98,4 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
             }
         });
     }
-
 }
