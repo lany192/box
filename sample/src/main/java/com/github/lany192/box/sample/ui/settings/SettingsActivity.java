@@ -37,7 +37,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         viewModel = getViewModel(SettingsViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
 
-        binding.toolbar.setNavigationIcon(R.drawable.vector_back_black);
+
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
         binding.versionView.setOnClickListener(v -> checkVersion());
         binding.cacheView.setOnClickListener(v -> {

@@ -25,7 +25,6 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.toolbar.setNavigationIcon(R.drawable.vector_back_black)
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         viewModel.loading.observe(this, Observer { it ->
