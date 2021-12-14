@@ -58,8 +58,7 @@
         </activity>
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:exported="true"
-            android:label="启动页">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

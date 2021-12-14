@@ -53,9 +53,14 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                layoutManager.invalidateSpanAssignments(); //防止第一行到顶部有空白区域
+                int[] first = new int[layoutManager.getSpanCount()];
+                layoutManager.findFirstCompletelyVisibleItemPositions(first);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && (first[0] == 1 || first[1] == 1)) {
+                    //防止第一行到顶部有空白区域
+                    layoutManager.invalidateSpanAssignments();
+                }
             }
         });
         viewModel.getItems().observe(this, strings -> {
