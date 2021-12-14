@@ -1,5 +1,6 @@
 package com.github.lany192.box.sample.di
 
+import com.github.lany192.box.sample.BuildConfig
 import com.github.lany192.box.sample.http.ApiService
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -24,7 +25,11 @@ class HttpModule {
     @Provides
     fun provideClient(): OkHttpClient {
         val logInterceptor = HttpLoggingInterceptor()
-        logInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        if (BuildConfig.DEBUG) {
+            logInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        } else {
+            logInterceptor.level = HttpLoggingInterceptor.Level.NONE
+        }
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .addNetworkInterceptor(logInterceptor) //设置打印拦截日志

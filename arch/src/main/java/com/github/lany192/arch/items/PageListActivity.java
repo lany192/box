@@ -75,7 +75,7 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
                 viewModel.onLoadMore();
             } else {
                 ToastUtils.show("网络异常");
-                binderAdapter.getLoadMoreModule().loadMoreComplete();
+                binderAdapter.getLoadMoreModule().loadMoreFail();
 //                showNetView();
             }
         });
@@ -90,14 +90,14 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
             }
         });
         viewModel.getItems().observe(this, data -> {
-            if (data.isRefresh()) {
-                if (ListUtils.isEmpty(data.getItems())) {
-                    showEmptyView();
-                } else {
-                    binderAdapter.setNewInstance(data.getItems());
-                }
+            if (ListUtils.isEmpty(data.getItems())) {
+                showEmptyView();
             } else {
-                binderAdapter.addData(data.getItems());
+                if (data.isRefresh()) {
+                    binderAdapter.setNewInstance(data.getItems());
+                } else {
+                    binderAdapter.addData(data.getItems());
+                }
             }
         });
 
