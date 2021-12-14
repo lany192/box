@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,7 +12,6 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.viewmodel.BaseViewModel;
 import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.dialog.LoadingDialog;
 

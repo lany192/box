@@ -4,8 +4,6 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
 
@@ -25,8 +23,8 @@ import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 public class BoxApplication extends Application implements ViewModelStoreOwner {
-    private ViewModelStore mAppViewModelStore;
     private final String TAG = "Box";
+    private ViewModelStore mAppViewModelStore;
 
     @Override
     public void onCreate() {

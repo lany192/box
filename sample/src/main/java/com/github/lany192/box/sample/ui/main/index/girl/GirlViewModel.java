@@ -4,9 +4,9 @@ import android.os.Handler;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.data.api.ApiService;
-import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

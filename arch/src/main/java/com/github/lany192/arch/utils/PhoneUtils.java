@@ -15,7 +15,6 @@ import android.util.TypedValue;
 
 import androidx.fragment.app.FragmentActivity;
 
-
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.MD5Utils;
 
@@ -155,7 +154,7 @@ public class PhoneUtils {
      * @return
      */
     public static String getPhoneId() {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         sb.append(getDeviceId());
         sb.append(getAndroidId());
         sb.append(getSerial());

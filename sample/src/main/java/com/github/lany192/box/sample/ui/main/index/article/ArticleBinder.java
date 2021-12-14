@@ -35,7 +35,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
     @Override
     public void onClick(@NonNull BinderVBHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
         ARouter.getInstance().build("/ui/browser")
-                .withString("title",item.getTitle())
+                .withString("title", item.getTitle())
                 .withString("url", item.getLink())
                 .navigation();
     }

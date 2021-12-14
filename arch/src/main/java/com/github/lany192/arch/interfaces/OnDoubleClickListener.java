@@ -14,7 +14,7 @@ public class OnDoubleClickListener implements View.OnTouchListener {
     private int count = 0;
     private long firstClickTime = 0;
 
-    private DoubleClickCallback mCallback;
+    private final DoubleClickCallback mCallback;
 
     public OnDoubleClickListener(DoubleClickCallback callback) {
         super();

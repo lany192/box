@@ -1,9 +1,9 @@
 package com.github.lany192.box.sample.ui.main.index.article
 
 import com.github.lany192.arch.items.PageListViewModel
-import com.github.lany192.box.sample.data.bean.ArticleList
 import com.github.lany192.box.sample.data.api.ApiCallback
 import com.github.lany192.box.sample.data.api.ApiService
+import com.github.lany192.box.sample.data.bean.ArticleList
 import com.hjq.toast.ToastUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

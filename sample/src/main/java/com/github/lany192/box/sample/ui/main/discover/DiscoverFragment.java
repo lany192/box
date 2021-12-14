@@ -54,12 +54,12 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         binding.recyclerView.addItemDecoration(new ItemDecoration() {
             @Override
             public Divider getDivider(int position) {
-                if (position % 2==0) {
+                if (position % 2 == 0) {
                     return new Divider.Builder()
                             .setBottomWidth(6)
                             .setLeftWidth(6)
                             .build();
-                }else{
+                } else {
                     return new Divider.Builder()
                             .setBottomWidth(6)
                             .setRightWidth(6)

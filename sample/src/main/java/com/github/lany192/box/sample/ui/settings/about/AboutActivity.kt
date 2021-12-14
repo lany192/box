@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BindingActivity
-import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
 import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.ToastUtils

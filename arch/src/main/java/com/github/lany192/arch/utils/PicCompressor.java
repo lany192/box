@@ -2,8 +2,6 @@ package com.github.lany192.arch.utils;
 
 import android.util.Log;
 
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
