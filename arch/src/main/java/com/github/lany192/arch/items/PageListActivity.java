@@ -67,7 +67,9 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
                 viewModel.onRefresh();
             } else {
                 binding.refreshLayout.finishRefresh();
-                showNetView();
+                NetworkView networkView = getNetworkView();
+                networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                binderAdapter.setEmptyView(networkView);
             }
         });
         binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
@@ -91,7 +93,9 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
         });
         viewModel.getItems().observe(this, data -> {
             if (ListUtils.isEmpty(data.getItems())) {
-                showEmptyView();
+                EmptyView emptyView = getEmptyView();
+                emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                binderAdapter.setEmptyView(emptyView);
             } else {
                 binderAdapter.setNewInstance(data.getItems());
             }
@@ -104,19 +108,20 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
         });
     }
 
-    private void showNetView() {
-        NetworkView emptyView = new NetworkView(this);
-        emptyView.setMessage("当前网络异常");
-        emptyView.setHint("重新点击试试");
-        emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-        binderAdapter.setEmptyView(emptyView);
-    }
-
-    private void showEmptyView() {
+    @Nullable
+    public EmptyView getEmptyView() {
         EmptyView emptyView = new EmptyView(this);
         emptyView.setMessage("没有发现数据");
         emptyView.setHint("重新点击试试");
-        emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-        binderAdapter.setEmptyView(emptyView);
+        return emptyView;
+    }
+
+    @Nullable
+    public NetworkView getNetworkView() {
+        NetworkView networkView = new NetworkView(this);
+        networkView.setMessage("当前网络异常");
+        networkView.setHint("重新点击试试");
+        networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
+        return networkView;
     }
 }

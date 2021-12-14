@@ -8,9 +8,21 @@ import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import java.util.List;
 
 public abstract class PageListViewModel extends LifecycleViewModel {
+    /**
+     * 列表数据集合
+     */
     private final PageLiveData pageLiveData = new PageLiveData();
+    /**
+     * 刷新状态监测
+     */
     private final MutableLiveData<Boolean> refreshState = new MutableLiveData<>();
+    /**
+     * 加载状态监测
+     */
     private final MutableLiveData<Boolean> loadMoreState = new MutableLiveData<>();
+    /**
+     * 页码，从1开始
+     */
     private int page = 1;
 
     public int getPage() {
@@ -29,36 +41,61 @@ public abstract class PageListViewModel extends LifecycleViewModel {
         return loadMoreState;
     }
 
+    /**
+     * 结束刷新请求
+     */
     public void finishRefresh() {
         this.refreshState.postValue(false);
     }
 
+    /**
+     * 结束加载更多
+     */
     public void finishLoadMore() {
         this.loadMoreState.postValue(false);
     }
 
-    public void stopRequest() {
+    /**
+     * 异常停止请求
+     */
+    public void finishRequest() {
         this.refreshState.postValue(false);
         this.loadMoreState.postValue(false);
         this.pageLiveData.stopRequest();
     }
 
+    /**
+     * 重置数据
+     *
+     * @param items 数据集
+     */
     @SuppressWarnings("unchecked")
     public void resetItems(List<?> items) {
         this.pageLiveData.setItems((List<Object>) items);
     }
 
+    /**
+     * 添加数据
+     *
+     * @param items 数据集
+     */
     @SuppressWarnings("unchecked")
     public void addItems(List<?> items) {
         this.pageLiveData.addItems((List<Object>) items);
     }
 
+    /**
+     * 刷新列表
+     */
     public void onRefresh() {
         refreshState.postValue(true);
         page = 1;
         request(true);
     }
 
+    /**
+     * 加载更多
+     */
     public void onLoadMore() {
         loadMoreState.postValue(true);
         page += 1;
@@ -67,6 +104,9 @@ public abstract class PageListViewModel extends LifecycleViewModel {
 
     public abstract void request(boolean refresh);
 
+    /**
+     * 懒加载
+     */
     @CallSuper
     @Override
     protected void onLazyLoad() {
