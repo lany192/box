@@ -1,7 +1,7 @@
 buildscript {
     apply from: 'config.gradle'
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/public' }
+//        maven { url 'https://maven.aliyun.com/repository/public' }
         google()
         mavenCentral()
     }
