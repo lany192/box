@@ -7,7 +7,7 @@
     android:background="#f2f2f2"
     android:orientation="vertical">
 
-    <com.github.lany192.widget.StaggeredGridRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

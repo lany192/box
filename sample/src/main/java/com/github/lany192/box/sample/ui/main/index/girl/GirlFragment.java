@@ -19,19 +19,14 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
-    private StaggeredGridLayoutManager layoutManager;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         GirlViewModel viewModel = getFragmentViewModel(GirlViewModel.class);
-        if (layoutManager != null) {
-            binding.recyclerView.restoreSaveState();
-        } else {
-            layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-            layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-        }
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
