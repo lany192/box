@@ -53,7 +53,7 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
         super.onCreate(savedInstanceState);
         viewModel = getViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
 
-        binding.toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
+        binding.toolbar.setNavigationIcon(R.drawable.vector_back_black);
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));

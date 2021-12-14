@@ -18,7 +18,7 @@ public class BrowserActivity extends BindingActivity<ActivityBrowserBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding.toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
+        binding.toolbar.setNavigationIcon(R.drawable.vector_back_black);
         binding.toolbar.setNavigationOnClickListener(v -> finish());
 
         Intent intent = getIntent();
