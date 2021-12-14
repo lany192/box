@@ -7,7 +7,7 @@ import android.os.Handler;
 
 import androidx.annotation.Nullable;
 
-import com.github.lany192.box.activity.BindingActivity;
+import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.databinding.ActivitySplashBinding;
 import com.github.lany192.box.sample.ui.main.MainActivity;
 

@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.github.lany192.box.fragment.BindingFragment;
-import com.github.lany192.box.items.BinderAdapter;
+import com.github.lany192.arch.fragment.BindingFragment;
+import com.github.lany192.arch.items.BinderAdapter;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.FragmentGirlBinding;
 

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.allen.android.lib.PermissionUtils;
-import com.github.lany192.box.activity.BindingActivity;
+import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
 import com.github.lany192.box.sample.viewmodel.UserViewModel;

@@ -3,7 +3,7 @@ package com.github.lany192.box.sample.ui.browser;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.github.lany192.box.activity.BindingActivity;
+import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivityBrowserBinding;
 import com.gyf.immersionbar.ImmersionBar;

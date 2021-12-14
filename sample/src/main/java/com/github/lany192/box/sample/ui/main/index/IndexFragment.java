@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.arch.fragment.BindingFragment;
+import com.github.lany192.arch.tab.TabAdapter;
+import com.github.lany192.arch.tab.TabItem;
 import com.github.lany192.box.sample.databinding.FragmentIndexBinding;
 import com.github.lany192.box.sample.ui.main.index.article.ArticleFragment;
 import com.github.lany192.box.sample.ui.main.index.city.CityFragment;
 import com.github.lany192.box.sample.ui.main.index.girl.GirlFragment;
-import com.github.lany192.box.tab.TabAdapter;
-import com.github.lany192.box.tab.TabItem;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;

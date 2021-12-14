@@ -1,6 +1,6 @@
 package com.github.lany192.box.sample.ui.main.index.city;
 
-import com.github.lany192.box.items.PageListViewModel;
+import com.github.lany192.arch.items.PageListViewModel;
 import com.github.lany192.box.sample.bean.Area;
 import com.github.lany192.box.sample.http.ApiCallback;
 import com.github.lany192.box.sample.http.ApiService;

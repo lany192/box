@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.arch.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMessageBinding;
 import com.gyf.immersionbar.ImmersionBar;
 

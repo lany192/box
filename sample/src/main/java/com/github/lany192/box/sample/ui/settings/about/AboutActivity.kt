@@ -3,7 +3,7 @@ package com.github.lany192.box.sample.ui.settings.about
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.github.lany192.box.activity.BindingActivity
+import com.github.lany192.arch.activity.BindingActivity
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
 import com.gyf.immersionbar.ImmersionBar

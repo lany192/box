@@ -10,11 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.github.lany192.box.fragment.BindingFragment;
+import com.github.lany192.arch.fragment.BindingFragment;
+import com.github.lany192.arch.utils.ListUtils;
+import com.github.lany192.arch.view.EmptyView;
+import com.github.lany192.arch.view.LoadingView;
 import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
-import com.github.lany192.box.utils.ListUtils;
-import com.github.lany192.box.view.EmptyView;
-import com.github.lany192.box.view.LoadingView;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
