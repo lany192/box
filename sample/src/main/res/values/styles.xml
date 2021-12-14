@@ -21,6 +21,7 @@
     <style name="LeftRoundedStyle">
         <item name="cornerFamilyBottomLeft">rounded</item>
         <item name="cornerFamilyTopLeft">rounded</item>
-        <item name="cornerSize">4dp</item>
+        <item name="cornerSizeBottomLeft">4dp</item>
+        <item name="cornerSizeTopLeft">4dp</item>
     </style>
 </resources>
