@@ -10,7 +10,9 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.multidex.MultiDexApplication;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.Box;
+import com.github.lany192.box.sample.lifecycle.ActivityLifecycle;
 import com.github.lany192.box.sample.ui.settings.about.AboutActivity;
 
 import java.util.ArrayList;
@@ -28,6 +30,17 @@ public class SampleApp extends MultiDexApplication {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             initShortcuts();
         }
+        initARouter();
+        //注册Activity生命周期监听
+        registerActivityLifecycleCallbacks(new ActivityLifecycle());
+    }
+
+    private void initARouter() {
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog();
+            ARouter.openDebug();
+        }
+        ARouter.init(this);
     }
 
     @TargetApi(Build.VERSION_CODES.N_MR1)

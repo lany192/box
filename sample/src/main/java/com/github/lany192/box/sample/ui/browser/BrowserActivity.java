@@ -1,13 +1,19 @@
 package com.github.lany192.box.sample.ui.browser;
 
-import android.content.Intent;
 import android.os.Bundle;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.databinding.ActivityBrowserBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
+@Route(path = "/app/browser")
 public class BrowserActivity extends BindingActivity<ActivityBrowserBinding> {
+    @Autowired(name = "title", desc = "标题")
+    String title;
+    @Autowired(name = "url", desc = "链接")
+    String url;
 
     @Override
     public void initImmersionBar() {
@@ -21,11 +27,7 @@ public class BrowserActivity extends BindingActivity<ActivityBrowserBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding.toolbar.setNavigationOnClickListener(v -> finish());
-
-        Intent intent = getIntent();
-        String url = intent.getStringExtra("url");
         binding.webview.loadUrl(url);
     }
 }

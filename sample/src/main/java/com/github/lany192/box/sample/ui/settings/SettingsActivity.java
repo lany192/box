@@ -6,13 +6,13 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.allen.android.lib.PermissionUtils;
 import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
-import com.github.lany192.box.sample.viewmodel.UserViewModel;
 import com.github.lany192.box.sample.ui.settings.about.AboutActivity;
-import com.github.lany192.box.sample.ui.browser.BrowserActivity;
+import com.github.lany192.box.sample.viewmodel.UserViewModel;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.UpdateManager;
@@ -55,14 +55,16 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
             }
         });
         binding.protocolView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, BrowserActivity.class);
-            intent.putExtra("url", "https://www.baidu.com");
-            startActivity(intent);
+            ARouter.getInstance().build("/app/browser")
+                    .withString("title","百度也不知道")
+                    .withString("url", "https://www.baidu.com")
+                    .navigation();
         });
         binding.privacyView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, BrowserActivity.class);
-            intent.putExtra("url", "https://www.baidu.com");
-            startActivity(intent);
+            ARouter.getInstance().build("/app/browser")
+                    .withString("title","百度也不知道")
+                    .withString("url", "https://www.baidu.com")
+                    .navigation();
         });
         binding.aboutView.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
     }
