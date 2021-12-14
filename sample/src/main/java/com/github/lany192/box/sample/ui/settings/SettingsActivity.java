@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.allen.android.lib.PermissionUtils;
 import com.github.lany192.arch.activity.BindingActivity;
@@ -18,6 +19,10 @@ import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.UpdateManager;
 import com.gyf.immersionbar.ImmersionBar;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+@Route(path = "/app/settings")
 public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
     private SettingsViewModel viewModel;
     private UserViewModel userViewModel;

@@ -7,6 +7,7 @@ import android.os.Handler;
 
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.databinding.ActivitySplashBinding;
 import com.github.lany192.box.sample.ui.main.MainActivity;
@@ -14,6 +15,7 @@ import com.github.lany192.box.sample.ui.main.MainActivity;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
+@Route(path = "/app/splash")
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends BindingActivity<ActivitySplashBinding> {
     private SplashViewModel viewModel;

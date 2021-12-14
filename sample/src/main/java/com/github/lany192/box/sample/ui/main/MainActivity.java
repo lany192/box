@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.arch.tab.TabAdapter;
 import com.github.lany192.arch.tab.TabItem;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+@Route(path = "/app/main")
 @AndroidEntryPoint
 public class MainActivity extends BindingActivity<ActivityMainBinding> {
     // 第一次按退出的时间

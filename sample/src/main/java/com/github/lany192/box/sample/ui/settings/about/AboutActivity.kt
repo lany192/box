@@ -3,6 +3,7 @@ package com.github.lany192.box.sample.ui.settings.about
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BindingActivity
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
@@ -11,6 +12,7 @@ import com.hjq.toast.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@Route(path = "/app/about")
 class AboutActivity : BindingActivity<ActivityAboutBinding>() {
 
     private val viewModel: AboutViewModel by viewModels()

@@ -8,6 +8,9 @@ import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.databinding.ActivityBrowserBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 @Route(path = "/app/browser")
 public class BrowserActivity extends BindingActivity<ActivityBrowserBinding> {
     @Autowired(name = "title", desc = "标题")
