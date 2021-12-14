@@ -87,9 +87,15 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         });
         viewModel.getItems().observe(this, data -> {
             if (ListUtils.isEmpty(data.getItems())) {
-                EmptyView emptyView = getEmptyView();
-                emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                binderAdapter.setEmptyView(emptyView);
+                if (NetUtils.isAvailable(requireContext())) {
+                    EmptyView emptyView = getEmptyView();
+                    emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                    binderAdapter.setEmptyView(emptyView);
+                } else {
+                    NetworkView networkView = getNetworkView();
+                    networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                    binderAdapter.setEmptyView(networkView);
+                }
             } else {
                 binderAdapter.setNewInstance(data.getItems());
             }
@@ -103,7 +109,7 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         return root;
     }
 
-    @Nullable
+    @NonNull
     public EmptyView getEmptyView() {
         EmptyView emptyView = new EmptyView(requireContext());
         emptyView.setMessage("没有发现数据");
@@ -111,7 +117,7 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         return emptyView;
     }
 
-    @Nullable
+    @NonNull
     public NetworkView getNetworkView() {
         NetworkView networkView = new NetworkView(requireContext());
         networkView.setMessage("当前网络异常");

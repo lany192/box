@@ -3,8 +3,10 @@ package com.github.lany192.arch.view;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -15,6 +17,7 @@ public class NetworkView extends BaseLayout {
     private OnSimpleListener listener;
     private TextView msgText;
     private TextView hintText;
+    private ImageView imageView;
 
     public NetworkView(@NonNull Context context) {
         super(context);
@@ -42,6 +45,7 @@ public class NetworkView extends BaseLayout {
         });
         msgText = findViewById(R.id.message);
         hintText = findViewById(R.id.hint);
+        imageView = findViewById(R.id.image);
     }
 
     public void setMessage(CharSequence message) {
@@ -53,6 +57,12 @@ public class NetworkView extends BaseLayout {
     public void setHint(CharSequence hint) {
         if (hintText != null && !TextUtils.isEmpty(hint)) {
             hintText.setText(hint);
+        }
+    }
+
+    public void setImageResource(@DrawableRes int resId) {
+        if (imageView != null) {
+            imageView.setImageResource(resId);
         }
     }
 

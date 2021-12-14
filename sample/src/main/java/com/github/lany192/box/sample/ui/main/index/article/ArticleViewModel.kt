@@ -29,7 +29,7 @@ class ArticleViewModel @Inject constructor() : PageListViewModel() {
 
                 override fun onFailure(msg: String, code: Int) {
                     ToastUtils.show(msg)
-                    stopRequest()
+                    finishRequest()
                 }
             })
     }

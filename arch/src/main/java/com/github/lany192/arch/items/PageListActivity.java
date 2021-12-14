@@ -2,6 +2,7 @@ package com.github.lany192.arch.items;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -93,14 +94,19 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
         });
         viewModel.getItems().observe(this, data -> {
             if (ListUtils.isEmpty(data.getItems())) {
-                EmptyView emptyView = getEmptyView();
-                emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                binderAdapter.setEmptyView(emptyView);
+                if (NetUtils.isAvailable(this)) {
+                    EmptyView emptyView = getEmptyView();
+                    emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                    binderAdapter.setEmptyView(emptyView);
+                } else {
+                    NetworkView networkView = getNetworkView();
+                    networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                    binderAdapter.setEmptyView(networkView);
+                }
             } else {
                 binderAdapter.setNewInstance(data.getItems());
             }
         });
-
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 binderAdapter.setEmptyView(R.layout.view_loading);
@@ -108,7 +114,7 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
         });
     }
 
-    @Nullable
+    @NonNull
     public EmptyView getEmptyView() {
         EmptyView emptyView = new EmptyView(this);
         emptyView.setMessage("没有发现数据");
@@ -116,7 +122,7 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
         return emptyView;
     }
 
-    @Nullable
+    @NonNull
     public NetworkView getNetworkView() {
         NetworkView networkView = new NetworkView(this);
         networkView.setMessage("当前网络异常");

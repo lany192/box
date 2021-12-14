@@ -42,7 +42,7 @@ public class CityViewModel extends PageListViewModel {
             public void onFailure(String msg, int code) {
                 showLoading(false);
                 ToastUtils.show(msg);
-                stopRequest();
+                finishRequest();
             }
         });
     }

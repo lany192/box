@@ -3,6 +3,7 @@ package com.github.lany192.arch.view;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ public class EmptyView extends BaseLayout {
     private OnSimpleListener listener;
     private TextView msgText;
     private TextView hintText;
+    private ImageView imageView;
 
     public EmptyView(@NonNull Context context) {
         super(context);
