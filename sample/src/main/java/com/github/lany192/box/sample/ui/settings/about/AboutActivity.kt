@@ -12,7 +12,7 @@ import com.hjq.toast.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-@Route(path = "/app/about")
+@Route(path = "/ui/about")
 class AboutActivity : BindingActivity<ActivityAboutBinding>() {
 
     private val viewModel: AboutViewModel by viewModels()

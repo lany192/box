@@ -11,7 +11,7 @@ import com.gyf.immersionbar.ImmersionBar;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-@Route(path = "/app/browser")
+@Route(path = "/ui/browser")
 public class BrowserActivity extends BindingActivity<ActivityBrowserBinding> {
     @Autowired(name = "title", desc = "标题")
     String title;

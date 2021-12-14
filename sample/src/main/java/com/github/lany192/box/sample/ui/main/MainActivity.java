@@ -27,7 +27,7 @@ import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-@Route(path = "/app/main")
+@Route(path = "/ui/main")
 @AndroidEntryPoint
 public class MainActivity extends BindingActivity<ActivityMainBinding> {
     // 第一次按退出的时间

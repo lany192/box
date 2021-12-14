@@ -25,29 +25,47 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.settings.SettingsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="设置" />
         <activity
             android:name=".ui.browser.BrowserActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="浏览器" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false"
+            android:label="主界面" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            android:label="登录" />
+        <activity
+            android:name=".ui.settings.about.AboutActivity"
+            android:exported="false"
+            android:label="关于" />
+        <activity
+            android:name=".router.SchemeFilterActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="box" />
+                <data android:scheme="android" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="启动页">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.github.lany192.box.sample.ui.settings.about.AboutActivity"
-            android:exported="false"
-            android:label="关于" />
     </application>
 
 </manifest>

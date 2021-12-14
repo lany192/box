@@ -12,7 +12,6 @@ import com.allen.android.lib.PermissionUtils;
 import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
-import com.github.lany192.box.sample.ui.settings.about.AboutActivity;
 import com.github.lany192.box.sample.viewmodel.UserViewModel;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
@@ -22,7 +21,7 @@ import com.gyf.immersionbar.ImmersionBar;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-@Route(path = "/app/settings")
+@Route(path = "/ui/settings")
 public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
     private SettingsViewModel viewModel;
     private UserViewModel userViewModel;
@@ -60,18 +59,18 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
             }
         });
         binding.protocolView.setOnClickListener(v -> {
-            ARouter.getInstance().build("/app/browser")
+            ARouter.getInstance().build("/ui/browser")
                     .withString("title","百度也不知道")
                     .withString("url", "https://www.baidu.com")
                     .navigation();
         });
         binding.privacyView.setOnClickListener(v -> {
-            ARouter.getInstance().build("/app/browser")
+            ARouter.getInstance().build("/ui/browser")
                     .withString("title","百度也不知道")
                     .withString("url", "https://www.baidu.com")
                     .navigation();
         });
-        binding.aboutView.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
+        binding.aboutView.setOnClickListener(v -> ARouter.getInstance().build("/ui/about").navigation());
     }
 
     private void checkVersion() {

@@ -15,7 +15,7 @@ import com.github.lany192.box.sample.ui.main.MainActivity;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-@Route(path = "/app/splash")
+@Route(path = "/ui/splash")
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends BindingActivity<ActivitySplashBinding> {
     private SplashViewModel viewModel;
