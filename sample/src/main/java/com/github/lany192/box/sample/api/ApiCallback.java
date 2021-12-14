@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.http;
+package com.github.lany192.box.sample.api;
 
 import com.elvishew.xlog.XLog;
 import com.github.lany192.box.sample.bean.Result;
