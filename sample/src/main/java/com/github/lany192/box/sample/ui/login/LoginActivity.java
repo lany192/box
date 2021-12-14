@@ -10,7 +10,7 @@ import com.github.lany192.box.sample.databinding.ActivityLoginBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-@Route(path = "/ui/login")
+@Route(path = "/ui/login2")
 @AndroidEntryPoint
 public class LoginActivity extends BindingActivity<ActivityLoginBinding> {
     private LoginViewModel viewModel;
