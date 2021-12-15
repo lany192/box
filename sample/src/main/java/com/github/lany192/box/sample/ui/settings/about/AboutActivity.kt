@@ -35,18 +35,32 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
             //是是是
             ToastUtils.show(it)
         })
-        binding.marketView.setOnClickListener{
-            val uri = Uri.parse("market://details?id=$packageName")
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//            intent.setPackage("com.tencent.android.qqdownloader")
-            startActivity(intent)
-        }
+        binding.marketView.setOnClickListener { gotoMarket() }
         binding.protocolView.setOnClickListener {
             AppRouter.get().browser("百度也不知道", "https://www.baidu.com")
         }
         binding.privacyView.setOnClickListener {
             AppRouter.get().browser("百度也不知道", "https://www.baidu.com")
         }
+    }
+    /**
+     * 客服QQ
+     */
+    private fun gotoQQ() {
+        val uri = Uri.parse("market://details?id=$packageName")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            intent.setPackage("com.tencent.android.qqdownloader")
+        startActivity(intent)
+    }
+    /**
+     * 给个好评
+     */
+    private fun gotoMarket() {
+        val uri = Uri.parse("market://details?id=$packageName")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            intent.setPackage("com.tencent.android.qqdownloader")
+        startActivity(intent)
     }
 }

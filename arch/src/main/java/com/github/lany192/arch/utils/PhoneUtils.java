@@ -20,6 +20,7 @@ import com.github.lany192.utils.MD5Utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class PhoneUtils {
     private static String BASE_INFO;
@@ -272,5 +273,22 @@ public class PhoneUtils {
                     result, Resources.getSystem().getDisplayMetrics());
         }
         return result;
+    }
+
+    /**
+     * 是否安装某个应用
+     */
+    public static boolean isInstall(Context context,String packageName) {
+        final PackageManager packageManager = context.getPackageManager();
+        List<PackageInfo> pi = packageManager.getInstalledPackages(0);
+        if (pi != null) {
+            for (int i = 0; i < pi.size(); i++) {
+                String pn = pi.get(i).packageName;
+                if (pn.equals(packageName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

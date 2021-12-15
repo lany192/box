@@ -38,7 +38,7 @@
             android:orientation="vertical">
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/version_view"
+                android:id="@+id/qq_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?android:attr/selectableItemBackground"
