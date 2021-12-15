@@ -29,6 +29,24 @@ public class DownloadViewModel extends LifecycleViewModel {
         tasks.add(new Task("10. WeChat Work for Mac", "https://dldir1.qq.com/foxmail/work_weixin/WXWork_2.4.5.213.dmg"));
 
         items.postValue(tasks);
+
+//        DownloadContext.QueueSet queueSet = new DownloadContext.QueueSet();
+//        File parentFile = new File(DemoUtil.getParentFile(context), "queue");
+//        queueSet.setParentPathFile(parentFile);
+//        queueSet.setMinIntervalMillisCallbackProcess(200);
+//        DownloadContext.Builder builder = queueSet.commit();
+//        builder.setListener(new DownloadContextListener() {
+//
+//            @Override
+//            public void taskEnd(@NonNull DownloadContext context, @NonNull DownloadTask task, @NonNull EndCause cause, @Nullable Exception realCause, int remainCount) {
+//
+//            }
+//
+//            @Override
+//            public void queueEnd(@NonNull DownloadContext context) {
+//
+//            }
+//        });
     }
 
     public MutableLiveData<List<Object>> getItems() {
