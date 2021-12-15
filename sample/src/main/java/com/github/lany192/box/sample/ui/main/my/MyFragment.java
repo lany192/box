@@ -35,10 +35,10 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = getFragmentViewModel(MyViewModel.class);
+        viewModel =  getViewModel(MyViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
         userViewModel.getUserInfo().observe(this, userInfo -> binding.testView.hint(userInfo.getName()));
-
+        binding.downloadView.setOnClickListener(v -> AppRouter.get().download());
         binding.dialogView.setOnClickListener(v -> showDialog());
         binding.loginView.setOnClickListener(v -> AppRouter.get().login());
         binding.settingsView.setOnClickListener(v -> AppRouter.get().settings());

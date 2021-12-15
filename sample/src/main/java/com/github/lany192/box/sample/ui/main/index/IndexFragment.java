@@ -39,7 +39,7 @@ public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = getFragmentViewModel(IndexViewModel.class);
+        viewModel =  getViewModel(IndexViewModel.class);
 
         List<TabItem> items = new ArrayList<>();
         items.add(new TabItem("推荐", new ArticleFragment()));

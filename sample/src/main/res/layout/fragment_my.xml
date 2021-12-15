@@ -64,13 +64,13 @@
                 android:background="#dddddd" />
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/permission_view"
+                android:id="@+id/download_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="功能x" />
+                app:menu_name="下载测试" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -69,7 +69,7 @@ public abstract class BasicFragment extends Fragment {
     public void initImmersionBar() {
     }
 
-    public <T extends LifecycleViewModel> T getFragmentViewModel(@NonNull Class<T> modelClass) {
+    public <T extends LifecycleViewModel> T getViewModel(@NonNull Class<T> modelClass) {
         T viewModel = new ViewModelProvider(this).get(modelClass);
         getLifecycle().addObserver(viewModel);
         return viewModel;

@@ -24,6 +24,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.download.DownloadActivity"
+            android:exported="false"
+            android:label="下载" />
+        <activity
             android:name=".ui.settings.SettingsActivity"
             android:exported="false"
             android:label="设置" />

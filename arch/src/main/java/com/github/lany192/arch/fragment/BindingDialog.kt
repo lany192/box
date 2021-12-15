@@ -24,7 +24,7 @@ abstract class BindingDialog<VB : ViewBinding> : BasicDialog() {
         return binding.root
     }
 
-    fun <T : LifecycleViewModel> getFragmentViewModel(modelClass: Class<T>): T {
+    fun <T : LifecycleViewModel>  getViewModel(modelClass: Class<T>): T {
         val viewModel = ViewModelProvider(this)[modelClass]
         lifecycle.addObserver(viewModel)
         return viewModel
