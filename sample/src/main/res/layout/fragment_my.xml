@@ -70,7 +70,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="下载测试" />
+                app:menu_name="下载安装赢积分" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

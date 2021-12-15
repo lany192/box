@@ -12,9 +12,9 @@ public class TaskBinder extends ItemBinder<Task, ItemTaskBinding> {
 
     @Override
     public void bind(ItemTaskBinding binding, Task task, int position) {
-//        binding.title.setText(task.getTitle());
-//        binding.desc.setText(task.getAuthor());
-//        binding.time.setText(DateUtils.format(new Date(task.getPublishTime())));
+        binding.title.setText(task.getName());
+
+
     }
 
     @NonNull
