@@ -58,10 +58,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
                 startActivity(intent);
             }
         });
-        binding.protocolView.setOnClickListener(v -> {
-            AppRouter.get().browser("百度也不知道", "https://www.baidu.com");
-        });
-        binding.privacyView.setOnClickListener(v -> {
+        binding.noticeView.setOnClickListener(v -> {
             AppRouter.get().browser("百度也不知道", "https://www.baidu.com");
         });
         binding.aboutView.setOnClickListener(v -> AppRouter.get().about());

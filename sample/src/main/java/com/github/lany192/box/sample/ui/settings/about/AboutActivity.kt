@@ -3,6 +3,7 @@ package com.github.lany192.box.sample.ui.settings.about
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BindingActivity
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
@@ -32,5 +33,11 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
             //是是是
             ToastUtils.show(it)
         })
+        binding.protocolView.setOnClickListener {
+            AppRouter.get().browser("百度也不知道", "https://www.baidu.com")
+        }
+        binding.privacyView.setOnClickListener {
+            AppRouter.get().browser("百度也不知道", "https://www.baidu.com")
+        }
     }
 }

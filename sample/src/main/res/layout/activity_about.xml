@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.settings.about.AboutActivity">
+    android:background="#f2f2f2"
+    tools:context=".ui.settings.SettingsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -18,13 +19,159 @@
         app:title="关于"
         app:titleTextColor="@android:color/black" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="关于"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="30dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        tools:layout_editor_absoluteY="356dp" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/version_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hint="12345678"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="客服QQ" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/cache_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="给我好评" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/permission_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="开源许可" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="30dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/protoco23l_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="反馈与建议" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/priva34cy_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="获取帮助" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/protocol_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="用户协议" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/privacy_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="隐私政策" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#dddddd" />
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/about_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:menu_hint="1.0.0"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="版本状态" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

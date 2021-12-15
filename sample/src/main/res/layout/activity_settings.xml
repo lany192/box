@@ -15,8 +15,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="设置"
         app:navigationIcon="@drawable/vector_back_black"
+        app:title="设置"
         app:titleTextColor="@android:color/black" />
 
     <com.google.android.material.card.MaterialCardView
@@ -100,13 +100,13 @@
             android:orientation="vertical">
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/protocol_view"
+                android:id="@+id/notice_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="用户协议" />
+                app:menu_name="推送设置" />
 
             <View
                 android:layout_width="wrap_content"
@@ -116,13 +116,13 @@
                 android:background="#dddddd" />
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/privacy_view"
+                android:id="@+id/share_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="隐私政策" />
+                app:menu_name="分享应用" />
 
             <View
                 android:layout_width="wrap_content"
