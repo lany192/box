@@ -23,6 +23,14 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
     private MyViewModel viewModel;
     private UserViewModel userViewModel;
 
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+                .statusBarDarkFont(false)
+                .navigationBarColor(android.R.color.holo_green_light)
+                .init();
+    }
+
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,11 +67,4 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         dialog.show(this);
     }
 
-    @Override
-    public void initImmersionBar() {
-        ImmersionBar.with(this)
-                .statusBarDarkFont(false)
-                .navigationBarColor(android.R.color.holo_green_light)
-                .init();
-    }
 }

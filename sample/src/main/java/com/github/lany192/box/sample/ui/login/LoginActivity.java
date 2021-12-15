@@ -29,5 +29,6 @@ public class LoginActivity extends BindingActivity<ActivityLoginBinding> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = getViewModel(LoginViewModel.class);
+        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 }

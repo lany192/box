@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.alibaba.android.arouter.AppRouter;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.utils.DateUtils;
 import com.github.lany192.box.sample.MockUtils;
@@ -34,9 +34,6 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
 
     @Override
     public void onClick(@NonNull BinderVBHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
-        ARouter.getInstance().build("/ui/browser")
-                .withString("title", item.getTitle())
-                .withString("url", item.getLink())
-                .navigation();
+        AppRouter.get().browser(item.getTitle(), item.getLink());
     }
 }
