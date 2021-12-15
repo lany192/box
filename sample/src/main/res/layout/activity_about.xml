@@ -55,7 +55,7 @@
                 android:background="#dddddd" />
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/cache_view"
+                android:id="@+id/market_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?android:attr/selectableItemBackground"

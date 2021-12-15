@@ -1,5 +1,7 @@
 package com.github.lany192.box.sample.ui.settings.about
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -33,6 +35,13 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
             //是是是
             ToastUtils.show(it)
         })
+        binding.marketView.setOnClickListener{
+            val uri = Uri.parse("market://details?id=$packageName")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            intent.setPackage("com.tencent.android.qqdownloader")
+            startActivity(intent)
+        }
         binding.protocolView.setOnClickListener {
             AppRouter.get().browser("百度也不知道", "https://www.baidu.com")
         }
