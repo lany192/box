@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.activity.BindingActivity
-import com.github.lany192.arch.fragment.BindingDialogFragment
+import com.github.lany192.arch.fragment.BindingDialog
 import com.github.lany192.arch.fragment.BindingFragment
 import com.github.lany192.arch.view.BindingLayout
 import java.lang.reflect.ParameterizedType
@@ -78,7 +78,7 @@ internal fun <V : ViewBinding> BindingFragment<V>.getBinding(
     return findClass().getBinding(inflater, container)
 }
 
-internal fun <V : ViewBinding> BindingDialogFragment<V>.getBinding(
+internal fun <V : ViewBinding> BindingDialog<V>.getBinding(
     inflater: LayoutInflater,
     container: ViewGroup?
 ): V {

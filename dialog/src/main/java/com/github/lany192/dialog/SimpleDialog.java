@@ -31,7 +31,7 @@ import com.github.lany192.interfaces.OnSimpleListener;
 //    });
 //    dialog.show(this);
 
-public class SimpleDialog extends BaseDialog {
+public class SimpleDialog extends BasicDialog {
     private OnSimpleListener mOnRightListener;
     private OnSimpleListener mOnLeftListener;
     private CharSequence mTitle;

@@ -5,7 +5,6 @@ import android.content.ContextWrapper;
 import android.os.Handler;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -17,7 +16,7 @@ import com.elvishew.xlog.XLog;
 /**
  * 对话框基类
  */
-public abstract class BaseDialogFragment extends DialogFragment {
+public abstract class DialogFragment extends androidx.fragment.app.DialogFragment {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
     private boolean flag;

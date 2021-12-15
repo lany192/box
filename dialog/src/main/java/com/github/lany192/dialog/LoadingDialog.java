@@ -18,7 +18,7 @@ import java.util.Objects;
 /**
  * 加载对话框
  */
-public class LoadingDialog extends BaseDialogFragment {
+public class LoadingDialog extends DialogFragment {
     private CharSequence mMessage;
 
     @Override

@@ -1,6 +1,5 @@
 package com.github.lany192.dialog;
 
-import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ import com.github.lany192.utils.DensityUtils;
 
 import java.util.Objects;
 
-public abstract class BaseDialog extends BaseDialogFragment {
+public abstract class BasicDialog extends DialogFragment {
     private boolean canceledOnTouchOutside = true;
     private boolean isInitLoaded;
 
@@ -58,8 +57,8 @@ public abstract class BaseDialog extends BaseDialogFragment {
 
     @NonNull
     @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
+    public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        android.app.Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(isCancelable());
         dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.github.lany192.dialog.BaseDialog;
+import com.github.lany192.dialog.BasicDialog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
@@ -17,7 +17,7 @@ import com.github.lany192.update.utils.Constant;
 
 import java.io.File;
 
-public class AppUpdateDialog extends BaseDialog implements View.OnClickListener, OnDownloadListener {
+public class AppUpdateDialog extends BasicDialog implements View.OnClickListener, OnDownloadListener {
     private final int install = 0x45F;
     private UpdateManager manager;
     private boolean forcedUpgrade;
