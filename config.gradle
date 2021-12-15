@@ -70,7 +70,7 @@ ext {
             //自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
             'number-picker'                   : 'io.github.ShawnLin013:number-picker:2.4.13',
             //日历控件 https://github.com/prolificinteractive/material-calendarview
-            'material-calendarview'           : 'com.prolificinteractive:material-calendarview:1.4.3',
+            'material-calendarview'           : 'com.github.prolificinteractive:material-calendarview:2.0.1',
             //缩放图片 https://github.com/MikeOrtiz/TouchImageView
             'touch-imageview'                 : 'com.github.MikeOrtiz:TouchImageView:3.0.5',
             //图片剪切 https://github.com/naver/android-imagecropview
