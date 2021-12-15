@@ -1,7 +1,5 @@
 package com.github.lany192.box.sample.ui.main.index;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.arch.viewmodel.LifecycleViewModel;
@@ -24,15 +22,19 @@ public class IndexViewModel extends LifecycleViewModel {
     @Inject
     public IndexViewModel(ApiService apiService) {
         this.apiService = apiService;
-        requestCityInfo();
     }
 
     public MutableLiveData<List<Area>> getItems() {
         return items;
     }
 
+    @Override
+    protected void onLazyLoad() {
+        requestCityInfo();
+    }
+
     public void requestCityInfo() {
-        Log.i("TAG:", "请求城市数据接口");
+        log.i("请求城市数据接口");
         showLoading(true);
         apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
 
