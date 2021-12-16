@@ -123,6 +123,21 @@
                 android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
+                android:id="@+id/reward_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:menu_hint="您的鼓励是对我最大的支持"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="打赏作者" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:background="#f0f0f0" />
+
+            <com.github.lany192.view.MenuView
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

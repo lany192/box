@@ -17,8 +17,10 @@ import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.UpdateManager;
 import com.gyf.immersionbar.ImmersionBar;
+import com.hjq.toast.ToastUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import moe.feng.alipay.zerosdk.AlipayZeroSdk;
 
 @AndroidEntryPoint
 @Route(path = "/ui/settings")
@@ -56,6 +58,13 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
                 intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
                 intent.setData(Uri.fromParts("package", getPackageName(), null));
                 startActivity(intent);
+            }
+        });
+        binding.rewardView.setOnClickListener(v -> {
+            if (AlipayZeroSdk.hasInstalledAlipayClient(this)) {
+                AlipayZeroSdk.startAlipayClient(this, "fkx125282bvqbijw7s6uh8f");
+            } else {
+                ToastUtils.show("感谢您的支持，不过你的手机还没有安装支付宝");
             }
         });
         binding.noticeView.setOnClickListener(v -> {

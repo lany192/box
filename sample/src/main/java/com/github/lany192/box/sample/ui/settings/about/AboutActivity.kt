@@ -44,11 +44,14 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
 
         binding.licenceView.setOnClickListener { showLicensesDialog() }
         binding.marketView.setOnClickListener { gotoMarket() }
+        binding.privacyView.setOnClickListener {
+            AppRouter.get().browser("隐私政策", "https://www.baidu.com")
+        }
         binding.protocolView.setOnClickListener {
             AppRouter.get().browser("用户协议", "https://www.baidu.com")
         }
-        binding.privacyView.setOnClickListener {
-            AppRouter.get().browser("隐私政策", "https://www.baidu.com")
+        binding.feedbackView.setOnClickListener {
+            AppRouter.get().browser("意见反馈", "https://www.baidu.com")
         }
     }
 

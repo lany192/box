@@ -118,9 +118,11 @@ ext {
             //菜单控件 https://github.com/lany192/MenuView
             'MenuView'                        : 'com.github.lany192:MenuView:1.0.3',
             //菜单控件
-            'ClearEditText'                   : 'com.github.lany192:ClearEditText:1.0.6',
+            'clear-edittext'                  : 'com.github.lany192:ClearEditText:1.0.6',
             //开源协议对话框
-            'licenses'                        : 'de.psdev.licensesdialog:licensesdialog:2.1.0'
+            'licenses'                        : 'de.psdev.licensesdialog:licensesdialog:2.1.0',
+            //支付宝打赏 https://github.com/fython/AlipayZeroSdk
+            'alipay-zero-sdk'                 : 'moe.feng:AlipayZeroSdk:1.1'
 
 
             //日历控件 https://github.com/prolificinteractive/material-calendarview

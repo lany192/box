@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f2f2f2"
-    tools:context=".ui.settings.SettingsActivity">
+    tools:context=".ui.settings.about.AboutActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -76,27 +76,12 @@
                 android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/protoco23l_view"
+                android:id="@+id/feedback_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
-                app:menu_name="反馈与建议" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
-
-
-            <com.github.lany192.view.MenuView
-                android:id="@+id/priva34cy_view"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="获取帮助" />
+                app:menu_name="意见反馈" />
 
             <View
                 android:layout_width="wrap_content"
