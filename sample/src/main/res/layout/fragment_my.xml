@@ -35,7 +35,6 @@
                 android:id="@+id/dialog_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="对话框测试" />
@@ -44,14 +43,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#dddddd" />
+                android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/login_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="登录测试" />
@@ -60,14 +57,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#dddddd" />
+                android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/download_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="下载安装赢积分" />
@@ -96,7 +91,6 @@
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="功能x" />
@@ -105,14 +99,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#dddddd" />
+                android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/test_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="功能x" />
@@ -121,14 +113,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#dddddd" />
+                android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/settings_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="设置" />

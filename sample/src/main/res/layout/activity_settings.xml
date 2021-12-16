@@ -41,7 +41,6 @@
                 android:id="@+id/version_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hint="发现新版本"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
@@ -51,14 +50,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#dddddd" />
+                android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/cache_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="清除缓存" />
@@ -67,14 +64,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#dddddd" />
+                android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/permission_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="授权设置" />
@@ -103,7 +98,6 @@
                 android:id="@+id/notice_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="推送设置" />
@@ -112,14 +106,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#dddddd" />
+                android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/share_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="分享应用" />
@@ -128,14 +120,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#dddddd" />
+                android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="?android:attr/selectableItemBackground"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="关于" />
