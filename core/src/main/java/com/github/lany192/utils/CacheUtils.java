@@ -15,7 +15,7 @@ public class CacheUtils {
      */
     public static String getCacheSize(Context context) {
         try {
-            return getFormatSize(getFolderSize(context.getCacheDir().getParentFile()));
+            return getFormatSize(getFolderSize(context.getCacheDir()));
         } catch (Exception e) {
             e.printStackTrace();
         }
