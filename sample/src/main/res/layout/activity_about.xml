@@ -67,7 +67,7 @@
                 android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/permission_view"
+                android:id="@+id/licence_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:menu_hintColor="#999999"
