@@ -11,13 +11,36 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/vector_back_black"
         app:title="关于"
         app:titleTextColor="@android:color/black" />
+
+    <LinearLayout
+        android:id="@+id/head_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="32dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/app_name"
+            android:textSize="13sp" />
+    </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_1"
@@ -30,7 +53,7 @@
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/head_view">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,48 +76,6 @@
                 android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/market_view"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="给我好评" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
-
-            <com.github.lany192.view.MenuView
-                android:id="@+id/licence_view"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="开源许可" />
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.github.lany192.view.MenuView
                 android:id="@+id/protoco23l_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -107,6 +88,7 @@
                 android:layout_height="1px"
                 android:layout_marginLeft="16dp"
                 android:background="#f0f0f0" />
+
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/priva34cy_view"
@@ -151,6 +133,49 @@
                 android:background="#f0f0f0" />
 
             <com.github.lany192.view.MenuView
+                android:id="@+id/market_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="给我好评" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="30dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <com.github.lany192.view.MenuView
+                android:id="@+id/licence_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:menu_hintColor="#999999"
+                app:menu_isShowIcon="false"
+                app:menu_name="开源许可" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_marginLeft="16dp"
+                android:background="#f0f0f0" />
+
+            <com.github.lany192.view.MenuView
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -161,4 +186,27 @@
                 app:menu_name="版本状态" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XX公司 版权所有"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="copyright © 2021 xxxx, Inc."
+            android:textSize="13sp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
