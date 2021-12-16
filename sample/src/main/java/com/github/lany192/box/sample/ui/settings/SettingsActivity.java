@@ -16,6 +16,7 @@ import com.github.lany192.box.sample.viewmodel.UserViewModel;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.UpdateManager;
+import com.github.lany192.utils.CacheUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
@@ -43,11 +44,15 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         viewModel = getViewModel(SettingsViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
 
+        binding.cacheView.hint(CacheUtils.getCacheSize(this));
+
 
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
         binding.versionView.setOnClickListener(v -> checkVersion());
         binding.cacheView.setOnClickListener(v -> {
-            userViewModel.setName("点击了清楚缓存");
+            CacheUtils.clean(this);
+            binding.cacheView.hint("0KB");
+            ToastUtils.show("缓存清除成功！");
         });
         binding.permissionView.setOnClickListener(v -> {
             try {

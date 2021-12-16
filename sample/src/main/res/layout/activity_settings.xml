@@ -11,7 +11,6 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,6 +55,7 @@
                 android:id="@+id/cache_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                app:menu_hint="0KB"
                 app:menu_hintColor="#999999"
                 app:menu_isShowIcon="false"
                 app:menu_name="清除缓存" />
