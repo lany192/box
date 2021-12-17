@@ -48,7 +48,7 @@ public class DownloadViewModel extends AndroidViewModel {
         DownloadContext.QueueSet queueSet = new DownloadContext.QueueSet();
         queueSet.setMinIntervalMillisCallbackProcess(500);
         queueSet.setPassIfAlreadyCompleted(false);
-        queueSet.setParentPathFile(new File(getParentFile(application), "queue"));
+        queueSet.setParentPathFile(new File(getParentFile(application), "download"));
 
         DownloadContext.Builder builder = queueSet.commit();
         List<DownloadTask> tasks = new ArrayList<>();
