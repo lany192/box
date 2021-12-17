@@ -19,8 +19,9 @@ public class TaskBinder extends ItemBinder<DownloadTask, ItemTaskBinding> {
 
     @Override
     public void bind(ItemTaskBinding binding, DownloadTask task, int position) {
-        binding.name.setText(TaskUtils.INSTANCE.getTaskName(task) + TaskUtils.INSTANCE.getSpeed(task));
+        binding.name.setText(TaskUtils.INSTANCE.getTaskName(task));
         binding.status.setText(TaskUtils.INSTANCE.getStatus(task));
+        binding.speed.setText(TaskUtils.INSTANCE.getSpeed(task));
         String readableOffset = Util.humanReadableBytes(TaskUtils.INSTANCE.getOffset(task), true);
         String readableTotalLength = Util.humanReadableBytes(TaskUtils.INSTANCE.getTotal(task), true);
         binding.total.setText(readableOffset + "/" + readableTotalLength);
