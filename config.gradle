@@ -25,22 +25,19 @@ ext {
     ]
     implementationDependencies = [
             'androidx-appcompat'              : 'androidx.appcompat:appcompat:1.4.0',
-            'androidx-activity'               : 'androidx.activity:activity:1.4.0',
-            'androidx-fragment-ktx'           : 'androidx.fragment:fragment-ktx:1.4.0',
             'androidx-activity-ktx'           : 'androidx.activity:activity-ktx:1.4.0',
+            'androidx-fragment-ktx'           : 'androidx.fragment:fragment-ktx:1.4.0',
             'androidx-core-ktx'               : 'androidx.core:core-ktx:1.7.0',
+            "androidx-lifecycle-livedata-ktx" : 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0',
+            "androidx-lifecycle-viewmodel-ktx": 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0',
             'androidx-recyclerview'           : 'androidx.recyclerview:recyclerview:1.2.1',
             'androidx-constraint-layout'      : 'androidx.constraintlayout:constraintlayout:2.1.2',
             'androidx-multidex'               : 'androidx.multidex:multidex:2.0.1',
             'androidx-material'               : 'com.google.android.material:material:1.6.0-alpha01',
-            'androidx-lifecycle-runtime'      : 'androidx.lifecycle:lifecycle-runtime:2.4.0',
-            "androidx-lifecycle-livedata"     : 'androidx.lifecycle:lifecycle-livedata:2.4.0',
-            "androidx-lifecycle-livedata-ktx" : 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0',
-            "androidx-lifecycle-viewmodel-ktx": 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0',
 
             //协程
-            'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2',
-            'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2',
+            'kotlinx-coroutines-core'         : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2',
+            'kotlinx-coroutines-android'      : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2',
             //日志工具 https://github.com/elvishew/xLog
             'xlog'                            : 'com.elvishew:xlog:1.11.0',
             //Toast工具 https://github.com/getActivity/ToastUtils
