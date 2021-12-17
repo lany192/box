@@ -143,7 +143,10 @@ public class DownloadViewModel extends AndroidViewModel {
     }
 
     public void remove(DownloadTask task) {
-        task.cancel();
+        String status = TaskUtils.INSTANCE.getStatus(task);
+        if (status.equals(TaskStatus.PROGRESS)) {
+            task.cancel();
+        }
     }
 
     @Override
