@@ -123,6 +123,7 @@ public class DownloadViewModel extends AndroidViewModel {
         public void taskEnd(@NonNull DownloadTask task, @NonNull EndCause cause, @Nullable Exception realCause, @NonNull SpeedCalculator taskSpeed) {
             Log.i("taskEnd", "" + task.getFilename());
             TaskUtils.INSTANCE.saveStatus(task, cause.toString());
+            TaskUtils.INSTANCE.saveSpeed(task, "0KB/s");
             liveData.change(task);
         }
     };

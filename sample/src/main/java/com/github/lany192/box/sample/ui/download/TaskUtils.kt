@@ -15,7 +15,7 @@ object TaskUtils {
 
     fun DownloadTask.getSpeed(): String {
         val speed = getTag(KEY_SPEED)
-        return if (speed != null) speed as String else "0KB/S"
+        return if (speed != null) speed as String else "0KB/s"
     }
 
     fun DownloadTask.saveStatus(status: String) {
