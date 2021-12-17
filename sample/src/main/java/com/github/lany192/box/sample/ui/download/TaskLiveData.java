@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskLiveData extends MutableLiveData<TaskLiveData> {
-    private List<DownloadTask> tasks = new ArrayList<>();
+    private List<Object> tasks = new ArrayList<>();
     private int index = -1;
     private DownloadTask downloadTask;
     private boolean change;
 
-    public List<DownloadTask> getTasks() {
+    public List<Object> getTasks() {
         return tasks;
     }
 
@@ -37,9 +37,9 @@ public class TaskLiveData extends MutableLiveData<TaskLiveData> {
         postValue(this);
     }
 
-    public void setTasks(List<DownloadTask> items) {
+    public void setTasks(List<?> items) {
         this.change = false;
-        this.tasks = items;
+        this.tasks = (List<Object>) items;
         postValue(this);
     }
 }
