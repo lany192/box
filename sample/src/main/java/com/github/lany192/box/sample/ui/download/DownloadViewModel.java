@@ -1,55 +1,159 @@
 package com.github.lany192.box.sample.ui.download;
 
-import androidx.lifecycle.MutableLiveData;
+import android.app.Application;
+import android.content.Context;
+import android.util.Log;
 
-import com.github.lany192.arch.viewmodel.LifecycleViewModel;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.AndroidViewModel;
 
+import com.liulishuo.okdownload.DownloadContext;
+import com.liulishuo.okdownload.DownloadListener;
+import com.liulishuo.okdownload.DownloadTask;
+import com.liulishuo.okdownload.SpeedCalculator;
+import com.liulishuo.okdownload.core.Util;
+import com.liulishuo.okdownload.core.breakpoint.BlockInfo;
+import com.liulishuo.okdownload.core.breakpoint.BreakpointInfo;
+import com.liulishuo.okdownload.core.cause.EndCause;
+import com.liulishuo.okdownload.core.listener.DownloadListener4WithSpeed;
+import com.liulishuo.okdownload.core.listener.assist.Listener4SpeedAssistExtend;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import javax.inject.Inject;
+public class DownloadViewModel extends AndroidViewModel {
+    private final TaskLiveData liveData = new TaskLiveData();
+    private final DownloadContext downloadContext;
 
-import dagger.hilt.android.lifecycle.HiltViewModel;
-
-@HiltViewModel
-public class DownloadViewModel extends LifecycleViewModel {
-    private final MutableLiveData<List<Object>> items = new MutableLiveData<>();
-
-    @Inject
-    public DownloadViewModel() {
-        List<Object> tasks = new ArrayList<>();
-        tasks.add(new Task("1. WeChat", "http://dldir1.qq.com/weixin/android/weixin6516android1120.apk"));
-        tasks.add(new Task("2. LiuLiShuo", "https://cdn.llscdn.com/yy/files/tkzpx40x-lls-LLS-5.7-785-20171108-111118.apk"));
-        tasks.add(new Task("3. Alipay", "https://t.alipayobjects.com/L1/71/100/and/alipay_wap_main.apk"));
-        tasks.add(new Task("4. QQ for Mac", "https://dldir1.qq.com/qqfile/QQforMac/QQ_V6.2.0.dmg"));
-        tasks.add(new Task("6. NetEaseMusic", "http://d1.music.126.net/dmusic/CloudMusic_official_4.3.2.468990.apk"));
-        tasks.add(new Task("7. NetEaseMusic for Mac", "http://d1.music.126.net/dmusic/NeteaseMusic_1.5.9_622_officialsite.dmg"));
-        tasks.add(new Task("8. WeChat for Windows", "http://dldir1.qq.com/weixin/Windows/WeChatSetup.exe"));
-        tasks.add(new Task("9. WeChat Work", "https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk"));
-        tasks.add(new Task("10. WeChat Work for Mac", "https://dldir1.qq.com/foxmail/work_weixin/WXWork_2.4.5.213.dmg"));
-
-        items.postValue(tasks);
-
-//        DownloadContext.QueueSet queueSet = new DownloadContext.QueueSet();
-//        File parentFile = new File(DemoUtil.getParentFile(context), "queue");
-//        queueSet.setParentPathFile(parentFile);
-//        queueSet.setMinIntervalMillisCallbackProcess(200);
-//        DownloadContext.Builder builder = queueSet.commit();
-//        builder.setListener(new DownloadContextListener() {
-//
-//            @Override
-//            public void taskEnd(@NonNull DownloadContext context, @NonNull DownloadTask task, @NonNull EndCause cause, @Nullable Exception realCause, int remainCount) {
-//
-//            }
-//
-//            @Override
-//            public void queueEnd(@NonNull DownloadContext context) {
-//
-//            }
-//        });
+    private File getParentFile(Context context) {
+        File externalSaveDir = context.getExternalCacheDir();
+        if (externalSaveDir != null) {
+            return externalSaveDir;
+        }
+        return context.getCacheDir();
     }
 
-    public MutableLiveData<List<Object>> getItems() {
-        return items;
+    public DownloadViewModel(Application application) {
+        super(application);
+        List<Task> taskItems = new ArrayList<>();
+        taskItems.add(new Task("微信", "http://dldir1.qq.com/weixin/android/weixin6516android1120.apk"));
+        taskItems.add(new Task("流利说", "https://cdn.llscdn.com/yy/files/tkzpx40x-lls-LLS-5.7-785-20171108-111118.apk"));
+        taskItems.add(new Task("支付宝", "https://t.alipayobjects.com/L1/71/100/and/alipay_wap_main.apk"));
+        taskItems.add(new Task("网易云音乐", "http://d1.music.126.net/dmusic/CloudMusic_official_4.3.2.468990.apk"));
+        taskItems.add(new Task("企业微信", "https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk"));
+
+        DownloadContext.QueueSet queueSet = new DownloadContext.QueueSet();
+        queueSet.setMinIntervalMillisCallbackProcess(500);
+        queueSet.setPassIfAlreadyCompleted(false);
+        queueSet.setParentPathFile(new File(getParentFile(application), "queue"));
+
+        DownloadContext.Builder builder = queueSet.commit();
+        List<DownloadTask> tasks = new ArrayList<>();
+        for (Task item : taskItems) {
+            DownloadTask downloadTask = builder.bind(item.getUrl());
+            TaskUtils.INSTANCE.saveTaskName(downloadTask, item.getName());
+            tasks.add(downloadTask);
+        }
+        downloadContext = builder.build();
+        liveData.setTasks(tasks);
+    }
+
+    public TaskLiveData getItems() {
+        return liveData;
+    }
+
+    private final DownloadListener downloadListener = new DownloadListener4WithSpeed() {
+        @Override
+        public void taskStart(@NonNull DownloadTask task) {
+            Log.i("taskStart", "" + task.getTag());
+            TaskUtils.INSTANCE.saveStatus(task, TaskStatus.TASKSTART);
+            liveData.change(task);
+        }
+
+        @Override
+        public void connectStart(@NonNull DownloadTask task, int blockIndex, @NonNull Map<String, List<String>> requestHeaderFields) {
+            Log.i("connectStart", "" + task.getFilename());
+            liveData.change(task);
+        }
+
+        @Override
+        public void connectEnd(@NonNull DownloadTask task, int blockIndex, int responseCode, @NonNull Map<String, List<String>> responseHeaderFields) {
+            Log.i("connectEnd", "" + task.getFilename());
+            liveData.change(task);
+        }
+
+        @Override
+        public void infoReady(@NonNull DownloadTask task, @NonNull BreakpointInfo info, boolean fromBreakpoint, @NonNull Listener4SpeedAssistExtend.Listener4SpeedModel model) {
+            Log.i("infoReady", "" + task.getFilename());
+            TaskUtils.INSTANCE.saveTotal(task, info.getTotalLength());
+            liveData.change(task);
+        }
+
+        @Override
+        public void progressBlock(@NonNull DownloadTask task, int blockIndex, long currentBlockOffset, @NonNull SpeedCalculator blockSpeed) {
+//                Log.i("progressBlock", "" + task.getFilename());
+//                change(task);
+        }
+
+        @Override
+        public void progress(@NonNull DownloadTask task, long currentOffset, @NonNull SpeedCalculator taskSpeed) {
+            long totalLength = TaskUtils.INSTANCE.getTotal(task);
+            String readableOffset = Util.humanReadableBytes(currentOffset, true);
+            String readableTotalLength = Util.humanReadableBytes(totalLength, true);
+            String speed = taskSpeed.speed();
+            float percent = currentOffset * 1.0f / totalLength * 100;
+
+            Log.i("progress", readableOffset + "/" + readableTotalLength + ",速度：" + speed + ",进度：" + percent + "%");
+            TaskUtils.INSTANCE.saveStatus(task, TaskStatus.PROGRESS);
+            TaskUtils.INSTANCE.saveOffset(task, currentOffset);
+            TaskUtils.INSTANCE.saveSpeed(task, speed);
+
+            liveData.change(task);
+        }
+
+        @Override
+        public void blockEnd(@NonNull DownloadTask task, int blockIndex, BlockInfo info, @NonNull SpeedCalculator blockSpeed) {
+//                change(task);
+        }
+
+        @Override
+        public void taskEnd(@NonNull DownloadTask task, @NonNull EndCause cause, @Nullable Exception realCause, @NonNull SpeedCalculator taskSpeed) {
+            Log.i("taskEnd", "" + task.getFilename());
+            TaskUtils.INSTANCE.saveStatus(task, cause.toString());
+            liveData.change(task);
+        }
+    };
+
+    public void start() {
+        downloadContext.startOnParallel(downloadListener);
+    }
+
+    public void start(DownloadTask task) {
+        String status = TaskUtils.INSTANCE.getStatus(task);
+//        if (status.equals(EndCause.COMPLETED.toString()) || status.equals(TaskStatus.PROGRESS)) {
+//            //Log.w(TAG, "暂停....")
+//            task.cancel();
+//        } else if (status == STATUS_DELETE) {
+//            //Log.w(TAG, "$STATUS_DELETE......")
+//
+//            deleteFile(task)
+//            adapter?.setList(taskList)
+//        } else {
+//            //Log.w(TAG, "继续....")
+//            task.enqueue(downloadListener);
+//        }
+    }
+
+    public void remove(DownloadTask task) {
+        task.cancel();
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        downloadContext.stop();
     }
 }

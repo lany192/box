@@ -12,7 +12,7 @@ public class TaskBinder extends ItemBinder<Task, ItemTaskBinding> {
 
     @Override
     public void bind(ItemTaskBinding binding, Task task, int position) {
-        binding.title.setText(task.getName());
+//        binding.title.setText(task.getName());
 
 
     }

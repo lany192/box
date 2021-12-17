@@ -4,67 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="?attr/selectableItemBackground"
-    app:cardBackgroundColor="#ffffff"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="0dp">
+    android:layout_margin="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp">
+        android:background="@android:color/white"
+        android:padding="10dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/icon"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="标题" />
+            tools:text="name" />
 
-        <TextView
-            android:id="@+id/statusTv"
+        <FrameLayout
+            android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:visibility="gone"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/vector_delete_black" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/download_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
             android:maxLines="1"
-            android:textSize="14sp"
-            tools:text="状态"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            android:textSize="13sp"
+            app:layout_constraintLeft_toRightOf="@id/icon"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="status" />
 
         <TextView
-            android:id="@+id/priorityTv"
+            android:id="@+id/download_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/statusTv" />
-
-        <SeekBar
-            android:id="@+id/prioritySb"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:max="20"
-            app:layout_constraintBottom_toBottomOf="@+id/priorityTv"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/priorityTv"
-            app:layout_constraintTop_toTopOf="@id/priorityTv" />
-
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="13sp"
+            app:layout_constraintLeft_toRightOf="@id/icon"
+            app:layout_constraintTop_toBottomOf="@id/download_status"
+            tools:text="status" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/priorityTv" />
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toRightOf="@id/icon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/download_percent" />
 
+        <TextView
+            android:id="@+id/download_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/icon"
+            app:layout_constraintTop_toBottomOf="@id/progress_bar"
+            tools:text="0MB/0MB" />
+
+        <TextView
+            android:id="@+id/download_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="13sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_bar"
+            tools:text="0KB/S" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/download_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toRightOf="@id/icon"
+            app:layout_constraintTop_toBottomOf="@id/download_total" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
