@@ -11,6 +11,11 @@ import com.liulishuo.okdownload.DownloadTask;
 import com.liulishuo.okdownload.core.Util;
 
 public class TaskBinder extends ItemBinder<DownloadTask, ItemTaskBinding> {
+    private final OnActionListener listener;
+
+    public TaskBinder(OnActionListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public void bind(ItemTaskBinding binding, DownloadTask task, int position) {
@@ -20,11 +25,20 @@ public class TaskBinder extends ItemBinder<DownloadTask, ItemTaskBinding> {
         String readableTotalLength = Util.humanReadableBytes(TaskUtils.INSTANCE.getTotal(task), true);
         binding.total.setText(readableOffset + "/" + readableTotalLength);
         binding.progressBar.setProgress((int) (TaskUtils.INSTANCE.getOffset(task) * 1.0f / TaskUtils.INSTANCE.getTotal(task) * 100));
+        binding.action.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onClicked(task, position);
+            }
+        });
     }
 
     @NonNull
     @Override
     public ItemTaskBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
         return ItemTaskBinding.inflate(layoutInflater, viewGroup, false);
+    }
+
+    public interface OnActionListener {
+        void onClicked(DownloadTask downloadTask, int position);
     }
 }

@@ -66,7 +66,7 @@ public class DownloadActivity extends BindingActivity<ActivityDownloadBinding> {
 
             }
         });
-        binderAdapter.addItemBinder(DownloadTask.class, new TaskBinder());
+        binderAdapter.addItemBinder(DownloadTask.class, new TaskBinder((downloadTask, position) -> viewModel.start(downloadTask)));
         binding.recyclerView.setAdapter(binderAdapter);
         //解决item刷新时，界面闪烁
         ((SimpleItemAnimator) Objects.requireNonNull(binding.recyclerView.getItemAnimator())).setSupportsChangeAnimations(false);

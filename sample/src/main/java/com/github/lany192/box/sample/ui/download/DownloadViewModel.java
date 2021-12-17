@@ -145,6 +145,8 @@ public class DownloadViewModel extends AndroidViewModel {
 //            //Log.w(TAG, "继续....")
 //            task.enqueue(downloadListener);
 //        }
+
+        task.enqueue(downloadListener);
     }
 
     public void remove(DownloadTask task) {
