@@ -27,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/ui/download")
 public class DownloadActivity extends BindingActivity<ActivityDownloadBinding> {
-    private BinderAdapter binderAdapter = new BinderAdapter();
+    private final BinderAdapter binderAdapter = new BinderAdapter();
     private DownloadViewModel viewModel;
 
     @Override
@@ -66,7 +66,7 @@ public class DownloadActivity extends BindingActivity<ActivityDownloadBinding> {
 
             }
         });
-        binderAdapter.addItemBinder(DownloadTask.class, new DownloadTaskBinder());
+        binderAdapter.addItemBinder(DownloadTask.class, new TaskBinder());
         binding.recyclerView.setAdapter(binderAdapter);
         //解决item刷新时，界面闪烁
         ((SimpleItemAnimator) Objects.requireNonNull(binding.recyclerView.getItemAnimator())).setSupportsChangeAnimations(false);
