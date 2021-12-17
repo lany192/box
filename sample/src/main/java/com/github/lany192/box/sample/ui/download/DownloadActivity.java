@@ -77,6 +77,5 @@ public class DownloadActivity extends BindingActivity<ActivityDownloadBinding> {
                 binderAdapter.setNewInstance(data.getTasks());
             }
         });
-        binding.button.setOnClickListener(view -> viewModel.start());
     }
 }

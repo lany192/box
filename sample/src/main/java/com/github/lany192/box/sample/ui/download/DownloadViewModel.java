@@ -127,7 +127,7 @@ public class DownloadViewModel extends AndroidViewModel {
         }
     };
 
-    public void start() {
+    public void startAll() {
         downloadContext.startOnParallel(downloadListener);
     }
 
