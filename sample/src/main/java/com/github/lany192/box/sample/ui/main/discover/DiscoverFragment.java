@@ -55,15 +55,9 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
             @Override
             public Divider getDivider(int position) {
                 if (position % 2 == 0) {
-                    return new Divider.Builder()
-                            .setBottomWidth(6)
-                            .setLeftWidth(6)
-                            .build();
+                    return new Divider().setBottomWidth(6).setLeftWidth(6);
                 } else {
-                    return new Divider.Builder()
-                            .setBottomWidth(6)
-                            .setRightWidth(6)
-                            .build();
+                    return new Divider().setBottomWidth(6).setRightWidth(6);
                 }
             }
         });

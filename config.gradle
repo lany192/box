@@ -91,7 +91,7 @@ ext {
             //图片压缩 https://github.com/Curzibn/Luban
             'luban'                           : 'top.zibin:Luban:1.1.8',
             //RecyclerView分割线 https://github.com/lany192/ItemDecoration
-            'decoration'                      : 'com.github.lany192:ItemDecoration:1.18',
+            'decoration'                      : 'com.github.lany192:ItemDecoration:1.21',
             //显示红点或者浮标 https://github.com/qstumn/BadgeView
             'badge-view'                      : 'q.rorbin:badgeview:1.1.3',
             //flexbox控件 https://github.com/google/flexbox-layout
