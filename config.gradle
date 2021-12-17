@@ -6,7 +6,7 @@ ext {
             versionName      : '1.0.0',
             minSdkVersion    : 19,
             compileSdkVersion: 31,
-            targetSdkVersion : 31,
+            targetSdkVersion : 29,
     ]
     processorDependencies = [
             "glide"     : "com.github.bumptech.glide:compiler:4.12.0",
