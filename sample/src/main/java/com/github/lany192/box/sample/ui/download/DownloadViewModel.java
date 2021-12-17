@@ -1,13 +1,13 @@
 package com.github.lany192.box.sample.ui.download;
 
 import android.app.Application;
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.github.lany192.arch.utils.FileUtils;
 import com.liulishuo.okdownload.DownloadContext;
 import com.liulishuo.okdownload.DownloadListener;
 import com.liulishuo.okdownload.DownloadTask;
@@ -28,14 +28,6 @@ public class DownloadViewModel extends AndroidViewModel {
     private final TaskLiveData liveData = new TaskLiveData();
     private final DownloadContext downloadContext;
 
-    private File getParentFile(Context context) {
-        File externalSaveDir = context.getExternalCacheDir();
-        if (externalSaveDir != null) {
-            return externalSaveDir;
-        }
-        return context.getCacheDir();
-    }
-
     public DownloadViewModel(Application application) {
         super(application);
         List<Task> taskItems = new ArrayList<>();
@@ -48,7 +40,7 @@ public class DownloadViewModel extends AndroidViewModel {
         DownloadContext.QueueSet queueSet = new DownloadContext.QueueSet();
         queueSet.setMinIntervalMillisCallbackProcess(500);
         queueSet.setPassIfAlreadyCompleted(false);
-        queueSet.setParentPathFile(new File(getParentFile(application), "download"));
+        queueSet.setParentPathFile(new File(FileUtils.getCacheDir(application), "download"));
 
         DownloadContext.Builder builder = queueSet.commit();
         List<DownloadTask> tasks = new ArrayList<>();
