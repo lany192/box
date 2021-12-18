@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -29,9 +30,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         getLifecycle().addObserver(NetworkHelper.getInstance());
     }
 
-    public <T extends LifecycleViewModel> T getViewModel(@NonNull Class<T> modelClass) {
+    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
         T viewModel = new ViewModelProvider(this).get(modelClass);
-        getLifecycle().addObserver(viewModel);
+        if (viewModel instanceof LifecycleObserver) {
+            getLifecycle().addObserver((LifecycleObserver) viewModel);
+        }
         return viewModel;
     }
 

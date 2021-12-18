@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
@@ -23,16 +24,19 @@ abstract class BindingDialog<VB : ViewBinding> : BasicDialog() {
         binding = getBinding(inflater, container)
         return binding.root
     }
-
-    fun <T : LifecycleViewModel>  getViewModel(modelClass: Class<T>): T {
+    open fun <T : ViewModel> getViewModel(modelClass: Class<T>): T {
         val viewModel = ViewModelProvider(this)[modelClass]
-        lifecycle.addObserver(viewModel)
+        if (viewModel is LifecycleObserver) {
+            lifecycle.addObserver(viewModel as LifecycleObserver)
+        }
         return viewModel
     }
 
-    fun <T : LifecycleViewModel> getActivityViewModel(modelClass: Class<T>): T {
+    open fun <T : ViewModel> getActivityViewModel(modelClass: Class<T>): T {
         val viewModel = ViewModelProvider(requireActivity())[modelClass]
-        lifecycle.addObserver(viewModel)
+        if (viewModel is LifecycleObserver) {
+            lifecycle.addObserver(viewModel as LifecycleObserver)
+        }
         return viewModel
     }
 

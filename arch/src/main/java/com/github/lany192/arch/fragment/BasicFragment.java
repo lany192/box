@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -69,15 +70,19 @@ public abstract class BasicFragment extends Fragment {
     public void initImmersionBar() {
     }
 
-    public <T extends LifecycleViewModel> T getViewModel(@NonNull Class<T> modelClass) {
+    public <T extends ViewModel> T getViewModel2(@NonNull Class<T> modelClass) {
         T viewModel = new ViewModelProvider(this).get(modelClass);
-        getLifecycle().addObserver(viewModel);
+        if (viewModel instanceof LifecycleObserver) {
+            getLifecycle().addObserver((LifecycleObserver) viewModel);
+        }
         return viewModel;
     }
 
-    public <T extends LifecycleViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
+    public <T extends ViewModel> T getActivityViewModel2(@NonNull Class<T> modelClass) {
         T viewModel = new ViewModelProvider(requireActivity()).get(modelClass);
-        getLifecycle().addObserver(viewModel);
+        if (viewModel instanceof LifecycleObserver) {
+            getLifecycle().addObserver((LifecycleObserver) viewModel);
+        }
         return viewModel;
     }
 
