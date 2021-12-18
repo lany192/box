@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
+
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
@@ -184,7 +186,7 @@ public class UpdateManager {
     /**
      * 设置通知栏图片资源id
      */
-    public UpdateManager setSmallIcon(int smallIcon) {
+    public UpdateManager setSmallIcon(@DrawableRes int smallIcon) {
         this.smallIcon = smallIcon;
         return this;
     }
