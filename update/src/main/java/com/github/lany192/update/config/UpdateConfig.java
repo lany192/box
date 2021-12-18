@@ -44,11 +44,6 @@ public class UpdateConfig {
     private boolean forcedUpgrade = false;
 
     /**
-     * 内置对话框强制更新时进度条和文字的颜色
-     */
-    private int dialogProgressBarColor = -1;
-
-    /**
      * 获取通知栏消息id
      */
     public int getNotifyId() {
@@ -165,21 +160,6 @@ public class UpdateConfig {
      */
     public UpdateConfig setShowBgdToast(boolean showBgdToast) {
         this.showBgdToast = showBgdToast;
-        return this;
-    }
-
-    /**
-     * 获取内置对话框强制更新时进度条和文字的颜色
-     */
-    public int getDialogProgressBarColor() {
-        return dialogProgressBarColor;
-    }
-
-    /**
-     * 设置内置对话框强制更新时进度条和文字的颜色
-     */
-    public UpdateConfig setDialogProgressBarColor(int dialogProgressBarColor) {
-        this.dialogProgressBarColor = dialogProgressBarColor;
         return this;
     }
 }

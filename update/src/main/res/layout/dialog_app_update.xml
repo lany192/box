@@ -53,8 +53,9 @@
             tools:text="" />
     </ScrollView>
 
-    <com.github.lany192.update.dialog.NumberProgressBar
-        android:id="@+id/np_bar"
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

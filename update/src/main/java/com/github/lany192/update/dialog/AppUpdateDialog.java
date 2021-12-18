@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.lany192.dialog.BasicDialog;
@@ -22,8 +23,7 @@ public class AppUpdateDialog extends BasicDialog implements View.OnClickListener
     private UpdateManager manager;
     private boolean forcedUpgrade;
     private Button update;
-    private NumberProgressBar progressBar;
-    private int dialogProgressBarColor;
+    private ProgressBar progressBar;
     private File apk;
 
     @Override
@@ -42,22 +42,17 @@ public class AppUpdateDialog extends BasicDialog implements View.OnClickListener
         UpdateConfig configuration = manager.getConfiguration();
         configuration.setOnDownloadListener(this);
         forcedUpgrade = configuration.isForcedUpgrade();
-        dialogProgressBarColor = configuration.getDialogProgressBarColor();
         View ibClose = findViewById(R.id.btn_cancel);
         TextView title = findViewById(R.id.tv_title);
         TextView size = findViewById(R.id.tv_size);
         TextView description = findViewById(R.id.tv_description);
-        progressBar = findViewById(R.id.np_bar);
+        progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(forcedUpgrade ? View.VISIBLE : View.GONE);
         update = findViewById(R.id.btn_update);
         update.setTag(0);
         update.setOnClickListener(this);
         ibClose.setOnClickListener(this);
 
-        if (dialogProgressBarColor != -1) {
-            progressBar.setReachedBarColor(dialogProgressBarColor);
-            progressBar.setProgressTextColor(dialogProgressBarColor);
-        }
         //强制升级
         if (forcedUpgrade) {
             ibClose.setVisibility(View.GONE);
