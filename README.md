@@ -24,10 +24,11 @@
 ## 添加依赖
 
 	dependencies {
-        implementation 'com.github.lany192.box:view:3.8.5'
-        implementation 'com.github.lany192.box:core:3.8.5'
-        implementation 'com.github.lany192.box:dialog:3.8.5'
-        implementation 'com.github.lany192.box:arch:3.8.5'
+		implementation 'com.github.lany192.box:view:+'
+		implementation 'com.github.lany192.box:core:+'
+		implementation 'com.github.lany192.box:dialog:+'
+		implementation 'com.github.lany192.box:arch:+'
+		implementation 'com.github.lany192.box:update:+'
 	}
 
 ## 初始化
@@ -43,8 +44,4 @@
         }
     
     }
-
-## 其它注意事项
-
-如果需要使用dagger，Activity继承DaggerActivity，Fragment继承DaggerFragment
     
