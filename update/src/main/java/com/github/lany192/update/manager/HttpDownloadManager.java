@@ -1,50 +1,27 @@
 package com.github.lany192.update.manager;
 
-import androidx.annotation.NonNull;
+import android.net.Uri;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.github.lany192.update.listener.OnDownloadListener;
-import com.github.lany192.update.utils.Constant;
-import com.github.lany192.update.utils.FileUtil;
+import com.liulishuo.okdownload.DownloadTask;
+import com.liulishuo.okdownload.SpeedCalculator;
+import com.liulishuo.okdownload.core.breakpoint.BlockInfo;
+import com.liulishuo.okdownload.core.breakpoint.BreakpointInfo;
+import com.liulishuo.okdownload.core.cause.EndCause;
+import com.liulishuo.okdownload.core.listener.DownloadListener4WithSpeed;
+import com.liulishuo.okdownload.core.listener.assist.Listener4SpeedAssistExtend;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.SocketTimeoutException;
-import java.net.URL;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
+import java.util.Map;
 
 public class HttpDownloadManager extends BaseHttpDownloadManager {
-    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
     private final String downloadPath;
-    private final ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1,
-            0L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new ThreadFactory() {
-        @Override
-        public Thread newThread(@NonNull Runnable r) {
-            Thread thread = new Thread(r);
-            thread.setName(Constant.THREAD_NAME);
-            return thread;
-        }
-    });
-    private String apkUrl;
-    private String apkName;
-    private boolean shutdown = false;
-    private OnDownloadListener listener;
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            //删除之前的安装包
-            if (FileUtil.fileExists(downloadPath, apkName)) {
-                FileUtil.delete(downloadPath, apkName);
-            }
-            fullDownload();
-        }
-    };
+    private DownloadTask downloadTask;
+    private long totalLength;
 
     public HttpDownloadManager(String downloadPath) {
         this.downloadPath = downloadPath;
@@ -52,78 +29,80 @@ public class HttpDownloadManager extends BaseHttpDownloadManager {
 
     @Override
     public void download(String apkUrl, String apkName, OnDownloadListener listener) {
-        this.apkUrl = apkUrl;
-        this.apkName = apkName;
-        this.listener = listener;
-        executor.execute(runnable);
+        downloadTask = new DownloadTask.Builder(apkUrl, Uri.fromFile(new File(downloadPath)))
+                .setFilenameFromResponse(true)
+                // the minimal interval millisecond for callback progress
+                .setMinIntervalMillisCallbackProcess(50)
+                // ignore the same task has already completed in the past.
+                .setPassIfAlreadyCompleted(false)
+                .build();
+        downloadTask.enqueue(new DownloadListener4WithSpeed() {
+            @Override
+            public void taskStart(@NonNull DownloadTask task) {
+                if (listener != null) {
+                    listener.start();
+                }
+            }
+
+            @Override
+            public void connectStart(@NonNull DownloadTask task, int blockIndex, @NonNull Map<String, List<String>> requestHeaderFields) {
+
+            }
+
+            @Override
+            public void connectEnd(@NonNull DownloadTask task, int blockIndex, int responseCode, @NonNull Map<String, List<String>> responseHeaderFields) {
+
+            }
+
+            @Override
+            public void infoReady(@NonNull DownloadTask task, @NonNull BreakpointInfo info, boolean fromBreakpoint, @NonNull Listener4SpeedAssistExtend.Listener4SpeedModel model) {
+                totalLength = info.getTotalLength();
+            }
+
+            @Override
+            public void progressBlock(@NonNull DownloadTask task, int blockIndex, long currentBlockOffset, @NonNull SpeedCalculator blockSpeed) {
+
+            }
+
+            @Override
+            public void progress(@NonNull DownloadTask task, long currentOffset, @NonNull SpeedCalculator taskSpeed) {
+                if (listener != null) {
+                    listener.downloading(100, (int)(currentOffset * 1.0f / totalLength * 100));
+                }
+            }
+
+            @Override
+            public void blockEnd(@NonNull DownloadTask task, int blockIndex, BlockInfo info, @NonNull SpeedCalculator blockSpeed) {
+
+            }
+
+            @Override
+            public void taskEnd(@NonNull DownloadTask task, @NonNull EndCause cause, @Nullable Exception realCause, @NonNull SpeedCalculator taskSpeed) {
+                if (cause == EndCause.CANCELED) {
+                    if (listener != null) {
+                        listener.cancel();
+                    }
+                } else if (cause == EndCause.COMPLETED) {
+                    if (listener != null) {
+                        listener.done(task.getFile());
+                    }
+                } else if (cause == EndCause.ERROR) {
+                    if (listener != null) {
+                        listener.error(realCause);
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public void cancel() {
-        shutdown = true;
+        downloadTask.cancel();
     }
 
     @Override
     public void release() {
-        listener = null;
-        executor.shutdown();
+        downloadTask.cancel();
+        downloadTask = null;
     }
-
-    /**
-     * 全部下载
-     */
-    private void fullDownload() {
-        if (listener != null) listener.start();
-        try {
-            URL url = new URL(apkUrl);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-            con.setReadTimeout(Constant.HTTP_TIME_OUT);
-            con.setConnectTimeout(Constant.HTTP_TIME_OUT);
-            con.setRequestProperty("Accept-Encoding", "identity");
-            if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                InputStream is = con.getInputStream();
-                int length = con.getContentLength();
-                int len;
-                //当前已下载完成的进度
-                int progress = 0;
-                byte[] buffer = new byte[1024 * 2];
-                File file = FileUtil.createFile(downloadPath, apkName);
-                FileOutputStream stream = new FileOutputStream(file);
-                while ((len = is.read(buffer)) != -1 && !shutdown) {
-                    //将获取到的流写入文件中
-                    stream.write(buffer, 0, len);
-                    progress += len;
-                    if (listener != null) listener.downloading(length, progress);
-                }
-                if (shutdown) {
-                    //取消了下载 同时再恢复状态
-                    shutdown = false;
-                    log.d("fullDownload: 取消了下载");
-                    if (listener != null) listener.cancel();
-                } else {
-                    if (listener != null) listener.done(file);
-                }
-                //完成io操作,释放资源
-                stream.flush();
-                stream.close();
-                is.close();
-                //重定向
-            } else if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM ||
-                    con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
-                apkUrl = con.getHeaderField("Location");
-                con.disconnect();
-                log.d("fullDownload: 当前地址是重定向Url，定向后的地址：" + apkUrl);
-                fullDownload();
-            } else {
-                if (listener != null)
-                    listener.error(new SocketTimeoutException("下载失败：Http ResponseCode = " + con.getResponseCode()));
-            }
-            con.disconnect();
-        } catch (Exception e) {
-            if (listener != null) listener.error(e);
-            e.printStackTrace();
-        }
-    }
-
 }

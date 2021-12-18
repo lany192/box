@@ -91,7 +91,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
                 //设置是否提示后台下载toast
                 .setShowBgdToast(false)
                 //设置强制更新
-                .setForcedUpgrade(true)
+                .setForcedUpgrade(false)
                 //设置下载过程的监听
                 .setOnDownloadListener(new OnDownloadListener() {
                     @Override
