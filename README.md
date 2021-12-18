@@ -3,13 +3,14 @@
 # 快速开发框架
 
 > * MVVM
+> * ViewModel
 > * rxjava3
 > * rxandroid3
 > * retrofit2
 > * Hilt
 > * OkHttp3
 >
-使用MVP+rxjava3+rxandroid3+retrofit2+Dagger2+OkHttp3组合封装
+使用MVVM+rxjava3+rxandroid3+retrofit2+Dagger2+OkHttp3组合封装
 
 ## 引入代码仓库
 
