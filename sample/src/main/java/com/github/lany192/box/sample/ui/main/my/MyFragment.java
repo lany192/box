@@ -35,7 +35,7 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel =  getViewModel(MyViewModel.class);
+        viewModel =  getFragmentViewModel(MyViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
         userViewModel.getUserInfo().observe(this, userInfo -> binding.testView.hint(userInfo.getName()));
         binding.downloadView.setOnClickListener(v -> AppRouter.get().download());

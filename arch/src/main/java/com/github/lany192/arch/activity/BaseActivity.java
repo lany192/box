@@ -30,7 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         getLifecycle().addObserver(NetworkHelper.getInstance());
     }
 
-    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
+    public <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
         T viewModel = new ViewModelProvider(this).get(modelClass);
         if (viewModel instanceof LifecycleObserver) {
             getLifecycle().addObserver((LifecycleObserver) viewModel);

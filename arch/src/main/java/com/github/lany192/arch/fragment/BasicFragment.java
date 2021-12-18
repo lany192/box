@@ -70,7 +70,7 @@ public abstract class BasicFragment extends Fragment {
     public void initImmersionBar() {
     }
 
-    public <T extends ViewModel> T getViewModel2(@NonNull Class<T> modelClass) {
+    public <T extends ViewModel> T getFragmentViewModel(@NonNull Class<T> modelClass) {
         T viewModel = new ViewModelProvider(this).get(modelClass);
         if (viewModel instanceof LifecycleObserver) {
             getLifecycle().addObserver((LifecycleObserver) viewModel);
@@ -78,7 +78,7 @@ public abstract class BasicFragment extends Fragment {
         return viewModel;
     }
 
-    public <T extends ViewModel> T getActivityViewModel2(@NonNull Class<T> modelClass) {
+    public <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
         T viewModel = new ViewModelProvider(requireActivity()).get(modelClass);
         if (viewModel instanceof LifecycleObserver) {
             getLifecycle().addObserver((LifecycleObserver) viewModel);

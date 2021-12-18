@@ -41,7 +41,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = getViewModel(SettingsViewModel.class);
+        viewModel = getActivityViewModel(SettingsViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
 
         binding.cacheView.hint(CacheUtils.getCacheSize(this));

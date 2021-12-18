@@ -23,7 +23,7 @@ public class SplashActivity extends BindingActivity<ActivitySplashBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = getViewModel(SplashViewModel.class);
+        viewModel = getActivityViewModel(SplashViewModel.class);
         viewModel.getWelcome().observe(this, s -> binding.textView.setText(s));
         new Handler().postDelayed(() -> {
             startActivity(new Intent(this, MainActivity.class));

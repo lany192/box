@@ -24,7 +24,7 @@ public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        GirlViewModel viewModel =  getViewModel(GirlViewModel.class);
+        GirlViewModel viewModel =  getFragmentViewModel(GirlViewModel.class);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         binding.recyclerView.setLayoutManager(layoutManager);

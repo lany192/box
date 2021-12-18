@@ -52,7 +52,7 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = getViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+        viewModel = getActivityViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
 
 
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());

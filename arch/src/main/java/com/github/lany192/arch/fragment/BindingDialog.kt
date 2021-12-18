@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.BoxApplication
 import com.github.lany192.arch.binding.getBinding
-import com.github.lany192.arch.viewmodel.LifecycleViewModel
 import com.github.lany192.dialog.BasicDialog
 
 abstract class BindingDialog<VB : ViewBinding> : BasicDialog() {
@@ -24,7 +23,8 @@ abstract class BindingDialog<VB : ViewBinding> : BasicDialog() {
         binding = getBinding(inflater, container)
         return binding.root
     }
-    open fun <T : ViewModel> getViewModel(modelClass: Class<T>): T {
+
+    open fun <T : ViewModel> getFragmentViewModel(modelClass: Class<T>): T {
         val viewModel = ViewModelProvider(this)[modelClass]
         if (viewModel is LifecycleObserver) {
             lifecycle.addObserver(viewModel as LifecycleObserver)

@@ -43,7 +43,7 @@ public class DownloadActivity extends BindingActivity<ActivityDownloadBinding> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
-        viewModel = new ViewModelProvider(this).get(DownloadViewModel.class);
+        viewModel = getActivityViewModel(DownloadViewModel.class);
         //全局配置
         DownloadDispatcher.setMaxParallelRunningCount(2);
         OkDownload.with().setMonitor(new DownloadMonitor() {

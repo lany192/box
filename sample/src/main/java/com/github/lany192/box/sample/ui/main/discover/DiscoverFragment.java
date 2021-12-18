@@ -40,7 +40,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel =  getViewModel(DiscoverViewModel.class);
+        viewModel =  getFragmentViewModel(DiscoverViewModel.class);
         initView(rootView);
         return rootView;
     }

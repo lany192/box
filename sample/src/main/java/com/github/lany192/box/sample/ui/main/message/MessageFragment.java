@@ -40,7 +40,7 @@ public class MessageFragment extends BindingFragment<FragmentMessageBinding> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel =  getViewModel(MessageViewModel.class);
+        viewModel =  getFragmentViewModel(MessageViewModel.class);
 
         List<TabItem> items = new ArrayList<>();
         items.add(new TabItem("互动", new ArticleFragment()));

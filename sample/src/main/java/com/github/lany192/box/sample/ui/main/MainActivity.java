@@ -52,7 +52,7 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainViewModel = getViewModel(MainViewModel.class);
+        mainViewModel = getActivityViewModel(MainViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
 
         userViewModel.getUserInfo().observe(this, new Observer<UserInfo>() {
