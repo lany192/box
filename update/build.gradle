@@ -33,6 +33,8 @@ dependencies {
     implementation 'com.elvishew:xlog:1.11.0'
     //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
     implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.2'
+    //下载框架 https://github.com/lany192/okdownload
+    implementation 'com.github.lany192:okdownload:2.0.2'
 
     implementation 'androidx.appcompat:appcompat:1.4.0'
     testImplementation 'junit:junit:4.13.2'

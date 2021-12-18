@@ -91,7 +91,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
                 //设置是否提示后台下载toast
                 .setShowBgdToast(false)
                 //设置强制更新
-                .setForcedUpgrade(false)
+                .setForcedUpgrade(true)
                 //设置下载过程的监听
                 .setOnDownloadListener(new OnDownloadListener() {
                     @Override
@@ -101,7 +101,7 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
 //            progressBar.setProgress(curr);
                     }
                 });
-        String url = "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.7.0.5295_537068059.apk";
+        String url = "https://dldir1.qq.com/weixin/android/weixin8016android2040_arm64.apk";
         UpdateManager.getInstance(this)
                 .setApkName("ESFileExplorer.apk")
                 .setApkUrl(url)
