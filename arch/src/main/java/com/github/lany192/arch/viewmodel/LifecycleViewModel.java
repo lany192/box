@@ -6,6 +6,13 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.lany192.arch.event.NetWorkEvent;
+import com.github.lany192.arch.utils.ContextUtils;
+import com.github.lany192.utils.NetUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycleObserver {
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
     /**
@@ -28,6 +35,11 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
         log.i("懒加载...");
     }
 
+    @Subscribe
+    public void onEvent(NetWorkEvent event) {
+
+    }
+
     @CallSuper
     @Override
     public void onResume(@NonNull LifecycleOwner owner) {
@@ -38,9 +50,13 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
         log.i("onResume");
     }
 
+    @CallSuper
     @Override
     public void onCreate(@NonNull LifecycleOwner owner) {
         log.i("onCreate");
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -58,8 +74,12 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
         log.i("onStop");
     }
 
+    @CallSuper
     @Override
     public void onDestroy(@NonNull LifecycleOwner owner) {
         log.i("onDestroy");
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 }
