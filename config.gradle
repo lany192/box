@@ -102,7 +102,7 @@ ext {
             //模糊视图 https://github.com/mmin18/RealtimeBlurView
             'realtime-blur-view'              : 'com.github.mmin18:realtimeblurview:1.2.1',
             //下载框架 https://github.com/lany192/okdownload
-            'okdownload'                      : 'com.github.lany192:okdownload:2.0.0',
+            'okdownload'                      : 'com.github.lany192:okdownload:2.0.2',
             //友盟 https://github.com/lany192/umeng
             'umeng-analysis'                  : 'com.github.lany192.umeng:analysis:1.0.7',
 //    'umeng-push'    : 'com.github.lany192.umeng:push:1.0.7',
