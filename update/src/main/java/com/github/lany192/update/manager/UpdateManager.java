@@ -316,7 +316,7 @@ public class UpdateManager {
             log.e("还未开始下载");
             return;
         }
-        BaseHttpDownloadManager httpManager = configuration.getHttpManager();
+        HttpDownloadManager httpManager = configuration.getHttpManager();
         if (httpManager == null) {
             log.e("还未开始下载");
             return;

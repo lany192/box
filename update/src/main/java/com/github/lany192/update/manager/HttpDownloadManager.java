@@ -18,7 +18,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-public class HttpDownloadManager extends BaseHttpDownloadManager {
+public class HttpDownloadManager {
     private final String downloadPath;
     private DownloadTask downloadTask;
     private long totalLength;
@@ -27,7 +27,6 @@ public class HttpDownloadManager extends BaseHttpDownloadManager {
         this.downloadPath = downloadPath;
     }
 
-    @Override
     public void download(String apkUrl, String apkName, OnDownloadListener listener) {
         downloadTask = new DownloadTask.Builder(apkUrl, Uri.fromFile(new File(downloadPath)))
                 .setFilenameFromResponse(true)
@@ -95,12 +94,10 @@ public class HttpDownloadManager extends BaseHttpDownloadManager {
         });
     }
 
-    @Override
     public void cancel() {
         downloadTask.cancel();
     }
 
-    @Override
     public void release() {
         downloadTask.cancel();
         downloadTask = null;

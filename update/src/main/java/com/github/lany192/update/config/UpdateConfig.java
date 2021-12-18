@@ -3,7 +3,7 @@ package com.github.lany192.update.config;
 import android.app.NotificationChannel;
 
 import com.github.lany192.update.listener.OnDownloadListener;
-import com.github.lany192.update.manager.BaseHttpDownloadManager;
+import com.github.lany192.update.manager.HttpDownloadManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class UpdateConfig {
     /**
      * 用户自定义的下载管理
      */
-    private BaseHttpDownloadManager httpManager;
+    private HttpDownloadManager httpManager;
     /**
      * 是否需要显示通知栏进度
      */
@@ -61,14 +61,14 @@ public class UpdateConfig {
     /**
      * 获取下载管理器
      */
-    public BaseHttpDownloadManager getHttpManager() {
+    public HttpDownloadManager getHttpManager() {
         return httpManager;
     }
 
     /**
      * 设置下载管理器
      */
-    public UpdateConfig setHttpManager(BaseHttpDownloadManager httpManager) {
+    public UpdateConfig setHttpManager(HttpDownloadManager httpManager) {
         this.httpManager = httpManager;
         return this;
     }

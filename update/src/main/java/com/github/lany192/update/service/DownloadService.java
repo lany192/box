@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
-import com.github.lany192.update.manager.BaseHttpDownloadManager;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.UpdateManager;
@@ -39,7 +38,7 @@ public final class DownloadService extends Service implements OnDownloadListener
     private boolean jumpInstallPage;
     private int lastProgress;
     private UpdateManager updateManager;
-    private BaseHttpDownloadManager httpManager;
+    private HttpDownloadManager httpManager;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
