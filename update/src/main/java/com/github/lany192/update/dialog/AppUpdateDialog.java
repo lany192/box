@@ -20,7 +20,6 @@ import java.io.File;
 
 public class AppUpdateDialog extends BasicDialog implements View.OnClickListener, OnDownloadListener {
     private final int install = 0x45F;
-    private UpdateManager manager;
     private boolean forcedUpgrade;
     private Button update;
     private ProgressBar progressBar;
@@ -38,8 +37,7 @@ public class AppUpdateDialog extends BasicDialog implements View.OnClickListener
 
     @Override
     protected void init() {
-        manager = UpdateManager.getInstance();
-        UpdateConfig configuration = manager.getConfiguration();
+        UpdateConfig configuration = UpdateManager.getInstance().getConfiguration();
         configuration.setOnDownloadListener(this);
         forcedUpgrade = configuration.isForcedUpgrade();
         View ibClose = findViewById(R.id.btn_cancel);
@@ -60,16 +58,16 @@ public class AppUpdateDialog extends BasicDialog implements View.OnClickListener
             setCancelable(false);
         }
         //设置界面数据
-        if (!TextUtils.isEmpty(manager.getApkVersionName())) {
+        if (!TextUtils.isEmpty(UpdateManager.getInstance().getApkVersionName())) {
             String newVersion = getString(R.string.dialog_new);
-            title.setText(String.format(newVersion, manager.getApkVersionName()));
+            title.setText(String.format(newVersion, UpdateManager.getInstance().getApkVersionName()));
         }
-        if (!TextUtils.isEmpty(manager.getApkSize())) {
+        if (!TextUtils.isEmpty(UpdateManager.getInstance().getApkSize())) {
             String newVersionSize = getString(R.string.dialog_new_size);
-            size.setText(String.format(newVersionSize, manager.getApkSize()));
+            size.setText(String.format(newVersionSize, UpdateManager.getInstance().getApkSize()));
             size.setVisibility(View.VISIBLE);
         }
-        description.setText(manager.getApkDescription());
+        description.setText(UpdateManager.getInstance().getApkDescription());
     }
 
     @Override
