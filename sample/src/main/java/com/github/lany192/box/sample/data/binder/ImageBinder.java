@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.ui.main.index.girl;
+package com.github.lany192.box.sample.data.binder;
 
 import androidx.annotation.NonNull;
 

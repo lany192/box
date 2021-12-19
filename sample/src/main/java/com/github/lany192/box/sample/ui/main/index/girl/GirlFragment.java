@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.github.lany192.arch.fragment.BindingFragment;
 import com.github.lany192.arch.items.BinderAdapter;
 import com.github.lany192.box.sample.R;
+import com.github.lany192.box.sample.data.binder.GirlBinder;
 import com.github.lany192.box.sample.databinding.FragmentGirlBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
