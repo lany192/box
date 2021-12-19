@@ -14,4 +14,9 @@ public class CityFragment extends PageListFragment<CityViewModel> {
     public int getItemSpanSize(int viewType, int position) {
         return 1;
     }
+
+    @Override
+    public void initView() {
+        super.initView();
+    }
 }

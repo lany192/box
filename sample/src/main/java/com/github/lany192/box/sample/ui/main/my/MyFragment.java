@@ -1,13 +1,5 @@
 package com.github.lany192.box.sample.ui.main.my;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.alibaba.android.arouter.AppRouter;
 import com.github.lany192.arch.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
@@ -31,11 +23,9 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
                 .init();
     }
 
-    @NonNull
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel =  getFragmentViewModel(MyViewModel.class);
+    public void initView() {
+        viewModel = getFragmentViewModel(MyViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
         userViewModel.getUserInfo().observe(this, userInfo -> binding.testView.hint(userInfo.getName()));
         binding.downloadView.setOnClickListener(v -> AppRouter.get().download());
@@ -45,7 +35,6 @@ public class MyFragment extends BindingFragment<FragmentMyBinding> {
         binding.testView.setOnClickListener(v -> {
             userViewModel.setName("我是张三");
         });
-        return root;
     }
 
     private void showDialog() {

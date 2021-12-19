@@ -1,12 +1,6 @@
 package com.github.lany192.box.sample.ui.main.discover;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -36,16 +30,9 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
                 .init();
     }
 
-    @NonNull
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel =  getFragmentViewModel(DiscoverViewModel.class);
-        initView(rootView);
-        return rootView;
-    }
-
-    private void initView(View rootView) {
+    public void initView() {
+        viewModel = getFragmentViewModel(DiscoverViewModel.class);
         DiscoverAdapter adapter = new DiscoverAdapter(new ArrayList<>());
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -92,4 +79,5 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
             }
         });
     }
+
 }

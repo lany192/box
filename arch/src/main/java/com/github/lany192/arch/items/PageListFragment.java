@@ -1,12 +1,7 @@
 package com.github.lany192.arch.items;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,11 +39,10 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         return getSpanCount();
     }
 
-    @NonNull
+    @CallSuper
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = super.onCreateView(inflater, container, savedInstanceState);
-        viewModel =  getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+    public void initView() {
+        viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
 
         binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
 
@@ -106,7 +100,6 @@ public abstract class PageListFragment<VM extends PageListViewModel>
                 binderAdapter.setEmptyView(R.layout.view_loading);
             }
         });
-        return root;
     }
 
     @NonNull

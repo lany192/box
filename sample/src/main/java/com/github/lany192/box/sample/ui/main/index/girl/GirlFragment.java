@@ -1,12 +1,6 @@
 package com.github.lany192.box.sample.ui.main.index.girl;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -20,11 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
 
-    @NonNull
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = super.onCreateView(inflater, container, savedInstanceState);
-        GirlViewModel viewModel =  getFragmentViewModel(GirlViewModel.class);
+    public void initView() {
+        GirlViewModel viewModel = getFragmentViewModel(GirlViewModel.class);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         binding.recyclerView.setLayoutManager(layoutManager);
@@ -53,6 +45,5 @@ public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
 //                showContent();
             }
         });
-        return root;
     }
 }
