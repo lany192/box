@@ -1,6 +1,10 @@
 package com.github.lany192.arch.items;
 
-public interface ViewState {
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.SOURCE)
+public @interface ViewState {
     /**
      * 显示内容
      */
