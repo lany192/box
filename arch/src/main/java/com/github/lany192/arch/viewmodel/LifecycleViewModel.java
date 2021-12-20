@@ -7,8 +7,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.arch.event.NetWorkEvent;
-import com.github.lany192.arch.utils.ContextUtils;
-import com.github.lany192.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

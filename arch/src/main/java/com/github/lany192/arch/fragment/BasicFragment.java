@@ -13,7 +13,6 @@ import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.dialog.LoadingDialog;
 
 public abstract class BasicFragment extends Fragment {

@@ -15,7 +15,6 @@ import com.elvishew.xlog.XLog;
 import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.network.NetworkHelper;
-import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.dialog.LoadingDialog;
 import com.gyf.immersionbar.ImmersionBar;
 

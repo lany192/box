@@ -278,7 +278,7 @@ public class PhoneUtils {
     /**
      * 是否安装某个应用
      */
-    public static boolean isInstall(Context context,String packageName) {
+    public static boolean isInstall(Context context, String packageName) {
         final PackageManager packageManager = context.getPackageManager();
         List<PackageInfo> pi = packageManager.getInstalledPackages(0);
         if (pi != null) {

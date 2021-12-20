@@ -11,10 +11,9 @@ import com.elvishew.xlog.XLog;
  */
 public class OnDoubleClickListener implements View.OnTouchListener {
     private final String TAG = this.getClass().getSimpleName();
+    private final DoubleClickCallback mCallback;
     private int count = 0;
     private long firstClickTime = 0;
-
-    private final DoubleClickCallback mCallback;
 
     public OnDoubleClickListener(DoubleClickCallback callback) {
         super();

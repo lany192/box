@@ -19,9 +19,9 @@ abstract class BindingFragment<VB : ViewBinding> : BasicFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = getBinding(inflater, container)
-        initView();
+        initView()
         return binding.root
     }
 
-    abstract fun initView();
+    abstract fun initView()
 }
