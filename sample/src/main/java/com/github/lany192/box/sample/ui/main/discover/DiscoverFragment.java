@@ -41,11 +41,7 @@ public class DiscoverFragment extends BindingFragment<FragmentDiscoverBinding> {
         binding.recyclerView.addItemDecoration(new ItemDecoration() {
             @Override
             public Divider getDivider(int position) {
-                if (position % 2 == 0) {
-                    return new Divider().setBottomWidth(6).setLeftWidth(6);
-                } else {
-                    return new Divider().setBottomWidth(6).setRightWidth(6);
-                }
+                return new Divider().setTopWidth(2).setBottomWidth(2).setLeftWidth(2).setRightWidth(2);
             }
         });
         binding.recyclerView.setAdapter(adapter);

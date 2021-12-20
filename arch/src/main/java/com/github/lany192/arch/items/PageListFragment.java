@@ -39,16 +39,32 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         return getSpanCount();
     }
 
+    public RecyclerView.ItemDecoration getItemDecoration() {
+        return null;
+    }
+
     @CallSuper
     @Override
     public void initView() {
+        //获取ViewModel对象
         viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
 
         binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
+        binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
+            if (NetUtils.isAvailable(requireContext())) {
+                viewModel.onLoadMore();
+            } else {
+                ToastUtils.show("网络异常");
+                binderAdapter.getLoadMoreModule().loadMoreFail();
+//                showNetView();
+            }
+        });
 
         binding.recyclerView.setLayoutManager(getLayoutManager());
         binding.recyclerView.setAdapter(binderAdapter);
-
+        if (binding.recyclerView.getItemDecorationCount() < 1 && getItemDecoration() != null) {
+            binding.recyclerView.addItemDecoration(getItemDecoration());
+        }
         binding.refreshLayout.setEnableLoadMore(false);
         binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
             if (NetUtils.isAvailable(requireContext())) {
@@ -60,15 +76,11 @@ public abstract class PageListFragment<VM extends PageListViewModel>
                 binderAdapter.setEmptyView(networkView);
             }
         });
-        binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
-            if (NetUtils.isAvailable(requireContext())) {
-                viewModel.onLoadMore();
-            } else {
-                ToastUtils.show("网络异常");
-                binderAdapter.getLoadMoreModule().loadMoreFail();
-//                showNetView();
-            }
-        });
+
+
+
+
+
         viewModel.getRefreshState().observe(this, refreshing -> {
             if (!refreshing) {
                 binding.refreshLayout.finishRefresh();
@@ -94,7 +106,6 @@ public abstract class PageListFragment<VM extends PageListViewModel>
                 binderAdapter.setNewInstance(data.getItems());
             }
         });
-
         viewModel.getLoading().observe(this, loading -> {
             if (loading) {
                 binderAdapter.setEmptyView(R.layout.view_loading);
