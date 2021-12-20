@@ -13,6 +13,7 @@ import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
 import com.github.lany192.box.sample.viewmodel.UserViewModel;
+import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
 import com.github.lany192.update.manager.UpdateManager;
@@ -50,9 +51,15 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
         binding.versionView.setOnClickListener(v -> checkVersion());
         binding.cacheView.setOnClickListener(v -> {
-            CacheUtils.clean(this);
-            binding.cacheView.hint("0KB");
-            ToastUtils.show("缓存清除成功！");
+            SimpleDialog dialog = new SimpleDialog();
+            dialog.setMessage("确定要清除缓存吗？");
+            dialog.setRightButton("确定", () -> {
+                CacheUtils.clean(this);
+                binding.cacheView.hint("0KB");
+                ToastUtils.show("缓存清除成功！");
+            });
+            dialog.setLeftButton("取消", null);
+            dialog.show(this);
         });
         binding.permissionView.setOnClickListener(v -> {
             try {
