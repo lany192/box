@@ -1,13 +1,11 @@
 package com.github.lany192.box.sample.ui.main.message;
 
+import com.alibaba.android.arouter.AppRouter;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.fragment.BindingFragment;
 import com.github.lany192.arch.tab.TabAdapter;
 import com.github.lany192.arch.tab.TabItem;
 import com.github.lany192.box.sample.databinding.FragmentMessageBinding;
-import com.github.lany192.box.sample.ui.main.index.article.ArticleFragment;
-import com.github.lany192.box.sample.ui.main.index.city.CityFragment;
-import com.github.lany192.box.sample.ui.main.index.girl.GirlFragment;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
@@ -34,9 +32,9 @@ public class MessageFragment extends BindingFragment<FragmentMessageBinding> {
     public void initView() {
         viewModel = getFragmentViewModel(MessageViewModel.class);
         List<TabItem> items = new ArrayList<>();
-        items.add(new TabItem("互动", new ArticleFragment()));
-        items.add(new TabItem("系统消息", new CityFragment()));
-        items.add(new TabItem("游戏通知", new GirlFragment()));
+        items.add(new TabItem("互动", AppRouter.get().getArticle()));
+        items.add(new TabItem("系统消息", AppRouter.get().getCity()));
+        items.add(new TabItem("游戏通知", AppRouter.get().getGirl()));
 
         TabAdapter tabAdapter = new TabAdapter(requireActivity(), items);
         binding.viewpager.setAdapter(tabAdapter);
