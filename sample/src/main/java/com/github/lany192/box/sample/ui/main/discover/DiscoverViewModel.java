@@ -2,9 +2,7 @@ package com.github.lany192.box.sample.ui.main.discover;
 
 import android.os.Handler;
 
-import androidx.lifecycle.MutableLiveData;
-
-import com.github.lany192.arch.viewmodel.LifecycleViewModel;
+import com.github.lany192.arch.items.PageListViewModel;
 import com.github.lany192.box.sample.MockUtils;
 
 import java.util.ArrayList;
@@ -15,24 +13,13 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class DiscoverViewModel extends LifecycleViewModel {
-    private final MutableLiveData<List<String>> items = new MutableLiveData<>();
-
+public class DiscoverViewModel extends PageListViewModel {
     @Inject
     public DiscoverViewModel() {
-        requestCityInfo();
-    }
-
-    public MutableLiveData<List<String>> getItems() {
-        return items;
     }
 
     @Override
-    protected void onLazyLoad() {
-        requestCityInfo();
-    }
-
-    public void requestCityInfo() {
+    public void request(boolean refresh) {
         showLoading(true);
         List<String> images = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
@@ -40,11 +27,7 @@ public class DiscoverViewModel extends LifecycleViewModel {
         }
         new Handler().postDelayed(() -> {
             showLoading(false);
-            items.postValue(images);
+            resetItems(images);
         }, 1000);
-    }
-
-    public void retry() {
-        requestCityInfo();
     }
 }
