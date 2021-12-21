@@ -1,6 +1,7 @@
 package com.github.lany192.box.sample.ui.main.my;
 
 import com.alibaba.android.arouter.AppRouter;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.fragment.BindingFragment;
 import com.github.lany192.box.sample.databinding.FragmentMyBinding;
 import com.github.lany192.box.sample.viewmodel.UserViewModel;
@@ -11,6 +12,7 @@ import com.gyf.immersionbar.ImmersionBar;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
+@Route(path = "/fragment/my")
 public class MyFragment extends BindingFragment<FragmentMyBinding> {
     private MyViewModel viewModel;
     private UserViewModel userViewModel;

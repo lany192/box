@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.items.PageListFragment;
 import com.github.lany192.box.sample.data.binder.ImageBinder;
 import com.github.lany192.decoration.Divider;
@@ -12,7 +13,9 @@ import com.gyf.immersionbar.ImmersionBar;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+
 @AndroidEntryPoint
+@Route(path = "/fragment/discover")
 public class DiscoverFragment extends PageListFragment<DiscoverViewModel> {
     {
         register(new ImageBinder());

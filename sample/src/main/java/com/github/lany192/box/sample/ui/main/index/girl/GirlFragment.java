@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.fragment.BindingFragment;
 import com.github.lany192.arch.items.BinderAdapter;
 import com.github.lany192.box.sample.R;
@@ -13,6 +14,7 @@ import com.github.lany192.box.sample.databinding.FragmentGirlBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
+@Route(path = "/fragment/girl")
 public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
 
     @Override

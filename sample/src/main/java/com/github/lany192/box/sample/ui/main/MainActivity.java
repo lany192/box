@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.alibaba.android.arouter.AppRouter;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.arch.tab.TabAdapter;
@@ -14,10 +15,6 @@ import com.github.lany192.arch.tab.TabItem;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.data.bean.UserInfo;
 import com.github.lany192.box.sample.databinding.ActivityMainBinding;
-import com.github.lany192.box.sample.ui.main.discover.DiscoverFragment;
-import com.github.lany192.box.sample.ui.main.index.IndexFragment;
-import com.github.lany192.box.sample.ui.main.message.MessageFragment;
-import com.github.lany192.box.sample.ui.main.my.MyFragment;
 import com.github.lany192.box.sample.viewmodel.UserViewModel;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
@@ -63,10 +60,10 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
         });
 
         List<TabItem> items = new ArrayList<>();
-        items.add(new TabItem("首页", new IndexFragment()));
-        items.add(new TabItem("发现", new DiscoverFragment()));
-        items.add(new TabItem("消息", new MessageFragment()));
-        items.add(new TabItem("我的", new MyFragment()));
+        items.add(new TabItem("首页", AppRouter.get().getIndex()));
+        items.add(new TabItem("发现", AppRouter.get().getDiscover()));
+        items.add(new TabItem("消息", AppRouter.get().getMessage()));
+        items.add(new TabItem("我的", AppRouter.get().getMy()));
 
         binding.viewpager.setUserInputEnabled(false);
         binding.viewpager.setOffscreenPageLimit(items.size());

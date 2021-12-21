@@ -1,5 +1,6 @@
 package com.github.lany192.box.sample.ui.main.index;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.fragment.BindingFragment;
 import com.github.lany192.arch.tab.TabAdapter;
 import com.github.lany192.arch.tab.TabItem;
@@ -15,6 +16,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
+@Route(path = "/fragment/index")
 public class IndexFragment extends BindingFragment<FragmentIndexBinding> {
     private IndexViewModel viewModel;
 
