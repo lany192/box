@@ -4,11 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.BindingActivity;
+import com.github.lany192.arch.activity.ViewModelActivity;
 import com.github.lany192.arch.items.BinderAdapter;
 import com.github.lany192.box.sample.databinding.ActivityDownloadBinding;
 import com.gyf.immersionbar.ImmersionBar;
@@ -26,9 +25,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/download")
-public class DownloadActivity extends BindingActivity<ActivityDownloadBinding> {
+public class DownloadActivity extends ViewModelActivity<DownloadViewModel,ActivityDownloadBinding> {
     private final BinderAdapter binderAdapter = new BinderAdapter();
-    private DownloadViewModel viewModel;
 
     @Override
     public void initImmersionBar() {
@@ -43,7 +41,6 @@ public class DownloadActivity extends BindingActivity<ActivityDownloadBinding> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
-        viewModel = getActivityViewModel(DownloadViewModel.class);
         //全局配置
         DownloadDispatcher.setMaxParallelRunningCount(2);
         OkDownload.with().setMonitor(new DownloadMonitor() {

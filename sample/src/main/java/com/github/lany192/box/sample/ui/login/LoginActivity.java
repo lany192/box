@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.BindingActivity;
+import com.github.lany192.arch.activity.ViewModelActivity;
 import com.github.lany192.box.sample.databinding.ActivityLoginBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -13,8 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/login")
-public class LoginActivity extends BindingActivity<ActivityLoginBinding> {
-    private LoginViewModel viewModel;
+public class LoginActivity extends ViewModelActivity<LoginViewModel, ActivityLoginBinding> {
 
     @Override
     public void initImmersionBar() {
@@ -28,7 +27,6 @@ public class LoginActivity extends BindingActivity<ActivityLoginBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = getActivityViewModel(LoginViewModel.class);
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 }

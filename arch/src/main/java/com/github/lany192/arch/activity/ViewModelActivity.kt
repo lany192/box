@@ -2,14 +2,14 @@ package com.github.lany192.arch.activity
 
 import android.os.Bundle
 import androidx.annotation.CallSuper
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.arch.viewmodel.BaseViewModel
 import java.lang.reflect.ParameterizedType
 
 /**
  * ViewBinding实现基类
  */
-abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewBinding> : BindingActivity<VB>() {
+abstract class ViewModelActivity<VM : ViewModel, VB : ViewBinding> : BindingActivity<VB>() {
     lateinit var viewModel: VM
 
     @CallSuper
