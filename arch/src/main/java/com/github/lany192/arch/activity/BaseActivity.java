@@ -89,6 +89,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void initImmersionBar() {
-        ImmersionBar.with(this).transparentStatusBar().init();
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .statusBarDarkFont(true)
+                .navigationBarColor(android.R.color.white)
+                .navigationBarDarkIcon(true)
+                .init();
     }
 }

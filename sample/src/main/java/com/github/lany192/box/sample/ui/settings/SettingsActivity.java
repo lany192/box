@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import com.alibaba.android.arouter.AppRouter;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.allen.android.lib.PermissionUtils;
-import com.github.lany192.arch.activity.BindingActivity;
+import com.github.lany192.arch.activity.ViewModelActivity;
 import com.github.lany192.box.sample.R;
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding;
 import com.github.lany192.box.sample.viewmodel.UserViewModel;
@@ -26,8 +26,7 @@ import moe.feng.alipay.zerosdk.AlipayZeroSdk;
 
 @AndroidEntryPoint
 @Route(path = "/ui/settings")
-public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
-    private SettingsViewModel viewModel;
+public class SettingsActivity extends ViewModelActivity<SettingsViewModel,ActivitySettingsBinding> {
     private UserViewModel userViewModel;
 
     @Override
@@ -35,6 +34,8 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
         ImmersionBar.with(this)
                 .transparentStatusBar()
                 .statusBarDarkFont(true)
+                .navigationBarColor(android.R.color.white)
+                .navigationBarDarkIcon(true)
                 .titleBar(binding.toolbar)
                 .init();
     }
@@ -42,7 +43,6 @@ public class SettingsActivity extends BindingActivity<ActivitySettingsBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = getActivityViewModel(SettingsViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
 
         binding.cacheView.hint(CacheUtils.getCacheSize(this));

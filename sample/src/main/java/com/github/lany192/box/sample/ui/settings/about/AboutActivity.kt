@@ -1,5 +1,6 @@
 package com.github.lany192.box.sample.ui.settings.about
 
+import android.R
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -27,6 +28,8 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
         ImmersionBar.with(this)
             .transparentStatusBar()
             .statusBarDarkFont(true)
+            .navigationBarColor(R.color.white)
+            .navigationBarDarkIcon(true)
             .titleBar(binding.toolbar)
             .init()
     }
