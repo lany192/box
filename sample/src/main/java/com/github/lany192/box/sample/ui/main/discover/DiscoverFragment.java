@@ -5,18 +5,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.github.lany192.arch.databinding.FragmentPageBinding;
 import com.github.lany192.arch.items.PageListFragment;
 import com.github.lany192.box.sample.data.binder.ImageBinder;
 import com.github.lany192.decoration.Divider;
 import com.github.lany192.decoration.ItemDecoration;
 import com.gyf.immersionbar.ImmersionBar;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 
 @AndroidEntryPoint
 @Route(path = "/fragment/discover")
-public class DiscoverFragment extends PageListFragment<DiscoverViewModel> {
+public class DiscoverFragment extends PageListFragment<DiscoverViewModel, FragmentPageBinding> {
     {
         register(new ImageBinder());
     }
@@ -34,6 +36,16 @@ public class DiscoverFragment extends PageListFragment<DiscoverViewModel> {
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         return layoutManager;
+    }
+
+    @Override
+    public SmartRefreshLayout getRefreshLayout() {
+        return binding.refreshLayout;
+    }
+
+    @Override
+    public RecyclerView getRecyclerView() {
+        return binding.recyclerView;
     }
 
     @Override

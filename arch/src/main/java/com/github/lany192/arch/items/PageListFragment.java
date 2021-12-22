@@ -4,19 +4,19 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.databinding.FragmentPageBinding;
 import com.github.lany192.arch.fragment.ViewModelFragment;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.view.EmptyView;
 import com.github.lany192.arch.view.ErrorView;
 import com.github.lany192.arch.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
-import com.hjq.toast.ToastUtils;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
-public abstract class PageListFragment<VM extends PageListViewModel>
-        extends ViewModelFragment<VM,FragmentPageBinding> {
+public abstract class PageListFragment<VM extends PageListViewModel,VB extends ViewBinding>
+        extends ViewModelFragment<VM,VB> {
     private final BinderAdapter binderAdapter = new BinderAdapter();
 
     public RecyclerView.LayoutManager getLayoutManager() {
@@ -40,38 +40,25 @@ public abstract class PageListFragment<VM extends PageListViewModel>
     public RecyclerView.ItemDecoration getItemDecoration() {
         return null;
     }
+    
+    public abstract SmartRefreshLayout getRefreshLayout();
+    
+    public abstract RecyclerView getRecyclerView();
 
     @CallSuper
     @Override
     public void initView() {
         super.initView();
         binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
-        binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
-            if (NetUtils.isAvailable(requireContext())) {
-                viewModel.onLoadMore();
-            } else {
-                ToastUtils.show("网络异常");
-                binderAdapter.getLoadMoreModule().loadMoreFail();
-//                showNetView();
-            }
-        });
+        binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
 
-        binding.recyclerView.setLayoutManager(getLayoutManager());
-        binding.recyclerView.setAdapter(binderAdapter);
-        if (binding.recyclerView.getItemDecorationCount() < 1 && getItemDecoration() != null) {
-            binding.recyclerView.addItemDecoration(getItemDecoration());
+        getRecyclerView().setLayoutManager(getLayoutManager());
+        getRecyclerView().setAdapter(binderAdapter);
+        if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration() != null) {
+            getRecyclerView().addItemDecoration(getItemDecoration());
         }
-        binding.refreshLayout.setEnableLoadMore(false);
-        binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
-            if (NetUtils.isAvailable(requireContext())) {
-                viewModel.onRefresh();
-            } else {
-                binding.refreshLayout.finishRefresh();
-                NetworkView networkView = getNetworkView();
-                networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                binderAdapter.setEmptyView(networkView);
-            }
-        });
+        getRefreshLayout().setEnableLoadMore(false);
+        getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
                 case CONTENT:
@@ -99,23 +86,26 @@ public abstract class PageListFragment<VM extends PageListViewModel>
         viewModel.getListState().observe(this, state -> {
             switch (state) {
                 case STOP_REQUEST:
-                    binding.refreshLayout.finishRefresh();
+                    getRefreshLayout().finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreFail();
                     break;
                 case REFRESHING:
                     break;
                 case REFRESH_FINISH:
-                    binding.refreshLayout.finishRefresh();
+                    getRefreshLayout().finishRefresh();
                     break;
                 case MORE_LOADING:
                     break;
                 case MORE_LOAD_END:
+                    getRefreshLayout().finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreEnd();
                     break;
                 case MORE_LOAD_ERROR:
+                    getRefreshLayout().finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreFail();
                     break;
                 case MORE_LOAD_FINISH:
+                    getRefreshLayout().finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreComplete();
                     break;
             }

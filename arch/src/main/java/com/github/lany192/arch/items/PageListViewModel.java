@@ -3,7 +3,10 @@ package com.github.lany192.arch.items;
 import androidx.annotation.CallSuper;
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.lany192.arch.utils.ContextUtils;
+import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.viewmodel.LifecycleViewModel;
+import com.github.lany192.utils.NetUtils;
 
 import java.util.List;
 
@@ -81,6 +84,9 @@ public abstract class PageListViewModel extends LifecycleViewModel {
     @SuppressWarnings("unchecked")
     public void resetItems(List<?> items) {
         this.pageLiveData.setItems((List<Object>) items);
+        if (ListUtils.isEmpty(items)) {
+            this.showViewState(ViewState.EMPTY);
+        }
     }
 
     /**
@@ -91,6 +97,9 @@ public abstract class PageListViewModel extends LifecycleViewModel {
     @SuppressWarnings("unchecked")
     public void addItems(List<?> items) {
         this.pageLiveData.addItems((List<Object>) items);
+        if (ListUtils.isEmpty(items)) {
+            this.showListState(ListState.MORE_LOAD_END);
+        }
     }
 
     /**
@@ -98,8 +107,13 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      */
     public void onRefresh() {
         listState.postValue(ListState.REFRESHING);
-        page = 1;
-        request(true);
+        if (NetUtils.isAvailable(ContextUtils.getContext())) {
+            page = 1;
+            request(true);
+        } else {
+            showViewState(ViewState.NETWORK);
+            listState.postValue(ListState.STOP_REQUEST);
+        }
     }
 
     /**
@@ -107,8 +121,13 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      */
     public void onLoadMore() {
         listState.postValue(ListState.MORE_LOADING);
-        page += 1;
-        request(false);
+        if (NetUtils.isAvailable(ContextUtils.getContext())) {
+            page += 1;
+            request(false);
+        } else {
+            showViewState(ViewState.NETWORK);
+            listState.postValue(ListState.STOP_REQUEST);
+        }
     }
 
     public abstract void request(boolean refresh);

@@ -16,7 +16,6 @@ import com.github.lany192.arch.view.ErrorView;
 import com.github.lany192.arch.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
 import com.gyf.immersionbar.ImmersionBar;
-import com.hjq.toast.ToastUtils;
 
 public abstract class PageListActivity<VM extends PageListViewModel> extends ViewModelActivity<VM, ActivityPageBinding> {
     private final BinderAdapter binderAdapter = new BinderAdapter();
@@ -58,25 +57,8 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Vie
         binding.recyclerView.setAdapter(binderAdapter);
 
         binding.refreshLayout.setEnableLoadMore(false);
-        binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
-            if (NetUtils.isAvailable(this)) {
-                viewModel.onRefresh();
-            } else {
-                binding.refreshLayout.finishRefresh();
-                NetworkView networkView = getNetworkView();
-                networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                binderAdapter.setEmptyView(networkView);
-            }
-        });
-        binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
-            if (NetUtils.isAvailable(this)) {
-                viewModel.onLoadMore();
-            } else {
-                ToastUtils.show("网络异常");
-                binderAdapter.getLoadMoreModule().loadMoreFail();
-//                showNetView();
-            }
-        });
+        binding.refreshLayout.setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
+        binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
                 case CONTENT:
@@ -115,12 +97,15 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Vie
                 case MORE_LOADING:
                     break;
                 case MORE_LOAD_END:
+                    binding.refreshLayout.finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreEnd();
                     break;
                 case MORE_LOAD_ERROR:
+                    binding.refreshLayout.finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreFail();
                     break;
                 case MORE_LOAD_FINISH:
+                    binding.refreshLayout.finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreComplete();
                     break;
             }
