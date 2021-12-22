@@ -42,8 +42,8 @@ public class SimpleDialog extends BasicDialog {
     private int gravity = Gravity.CENTER;
     @ColorInt
     private int mTitleColor = Color.BLACK;
-    private float titleSize = 17;
-    private float mMsgTextSize = 15;
+    private float titleSize = 18;
+    private float mMsgTextSize = 16;
     @ColorInt
     private int mRightTextColor = 0;
     @ColorInt
