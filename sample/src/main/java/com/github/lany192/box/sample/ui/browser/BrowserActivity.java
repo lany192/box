@@ -23,6 +23,8 @@ public class BrowserActivity extends BindingActivity<ActivityBrowserBinding> {
         ImmersionBar.with(this)
                 .transparentStatusBar()
                 .statusBarDarkFont(true)
+                .navigationBarColor(android.R.color.white)
+                .navigationBarDarkIcon(true)
                 .titleBar(binding.toolbar)
                 .init();
     }

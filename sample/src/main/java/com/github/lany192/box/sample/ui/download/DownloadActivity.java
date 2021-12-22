@@ -33,6 +33,8 @@ public class DownloadActivity extends ViewModelActivity<DownloadViewModel,Activi
         ImmersionBar.with(this)
                 .transparentStatusBar()
                 .statusBarDarkFont(true)
+                .navigationBarColor(android.R.color.white)
+                .navigationBarDarkIcon(true)
                 .titleBar(binding.toolbar)
                 .init();
     }

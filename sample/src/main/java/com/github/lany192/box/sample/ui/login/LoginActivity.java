@@ -20,6 +20,8 @@ public class LoginActivity extends ViewModelActivity<LoginViewModel, ActivityLog
         ImmersionBar.with(this)
                 .transparentStatusBar()
                 .statusBarDarkFont(true)
+                .navigationBarColor(android.R.color.white)
+                .navigationBarDarkIcon(true)
                 .titleBar(binding.toolbar)
                 .init();
     }
