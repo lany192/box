@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.databinding.FragmentPageBinding;
-import com.github.lany192.arch.fragment.BindingFragment;
+import com.github.lany192.arch.fragment.ViewModelFragment;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.view.EmptyView;
 import com.github.lany192.arch.view.ErrorView;
@@ -15,12 +15,9 @@ import com.github.lany192.arch.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
 import com.hjq.toast.ToastUtils;
 
-import java.lang.reflect.ParameterizedType;
-
 public abstract class PageListFragment<VM extends PageListViewModel>
-        extends BindingFragment<FragmentPageBinding> {
+        extends ViewModelFragment<VM,FragmentPageBinding> {
     private final BinderAdapter binderAdapter = new BinderAdapter();
-    protected VM viewModel;
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
@@ -47,9 +44,7 @@ public abstract class PageListFragment<VM extends PageListViewModel>
     @CallSuper
     @Override
     public void initView() {
-        //获取ViewModel对象
-        viewModel = getFragmentViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
-
+        super.initView();
         binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
         binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
             if (NetUtils.isAvailable(requireContext())) {

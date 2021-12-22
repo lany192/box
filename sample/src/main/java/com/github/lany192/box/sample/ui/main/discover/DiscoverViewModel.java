@@ -26,9 +26,9 @@ public class DiscoverViewModel extends PageListViewModel {
         if (refresh) {
             count = 0;
         }
-        if (count < 2) {
+        if (count < 5) {
             List<String> images = new ArrayList<>();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 5; i++) {
                 images.add(MockUtils.getImageUrl());
             }
             new Handler().postDelayed(() -> {

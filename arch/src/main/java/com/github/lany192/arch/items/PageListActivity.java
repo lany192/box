@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.activity.BindingActivity;
+import com.github.lany192.arch.activity.ViewModelActivity;
 import com.github.lany192.arch.databinding.ActivityPageBinding;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.view.EmptyView;
@@ -18,11 +18,8 @@ import com.github.lany192.utils.NetUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 
-import java.lang.reflect.ParameterizedType;
-
-public abstract class PageListActivity<VM extends PageListViewModel> extends BindingActivity<ActivityPageBinding> {
+public abstract class PageListActivity<VM extends PageListViewModel> extends ViewModelActivity<VM, ActivityPageBinding> {
     private final BinderAdapter binderAdapter = new BinderAdapter();
-    protected VM viewModel;
 
     @Override
     public void initImmersionBar() {
@@ -53,9 +50,6 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = getActivityViewModel((Class<VM>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
-
-
         binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));

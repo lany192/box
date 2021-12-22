@@ -10,7 +10,7 @@ import com.github.lany192.arch.binding.getBinding
 /**
  * ViewBinding实现基类
  */
-abstract class BindingFragment<VB : ViewBinding> : BasicFragment() {
+abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
     lateinit var binding: VB
 
     override fun onCreateView(

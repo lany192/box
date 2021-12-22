@@ -15,7 +15,7 @@ import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.R;
 import com.github.lany192.dialog.LoadingDialog;
 
-public abstract class BasicFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
     protected Logger.Builder log = XLog.tag(getClass().getName());
     private LoadingDialog loadingDialog;
 
