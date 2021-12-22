@@ -23,7 +23,6 @@ public class CityViewModel extends PageListViewModel {
 
     @Override
     public void request(boolean refresh) {
-        showLoading(true);
         apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
 
             @Override
@@ -35,12 +34,10 @@ public class CityViewModel extends PageListViewModel {
                     addItems(items);
                     finishLoadMore();
                 }
-                showLoading(false);
             }
 
             @Override
             public void onFailure(String msg, int code) {
-                showLoading(false);
                 ToastUtils.show(msg);
                 finishRequest();
             }

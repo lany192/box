@@ -2,6 +2,7 @@ package com.github.lany192.box.sample.ui.main.my;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.lany192.arch.items.ViewState;
 import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.box.sample.data.api.ApiCallback;
 import com.github.lany192.box.sample.data.api.ApiService;
@@ -35,18 +36,16 @@ public class MyViewModel extends LifecycleViewModel {
 
     public void requestCityInfo() {
         log.i("请求城市数据接口");
-        showLoading(true);
+        showViewState(ViewState.LOADING);
         apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
 
             @Override
             public void onSuccess(String msg, List<Area> areas) {
-                showLoading(false);
                 items.postValue(areas);
             }
 
             @Override
             public void onFailure(String msg, int code) {
-                showLoading(false);
                 ToastUtils.show(msg);
             }
         });

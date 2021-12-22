@@ -12,6 +12,7 @@ import com.github.lany192.arch.activity.BindingActivity;
 import com.github.lany192.arch.databinding.ActivityPageBinding;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.view.EmptyView;
+import com.github.lany192.arch.view.ErrorView;
 import com.github.lany192.arch.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
 import com.gyf.immersionbar.ImmersionBar;
@@ -82,25 +83,32 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
 //                showNetView();
             }
         });
-        viewModel.getUiState().observe(this, state -> {
-            switch (state){
+        viewModel.getViewState().observe(this, state -> {
+            switch (state) {
                 case CONTENT:
                     break;
                 case ERROR:
+                    binderAdapter.setEmptyView(getErrorView());
                     break;
                 case EMPTY:
-                    EmptyView emptyView = getEmptyView();
-                    emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                    binderAdapter.setEmptyView(emptyView);
+                    binderAdapter.setEmptyView(getEmptyView());
                     break;
                 case LOADING:
                     binderAdapter.setEmptyView(R.layout.view_loading);
                     break;
                 case NETWORK:
-                    NetworkView networkView = getNetworkView();
-                    networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                    binderAdapter.setEmptyView(networkView);
+                    binderAdapter.setEmptyView(getNetworkView());
                     break;
+                case SHOW_LOADING_DIALOG:
+                    showLoadingDialog();
+                    break;
+                case CANCEL_LOADING_DIALOG:
+                    cancelLoadingDialog();
+                    break;
+            }
+        });
+        viewModel.getListState().observe(this, state -> {
+            switch (state) {
                 case STOP_REQUEST:
                     binding.refreshLayout.finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreFail();
@@ -138,27 +146,32 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
                 binderAdapter.setNewInstance(data.getItems());
             }
         });
-        viewModel.getLoading().observe(this, loading -> {
-            if (loading) {
-                binderAdapter.setEmptyView(R.layout.view_loading);
-            }
-        });
+    }
+
+    @NonNull
+    public ErrorView getErrorView() {
+        ErrorView view = new ErrorView(this);
+        view.setMessage("未知错误");
+        view.setHint("重新点击试试");
+        view.setOnRetryListener(() -> viewModel.onLazyLoad());
+        return view;
     }
 
     @NonNull
     public EmptyView getEmptyView() {
-        EmptyView emptyView = new EmptyView(this);
-        emptyView.setMessage("没有发现数据");
-        emptyView.setHint("重新点击试试");
-        return emptyView;
+        EmptyView view = new EmptyView(this);
+        view.setMessage("没有发现数据");
+        view.setHint("重新点击试试");
+        view.setOnRetryListener(() -> viewModel.onLazyLoad());
+        return view;
     }
 
     @NonNull
     public NetworkView getNetworkView() {
-        NetworkView networkView = new NetworkView(this);
-        networkView.setMessage("当前网络异常");
-        networkView.setHint("重新点击试试");
-        networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
-        return networkView;
+        NetworkView view = new NetworkView(this);
+        view.setMessage("当前网络异常");
+        view.setHint("重新点击试试");
+        view.setOnRetryListener(() -> viewModel.onLazyLoad());
+        return view;
     }
 }

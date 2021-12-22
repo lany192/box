@@ -1,11 +1,6 @@
 package com.github.lany192.arch.items;
 
-public enum UIState {
-    CONTENT("内容"),
-    ERROR("错误"),
-    EMPTY("空数据"),
-    LOADING("加载"),
-    NETWORK("无网络"),
+public enum ListState {
     STOP_REQUEST("停止请求"),
     REFRESHING("正在刷新"),
     REFRESH_FINISH("刷新完成"),
@@ -16,7 +11,7 @@ public enum UIState {
 
     private final String title;
 
-    UIState(String title) {
+    ListState(String title) {
         this.title = title;
     }
 

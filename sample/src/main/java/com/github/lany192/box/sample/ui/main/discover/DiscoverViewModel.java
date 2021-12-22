@@ -2,8 +2,8 @@ package com.github.lany192.box.sample.ui.main.discover;
 
 import android.os.Handler;
 
+import com.github.lany192.arch.items.ListState;
 import com.github.lany192.arch.items.PageListViewModel;
-import com.github.lany192.arch.items.UIState;
 import com.github.lany192.box.sample.MockUtils;
 
 import java.util.ArrayList;
@@ -27,13 +27,11 @@ public class DiscoverViewModel extends PageListViewModel {
             count = 0;
         }
         if (count < 2) {
-            showLoading(true);
             List<String> images = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 images.add(MockUtils.getImageUrl());
             }
             new Handler().postDelayed(() -> {
-                showLoading(false);
                 if (refresh) {
                     resetItems(images);
                     finishRefresh();
@@ -44,7 +42,7 @@ public class DiscoverViewModel extends PageListViewModel {
                 count++;
             }, 3000);
         } else {
-            changeState(UIState.MORE_LOAD_END);
+            showListState(ListState.MORE_LOAD_END);
         }
 
     }

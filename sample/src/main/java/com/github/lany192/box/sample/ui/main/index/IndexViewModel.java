@@ -35,18 +35,15 @@ public class IndexViewModel extends LifecycleViewModel {
 
     public void requestCityInfo() {
         log.i("请求城市数据接口");
-        showLoading(true);
         apiService.cityInfo().subscribe(new ApiCallback<List<Area>>() {
 
             @Override
             public void onSuccess(String msg, List<Area> areas) {
-                showLoading(false);
                 items.postValue(areas);
             }
 
             @Override
             public void onFailure(String msg, int code) {
-                showLoading(false);
                 ToastUtils.show(msg);
             }
         });

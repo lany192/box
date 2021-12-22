@@ -4,13 +4,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BindingActivity
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
 import com.gyf.immersionbar.ImmersionBar
-import com.hjq.toast.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 import de.psdev.licensesdialog.LicensesDialog
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20
@@ -36,12 +34,6 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.toolbar.setNavigationOnClickListener { finish() }
-        //
-        viewModel.loading.observe(this, Observer { it ->
-            //是是是
-            ToastUtils.show(it)
-        })
-
         binding.licenceView.setOnClickListener { showLicensesDialog() }
         binding.marketView.setOnClickListener { gotoMarket() }
         binding.privacyView.setOnClickListener {

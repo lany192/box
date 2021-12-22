@@ -7,23 +7,24 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.arch.event.NetWorkEvent;
+import com.github.lany192.arch.items.ViewState;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycleObserver {
-    private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
+    private final MutableLiveData<ViewState> viewState = new MutableLiveData<>(ViewState.LOADING);
     /**
      * 是否执行过懒加载
      */
     private boolean lazyLoaded;
 
-    public MutableLiveData<Boolean> getLoading() {
-        return loading;
+    public MutableLiveData<ViewState> getViewState() {
+        return viewState;
     }
 
-    public void showLoading(boolean show) {
-        loading.postValue(show);
+    public void showViewState(ViewState state) {
+        viewState.postValue(state);
     }
 
     /**
