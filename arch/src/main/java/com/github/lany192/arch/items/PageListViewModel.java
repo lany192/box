@@ -33,22 +33,36 @@ public abstract class PageListViewModel extends LifecycleViewModel {
         return listState;
     }
 
-    public void showListState(ListState listState){
+    public void showListState(ListState listState) {
         this.listState.postValue(listState);
     }
 
-   /**
-     * 结束刷新请求
+    /**
+     * 没有更多加载
      */
-    public void finishRefresh() {
-        listState.postValue(ListState.REFRESH_FINISH);
+    public void moreLoadEnd() {
+        listState.postValue(ListState.MORE_LOAD_END);
+    }
+
+    /**
+     * 更多加载失败
+     */
+    public void moreLoadError() {
+        listState.postValue(ListState.MORE_LOAD_ERROR);
     }
 
     /**
      * 结束加载更多
      */
-    public void finishLoadMore() {
+    public void moreLoadFinish() {
         listState.postValue(ListState.MORE_LOAD_FINISH);
+    }
+
+    /**
+     * 结束刷新请求
+     */
+    public void refreshFinish() {
+        listState.postValue(ListState.REFRESH_FINISH);
     }
 
     /**

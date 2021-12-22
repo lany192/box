@@ -24,10 +24,10 @@ class ArticleViewModel @Inject constructor() : PageListViewModel() {
                     }else{
                         if (refresh) {
                             resetItems(result.datas)
-                            finishRefresh()
+                            refreshFinish()
                         } else {
                             addItems(result.datas)
-                            finishLoadMore()
+                            moreLoadFinish()
                         }
                     }
                 }

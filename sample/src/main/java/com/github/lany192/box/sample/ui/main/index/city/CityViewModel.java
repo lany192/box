@@ -29,10 +29,10 @@ public class CityViewModel extends PageListViewModel {
             public void onSuccess(String msg, List<Area> items) {
                 if (refresh) {
                     resetItems(items);
-                    finishRefresh();
+                    refreshFinish();
                 } else {
                     addItems(items);
-                    finishLoadMore();
+                    moreLoadFinish();
                 }
             }
 

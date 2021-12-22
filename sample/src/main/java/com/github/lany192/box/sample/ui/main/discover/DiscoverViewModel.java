@@ -2,7 +2,6 @@ package com.github.lany192.box.sample.ui.main.discover;
 
 import android.os.Handler;
 
-import com.github.lany192.arch.items.ListState;
 import com.github.lany192.arch.items.PageListViewModel;
 import com.github.lany192.box.sample.MockUtils;
 
@@ -34,15 +33,15 @@ public class DiscoverViewModel extends PageListViewModel {
             new Handler().postDelayed(() -> {
                 if (refresh) {
                     resetItems(images);
-                    finishRefresh();
+                    refreshFinish();
                 } else {
                     addItems(images);
-                    finishLoadMore();
+                    moreLoadFinish();
                 }
                 count++;
             }, 3000);
         } else {
-            showListState(ListState.MORE_LOAD_END);
+            moreLoadEnd();
         }
 
     }
