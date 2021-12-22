@@ -6,8 +6,13 @@ public enum UIState {
     EMPTY("空数据"),
     LOADING("加载"),
     NETWORK("无网络"),
-    REFRESH("刷新"),
-    LOAD_MORE("加载更多");
+    REQUEST_ERROR("请求错误"),
+    REFRESHING("正在刷新"),
+    REFRESH_FINISH("刷新完成"),
+    MORE_LOADING("更多加载中"),
+    MORE_END("更多加载结束"),
+    MORE_ERROR("加载更多异常"),
+    MORE_FINISH("加载更多完成");
 
     private final String title;
 
