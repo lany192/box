@@ -5,9 +5,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.databinding.FragmentPageBinding;
 import com.github.lany192.arch.items.PageListFragment;
 import com.github.lany192.box.sample.data.binder.ImageBinder;
+import com.github.lany192.box.sample.databinding.FragmentDiscoverBinding;
 import com.github.lany192.decoration.Divider;
 import com.github.lany192.decoration.ItemDecoration;
 import com.gyf.immersionbar.ImmersionBar;
@@ -15,10 +15,9 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-
 @AndroidEntryPoint
 @Route(path = "/fragment/discover")
-public class DiscoverFragment extends PageListFragment<DiscoverViewModel, FragmentPageBinding> {
+public class DiscoverFragment extends PageListFragment<DiscoverViewModel, FragmentDiscoverBinding> {
     {
         register(new ImageBinder());
     }
@@ -28,6 +27,7 @@ public class DiscoverFragment extends PageListFragment<DiscoverViewModel, Fragme
         ImmersionBar.with(this)
                 .statusBarDarkFont(false)
                 .navigationBarColor(android.R.color.holo_red_light)
+                .titleBar(binding.toolbar)
                 .init();
     }
 
@@ -71,8 +71,5 @@ public class DiscoverFragment extends PageListFragment<DiscoverViewModel, Fragme
                 }
             }
         });
-
-
     }
-
 }
