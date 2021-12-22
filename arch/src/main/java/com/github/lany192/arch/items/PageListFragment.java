@@ -76,21 +76,48 @@ public abstract class PageListFragment<VM extends PageListViewModel>
                 binderAdapter.setEmptyView(networkView);
             }
         });
-
-
-
-
-
-        viewModel.getRefreshState().observe(this, refreshing -> {
-            if (!refreshing) {
-                binding.refreshLayout.finishRefresh();
+        viewModel.getUiState().observe(this, state -> {
+            switch (state){
+                case CONTENT:
+                    break;
+                case ERROR:
+                    break;
+                case EMPTY:
+                    EmptyView emptyView = getEmptyView();
+                    emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                    binderAdapter.setEmptyView(emptyView);
+                    break;
+                case LOADING:
+                    binderAdapter.setEmptyView(R.layout.view_loading);
+                    break;
+                case NETWORK:
+                    NetworkView networkView = getNetworkView();
+                    networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
+                    binderAdapter.setEmptyView(networkView);
+                    break;
+                case STOP_REQUEST:
+                    binding.refreshLayout.finishRefresh();
+                    binderAdapter.getLoadMoreModule().loadMoreFail();
+                    break;
+                case REFRESHING:
+                    break;
+                case REFRESH_FINISH:
+                    binding.refreshLayout.finishRefresh();
+                    break;
+                case MORE_LOADING:
+                    break;
+                case MORE_END:
+                    binderAdapter.getLoadMoreModule().loadMoreEnd();
+                    break;
+                case MORE_ERROR:
+                    binderAdapter.getLoadMoreModule().loadMoreFail();
+                    break;
+                case MORE_FINISH:
+                    binderAdapter.getLoadMoreModule().loadMoreComplete();
+                    break;
             }
         });
-        viewModel.getLoadMoreState().observe(this, moreLoading -> {
-            if (!moreLoading) {
-                binderAdapter.getLoadMoreModule().loadMoreComplete();
-            }
-        });
+
         viewModel.getItems().observe(this, data -> {
             if (ListUtils.isEmpty(data.getItems())) {
                 if (NetUtils.isAvailable(requireContext())) {
@@ -104,11 +131,6 @@ public abstract class PageListFragment<VM extends PageListViewModel>
                 }
             } else {
                 binderAdapter.setNewInstance(data.getItems());
-            }
-        });
-        viewModel.getLoading().observe(this, loading -> {
-            if (loading) {
-                binderAdapter.setEmptyView(R.layout.view_loading);
             }
         });
     }

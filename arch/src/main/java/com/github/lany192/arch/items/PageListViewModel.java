@@ -13,13 +13,10 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      */
     private final PageLiveData pageLiveData = new PageLiveData();
     /**
-     * 刷新状态监测
+     * UI状态监测
      */
-    private final MutableLiveData<Boolean> refreshState = new MutableLiveData<>();
-    /**
-     * 加载状态监测
-     */
-    private final MutableLiveData<Boolean> loadMoreState = new MutableLiveData<>();
+    private final MutableLiveData<UIState> uiState = new MutableLiveData<>(UIState.LOADING);
+
     /**
      * 页码，从1开始
      */
@@ -33,34 +30,29 @@ public abstract class PageListViewModel extends LifecycleViewModel {
         return pageLiveData;
     }
 
-    public MutableLiveData<Boolean> getRefreshState() {
-        return refreshState;
-    }
-
-    public MutableLiveData<Boolean> getLoadMoreState() {
-        return loadMoreState;
+    public MutableLiveData<UIState> getUiState() {
+        return uiState;
     }
 
     /**
      * 结束刷新请求
      */
     public void finishRefresh() {
-        this.refreshState.postValue(false);
+        uiState.postValue(UIState.REFRESH_FINISH);
     }
 
     /**
      * 结束加载更多
      */
     public void finishLoadMore() {
-        this.loadMoreState.postValue(false);
+        uiState.postValue(UIState.MORE_FINISH);
     }
 
     /**
      * 异常停止请求
      */
     public void finishRequest() {
-        this.refreshState.postValue(false);
-        this.loadMoreState.postValue(false);
+        uiState.postValue(UIState.STOP_REQUEST);
         this.pageLiveData.stopRequest();
     }
 
@@ -88,7 +80,7 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      * 刷新列表
      */
     public void onRefresh() {
-        refreshState.postValue(true);
+        uiState.postValue(UIState.REFRESHING);
         page = 1;
         request(true);
     }
@@ -97,7 +89,7 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      * 加载更多
      */
     public void onLoadMore() {
-        loadMoreState.postValue(true);
+        uiState.postValue(UIState.MORE_LOADING);
         page += 1;
         request(false);
     }

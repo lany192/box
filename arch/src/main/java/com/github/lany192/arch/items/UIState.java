@@ -6,7 +6,7 @@ public enum UIState {
     EMPTY("空数据"),
     LOADING("加载"),
     NETWORK("无网络"),
-    REQUEST_ERROR("请求错误"),
+    STOP_REQUEST("停止请求"),
     REFRESHING("正在刷新"),
     REFRESH_FINISH("刷新完成"),
     MORE_LOADING("更多加载中"),
