@@ -112,13 +112,13 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Bin
                     break;
                 case MORE_LOADING:
                     break;
-                case MORE_END:
+                case MORE_LOAD_END:
                     binderAdapter.getLoadMoreModule().loadMoreEnd();
                     break;
-                case MORE_ERROR:
+                case MORE_LOAD_ERROR:
                     binderAdapter.getLoadMoreModule().loadMoreFail();
                     break;
-                case MORE_FINISH:
+                case MORE_LOAD_FINISH:
                     binderAdapter.getLoadMoreModule().loadMoreComplete();
                     break;
             }

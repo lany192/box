@@ -34,7 +34,11 @@ public abstract class PageListViewModel extends LifecycleViewModel {
         return uiState;
     }
 
-    /**
+    public void changeState(UIState state){
+        uiState.postValue(state);
+    }
+
+   /**
      * 结束刷新请求
      */
     public void finishRefresh() {
@@ -45,7 +49,7 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      * 结束加载更多
      */
     public void finishLoadMore() {
-        uiState.postValue(UIState.MORE_FINISH);
+        uiState.postValue(UIState.MORE_LOAD_FINISH);
     }
 
     /**
