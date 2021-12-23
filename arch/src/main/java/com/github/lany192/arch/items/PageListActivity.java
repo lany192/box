@@ -6,27 +6,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.activity.ViewModelActivity;
-import com.github.lany192.arch.databinding.ActivityPageBinding;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.view.EmptyView;
 import com.github.lany192.arch.view.ErrorView;
 import com.github.lany192.arch.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
-import com.gyf.immersionbar.ImmersionBar;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
-public abstract class PageListActivity<VM extends PageListViewModel> extends ViewModelActivity<VM, ActivityPageBinding> {
+public abstract class PageListActivity<VM extends PageListViewModel, VB extends ViewBinding> extends ViewModelActivity<VM, VB> {
     private final BinderAdapter binderAdapter = new BinderAdapter();
 
-    @Override
-    public void initImmersionBar() {
-        ImmersionBar.with(this)
-                .transparentStatusBar()
-                .titleBar(binding.toolbar)
-                .init();
-    }
+    public abstract SmartRefreshLayout getRefreshLayout();
+
+    public abstract RecyclerView getRecyclerView();
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(this, getSpanCount());
@@ -49,15 +45,15 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Vie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
+//        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
 
-        binding.recyclerView.setLayoutManager(getLayoutManager());
-        binding.recyclerView.setAdapter(binderAdapter);
+        getRecyclerView().setLayoutManager(getLayoutManager());
+        getRecyclerView().setAdapter(binderAdapter);
 
-        binding.refreshLayout.setEnableLoadMore(false);
-        binding.refreshLayout.setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
+        getRefreshLayout().setEnableLoadMore(false);
+        getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
         binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
@@ -86,26 +82,26 @@ public abstract class PageListActivity<VM extends PageListViewModel> extends Vie
         viewModel.getListState().observe(this, state -> {
             switch (state) {
                 case STOP_REQUEST:
-                    binding.refreshLayout.finishRefresh();
+                    getRefreshLayout().finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreFail();
                     break;
                 case REFRESHING:
                     break;
                 case REFRESH_FINISH:
-                    binding.refreshLayout.finishRefresh();
+                    getRefreshLayout().finishRefresh();
                     break;
                 case MORE_LOADING:
                     break;
                 case MORE_LOAD_END:
-                    binding.refreshLayout.finishRefresh();
+                    getRefreshLayout().finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreEnd();
                     break;
                 case MORE_LOAD_ERROR:
-                    binding.refreshLayout.finishRefresh();
+                    getRefreshLayout().finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreFail();
                     break;
                 case MORE_LOAD_FINISH:
-                    binding.refreshLayout.finishRefresh();
+                    getRefreshLayout().finishRefresh();
                     binderAdapter.getLoadMoreModule().loadMoreComplete();
                     break;
             }
