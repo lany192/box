@@ -1,6 +1,6 @@
-package com.github.lany192.arch.items;
+package com.github.lany192.arch.items
 
-public enum ListState {
+enum class ListState(val title: String) {
     STOP_REQUEST("停止请求"),
     REFRESHING("正在刷新"),
     REFRESH_FINISH("刷新完成"),
@@ -8,14 +8,4 @@ public enum ListState {
     MORE_LOAD_END("更多加载结束"),
     MORE_LOAD_ERROR("加载更多异常"),
     MORE_LOAD_FINISH("加载更多完成");
-
-    private final String title;
-
-    ListState(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
-    }
 }
