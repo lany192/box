@@ -55,7 +55,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
         listAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
-        //Loading对话框状态监听
+        //Loading对话框状态观察
         viewModel.getLoadingState().observe(this, show -> {
             if (show) {
                 showLoadingDialog();
@@ -63,7 +63,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
                 cancelLoadingDialog();
             }
         });
-        //页面基础状态监听
+        //页面基础状态观察
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
                 case CONTENT:
@@ -82,6 +82,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
                     break;
             }
         });
+        //列表状态观察
         viewModel.getListState().observe(this, state -> {
             switch (state) {
                 case STOP_REQUEST:

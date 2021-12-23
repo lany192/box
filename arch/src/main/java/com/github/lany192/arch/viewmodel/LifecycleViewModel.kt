@@ -1,140 +1,129 @@
-package com.github.lany192.arch.viewmodel;
+package com.github.lany192.arch.viewmodel
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.annotation.CallSuper
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.elvishew.xlog.Logger
+import com.elvishew.xlog.XLog
+import org.greenrobot.eventbus.Subscribe
+import com.github.lany192.arch.event.NetWorkEvent
+import com.github.lany192.arch.items.ViewState
+import org.greenrobot.eventbus.EventBus
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
-import com.github.lany192.arch.event.NetWorkEvent;
-import com.github.lany192.arch.items.ViewState;
+open class LifecycleViewModel : ViewModel(), DefaultLifecycleObserver {
+    @JvmField
+    protected var log: Logger.Builder = XLog.tag(javaClass.name)
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
-public class LifecycleViewModel extends ViewModel implements DefaultLifecycleObserver {
-    protected Logger.Builder log = XLog.tag(getClass().getName());
     /**
      * 观察界面基础状态
      */
-    private final MutableLiveData<ViewState> viewState = new MutableLiveData<>(ViewState.LOADING);
+    val viewState = MutableLiveData(ViewState.LOADING)
+
     /**
      * 观察对话框状态
      */
-    private final MutableLiveData<Boolean> loadingState = new MutableLiveData<>(false);
+    val loadingState = MutableLiveData(false)
+
     /**
      * 是否执行过懒加载
      */
-    private boolean lazyLoaded;
+    private var lazyLoaded = false
 
-    public MutableLiveData<ViewState> getViewState() {
-        return viewState;
+    fun showViewState(state: ViewState) {
+        viewState.postValue(state)
     }
 
-    public MutableLiveData<Boolean> getLoadingState() {
-        return loadingState;
-    }
-
-    public void showViewState(ViewState state) {
-        viewState.postValue(state);
-    }
-
-    public void showLoadingDialog() {
+    fun showLoadingDialog() {
         if (loadingState.hasActiveObservers()) {
-            loadingState.postValue(true);
+            loadingState.postValue(true)
         } else {
-            log.e("没有发现可用的观察者");
+            log.e("没有发现可用的观察者")
         }
     }
 
-    public void cancelLoadingDialog() {
+    fun cancelLoadingDialog() {
         if (loadingState.hasActiveObservers()) {
-            loadingState.postValue(false);
+            loadingState.postValue(false)
         } else {
-            log.e("没有发现可用的观察者");
+            log.e("没有发现可用的观察者")
         }
     }
 
-    public void showContentView() {
+    fun showContentView() {
         if (viewState.hasActiveObservers()) {
-            viewState.postValue(ViewState.CONTENT);
+            viewState.postValue(ViewState.CONTENT)
         } else {
-            log.e("没有发现可用的观察者");
+            log.e("没有发现可用的观察者")
         }
     }
 
-    public void showErrorView() {
+    fun showErrorView() {
         if (viewState.hasActiveObservers()) {
-            viewState.postValue(ViewState.ERROR);
+            viewState.postValue(ViewState.ERROR)
         } else {
-            log.e("没有发现可用的观察者");
+            log.e("没有发现可用的观察者")
         }
     }
 
-    public void showLoadingView() {
+    fun showLoadingView() {
         if (viewState.hasActiveObservers()) {
-            viewState.postValue(ViewState.LOADING);
+            viewState.postValue(ViewState.LOADING)
         } else {
-            log.e("没有发现可用的观察者");
+            log.e("没有发现可用的观察者")
         }
     }
 
-    public void showNetworkView() {
+    fun showNetworkView() {
         if (viewState.hasActiveObservers()) {
-            viewState.postValue(ViewState.NETWORK);
+            viewState.postValue(ViewState.NETWORK)
         } else {
-            log.e("没有发现可用的观察者");
+            log.e("没有发现可用的观察者")
         }
     }
 
-    public void showEmptyView() {
+    fun showEmptyView() {
         if (viewState.hasActiveObservers()) {
-            viewState.postValue(ViewState.EMPTY);
+            viewState.postValue(ViewState.EMPTY)
         } else {
-            log.e("没有发现可用的观察者");
+            log.e("没有发现可用的观察者")
         }
     }
 
     /**
      * 如果需要懒加载，逻辑写在这里,只被调用一次
      */
-    protected void onLazyLoad() {
-        log.i("懒加载...");
+    protected open fun onLazyLoad() {
+        log.i("懒加载...")
     }
 
     @Subscribe
-    public void onEvent(NetWorkEvent event) {
-
+    fun onEvent(event: NetWorkEvent?) {
     }
 
     @CallSuper
-    @Override
-    public void onResume(@NonNull LifecycleOwner owner) {
+    override fun onResume(owner: LifecycleOwner) {
         if (!lazyLoaded) {
-            lazyLoaded = true;
-            onLazyLoad();
+            lazyLoaded = true
+            onLazyLoad()
         }
-        log.i("onResume");
+        log.i("onResume")
     }
 
     @CallSuper
-    @Override
-    public void onCreate(@NonNull LifecycleOwner owner) {
-        log.i("onCreate");
+    override fun onCreate(owner: LifecycleOwner) {
+        log.i("onCreate")
         if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
+            EventBus.getDefault().register(this)
         }
     }
 
     @CallSuper
-    @Override
-    public void onDestroy(@NonNull LifecycleOwner owner) {
-        log.i("onDestroy");
+    override fun onDestroy(owner: LifecycleOwner) {
+        log.i("onDestroy")
         if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
+            EventBus.getDefault().unregister(this)
         }
     }
 }
