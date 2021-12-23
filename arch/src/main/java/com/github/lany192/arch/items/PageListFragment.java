@@ -15,8 +15,8 @@ import com.github.lany192.arch.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
-public abstract class PageListFragment<VM extends PageListViewModel,VB extends ViewBinding>
-        extends ViewModelFragment<VM,VB> {
+public abstract class PageListFragment<VM extends PageListViewModel, VB extends ViewBinding>
+        extends ViewModelFragment<VM, VB> {
     private final BinderAdapter binderAdapter = new BinderAdapter();
 
     public RecyclerView.LayoutManager getLayoutManager() {
@@ -40,9 +40,9 @@ public abstract class PageListFragment<VM extends PageListViewModel,VB extends V
     public RecyclerView.ItemDecoration getItemDecoration() {
         return null;
     }
-    
+
     public abstract SmartRefreshLayout getRefreshLayout();
-    
+
     public abstract RecyclerView getRecyclerView();
 
     @CallSuper
@@ -59,6 +59,15 @@ public abstract class PageListFragment<VM extends PageListViewModel,VB extends V
         }
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
+        //Loading对话框状态监听
+        viewModel.getLoadingState().observe(this, show -> {
+            if (show) {
+                showLoadingDialog();
+            } else {
+                cancelLoadingDialog();
+            }
+        });
+        //页面基础状态监听
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
                 case CONTENT:
@@ -74,12 +83,6 @@ public abstract class PageListFragment<VM extends PageListViewModel,VB extends V
                     break;
                 case NETWORK:
                     binderAdapter.setEmptyView(getNetworkView());
-                    break;
-                case SHOW_LOADING_DIALOG:
-                    showLoadingDialog();
-                    break;
-                case CANCEL_LOADING_DIALOG:
-                    cancelLoadingDialog();
                     break;
             }
         });

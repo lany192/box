@@ -55,6 +55,15 @@ public abstract class PageListActivity<VM extends PageListViewModel, VB extends 
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
         binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
+        //Loading对话框状态监听
+        viewModel.getLoadingState().observe(this, show -> {
+            if (show) {
+                showLoadingDialog();
+            } else {
+                cancelLoadingDialog();
+            }
+        });
+        //页面基础状态监听
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
                 case CONTENT:
@@ -70,12 +79,6 @@ public abstract class PageListActivity<VM extends PageListViewModel, VB extends 
                     break;
                 case NETWORK:
                     binderAdapter.setEmptyView(getNetworkView());
-                    break;
-                case SHOW_LOADING_DIALOG:
-                    showLoadingDialog();
-                    break;
-                case CANCEL_LOADING_DIALOG:
-                    cancelLoadingDialog();
                     break;
             }
         });

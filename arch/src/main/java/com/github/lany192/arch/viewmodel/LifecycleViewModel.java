@@ -13,7 +13,14 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycleObserver {
+    /**
+     * 观察界面基础状态
+     */
     private final MutableLiveData<ViewState> viewState = new MutableLiveData<>(ViewState.LOADING);
+    /**
+     * 观察对话框状态
+     */
+    private final MutableLiveData<Boolean> loadingState = new MutableLiveData<>(false);
     /**
      * 是否执行过懒加载
      */
@@ -23,16 +30,28 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
         return viewState;
     }
 
+    public MutableLiveData<Boolean> getLoadingState() {
+        return loadingState;
+    }
+
     public void showViewState(ViewState state) {
         viewState.postValue(state);
     }
 
     public void showLoadingDialog() {
-        viewState.postValue(ViewState.SHOW_LOADING_DIALOG);
+        if (loadingState.hasActiveObservers()) {
+            loadingState.postValue(true);
+        } else {
+            log.e("没有发现可用的观察者");
+        }
     }
 
     public void cancelLoadingDialog() {
-        viewState.postValue(ViewState.CANCEL_LOADING_DIALOG);
+        if (loadingState.hasActiveObservers()) {
+            loadingState.postValue(false);
+        } else {
+            log.e("没有发现可用的观察者");
+        }
     }
 
     /**
