@@ -1,8 +1,8 @@
 package com.github.lany192.box.sample.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-import com.github.lany192.arch.viewmodel.BaseViewModel;
 import com.github.lany192.box.sample.data.bean.UserInfo;
 
 import javax.inject.Inject;
@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class UserViewModel extends BaseViewModel {
+public class UserViewModel extends ViewModel {
     private final MutableLiveData<UserInfo> userInfo = new MutableLiveData<>();
 
     @Inject

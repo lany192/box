@@ -5,14 +5,18 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.github.lany192.arch.event.NetWorkEvent;
 import com.github.lany192.arch.items.ViewState;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycleObserver {
+public class LifecycleViewModel extends ViewModel implements DefaultLifecycleObserver {
+    protected Logger.Builder log = XLog.tag(getClass().getName());
     /**
      * 观察界面基础状态
      */
@@ -54,6 +58,46 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
         }
     }
 
+    public void showContentView() {
+        if (viewState.hasActiveObservers()) {
+            viewState.postValue(ViewState.CONTENT);
+        } else {
+            log.e("没有发现可用的观察者");
+        }
+    }
+
+    public void showErrorView() {
+        if (viewState.hasActiveObservers()) {
+            viewState.postValue(ViewState.ERROR);
+        } else {
+            log.e("没有发现可用的观察者");
+        }
+    }
+
+    public void showLoadingView() {
+        if (viewState.hasActiveObservers()) {
+            viewState.postValue(ViewState.LOADING);
+        } else {
+            log.e("没有发现可用的观察者");
+        }
+    }
+
+    public void showNetworkView() {
+        if (viewState.hasActiveObservers()) {
+            viewState.postValue(ViewState.NETWORK);
+        } else {
+            log.e("没有发现可用的观察者");
+        }
+    }
+
+    public void showEmptyView() {
+        if (viewState.hasActiveObservers()) {
+            viewState.postValue(ViewState.EMPTY);
+        } else {
+            log.e("没有发现可用的观察者");
+        }
+    }
+
     /**
      * 如果需要懒加载，逻辑写在这里,只被调用一次
      */
@@ -83,21 +127,6 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-    }
-
-    @Override
-    public void onStart(@NonNull LifecycleOwner owner) {
-        log.i("onStart");
-    }
-
-    @Override
-    public void onPause(@NonNull LifecycleOwner owner) {
-        log.i("onPause");
-    }
-
-    @Override
-    public void onStop(@NonNull LifecycleOwner owner) {
-        log.i("onStop");
     }
 
     @CallSuper
