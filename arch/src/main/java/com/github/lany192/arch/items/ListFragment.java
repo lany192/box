@@ -101,15 +101,15 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
                     break;
                 case MORE_LOAD_END:
                     getRefreshLayout().finishRefresh();
-                    listAdapter.getLoadMoreModule().loadMoreEnd();
+                    listAdapter.loadMoreEnd();
                     break;
                 case MORE_LOAD_ERROR:
                     getRefreshLayout().finishRefresh();
-                    listAdapter.getLoadMoreModule().loadMoreFail();
+                    listAdapter.loadMoreFail();
                     break;
                 case MORE_LOAD_FINISH:
                     getRefreshLayout().finishRefresh();
-                    listAdapter.getLoadMoreModule().loadMoreComplete();
+                    listAdapter.loadMoreComplete();
                     break;
             }
         });
