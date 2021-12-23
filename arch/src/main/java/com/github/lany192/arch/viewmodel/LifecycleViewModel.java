@@ -27,6 +27,14 @@ public class LifecycleViewModel extends BaseViewModel implements DefaultLifecycl
         viewState.postValue(state);
     }
 
+    public void showLoadingDialog() {
+        viewState.postValue(ViewState.SHOW_LOADING_DIALOG);
+    }
+
+    public void cancelLoadingDialog() {
+        viewState.postValue(ViewState.CANCEL_LOADING_DIALOG);
+    }
+
     /**
      * 如果需要懒加载，逻辑写在这里,只被调用一次
      */
