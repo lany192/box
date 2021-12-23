@@ -7,7 +7,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.BaseLoadMoreModule;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 
-public class BinderAdapter extends BaseBinderAdapter implements LoadMoreModule {
+/**
+ * 多布局适配器
+ */
+public class ListAdapter extends BaseBinderAdapter implements LoadMoreModule {
+
     @NonNull
     @Override
     public BaseLoadMoreModule addLoadMoreModule(@NonNull BaseQuickAdapter<?, ?> baseQuickAdapter) {

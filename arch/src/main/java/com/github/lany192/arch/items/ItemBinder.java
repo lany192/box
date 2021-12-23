@@ -7,6 +7,9 @@ import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder;
 
 import java.lang.reflect.ParameterizedType;
 
+/**
+ * 多类型Binder
+ */
 public abstract class ItemBinder<T, VB extends ViewBinding> extends QuickViewBindingItemBinder<T, VB> {
 
     public Class<T> getTargetClass() {

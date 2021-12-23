@@ -1,6 +1,6 @@
 package com.github.lany192.box.sample.ui.main.index.article
 
-import com.github.lany192.arch.items.PageListViewModel
+import com.github.lany192.arch.items.ListViewModel
 import com.github.lany192.arch.utils.ListUtils
 import com.github.lany192.box.sample.data.api.ApiCallback
 import com.github.lany192.box.sample.data.api.ApiService
@@ -10,7 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleViewModel @Inject constructor() : PageListViewModel() {
+class ArticleViewModel @Inject constructor() : ListViewModel() {
     @Inject
     lateinit var apiService: ApiService
 

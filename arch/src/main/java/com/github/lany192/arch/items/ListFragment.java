@@ -15,9 +15,9 @@ import com.github.lany192.arch.view.NetworkView;
 import com.github.lany192.utils.NetUtils;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
-public abstract class PageListFragment<VM extends PageListViewModel, VB extends ViewBinding>
+public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBinding>
         extends ViewModelFragment<VM, VB> {
-    private final BinderAdapter binderAdapter = new BinderAdapter();
+    private final ListAdapter listAdapter = new ListAdapter();
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
@@ -26,7 +26,7 @@ public abstract class PageListFragment<VM extends PageListViewModel, VB extends 
     }
 
     public void register(ItemBinder binder) {
-        binderAdapter.addItemBinder(binder.getTargetClass(), binder);
+        listAdapter.addItemBinder(binder.getTargetClass(), binder);
     }
 
     public int getSpanCount() {
@@ -49,11 +49,11 @@ public abstract class PageListFragment<VM extends PageListViewModel, VB extends 
     @Override
     public void initView() {
         super.initView();
-        binderAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
-        binderAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
+        listAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
+        listAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
 
         getRecyclerView().setLayoutManager(getLayoutManager());
-        getRecyclerView().setAdapter(binderAdapter);
+        getRecyclerView().setAdapter(listAdapter);
         if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration() != null) {
             getRecyclerView().addItemDecoration(getItemDecoration());
         }
@@ -73,16 +73,16 @@ public abstract class PageListFragment<VM extends PageListViewModel, VB extends 
                 case CONTENT:
                     break;
                 case ERROR:
-                    binderAdapter.setEmptyView(getErrorView());
+                    listAdapter.setEmptyView(getErrorView());
                     break;
                 case EMPTY:
-                    binderAdapter.setEmptyView(getEmptyView());
+                    listAdapter.setEmptyView(getEmptyView());
                     break;
                 case LOADING:
-                    binderAdapter.setEmptyView(R.layout.view_loading);
+                    listAdapter.setEmptyView(R.layout.view_loading);
                     break;
                 case NETWORK:
-                    binderAdapter.setEmptyView(getNetworkView());
+                    listAdapter.setEmptyView(getNetworkView());
                     break;
             }
         });
@@ -90,7 +90,7 @@ public abstract class PageListFragment<VM extends PageListViewModel, VB extends 
             switch (state) {
                 case STOP_REQUEST:
                     getRefreshLayout().finishRefresh();
-                    binderAdapter.getLoadMoreModule().loadMoreFail();
+                    listAdapter.getLoadMoreModule().loadMoreFail();
                     break;
                 case REFRESHING:
                     break;
@@ -101,15 +101,15 @@ public abstract class PageListFragment<VM extends PageListViewModel, VB extends 
                     break;
                 case MORE_LOAD_END:
                     getRefreshLayout().finishRefresh();
-                    binderAdapter.getLoadMoreModule().loadMoreEnd();
+                    listAdapter.getLoadMoreModule().loadMoreEnd();
                     break;
                 case MORE_LOAD_ERROR:
                     getRefreshLayout().finishRefresh();
-                    binderAdapter.getLoadMoreModule().loadMoreFail();
+                    listAdapter.getLoadMoreModule().loadMoreFail();
                     break;
                 case MORE_LOAD_FINISH:
                     getRefreshLayout().finishRefresh();
-                    binderAdapter.getLoadMoreModule().loadMoreComplete();
+                    listAdapter.getLoadMoreModule().loadMoreComplete();
                     break;
             }
         });
@@ -118,14 +118,14 @@ public abstract class PageListFragment<VM extends PageListViewModel, VB extends 
                 if (NetUtils.isAvailable(requireContext())) {
                     EmptyView emptyView = getEmptyView();
                     emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                    binderAdapter.setEmptyView(emptyView);
+                    listAdapter.setEmptyView(emptyView);
                 } else {
                     NetworkView networkView = getNetworkView();
                     networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                    binderAdapter.setEmptyView(networkView);
+                    listAdapter.setEmptyView(networkView);
                 }
             } else {
-                binderAdapter.setNewInstance(data.getItems());
+                listAdapter.setNewInstance(data.getItems());
             }
         });
     }

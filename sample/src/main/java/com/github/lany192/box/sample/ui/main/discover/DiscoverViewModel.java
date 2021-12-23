@@ -2,7 +2,7 @@ package com.github.lany192.box.sample.ui.main.discover;
 
 import android.os.Handler;
 
-import com.github.lany192.arch.items.PageListViewModel;
+import com.github.lany192.arch.items.ListViewModel;
 import com.github.lany192.box.sample.MockUtils;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class DiscoverViewModel extends PageListViewModel {
+public class DiscoverViewModel extends ListViewModel {
     int count;
 
     @Inject

@@ -10,11 +10,11 @@ import com.github.lany192.utils.NetUtils;
 
 import java.util.List;
 
-public abstract class PageListViewModel extends LifecycleViewModel {
+public abstract class ListViewModel extends LifecycleViewModel {
     /**
      * 列表数据集合
      */
-    private final PageLiveData pageLiveData = new PageLiveData();
+    private final ListLiveData listLiveData = new ListLiveData();
     /**
      * 列表状态监测
      */
@@ -28,8 +28,8 @@ public abstract class PageListViewModel extends LifecycleViewModel {
         return page;
     }
 
-    public PageLiveData getItems() {
-        return pageLiveData;
+    public ListLiveData getItems() {
+        return listLiveData;
     }
 
     public MutableLiveData<ListState> getListState() {
@@ -73,7 +73,7 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      */
     public void finishRequest() {
         listState.postValue(ListState.STOP_REQUEST);
-        this.pageLiveData.stopRequest();
+        this.listLiveData.stopRequest();
     }
 
     /**
@@ -83,7 +83,7 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      */
     @SuppressWarnings("unchecked")
     public void resetItems(List<?> items) {
-        this.pageLiveData.setItems((List<Object>) items);
+        this.listLiveData.setItems((List<Object>) items);
         if (ListUtils.isEmpty(items)) {
             this.showViewState(ViewState.EMPTY);
         }
@@ -96,7 +96,7 @@ public abstract class PageListViewModel extends LifecycleViewModel {
      */
     @SuppressWarnings("unchecked")
     public void addItems(List<?> items) {
-        this.pageLiveData.addItems((List<Object>) items);
+        this.listLiveData.addItems((List<Object>) items);
         if (ListUtils.isEmpty(items)) {
             this.showListState(ListState.MORE_LOAD_END);
         }

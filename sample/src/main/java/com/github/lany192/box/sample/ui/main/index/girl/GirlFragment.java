@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.fragment.BindingFragment;
-import com.github.lany192.arch.items.BinderAdapter;
+import com.github.lany192.arch.items.ListAdapter;
 import com.github.lany192.box.sample.data.binder.GirlBinder;
 import com.github.lany192.box.sample.databinding.FragmentGirlBinding;
 
@@ -36,7 +36,7 @@ public class GirlFragment extends BindingFragment<FragmentGirlBinding> {
             }
         });
 
-        BinderAdapter adapter = new BinderAdapter();
+        ListAdapter adapter = new ListAdapter();
         adapter.addItemBinder(String.class, new GirlBinder());
         binding.recyclerView.setAdapter(adapter);
         viewModel.getItems().observe(this, adapter::setList);

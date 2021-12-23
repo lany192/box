@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageLiveData extends MutableLiveData<PageLiveData> {
+public class ListLiveData extends MutableLiveData<ListLiveData> {
     private List<Object> items = new ArrayList<>();
     private boolean refresh;
 
