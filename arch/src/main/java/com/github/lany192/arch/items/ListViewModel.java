@@ -24,6 +24,13 @@ public abstract class ListViewModel extends LifecycleViewModel {
      */
     private int page = 1;
 
+    /**
+     * 是否支持加载更多
+     */
+    public boolean loadMoreEnabled() {
+        return true;
+    }
+
     public int getPage() {
         return page;
     }

@@ -4,8 +4,8 @@ ext {
             appId            : 'com.github.lany192.box.sample',
             versionCode      : 1,
             versionName      : '1.0.0',
-            minSdkVersion    : 19,
-            compileSdkVersion: 31,
+            minSdkVersion    : 21,
+            compileSdkVersion: 32,
             targetSdkVersion : 29,
     ]
     processorDependencies = [

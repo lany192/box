@@ -49,6 +49,7 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
     @Override
     public void initView() {
         super.initView();
+        listAdapter.getLoadMoreModule().setEnableLoadMore(viewModel.loadMoreEnabled());
         listAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
         listAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
 
