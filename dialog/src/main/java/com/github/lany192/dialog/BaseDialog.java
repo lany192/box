@@ -19,7 +19,7 @@ import com.github.lany192.utils.DensityUtils;
 
 import java.util.Objects;
 
-public abstract class BasicDialog extends DialogFragment {
+public abstract class BaseDialog extends DialogFragment {
     private boolean canceledOnTouchOutside = true;
     private boolean isInitLoaded;
 

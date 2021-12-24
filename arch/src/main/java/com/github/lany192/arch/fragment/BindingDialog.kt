@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.BoxApplication
 import com.github.lany192.arch.binding.getBinding
-import com.github.lany192.dialog.BasicDialog
+import com.github.lany192.dialog.BaseDialog
 
-abstract class BindingDialog<VB : ViewBinding> : BasicDialog() {
+abstract class BindingDialog<VB : ViewBinding> : BaseDialog() {
     lateinit var binding: VB
 
     override fun onCreateView(
