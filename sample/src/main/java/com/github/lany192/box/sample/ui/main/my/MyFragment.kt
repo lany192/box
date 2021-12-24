@@ -15,8 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 @Route(path = "/fragment/my")
 class MyFragment : BindingFragment<FragmentMyBinding>() {
-
-    private var viewModel: MyViewModel? = null
+    private lateinit var viewModel: MyViewModel
     private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {
