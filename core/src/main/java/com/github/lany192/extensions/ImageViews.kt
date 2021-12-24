@@ -1,4 +1,4 @@
-package com.github.lany192
+package com.github.lany192.extensions
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable

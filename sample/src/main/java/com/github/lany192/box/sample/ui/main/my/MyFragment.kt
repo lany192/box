@@ -8,7 +8,8 @@ import com.github.lany192.box.sample.data.bean.UserInfo
 import com.github.lany192.box.sample.databinding.FragmentMyBinding
 import com.github.lany192.box.sample.viewmodel.UserViewModel
 import com.github.lany192.dialog.SimpleDialog
-import com.github.lany192.load
+import com.github.lany192.extensions.load
+import com.github.lany192.extensions.setGone
 import com.gyf.immersionbar.ImmersionBar
 import dagger.hilt.android.AndroidEntryPoint
 
