@@ -1,7 +1,6 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: '../publish.gradle'
 
 android {
     compileSdk apk.compileSdkVersion
@@ -43,4 +42,3 @@ dependencies {
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:1.2.6'
     implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-brvah:1.2.6'
 }
-apply from: '../publish.gradle'
