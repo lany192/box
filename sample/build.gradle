@@ -11,11 +11,11 @@ kapt {
     }
 }
 android {
-    compileSdkVersion apk.compileSdkVersion
+    compileSdk apk.compileSdkVersion
     defaultConfig {
         applicationId apk.appId
-        minSdkVersion apk.minSdkVersion
-        targetSdkVersion apk.targetSdkVersion
+        minSdk apk.minSdkVersion
+        targetSdk apk.targetSdkVersion
         versionCode apk.versionCode
         versionName apk.versionName
         multiDexEnabled true
