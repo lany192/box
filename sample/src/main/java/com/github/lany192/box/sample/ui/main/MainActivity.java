@@ -9,7 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.alibaba.android.arouter.AppRouter;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.BindingActivity;
+import com.github.lany192.arch.activity.ViewModelActivity;
 import com.github.lany192.arch.tab.TabAdapter;
 import com.github.lany192.arch.tab.TabItem;
 import com.github.lany192.box.sample.R;
@@ -26,11 +26,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @Route(path = "/ui/main")
 @AndroidEntryPoint
-public class MainActivity extends BindingActivity<ActivityMainBinding> {
+public class MainActivity extends ViewModelActivity<MainViewModel, ActivityMainBinding> {
     // 第一次按退出的时间
     private long mLastClickTime = 0;
 
-    private MainViewModel mainViewModel;
     private UserViewModel userViewModel;
 
     @Override
@@ -41,23 +40,11 @@ public class MainActivity extends BindingActivity<ActivityMainBinding> {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainViewModel = getActivityViewModel(MainViewModel.class);
         userViewModel = getAndroidViewModel(UserViewModel.class);
 
-        userViewModel.getUserInfo().observe(this, new Observer<UserInfo>() {
-            @Override
-            public void onChanged(UserInfo userInfo) {
-                ToastUtils.show("首页：" + userInfo.getName());
-            }
-        });
+        userViewModel.getUserInfo().observe(this, userInfo -> ToastUtils.show("首页：" + userInfo.getName()));
 
         List<TabItem> items = new ArrayList<>();
         items.add(new TabItem("首页", AppRouter.get().getIndex()));
