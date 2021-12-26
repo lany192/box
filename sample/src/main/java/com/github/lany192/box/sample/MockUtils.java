@@ -52,4 +52,12 @@ public class MockUtils {
         int i = new Random().nextInt(images.size());
         return images.get(i);
     }
+
+    public static List<String> getBanners() {
+        List<String> images = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            images.add(getImageUrl());
+        }
+        return images;
+    }
 }

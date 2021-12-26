@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import com.github.lany192.arch.items.ListViewModel;
 import com.github.lany192.box.sample.MockUtils;
+import com.github.lany192.box.sample.data.bean.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,12 @@ public class DiscoverViewModel extends ListViewModel {
             count = 0;
         }
         if (count < 5) {
-            List<String> images = new ArrayList<>();
+            List<Object> images = new ArrayList<>();
+            if (refresh) {
+                for (int i = 0; i < 4; i++) {
+                    images.add(new Category(i, "分类" + i, MockUtils.getImageUrl()));
+                }
+            }
             for (int i = 0; i < 5; i++) {
                 images.add(MockUtils.getImageUrl());
             }
