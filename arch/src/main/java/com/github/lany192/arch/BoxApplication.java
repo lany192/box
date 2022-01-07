@@ -14,6 +14,7 @@ import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.github.lany192.arch.utils.ContextUtils;
 import com.github.lany192.arch.utils.PhoneUtils;
+import com.github.lany192.dialog.DialogQueueHelper;
 import com.github.lany192.kv.KVUtils;
 import com.github.lany192.log.LogFileFormat;
 import com.github.lany192.log.LogFileNameGenerator;
@@ -33,6 +34,7 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         mAppViewModelStore = new ViewModelStore();
         KVUtils.get().init(this);
         ToastUtils.init(this);
+        DialogQueueHelper.get().init(this);
         initLog();
         initCatchException();
         initRefreshView();

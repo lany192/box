@@ -2,6 +2,7 @@ package com.github.lany192.dialog;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.os.Handler;
 
 import androidx.annotation.NonNull;
@@ -13,13 +14,62 @@ import androidx.fragment.app.FragmentTransaction;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 对话框基类
  */
-public abstract class DialogFragment extends androidx.fragment.app.DialogFragment {
+public abstract class DialogFragment extends androidx.fragment.app.DialogFragment
+        implements Comparable<DialogFragment> {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
-    private boolean flag;
+    protected boolean flag;
+    /**
+     * 优先级，数值越大优先级越高，优先级仅在队列中生效
+     */
+    private int priority;
+    /**
+     * 隐藏监听器
+     */
+    private final List<DialogInterface.OnDismissListener> dismissListeners = new ArrayList<>();
+
+    @Override
+    public int compareTo(@NonNull DialogFragment other) {
+        //比较优先级
+        return other.getPriority() - getPriority();
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        for (DialogInterface.OnDismissListener listener : dismissListeners) {
+            listener.onDismiss(dialog);
+        }
+    }
+
+    /**
+     * 获取优先级
+     */
+    public int getPriority() {
+        return priority;
+    }
+
+    /**
+     * 设置优先级，优先级仅在队列中生效
+     */
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * 添加隐藏事件监听
+     */
+    public void addOnDismissListener(DialogInterface.OnDismissListener listener) {
+        if (listener != null) {
+            this.dismissListeners.add(listener);
+        }
+    }
 
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
@@ -45,7 +95,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         show(fragment.requireActivity());
     }
 
-    public void show(FragmentManager manager) {
+    private void show(FragmentManager manager) {
         show(manager, TAG);
     }
 
