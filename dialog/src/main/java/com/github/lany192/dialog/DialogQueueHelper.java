@@ -152,13 +152,16 @@ public class DialogQueueHelper {
         }
         //出队列
         currentDialog = dialogQueue.poll();
-        currentDialog.addOnDismissListener(dialog -> {
-            if (currentDialog != null) {
-                currentDialog.cancel();
-                currentDialog = null;
-            }
-            show();
-        });
-        currentDialog.show(currentActivity);
+        if (currentDialog != null) {
+            currentDialog.addOnDismissListener(dialog -> {
+                if (currentDialog != null) {
+                    currentDialog.cancel();
+                    currentDialog = null;
+                }
+                log.i("显示下一个对话框");
+                show();
+            });
+            currentDialog.show(currentActivity);
+        }
     }
 }
