@@ -34,8 +34,8 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         mAppViewModelStore = new ViewModelStore();
         KVUtils.get().init(this);
         ToastUtils.init(this);
-        DialogQueueHelper.get().init(this);
         initLog();
+        DialogQueueHelper.get().init(this);
         initCatchException();
         initRefreshView();
     }

@@ -88,10 +88,4 @@ dependencies {
     implementation project(':view')
     implementation project(':dialog')
     implementation project(':update')
-
-    //https://github.com/DylanCaiCoding/ViewBindingKTX
-    implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:1.2.6'
-    implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-nonreflection-ktx:1.2.6'
-    implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:1.2.6'
-    implementation 'com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-brvah:1.2.6'
 }
