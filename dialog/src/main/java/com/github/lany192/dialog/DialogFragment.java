@@ -24,7 +24,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         implements Comparable<DialogFragment> {
     protected final String TAG = this.getClass().getName();
     protected Logger.Builder log = XLog.tag(TAG);
-    protected boolean flag;
+    private boolean flag;
     /**
      * 优先级，数值越大优先级越高，优先级仅在队列中生效
      */
@@ -96,7 +96,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     private void show(FragmentManager manager) {
-        show(manager, TAG);
+        show(manager, TAG + toString());
     }
 
     public void cancel() {
