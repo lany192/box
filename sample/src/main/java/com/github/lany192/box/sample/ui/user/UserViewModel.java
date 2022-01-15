@@ -1,4 +1,4 @@
-package com.github.lany192.box.sample.viewmodel;
+package com.github.lany192.box.sample.ui.user;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

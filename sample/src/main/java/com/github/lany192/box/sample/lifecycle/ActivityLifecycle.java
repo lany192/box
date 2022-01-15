@@ -10,12 +10,13 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
 import com.umeng.analytics.MobclickAgent;
 
 /**
  * Activity生命周期
  */
-public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks {
+public class ActivityLifecycle implements SimpleActivityLifecycleCallbacks {
 
     private final FragmentLifecycle fragmentLifecycle = new FragmentLifecycle();
 
@@ -29,30 +30,13 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
     }
 
     @Override
-    public void onActivityStarted(@NonNull Activity activity) {
-//        XLog.tag(activity.getClass().getSimpleName()).i(" onActivityStarted()");
-    }
-
-    @Override
     public void onActivityResumed(@NonNull Activity activity) {
-//        XLog.tag(activity.getClass().getSimpleName()).i(" onActivityResumed()");
         MobclickAgent.onResume(activity);
     }
 
     @Override
     public void onActivityPaused(@NonNull Activity activity) {
-//        XLog.tag(activity.getClass().getSimpleName()).i(" onActivityPaused()");
         MobclickAgent.onPause(activity);
-    }
-
-    @Override
-    public void onActivityStopped(@NonNull Activity activity) {
-//        XLog.tag(activity.getClass().getSimpleName()).i(" onActivityStopped()");
-    }
-
-    @Override
-    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
-//        XLog.tag(activity.getClass().getSimpleName()).i(" onActivitySaveInstanceState()");
     }
 
     @Override

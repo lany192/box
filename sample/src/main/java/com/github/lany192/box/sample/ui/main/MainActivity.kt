@@ -12,7 +12,7 @@ import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.data.bean.UserInfo
 import com.github.lany192.box.sample.databinding.ActivityMainBinding
-import com.github.lany192.box.sample.viewmodel.UserViewModel
+import com.github.lany192.box.sample.ui.user.UserViewModel
 import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint

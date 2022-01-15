@@ -9,7 +9,7 @@ import com.allen.android.lib.PermissionUtils
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding
-import com.github.lany192.box.sample.viewmodel.UserViewModel
+import com.github.lany192.box.sample.ui.user.UserViewModel
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager

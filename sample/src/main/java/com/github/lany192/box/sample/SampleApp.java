@@ -15,6 +15,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.box.sample.lifecycle.ActivityLifecycle;
 import com.github.lany192.box.sample.ui.settings.about.AboutActivity;
+import com.hjq.toast.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class SampleApp extends BoxApplication {
         initARouter();
         //注册Activity生命周期监听
         registerActivityLifecycleCallbacks(new ActivityLifecycle());
+        ToastUtils.setDebugMode(BuildConfig.DEBUG);
     }
 
     private void initARouter() {
