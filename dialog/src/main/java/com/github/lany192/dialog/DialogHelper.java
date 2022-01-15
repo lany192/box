@@ -2,8 +2,10 @@ package com.github.lany192.dialog;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.elvishew.xlog.Logger;
@@ -104,6 +106,12 @@ public class DialogHelper {
 
     public void init(Application application) {
         application.registerActivityLifecycleCallbacks(new SimpleActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+                if (activity instanceof FragmentActivity) {
+                    currentActivity = new SoftReference<>((FragmentActivity) activity);
+                }
+            }
 
             @Override
             public void onActivityResumed(@NonNull Activity activity) {
