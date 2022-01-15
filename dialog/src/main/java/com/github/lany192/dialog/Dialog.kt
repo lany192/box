@@ -1,24 +1,10 @@
-package com.github.lany192.arch.binding
+package com.github.lany192.dialog
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.arch.activity.BindingActivity
-import com.github.lany192.arch.fragment.BindingFragment
-import com.github.lany192.arch.view.BindingLayout
 import java.lang.reflect.ParameterizedType
 
-internal fun <V : ViewBinding> Class<*>.getBinding(layoutInflater: LayoutInflater): V {
-    return try {
-        @Suppress("UNCHECKED_CAST")
-        getMethod(
-            "inflate",
-            LayoutInflater::class.java
-        ).invoke(null, layoutInflater) as V
-    } catch (ex: Exception) {
-        throw RuntimeException("The ViewBinding inflate function has been changed.", ex)
-    }
-}
 
 internal fun <V : ViewBinding> Class<*>.getBinding(
     layoutInflater: LayoutInflater,
@@ -66,17 +52,9 @@ internal fun Any.findClass(): Class<*> {
     return result
 }
 
-internal fun <V : ViewBinding> BindingActivity<V>.getBinding(): V {
-    return findClass().getBinding(layoutInflater)
-}
-
-internal fun <V : ViewBinding> BindingFragment<V>.getBinding(
+internal fun <V : ViewBinding> BindingDialog<V>.getBinding(
     inflater: LayoutInflater,
     container: ViewGroup?
 ): V {
     return findClass().getBinding(inflater, container)
-}
-
-internal fun <V : ViewBinding> BindingLayout<V>.getBinding(): V {
-    return findClass().getBinding(LayoutInflater.from(context))
 }

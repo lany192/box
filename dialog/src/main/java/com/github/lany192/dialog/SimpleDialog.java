@@ -6,12 +6,11 @@ import android.text.method.MovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.StringRes;
 
+import com.github.lany192.dialog.databinding.DialogSimpleBinding;
 import com.github.lany192.interfaces.OnSimpleListener;
 
 //    SimpleDialog dialog = new SimpleDialog();
@@ -29,9 +28,9 @@ import com.github.lany192.interfaces.OnSimpleListener;
 //
 //        }
 //    });
-//    dialog.show(this);
+//    dialog.show();
 
-public class SimpleDialog extends BaseDialog {
+public class SimpleDialog extends NormalDialog<DialogSimpleBinding> {
     private OnSimpleListener mOnRightListener;
     private OnSimpleListener mOnLeftListener;
     private CharSequence mTitle;
@@ -52,69 +51,59 @@ public class SimpleDialog extends BaseDialog {
     private MovementMethod movementMethod;
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.dialog_simple;
-    }
-
-    @Override
     protected void init() {
-        TextView titleText = findViewById(R.id.title);
-        TextView msgText = findViewById(R.id.content);
-        Button leftBtn = findViewById(R.id.left_button);
-        Button rightBtn = findViewById(R.id.right_button);
-        View dividerView = findViewById(R.id.divider_view);
         if (TextUtils.isEmpty(mTitle)) {
-            titleText.setVisibility(View.GONE);
+            binding.title.setVisibility(View.GONE);
         } else {
-            titleText.setText(mTitle);
-            titleText.setTextSize(titleSize);
-            titleText.setVisibility(View.VISIBLE);
-            titleText.setTextColor(mTitleColor);
+            binding.title.setText(mTitle);
+            binding.title.setTextSize(titleSize);
+            binding.title.setVisibility(View.VISIBLE);
+            binding.title.setTextColor(mTitleColor);
         }
         if (!TextUtils.isEmpty(mMessage)) {
-            msgText.setText(mMessage);
-            msgText.setGravity(gravity);
-            msgText.setTextSize(mMsgTextSize);
+            binding.content.setText(mMessage);
+            binding.content.setGravity(gravity);
+            binding.content.setTextSize(mMsgTextSize);
             if (movementMethod != null) {
-                msgText.setMovementMethod(movementMethod);
+                binding.content.setMovementMethod(movementMethod);
             } else {
-                msgText.setMovementMethod(ScrollingMovementMethod.getInstance());
+                binding.content.setMovementMethod(ScrollingMovementMethod.getInstance());
             }
         }
         if (isShowDivider) {
-            dividerView.setVisibility(View.VISIBLE);
+            binding.divider.setVisibility(View.VISIBLE);
         } else {
-            dividerView.setVisibility(View.GONE);
+            binding.divider.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(mRightText)) {
-            rightBtn.setText(mRightText);
-            rightBtn.setVisibility(View.VISIBLE);
+            binding.rightButton.setText(mRightText);
+            binding.rightButton.setVisibility(View.VISIBLE);
             if (mRightTextColor != 0) {
-                rightBtn.setTextColor(mRightTextColor);
+                binding.rightButton.setTextColor(mRightTextColor);
             }
-            rightBtn.setOnClickListener(v -> {
+            binding.rightButton.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnRightListener) {
                     mOnRightListener.onCallback();
                 }
             });
         } else {
-            rightBtn.setVisibility(View.GONE);
+            binding.rightButton.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(mLeftText)) {
-            leftBtn.setText(mLeftText);
-            leftBtn.setVisibility(View.VISIBLE);
+            binding.leftButton.setText(mLeftText);
+            binding.leftButton.setVisibility(View.VISIBLE);
             if (mLeftTextColor != 0) {
-                leftBtn.setTextColor(mLeftTextColor);
+                binding.leftButton.setTextColor(mLeftTextColor);
             }
-            leftBtn.setOnClickListener(v -> {
+            binding.leftButton.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnLeftListener) {
                     mOnLeftListener.onCallback();
                 }
             });
         } else {
-            leftBtn.setVisibility(View.GONE);
+            binding.leftButton.setVisibility(View.GONE);
         }
     }
 

@@ -2,14 +2,13 @@ package com.github.lany192.dialog;
 
 import android.app.Activity;
 import android.app.Application;
-import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
 
 import java.lang.ref.SoftReference;
 import java.util.PriorityQueue;
@@ -99,18 +98,12 @@ public class DialogHelper {
         }
     }
 
+    public void show(@NonNull DialogFragment dialog) {
+        dialog.show(currentActivity.get());
+    }
+
     public void init(Application application) {
-        application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
-
-            @Override
-            public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle bundle) {
-
-            }
-
-            @Override
-            public void onActivityStarted(@NonNull Activity activity) {
-
-            }
+        application.registerActivityLifecycleCallbacks(new SimpleActivityLifecycleCallbacks() {
 
             @Override
             public void onActivityResumed(@NonNull Activity activity) {
@@ -120,24 +113,9 @@ public class DialogHelper {
             }
 
             @Override
-            public void onActivityPaused(@NonNull Activity activity) {
-
-            }
-
-            @Override
-            public void onActivityStopped(@NonNull Activity activity) {
-
-            }
-
-            @Override
-            public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle bundle) {
-
-            }
-
-            @Override
             public void onActivityDestroyed(@NonNull Activity activity) {
-                //宿主销毁，主动注销对话框
                 if (currentDialog != null && currentDialog.requireActivity() == activity) {
+                    log.i("宿主销毁，主动注销对话框");
                     currentDialog.cancel();
                     currentDialog = null;
                 }

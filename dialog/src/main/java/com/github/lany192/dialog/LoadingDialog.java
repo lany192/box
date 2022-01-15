@@ -2,33 +2,27 @@ package com.github.lany192.dialog;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import androidx.annotation.StringRes;
+
+import com.github.lany192.dialog.databinding.DialogLoadingBinding;
 
 import java.util.Objects;
 
 /**
  * 加载对话框
  */
-public class LoadingDialog extends DialogFragment {
+public class LoadingDialog extends NormalDialog<DialogLoadingBinding> {
     private CharSequence mMessage;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_loading, null);
-        TextView textView = view.findViewById(R.id.message);
+    protected void init() {
         if (!TextUtils.isEmpty(mMessage)) {
-            textView.setText(mMessage);
+            binding.message.setText(mMessage);
         }
-        return view;
     }
 
     @Override

@@ -71,6 +71,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         }
     }
 
+    public void show() {
+        DialogHelper.get().show(this);
+    }
+
     @Override
     public void show(@NonNull FragmentManager manager, String tag) {
         if (flag || isAdded() || null != manager.findFragmentByTag(tag)) {

@@ -64,7 +64,7 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
             ToastUtils.show("缓存清除成功！")
         }
         dialog.setLeftButton("取消", null)
-        dialog.show(this)
+        dialog.show()
     }
 
     private fun permissionSetting() {
