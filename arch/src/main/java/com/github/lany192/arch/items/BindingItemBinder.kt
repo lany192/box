@@ -7,12 +7,13 @@ import com.chad.library.adapter.base.binder.BaseItemBinder
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import java.lang.reflect.ParameterizedType
 
-abstract class BindingItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, BaseViewHolder>() {
-    lateinit var binding: VB
+abstract class BindingItemBinder<T, VB : ViewBinding> :
+    BaseItemBinder<T, BindingItemBinder.BindingHolder<VB>>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        binding = getBinding(LayoutInflater.from(parent.context), parent)
-        return BaseViewHolder(binding.root)
+    class BindingHolder<VB : ViewBinding>(val binding: VB) : BaseViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<VB> {
+        return BindingHolder(getBinding(LayoutInflater.from(parent.context), parent))
     }
 
     open fun getTargetClass(): Class<T> {

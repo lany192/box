@@ -4,7 +4,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.arch.items.BindingItemBinder;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.data.bean.Area;
@@ -16,7 +15,7 @@ import com.hjq.toast.ToastUtils;
 public class AreaBinder extends BindingItemBinder<Area, ItemAreaBinding> {
 
     @Override
-    public void onClick(@NonNull BaseViewHolder holder, @NonNull View view, Area area, int position) {
+    public void onClick(@NonNull BindingHolder<ItemAreaBinding> holder, @NonNull View view, Area area, int position) {
         int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");
@@ -27,10 +26,10 @@ public class AreaBinder extends BindingItemBinder<Area, ItemAreaBinding> {
     }
 
     @Override
-    public void convert(@NonNull BaseViewHolder holder, Area item) {
+    public void convert(@NonNull BindingHolder<ItemAreaBinding> holder, Area item) {
         int count = item.getSubarea() != null ? item.getSubarea().size() : 0;
-        ImageUtils.show(binding.image, MockUtils.getImageUrl());
-        binding.title.setText(item.getName());
-        binding.desc.setText("下辖" + count + "个区/市");
+        ImageUtils.show(holder.getBinding().image, MockUtils.getImageUrl());
+        holder.getBinding().title.setText(item.getName());
+        holder.getBinding().desc.setText("下辖" + count + "个区/市");
     }
 }
