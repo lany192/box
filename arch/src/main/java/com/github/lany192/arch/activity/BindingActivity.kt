@@ -3,6 +3,7 @@ package com.github.lany192.arch.activity
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.binding.findClass
 import com.github.lany192.arch.binding.getBinding
 
 /**
@@ -14,7 +15,7 @@ abstract class BindingActivity<VB : ViewBinding> : BaseActivity() {
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = getBinding()
+        binding = findClass().getBinding(layoutInflater)
         setContentView(binding.root)
     }
 }

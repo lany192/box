@@ -42,8 +42,8 @@ class DiscoverFragment : ListFragment<DiscoverViewModel, FragmentDiscoverBinding
         return binding.recyclerView
     }
 
-    override fun initView() {
-        super.initView()
+    override fun init() {
+        super.init()
         register(ImageBinder())
         register(CategoryBinder())
         binding.recyclerView.addItemDecoration(object : ItemDecoration() {

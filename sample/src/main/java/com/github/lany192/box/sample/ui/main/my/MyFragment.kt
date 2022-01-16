@@ -25,7 +25,7 @@ class MyFragment : BindingFragment<FragmentMyBinding>() {
             .init()
     }
 
-    override fun initView() {
+    override fun init() {
         viewModel = getFragmentViewModel(MyViewModel::class.java)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(

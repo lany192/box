@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @Route(path = "/fragment/girl")
 class GirlFragment : BindingFragment<FragmentGirlBinding>() {
 
-    override fun initView() {
+    override fun init() {
         val viewModel = getFragmentViewModel(GirlViewModel::class.java)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE

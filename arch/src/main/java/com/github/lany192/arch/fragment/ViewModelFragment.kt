@@ -12,7 +12,7 @@ abstract class ViewModelFragment<VM : ViewModel, VB : ViewBinding> : BindingFrag
     lateinit var viewModel: VM
 
     @CallSuper
-    override fun initView() {
+    override fun init() {
         viewModel =
             getFragmentViewModel((javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>)
     }

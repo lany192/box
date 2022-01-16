@@ -23,7 +23,7 @@ class IndexFragment : BindingFragment<FragmentIndexBinding>() {
             .init()
     }
 
-    override fun initView() {
+    override fun init() {
         viewModel = getFragmentViewModel(IndexViewModel::class.java)
         val items: MutableList<TabItem> = ArrayList()
         items.add(TabItem("推荐", AppRouter.get().article))

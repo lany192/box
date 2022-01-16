@@ -23,8 +23,8 @@ class MessageFragment : ViewModelFragment<MessageViewModel, FragmentMessageBindi
             .init()
     }
 
-    override fun initView() {
-        super.initView()
+    override fun init() {
+        super.init()
         val items: MutableList<TabItem> = ArrayList()
         items.add(TabItem("互动", AppRouter.get().article))
         items.add(TabItem("系统消息", AppRouter.get().city))

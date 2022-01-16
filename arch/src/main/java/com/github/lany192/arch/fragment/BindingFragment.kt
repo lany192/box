@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.binding.findClass
 import com.github.lany192.arch.binding.getBinding
 
 /**
@@ -18,10 +19,10 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = getBinding(inflater, container)
-        initView()
+        binding = findClass().getBinding(inflater, container)
+        init()
         return binding.root
     }
 
-    abstract fun initView()
+    abstract fun init()
 }
