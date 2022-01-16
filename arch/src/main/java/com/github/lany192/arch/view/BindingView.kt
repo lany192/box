@@ -2,9 +2,11 @@ package com.github.lany192.arch.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.annotation.AttrRes
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.binding.findClass
 import com.github.lany192.arch.binding.getBinding
 
 /**
@@ -16,7 +18,7 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     @AttrRes defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    var binding: VB = getBinding()
+    var binding: VB = createBinding()
 
     init {
         addView(binding.root)
@@ -24,4 +26,8 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     }
 
     abstract fun init(attrs: AttributeSet?)
+
+    private fun <V : ViewBinding> createBinding(): V {
+        return findClass().getBinding(LayoutInflater.from(context))
+    }
 }

@@ -18,7 +18,10 @@ abstract class BindingDialog<VB : ViewBinding> : DialogFragment() {
         return binding.root
     }
 
-    fun <V : ViewBinding> createBinding(inflater: LayoutInflater, container: ViewGroup?): V {
+    private fun <V : ViewBinding> createBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): V {
         return findClass().getBinding(inflater, container)
     }
 }
