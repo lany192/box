@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.box.sample.databinding.ItemTaskBinding;
 import com.liulishuo.okdownload.DownloadTask;
@@ -17,8 +18,14 @@ public class TaskBinder extends ItemBinder<DownloadTask, ItemTaskBinding> {
         this.listener = listener;
     }
 
+    @NonNull
     @Override
-    public void bind(ItemTaskBinding binding, DownloadTask task, int position) {
+    public ItemTaskBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
+        return ItemTaskBinding.inflate(layoutInflater, viewGroup, false);
+    }
+
+    @Override
+    public void convert(@NonNull ItemTaskBinding binding, @NonNull BaseViewHolder holder, DownloadTask task) {
         binding.name.setText(TaskUtils.INSTANCE.getTaskName(task));
         binding.status.setText(TaskUtils.INSTANCE.getStatus(task));
         binding.speed.setText(TaskUtils.INSTANCE.getSpeed(task));
@@ -28,15 +35,9 @@ public class TaskBinder extends ItemBinder<DownloadTask, ItemTaskBinding> {
         binding.progressBar.setProgress((int) (TaskUtils.INSTANCE.getOffset(task) * 1.0f / TaskUtils.INSTANCE.getTotal(task) * 100));
         binding.action.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onClicked(task, position);
+                listener.onClicked(task, holder.getBindingAdapterPosition());
             }
         });
-    }
-
-    @NonNull
-    @Override
-    public ItemTaskBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
-        return ItemTaskBinding.inflate(layoutInflater, viewGroup, false);
     }
 
     public interface OnActionListener {

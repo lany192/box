@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.box.sample.data.bean.Category;
 import com.github.lany192.box.sample.databinding.ItemCategoryBinding;
@@ -17,15 +18,15 @@ public class CategoryBinder extends ItemBinder<Category, ItemCategoryBinding> {
         return 1;
     }
 
-    @Override
-    public void bind(ItemCategoryBinding binding, Category item, int position) {
-        ImageUtils.show(binding.image, item.getUrl());
-        binding.title.setText(item.getName());
-    }
-
     @NonNull
     @Override
     public ItemCategoryBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
         return ItemCategoryBinding.inflate(layoutInflater, viewGroup, false);
+    }
+
+    @Override
+    public void convert(@NonNull ItemCategoryBinding binding, @NonNull BaseViewHolder holder, Category item) {
+        ImageUtils.show(binding.image, item.getUrl());
+        binding.title.setText(item.getName());
     }
 }

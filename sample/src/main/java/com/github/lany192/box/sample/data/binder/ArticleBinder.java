@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.alibaba.android.arouter.AppRouter;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.utils.DateUtils;
 import com.github.lany192.box.sample.MockUtils;
@@ -18,14 +19,6 @@ import java.util.Date;
 
 public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
 
-    @Override
-    public void bind(ItemArticleBinding binding, Article article, int position) {
-        ImageUtils.show(binding.image, MockUtils.getImageUrl());
-        binding.title.setText(article.getTitle());
-        binding.desc.setText(article.getAuthor());
-        binding.time.setText(DateUtils.format(new Date(article.getPublishTime())));
-    }
-
     @NonNull
     @Override
     public ItemArticleBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
@@ -33,7 +26,15 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
     }
 
     @Override
-    public void onClick(@NonNull BinderVBHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
+    public void onClick(@NonNull BaseViewHolder holder, @NonNull View view, Article item, int position) {
         AppRouter.get().browser(item.getTitle(), item.getLink());
+    }
+
+    @Override
+    public void convert(@NonNull ItemArticleBinding binding, @NonNull BaseViewHolder holder, Article item) {
+        ImageUtils.show(binding.image, MockUtils.getImageUrl());
+        binding.title.setText(item.getTitle());
+        binding.desc.setText(item.getAuthor());
+        binding.time.setText(DateUtils.format(new Date(item.getPublishTime())));
     }
 }
