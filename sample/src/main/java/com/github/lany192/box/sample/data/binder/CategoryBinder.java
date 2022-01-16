@@ -16,7 +16,7 @@ public class CategoryBinder extends ItemBinder<Category, ItemCategoryBinding> {
     }
 
     @Override
-    public void convert(@NonNull ItemCategoryBinding binding, @NonNull BaseViewHolder holder, Category item) {
+    public void convert(@NonNull BaseViewHolder holder, Category item) {
         ImageUtils.show(binding.image, item.getUrl());
         binding.title.setText(item.getName());
     }

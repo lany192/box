@@ -13,10 +13,4 @@ abstract class BindingItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, BaseVi
         binding = getBinding(LayoutInflater.from(parent.context), parent)
         return BaseViewHolder(binding.root)
     }
-
-    override fun convert(holder: BaseViewHolder, data: T) {
-        convert(binding, holder, data)
-    }
-
-    abstract fun convert(binding: VB, holder: BaseViewHolder, item: T)
 }

@@ -32,7 +32,7 @@ public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
     }
 
     @Override
-    public void convert(@NonNull ItemAreaBinding binding, @NonNull BaseViewHolder holder, Area item) {
+    public void convert(@NonNull BaseViewHolder holder, Area item) {
         int count = item.getSubarea() != null ? item.getSubarea().size() : 0;
         ImageUtils.show(binding.image, MockUtils.getImageUrl());
         binding.title.setText(item.getName());
