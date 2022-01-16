@@ -25,7 +25,7 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
         return layoutManager;
     }
 
-    public void register(ItemBinder binder) {
+    public <T, B extends ViewBinding> void register(BindingItemBinder<T, B> binder) {
         listAdapter.addItemBinder(binder.getTargetClass(), binder);
     }
 

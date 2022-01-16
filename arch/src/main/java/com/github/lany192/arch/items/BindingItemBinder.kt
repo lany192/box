@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.chad.library.adapter.base.binder.BaseItemBinder
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import java.lang.reflect.ParameterizedType
 
 abstract class BindingItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, BaseViewHolder>() {
     lateinit var binding: VB
@@ -12,5 +13,9 @@ abstract class BindingItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, BaseVi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         binding = getBinding(LayoutInflater.from(parent.context), parent)
         return BaseViewHolder(binding.root)
+    }
+
+    open fun getTargetClass(): Class<T> {
+        return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>
     }
 }

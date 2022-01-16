@@ -3,12 +3,12 @@ package com.github.lany192.box.sample.ui.download;
 import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import com.github.lany192.arch.items.ItemBinder;
+import com.github.lany192.arch.items.BindingItemBinder;
 import com.github.lany192.box.sample.databinding.ItemTaskBinding;
 import com.liulishuo.okdownload.DownloadTask;
 import com.liulishuo.okdownload.core.Util;
 
-public class TaskBinder extends ItemBinder<DownloadTask, ItemTaskBinding> {
+public class TaskBinder extends BindingItemBinder<DownloadTask, ItemTaskBinding> {
     private final OnActionListener listener;
 
     public TaskBinder(OnActionListener listener) {

@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import com.github.lany192.arch.items.ItemBinder;
+import com.github.lany192.arch.items.BindingItemBinder;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.data.bean.Area;
 import com.github.lany192.box.sample.databinding.ItemAreaBinding;
@@ -13,12 +13,7 @@ import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ImageUtils;
 import com.hjq.toast.ToastUtils;
 
-public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
-
-    @Override
-    public int getSpanCount() {
-        return 1;
-    }
+public class AreaBinder extends BindingItemBinder<Area, ItemAreaBinding> {
 
     @Override
     public void onClick(@NonNull BaseViewHolder holder, @NonNull View view, Area area, int position) {
