@@ -1,8 +1,6 @@
 package com.github.lany192.box.sample.data.binder;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
@@ -18,12 +16,6 @@ import com.github.lany192.utils.ImageUtils;
 import java.util.Date;
 
 public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
-
-    @NonNull
-    @Override
-    public ItemArticleBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
-        return ItemArticleBinding.inflate(layoutInflater, viewGroup, false);
-    }
 
     @Override
     public void onClick(@NonNull BaseViewHolder holder, @NonNull View view, Article item, int position) {

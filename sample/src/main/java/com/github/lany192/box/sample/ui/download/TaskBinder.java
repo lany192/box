@@ -1,8 +1,5 @@
 package com.github.lany192.box.sample.ui.download;
 
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
@@ -16,12 +13,6 @@ public class TaskBinder extends ItemBinder<DownloadTask, ItemTaskBinding> {
 
     public TaskBinder(OnActionListener listener) {
         this.listener = listener;
-    }
-
-    @NonNull
-    @Override
-    public ItemTaskBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
-        return ItemTaskBinding.inflate(layoutInflater, viewGroup, false);
     }
 
     @Override

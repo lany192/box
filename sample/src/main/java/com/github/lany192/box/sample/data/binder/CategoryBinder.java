@@ -1,8 +1,5 @@
 package com.github.lany192.box.sample.data.binder;
 
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
@@ -16,12 +13,6 @@ public class CategoryBinder extends ItemBinder<Category, ItemCategoryBinding> {
     @Override
     public int getSpanCount() {
         return 1;
-    }
-
-    @NonNull
-    @Override
-    public ItemCategoryBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
-        return ItemCategoryBinding.inflate(layoutInflater, viewGroup, false);
     }
 
     @Override

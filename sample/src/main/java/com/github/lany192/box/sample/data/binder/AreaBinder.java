@@ -1,8 +1,6 @@
 package com.github.lany192.box.sample.data.binder;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
@@ -31,12 +29,6 @@ public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
         dialog.setRightButton("确定", () -> ToastUtils.show(area.getName()));
         dialog.setLeftButton("取消");
         dialog.show();
-    }
-
-    @NonNull
-    @Override
-    public ItemAreaBinding onCreateViewBinding(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup, int i) {
-        return ItemAreaBinding.inflate(layoutInflater, viewGroup, false);
     }
 
     @Override

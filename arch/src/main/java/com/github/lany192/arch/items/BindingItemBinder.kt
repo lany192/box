@@ -10,15 +10,9 @@ abstract class BindingItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, BaseVi
     lateinit var binding: VB
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        binding = onCreateViewBinding(LayoutInflater.from(parent.context), parent, viewType)
+        binding = getBinding(LayoutInflater.from(parent.context), parent)
         return BaseViewHolder(binding.root)
     }
-
-    abstract fun onCreateViewBinding(
-        layoutInflater: LayoutInflater,
-        parent: ViewGroup,
-        viewType: Int
-    ): VB
 
     override fun convert(holder: BaseViewHolder, data: T) {
         convert(binding, holder, data)
