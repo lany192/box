@@ -10,7 +10,7 @@ import com.github.lany192.arch.binding.getBinding
 /**
  * ViewBinding实现基类
  */
-abstract class BindingLayout<VB : ViewBinding> @JvmOverloads constructor(
+abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     @AttrRes defStyleAttr: Int = 0

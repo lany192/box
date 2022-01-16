@@ -3,9 +3,6 @@ package com.github.lany192.arch.binding
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.arch.activity.BindingActivity
-import com.github.lany192.arch.fragment.BindingFragment
-import com.github.lany192.arch.view.BindingLayout
 import java.lang.reflect.ParameterizedType
 
 internal fun <V : ViewBinding> Class<*>.getBinding(layoutInflater: LayoutInflater): V {
@@ -64,19 +61,4 @@ internal fun Any.findClass(): Class<*> {
         javaClass = javaClass.superclass
     }
     return result
-}
-
-internal fun <V : ViewBinding> BindingActivity<V>.getBinding(): V {
-    return findClass().getBinding(layoutInflater)
-}
-
-internal fun <V : ViewBinding> BindingFragment<V>.getBinding(
-    inflater: LayoutInflater,
-    container: ViewGroup?
-): V {
-    return findClass().getBinding(inflater, container)
-}
-
-internal fun <V : ViewBinding> BindingLayout<V>.getBinding(): V {
-    return findClass().getBinding(LayoutInflater.from(context))
 }

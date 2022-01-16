@@ -5,6 +5,17 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import java.lang.reflect.ParameterizedType
 
+internal fun <V : ViewBinding> Class<*>.getBinding(layoutInflater: LayoutInflater): V {
+    return try {
+        @Suppress("UNCHECKED_CAST")
+        getMethod(
+            "inflate",
+            LayoutInflater::class.java
+        ).invoke(null, layoutInflater) as V
+    } catch (ex: Exception) {
+        throw RuntimeException("The ViewBinding inflate function has been changed.", ex)
+    }
+}
 
 internal fun <V : ViewBinding> Class<*>.getBinding(
     layoutInflater: LayoutInflater,
@@ -50,11 +61,4 @@ internal fun Any.findClass(): Class<*> {
         javaClass = javaClass.superclass
     }
     return result
-}
-
-internal fun <V : ViewBinding> BindingDialog<V>.getBinding(
-    inflater: LayoutInflater,
-    container: ViewGroup?
-): V {
-    return findClass().getBinding(inflater, container)
 }

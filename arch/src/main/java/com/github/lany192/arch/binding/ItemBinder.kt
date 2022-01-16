@@ -1,10 +1,9 @@
-package com.github.lany192.arch.items
+package com.github.lany192.arch.binding
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.arch.binding.findClass
-import com.github.lany192.arch.binding.getBinding
+import com.github.lany192.arch.items.BindingItemBinder
 
 internal fun <T, VB : ViewBinding> BindingItemBinder<T, VB>.getBinding(
     inflater: LayoutInflater,

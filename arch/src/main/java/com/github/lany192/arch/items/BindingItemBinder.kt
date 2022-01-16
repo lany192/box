@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.chad.library.adapter.base.binder.BaseItemBinder
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.github.lany192.arch.binding.getBinding
 import java.lang.reflect.ParameterizedType
 
 abstract class BindingItemBinder<T, VB : ViewBinding> :
