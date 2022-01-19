@@ -25,6 +25,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', "x86_64"
+        }
     }
 
     buildFeatures {
@@ -35,18 +38,12 @@ android {
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
-            ndk {
-                abiFilters 'armeabi-v7a', 'arm64-v8a', "x86", "x86_64"
-            }
         }
         release {
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            ndk {
-                abiFilters 'armeabi-v7a', 'arm64-v8a'
-            }
         }
     }
     compileOptions {

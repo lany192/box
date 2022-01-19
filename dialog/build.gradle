@@ -32,7 +32,7 @@ dependencies {
     //日志工具 https://github.com/elvishew/xLog
     implementation 'com.elvishew:xlog:1.11.0'
     //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
-    implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.2'
+    implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.3'
 
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
