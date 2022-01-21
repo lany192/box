@@ -30,7 +30,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
         return layoutManager;
     }
 
-    public <T, B extends ViewBinding> void register(BindingItemBinder<T, B> binder) {
+    public <T, B extends ViewBinding> void register(ItemBinder<T, B> binder) {
         listAdapter.addItemBinder(binder.getTargetClass(), binder);
     }
 

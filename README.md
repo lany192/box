@@ -1,5 +1,7 @@
 [![](https://jitpack.io/v/lany192/Box.svg)](https://jitpack.io/#lany192/Box)
 
+实验测试库，变动频繁，请勿用于生产环境
+
 # 快速开发框架
 
 > * MVVM

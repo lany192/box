@@ -9,8 +9,7 @@ import com.github.lany192.arch.binding.findClass
 import com.github.lany192.arch.binding.getBinding
 import java.lang.reflect.ParameterizedType
 
-abstract class BindingItemBinder<T, VB : ViewBinding> :
-    BaseItemBinder<T, BindingItemBinder.BindingHolder<VB>>() {
+abstract class ItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, ItemBinder.BindingHolder<VB>>() {
 
     class BindingHolder<VB : ViewBinding>(val binding: VB) : BaseViewHolder(binding.root)
 
@@ -22,4 +21,10 @@ abstract class BindingItemBinder<T, VB : ViewBinding> :
     open fun getTargetClass(): Class<T> {
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>
     }
+
+    override fun convert(holder: BindingHolder<VB>, data: T) {
+        bind(holder.binding, data, holder.bindingAdapterPosition)
+    }
+
+    abstract fun bind(binding: VB, data: T, position: Int)
 }
