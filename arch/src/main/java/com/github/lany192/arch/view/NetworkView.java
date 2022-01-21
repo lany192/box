@@ -3,7 +3,6 @@ package com.github.lany192.arch.view;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -12,7 +11,7 @@ import androidx.annotation.Nullable;
 import com.github.lany192.arch.databinding.ViewNetworkBinding;
 import com.github.lany192.interfaces.OnSimpleListener;
 
-public class NetworkView extends BindingLayout<ViewNetworkBinding> {
+public class NetworkView extends BindingView<ViewNetworkBinding> {
     private OnSimpleListener listener;
 
     public NetworkView(@NonNull Context context) {
@@ -25,11 +24,6 @@ public class NetworkView extends BindingLayout<ViewNetworkBinding> {
 
     public NetworkView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @Override
-    public ViewNetworkBinding getViewBinding() {
-        return ViewNetworkBinding.inflate(LayoutInflater.from(getContext()), this, false);
     }
 
     @Override

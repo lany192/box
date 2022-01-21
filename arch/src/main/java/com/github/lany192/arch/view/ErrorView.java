@@ -3,7 +3,6 @@ package com.github.lany192.arch.view;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -12,7 +11,7 @@ import androidx.annotation.Nullable;
 import com.github.lany192.arch.databinding.ViewErrorBinding;
 import com.github.lany192.interfaces.OnSimpleListener;
 
-public class ErrorView extends BindingLayout<ViewErrorBinding> {
+public class ErrorView extends BindingView<ViewErrorBinding> {
     private OnSimpleListener listener;
 
     public ErrorView(@NonNull Context context) {
@@ -25,11 +24,6 @@ public class ErrorView extends BindingLayout<ViewErrorBinding> {
 
     public ErrorView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @Override
-    public ViewErrorBinding getViewBinding() {
-        return ViewErrorBinding.inflate(LayoutInflater.from(getContext()), this, true);
     }
 
     @Override

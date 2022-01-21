@@ -3,7 +3,6 @@ package com.github.lany192.arch.view;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +10,7 @@ import androidx.annotation.Nullable;
 import com.github.lany192.arch.databinding.ViewEmptyBinding;
 import com.github.lany192.interfaces.OnSimpleListener;
 
-public class EmptyView extends BindingLayout<ViewEmptyBinding> {
+public class EmptyView extends BindingView<ViewEmptyBinding> {
     private OnSimpleListener listener;
 
     public EmptyView(@NonNull Context context) {
@@ -24,11 +23,6 @@ public class EmptyView extends BindingLayout<ViewEmptyBinding> {
 
     public EmptyView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @Override
-    public ViewEmptyBinding getViewBinding() {
-        return ViewEmptyBinding.inflate(LayoutInflater.from(getContext()), this, true);
     }
 
     @Override
