@@ -3,21 +3,17 @@ package com.github.lany192.arch.view;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.LayoutInflater;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.github.lany192.arch.R;
+import com.github.lany192.arch.databinding.ViewErrorBinding;
 import com.github.lany192.interfaces.OnSimpleListener;
 
-public class ErrorView extends BaseLayout {
+public class ErrorView extends BindingLayout<ViewErrorBinding> {
     private OnSimpleListener listener;
-    private TextView msgText;
-    private TextView hintText;
-    private ImageView imageView;
 
     public ErrorView(@NonNull Context context) {
         super(context);
@@ -32,8 +28,8 @@ public class ErrorView extends BaseLayout {
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.view_error;
+    public ViewErrorBinding getViewBinding() {
+        return ViewErrorBinding.inflate(LayoutInflater.from(getContext()), this, true);
     }
 
     @Override
@@ -43,27 +39,22 @@ public class ErrorView extends BaseLayout {
                 listener.onCallback();
             }
         });
-        msgText = findViewById(R.id.message);
-        hintText = findViewById(R.id.hint);
-        imageView = findViewById(R.id.image);
     }
 
     public void setMessage(CharSequence message) {
-        if (msgText != null && !TextUtils.isEmpty(message)) {
-            msgText.setText(message);
+        if (!TextUtils.isEmpty(message)) {
+            binding.message.setText(message);
         }
     }
 
     public void setHint(CharSequence hint) {
-        if (hintText != null && !TextUtils.isEmpty(hint)) {
-            hintText.setText(hint);
+        if (!TextUtils.isEmpty(hint)) {
+            binding.hint.setText(hint);
         }
     }
 
     public void setImageResource(@DrawableRes int resId) {
-        if (imageView != null) {
-            imageView.setImageResource(resId);
-        }
+        binding.image.setImageResource(resId);
     }
 
     public void setOnRetryListener(OnSimpleListener listener) {
