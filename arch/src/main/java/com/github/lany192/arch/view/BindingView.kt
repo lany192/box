@@ -20,6 +20,8 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr), LifecycleOwner {
     private val registry = LifecycleRegistry(this)
+
+    @JvmField
     protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
 
     lateinit var binding: VB
