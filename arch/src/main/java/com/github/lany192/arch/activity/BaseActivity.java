@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
-import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.network.NetworkHelper;
 import com.github.lany192.dialog.LoadingDialog;
@@ -38,7 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public <T extends ViewModel> T getAndroidViewModel(@NonNull Class<T> modelClass) {
-        return new ViewModelProvider((BoxApplication) getApplicationContext()).get(modelClass);
+        return new ViewModelProvider((ViewModelStoreOwner) getApplicationContext()).get(modelClass);
     }
 
     public void showLoadingDialog() {

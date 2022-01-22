@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
-import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.R;
 import com.github.lany192.dialog.LoadingDialog;
 
@@ -86,6 +86,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public <T extends ViewModel> T getAndroidViewModel(@NonNull Class<T> modelClass) {
-        return new ViewModelProvider((BoxApplication) requireActivity().getApplicationContext()).get(modelClass);
+        return new ViewModelProvider((ViewModelStoreOwner) requireActivity().getApplicationContext()).get(modelClass);
     }
 }
