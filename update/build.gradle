@@ -13,7 +13,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -30,7 +32,7 @@ dependencies {
     //日志工具 https://github.com/elvishew/xLog
     implementation 'com.elvishew:xlog:1.11.0'
     //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
-    implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.2'
+    implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.3'
     //下载框架 https://github.com/lany192/okdownload
     implementation 'com.github.lany192:okdownload:2.0.2'
 

@@ -30,7 +30,7 @@ import com.github.lany192.interfaces.OnSimpleListener;
 //    });
 //    dialog.show();
 
-public class SimpleDialog extends NormalDialog<DialogSimpleBinding> {
+public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
     private OnSimpleListener mOnRightListener;
     private OnSimpleListener mOnLeftListener;
     private CharSequence mTitle;

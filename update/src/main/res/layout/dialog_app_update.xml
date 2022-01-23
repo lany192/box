@@ -14,7 +14,7 @@
     tools:ignore="MissingPrefix">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -24,7 +24,7 @@
         tools:text="发现新版v2.0.1可以下载啦！" />
 
     <TextView
-        android:id="@+id/tv_size"
+        android:id="@+id/size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -45,7 +45,7 @@
         android:overScrollMode="never">
 
         <TextView
-            android:id="@+id/tv_description"
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#757575"
@@ -73,7 +73,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_cancel"
+            android:id="@+id/cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -84,14 +84,14 @@
             android:textSize="14sp" />
 
         <View
-            android:id="@+id/divider_view"
+            android:id="@+id/divider"
             android:layout_width="1px"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:background="#e2e2e2" />
 
         <Button
-            android:id="@+id/btn_update"
+            android:id="@+id/update"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

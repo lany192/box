@@ -3,61 +3,34 @@ package com.github.lany192.dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.CallSuper;
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.utils.DensityUtils;
 
 import java.util.Objects;
 
 /**
- * 用NormalDialog代替
+ * 常规Dialog
  */
-@Deprecated
-public abstract class BaseDialog extends DialogFragment {
+public abstract class BaseDialog<VB extends ViewBinding> extends BindingDialog<VB> {
     private boolean canceledOnTouchOutside = true;
     private boolean isInitLoaded;
 
-    protected abstract int getLayoutId();
-
     protected abstract void init();
-
-    /**
-     * 是否为底部弹窗
-     */
-    protected boolean bottomStyle() {
-        return false;
-    }
 
     protected int getDialogHeight() {
         return WindowManager.LayoutParams.WRAP_CONTENT;
     }
 
     protected int getDialogWidth() {
-        if (bottomStyle()) {
-            return WindowManager.LayoutParams.MATCH_PARENT;
-        } else {
-            return DensityUtils.dp2px(300);
-        }
-    }
-
-    @Override
-    public int getTheme() {
-        if (bottomStyle()) {
-            return R.style.BottomDialogTheme;
-        } else {
-            return super.getTheme();
-        }
+        return DensityUtils.dp2px(300);
     }
 
     @NonNull
@@ -81,16 +54,6 @@ public abstract class BaseDialog extends DialogFragment {
         this.canceledOnTouchOutside = canceledOnTouchOutside;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(getLayoutId(), container, true);
-    }
-
-    @Deprecated
-    public <T extends View> T findViewById(@IdRes int id) {
-        return getView().findViewById(id);
-    }
-
     @CallSuper
     @Override
     public void onResume() {
@@ -98,9 +61,6 @@ public abstract class BaseDialog extends DialogFragment {
         Window window = Objects.requireNonNull(getDialog()).getWindow();
         if (window != null) {
             window.setLayout(getDialogWidth(), getDialogHeight());
-            if (bottomStyle()) {
-                window.setGravity(Gravity.BOTTOM);
-            }
         }
         if (!isInitLoaded) {
             isInitLoaded = true;

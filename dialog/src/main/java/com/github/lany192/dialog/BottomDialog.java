@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding;
 
 import java.util.Objects;
 
-public abstract class BottomDialog<VB extends ViewBinding> extends NormalDialog<VB> {
+public abstract class BottomDialog<VB extends ViewBinding> extends BaseDialog<VB> {
 
     @Override
     protected int getDialogWidth() {
