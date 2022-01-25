@@ -7,9 +7,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.github.lany192.arch.binding.inflateWithGeneric
 
 abstract class BindingAdapter<T, VB : ViewBinding> : BaseQuickAdapter<T, BindingHolder<VB>> {
-    private lateinit var binding: VB
-
-    constructor() : this(0)
 
     constructor(data: MutableList<T>) : super(0, data)
 
@@ -18,12 +15,12 @@ abstract class BindingAdapter<T, VB : ViewBinding> : BaseQuickAdapter<T, Binding
     private constructor(layoutResId: Int, data: MutableList<T>) : super(layoutResId, data)
 
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<VB> {
-        binding = inflateWithGeneric(this, parent)
+        val binding: VB = inflateWithGeneric(this, parent)
         return BindingHolder(binding)
     }
 
     override fun convert(holder: BindingHolder<VB>, item: T) {
-        convert(binding, item, holder.bindingAdapterPosition)
+        convert(holder.binding, item, holder.bindingAdapterPosition)
     }
 
     protected abstract fun convert(binding: VB, item: T, position: Int)

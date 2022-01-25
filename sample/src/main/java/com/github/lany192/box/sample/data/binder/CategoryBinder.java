@@ -10,7 +10,7 @@ import com.github.lany192.utils.ImageUtils;
 public class CategoryBinder extends ItemBinder<Category, ItemCategoryBinding> {
 
     @Override
-    public void bind(@NonNull ItemCategoryBinding binding, Category item, int position) {
+    public void convert(@NonNull ItemCategoryBinding binding, Category item, int position) {
         ImageUtils.show(binding.image, item.getUrl());
         binding.title.setText(item.getName());
     }
