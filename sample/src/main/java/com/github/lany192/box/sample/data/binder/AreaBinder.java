@@ -4,6 +4,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import com.github.lany192.arch.adapter.BindingHolder;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.data.bean.Area;

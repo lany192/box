@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.alibaba.android.arouter.AppRouter;
+import com.github.lany192.arch.adapter.BindingHolder;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.utils.DateUtils;
 import com.github.lany192.box.sample.MockUtils;
