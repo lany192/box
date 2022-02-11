@@ -22,7 +22,7 @@ import moe.feng.alipay.zerosdk.AlipayZeroSdk
 @AndroidEntryPoint
 @Route(path = "/ui/settings")
 class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBinding>() {
-    private var userViewModel: UserViewModel? = null
+    private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {
         ImmersionBar.with(this)
@@ -38,7 +38,7 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
         super.onCreate(savedInstanceState)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         binding.cacheView.hint(CacheUtils.getCacheSize(this))
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        
         binding.versionView.setOnClickListener { checkVersion() }
         binding.cacheView.setOnClickListener { showCacheDialog() }
         binding.permissionView.setOnClickListener { permissionSetting() }

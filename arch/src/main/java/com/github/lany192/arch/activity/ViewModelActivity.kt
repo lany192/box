@@ -15,6 +15,11 @@ abstract class ViewModelActivity<VM : ViewModel, VB : ViewBinding> : BindingActi
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = getActivityViewModel((javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>)
+        val clazz = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
+        viewModel = createDefaultViewModel(clazz)
+    }
+
+    protected fun createDefaultViewModel(clazz: Class<VM>): VM {
+        return getViewModel(clazz)
     }
 }

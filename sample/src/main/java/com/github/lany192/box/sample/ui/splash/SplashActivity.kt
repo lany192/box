@@ -24,7 +24,7 @@ class SplashActivity : ViewModelActivity<SplashViewModel, ActivitySplashBinding>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.welcome.observe(this, { s: String? -> binding.textView.text = s })
+        viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
         Handler().postDelayed({
             AppRouter.get().main()
             finish()
