@@ -34,5 +34,6 @@ public class BrowserActivity extends BindingActivity<ActivityBrowserBinding> {
         super.onCreate(savedInstanceState);
         binding.title.setText(title);
         binding.webview.loadUrl(url);
+        log.i("test");
     }
 }

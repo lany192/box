@@ -18,7 +18,9 @@ import com.github.lany192.arch.R
 import com.gyf.immersionbar.ImmersionBar
 
 abstract class BaseActivity : AppCompatActivity() {
-    protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
+    @JvmField
+    val log: Logger.Builder = XLog.tag(javaClass.simpleName)
+
     private var loadingDialog: LoadingDialog? = null
     
     @CallSuper
