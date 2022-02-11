@@ -42,7 +42,6 @@ public class DownloadActivity extends ViewModelActivity<DownloadViewModel,Activi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
         //全局配置
         DownloadDispatcher.setMaxParallelRunningCount(2);
         OkDownload.with().setMonitor(new DownloadMonitor() {

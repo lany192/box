@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BindingActivity
+import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
 import com.gyf.immersionbar.ImmersionBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,9 +20,7 @@ import de.psdev.licensesdialog.model.Notices
 
 @AndroidEntryPoint
 @Route(path = "/ui/about")
-class AboutActivity : BindingActivity<ActivityAboutBinding>() {
-
-    private val viewModel: AboutViewModel by viewModels()
+class AboutActivity : ViewModelActivity<AboutViewModel,ActivityAboutBinding>() {
 
     override fun initImmersionBar() {
         ImmersionBar.with(this)
@@ -35,8 +34,6 @@ class AboutActivity : BindingActivity<ActivityAboutBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycle.addObserver(viewModel)
-        binding.toolbar.setNavigationOnClickListener { finish() }
         binding.licenceView.setOnClickListener { showLicensesDialog() }
         binding.marketView.setOnClickListener { gotoMarket() }
         binding.privacyView.setOnClickListener {
