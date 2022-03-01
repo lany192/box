@@ -55,19 +55,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     packagingOptions {
-        exclude 'META-INF/*.txt'
-        exclude 'META-INF/*.version'
-        exclude 'META-INF/*.md'
-        exclude 'META-INF/*.kotlin_module'
-        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
-        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/MANIFEST.MF'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/INDEX.LIST'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LGPL2.1'
+        resources {
+            excludes += ['META-INF/*.txt', 'META-INF/*.version', 'META-INF/*.md', 'META-INF/*.kotlin_module', 'META-INF/maven/com.squareup.okio/okio/pom.xml', 'META-INF/maven/com.squareup.okio/okio/pom.properties', 'META-INF/ASL2.0', 'META-INF/MANIFEST.MF', 'META-INF/NOTICE', 'META-INF/LICENSE', 'META-INF/INDEX.LIST', 'META-INF/DEPENDENCIES', 'META-INF/LGPL2.1']
+        }
     }
 }
 
@@ -80,8 +70,8 @@ dependencies {
     implementationDependencies.each { k, v -> implementation v }
 
     //https://dagger.dev/hilt/
-    implementation 'com.google.dagger:hilt-android:2.40.5'
-    kapt 'com.google.dagger:hilt-android-compiler:2.40.5'
+    implementation 'com.google.dagger:hilt-android:2.41'
+    kapt 'com.google.dagger:hilt-android-compiler:2.41'
 
     implementation project(':arch')
     implementation project(':core')

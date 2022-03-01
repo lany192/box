@@ -1,6 +1,7 @@
 package com.github.lany192.arch.items;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -113,13 +114,9 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
         viewModel.getItems().observe(this, data -> {
             if (ListUtils.isEmpty(data.getItems())) {
                 if (NetUtils.isAvailable(this)) {
-                    EmptyView emptyView = getEmptyView();
-                    emptyView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                    listAdapter.setEmptyView(emptyView);
+                    listAdapter.setEmptyView(getEmptyView());
                 } else {
-                    NetworkView networkView = getNetworkView();
-                    networkView.setOnRetryListener(() -> viewModel.onLazyLoad());
-                    listAdapter.setEmptyView(networkView);
+                    listAdapter.setEmptyView(getNetworkView());
                 }
             } else {
                 listAdapter.setNewInstance(data.getItems());
@@ -128,7 +125,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
     }
 
     @NonNull
-    public ErrorView getErrorView() {
+    public View getErrorView() {
         ErrorView view = new ErrorView(this);
         view.setMessage("未知错误");
         view.setHint("重新点击试试");
@@ -137,7 +134,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
     }
 
     @NonNull
-    public EmptyView getEmptyView() {
+    public View getEmptyView() {
         EmptyView view = new EmptyView(this);
         view.setMessage("没有发现数据");
         view.setHint("重新点击试试");
@@ -146,7 +143,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
     }
 
     @NonNull
-    public NetworkView getNetworkView() {
+    public View getNetworkView() {
         NetworkView view = new NetworkView(this);
         view.setMessage("当前网络异常");
         view.setHint("重新点击试试");
