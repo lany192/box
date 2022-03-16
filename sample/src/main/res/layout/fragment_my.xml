@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
+    android:background="@color/gray_bg"
     android:orientation="vertical">
 
     <ImageView
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -32,6 +32,7 @@
             android:orientation="vertical">
 
             <com.github.lany192.view.MenuView
+                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/dialog_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
@@ -46,6 +47,7 @@
                 android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
+                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/login_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
@@ -60,6 +62,7 @@
                 android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
+                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/download_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
@@ -75,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -88,6 +91,7 @@
             android:orientation="vertical">
 
             <com.github.lany192.view.MenuView
+                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
@@ -102,6 +106,7 @@
                 android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
+                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/test_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
@@ -116,6 +121,7 @@
                 android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
+                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/settings_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"

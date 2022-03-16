@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
+    android:background="@color/gray_bg"
     tools:context=".ui.settings.about.AboutActivity">
 
     <RelativeLayout
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -91,7 +91,8 @@
                 app:menu_hint="12345678"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
-                app:menu_name="客服QQ" />
+                app:menu_name="客服QQ"
+                app:menu_nameColor="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -105,7 +106,8 @@
                 android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
-                app:menu_name="意见反馈" />
+                app:menu_name="意见反馈"
+                app:menu_nameColor="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -119,7 +121,8 @@
                 android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
-                app:menu_name="用户协议" />
+                app:menu_name="用户协议"
+                app:menu_nameColor="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -133,7 +136,8 @@
                 android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
-                app:menu_name="隐私政策" />
+                app:menu_name="隐私政策"
+                app:menu_nameColor="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -147,7 +151,8 @@
                 android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
-                app:menu_name="给我好评" />
+                app:menu_name="给我好评"
+                app:menu_nameColor="@color/text_1level" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -157,7 +162,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -176,7 +181,8 @@
                 android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
-                app:menu_name="开源许可" />
+                app:menu_name="开源许可"
+                app:menu_nameColor="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -192,7 +198,8 @@
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowArrow="false"
                 app:menu_isShowIcon="false"
-                app:menu_name="版本状态" />
+                app:menu_name="版本状态"
+                app:menu_nameColor="@color/text_1level" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
