@@ -56,6 +56,8 @@ android {
             excludes += ['META-INF/*.txt', 'META-INF/*.version', 'META-INF/*.md', 'META-INF/*.kotlin_module', 'META-INF/maven/com.squareup.okio/okio/pom.xml', 'META-INF/maven/com.squareup.okio/okio/pom.properties', 'META-INF/ASL2.0', 'META-INF/MANIFEST.MF', 'META-INF/NOTICE', 'META-INF/LICENSE', 'META-INF/INDEX.LIST', 'META-INF/DEPENDENCIES', 'META-INF/LGPL2.1']
         }
     }
+    //引入安装包生成配置
+    apply from: '../package.gradle'
 }
 
 dependencies {
