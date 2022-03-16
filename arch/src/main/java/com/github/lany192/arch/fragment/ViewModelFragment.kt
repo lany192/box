@@ -13,7 +13,11 @@ abstract class ViewModelFragment<VM : ViewModel, VB : ViewBinding> : BindingFrag
 
     @CallSuper
     override fun init() {
-        viewModel =
-            getFragmentViewModel((javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>)
+        val clazz = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
+        viewModel = createDefaultViewModel(clazz)
+    }
+
+    protected fun createDefaultViewModel(clazz: Class<VM>): VM {
+        return getViewModel(clazz)
     }
 }

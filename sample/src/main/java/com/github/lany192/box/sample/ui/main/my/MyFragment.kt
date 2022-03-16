@@ -2,7 +2,7 @@ package com.github.lany192.box.sample.ui.main.my
 
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.BindingFragment
+import com.github.lany192.arch.fragment.ViewModelFragment
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.data.bean.UserInfo
 import com.github.lany192.box.sample.databinding.FragmentMyBinding
@@ -14,8 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/fragment/my")
-class MyFragment : BindingFragment<FragmentMyBinding>() {
-    private lateinit var viewModel: MyViewModel
+class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
     private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {
@@ -26,11 +25,9 @@ class MyFragment : BindingFragment<FragmentMyBinding>() {
     }
 
     override fun init() {
-        viewModel = getFragmentViewModel(MyViewModel::class.java)
+        super.init()
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
-        userViewModel.userInfo.observe(
-            this,
-            { userInfo: UserInfo -> binding.testView.hint(userInfo.name) })
+        userViewModel.userInfo.observe(this) { userInfo: UserInfo -> binding.testView.hint(userInfo.name) }
         binding.downloadView.setOnClickListener { AppRouter.get().download() }
         binding.dialogView.setOnClickListener { showDialog() }
         binding.loginView.setOnClickListener { AppRouter.get().login() }

@@ -15,7 +15,7 @@ import java.util.Objects;
 /**
  * 加载对话框
  */
-public class LoadingDialog extends NormalDialog<DialogLoadingBinding> {
+public class LoadingDialog extends BaseDialog<DialogLoadingBinding> {
     private CharSequence mMessage;
 
     @Override

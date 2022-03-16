@@ -19,7 +19,7 @@ import java.util.Objects;
 /**
  * 常规Dialog
  */
-public abstract class NormalDialog<VB extends ViewBinding> extends BindingDialog<VB> {
+public abstract class BaseDialog<VB extends ViewBinding> extends BindingDialog<VB> {
     private boolean canceledOnTouchOutside = true;
     private boolean isInitLoaded;
 

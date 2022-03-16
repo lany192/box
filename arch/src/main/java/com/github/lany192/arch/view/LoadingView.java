@@ -6,9 +6,9 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.github.lany192.arch.R;
+import com.github.lany192.arch.databinding.ViewLoadingBinding;
 
-public class LoadingView extends BaseLayout {
+public class LoadingView extends BindingView<ViewLoadingBinding> {
 
     public LoadingView(@NonNull Context context) {
         super(context);
@@ -23,12 +23,7 @@ public class LoadingView extends BaseLayout {
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.view_loading;
-    }
-
-    @Override
     public void init(@Nullable AttributeSet attrs) {
-
+        log.i("---------------------");
     }
 }

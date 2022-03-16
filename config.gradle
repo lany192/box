@@ -33,7 +33,7 @@ ext {
             'androidx-recyclerview'           : 'androidx.recyclerview:recyclerview:1.2.1',
             'androidx-constraint-layout'      : 'androidx.constraintlayout:constraintlayout:2.1.2',
             'androidx-multidex'               : 'androidx.multidex:multidex:2.0.1',
-            'androidx-material'               : 'com.google.android.material:material:1.6.0-alpha01',
+            'androidx-material'               : 'com.google.android.material:material:1.6.0-alpha02',
 
             //协程
             'kotlinx-coroutines-core'         : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2',
@@ -77,7 +77,7 @@ ext {
             //tencent x5 https://x5.tencent.com/docs/index.html
             'tbssdk'                          : 'com.tencent.tbs:tbssdk:54002-beta',
             //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
-            'background-core'                 : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.2',
+            'background-core'                 : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.3',
 
 
             //微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html

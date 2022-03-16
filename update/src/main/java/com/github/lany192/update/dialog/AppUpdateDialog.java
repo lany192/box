@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.github.lany192.dialog.NormalDialog;
+import com.github.lany192.dialog.BottomDialog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.databinding.DialogAppUpdateBinding;
@@ -16,7 +16,8 @@ import com.github.lany192.update.utils.Constant;
 
 import java.io.File;
 
-public class AppUpdateDialog extends NormalDialog<DialogAppUpdateBinding> implements OnDownloadListener {
+public class AppUpdateDialog extends BottomDialog<DialogAppUpdateBinding>
+        implements View.OnClickListener, OnDownloadListener {
     private final int install = 0x45F;
     private boolean forcedUpgrade;
     private File apk;
@@ -28,6 +29,8 @@ public class AppUpdateDialog extends NormalDialog<DialogAppUpdateBinding> implem
         forcedUpgrade = configuration.isForcedUpgrade();
         binding.progressBar.setVisibility(forcedUpgrade ? View.VISIBLE : View.GONE);
         binding.update.setTag(0);
+        binding.update.setOnClickListener(this);
+        binding.cancel.setOnClickListener(this);
 
         //强制升级
         if (forcedUpgrade) {
@@ -46,9 +49,16 @@ public class AppUpdateDialog extends NormalDialog<DialogAppUpdateBinding> implem
             binding.size.setVisibility(View.VISIBLE);
         }
         binding.description.setText(UpdateManager.getInstance().getApkDescription());
+    }
 
-        binding.cancel.setOnClickListener(view -> cancel());
-        binding.update.setOnClickListener(view -> {
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.cancel) {
+            if (!forcedUpgrade) {
+                dismiss();
+            }
+        } else if (id == R.id.update) {
             if ((int) binding.update.getTag() == install) {
                 installApk();
                 return;
@@ -60,7 +70,7 @@ public class AppUpdateDialog extends NormalDialog<DialogAppUpdateBinding> implem
                 dismiss();
             }
             getContext().startService(new Intent(getContext(), DownloadService.class));
-        });
+        }
     }
 
     /**

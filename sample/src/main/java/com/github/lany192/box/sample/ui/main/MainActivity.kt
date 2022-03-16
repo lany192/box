@@ -16,7 +16,6 @@ import com.github.lany192.box.sample.ui.user.UserViewModel
 import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @Route(path = "/ui/main")
 @AndroidEntryPoint
@@ -34,9 +33,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
-        userViewModel.userInfo.observe(
-            this,
-            { userInfo: UserInfo -> ToastUtils.show("首页：" + userInfo.name) })
+        userViewModel.userInfo.observe(this) { userInfo: UserInfo -> ToastUtils.show("首页：" + userInfo.name) }
         val items: MutableList<TabItem> = ArrayList()
         items.add(TabItem("首页", AppRouter.get().index))
         items.add(TabItem("发现", AppRouter.get().discover))

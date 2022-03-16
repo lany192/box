@@ -4,7 +4,8 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.arch.items.BindingItemBinder;
+import com.github.lany192.arch.adapter.BindingHolder;
+import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.box.sample.MockUtils;
 import com.github.lany192.box.sample.data.bean.Area;
 import com.github.lany192.box.sample.databinding.ItemAreaBinding;
@@ -12,7 +13,7 @@ import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ImageUtils;
 import com.hjq.toast.ToastUtils;
 
-public class AreaBinder extends BindingItemBinder<Area, ItemAreaBinding> {
+public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
 
     @Override
     public void onClick(@NonNull BindingHolder<ItemAreaBinding> holder, @NonNull View view, Area area, int position) {
@@ -26,10 +27,10 @@ public class AreaBinder extends BindingItemBinder<Area, ItemAreaBinding> {
     }
 
     @Override
-    public void convert(@NonNull BindingHolder<ItemAreaBinding> holder, Area item) {
+    public void convert(@NonNull ItemAreaBinding binding, Area item, int position) {
         int count = item.getSubarea() != null ? item.getSubarea().size() : 0;
-        ImageUtils.show(holder.getBinding().image, MockUtils.getImageUrl());
-        holder.getBinding().title.setText(item.getName());
-        holder.getBinding().desc.setText("下辖" + count + "个区/市");
+        ImageUtils.show(binding.image, MockUtils.getImageUrl());
+        binding.title.setText(item.getName());
+        binding.desc.setText("下辖" + count + "个区/市");
     }
 }

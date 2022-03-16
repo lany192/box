@@ -4,30 +4,66 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import androidx.annotation.AttrRes
+import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
+import com.elvishew.xlog.Logger
+import com.elvishew.xlog.XLog
 import com.github.lany192.arch.binding.findClass
 import com.github.lany192.arch.binding.getBinding
 
 /**
- * ViewBinding实现基类
+ * 自定义视图基类
  */
 abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+    defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr), LifecycleOwner {
+    private val registry = LifecycleRegistry(this)
 
-    var binding: VB = createBinding()
+    @JvmField
+    protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
+
+    lateinit var binding: VB
+
+    abstract fun init(attrs: AttributeSet?)
 
     init {
+        binding = findClass().getBinding(LayoutInflater.from(context), this)
         addView(binding.root)
         init(attrs)
     }
 
-    abstract fun init(attrs: AttributeSet?)
+    fun <T : ViewModel> getViewModel(modelClass: Class<T>): T {
+        return ViewModelProvider((context as ViewModelStoreOwner))[modelClass]
+    }
 
-    private fun <V : ViewBinding> createBinding(): V {
-        return findClass().getBinding(LayoutInflater.from(context))
+    fun <T : ViewModel> getAndroidViewModel(modelClass: Class<T>): T {
+        return ViewModelProvider((context.applicationContext as ViewModelStoreOwner))[modelClass]
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        registry.currentState = Lifecycle.State.CREATED
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        registry.currentState = Lifecycle.State.DESTROYED
+    }
+
+    override fun onWindowVisibilityChanged(visibility: Int) {
+        super.onWindowVisibilityChanged(visibility)
+        if (visibility == VISIBLE) {
+            registry.handleLifecycleEvent(Lifecycle.Event.ON_START)
+            registry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
+        } else if (visibility == GONE || visibility == INVISIBLE) {
+            registry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+            registry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
+        }
+    }
+
+    override fun getLifecycle(): Lifecycle {
+        return registry
     }
 }
