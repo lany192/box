@@ -1,13 +1,12 @@
 package com.github.lany192.dialog;
 
-import android.graphics.Color;
 import android.text.TextUtils;
 import android.text.method.MovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.View;
 
-import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
 import androidx.annotation.StringRes;
 
 import com.github.lany192.dialog.databinding.DialogSimpleBinding;
@@ -39,13 +38,13 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
     private CharSequence mRightText;
     private boolean isShowDivider;
     private int gravity = Gravity.CENTER;
-    @ColorInt
-    private int mTitleColor = Color.BLACK;
+    @ColorRes
+    private int mTitleColor = R.color.text_1level;
     private float titleSize = 18;
     private float mMsgTextSize = 16;
-    @ColorInt
+    @ColorRes
     private int mRightTextColor = 0;
-    @ColorInt
+    @ColorRes
     private int mLeftTextColor = 0;
 
     private MovementMethod movementMethod;
@@ -58,7 +57,7 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
             binding.title.setText(mTitle);
             binding.title.setTextSize(titleSize);
             binding.title.setVisibility(View.VISIBLE);
-            binding.title.setTextColor(mTitleColor);
+            binding.title.setTextColorId(mTitleColor);
         }
         if (!TextUtils.isEmpty(mMessage)) {
             binding.content.setText(mMessage);
@@ -79,7 +78,7 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
             binding.rightButton.setText(mRightText);
             binding.rightButton.setVisibility(View.VISIBLE);
             if (mRightTextColor != 0) {
-                binding.rightButton.setTextColor(mRightTextColor);
+                binding.rightButton.setTextColor(getColor(mRightTextColor));
             }
             binding.rightButton.setOnClickListener(v -> {
                 cancel();
@@ -94,7 +93,7 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
             binding.leftButton.setText(mLeftText);
             binding.leftButton.setVisibility(View.VISIBLE);
             if (mLeftTextColor != 0) {
-                binding.leftButton.setTextColor(mLeftTextColor);
+                binding.leftButton.setTextColor(getColor(mLeftTextColor));
             }
             binding.leftButton.setOnClickListener(v -> {
                 cancel();
@@ -115,7 +114,7 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
         this.mTitle = title;
     }
 
-    public void setTitleColor(@ColorInt int colorIntId) {
+    public void setTitleColor(@ColorRes int colorIntId) {
         this.mTitleColor = colorIntId;
     }
 
@@ -135,11 +134,11 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
         this.mMsgTextSize = size;
     }
 
-    public void setRightTextColor(@ColorInt int colorIntId) {
+    public void setRightTextColor(@ColorRes int colorIntId) {
         this.mRightTextColor = colorIntId;
     }
 
-    public void setLeftTextColor(@ColorInt int leftTextColor) {
+    public void setLeftTextColor(@ColorRes int leftTextColor) {
         this.mLeftTextColor = leftTextColor;
     }
 

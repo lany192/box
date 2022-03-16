@@ -70,7 +70,7 @@
         android:id="@+id/card_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:layout_marginEnd="30dp"
         app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
@@ -155,7 +155,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:layout_marginEnd="30dp"
         app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
@@ -209,12 +209,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XX公司 版权所有"
-            android:textSize="14sp" />
+            android:textColor="@color/text_4level"
+            android:textSize="13sp" />
 
         <com.github.lany192.textview.BoxTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="copyright © 2021 xxxx, Inc."
-            android:textSize="13sp" />
+            android:textColor="@color/text_4level"
+            android:textSize="12sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -94,7 +94,7 @@
                 android:background="@drawable/btn_black_style"
                 android:gravity="center"
                 android:text="登录"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -113,7 +113,7 @@
                     android:textSize="14sp" />
 
                 <View
-                    android:layout_width="1px"
+                    android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="20dp"
                     android:layout_marginRight="20dp"

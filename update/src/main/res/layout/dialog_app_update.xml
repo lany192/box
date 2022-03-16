@@ -9,7 +9,7 @@
     app:bl_corners_bottomRightRadius="0dp"
     app:bl_corners_topLeftRadius="10dp"
     app:bl_corners_topRightRadius="10dp"
-    app:bl_solid_color="#ffffff"
+    app:bl_solid_color="@color/white_bg"
     tools:background="@android:color/holo_orange_dark"
     tools:ignore="MissingPrefix">
 
@@ -64,7 +64,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="0.5dp"
         android:background="#e2e2e2" />
 
     <LinearLayout
@@ -85,7 +85,7 @@
 
         <View
             android:id="@+id/divider"
-            android:layout_width="1px"
+            android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:background="#e2e2e2" />

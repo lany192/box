@@ -5,7 +5,9 @@ import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.os.Handler;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -100,7 +102,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     private void show(FragmentManager manager) {
-        show(manager, TAG + toString());
+        show(manager, TAG + this);
     }
 
     public void cancel() {
@@ -122,5 +124,9 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
             return context2activity(((ContextWrapper) context).getBaseContext());
         }
         return null;
+    }
+
+    public int getColor(@ColorRes int colorResId) {
+        return ContextCompat.getColor(requireContext(), colorResId);
     }
 }
