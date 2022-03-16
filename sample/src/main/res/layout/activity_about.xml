@@ -87,7 +87,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/qq_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hint="12345678"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
@@ -95,56 +95,56 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/feedback_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="意见反馈" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="用户协议" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/privacy_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="隐私政策" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/market_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="给我好评" />
@@ -173,21 +173,21 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/licence_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="开源许可" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hint="1.0.0"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowArrow="false"

@@ -34,35 +34,35 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/dialog_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="对话框测试" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/login_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="登录测试" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/download_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="下载安装赢积分" />
@@ -90,35 +90,35 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="功能x" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/test_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="功能x" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/settings_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="设置" />

@@ -46,7 +46,7 @@
         android:id="@+id/card_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:layout_marginEnd="30dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="4dp"
@@ -71,9 +71,9 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/cache_view"
@@ -86,9 +86,9 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/notice_view"
@@ -100,9 +100,9 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/permission_view"
@@ -118,7 +118,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:layout_marginEnd="30dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="4dp"
@@ -142,9 +142,9 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/reward_view"
@@ -157,9 +157,9 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/about_view"
