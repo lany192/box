@@ -6,22 +6,28 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import com.github.lany192.arch.databinding.ViewEmptyBinding;
+import com.github.lany192.arch.databinding.ViewDefaultBinding;
 import com.github.lany192.interfaces.OnSimpleListener;
+import com.github.lany192.utils.ImageUtils;
 
-public class EmptyView extends BindingView<ViewEmptyBinding> {
+public class DefaultView extends BindingView<ViewDefaultBinding> {
     private OnSimpleListener listener;
 
-    public EmptyView(@NonNull Context context) {
+    public DefaultView(@NonNull Fragment fragment) {
+        super(fragment.requireContext());
+    }
+
+    public DefaultView(@NonNull Context context) {
         super(context);
     }
 
-    public EmptyView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DefaultView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public EmptyView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DefaultView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -32,6 +38,10 @@ public class EmptyView extends BindingView<ViewEmptyBinding> {
                 listener.onCallback();
             }
         });
+    }
+
+    public void setImage(Object object) {
+        ImageUtils.show(binding.image, object);
     }
 
     public void setMessage(CharSequence message) {
