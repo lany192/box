@@ -32,13 +32,12 @@
             android:orientation="vertical">
 
             <com.github.lany192.view.MenuView
-                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/dialog_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="对话框测试" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="对话框测试"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -47,13 +46,12 @@
                 android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
-                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/login_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="登录测试" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="登录测试"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -62,13 +60,12 @@
                 android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
-                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/download_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="下载安装赢积分" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="下载安装赢积分"
+                app:menu_title_color="@color/text_1level" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -91,13 +88,12 @@
             android:orientation="vertical">
 
             <com.github.lany192.view.MenuView
-                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="功能x" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="功能x"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -106,13 +102,12 @@
                 android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
-                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/test_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="功能x" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="功能x"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -121,13 +116,12 @@
                 android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
-                app:menu_nameColor="@color/text_1level"
                 android:id="@+id/settings_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="设置" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="设置"
+                app:menu_title_color="@color/text_1level" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

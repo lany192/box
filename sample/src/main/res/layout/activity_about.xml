@@ -89,10 +89,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 app:menu_hint="12345678"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="客服QQ"
-                app:menu_nameColor="@color/text_1level" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="客服QQ"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -104,10 +103,9 @@
                 android:id="@+id/feedback_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="意见反馈"
-                app:menu_nameColor="@color/text_1level" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="意见反馈"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -119,10 +117,9 @@
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="用户协议"
-                app:menu_nameColor="@color/text_1level" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="用户协议"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -134,10 +131,9 @@
                 android:id="@+id/privacy_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="隐私政策"
-                app:menu_nameColor="@color/text_1level" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="隐私政策"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -149,10 +145,9 @@
                 android:id="@+id/market_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="给我好评"
-                app:menu_nameColor="@color/text_1level" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="给我好评"
+                app:menu_title_color="@color/text_1level" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -179,10 +174,9 @@
                 android:id="@+id/licence_view"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowIcon="false"
-                app:menu_name="开源许可"
-                app:menu_nameColor="@color/text_1level" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="开源许可"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
@@ -195,11 +189,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 app:menu_hint="1.0.0"
-                app:menu_hintColor="@color/text_3level"
-                app:menu_isShowArrow="false"
-                app:menu_isShowIcon="false"
-                app:menu_name="版本状态"
-                app:menu_nameColor="@color/text_1level" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="版本状态"
+                app:menu_title_color="@color/text_1level" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
