@@ -11,7 +11,7 @@
         android:layout_height="?actionBarSize"
         android:background="@color/white_bg"
         app:title="消息"
-        app:titleTextColor="@android:color/black" />
+        app:titleTextColor="@color/text_1level" />
 
     <com.flyco.tablayout.PagerTabLayout
         android:id="@+id/tab_layout"
@@ -19,15 +19,15 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        app:tl_indicatorColor="#06142E"
+        app:tl_indicatorColor="@color/primary_dark"
         app:tl_indicatorCornerRadius="1dp"
         app:tl_indicatorHeight="2dp"
         app:tl_indicatorMarginBottom="5dp"
         app:tl_indicatorWidthEqualTitle="true"
-        app:tl_selectedTextColor="#06142E"
+        app:tl_selectedTextColor="@color/primary_dark"
         app:tl_selectedTextSize="15sp"
         app:tl_tabSpaceEqual="true"
-        app:tl_unselectedTextColor="#666666"
+        app:tl_unselectedTextColor="@color/text_2level"
         app:tl_unselectedTextSize="15sp" />
 
     <androidx.viewpager2.widget.ViewPager2

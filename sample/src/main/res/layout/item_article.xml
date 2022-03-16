@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
     android:background="?attr/selectableItemBackground"
-    app:cardBackgroundColor="#ffffff"
+    app:cardBackgroundColor="@color/white_bg"
     app:cardCornerRadius="4dp"
     app:cardElevation="0dp">
 
@@ -46,7 +46,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-            android:textColor="#dd000000"
+            android:textColor="@color/text_4level"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@id/image"
             app:layout_constraintRight_toRightOf="parent"
@@ -61,7 +61,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-            android:textColor="#333333"
+            android:textColor="@color/text_4level"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@id/image"
             app:layout_constraintRight_toRightOf="parent"
