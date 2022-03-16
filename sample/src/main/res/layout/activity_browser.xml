@@ -36,7 +36,7 @@
             android:maxWidth="240dp"
             android:maxLines="1"
             android:text="关于"
-            android:textColor="@android:color/black"
+            android:textColor="@color/text_1level"
             android:textSize="18sp" />
     </RelativeLayout>
 

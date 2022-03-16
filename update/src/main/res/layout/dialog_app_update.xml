@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_1level"
         android:textSize="18sp"
         tools:text="发现新版v2.0.1可以下载啦！" />
 
