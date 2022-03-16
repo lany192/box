@@ -13,7 +13,7 @@
     tools:background="@android:color/holo_orange_dark"
     tools:ignore="MissingPrefix">
 
-    <TextView
+    <com.github.lany192.view.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:textSize="18sp"
         tools:text="发现新版v2.0.1可以下载啦！" />
 
-    <TextView
+    <com.github.lany192.view.BoxTextView
         android:id="@+id/size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:layout_marginRight="16dp"
         android:overScrollMode="never">
 
-        <TextView
+        <com.github.lany192.view.BoxTextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

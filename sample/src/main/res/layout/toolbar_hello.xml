@@ -2,21 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="bottom"
-    android:minHeight="@dimen/actionbar_height">
+    android:minHeight="?actionBarSize">
 
     <com.github.mmin18.widget.RealtimeBlurView
         android:id="@+id/blurView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/toolbar_title_text"
+    <com.github.lany192.view.BoxTextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
+        app:text_middle_bold="true"
         android:gravity="center"
         android:maxWidth="240dp"
         android:maxLines="1"

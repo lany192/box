@@ -12,7 +12,7 @@
         android:layout_height="36dp"
         android:src="@color/blue" />
 
-    <TextView
+    <com.github.lany192.view.BoxTextView
         android:id="@+id/item_menu_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

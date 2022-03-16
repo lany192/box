@@ -2,38 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:gravity="bottom"
-    android:minHeight="@dimen/actionbar_height">
+    android:minHeight="?actionBarSize">
 
     <ImageButton
-        android:id="@+id/toolbar_back_btn"
-        android:layout_width="@dimen/actionbar_height"
-        android:layout_height="@dimen/actionbar_height"
+        android:id="@+id/back"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/actionBarItemBackground"
         android:contentDescription="@string/app_name"
         android:scaleType="centerInside"
         android:src="@drawable/vector_back_black" />
 
-    <TextView
-        android:id="@+id/toolbar_title_text"
+    <com.github.lany192.view.BoxTextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
         android:gravity="center"
+        app:text_middle_bold="true"
         android:maxWidth="240dp"
         android:maxLines="1"
         android:text="@string/app_name"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
-    <TextView
+    <com.github.lany192.view.BoxTextView
         android:id="@+id/custom_toolbar_edit_btn"
-        android:layout_width="@dimen/actionbar_height"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/actionBarItemBackground"

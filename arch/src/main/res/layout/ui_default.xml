@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.github.lany192.view.BoxTextView
         android:id="@+id/toolbar_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

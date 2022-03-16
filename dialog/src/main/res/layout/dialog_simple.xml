@@ -17,7 +17,7 @@
         android:paddingRight="20dp"
         android:paddingBottom="30dp">
 
-        <TextView
+        <com.github.lany192.view.BoxTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:textColor="#666666"
             android:textSize="18sp" />
 
-        <TextView
+        <com.github.lany192.view.BoxTextView
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

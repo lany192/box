@@ -20,7 +20,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.github.lany192.view.BoxTextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 app:srcCompat="@drawable/vector_delete_black" />
         </FrameLayout>
 
-        <TextView
+        <com.github.lany192.view.BoxTextView
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name"
             tools:text="status" />
 
-        <TextView
+        <com.github.lany192.view.BoxTextView
             android:id="@+id/percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/percent" />
 
-        <TextView
+        <com.github.lany192.view.BoxTextView
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
             app:layout_constraintTop_toBottomOf="@id/progress_bar"
             tools:text="0MB/0MB" />
 
-        <TextView
+        <com.github.lany192.view.BoxTextView
             android:id="@+id/speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
