@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/white"
+        android:background="@color/white_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -35,11 +35,11 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxWidth="240dp"
-            app:text_middle_bold="true"
             android:maxLines="1"
             android:text="下载"
             android:textColor="@color/text_1level"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:text_middle_bold="true" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

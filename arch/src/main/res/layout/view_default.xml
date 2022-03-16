@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/touch_refresh"
-        android:textColor="#999999"
+        android:textColor="@color/text_3level"
         android:textSize="12sp" />
 </LinearLayout>

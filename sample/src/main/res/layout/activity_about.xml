@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/white"
+        android:background="@color/white_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,12 +34,12 @@
             android:layout_centerHorizontal="true"
             android:ellipsize="end"
             android:gravity="center"
-            app:text_middle_bold="true"
             android:maxWidth="240dp"
             android:maxLines="1"
             android:text="关于"
             android:textColor="@color/text_1level"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:text_middle_bold="true" />
     </RelativeLayout>
 
     <LinearLayout
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:menu_hint="12345678"
-                app:menu_hintColor="#999999"
+                app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="客服QQ" />
 
@@ -103,7 +103,7 @@
                 android:id="@+id/feedback_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:menu_hintColor="#999999"
+                app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="意见反馈" />
 
@@ -117,7 +117,7 @@
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:menu_hintColor="#999999"
+                app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="用户协议" />
 
@@ -131,7 +131,7 @@
                 android:id="@+id/privacy_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:menu_hintColor="#999999"
+                app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="隐私政策" />
 
@@ -145,7 +145,7 @@
                 android:id="@+id/market_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:menu_hintColor="#999999"
+                app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="给我好评" />
 
@@ -174,7 +174,7 @@
                 android:id="@+id/licence_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:menu_hintColor="#999999"
+                app:menu_hintColor="@color/text_3level"
                 app:menu_isShowIcon="false"
                 app:menu_name="开源许可" />
 
@@ -189,7 +189,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:menu_hint="1.0.0"
-                app:menu_hintColor="#999999"
+                app:menu_hintColor="@color/text_3level"
                 app:menu_isShowArrow="false"
                 app:menu_isShowIcon="false"
                 app:menu_name="版本状态" />

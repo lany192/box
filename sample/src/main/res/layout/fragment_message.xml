@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/white"
+        android:background="@color/white_bg"
         app:title="消息"
         app:titleTextColor="@android:color/black" />
 
@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        app:tl_tabSpaceEqual="true"
         app:tl_indicatorColor="#06142E"
         app:tl_indicatorCornerRadius="1dp"
         app:tl_indicatorHeight="2dp"
@@ -27,6 +26,7 @@
         app:tl_indicatorWidthEqualTitle="true"
         app:tl_selectedTextColor="#06142E"
         app:tl_selectedTextSize="15sp"
+        app:tl_tabSpaceEqual="true"
         app:tl_unselectedTextColor="#666666"
         app:tl_unselectedTextSize="15sp" />
 
