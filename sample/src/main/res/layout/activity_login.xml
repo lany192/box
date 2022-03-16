@@ -42,7 +42,7 @@
             android:orientation="vertical"
             android:padding="32dp">
 
-            <com.github.lany192.view.BoxTextView
+            <com.github.lany192.textview.BoxTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -104,7 +104,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <com.github.lany192.view.BoxTextView
+                <com.github.lany192.textview.BoxTextView
                     android:id="@+id/login_register_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                     android:layout_marginRight="20dp"
                     android:background="#cccccc" />
 
-                <com.github.lany192.view.BoxTextView
+                <com.github.lany192.textview.BoxTextView
                     android:id="@+id/login_forget_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                     android:layout_height="0.5dp"
                     android:background="#cccccc" />
 
-                <com.github.lany192.view.BoxTextView
+                <com.github.lany192.textview.BoxTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -167,7 +167,7 @@
                     android:layout_height="32dp"
                     android:background="@drawable/android" />
 
-                <com.github.lany192.view.BoxTextView
+                <com.github.lany192.textview.BoxTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"

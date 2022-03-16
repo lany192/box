@@ -24,7 +24,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/vector_back_black" />
 
-        <com.github.lany192.view.BoxTextView
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             app:text_middle_bold="true"

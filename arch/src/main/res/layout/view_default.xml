@@ -13,7 +13,7 @@
         android:layout_height="72dp"
         tools:src="@drawable/data_empty" />
 
-    <com.github.lany192.view.BoxTextView
+    <com.github.lany192.textview.BoxTextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:textColor="#555555"
         android:textSize="14sp" />
 
-    <com.github.lany192.view.BoxTextView
+    <com.github.lany192.textview.BoxTextView
         android:id="@+id/hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

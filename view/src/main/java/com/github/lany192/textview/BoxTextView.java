@@ -1,5 +1,4 @@
-package com.github.lany192.view;
-
+package com.github.lany192.textview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,7 +12,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.github.lany192.core.R;
+import com.github.lany192.view.R;
 
 @SuppressLint("AppCompatCustomView")
 public class BoxTextView extends TextView {

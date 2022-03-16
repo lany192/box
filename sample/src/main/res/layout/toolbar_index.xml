@@ -6,7 +6,7 @@
     android:gravity="bottom"
     android:minHeight="?actionBarSize">
 
-    <com.github.lany192.view.BoxTextView
+    <com.github.lany192.textview.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
@@ -21,7 +21,7 @@
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
-    <com.github.lany192.view.BoxTextView
+    <com.github.lany192.textview.BoxTextView
         android:id="@+id/custom_toolbar_edit_btn"
         android:layout_width="?actionBarSize"
         android:layout_height="?actionBarSize"

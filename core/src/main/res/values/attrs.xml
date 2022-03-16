@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="BoxTextView">
-        <!--文字是否加 中等粗-->
-        <attr name="text_middle_bold" format="boolean" />
-    </declare-styleable>
-</resources>

@@ -28,6 +28,7 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':view')
 
     //日志工具 https://github.com/elvishew/xLog
     implementation 'com.elvishew:xlog:1.11.0'

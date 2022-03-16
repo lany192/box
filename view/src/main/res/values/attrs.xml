@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="BoxTextView">
+        <!--文字是否加 中等粗-->
+        <attr name="text_middle_bold" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="SpanTextView">
         <attr name="selected_text" format="string|reference" />
         <attr name="selected_text_color" format="color|reference" />
