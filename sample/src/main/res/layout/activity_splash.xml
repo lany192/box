@@ -7,12 +7,12 @@
     android:background="@android:color/holo_blue_light"
     tools:context=".ui.splash.SplashActivity">
 
-    <TextView
+    <com.github.lany192.textview.BoxTextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

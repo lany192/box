@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
+        android:background="@color/white_bg"
         app:itemIconTint="@color/selector_item_gray_color"
         app:itemTextColor="@color/selector_item_gray_color"
         app:labelVisibilityMode="labeled"

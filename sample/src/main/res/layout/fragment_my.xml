@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
+    android:background="@color/gray_bg"
     android:orientation="vertical">
 
     <ImageView
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -34,38 +34,38 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/dialog_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="对话框测试" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="对话框测试"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/login_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="登录测试" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="登录测试"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/download_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="下载安装赢积分" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="下载安装赢积分"
+                app:menu_title_color="@color/text_1level" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -90,38 +90,38 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="功能x" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="功能x"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/test_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="功能x" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="功能x"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/settings_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="设置" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="设置"
+                app:menu_title_color="@color/text_1level" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

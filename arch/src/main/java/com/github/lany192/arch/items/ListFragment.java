@@ -11,9 +11,7 @@ import androidx.viewbinding.ViewBinding;
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.fragment.ViewModelFragment;
 import com.github.lany192.arch.utils.ListUtils;
-import com.github.lany192.arch.view.EmptyView;
-import com.github.lany192.arch.view.ErrorView;
-import com.github.lany192.arch.view.NetworkView;
+import com.github.lany192.arch.view.DefaultView;
 import com.github.lany192.utils.NetUtils;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
@@ -132,7 +130,8 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
 
     @NonNull
     public View getEmptyView() {
-        EmptyView view = new EmptyView(requireContext());
+        DefaultView view = new DefaultView(this);
+        view.setImage(R.drawable.data_empty);
         view.setMessage("没有发现数据");
         view.setHint("重新点击试试");
         view.setOnRetryListener(() -> viewModel.onLazyLoad());
@@ -141,7 +140,8 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
 
     @NonNull
     public View getNetworkView() {
-        NetworkView view = new NetworkView(requireContext());
+        DefaultView view = new DefaultView(this);
+        view.setImage(R.drawable.wifi_error);
         view.setMessage("当前网络异常");
         view.setHint("重新点击试试");
         view.setOnRetryListener(() -> viewModel.onLazyLoad());
@@ -150,7 +150,8 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
 
     @NonNull
     public View getErrorView() {
-        ErrorView view = new ErrorView(requireContext());
+        DefaultView view = new DefaultView(this);
+        view.setImage(R.drawable.warning);
         view.setMessage("未知错误");
         view.setHint("重新点击试试");
         view.setOnRetryListener(() -> viewModel.onLazyLoad());

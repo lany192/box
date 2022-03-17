@@ -10,15 +10,15 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/white"
+        android:background="@color/white_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/back"
-            android:layout_width="@dimen/actionbar_height"
-            android:layout_height="@dimen/actionbar_height"
+            android:layout_width="?actionBarSize"
+            android:layout_height="?actionBarSize"
             android:layout_alignParentBottom="true"
             android:background="?android:attr/actionBarItemBackground"
             android:contentDescription="@string/app_name"
@@ -42,7 +42,7 @@
             android:orientation="vertical"
             android:padding="32dp">
 
-            <TextView
+            <com.github.lany192.textview.BoxTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -94,7 +94,7 @@
                 android:background="@drawable/btn_black_style"
                 android:gravity="center"
                 android:text="登录"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -104,27 +104,27 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.github.lany192.textview.BoxTextView
                     android:id="@+id/login_register_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="创建账号"
-                    android:textColor="#999999"
+                    android:textColor="@color/text_3level"
                     android:textSize="14sp" />
 
                 <View
-                    android:layout_width="1px"
+                    android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginRight="20dp"
                     android:background="#cccccc" />
 
-                <TextView
+                <com.github.lany192.textview.BoxTextView
                     android:id="@+id/login_forget_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="忘记密码"
-                    android:textColor="#999999"
+                    android:textColor="@color/text_3level"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -140,12 +140,12 @@
                     android:layout_height="0.5dp"
                     android:background="#cccccc" />
 
-                <TextView
+                <com.github.lany192.textview.BoxTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="其他登录方式"
-                    android:textColor="#999999"
+                    android:textColor="@color/text_3level"
                     android:textSize="14sp" />
 
                 <View
@@ -167,7 +167,7 @@
                     android:layout_height="32dp"
                     android:background="@drawable/android" />
 
-                <TextView
+                <com.github.lany192.textview.BoxTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"

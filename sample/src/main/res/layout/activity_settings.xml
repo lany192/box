@@ -4,32 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
+    android:background="@color/gray_bg"
     tools:context=".ui.settings.SettingsActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@android:color/white"
+        android:background="@color/white_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/back"
-            android:layout_width="@dimen/actionbar_height"
-            android:layout_height="@dimen/actionbar_height"
+            android:layout_width="?actionBarSize"
+            android:layout_height="?actionBarSize"
             android:layout_alignParentBottom="true"
             android:background="?android:attr/actionBarItemBackground"
             android:contentDescription="@string/app_name"
             android:scaleType="centerInside"
             android:src="@drawable/vector_back_black" />
 
-        <TextView
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/actionbar_height"
+            android:layout_height="?actionBarSize"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:ellipsize="end"
@@ -37,17 +37,18 @@
             android:maxWidth="240dp"
             android:maxLines="1"
             android:text="设置"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textColor="@color/text_1level"
+            android:textSize="18sp"
+            app:text_middle_bold="true" />
     </RelativeLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -62,54 +63,54 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/version_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hint="发现新版本"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="版本检查" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="版本检查"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/cache_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hint="0KB"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="清除缓存" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="清除缓存"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/notice_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="推送设置" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="推送设置"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/permission_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="授权设置" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="授权设置"
+                app:menu_title_color="@color/text_1level" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -117,9 +118,9 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -131,43 +132,42 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <com.github.lany192.view.MenuView
                 android:id="@+id/share_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="分享应用" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="分享应用"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/reward_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 app:menu_hint="您的鼓励是对我最大的支持"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="打赏作者" />
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="打赏作者"
+                app:menu_title_color="@color/text_1level" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_marginLeft="16dp"
-                android:background="#f0f0f0" />
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/divider" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:menu_hintColor="#999999"
-                app:menu_isShowIcon="false"
-                app:menu_name="关于" />
+                android:layout_height="52dp"
+                app:menu_hint_color="@color/text_3level"
+                app:menu_title="关于"
+                app:menu_title_color="@color/text_1level" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:bl_corners_radius="8dp"
-    app:bl_solid_color="#ffffff">
+    app:bl_solid_color="@color/white_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,32 +17,33 @@
         android:paddingRight="20dp"
         android:paddingBottom="30dp">
 
-        <TextView
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="提示"
-            android:textColor="#666666"
-            android:textSize="18sp" />
+            android:textColor="@color/text_2level"
+            android:textSize="17sp"
+            app:text_middle_bold="true" />
 
-        <TextView
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:lineSpacingExtra="8dp"
+            android:lineSpacingExtra="5dp"
             android:scrollbars="vertical"
-            android:textColor="#333333"
-            android:textSize="15sp"
+            android:textColor="@color/text_3level"
+            android:textSize="14sp"
             tools:text="这里显示对话框的消息内容这里显示对话框的消息内容这里显示对话框的消息内容这里显示对话框的消息内容这" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#e2e2e2" />
+        android:layout_height="0.5dp"
+        android:background="@color/divider" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,17 +58,17 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@android:string/cancel"
-            android:textColor="#333333"
+            android:textColor="@color/text_2level"
             android:textSize="14sp"
             android:visibility="gone"
             tools:visibility="visible" />
 
         <View
             android:id="@+id/divider"
-            android:layout_width="1px"
+            android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="#e2e2e2"
+            android:background="@color/divider"
             android:visibility="gone"
             tools:visibility="visible" />
 
@@ -79,7 +80,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@android:string/ok"
-            android:textColor="#333333"
+            android:textColor="@color/text_2level"
             android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>

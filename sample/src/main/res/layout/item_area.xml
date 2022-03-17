@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
     android:background="?attr/selectableItemBackground"
-    app:cardBackgroundColor="#ffffff"
+    app:cardBackgroundColor="@color/white_bg"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp">
 
@@ -38,7 +38,7 @@
             android:maxLines="1"
             android:padding="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textColor="@android:color/black"
+            android:textColor="@color/text_1level"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

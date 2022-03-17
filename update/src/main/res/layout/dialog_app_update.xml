@@ -5,26 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:bl_corners_radius="10dp"
-    app:bl_solid_color="#ffffff"
+    app:bl_corners_bottomLeftRadius="0dp"
+    app:bl_corners_bottomRightRadius="0dp"
+    app:bl_corners_topLeftRadius="10dp"
+    app:bl_corners_topRightRadius="10dp"
+    app:bl_solid_color="@color/white_bg"
     tools:background="@android:color/holo_orange_dark"
     tools:ignore="MissingPrefix">
 
-    <TextView
+    <com.github.lany192.textview.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_1level"
         android:textSize="18sp"
         tools:text="发现新版v2.0.1可以下载啦！" />
 
-    <TextView
+    <com.github.lany192.textview.BoxTextView
         android:id="@+id/size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
         android:textColor="#757575"
@@ -36,12 +39,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
         android:overScrollMode="never">
 
-        <TextView
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,13 +58,13 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="16dp" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="0.5dp"
         android:background="#e2e2e2" />
 
     <LinearLayout
@@ -82,7 +85,7 @@
 
         <View
             android:id="@+id/divider"
-            android:layout_width="1px"
+            android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:background="#e2e2e2" />

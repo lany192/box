@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--主色-->
+    <color name="primary">#27804A</color>
+    <!--主色 - 深-->
+    <color name="primary_dark">#2F804F</color>
+    <!--主色 - 中-->
+    <color name="primary_middle">#338056</color>
+    <!--主色 - 灰-->
+    <color name="primary_gray">#4D38985E</color>
+    <!--主色 - 浅-->
+    <color name="primary_light">#1A38985E</color>
+    <!--辅助 - 红-->
+    <color name="red">#E25844</color>
+    <!--辅助 - 红渐变-->
+    <color name="red_gradual">#B24B43</color>
+    <!--一级字-->
+    <color name="text_1level">#BCC5CC</color>
+    <!--二级字-->
+    <color name="text_2level">#8D9499</color>
+    <!--三级字-->
+    <color name="text_3level">#91999E</color>
+    <!--四级字-->
+    <color name="text_4level">#54595C</color>
+    <!--五级字-->
+    <color name="text_5level">#383B3D</color>
+    <!--星星-->
+    <color name="star">#373B3D</color>
+    <!--底色-->
+    <color name="gray_bg">#131417</color>
+    <!--标签描边-->
+    <color name="outline">#2E3033</color>
+    <!--分割条-->
+    <color name="divider">#15161A</color>
+    <!--超淺底 -->
+    <color name="gray_light_bg">#222329</color>
+    <!--白色 -->
+    <color name="white">#E5E5E5</color>
+    <!--白底 -->
+    <color name="white_bg">#1C1D21</color>
+    <!--图标白色 -->
+    <color name="icon_white">#54595C</color>
+</resources>

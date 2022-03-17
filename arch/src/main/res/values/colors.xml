@@ -3,7 +3,7 @@
     <color name="toolbar_bg">#fafafa</color>
     <color name="pic_default_bg">#eeeeee</color>
     <color name="refresh_head_background">#f2f2f2</color>
-    <color name="refresh_head_text_color">#999999</color>
+    <color name="refresh_head_text_color">@color/text_3level</color>
     <color name="dialog_title">#333333</color>
     <color name="green">#2ba245</color>
     <color name="blue">#03a9f4</color>

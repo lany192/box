@@ -1,0 +1,57 @@
+def buildTime = new Date().format('yyyyMMddHHmm')
+Properties properties = new Properties()
+File propertyFile = new File(rootDir.getAbsolutePath() + "/local.properties")
+properties.load(propertyFile.newDataInputStream())
+
+project.android.applicationVariants.all { variant ->
+    if (variant.buildType.name != "debug") {
+        def variantName = variant.name.capitalize()
+        //apk输出路径
+        def OUTPUT_PATH = properties.getProperty("APK_OUT_PATH", rootDir.getPath()) + "/apk/" + variant.name + "/" + apk.versionName + "/" + buildTime
+        //apk文件名称
+        def FILE_NAME = "box_" + versionName + "_" + new Date().format('MMddHHmm') + ".apk"
+        //默认apk生成路径
+        def APK_PATH = OUTPUT_PATH + "/" + FILE_NAME
+        //渠道包配置信息
+        def CHANNEL_CONFIG_PATH = rootDir.getPath() + "/channel_config"
+        //渠道walle工具jar
+        def WALLE_JAR_PATH = rootDir.getPath() + "/walle-cli-all-1.1.7.jar"
+
+        variant.packageApplicationProvider.get().outputDirectory = new File(OUTPUT_PATH)
+        variant.outputs.all {
+            outputFileName = FILE_NAME
+        }
+        // 拷贝mappings.txt文件到apk输出目录
+        if (variant.buildType.isMinifyEnabled()) {
+            variant.getAssembleProvider().configure() {
+                it.doLast {
+                    copy {
+                        from variant.mappingFile
+                        into OUTPUT_PATH
+                        rename { String fileName ->
+                            "mapping_${buildType.name}_${buildTime}.txt"
+                        }
+                    }
+                }
+            }
+        }
+        project.tasks.create("${variantName}")
+                .dependsOn("assemble${variantName}")
+                .doLast {
+                    println "\n非渠道包:" + APK_PATH
+                    println "\n--- 打包任务完成---"
+                }
+                .group("Package")
+        project.tasks.create("${variantName}Channels")
+                .dependsOn("assemble${variantName}")
+                .doLast {
+                    println "\n--- 开始生成渠道包"
+                    exec {
+                        commandLine "java", "-Dfile.encoding=utf-8", "-jar", WALLE_JAR_PATH, "batch", "-f", CHANNEL_CONFIG_PATH, APK_PATH
+                    }
+                    println "\n渠道包目录:" + OUTPUT_PATH
+                    println "\n--- 打包任务完成---"
+                }
+                .group("Package")
+    }
+}

@@ -14,12 +14,12 @@
         android:indeterminate="true"
         android:indeterminateDrawable="@drawable/icon_loading_white" />
 
-    <TextView
+    <com.github.lany192.textview.BoxTextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loading"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:textSize="13sp" />
 
 </LinearLayout>
