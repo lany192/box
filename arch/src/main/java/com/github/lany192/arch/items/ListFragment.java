@@ -72,18 +72,19 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
                 case CONTENT:
+                    showContentView();
                     break;
                 case ERROR:
-                    listAdapter.setEmptyView(getErrorView());
+                    showErrorView();
                     break;
                 case EMPTY:
-                    listAdapter.setEmptyView(getEmptyView());
+                    showEmptyView();
                     break;
                 case LOADING:
-                    listAdapter.setEmptyView(R.layout.view_loading);
+                    showLoadingView();
                     break;
                 case NETWORK:
-                    listAdapter.setEmptyView(getNetworkView());
+                    showNetworkView();
                     break;
             }
         });
@@ -118,9 +119,9 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
         viewModel.getItems().observe(this, data -> {
             if (ListUtils.isEmpty(data.getItems())) {
                 if (NetUtils.isAvailable(requireContext())) {
-                    listAdapter.setEmptyView(getEmptyView());
+                    showEmptyView();
                 } else {
-                    listAdapter.setEmptyView(getNetworkView());
+                    showNetworkView();
                 }
             } else {
                 listAdapter.setNewInstance(data.getItems());
