@@ -2,7 +2,7 @@ package com.github.lany192.box.sample.ui.main.my
 
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.ViewModelFragment
+import com.github.lany192.arch.fragment.ModelFragment
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.data.bean.UserInfo
 import com.github.lany192.box.sample.databinding.FragmentMyBinding
@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/fragment/my")
-class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
+class MyFragment : ModelFragment<MyViewModel, FragmentMyBinding>() {
     private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {
