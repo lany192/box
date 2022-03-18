@@ -19,7 +19,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
     lateinit var binding: VB
 
     private lateinit var content: FrameLayout
-    private var viewState: ViewState = ViewState.CONTENT
+    private var viewState = ViewState.CONTENT
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -94,6 +94,7 @@ public abstract class ListViewModel extends LifecycleViewModel {
         if (ListUtils.isEmpty(items)) {
             showEmptyView();
         }
+        showContentView();
     }
 
     /**

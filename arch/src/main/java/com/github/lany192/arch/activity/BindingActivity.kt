@@ -24,7 +24,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
     lateinit var toolbar: TVB
 
     private lateinit var content: FrameLayout
-    private var viewState: ViewState = ViewState.CONTENT
+    private var viewState = ViewState.CONTENT
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
