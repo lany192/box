@@ -14,7 +14,6 @@ import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
-import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 import moe.feng.alipay.zerosdk.AlipayZeroSdk
@@ -23,16 +22,6 @@ import moe.feng.alipay.zerosdk.AlipayZeroSdk
 @Route(path = "/ui/settings")
 class SettingsActivity : SimpleActivity<SettingsViewModel, ActivitySettingsBinding>() {
     private lateinit var userViewModel: UserViewModel
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .transparentStatusBar()
-            .statusBarDarkFont(true)
-            .navigationBarColor(android.R.color.white)
-            .navigationBarDarkIcon(true)
-            .titleBar(binding.toolbar)
-            .init()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

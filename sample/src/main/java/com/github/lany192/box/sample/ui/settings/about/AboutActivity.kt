@@ -7,7 +7,6 @@ import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.SimpleActivity
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
-import com.gyf.immersionbar.ImmersionBar
 import dagger.hilt.android.AndroidEntryPoint
 import de.psdev.licensesdialog.LicensesDialog
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20
@@ -19,16 +18,6 @@ import de.psdev.licensesdialog.model.Notices
 @AndroidEntryPoint
 @Route(path = "/ui/about")
 class AboutActivity : SimpleActivity<AboutViewModel, ActivityAboutBinding>() {
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .transparentStatusBar()
-            .statusBarDarkFont(true)
-            .navigationBarColor(android.R.color.white)
-            .navigationBarDarkIcon(true)
-            .titleBar(binding.toolbar)
-            .init()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -20,7 +20,7 @@ public class BrowserActivity extends ToolbarActivity<ActivityBrowserBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding.title.setText(title);
+        setTitle(title);
         binding.webview.loadUrl(url);
         log.i("test");
     }

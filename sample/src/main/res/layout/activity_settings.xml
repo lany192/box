@@ -7,41 +7,6 @@
     android:background="@color/gray_bg"
     tools:context=".ui.settings.SettingsActivity">
 
-    <RelativeLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/white_bg"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="?actionBarSize"
-            android:layout_height="?actionBarSize"
-            android:layout_alignParentBottom="true"
-            android:background="?android:attr/actionBarItemBackground"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerInside"
-            android:src="@drawable/vector_back_black" />
-
-        <com.github.lany192.textview.BoxTextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxWidth="240dp"
-            android:maxLines="1"
-            android:text="设置"
-            android:textColor="@color/text_1level"
-            android:textSize="18sp"
-            app:text_middle_bold="true" />
-    </RelativeLayout>
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_1"
         android:layout_width="match_parent"
@@ -53,7 +18,7 @@
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"

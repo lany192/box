@@ -22,6 +22,10 @@ class SplashActivity : SimpleActivity<SplashViewModel, ActivitySplashBinding>() 
             .init()
     }
 
+    override fun hasToolbar(): Boolean {
+        return false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
