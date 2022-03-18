@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.allen.android.lib.PermissionUtils
-import com.github.lany192.arch.activity.ViewModelActivity
+import com.github.lany192.arch.activity.SimpleActivity
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding
 import com.github.lany192.box.sample.ui.user.UserViewModel
@@ -21,7 +21,7 @@ import moe.feng.alipay.zerosdk.AlipayZeroSdk
 
 @AndroidEntryPoint
 @Route(path = "/ui/settings")
-class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBinding>() {
+class SettingsActivity : SimpleActivity<SettingsViewModel, ActivitySettingsBinding>() {
     private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {

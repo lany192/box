@@ -6,28 +6,25 @@ import android.view.MenuItem
 import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.ViewModelActivity
+import com.github.lany192.arch.activity.SimpleActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.data.bean.UserInfo
 import com.github.lany192.box.sample.databinding.ActivityMainBinding
 import com.github.lany192.box.sample.ui.user.UserViewModel
-import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @Route(path = "/ui/main")
 @AndroidEntryPoint
-class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
+class MainActivity : SimpleActivity<MainViewModel, ActivityMainBinding>() {
     // 第一次按退出的时间
     private var mLastClickTime: Long = 0
     private lateinit var userViewModel: UserViewModel
 
-    override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .transparentStatusBar()
-            .init()
+    override fun hasToolbar(): Boolean {
+        return false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

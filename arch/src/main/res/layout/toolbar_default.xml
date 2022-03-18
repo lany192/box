@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/toolbar_bg"
-    android:gravity="bottom"
-    android:minHeight="?actionBarSize">
+    android:layout_height="?actionBarSize"
+    tools:background="@android:color/holo_blue_bright">
 
     <ImageButton
         android:id="@+id/back"
@@ -28,15 +27,23 @@
         android:gravity="center"
         android:maxWidth="240dp"
         android:maxLines="1"
-        android:text="@string/app_name"
         android:textColor="@color/text_1level"
         android:textSize="18sp"
-        app:text_middle_bold="true" />
+        app:text_middle_bold="true"
+        tools:text="标题" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_alignParentBottom="true"
-        android:background="#e1e1e1" />
-
+    <com.github.lany192.textview.BoxTextView
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentEnd="true"
+        android:background="?android:attr/actionBarItemBackground"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textColor="@color/text_2level"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="编辑"
+        tools:visibility="visible" />
 </RelativeLayout>

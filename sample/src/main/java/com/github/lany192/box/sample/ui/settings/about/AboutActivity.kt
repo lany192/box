@@ -3,11 +3,9 @@ package com.github.lany192.box.sample.ui.settings.about
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.viewModels
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.BindingActivity
-import com.github.lany192.arch.activity.ViewModelActivity
+import com.github.lany192.arch.activity.SimpleActivity
 import com.github.lany192.box.sample.databinding.ActivityAboutBinding
 import com.gyf.immersionbar.ImmersionBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +18,7 @@ import de.psdev.licensesdialog.model.Notices
 
 @AndroidEntryPoint
 @Route(path = "/ui/about")
-class AboutActivity : ViewModelActivity<AboutViewModel,ActivityAboutBinding>() {
+class AboutActivity : SimpleActivity<AboutViewModel, ActivityAboutBinding>() {
 
     override fun initImmersionBar() {
         ImmersionBar.with(this)
