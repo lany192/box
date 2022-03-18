@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="id_state_layout" type="id" />
     <item name="toolbar" type="id" />
     <item name="back" type="id" />
     <item name="title" type="id" />

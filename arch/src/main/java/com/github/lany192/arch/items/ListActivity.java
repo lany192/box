@@ -12,9 +12,7 @@ import androidx.viewbinding.ViewBinding;
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.activity.ModelActivity;
 import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
-import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.view.DefaultView;
-import com.github.lany192.utils.NetUtils;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBinding> extends ModelActivity<VM, VB, ToolbarDefaultBinding> {
@@ -117,17 +115,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
                     break;
             }
         });
-        viewModel.getItems().observe(this, data -> {
-            if (ListUtils.isEmpty(data.getItems())) {
-                if (NetUtils.isAvailable(this)) {
-                    showEmptyView();
-                } else {
-                    showNetworkView();
-                }
-            } else {
-                listAdapter.setNewInstance(data.getItems());
-            }
-        });
+        viewModel.getItems().observe(this, data -> listAdapter.setNewInstance(data.getItems()));
     }
 
     @NonNull

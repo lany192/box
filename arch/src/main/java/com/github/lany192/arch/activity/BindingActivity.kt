@@ -24,6 +24,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
     lateinit var toolbar: TVB
 
     private lateinit var content: FrameLayout
+    private var viewState: ViewState = ViewState.CONTENT
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -140,9 +141,13 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
         resetViewType(ViewState.EMPTY)
     }
 
-    private fun resetViewType(type: ViewState) {
+    private fun resetViewType(state: ViewState) {
+        if (viewState == state) {
+            return
+        }
+        viewState = state
         content.removeAllViews()
-        when (type) {
+        when (state) {
             ViewState.CONTENT -> {
                 content.addView(binding.root)
             }

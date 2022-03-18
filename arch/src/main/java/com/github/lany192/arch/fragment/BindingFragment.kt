@@ -19,6 +19,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
     lateinit var binding: VB
 
     private lateinit var content: FrameLayout
+    private var viewState: ViewState = ViewState.CONTENT
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,9 +55,13 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
         resetViewType(ViewState.EMPTY)
     }
 
-    private fun resetViewType(type: ViewState) {
+    private fun resetViewType(state: ViewState) {
+        if (viewState == state) {
+            return
+        }
+        viewState = state
         content.removeAllViews()
-        when (type) {
+        when (state) {
             ViewState.CONTENT -> {
                 content.addView(binding.root)
             }

@@ -1,7 +1,6 @@
 package com.github.lany192.box.sample.ui.main.my
 
 import androidx.lifecycle.MutableLiveData
-import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
 import com.github.lany192.box.sample.data.api.ApiCallback
 import com.github.lany192.box.sample.data.api.ApiService
@@ -20,7 +19,7 @@ class MyViewModel @Inject constructor(private val apiService: ApiService) : Life
 
     private fun requestCityInfo() {
         log.i("请求城市数据接口")
-        showViewState(ViewState.LOADING)
+        showLoadingView()
         apiService.cityInfo().subscribe(object : ApiCallback<List<Area>> {
             override fun onSuccess(msg: String, areas: List<Area>) {
                 items.postValue(areas)

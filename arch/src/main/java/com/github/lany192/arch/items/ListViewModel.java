@@ -92,7 +92,7 @@ public abstract class ListViewModel extends LifecycleViewModel {
     public void resetItems(List<?> items) {
         this.listLiveData.setItems((List<Object>) items);
         if (ListUtils.isEmpty(items)) {
-            this.showViewState(ViewState.EMPTY);
+            showEmptyView();
         }
     }
 
@@ -118,7 +118,7 @@ public abstract class ListViewModel extends LifecycleViewModel {
             page = 1;
             request(true);
         } else {
-            showViewState(ViewState.NETWORK);
+            showNetworkView();
             listState.postValue(ListState.STOP_REQUEST);
         }
     }
@@ -132,7 +132,7 @@ public abstract class ListViewModel extends LifecycleViewModel {
             page += 1;
             request(false);
         } else {
-            showViewState(ViewState.NETWORK);
+            showNetworkView();
             listState.postValue(ListState.STOP_REQUEST);
         }
     }
