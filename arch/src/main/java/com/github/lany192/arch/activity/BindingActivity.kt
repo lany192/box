@@ -35,18 +35,24 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
         content.addView(binding.root)
         setContentView(content)
 
-        findViewById<View>(R.id.back)?.setOnClickListener { onBackPressed() }
-        findViewById<TextView>(R.id.title)?.text = title
+        if (hasToolbar()) {
+            findViewById<View>(R.id.back)?.setOnClickListener { onBackPressed() }
+            findViewById<TextView>(R.id.title)?.text = title
+        }
     }
 
     abstract fun getToolbarBinding(): TVB
 
     override fun setTitle(title: CharSequence?) {
-        findViewById<TextView>(R.id.title)?.text = title
+        if (hasToolbar()) {
+            findViewById<TextView>(R.id.title)?.text = title
+        }
     }
 
     override fun setTitle(titleId: Int) {
-        findViewById<TextView>(R.id.title)?.text = getString(titleId)
+        if (hasToolbar()) {
+            findViewById<TextView>(R.id.title)?.text = getString(titleId)
+        }
     }
 
     override fun setContentView(view: View?) {
