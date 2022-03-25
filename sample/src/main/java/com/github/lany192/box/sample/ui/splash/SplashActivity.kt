@@ -16,10 +16,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : SimpleActivity<SplashViewModel, ActivitySplashBinding>() {
 
-    override fun initImmersionBar() {
-        ImmersionBar.with(this)
+    override fun initImmersionBar(): ImmersionBar {
+        return ImmersionBar.with(this)
             .hideBar(BarHide.FLAG_HIDE_BAR)
-            .init()
     }
 
     override fun hasToolbar(): Boolean {
@@ -28,6 +27,10 @@ class SplashActivity : SimpleActivity<SplashViewModel, ActivitySplashBinding>() 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //防止部分手机点击桌面图标后重启应用
+        if (!isTaskRoot) {
+            finish()
+        }
         viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
         Handler().postDelayed({
             AppRouter.get().main()
