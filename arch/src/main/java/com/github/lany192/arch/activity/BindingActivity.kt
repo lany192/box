@@ -13,7 +13,6 @@ import com.github.lany192.arch.binding.getBinding
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.view.DefaultView
 import com.github.lany192.arch.view.LoadingView
-import com.github.lany192.utils.DensityUtils
 import com.gyf.immersionbar.ImmersionBar
 
 /**
@@ -29,16 +28,15 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        toolbar = getToolbarBinding()
+        if (hasToolbar()) {
+            toolbar = getToolbarBinding()
+            findViewById<View>(R.id.back)?.setOnClickListener { onBackPressed() }
+            title = title
+        }
         binding = findClass().getBinding(layoutInflater)
         content = FrameLayout(this)
         content.addView(binding.root)
         setContentView(content)
-
-        if (hasToolbar()) {
-            findViewById<View>(R.id.back)?.setOnClickListener { onBackPressed() }
-            findViewById<TextView>(R.id.title)?.text = title
-        }
     }
 
     abstract fun getToolbarBinding(): TVB
@@ -63,7 +61,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
                 toolbar.root,
                 LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
-                    DensityUtils.dp2px(48f)
+                    resources.getDimension(R.dimen.actionbar_height).toInt()
                 )
             )
             content.addView(
@@ -86,23 +84,11 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
         return true
     }
 
-    override fun initImmersionBar() {
+    override fun initImmersionBar(): ImmersionBar {
         if (hasToolbar()) {
-            ImmersionBar.with(this)
-                .statusBarDarkFont(true)
-                .navigationBarColor(android.R.color.white)
-                .navigationBarDarkIcon(true)
-                .transparentStatusBar()
-                .titleBar(toolbar.root)
-                .init()
-        } else {
-            ImmersionBar.with(this)
-                .statusBarDarkFont(true)
-                .navigationBarColor(android.R.color.white)
-                .navigationBarDarkIcon(true)
-                .transparentStatusBar()
-                .init()
+            return super.initImmersionBar().titleBar(toolbar.root)
         }
+        return super.initImmersionBar()
     }
 
     open fun getErrorView(): View {

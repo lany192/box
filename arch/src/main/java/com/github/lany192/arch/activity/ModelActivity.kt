@@ -21,7 +21,7 @@ abstract class ModelActivity<VM : ViewModel, CVB : ViewBinding, TVB : ViewBindin
         viewModel = createDefaultViewModel(clazz)
     }
 
-    protected fun createDefaultViewModel(clazz: Class<VM>): VM {
+    open fun createDefaultViewModel(clazz: Class<VM>): VM {
         return getViewModel(clazz)
     }
 }
