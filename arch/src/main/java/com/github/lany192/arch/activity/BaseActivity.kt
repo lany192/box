@@ -59,8 +59,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if (immersionBarEnabled()) {
-            val immersionBar = initImmersionBar()
-            immersionBar.init()
+            initImmersionBar().init()
         }
     }
 
@@ -68,8 +67,7 @@ abstract class BaseActivity : AppCompatActivity() {
     public override fun onResume() {
         super.onResume()
         if (immersionBarEnabled()) {
-            val immersionBar = initImmersionBar()
-            immersionBar.init()
+            initImmersionBar().init()
         }
     }
 
