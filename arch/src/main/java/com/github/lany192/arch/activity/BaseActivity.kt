@@ -14,6 +14,9 @@ import com.github.lany192.arch.R
 import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.dialog.LoadingDialog
 import com.gyf.immersionbar.ImmersionBar
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseActivity : AppCompatActivity() {
     @JvmField
@@ -25,6 +28,20 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycle.addObserver(NetworkHelper.getInstance())
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
+    override fun onDestroy() {
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this)
+        }
+        super.onDestroy()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    open fun onEvent(event: Void) {
     }
 
     fun <T : ViewModel> getViewModel(modelClass: Class<T>): T {
