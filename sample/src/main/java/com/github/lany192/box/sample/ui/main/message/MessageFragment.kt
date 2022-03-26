@@ -2,17 +2,16 @@ package com.github.lany192.box.sample.ui.main.message
 
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.ViewModelFragment
+import com.github.lany192.arch.fragment.ModelFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.box.sample.databinding.FragmentMessageBinding
 import com.gyf.immersionbar.ImmersionBar
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 @Route(path = "/fragment/message")
-class MessageFragment : ViewModelFragment<MessageViewModel, FragmentMessageBinding>() {
+class MessageFragment : ModelFragment<MessageViewModel, FragmentMessageBinding>() {
 
     override fun initImmersionBar() {
         ImmersionBar.with(this)

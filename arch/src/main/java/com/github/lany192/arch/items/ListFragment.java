@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.fragment.ViewModelFragment;
-import com.github.lany192.arch.utils.ListUtils;
+import com.github.lany192.arch.fragment.ModelFragment;
 import com.github.lany192.arch.view.DefaultView;
-import com.github.lany192.utils.NetUtils;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBinding>
-        extends ViewModelFragment<VM, VB> {
+        extends ModelFragment<VM, VB> {
     private final ListAdapter listAdapter = new ListAdapter();
 
     public RecyclerView.LayoutManager getLayoutManager() {
@@ -72,18 +70,19 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
                 case CONTENT:
+                    showContentView();
                     break;
                 case ERROR:
-                    listAdapter.setEmptyView(getErrorView());
+                    showErrorView();
                     break;
                 case EMPTY:
-                    listAdapter.setEmptyView(getEmptyView());
+                    showEmptyView();
                     break;
                 case LOADING:
-                    listAdapter.setEmptyView(R.layout.view_loading);
+                    showLoadingView();
                     break;
                 case NETWORK:
-                    listAdapter.setEmptyView(getNetworkView());
+                    showNetworkView();
                     break;
             }
         });
@@ -115,17 +114,7 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
                     break;
             }
         });
-        viewModel.getItems().observe(this, data -> {
-            if (ListUtils.isEmpty(data.getItems())) {
-                if (NetUtils.isAvailable(requireContext())) {
-                    listAdapter.setEmptyView(getEmptyView());
-                } else {
-                    listAdapter.setEmptyView(getNetworkView());
-                }
-            } else {
-                listAdapter.setNewInstance(data.getItems());
-            }
-        });
+        viewModel.getItems().observe(this, data -> listAdapter.setNewInstance(data.getItems()));
     }
 
     @NonNull

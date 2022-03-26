@@ -7,10 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
-import org.greenrobot.eventbus.Subscribe
 import com.github.lany192.arch.event.NetWorkEvent
 import com.github.lany192.arch.items.ViewState
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 open class LifecycleViewModel : ViewModel(), DefaultLifecycleObserver {
     @JvmField
@@ -30,10 +30,6 @@ open class LifecycleViewModel : ViewModel(), DefaultLifecycleObserver {
      * 是否执行过懒加载
      */
     private var lazyLoaded = false
-
-    fun showViewState(state: ViewState) {
-        viewState.postValue(state)
-    }
 
     fun showLoadingDialog() {
         if (loadingState.hasActiveObservers()) {

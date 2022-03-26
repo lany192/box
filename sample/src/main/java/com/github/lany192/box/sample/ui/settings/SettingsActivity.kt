@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.allen.android.lib.PermissionUtils
-import com.github.lany192.arch.activity.ViewModelActivity
+import com.github.lany192.arch.activity.SimpleActivity
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding
 import com.github.lany192.box.sample.ui.user.UserViewModel
@@ -14,25 +14,14 @@ import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
-import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 import moe.feng.alipay.zerosdk.AlipayZeroSdk
 
 @AndroidEntryPoint
 @Route(path = "/ui/settings")
-class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBinding>() {
+class SettingsActivity : SimpleActivity<SettingsViewModel, ActivitySettingsBinding>() {
     private lateinit var userViewModel: UserViewModel
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .transparentStatusBar()
-            .statusBarDarkFont(true)
-            .navigationBarColor(android.R.color.white)
-            .navigationBarDarkIcon(true)
-            .titleBar(binding.toolbar)
-            .init()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -5,10 +5,15 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.github.lany192.arch.databinding.ViewLoadingBinding;
 
 public class LoadingView extends BindingView<ViewLoadingBinding> {
+
+    public LoadingView(@NonNull Fragment fragment) {
+        super(fragment.requireContext());
+    }
 
     public LoadingView(@NonNull Context context) {
         super(context);

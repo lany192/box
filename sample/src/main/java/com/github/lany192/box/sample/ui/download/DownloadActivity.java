@@ -7,10 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.ViewModelActivity;
+import com.github.lany192.arch.activity.SimpleActivity;
 import com.github.lany192.arch.items.ListAdapter;
 import com.github.lany192.box.sample.databinding.ActivityDownloadBinding;
-import com.gyf.immersionbar.ImmersionBar;
 import com.liulishuo.okdownload.DownloadMonitor;
 import com.liulishuo.okdownload.DownloadTask;
 import com.liulishuo.okdownload.OkDownload;
@@ -25,19 +24,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/download")
-public class DownloadActivity extends ViewModelActivity<DownloadViewModel,ActivityDownloadBinding> {
+public class DownloadActivity extends SimpleActivity<DownloadViewModel, ActivityDownloadBinding> {
     private final ListAdapter listAdapter = new ListAdapter();
-
-    @Override
-    public void initImmersionBar() {
-        ImmersionBar.with(this)
-                .transparentStatusBar()
-                .statusBarDarkFont(true)
-                .navigationBarColor(android.R.color.white)
-                .navigationBarDarkIcon(true)
-                .titleBar(binding.toolbar)
-                .init();
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

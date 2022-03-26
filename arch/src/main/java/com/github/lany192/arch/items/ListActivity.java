@@ -10,18 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.activity.ViewModelActivity;
-import com.github.lany192.arch.utils.ListUtils;
+import com.github.lany192.arch.activity.ModelActivity;
+import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
 import com.github.lany192.arch.view.DefaultView;
-import com.github.lany192.utils.NetUtils;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
-public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBinding> extends ViewModelActivity<VM, VB> {
+public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBinding> extends ModelActivity<VM, VB, ToolbarDefaultBinding> {
     private final ListAdapter listAdapter = new ListAdapter();
 
     public abstract SmartRefreshLayout getRefreshLayout();
 
     public abstract RecyclerView getRecyclerView();
+
+    @NonNull
+    @Override
+    public ToolbarDefaultBinding getToolbarBinding() {
+        return ToolbarDefaultBinding.inflate(getLayoutInflater());
+    }
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(this, getSpanCount());
@@ -66,18 +71,19 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
         viewModel.getViewState().observe(this, state -> {
             switch (state) {
                 case CONTENT:
+                    showContentView();
                     break;
                 case ERROR:
-                    listAdapter.setEmptyView(getErrorView());
+                    showErrorView();
                     break;
                 case EMPTY:
-                    listAdapter.setEmptyView(getEmptyView());
+                    showEmptyView();
                     break;
                 case LOADING:
-                    listAdapter.setEmptyView(R.layout.view_loading);
+                    showLoadingView();
                     break;
                 case NETWORK:
-                    listAdapter.setEmptyView(getNetworkView());
+                    showNetworkView();
                     break;
             }
         });
@@ -109,17 +115,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
                     break;
             }
         });
-        viewModel.getItems().observe(this, data -> {
-            if (ListUtils.isEmpty(data.getItems())) {
-                if (NetUtils.isAvailable(this)) {
-                    listAdapter.setEmptyView(getEmptyView());
-                } else {
-                    listAdapter.setEmptyView(getNetworkView());
-                }
-            } else {
-                listAdapter.setNewInstance(data.getItems());
-            }
-        });
+        viewModel.getItems().observe(this, data -> listAdapter.setNewInstance(data.getItems()));
     }
 
     @NonNull

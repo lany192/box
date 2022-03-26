@@ -8,12 +8,13 @@ import java.lang.reflect.ParameterizedType
 /**
  * ViewBinding实现基类
  */
-abstract class ViewModelFragment<VM : ViewModel, VB : ViewBinding> : BindingFragment<VB>() {
+abstract class ModelFragment<VM : ViewModel, VB : ViewBinding> : BindingFragment<VB>() {
     lateinit var viewModel: VM
 
     @CallSuper
     override fun init() {
-        val clazz = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
+        val clazz =
+            (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
         viewModel = createDefaultViewModel(clazz)
     }
 

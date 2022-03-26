@@ -2,7 +2,7 @@ package com.github.lany192.box.sample.ui.main.index
 
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.ViewModelFragment
+import com.github.lany192.arch.fragment.ModelFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.box.sample.databinding.FragmentIndexBinding
@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/fragment/index")
-class IndexFragment : ViewModelFragment<IndexViewModel, FragmentIndexBinding>() {
+class IndexFragment : ModelFragment<IndexViewModel, FragmentIndexBinding>() {
 
     override fun initImmersionBar() {
         ImmersionBar.with(this)

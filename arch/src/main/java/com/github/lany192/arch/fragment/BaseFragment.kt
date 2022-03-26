@@ -1,6 +1,7 @@
 package com.github.lany192.arch.fragment
 
 import android.content.res.Configuration
+import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
@@ -9,13 +10,33 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
-import com.github.lany192.dialog.LoadingDialog
-import kotlin.jvm.JvmOverloads
 import com.github.lany192.arch.R
+import com.github.lany192.dialog.LoadingDialog
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseFragment : Fragment() {
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
     private var loadingDialog: LoadingDialog? = null
+
+    override fun onCreate(state: Bundle?) {
+        super.onCreate(state)
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this)
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    open fun onEvent(event: Void) {
+    }
 
     @JvmOverloads
     fun showLoadingDialog(message: CharSequence? = getString(R.string.loading)) {

@@ -9,17 +9,19 @@ import java.lang.reflect.ParameterizedType
 /**
  * ViewBinding实现基类
  */
-abstract class ViewModelActivity<VM : ViewModel, VB : ViewBinding> : BindingActivity<VB>() {
+abstract class ModelActivity<VM : ViewModel, CVB : ViewBinding, TVB : ViewBinding> :
+    BindingActivity<CVB, TVB>() {
     lateinit var viewModel: VM
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val clazz = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
+        val clazz =
+            (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
         viewModel = createDefaultViewModel(clazz)
     }
 
-    protected fun createDefaultViewModel(clazz: Class<VM>): VM {
+    open fun createDefaultViewModel(clazz: Class<VM>): VM {
         return getViewModel(clazz)
     }
 }

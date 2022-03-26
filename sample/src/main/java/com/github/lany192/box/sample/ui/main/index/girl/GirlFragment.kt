@@ -3,7 +3,7 @@ package com.github.lany192.box.sample.ui.main.index.girl
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.ViewModelFragment
+import com.github.lany192.arch.fragment.ModelFragment
 import com.github.lany192.arch.items.ListAdapter
 import com.github.lany192.box.sample.data.binder.GirlBinder
 import com.github.lany192.box.sample.databinding.FragmentGirlBinding
@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/fragment/girl")
-class GirlFragment : ViewModelFragment<GirlViewModel, FragmentGirlBinding>() {
+class GirlFragment : ModelFragment<GirlViewModel, FragmentGirlBinding>() {
 
     override fun init() {
         super.init()
