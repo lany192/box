@@ -108,8 +108,6 @@ ext {
 //    'umeng-share'   : 'com.github.lany192.umeng:share:1.0.7',
             //多布局 https://github.com/lany192/TabLayout
             'tab-layout'                      : 'com.github.lany192:TabLayout:3.1.1',
-            //菜单控件 https://github.com/lany192/MenuView
-            'MenuView'                        : 'com.github.lany192:MenuView:1.0.5',
             //菜单控件
             'clear-edittext'                  : 'com.github.lany192:ClearEditText:1.0.6',
             //开源协议对话框
