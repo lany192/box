@@ -8,8 +8,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        android:background="@color/white_bg"
+        android:layout_height="?actionBarSize"
         app:title="消息"
         app:titleTextColor="@color/text_1level" />
 

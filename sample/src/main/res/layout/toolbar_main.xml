@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:background="@color/white_bg"
     android:gravity="bottom"
-    android:minHeight="@dimen/actionbar_height">
+    android:minHeight="?actionBarSize">
 
     <ImageButton
         android:id="@+id/back"
-        android:layout_width="@dimen/actionbar_height"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/actionBarItemBackground"
         android:contentDescription="@string/app_name"
@@ -20,7 +20,7 @@
     <com.github.lany192.textview.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
@@ -34,8 +34,8 @@
 
     <com.github.lany192.textview.BoxTextView
         android:id="@+id/custom_toolbar_edit_btn"
-        android:layout_width="@dimen/actionbar_height"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/actionBarItemBackground"

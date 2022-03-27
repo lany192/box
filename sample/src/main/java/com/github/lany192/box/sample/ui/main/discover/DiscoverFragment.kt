@@ -35,18 +35,18 @@ class DiscoverFragment : ListFragment<DiscoverViewModel, FragmentDiscoverBinding
     }
 
     override fun getRefreshLayout(): SmartRefreshLayout {
-        return binding.refreshLayout
+        return binding.itemsView.refreshLayout
     }
 
     override fun getRecyclerView(): RecyclerView {
-        return binding.recyclerView
+        return binding.itemsView.recyclerView
     }
 
     override fun init() {
         super.init()
         register(ImageBinder())
         register(CategoryBinder())
-        binding.recyclerView.addItemDecoration(object : ItemDecoration() {
+        binding.itemsView.addItemDecoration(object : ItemDecoration() {
             override fun getDivider(position: Int): Divider {
                 return Divider().setTopWidth(2f).setBottomWidth(2f).setLeftWidth(2f)
                     .setRightWidth(2f)

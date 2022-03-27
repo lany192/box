@@ -8,26 +8,13 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        android:background="@android:color/holo_red_light"
+        android:layout_height="?actionBarSize"
         app:title="发现"
         app:titleTextColor="@android:color/white" />
 
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
-        android:id="@+id/refresh_layout"
+    <com.github.lany192.arch.view.ItemsView
+        android:id="@+id/items_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_bg"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:padding="6dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2" />
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
-
+        android:orientation="vertical" />
 </LinearLayout>

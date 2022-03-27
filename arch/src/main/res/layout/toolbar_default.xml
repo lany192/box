@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/actionbar_height"
-    tools:background="@android:color/holo_blue_bright">
+    android:layout_height="?actionBarSize"
+    tools:background="@android:color/holo_blue_bright"
+    tools:layout_height="@dimen/actionbar_height">
 
     <ImageButton
         android:id="@+id/back"
-        android:layout_width="@dimen/actionbar_height"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/actionBarItemBackground"
         android:contentDescription="@string/app_name"
-        android:scaleType="centerInside"
-        android:src="@drawable/vector_back_black" />
+        android:src="@drawable/vector_back_black"
+        tools:layout_height="@dimen/actionbar_height"
+        tools:layout_width="@dimen/actionbar_height" />
 
     <com.github.lany192.textview.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
@@ -30,12 +32,13 @@
         android:textColor="@color/text_1level"
         android:textSize="18sp"
         app:text_middle_bold="true"
+        tools:layout_height="@dimen/actionbar_height"
         tools:text="标题" />
 
     <com.github.lany192.textview.BoxTextView
         android:id="@+id/right"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentEnd="true"
         android:background="?android:attr/actionBarItemBackground"
         android:gravity="center"
@@ -44,6 +47,7 @@
         android:textColor="@color/text_2level"
         android:textSize="14sp"
         android:visibility="gone"
+        tools:layout_height="@dimen/actionbar_height"
         tools:text="编辑"
         tools:visibility="visible" />
 </RelativeLayout>
