@@ -10,10 +10,10 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 abstract class PageFragment<VM : ListViewModel> : ListFragment<VM, FragmentPageBinding>(){
 
     override fun getRefreshLayout(): SmartRefreshLayout {
-        return binding.refreshLayout
+        return binding.itemsView.refreshLayout
     }
 
     override fun getRecyclerView(): RecyclerView {
-        return binding.recyclerView
+        return binding.itemsView.recyclerView
     }
 }
