@@ -48,9 +48,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
     }
 
     override fun setTitle(titleId: Int) {
-        if (hasToolbar()) {
-            findViewById<TextView>(R.id.title)?.text = getString(titleId)
-        }
+        title = getString(titleId)
     }
 
     override fun setContentView(view: View?) {
