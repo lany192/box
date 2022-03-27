@@ -145,7 +145,7 @@ public abstract class ListViewModel extends LifecycleViewModel {
      */
     @CallSuper
     @Override
-    protected void onLazyLoad() {
+    public void onLazyLoad() {
         request(true);
     }
 }
