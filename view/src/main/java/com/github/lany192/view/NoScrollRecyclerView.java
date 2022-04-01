@@ -1,4 +1,4 @@
-package com.github.lany192.widget;
+package com.github.lany192.view;
 
 
 import android.content.Context;

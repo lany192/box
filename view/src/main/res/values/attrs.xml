@@ -50,4 +50,10 @@
         <attr name="menu_hint_size" format="float|dimension" />
         <attr name="menu_arrow" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="RealtimeBlurView">
+        <attr name="realtimeBlurRadius" format="dimension|reference" />
+        <attr name="realtimeDownsampleFactor" format="float|reference" />
+        <attr name="realtimeOverlayColor" format="color|reference" />
+    </declare-styleable>
 </resources>

@@ -35,7 +35,7 @@ dependencies {
     //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
     implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.3'
 
-    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.4.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

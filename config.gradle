@@ -24,7 +24,7 @@ ext {
             "junit": 'junit:junit:4.13.2'
     ]
     implementationDependencies = [
-            'androidx-appcompat'              : 'androidx.appcompat:appcompat:1.4.0',
+            'androidx-appcompat'              : 'androidx.appcompat:appcompat:1.4.1',
             'androidx-activity-ktx'           : 'androidx.activity:activity-ktx:1.4.0',
             'androidx-fragment-ktx'           : 'androidx.fragment:fragment-ktx:1.4.0',
             'androidx-core-ktx'               : 'androidx.core:core-ktx:1.7.0',
