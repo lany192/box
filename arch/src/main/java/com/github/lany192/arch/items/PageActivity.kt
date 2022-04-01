@@ -1,13 +1,13 @@
 package com.github.lany192.arch.items
 
 import androidx.recyclerview.widget.RecyclerView
-import com.github.lany192.arch.databinding.FragmentPageBinding
+import com.github.lany192.arch.databinding.ActivityPageBinding
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 /**
  * 通用布局
  */
-abstract class PageFragment<VM : ListViewModel> : ListFragment<VM, FragmentPageBinding>(){
+abstract class PageActivity<VM : ListViewModel> : ListActivity<VM, ActivityPageBinding>() {
 
     override fun getRefreshLayout(): SmartRefreshLayout {
         return binding.itemsView.refreshLayout

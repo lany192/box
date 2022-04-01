@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <com.github.lany192.imageview.SquareImageView
         android:id="@+id/image"
         android:layout_width="72dp"
         android:layout_height="72dp"
+        android:layout_marginTop="68dp"
         tools:src="@drawable/data_empty" />
 
     <com.github.lany192.textview.BoxTextView
@@ -19,15 +19,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/empty"
-        android:textColor="#555555"
-        android:textSize="14sp" />
+        android:textColor="@color/text_3level"
+        android:textSize="13sp" />
 
     <com.github.lany192.textview.BoxTextView
         android:id="@+id/hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/touch_refresh"
-        android:textColor="@color/text_3level"
-        android:textSize="12sp" />
+        android:textColor="@color/text_4level"
+        android:textSize="10sp" />
 </LinearLayout>

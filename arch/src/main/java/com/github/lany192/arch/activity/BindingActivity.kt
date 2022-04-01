@@ -31,7 +31,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
         if (hasToolbar()) {
             toolbar = getToolbarBinding()
             findViewById<View>(R.id.back)?.setOnClickListener { onBackPressed() }
-            title = title
+            findViewById<TextView>(R.id.title)?.text = title
         }
         binding = findClass().getBinding(layoutInflater)
         content = FrameLayout(this)
@@ -48,9 +48,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
     }
 
     override fun setTitle(titleId: Int) {
-        if (hasToolbar()) {
-            findViewById<TextView>(R.id.title)?.text = getString(titleId)
-        }
+        title = getString(titleId)
     }
 
     override fun setContentView(view: View?) {
