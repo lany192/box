@@ -15,7 +15,7 @@ public class TaskBinder extends ItemBinder<DownloadTask, ItemTaskBinding> {
     }
 
     @Override
-    public void convert(@NonNull ItemTaskBinding binding, DownloadTask task, int position) {
+    public void bind(@NonNull ItemTaskBinding binding, DownloadTask task, int position) {
         binding.name.setText(TaskUtils.INSTANCE.getTaskName(task));
         binding.status.setText(TaskUtils.INSTANCE.getStatus(task));
         binding.speed.setText(TaskUtils.INSTANCE.getSpeed(task));
