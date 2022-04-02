@@ -35,7 +35,7 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
         return getSpanCount();
     }
 
-    public RecyclerView.ItemDecoration getItemDecoration() {
+    public RecyclerView.ItemDecoration getItemDecoration(RecyclerView.Adapter<?> adapter) {
         return null;
     }
 
@@ -53,8 +53,8 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
 
         getRecyclerView().setLayoutManager(getLayoutManager());
         getRecyclerView().setAdapter(listAdapter);
-        if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration() != null) {
-            getRecyclerView().addItemDecoration(getItemDecoration());
+        if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(listAdapter) != null) {
+            getRecyclerView().addItemDecoration(getItemDecoration(listAdapter));
         }
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
