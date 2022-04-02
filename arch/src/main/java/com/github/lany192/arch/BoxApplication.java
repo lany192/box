@@ -38,6 +38,7 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         DialogHelper.get().init(this);
         initCatchException();
         initRefreshView();
+        Log.i(TAG,"测试");
     }
 
     @NonNull
