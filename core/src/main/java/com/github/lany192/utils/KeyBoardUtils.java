@@ -8,7 +8,7 @@ import android.widget.EditText;
 /**
  * 输入法工具
  */
-public class InputUtils {
+public class KeyBoardUtils {
 
     /**
      * 开启软键盘
