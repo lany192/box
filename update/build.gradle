@@ -21,12 +21,15 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     //日志工具 https://github.com/elvishew/xLog
     implementation 'com.elvishew:xlog:1.11.0'
     //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
