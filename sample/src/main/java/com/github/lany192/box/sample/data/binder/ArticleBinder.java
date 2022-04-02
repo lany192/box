@@ -19,11 +19,11 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
 
     @Override
     public void onClick(@NonNull BindingHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
-        AppRouter.get().browser(item.getTitle(), item.getLink());
+        AppRouter.startBrowser(item.getTitle(), item.getLink());
     }
 
     @Override
-    public void convert(@NonNull ItemArticleBinding binding, Article item, int position) {
+    public void bind(@NonNull ItemArticleBinding binding, Article item, int position) {
         ImageUtils.show(binding.image, MockUtils.getImageUrl());
         binding.title.setText(item.getTitle());
         binding.desc.setText(item.getAuthor());

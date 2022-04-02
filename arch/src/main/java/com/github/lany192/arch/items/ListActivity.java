@@ -46,11 +46,16 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
         return getSpanCount();
     }
 
+    public RecyclerView.ItemDecoration getItemDecoration(RecyclerView.Adapter<?> adapter) {
+        return null;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
-
+        if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(listAdapter) != null) {
+            getRecyclerView().addItemDecoration(getItemDecoration(listAdapter));
+        }
         listAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
 
         getRecyclerView().setLayoutManager(getLayoutManager());

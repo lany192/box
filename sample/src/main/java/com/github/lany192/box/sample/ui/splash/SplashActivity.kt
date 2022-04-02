@@ -33,7 +33,7 @@ class SplashActivity : SimpleActivity<SplashViewModel, ActivitySplashBinding>() 
         }
         viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
         Handler().postDelayed({
-            AppRouter.get().main()
+            AppRouter.startMain()
             finish()
         }, 1000)
     }

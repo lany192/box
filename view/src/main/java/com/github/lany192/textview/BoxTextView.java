@@ -22,21 +22,15 @@ public class BoxTextView extends TextView {
     private boolean middleBold;
 
     public BoxTextView(Context context) {
-        super(context);
-        init(null);
+        super(context, null);
     }
 
     public BoxTextView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init(attrs);
+        this(context, attrs, 0);
     }
 
     public BoxTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(attrs);
-    }
-
-    private void init(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.BoxTextView);
             middleBold = typedArray.getBoolean(R.styleable.BoxTextView_text_middle_bold, middleBold);

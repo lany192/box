@@ -28,10 +28,10 @@ class MyFragment : ModelFragment<MyViewModel, FragmentMyBinding>() {
         super.init()
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> binding.testView.hint(userInfo.name) }
-        binding.downloadView.setOnClickListener { AppRouter.get().download() }
+        binding.downloadView.setOnClickListener { AppRouter.startDownload() }
         binding.dialogView.setOnClickListener { showDialog() }
-        binding.loginView.setOnClickListener { AppRouter.get().login() }
-        binding.settingsView.setOnClickListener { AppRouter.get().settings() }
+        binding.loginView.setOnClickListener { AppRouter.startLogin() }
+        binding.settingsView.setOnClickListener { AppRouter.startSettings() }
         binding.testView.setOnClickListener {
             userViewModel.setName(
                 "我是张三"

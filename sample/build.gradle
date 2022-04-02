@@ -77,4 +77,7 @@ dependencies {
     implementation project(':view')
     implementation project(':dialog')
     implementation project(':update')
+    implementation project(':time')
+    implementation project(':crop')
+    implementation project(':matisse')
 }

@@ -9,7 +9,7 @@ import com.github.lany192.utils.ImageUtils;
 public class GirlBinder extends ItemBinder<String, ItemGirlBinding> {
 
     @Override
-    public void convert(@NonNull ItemGirlBinding binding, String url, int position) {
+    public void bind(@NonNull ItemGirlBinding binding, String url, int position) {
         ImageUtils.show(binding.image, url);
     }
 }

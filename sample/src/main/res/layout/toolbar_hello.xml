@@ -6,7 +6,7 @@
     android:gravity="bottom"
     android:minHeight="?actionBarSize">
 
-    <com.github.mmin18.widget.RealtimeBlurView
+    <com.github.lany192.view.RealtimeBlurView
         android:id="@+id/blurView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
