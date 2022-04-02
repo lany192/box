@@ -31,6 +31,8 @@
 		implementation 'com.github.lany192.box:dialog:+'
 		implementation 'com.github.lany192.box:arch:+'
 		implementation 'com.github.lany192.box:update:+'
+		implementation 'com.github.lany192.box:update:+'
+		implementation 'com.github.lany192.box:crop:+'
 	}
 
 ## 初始化
