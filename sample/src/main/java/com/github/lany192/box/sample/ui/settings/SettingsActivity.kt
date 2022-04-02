@@ -27,7 +27,7 @@ class SettingsActivity : SimpleActivity<SettingsViewModel, ActivitySettingsBindi
         super.onCreate(savedInstanceState)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         binding.cacheView.hint(CacheUtils.getCacheSize(this))
-        
+
         binding.versionView.setOnClickListener { checkVersion() }
         binding.cacheView.setOnClickListener { showCacheDialog() }
         binding.permissionView.setOnClickListener { permissionSetting() }

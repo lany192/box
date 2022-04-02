@@ -30,7 +30,7 @@ class AboutActivity : SimpleActivity<AboutViewModel, ActivityAboutBinding>() {
             AppRouter.startBrowser("用户协议", "https://www.baidu.com")
         }
         binding.feedbackView.setOnClickListener {
-            AppRouter.startBrowser("意见反馈", "https://www.baidu.com")
+            AppRouter.startFeedback()
         }
     }
 
