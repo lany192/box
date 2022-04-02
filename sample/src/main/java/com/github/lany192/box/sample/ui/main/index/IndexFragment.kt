@@ -24,9 +24,9 @@ class IndexFragment : ModelFragment<IndexViewModel, FragmentIndexBinding>() {
     override fun init() {
         super.init()
         val items: MutableList<TabItem> = ArrayList()
-        items.add(TabItem("推荐", AppRouter.get().article))
-        items.add(TabItem("地区", AppRouter.get().city))
-        items.add(TabItem("图片", AppRouter.get().girl))
+        items.add(TabItem("推荐", AppRouter.getArticle()))
+        items.add(TabItem("地区", AppRouter.getCity()))
+        items.add(TabItem("图片", AppRouter.getGirl()))
         val adapter = TabAdapter(requireActivity(), items)
         binding.viewpager.adapter = adapter
         binding.tabLayout.setViewPager2(binding.viewpager, adapter.titles)

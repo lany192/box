@@ -19,7 +19,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
 
     @Override
     public void onClick(@NonNull BindingHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
-        AppRouter.get().browser(item.getTitle(), item.getLink());
+        AppRouter.startBrowser(item.getTitle(), item.getLink());
     }
 
     @Override

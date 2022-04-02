@@ -25,9 +25,9 @@ class MessageFragment : ModelFragment<MessageViewModel, FragmentMessageBinding>(
     override fun init() {
         super.init()
         val items: MutableList<TabItem> = ArrayList()
-        items.add(TabItem("互动", AppRouter.get().article))
-        items.add(TabItem("系统消息", AppRouter.get().city))
-        items.add(TabItem("游戏通知", AppRouter.get().girl))
+        items.add(TabItem("互动", AppRouter.getArticle()))
+        items.add(TabItem("系统消息", AppRouter.getCity()))
+        items.add(TabItem("游戏通知", AppRouter.getGirl()))
         val adapter = TabAdapter(requireActivity(), items)
         binding.viewpager.adapter = adapter
         binding.tabLayout.setViewPager2(binding.viewpager, adapter.titles)

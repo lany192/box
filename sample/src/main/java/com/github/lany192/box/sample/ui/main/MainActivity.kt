@@ -32,10 +32,10 @@ class MainActivity : SimpleActivity<MainViewModel, ActivityMainBinding>() {
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> ToastUtils.show("首页：" + userInfo.name) }
         val items: MutableList<TabItem> = ArrayList()
-        items.add(TabItem("首页", AppRouter.get().index))
-        items.add(TabItem("发现", AppRouter.get().discover))
-        items.add(TabItem("消息", AppRouter.get().message))
-        items.add(TabItem("我的", AppRouter.get().my))
+        items.add(TabItem("首页", AppRouter.getIndex()))
+        items.add(TabItem("发现", AppRouter.getDiscover()))
+        items.add(TabItem("消息", AppRouter.getMessage()))
+        items.add(TabItem("我的", AppRouter.getMy()))
         binding.viewpager.isUserInputEnabled = false
         binding.viewpager.offscreenPageLimit = items.size
         binding.viewpager.adapter = TabAdapter(this, items)

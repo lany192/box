@@ -39,9 +39,9 @@ class SettingsActivity : SimpleActivity<SettingsViewModel, ActivitySettingsBindi
             }
         }
         binding.noticeView.setOnClickListener {
-            AppRouter.get().browser("百度也不知道", "https://www.baidu.com")
+            AppRouter.startBrowser("百度也不知道", "https://www.baidu.com")
         }
-        binding.aboutView.setOnClickListener { AppRouter.get().about() }
+        binding.aboutView.setOnClickListener { AppRouter.startAbout() }
     }
 
     private fun showCacheDialog() {
