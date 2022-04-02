@@ -31,9 +31,9 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     //glide依赖 https://github.com/bumptech/glide
-    compileOnly 'com.github.bumptech.glide:glide:4.13.1'
-    compileOnly 'androidx.appcompat:appcompat:1.4.1'
-    compileOnly 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'it.sephiroth.android.library.imagezoom:library:1.0.4'
 
     testImplementation 'junit:junit:4.13.2'
