@@ -63,6 +63,7 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
             binding.content.setText(mMessage);
             binding.content.setGravity(gravity);
             binding.content.setTextSize(mMsgTextSize);
+            binding.content.setTextColorId(R.color.text_2level);
             if (movementMethod != null) {
                 binding.content.setMovementMethod(movementMethod);
             } else {

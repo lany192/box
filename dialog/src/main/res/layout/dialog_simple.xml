@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:lineSpacingExtra="5dp"
+            android:lineSpacingMultiplier="1.4"
             android:scrollbars="vertical"
             android:textColor="@color/text_3level"
             android:textSize="14sp"
@@ -50,7 +50,7 @@
         android:layout_height="48dp"
         android:orientation="horizontal">
 
-        <Button
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/left_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -72,7 +72,7 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-        <Button
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/right_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
