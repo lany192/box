@@ -30,9 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_hint="发现新版本"
-                app:menu_hint_color="@color/text_3level"
+
                 app:menu_title="版本检查"
-                app:menu_title_color="@color/text_1level" />
+                 />
 
             <View
                 android:layout_width="wrap_content"
@@ -45,9 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_hint="0KB"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="清除缓存"
-                app:menu_title_color="@color/text_1level" />
+
+                app:menu_title="清除缓存" />
 
             <View
                 android:layout_width="wrap_content"
@@ -59,9 +58,8 @@
                 android:id="@+id/notice_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="推送设置"
-                app:menu_title_color="@color/text_1level" />
+
+                app:menu_title="推送设置" />
 
             <View
                 android:layout_width="wrap_content"
@@ -73,9 +71,8 @@
                 android:id="@+id/permission_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="授权设置"
-                app:menu_title_color="@color/text_1level" />
+
+                app:menu_title="授权设置" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -101,9 +98,8 @@
                 android:id="@+id/share_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="分享应用"
-                app:menu_title_color="@color/text_1level" />
+
+                app:menu_title="分享应用" />
 
             <View
                 android:layout_width="wrap_content"
@@ -116,9 +112,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_hint="您的鼓励是对我最大的支持"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="打赏作者"
-                app:menu_title_color="@color/text_1level" />
+
+                app:menu_title="打赏作者" />
 
             <View
                 android:layout_width="wrap_content"
@@ -130,9 +125,8 @@
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="关于"
-                app:menu_title_color="@color/text_1level" />
+
+                app:menu_title="关于" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

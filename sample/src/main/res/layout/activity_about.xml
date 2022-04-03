@@ -52,11 +52,9 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/qq_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint="12345678"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="客服QQ"
-                app:menu_title_color="@color/text_1level" />
+                app:menu_title="客服QQ" />
 
             <View
                 android:layout_width="wrap_content"
@@ -67,10 +65,8 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/feedback_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="意见反馈"
-                app:menu_title_color="@color/text_1level" />
+                android:layout_height="wrap_content"
+                app:menu_title="意见反馈" />
 
             <View
                 android:layout_width="wrap_content"
@@ -81,10 +77,8 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="用户协议"
-                app:menu_title_color="@color/text_1level" />
+                android:layout_height="wrap_content"
+                app:menu_title="用户协议" />
 
             <View
                 android:layout_width="wrap_content"
@@ -95,10 +89,8 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/privacy_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="隐私政策"
-                app:menu_title_color="@color/text_1level" />
+                android:layout_height="wrap_content"
+                app:menu_title="隐私政策" />
 
             <View
                 android:layout_width="wrap_content"
@@ -109,10 +101,8 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/market_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="给我好评"
-                app:menu_title_color="@color/text_1level" />
+                android:layout_height="wrap_content"
+                app:menu_title="给我好评" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -134,14 +124,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <com.github.lany192.view.MenuView
                 android:id="@+id/licence_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="开源许可"
-                app:menu_title_color="@color/text_1level" />
+                android:layout_height="wrap_content"
+                app:menu_title="开源许可" />
 
             <View
                 android:layout_width="wrap_content"
@@ -152,11 +139,9 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint="1.0.0"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="版本状态"
-                app:menu_title_color="@color/text_1level" />
+                app:menu_title="版本状态" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

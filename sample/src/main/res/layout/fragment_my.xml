@@ -36,9 +36,7 @@
                 android:id="@+id/dialog_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="对话框测试"
-                app:menu_title_color="@color/text_1level" />
+                app:menu_title="对话框测试" />
 
             <View
                 android:layout_width="wrap_content"
@@ -50,9 +48,7 @@
                 android:id="@+id/login_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="登录测试"
-                app:menu_title_color="@color/text_1level" />
+                app:menu_title="登录测试" />
 
             <View
                 android:layout_width="wrap_content"
@@ -64,9 +60,7 @@
                 android:id="@+id/download_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="下载安装赢积分"
-                app:menu_title_color="@color/text_1level" />
+                app:menu_title="下载安装赢积分" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -93,9 +87,7 @@
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="功能x"
-                app:menu_title_color="@color/text_1level" />
+                app:menu_title="功能x" />
 
             <View
                 android:layout_width="wrap_content"
@@ -107,9 +99,7 @@
                 android:id="@+id/test_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="功能x"
-                app:menu_title_color="@color/text_1level" />
+                app:menu_title="功能x" />
 
             <View
                 android:layout_width="wrap_content"
@@ -121,9 +111,7 @@
                 android:id="@+id/settings_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_hint_color="@color/text_3level"
-                app:menu_title="设置"
-                app:menu_title_color="@color/text_1level" />
+                app:menu_title="设置" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
