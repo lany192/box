@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import java.lang.reflect.ParameterizedType
 
 /**
  * ViewBinding实现基类
@@ -16,9 +15,7 @@ abstract class ModelActivity<VM : ViewModel, CVB : ViewBinding, TVB : ViewBindin
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val clazz =
-            (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
-        viewModel = createDefaultViewModel(clazz)
+        viewModel = createDefaultViewModel(getClass(0))
     }
 
     open fun createDefaultViewModel(clazz: Class<VM>): VM {

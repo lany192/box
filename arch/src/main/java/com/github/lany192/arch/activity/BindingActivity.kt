@@ -12,6 +12,7 @@ import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.view.DefaultView
 import com.github.lany192.arch.view.LoadingView
 import com.gyf.immersionbar.ImmersionBar
+import java.lang.reflect.ParameterizedType
 
 /**
  * ViewBinding的Activity<基类，包含头部和内容
@@ -33,6 +34,10 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
 
         findViewById<View>(R.id.back)?.setOnClickListener { onBackPressed() }
         findViewById<TextView>(R.id.title)?.text = title
+    }
+
+    open fun <T> getClass(index: Int): Class<T> {
+        return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
 
     abstract fun getToolbarBinding(): TVB
