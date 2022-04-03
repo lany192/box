@@ -28,7 +28,6 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        toolbar = getToolbarBinding()
         binding = findClass().getBinding(layoutInflater)
         content = FrameLayout(this)
         content.addView(binding.root)
@@ -50,6 +49,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
 
     override fun setContentView(view: View?) {
         if (hasToolbar()) {
+            toolbar = getToolbarBinding()
             val content = LinearLayout(this)
             content.orientation = LinearLayout.VERTICAL
             content.addView(
