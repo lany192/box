@@ -25,31 +25,39 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.settings.feedback.FeedbackActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="反馈"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.download.DownloadActivity"
             android:exported="false"
-            android:label="下载" />
+            android:label="下载"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:exported="false"
-            android:label="设置" />
+            android:label="设置"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.browser.BrowserActivity"
             android:exported="false"
-            android:label="浏览器" />
+            android:label="浏览器"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false"
-            android:label="主界面" />
+            android:label="主界面"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
-            android:label="登录" />
+            android:label="登录"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.settings.about.AboutActivity"
             android:exported="false"
-            android:label="关于" />
+            android:label="关于"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".router.SchemeFilterActivity"
             android:exported="true">
@@ -65,7 +73,9 @@
         </activity>
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="启动页"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
