@@ -92,7 +92,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
 
     open fun getErrorView(): View {
         val view = DefaultView(this)
-        view.setMessage("抱歉，发生异常")
+        view.setMessage("抱歉，发生异常。")
         return view
     }
 
@@ -108,7 +108,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
 
     open fun getNetworkView(): View {
         val view = DefaultView(this)
-        view.setMessage("網絡異常，請重試")
+        view.setMessage("网络异常，请检查网络设置。")
         return view
     }
 

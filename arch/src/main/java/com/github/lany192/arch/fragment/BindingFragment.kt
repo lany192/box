@@ -26,11 +26,15 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = findClass().getBinding(inflater, container)
+        binding = getViewBinding(inflater, container)
         content = FrameLayout(requireContext())
         content.addView(binding.root)
         init()
         return content
+    }
+
+    fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
+        return findClass().getBinding(inflater, container)
     }
 
     abstract fun init()
@@ -98,7 +102,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
 
     open fun getNetworkView(): View {
         val view = DefaultView(this)
-        view.setMessage("網絡異常，請重試")
+        view.setMessage("网络异常，请检查网络设置。")
         return view
     }
 }
