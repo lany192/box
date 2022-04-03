@@ -28,7 +28,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/version_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint="发现新版本"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="版本检查"
@@ -43,7 +43,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/cache_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint="0KB"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="清除缓存"
@@ -58,7 +58,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/notice_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="推送设置"
                 app:menu_title_color="@color/text_1level" />
@@ -72,7 +72,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/permission_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="授权设置"
                 app:menu_title_color="@color/text_1level" />
@@ -100,7 +100,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/share_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="分享应用"
                 app:menu_title_color="@color/text_1level" />
@@ -114,7 +114,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/reward_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint="您的鼓励是对我最大的支持"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="打赏作者"
@@ -129,7 +129,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="关于"
                 app:menu_title_color="@color/text_1level" />

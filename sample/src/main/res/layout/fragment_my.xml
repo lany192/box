@@ -17,8 +17,9 @@
         android:id="@+id/card_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
@@ -34,7 +35,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/dialog_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="对话框测试"
                 app:menu_title_color="@color/text_1level" />
@@ -48,7 +49,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/login_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="登录测试"
                 app:menu_title_color="@color/text_1level" />
@@ -62,7 +63,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/download_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="下载安装赢积分"
                 app:menu_title_color="@color/text_1level" />
@@ -73,8 +74,9 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
@@ -90,7 +92,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/protocol_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="功能x"
                 app:menu_title_color="@color/text_1level" />
@@ -104,7 +106,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/test_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="功能x"
                 app:menu_title_color="@color/text_1level" />
@@ -118,7 +120,7 @@
             <com.github.lany192.view.MenuView
                 android:id="@+id/settings_view"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 app:menu_hint_color="@color/text_3level"
                 app:menu_title="设置"
                 app:menu_title_color="@color/text_1level" />
