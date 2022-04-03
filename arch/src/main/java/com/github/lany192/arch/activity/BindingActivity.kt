@@ -28,7 +28,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = findClass().getBinding(layoutInflater)
+        binding = getContentBinding()
         content = FrameLayout(this)
         content.addView(binding.root)
         setContentView(content)
@@ -38,6 +38,10 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
     }
 
     abstract fun getToolbarBinding(): TVB
+
+    fun getContentBinding(): CVB {
+        return findClass().getBinding(layoutInflater)
+    }
 
     override fun setTitle(title: CharSequence?) {
         findViewById<TextView>(R.id.title)?.text = title
