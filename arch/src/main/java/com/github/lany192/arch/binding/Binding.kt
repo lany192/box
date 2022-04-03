@@ -55,14 +55,15 @@ internal fun Any.findClass(): Class<*> {
     var javaClass: Class<*> = this.javaClass
     var result: Class<*>? = null
     while (result == null || !result.checkMethod()) {
-        result = (javaClass.genericSuperclass as? ParameterizedType)
-            ?.actualTypeArguments?.firstOrNull {
-                if (it is Class<*>) {
-                    it.checkMethod()
-                } else {
-                    false
-                }
-            } as? Class<*>
+        val types = (javaClass.genericSuperclass as? ParameterizedType)?.actualTypeArguments
+
+        result = types?.firstOrNull {
+            if (it is Class<*>) {
+                it.checkMethod()
+            } else {
+                false
+            }
+        } as? Class<*>
         javaClass = javaClass.superclass
     }
     return result
