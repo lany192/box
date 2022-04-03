@@ -14,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.allen.android.lib.PermissionUtils;
 import com.elvishew.xlog.XLog;
 import com.github.lany192.arch.event.NetWorkEvent;
 import com.github.lany192.arch.utils.ContextUtils;
+import com.github.lany192.permission.PermissionUtils;
 import com.github.lany192.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;

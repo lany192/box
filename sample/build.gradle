@@ -80,4 +80,5 @@ dependencies {
     implementation project(':time')
     implementation project(':crop')
     implementation project(':matisse')
+    implementation project(':permission')
 }

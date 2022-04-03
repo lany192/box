@@ -5,12 +5,12 @@ import android.net.Uri
 import android.os.Bundle
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.allen.android.lib.PermissionUtils
 import com.github.lany192.arch.activity.SimpleActivity
 import com.github.lany192.box.sample.R
 import com.github.lany192.box.sample.databinding.ActivitySettingsBinding
 import com.github.lany192.box.sample.ui.user.UserViewModel
 import com.github.lany192.dialog.SimpleDialog
+import com.github.lany192.permission.PermissionUtils
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
