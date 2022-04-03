@@ -1,64 +1,60 @@
-package com.github.lany192.arch.activity;
+package com.github.lany192.arch.activity
 
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.os.Bundle;
-
-import androidx.annotation.CallSuper;
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
-
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
-import com.github.lany192.arch.R;
-import com.github.lany192.arch.network.NetworkHelper;
-import com.github.lany192.dialog.LoadingDialog;
-import com.gyf.immersionbar.ImmersionBar;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.os.Bundle
+import androidx.annotation.CallSuper
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
+import com.elvishew.xlog.Logger
+import com.elvishew.xlog.XLog
+import com.github.lany192.arch.R
+import com.github.lany192.arch.network.NetworkHelper
+import com.github.lany192.dialog.LoadingDialog
+import com.gyf.immersionbar.ImmersionBar
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Activity基类
  */
-public abstract class BaseActivity extends AppCompatActivity {
-    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
-    private LoadingDialog loadingDialog;
+abstract class BaseActivity : AppCompatActivity() {
+    @JvmField
+    protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
+
+    private var loadingDialog: LoadingDialog? = null
 
     @CallSuper
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getLifecycle().addObserver(NetworkHelper.getInstance());
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycle.addObserver(NetworkHelper.getInstance())
         //控制屏幕方向
-        if (isPortraitScreen()) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        requestedOrientation = if (isPortraitScreen()) {
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         }
         if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
+            EventBus.getDefault().register(this)
         }
     }
 
-    @Override
-    protected void onDestroy() {
+    override fun onDestroy() {
         if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
+            EventBus.getDefault().unregister(this)
         }
-        super.onDestroy();
+        super.onDestroy()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(Void event) {
+    fun onEvent(event: Void?) {
 
     }
 
@@ -66,56 +62,51 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 自定义屏幕方向，默认竖屏
      * 注意：需要配置 android:screenOrientation="nosensor"
      */
-    public boolean isPortraitScreen() {
-        return true;
+    open fun isPortraitScreen(): Boolean {
+        return true
     }
 
-    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
-        T viewModel = new ViewModelProvider(this).get(modelClass);
-        if (viewModel instanceof LifecycleObserver) {
-            getLifecycle().addObserver((LifecycleObserver) viewModel);
+    fun <T : ViewModel> getViewModel(modelClass: Class<T>): T {
+        val viewModel = ViewModelProvider(this)[modelClass]
+        if (viewModel is LifecycleObserver) {
+            lifecycle.addObserver((viewModel as LifecycleObserver))
         }
-        return viewModel;
+        return viewModel
     }
 
-    public <T extends ViewModel> T getAndroidViewModel(@NonNull Class<T> modelClass) {
-        return new ViewModelProvider((ViewModelStoreOwner) getApplicationContext()).get(modelClass);
+    fun <T : ViewModel> getAndroidViewModel(modelClass: Class<T>): T {
+        return ViewModelProvider((applicationContext as ViewModelStoreOwner))[modelClass]
     }
 
-    public void showLoadingDialog() {
-        showLoadingDialog(getString(R.string.loading));
-    }
-
-    public void showLoadingDialog(CharSequence message) {
+    @JvmOverloads
+    fun showLoadingDialog(message: CharSequence? = getString(R.string.loading)) {
         if (loadingDialog == null) {
-            loadingDialog = new LoadingDialog();
+            loadingDialog = LoadingDialog()
         }
-        loadingDialog.setMessage(message);
-        loadingDialog.show();
+        loadingDialog!!.setMessage(message)
+        loadingDialog!!.show()
     }
 
-    public void cancelLoadingDialog() {
+    fun cancelLoadingDialog() {
         if (loadingDialog != null) {
-            loadingDialog.cancel();
-            loadingDialog = null;
+            loadingDialog!!.cancel()
+            loadingDialog = null
         }
     }
 
     @CallSuper
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
         if (immersionBarEnabled()) {
-            initImmersionBar().init();
+            initImmersionBar().init()
         }
     }
 
     @CallSuper
-    @Override
-    public void onResume() {
-        super.onResume();
+    public override fun onResume() {
+        super.onResume()
         if (immersionBarEnabled()) {
-            initImmersionBar().init();
+            initImmersionBar().init()
         }
     }
 
@@ -125,20 +116,19 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @return the boolean
      */
-    public boolean immersionBarEnabled() {
-        return true;
+    open fun immersionBarEnabled(): Boolean {
+        return true
     }
 
-    @NonNull
-    public ImmersionBar initImmersionBar() {
+    open fun initImmersionBar(): ImmersionBar {
         return ImmersionBar.with(this)
-                .statusBarDarkFont(true)
-                .navigationBarColor(R.color.white_bg)
-                .navigationBarDarkIcon(true);
+            .statusBarDarkFont(true)
+            .navigationBarColor(R.color.white_bg)
+            .navigationBarDarkIcon(true)
     }
 
     @ColorInt
-    public int getColorResId(@ColorRes int id) {
-        return ContextCompat.getColor(this, id);
+    fun getColorResId(@ColorRes id: Int): Int {
+        return ContextCompat.getColor(this, id)
     }
 }
