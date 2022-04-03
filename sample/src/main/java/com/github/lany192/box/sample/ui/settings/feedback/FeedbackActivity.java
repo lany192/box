@@ -47,4 +47,10 @@ public class FeedbackActivity extends BindingActivity<ActivityFeedbackBinding, T
     public ToolbarDefaultBinding getToolbarBinding() {
         return ToolbarDefaultBinding.inflate(getLayoutInflater());
     }
+
+    @NonNull
+    @Override
+    public ActivityFeedbackBinding getContentBinding() {
+        return ActivityFeedbackBinding.inflate(getLayoutInflater());
+    }
 }

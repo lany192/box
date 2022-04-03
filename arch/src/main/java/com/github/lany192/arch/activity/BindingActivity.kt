@@ -8,8 +8,6 @@ import android.widget.TextView
 import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.R
-import com.github.lany192.arch.binding.findClass
-import com.github.lany192.arch.binding.getBinding
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.view.DefaultView
 import com.github.lany192.arch.view.LoadingView
@@ -39,9 +37,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
 
     abstract fun getToolbarBinding(): TVB
 
-    fun getContentBinding(): CVB {
-        return findClass().getBinding(layoutInflater)
-    }
+    abstract fun getContentBinding(): CVB
 
     override fun setTitle(title: CharSequence?) {
         findViewById<TextView>(R.id.title)?.text = title

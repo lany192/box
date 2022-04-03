@@ -33,7 +33,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
         return content
     }
 
-    fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
+    open fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
         return findClass().getBinding(inflater, container)
     }
 

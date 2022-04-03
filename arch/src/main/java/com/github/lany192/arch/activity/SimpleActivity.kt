@@ -1,17 +1,19 @@
-package com.github.lany192.arch.activity;
+package com.github.lany192.arch.activity
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
-import androidx.viewbinding.ViewBinding;
+import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.binding.findClass
+import com.github.lany192.arch.binding.getBinding
+import com.github.lany192.arch.databinding.ToolbarDefaultBinding
 
-import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
+abstract class SimpleActivity<VM : ViewModel, VB : ViewBinding> :
+    ModelActivity<VM, VB, ToolbarDefaultBinding>() {
 
-public abstract class SimpleActivity<VM extends ViewModel, VB extends ViewBinding>
-        extends ModelActivity<VM, VB, ToolbarDefaultBinding> {
+    override fun getToolbarBinding(): ToolbarDefaultBinding {
+        return ToolbarDefaultBinding.inflate(layoutInflater)
+    }
 
-    @NonNull
-    @Override
-    public ToolbarDefaultBinding getToolbarBinding() {
-        return ToolbarDefaultBinding.inflate(getLayoutInflater());
+    override fun getContentBinding(): VB {
+        return findClass().getBinding(layoutInflater)
     }
 }

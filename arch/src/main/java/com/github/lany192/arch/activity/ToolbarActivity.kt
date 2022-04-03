@@ -1,16 +1,17 @@
-package com.github.lany192.arch.activity;
+package com.github.lany192.arch.activity
 
-import androidx.annotation.NonNull;
-import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.binding.findClass
+import com.github.lany192.arch.binding.getBinding
+import com.github.lany192.arch.databinding.ToolbarDefaultBinding
 
-import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
+abstract class ToolbarActivity<VB : ViewBinding> : BindingActivity<VB, ToolbarDefaultBinding>() {
 
-public abstract class ToolbarActivity<VB extends ViewBinding>
-        extends BindingActivity<VB, ToolbarDefaultBinding> {
+    override fun getToolbarBinding(): ToolbarDefaultBinding {
+        return ToolbarDefaultBinding.inflate(layoutInflater)
+    }
 
-    @NonNull
-    @Override
-    public ToolbarDefaultBinding getToolbarBinding() {
-        return ToolbarDefaultBinding.inflate(getLayoutInflater());
+    override fun getContentBinding(): VB {
+        return findClass().getBinding(layoutInflater)
     }
 }
