@@ -1,7 +1,6 @@
 package com.github.lany192.arch.activity
 
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.arch.binding.findClass
 import com.github.lany192.arch.binding.getBinding
 import com.github.lany192.arch.databinding.ToolbarDefaultBinding
 
@@ -12,6 +11,6 @@ abstract class ToolbarActivity<VB : ViewBinding> : BindingActivity<VB, ToolbarDe
     }
 
     override fun getContentBinding(): VB {
-        return findClass().getBinding(layoutInflater)
+        return getClass<VB>(0).getBinding(layoutInflater)
     }
 }
