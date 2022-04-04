@@ -24,6 +24,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.hello.HelloActivity"
+            android:exported="false"
+            android:label="测试hello"
+            android:screenOrientation="nosensor" />
+        <activity
             android:name=".ui.settings.feedback.FeedbackActivity"
             android:exported="false"
             android:label="反馈"

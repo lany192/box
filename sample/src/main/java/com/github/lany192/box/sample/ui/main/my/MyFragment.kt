@@ -32,6 +32,7 @@ class MyFragment : ModelFragment<MyViewModel, FragmentMyBinding>() {
         binding.dialogView.setOnClickListener { showDialog() }
         binding.loginView.setOnClickListener { AppRouter.startLogin() }
         binding.settingsView.setOnClickListener { AppRouter.startSettings() }
+        binding.helloView.setOnClickListener { AppRouter.startHello() }
         binding.testView.setOnClickListener {
             userViewModel.setName(
                 "我是张三"

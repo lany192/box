@@ -16,4 +16,8 @@ abstract class PageActivity<VM : ListViewModel> : ListActivity<VM, ActivityPageB
     override fun getRecyclerView(): RecyclerView {
         return binding.itemsView.recyclerView
     }
+
+    override fun getContentBinding(): ActivityPageBinding {
+        return ActivityPageBinding.inflate(layoutInflater)
+    }
 }

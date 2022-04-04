@@ -84,10 +84,10 @@
             android:orientation="vertical">
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/protocol_view"
+                android:id="@+id/hello_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_title="功能x" />
+                app:menu_title="Hello" />
 
             <View
                 android:layout_width="wrap_content"
