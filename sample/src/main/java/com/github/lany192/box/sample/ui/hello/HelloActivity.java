@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.items.PageActivity;
+import com.github.lany192.box.sample.data.binder.ArticleBinder;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -14,5 +15,6 @@ public class HelloActivity extends PageActivity<HelloViewModel> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        register(new ArticleBinder());
     }
 }

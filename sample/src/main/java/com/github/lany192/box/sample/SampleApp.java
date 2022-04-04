@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dagger.hilt.android.HiltAndroidApp;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 
 @HiltAndroidApp
 public class SampleApp extends BoxApplication {
@@ -41,6 +42,8 @@ public class SampleApp extends BoxApplication {
         //注册Activity生命周期监听
         registerActivityLifecycleCallbacks(new ActivityLifecycle());
         ToastUtils.setDebugMode(BuildConfig.DEBUG);
+        // 处理RxJava返回的无人处理的错误
+        RxJavaPlugins.setErrorHandler(new ConsumerAdapter<>());
     }
 
     private void initARouter() {
