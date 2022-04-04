@@ -12,7 +12,7 @@
         app:title="发现"
         app:titleTextColor="@android:color/white" />
 
-    <com.github.lany192.arch.view.ItemsView
+    <com.github.lany192.view.ItemsView
         android:id="@+id/items_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

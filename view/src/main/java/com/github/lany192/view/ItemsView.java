@@ -1,4 +1,4 @@
-package com.github.lany192.arch.view;
+package com.github.lany192.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,9 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.github.lany192.arch.databinding.ViewItemsBinding;
-import com.github.lany192.view.BindingView;
+import com.github.lany192.view.databinding.ViewItemsBinding;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 /**
@@ -72,7 +70,7 @@ public class ItemsView extends BindingView<ViewItemsBinding> {
         binding.refreshLayout.setEnableLoadMore(enable);
     }
 
-    public void setAdapter(BaseQuickAdapter<?, ?> adapter) {
+    public void setAdapter(@Nullable RecyclerView.Adapter adapter) {
         binding.recyclerView.setAdapter(adapter);
     }
 

@@ -37,6 +37,7 @@ dependencies {
     compileOnly 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.3'
     compileOnly 'androidx.appcompat:appcompat:1.4.1'
     compileOnly 'com.google.android.material:material:1.4.0'
+    compileOnly 'io.github.scwang90:refresh-layout-kernel:2.0.5'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
