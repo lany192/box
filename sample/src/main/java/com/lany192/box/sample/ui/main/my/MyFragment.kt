@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.ModelFragment
 import com.github.lany192.dialog.SimpleDialog
+import com.github.lany192.extensions.load
 import com.gyf.immersionbar.ImmersionBar
 import com.lany192.box.sample.R
 import com.lany192.box.sample.data.bean.UserInfo

@@ -8,7 +8,7 @@ import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
-import com.github.lany192.arch.binding.getBinding
+import com.github.lany192.binding.getBinding
 import java.lang.reflect.ParameterizedType
 
 /**

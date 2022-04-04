@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.arch.binding.getBinding
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.view.DefaultView
 import com.github.lany192.arch.view.LoadingView
+import com.github.lany192.binding.getBinding
 import java.lang.reflect.ParameterizedType
 
 /**

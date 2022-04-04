@@ -35,7 +35,7 @@ public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBind
     }
 
     public <T, B extends ViewBinding> void register(ItemBinder<T, B> binder) {
-        listAdapter.addItemBinder(binder.getTargetClass(), binder);
+        listAdapter.addItemBinder(binder.getClass(0), binder);
     }
 
     public int getSpanCount() {

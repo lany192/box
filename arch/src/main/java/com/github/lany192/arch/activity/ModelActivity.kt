@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.arch.binding.getBinding
+import com.github.lany192.binding.getBinding
 
 /**
  * ViewBinding实现基类

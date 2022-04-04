@@ -1,5 +1,6 @@
 package com.github.lany192.arch.items
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
@@ -8,7 +9,7 @@ import com.chad.library.adapter.base.binder.BaseItemBinder
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
 import com.github.lany192.arch.adapter.BindingHolder
-import com.github.lany192.arch.binding.inflateWithGeneric
+import com.github.lany192.binding.getBinding
 import java.lang.reflect.ParameterizedType
 
 abstract class ItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, BindingHolder<VB>>() {
@@ -16,13 +17,15 @@ abstract class ItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, BindingHolder
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<VB> {
-        val binding: VB = inflateWithGeneric(this, parent)
+        val binding: VB = getClass<VB>(1).getBinding(LayoutInflater.from(parent.context), parent)
         return BindingHolder(binding)
     }
 
-    @Suppress("UNCHECKED_CAST")
-    open fun getTargetClass(): Class<T> {
-        return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>
+    /**
+     * 获取第几个泛型的class
+     */
+    open fun <T> getClass(index: Int): Class<T> {
+        return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
 
     override fun convert(holder: BindingHolder<VB>, data: T) {
