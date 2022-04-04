@@ -11,7 +11,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -28,11 +30,17 @@ android {
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.4.0'
+
+    //日志工具 https://github.com/elvishew/xLog
+    compileOnly 'com.elvishew:xlog:1.11.0'
+    //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
+    compileOnly 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.3'
+    compileOnly 'androidx.appcompat:appcompat:1.4.1'
+    compileOnly 'com.google.android.material:material:1.4.0'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation project(':core')
+    compileOnly project(':core')
 }

@@ -1,4 +1,4 @@
-package com.github.lany192.arch.view;
+package com.github.lany192.view;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -8,9 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.github.lany192.arch.databinding.ViewDefaultBinding;
 import com.github.lany192.interfaces.OnSimpleListener;
 import com.github.lany192.utils.ImageUtils;
+import com.github.lany192.view.databinding.ViewDefaultBinding;
 
 public class DefaultView extends BindingView<ViewDefaultBinding> {
     private OnSimpleListener listener;

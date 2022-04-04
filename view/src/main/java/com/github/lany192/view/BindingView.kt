@@ -1,4 +1,4 @@
-package com.github.lany192.arch.view
+package com.github.lany192.view
 
 import android.content.Context
 import android.util.AttributeSet

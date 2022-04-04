@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.lany192.arch.databinding.ViewItemsBinding;
+import com.github.lany192.view.BindingView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 /**

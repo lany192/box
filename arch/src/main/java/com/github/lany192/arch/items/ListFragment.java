@@ -10,7 +10,7 @@ import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.fragment.ModelFragment;
-import com.github.lany192.arch.view.DefaultView;
+import com.github.lany192.view.DefaultView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBinding>

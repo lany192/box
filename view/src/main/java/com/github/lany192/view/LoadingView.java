@@ -1,4 +1,4 @@
-package com.github.lany192.arch.view;
+package com.github.lany192.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.github.lany192.arch.databinding.ViewLoadingBinding;
+import com.github.lany192.view.databinding.ViewLoadingBinding;
 
 public class LoadingView extends BindingView<ViewLoadingBinding> {
 
