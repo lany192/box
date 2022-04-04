@@ -21,7 +21,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
     private lateinit var content: FrameLayout
     private var viewState = ViewState.CONTENT
 
-    val binding get() = _binding!!
+    open val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
