@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.settings.feedback.FeedbackActivity">
+    tools:context="com.lany192.box.sample.ui.settings.feedback.FeedbackActivity">
 
     <Button
         android:id="@+id/button"

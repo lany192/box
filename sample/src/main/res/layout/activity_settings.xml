@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
-    tools:context=".ui.settings.SettingsActivity">
+    tools:context="com.lany192.box.sample.ui.settings.SettingsActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_1"
