@@ -8,8 +8,8 @@ import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
-import com.github.lany192.arch.binding.findClass
 import com.github.lany192.arch.binding.getBinding
+import java.lang.reflect.ParameterizedType
 
 /**
  * 自定义视图基类
@@ -29,9 +29,16 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     abstract fun init(attrs: AttributeSet?)
 
     init {
-        binding = findClass().getBinding(LayoutInflater.from(context), this)
+        binding = getClass<VB>(0).getBinding(LayoutInflater.from(context), this)
         addView(binding.root)
         init(attrs)
+    }
+
+    /**
+     * 获取第几个泛型的class
+     */
+    open fun <T> getClass(index: Int): Class<T> {
+        return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
 
     fun <T : ViewModel> getViewModel(modelClass: Class<T>): T {
