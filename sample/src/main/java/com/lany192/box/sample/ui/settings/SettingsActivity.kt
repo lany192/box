@@ -48,7 +48,7 @@ class SettingsActivity : SimpleActivity<SettingsViewModel, ActivitySettingsBindi
         val dialog = SimpleDialog()
         dialog.setMessage("确定要清除缓存吗？")
         dialog.setRightButton("确定") {
-            CacheUtils.clean(this)
+            CacheUtils.cleanCache(this)
             binding.cacheView.hint("0KB")
             ToastUtils.show("缓存清除成功！")
         }
