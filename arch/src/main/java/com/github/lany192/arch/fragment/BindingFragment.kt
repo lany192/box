@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.viewbinding.ViewBinding
-import com.github.lany192.arch.binding.findClass
 import com.github.lany192.arch.binding.getBinding
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.view.DefaultView
 import com.github.lany192.arch.view.LoadingView
+import java.lang.reflect.ParameterizedType
 
 /**
  * ViewBinding实现基类
@@ -33,8 +33,15 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
         return content
     }
 
+    /**
+     * 获取第几个泛型的class
+     */
+    open fun <T> getClass(index: Int): Class<T> {
+        return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
+    }
+
     open fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
-        return findClass().getBinding(inflater, container)
+        return getClass<VB>(0).getBinding(inflater, container)
     }
 
     abstract fun init()

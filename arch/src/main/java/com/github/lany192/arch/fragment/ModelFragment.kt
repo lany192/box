@@ -1,9 +1,11 @@
 package com.github.lany192.arch.fragment
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import java.lang.reflect.ParameterizedType
+import com.github.lany192.arch.binding.getBinding
 
 /**
  * ViewBinding实现基类
@@ -13,12 +15,14 @@ abstract class ModelFragment<VM : ViewModel, VB : ViewBinding> : BindingFragment
 
     @CallSuper
     override fun init() {
-        val clazz =
-            (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
-        viewModel = createDefaultViewModel(clazz)
+        viewModel = getDefaultViewModel()
     }
 
-    protected fun createDefaultViewModel(clazz: Class<VM>): VM {
-        return getViewModel(clazz)
+    open fun getDefaultViewModel(): VM {
+        return getViewModel(getClass(0))
+    }
+
+    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
+        return getClass<VB>(1).getBinding(inflater, container)
     }
 }
