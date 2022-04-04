@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@android:color/holo_orange_light"
+    tools:layout_height="@dimen/actionbar_height">
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/actionBarItemBackground"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/vector_back_black"
+        tools:layout_height="@dimen/actionbar_height"
+        tools:layout_width="@dimen/actionbar_height" />
+
+    <com.github.lany192.textview.BoxTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxWidth="240dp"
+        android:maxLines="1"
+        android:textColor="@color/text_1level"
+        android:textSize="18sp"
+        app:text_middle_bold="true"
+        tools:layout_height="@dimen/actionbar_height"
+        tools:text="标题" />
+
+</RelativeLayout>

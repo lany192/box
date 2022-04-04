@@ -31,17 +31,27 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
         content = FrameLayout(this)
         content.addView(binding.root)
         setContentView(content)
-
+        //如果有返回id，添加监听
         findViewById<View>(R.id.back)?.setOnClickListener { onBackPressed() }
+        //如果有标题id，设置默认标题值
         findViewById<TextView>(R.id.title)?.text = title
     }
 
+    /**
+     * 获取第几个泛型的class
+     */
     open fun <T> getClass(index: Int): Class<T> {
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
 
+    /**
+     * 获取toolbar的ViewBinding实例
+     */
     abstract fun getToolbarBinding(): TVB
 
+    /**
+     * 获取内容的ViewBinding实例
+     */
     abstract fun getContentBinding(): CVB
 
     override fun setTitle(title: CharSequence?) {

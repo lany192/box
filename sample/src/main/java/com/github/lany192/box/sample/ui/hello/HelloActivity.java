@@ -1,20 +1,14 @@
 package com.github.lany192.box.sample.ui.hello;
 
-import android.os.Bundle;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.items.PageActivity;
-import com.github.lany192.box.sample.data.binder.ArticleBinder;
+import com.github.lany192.arch.activity.ModelActivity;
+import com.github.lany192.arch.databinding.ToolbarTestBinding;
+import com.github.lany192.box.sample.databinding.TestBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/hello")
-public class HelloActivity extends PageActivity<HelloViewModel> {
+public class HelloActivity extends ModelActivity<HelloViewModel, TestBinding, ToolbarTestBinding> {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        register(new ArticleBinder());
-    }
 }
