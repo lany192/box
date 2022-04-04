@@ -16,21 +16,28 @@ import java.lang.reflect.ParameterizedType
  * ViewBinding实现基类
  */
 abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
-    lateinit var binding: VB
+    private var _binding: VB? = null
 
     private lateinit var content: FrameLayout
     private var viewState = ViewState.CONTENT
+
+    val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = getViewBinding(inflater, container)
+        _binding = getViewBinding(inflater, container)
         content = FrameLayout(requireContext())
         content.addView(binding.root)
         init()
         return content
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     /**
