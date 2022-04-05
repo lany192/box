@@ -11,7 +11,7 @@ import java.util.List;
  * 通用底部菜单对话框
  */
 public class MenuDialog extends BottomDialog<DialogMenuBinding> {
-    private final List<String> menus = new ArrayList<>();
+    private List<String> items = new ArrayList<>();
     private OnListener listener;
 
     @Override
@@ -19,7 +19,7 @@ public class MenuDialog extends BottomDialog<DialogMenuBinding> {
         binding.listView.setAdapter(new ArrayAdapter<>(getContext(),
                 R.layout.item_dialog_menu,
                 R.id.title,
-                menus));
+                items));
         binding.listView.setOnItemClickListener((adapterView, view, position, l) -> {
             if (listener != null) {
                 listener.onItemClick(position);
@@ -29,8 +29,12 @@ public class MenuDialog extends BottomDialog<DialogMenuBinding> {
         binding.cancel.setOnClickListener(v -> cancel());
     }
 
+    public void setItems(List<String> items) {
+        this.items = items;
+    }
+
     public void addItem(String title) {
-        this.menus.add(title);
+        this.items.add(title);
     }
 
     public void setOnListener(OnListener listener) {

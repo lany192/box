@@ -18,19 +18,30 @@
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
             android:divider="@color/outline"
-            android:dividerHeight="1dp" />
+            android:dividerHeight="1px" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/outline" />
 
         <com.github.lany192.textview.BoxTextView
             android:id="@+id/cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:background="?selectableItemBackground"
             android:gravity="center"
             android:padding="16dp"
             android:text="@android:string/cancel"
-            android:textColor="@color/text_3level"
-            android:textSize="15sp" />
+            android:textColor="@color/text_2level"
+            android:textSize="15sp"
+            app:text_middle_bold="true" />
     </LinearLayout>
 </FrameLayout>
