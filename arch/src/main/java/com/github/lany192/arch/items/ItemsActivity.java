@@ -11,6 +11,7 @@ import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.activity.ModelBindingActivity;
+import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.view.DefaultView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
@@ -114,7 +115,13 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
                     break;
             }
         });
-        viewModel.getItems().observe(this, data -> itemsAdapter.setNewInstance(data.getItems()));
+        viewModel.getItems().observe(this, data -> {
+            if (ListUtils.isEmpty(data.getItems())) {
+                itemsAdapter.setEmptyView(getEmptyView());
+            } else {
+                itemsAdapter.setNewInstance(data.getItems());
+            }
+        });
     }
 
     @NonNull
