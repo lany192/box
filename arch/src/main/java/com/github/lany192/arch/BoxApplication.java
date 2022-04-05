@@ -59,9 +59,11 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
     private void initRefreshView() {
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
-            layout.setPrimaryColorsId(R.color.refresh_head_background, R.color.refresh_head_text_color);//全局设置主题颜色
+            layout.setPrimaryColorsId(android.R.color.transparent, R.color.text_1level);//全局设置主题颜色
             return new ClassicsHeader(context)
-                    .setArrowResource(R.drawable.vector_arrow_gray);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
+                    .setEnableLastTime(false)
+                    .setProgressResource(R.drawable.icon_loading_black)
+                    .setArrowResource(R.drawable.vector_arrow_gray);
         });
         //设置全局的Footer构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
