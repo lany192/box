@@ -28,6 +28,7 @@ public class HelloViewModel extends ItemsViewModel {
                     @Override
                     public void onSuccess(String msg, ArticleList result) {
                         if (ListUtils.isEmpty(result.getDatas())) {
+                            moreLoadEnd();
                             showEmptyView();
                         } else {
                             if (refresh) {
@@ -37,7 +38,6 @@ public class HelloViewModel extends ItemsViewModel {
                                 addItems(result.getDatas());
                                 moreLoadFinish();
                             }
-                            showContentView();
                         }
                     }
 

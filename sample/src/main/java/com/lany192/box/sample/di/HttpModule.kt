@@ -26,7 +26,7 @@ class HttpModule {
     fun provideClient(): OkHttpClient {
         val logInterceptor = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) {
-            logInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            logInterceptor.level = HttpLoggingInterceptor.Level.BASIC
         } else {
             logInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
