@@ -1,4 +1,4 @@
-package com.github.lany192.arch.utils;
+package com.github.lany192.utils;
 
 import android.content.Context;
 

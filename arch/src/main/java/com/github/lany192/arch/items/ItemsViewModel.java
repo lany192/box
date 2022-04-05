@@ -3,9 +3,9 @@ package com.github.lany192.arch.items;
 import androidx.annotation.CallSuper;
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.arch.utils.ContextUtils;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.viewmodel.LifecycleViewModel;
+import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.NetUtils;
 
 import java.util.List;
