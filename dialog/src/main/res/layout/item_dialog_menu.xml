@@ -8,8 +8,8 @@
     android:background="?selectableItemBackground"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="12dp"
     android:textColor="@color/text_2level"
-    android:textSize="15sp"
+    android:textSize="14sp"
     app:text_middle_bold="true"
     tools:text="@android:string/cancel" />

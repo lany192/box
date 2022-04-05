@@ -38,10 +38,10 @@
             android:layout_marginBottom="12dp"
             android:background="?selectableItemBackground"
             android:gravity="center"
-            android:padding="16dp"
+            android:padding="12dp"
             android:text="@android:string/cancel"
             android:textColor="@color/text_2level"
-            android:textSize="15sp"
+            android:textSize="14sp"
             app:text_middle_bold="true" />
     </LinearLayout>
 </FrameLayout>
