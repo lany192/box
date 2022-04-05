@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright 2017 Zhihu Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<paths>
+    <!--代表外部存储区域的根目录下的文件 Environment.getExternalStorageDirectory()/DCIM/images-->
+    <!--/storage/emulated/0/DCIM/images-->
+    <external-path
+        name="DCIM"
+        path="DCIM/images" />
+
+    <!--代表外部存储区域的根目录下的文件 Environment.getExternalStorageDirectory()/Pictures/images-->
+    <!--/storage/emulated/0/Pictures/images-->
+    <external-path
+        name="Pictures"
+        path="Pictures/images" />
+
+    <!--代表app 私有的存储区域 Context.getFilesDir()目录下的images目录-->
+    <!--/data/user/0/com.zhihu.matisse.sample/files/images-->
+    <files-path
+        name="private_files"
+        path="images" />
+
+    <!-- 代表app 私有的存储区域 Context.getCacheDir()目录下的images目录 -->
+    <!--/data/user/0/com.zhihu.matisse.sample/cache/images-->
+    <cache-path
+        name="private_cache"
+        path="images" />
+
+    <!--代表app外部存储区域根目录下的文件 Context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)目录下的Pictures目录-->
+    <!--/storage/emulated/0/Android/data/com.zhihu.matisse.sample/files/Pictures-->
+    <external-files-path
+        name="external_files"
+        path="Pictures" />
+
+    <!--代表app 外部存储区域根目录下的文件 Context.getExternalCacheDir目录下的images目录-->
+    <!--/storage/emulated/0/Android/data/com.zhihu.matisse.sample/cache/images-->
+    <external-cache-path
+        name="external_cache"
+        path="images" />
+</paths>

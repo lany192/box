@@ -1,14 +1,25 @@
-
+/*
+ * Copyright (C) 2014 nohana, Inc.
+ * Copyright 2017 Zhihu Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.zhihu.matisse.internal.entity;
 
 import android.content.pm.ActivityInfo;
 
-import androidx.annotation.StyleRes;
-
+import com.zhihu.matisse.ImageEngine;
 import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.R;
-import com.zhihu.matisse.engine.ImageEngine;
-import com.zhihu.matisse.engine.impl.GlideEngine;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.listener.OnCheckedListener;
 import com.zhihu.matisse.listener.OnSelectedListener;
@@ -21,8 +32,6 @@ public final class SelectionSpec {
     public Set<MimeType> mimeTypeSet;
     public boolean mediaTypeExclusive;
     public boolean showSingleMediaType;
-    @StyleRes
-    public int themeId;
     public int orientation;
     public boolean countable;
     public int maxSelectable;
@@ -34,7 +43,6 @@ public final class SelectionSpec {
     public int spanCount;
     public int gridExpectedSize;
     public float thumbnailScale;
-    public ImageEngine imageEngine;
     public boolean hasInited;
     public OnSelectedListener onSelectedListener;
     public boolean originalable;
@@ -42,6 +50,7 @@ public final class SelectionSpec {
     public int originalMaxSize;
     public OnCheckedListener onCheckedListener;
     public boolean showPreview;
+    private ImageEngine imageEngine;
 
     private SelectionSpec() {
     }
@@ -60,7 +69,6 @@ public final class SelectionSpec {
         mimeTypeSet = null;
         mediaTypeExclusive = true;
         showSingleMediaType = false;
-        themeId = R.style.Matisse_Zhihu;
         orientation = 0;
         countable = false;
         maxSelectable = 1;
@@ -72,12 +80,22 @@ public final class SelectionSpec {
         spanCount = 3;
         gridExpectedSize = 0;
         thumbnailScale = 0.5f;
-        imageEngine = new GlideEngine();
         hasInited = true;
         originalable = false;
         autoHideToobar = false;
         originalMaxSize = Integer.MAX_VALUE;
         showPreview = true;
+    }
+
+    public ImageEngine getImageEngine() {
+        if (imageEngine == null) {
+            throw new RuntimeException("请配置ImageEngine实例");
+        }
+        return imageEngine;
+    }
+
+    public void setImageEngine(ImageEngine imageEngine) {
+        this.imageEngine = imageEngine;
     }
 
     public boolean singleSelectionModeEnabled() {

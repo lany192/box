@@ -1,4 +1,18 @@
-
+/*
+ * Copyright 2017 Zhihu Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.zhihu.matisse.internal.ui;
 
 import android.content.Context;
@@ -70,7 +84,7 @@ public class MediaSelectionFragment extends Fragment implements
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        mRecyclerView = view.findViewById(R.id.recyclerview);
     }
 
     @Override
@@ -96,7 +110,7 @@ public class MediaSelectionFragment extends Fragment implements
         int spacing = getResources().getDimensionPixelSize(R.dimen.media_grid_spacing);
         mRecyclerView.addItemDecoration(new MediaGridInset(spanCount, spacing, false));
         mRecyclerView.setAdapter(mAdapter);
-        mAlbumMediaCollection.onCreate(getActivity(), this);
+        mAlbumMediaCollection.onCreate(this, this);
         mAlbumMediaCollection.load(album, selectionSpec.capture);
     }
 
@@ -135,7 +149,7 @@ public class MediaSelectionFragment extends Fragment implements
     @Override
     public void onMediaClick(Album album, Item item, int adapterPosition) {
         if (mOnMediaClickListener != null) {
-            mOnMediaClickListener.onMediaClick((Album) getArguments().getParcelable(EXTRA_ALBUM),
+            mOnMediaClickListener.onMediaClick(getArguments().getParcelable(EXTRA_ALBUM),
                     item, adapterPosition);
         }
     }

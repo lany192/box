@@ -1,4 +1,19 @@
-
+/*
+ * Copyright (C) 2014 nohana, Inc.
+ * Copyright 2017 Zhihu Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.zhihu.matisse;
 
 import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_BEHIND;
@@ -18,18 +33,21 @@ import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER;
 import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE;
 import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.annotation.StyleRes;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
-import com.zhihu.matisse.engine.ImageEngine;
+import com.tbruyelle.rxpermissions3.RxPermissions;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.internal.entity.SelectionSpec;
@@ -41,6 +59,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Set;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Fluent API for building media select specification.
@@ -78,22 +98,6 @@ public final class SelectionCreator {
     }
 
     /**
-     * Theme for media selecting Activity.
-     * <p>
-     * There are two built-in themes:
-     * 1. com.zhihu.matisse.R.style.Matisse_Zhihu;
-     * 2. com.zhihu.matisse.R.style.Matisse_Dracula
-     * you can define a custom theme derived from the above ones or other themes.
-     *
-     * @param themeId theme resource id. Default value is com.zhihu.matisse.R.style.Matisse_Zhihu.
-     * @return {@link SelectionCreator} for fluent API.
-     */
-    public SelectionCreator theme(@StyleRes int themeId) {
-        mSelectionSpec.themeId = themeId;
-        return this;
-    }
-
-    /**
      * Show a auto-increased number or a check mark when user select media.
      *
      * @param countable true for a auto-increased number from 1, false for a check mark. Default
@@ -112,10 +116,12 @@ public final class SelectionCreator {
      * @return {@link SelectionCreator} for fluent API.
      */
     public SelectionCreator maxSelectable(int maxSelectable) {
-        if (maxSelectable < 1)
+        if (maxSelectable < 1) {
             throw new IllegalArgumentException("maxSelectable must be greater than or equal to one");
-        if (mSelectionSpec.maxImageSelectable > 0 || mSelectionSpec.maxVideoSelectable > 0)
+        }
+        if (mSelectionSpec.maxImageSelectable > 0 || mSelectionSpec.maxVideoSelectable > 0) {
             throw new IllegalStateException("already set maxImageSelectable and maxVideoSelectable");
+        }
         mSelectionSpec.maxSelectable = maxSelectable;
         return this;
     }
@@ -129,8 +135,9 @@ public final class SelectionCreator {
      * @return {@link SelectionCreator} for fluent API.
      */
     public SelectionCreator maxSelectablePerMediaType(int maxImageSelectable, int maxVideoSelectable) {
-        if (maxImageSelectable < 1 || maxVideoSelectable < 1)
+        if (maxImageSelectable < 1 || maxVideoSelectable < 1) {
             throw new IllegalArgumentException(("max selectable must be greater than or equal to one"));
+        }
         mSelectionSpec.maxSelectable = -1;
         mSelectionSpec.maxImageSelectable = maxImageSelectable;
         mSelectionSpec.maxVideoSelectable = maxVideoSelectable;
@@ -232,7 +239,9 @@ public final class SelectionCreator {
      * @return {@link SelectionCreator} for fluent API.
      */
     public SelectionCreator spanCount(int spanCount) {
-        if (spanCount < 1) throw new IllegalArgumentException("spanCount cannot be less than 1");
+        if (spanCount < 1) {
+            throw new IllegalArgumentException("spanCount cannot be less than 1");
+        }
         mSelectionSpec.spanCount = spanCount;
         return this;
     }
@@ -258,8 +267,9 @@ public final class SelectionCreator {
      * @return {@link SelectionCreator} for fluent API.
      */
     public SelectionCreator thumbnailScale(float scale) {
-        if (scale <= 0f || scale > 1f)
+        if (scale <= 0f || scale > 1f) {
             throw new IllegalArgumentException("Thumbnail scale must be between (0.0, 1.0]");
+        }
         mSelectionSpec.thumbnailScale = scale;
         return this;
     }
@@ -276,7 +286,7 @@ public final class SelectionCreator {
      * @return {@link SelectionCreator} for fluent API.
      */
     public SelectionCreator imageEngine(ImageEngine imageEngine) {
-        mSelectionSpec.imageEngine = imageEngine;
+        mSelectionSpec.setImageEngine(imageEngine);
         return this;
     }
 
@@ -311,20 +321,21 @@ public final class SelectionCreator {
      *
      * @param requestCode Identity of the request Activity or Fragment.
      */
-    public void forResult(int requestCode) {
-        Activity activity = mMatisse.getActivity();
+    public void forResult(ActivityResultCallback<ActivityResult> resultCallback) {
+        FragmentActivity activity = mMatisse.getActivity();
         if (activity == null) {
             return;
         }
-
-        Intent intent = new Intent(activity, MatisseActivity.class);
-
-        Fragment fragment = mMatisse.getFragment();
-        if (fragment != null) {
-            fragment.startActivityForResult(intent, requestCode);
-        } else {
-            activity.startActivityForResult(intent, requestCode);
-        }
+        Disposable disposable = new RxPermissions(activity).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(aBoolean -> {
+                    if (aBoolean) {
+                        ActivityResultFragment fragment = new ActivityResultFragment();
+                        fragment.setIntent(new Intent(activity, MatisseActivity.class));
+                        fragment.start(activity, resultCallback);
+                    } else {
+                        Toast.makeText(activity, R.string.permission_request_denied, Toast.LENGTH_LONG).show();
+                    }
+                }, Throwable::printStackTrace);
     }
 
     public SelectionCreator showPreview(boolean showPreview) {

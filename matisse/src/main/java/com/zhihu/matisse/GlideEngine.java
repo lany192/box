@@ -1,5 +1,4 @@
-
-package com.zhihu.matisse.engine.impl;
+package com.zhihu.matisse;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.zhihu.matisse.engine.ImageEngine;
 
 /**
  * {@link ImageEngine} implementation using Glide.

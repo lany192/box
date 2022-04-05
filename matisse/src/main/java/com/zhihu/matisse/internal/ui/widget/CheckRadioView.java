@@ -30,10 +30,10 @@ public class CheckRadioView extends AppCompatImageView {
 
     private void init() {
         mSelectedColor = ResourcesCompat.getColor(
-                getResources(), R.color.item_checkCircle_backgroundColor,
+                getResources(), R.color.matisse_item_checkCircle_backgroundColor,
                 getContext().getTheme());
         mUnSelectUdColor = ResourcesCompat.getColor(
-                getResources(), R.color.check_original_radio_disable,
+                getResources(), R.color.matisse_check_original_radio_disable,
                 getContext().getTheme());
         setChecked(false);
     }

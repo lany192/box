@@ -1,4 +1,19 @@
-
+/*
+ * Copyright (C) 2014 nohana, Inc.
+ * Copyright 2017 Zhihu Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.zhihu.matisse.internal.model;
 
 import android.content.Context;
@@ -7,6 +22,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -61,8 +77,14 @@ public class AlbumMediaCollection implements LoaderManager.LoaderCallbacks<Curso
     }
 
     public void onCreate(@NonNull FragmentActivity context, @NonNull AlbumMediaCallbacks callbacks) {
-        mContext = new WeakReference<Context>(context);
-        mLoaderManager = context.getSupportLoaderManager();
+        mContext = new WeakReference<>(context);
+        mLoaderManager = LoaderManager.getInstance(context);
+        mCallbacks = callbacks;
+    }
+
+    public void onCreate(@NonNull Fragment fragment, @NonNull AlbumMediaCallbacks callbacks) {
+        mContext = new WeakReference<>(fragment.getContext());
+        mLoaderManager = LoaderManager.getInstance(fragment);
         mCallbacks = callbacks;
     }
 

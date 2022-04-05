@@ -13,18 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/page.bg">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:paddingTop="@dimen/media_grid_spacing"
-        android:paddingBottom="@dimen/media_grid_spacing" />
-
-</FrameLayout>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/matisse_bottom_toolbar_apply_text_disable" android:state_enabled="false" />
+    <item android:color="@color/matisse_bottom_toolbar_apply_text" />
+</selector>
