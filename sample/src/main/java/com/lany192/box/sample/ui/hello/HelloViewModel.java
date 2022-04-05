@@ -1,6 +1,6 @@
 package com.lany192.box.sample.ui.hello;
 
-import com.github.lany192.arch.items.ListViewModel;
+import com.github.lany192.arch.items.ItemsViewModel;
 import com.github.lany192.arch.utils.ListUtils;
 import com.hjq.toast.ToastUtils;
 import com.lany192.box.sample.data.api.ApiCallback;
@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class HelloViewModel extends ListViewModel {
+public class HelloViewModel extends ItemsViewModel {
     @Inject
     ApiService apiService;
 

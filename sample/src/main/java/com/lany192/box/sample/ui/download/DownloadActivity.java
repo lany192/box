@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.SimpleActivity;
-import com.github.lany192.arch.items.ListAdapter;
+import com.github.lany192.arch.items.ItemsAdapter;
 import com.lany192.box.sample.databinding.ActivityDownloadBinding;
 import com.liulishuo.okdownload.DownloadMonitor;
 import com.liulishuo.okdownload.DownloadTask;
@@ -25,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/ui/download")
 public class DownloadActivity extends SimpleActivity<DownloadViewModel, ActivityDownloadBinding> {
-    private final ListAdapter listAdapter = new ListAdapter();
+    private final ItemsAdapter itemsAdapter = new ItemsAdapter();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,15 +52,15 @@ public class DownloadActivity extends SimpleActivity<DownloadViewModel, Activity
 
             }
         });
-        listAdapter.addItemBinder(DownloadTask.class, new TaskBinder((downloadTask, position) -> viewModel.start(downloadTask)));
-        binding.recyclerView.setAdapter(listAdapter);
+        itemsAdapter.addItemBinder(DownloadTask.class, new TaskBinder((downloadTask, position) -> viewModel.start(downloadTask)));
+        binding.recyclerView.setAdapter(itemsAdapter);
         //解决item刷新时，界面闪烁
         ((SimpleItemAnimator) Objects.requireNonNull(binding.recyclerView.getItemAnimator())).setSupportsChangeAnimations(false);
         viewModel.getItems().observe(this, data -> {
             if (data.isChange()) {
-                listAdapter.setData(data.getIndex(), data.getDownloadTask());
+                itemsAdapter.setData(data.getIndex(), data.getDownloadTask());
             } else {
-                listAdapter.setNewInstance(data.getTasks());
+                itemsAdapter.setNewInstance(data.getTasks());
             }
         });
     }

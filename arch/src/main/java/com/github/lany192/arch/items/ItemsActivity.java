@@ -1,30 +1,35 @@
 package com.github.lany192.arch.items;
 
+import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.fragment.ModelFragment;
+import com.github.lany192.arch.activity.ModelActivity;
 import com.github.lany192.view.DefaultView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
-public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBinding>
-        extends ModelFragment<VM, VB> {
-    private final ListAdapter listAdapter = new ListAdapter();
+public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewBinding, TVB extends ViewBinding>
+        extends ModelActivity<VM, CVB, TVB> {
+    private final ItemsAdapter itemsAdapter = new ItemsAdapter();
+
+    public abstract SmartRefreshLayout getRefreshLayout();
+
+    public abstract RecyclerView getRecyclerView();
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
+        GridLayoutManager layoutManager = new GridLayoutManager(this, getSpanCount());
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         return layoutManager;
     }
 
     public <T, B extends ViewBinding> void register(ItemBinder<T, B> binder) {
-        listAdapter.addItemBinder(binder.getClass(0), binder);
+        itemsAdapter.addItemBinder(binder.getClass(0), binder);
     }
 
     public int getSpanCount() {
@@ -39,25 +44,20 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
         return null;
     }
 
-    public abstract SmartRefreshLayout getRefreshLayout();
-
-    public abstract RecyclerView getRecyclerView();
-
-    @CallSuper
     @Override
-    public void init() {
-        super.init();
-        listAdapter.getLoadMoreModule().setEnableLoadMore(viewModel.loadMoreEnabled());
-        listAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
-        listAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(itemsAdapter) != null) {
+            getRecyclerView().addItemDecoration(getItemDecoration(itemsAdapter));
+        }
+        itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
 
         getRecyclerView().setLayoutManager(getLayoutManager());
-        getRecyclerView().setAdapter(listAdapter);
-        if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(listAdapter) != null) {
-            getRecyclerView().addItemDecoration(getItemDecoration(listAdapter));
-        }
+        getRecyclerView().setAdapter(itemsAdapter);
+
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
+        itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
         //Loading对话框状态观察
         viewModel.getLoadingState().observe(this, show -> {
             if (show) {
@@ -91,7 +91,7 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
             switch (state) {
                 case STOP_REQUEST:
                     getRefreshLayout().finishRefresh();
-                    listAdapter.getLoadMoreModule().loadMoreFail();
+                    itemsAdapter.getLoadMoreModule().loadMoreFail();
                     break;
                 case REFRESHING:
                     break;
@@ -102,19 +102,19 @@ public abstract class ListFragment<VM extends ListViewModel, VB extends ViewBind
                     break;
                 case MORE_LOAD_END:
                     getRefreshLayout().finishRefresh();
-                    listAdapter.loadMoreEnd();
+                    itemsAdapter.loadMoreEnd();
                     break;
                 case MORE_LOAD_ERROR:
                     getRefreshLayout().finishRefresh();
-                    listAdapter.loadMoreFail();
+                    itemsAdapter.loadMoreFail();
                     break;
                 case MORE_LOAD_FINISH:
                     getRefreshLayout().finishRefresh();
-                    listAdapter.loadMoreComplete();
+                    itemsAdapter.loadMoreComplete();
                     break;
             }
         });
-        viewModel.getItems().observe(this, data -> listAdapter.setNewInstance(data.getItems()));
+        viewModel.getItems().observe(this, data -> itemsAdapter.setNewInstance(data.getItems()));
     }
 
     @NonNull

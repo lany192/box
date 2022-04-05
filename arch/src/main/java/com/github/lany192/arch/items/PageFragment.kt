@@ -9,7 +9,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 /**
  * 通用布局
  */
-abstract class PageFragment<VM : ListViewModel> : ListFragment<VM, FragmentPageBinding>() {
+abstract class PageFragment<VM : ItemsViewModel> : ItemsFragment<VM, FragmentPageBinding>() {
 
     override fun getRefreshLayout(): SmartRefreshLayout {
         return binding.itemsView.refreshLayout

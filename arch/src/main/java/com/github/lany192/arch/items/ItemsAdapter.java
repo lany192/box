@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.module.LoadMoreModule;
 /**
  * 多布局适配器
  */
-public class ListAdapter extends BaseBinderAdapter implements LoadMoreModule {
+public class ItemsAdapter extends BaseBinderAdapter implements LoadMoreModule {
 
     @NonNull
     @Override
@@ -18,7 +18,7 @@ public class ListAdapter extends BaseBinderAdapter implements LoadMoreModule {
         return new BaseLoadMoreModule(adapter);
     }
 
-    public void loadMoreComplete(){
+    public void loadMoreComplete() {
         getLoadMoreModule().loadMoreComplete();
     }
 

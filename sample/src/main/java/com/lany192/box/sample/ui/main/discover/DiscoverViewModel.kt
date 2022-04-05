@@ -1,14 +1,14 @@
 package com.lany192.box.sample.ui.main.discover
 
 import android.os.Handler
-import com.github.lany192.arch.items.ListViewModel
+import com.github.lany192.arch.items.ItemsViewModel
 import com.lany192.box.sample.MockUtils
 import com.lany192.box.sample.data.bean.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DiscoverViewModel @Inject constructor() : ListViewModel() {
+class DiscoverViewModel @Inject constructor() : ItemsViewModel() {
     var count = 0
     override fun request(refresh: Boolean) {
         if (refresh) {

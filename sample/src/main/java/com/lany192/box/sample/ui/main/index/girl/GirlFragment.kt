@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.ModelFragment
-import com.github.lany192.arch.items.ListAdapter
+import com.github.lany192.arch.items.ItemsAdapter
 import com.lany192.box.sample.data.binder.GirlBinder
 import com.lany192.box.sample.databinding.FragmentGirlBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +29,7 @@ class GirlFragment : ModelFragment<GirlViewModel, FragmentGirlBinding>() {
                 }
             }
         })
-        val adapter = ListAdapter()
+        val adapter = ItemsAdapter()
         adapter.addItemBinder(String::class.java, GirlBinder())
         binding.recyclerView.adapter = adapter
         viewModel.items.observe(this) { list: List<String> -> adapter.setList(list) }

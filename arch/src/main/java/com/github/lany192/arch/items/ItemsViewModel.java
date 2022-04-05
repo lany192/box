@@ -10,7 +10,7 @@ import com.github.lany192.utils.NetUtils;
 
 import java.util.List;
 
-public abstract class ListViewModel extends LifecycleViewModel {
+public abstract class ItemsViewModel extends LifecycleViewModel {
     /**
      * 列表数据集合
      */

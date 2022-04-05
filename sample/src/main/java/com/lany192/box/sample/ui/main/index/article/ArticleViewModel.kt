@@ -1,6 +1,6 @@
 package com.lany192.box.sample.ui.main.index.article
 
-import com.github.lany192.arch.items.ListViewModel
+import com.github.lany192.arch.items.ItemsViewModel
 import com.github.lany192.arch.utils.ListUtils
 import com.hjq.toast.ToastUtils
 import com.lany192.box.sample.data.api.ApiCallback
@@ -10,7 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleViewModel @Inject constructor(var apiService: ApiService) : ListViewModel() {
+class ArticleViewModel @Inject constructor(var apiService: ApiService) : ItemsViewModel() {
 
     override fun request(refresh: Boolean) {
         apiService.getHomeArticles(page)

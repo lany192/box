@@ -8,8 +8,8 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 /**
  * 通用布局
  */
-abstract class PageActivity<VM : ListViewModel> :
-    ListActivity<VM, ActivityPageBinding, ToolbarDefaultBinding>() {
+abstract class PageActivity<VM : ItemsViewModel> :
+    ItemsActivity<VM, ActivityPageBinding, ToolbarDefaultBinding>() {
 
     override fun getRefreshLayout(): SmartRefreshLayout {
         return binding.itemsView.refreshLayout
