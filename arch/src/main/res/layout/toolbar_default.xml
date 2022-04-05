@@ -47,7 +47,21 @@
         android:textColor="@color/text_2level"
         android:textSize="14sp"
         android:visibility="gone"
-        tools:layout_height="@dimen/actionbar_height"
         tools:text="编辑"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/more"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/actionBarItemBackground"
+        android:contentDescription="@string/app_name"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/android"
+        android:visibility="gone"
         tools:visibility="visible" />
 </RelativeLayout>
