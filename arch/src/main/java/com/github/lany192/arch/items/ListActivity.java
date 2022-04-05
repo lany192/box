@@ -11,22 +11,16 @@ import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.activity.ModelActivity;
-import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
 import com.github.lany192.view.DefaultView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
-public abstract class ListActivity<VM extends ListViewModel, VB extends ViewBinding> extends ModelActivity<VM, VB, ToolbarDefaultBinding> {
+public abstract class ListActivity<VM extends ListViewModel, CVB extends ViewBinding, TVB extends ViewBinding>
+        extends ModelActivity<VM, CVB, TVB> {
     private final ListAdapter listAdapter = new ListAdapter();
 
     public abstract SmartRefreshLayout getRefreshLayout();
 
     public abstract RecyclerView getRecyclerView();
-
-    @NonNull
-    @Override
-    public ToolbarDefaultBinding getToolbarBinding() {
-        return ToolbarDefaultBinding.inflate(getLayoutInflater());
-    }
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(this, getSpanCount());
