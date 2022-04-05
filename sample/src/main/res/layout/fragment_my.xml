@@ -42,7 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:background="@color/divider" />
+                android:layout_marginEnd="16dp"
+                android:background="@color/outline" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/login_view"
@@ -54,7 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:background="@color/divider" />
+                android:layout_marginEnd="16dp"
+                android:background="@color/outline" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/download_view"
@@ -93,7 +95,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:background="@color/divider" />
+                android:layout_marginEnd="16dp"
+                android:background="@color/outline" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/test_view"
@@ -105,7 +108,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:background="@color/divider" />
+                android:layout_marginEnd="16dp"
+                android:background="@color/outline" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/dialog2_view"
@@ -117,7 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:background="@color/divider" />
+                android:layout_marginEnd="16dp"
+                android:background="@color/outline" />
 
             <com.github.lany192.view.MenuView
                 android:id="@+id/settings_view"
