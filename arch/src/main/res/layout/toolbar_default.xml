@@ -47,6 +47,7 @@
         android:textColor="@color/text_2level"
         android:textSize="14sp"
         android:visibility="gone"
+        tools:layout_height="@dimen/actionbar_height"
         tools:text="编辑"
         tools:visibility="visible" />
 
@@ -63,5 +64,6 @@
         android:scaleType="centerInside"
         android:src="@drawable/android"
         android:visibility="gone"
+        tools:layout_height="@dimen/actionbar_height"
         tools:visibility="visible" />
 </RelativeLayout>
