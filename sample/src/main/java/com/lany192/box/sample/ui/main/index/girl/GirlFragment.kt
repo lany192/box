@@ -32,6 +32,6 @@ class GirlFragment : ModelFragment<GirlViewModel, FragmentGirlBinding>() {
         val adapter = ListAdapter()
         adapter.addItemBinder(String::class.java, GirlBinder())
         binding.recyclerView.adapter = adapter
-        viewModel.items.observe(this, { list: List<String> -> adapter.setList(list) })
+        viewModel.items.observe(this) { list: List<String> -> adapter.setList(list) }
     }
 }

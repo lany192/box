@@ -10,18 +10,16 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleViewModel @Inject constructor() : ListViewModel() {
-    @Inject
-    lateinit var apiService: ApiService
+class ArticleViewModel @Inject constructor(var apiService: ApiService) : ListViewModel() {
 
     override fun request(refresh: Boolean) {
         apiService.getHomeArticles(page)
             .subscribe(object : ApiCallback<ArticleList> {
 
                 override fun onSuccess(msg: String, result: ArticleList) {
-                    if(ListUtils.isEmpty(result.datas)){
-
-                    }else{
+                    if (ListUtils.isEmpty(result.datas)) {
+                        moreLoadEnd()
+                    } else {
                         if (refresh) {
                             resetItems(result.datas)
                             refreshFinish()
