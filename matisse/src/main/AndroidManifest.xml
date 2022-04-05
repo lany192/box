@@ -8,13 +8,13 @@
     <application>
         <activity
             android:name="com.zhihu.matisse.ui.MatisseActivity"
-            android:theme="@style/MatisseTheme" />
+            android:theme="@style/Matisse" />
         <activity
             android:name="com.zhihu.matisse.internal.ui.AlbumPreviewActivity"
-            android:theme="@style/MatisseTheme" />
+            android:theme="@style/Matisse" />
         <activity
             android:name="com.zhihu.matisse.internal.ui.SelectedPreviewActivity"
-            android:theme="@style/MatisseTheme" />
+            android:theme="@style/Matisse" />
 
         <provider
             android:name="com.zhihu.matisse.MatisseFileProvider"

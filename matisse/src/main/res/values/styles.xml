@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MatisseTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/matisse_primary</item>
-        <item name="colorPrimaryDark">@color/matisse_primary_dark</item>
+    <style name="Matisse" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="toolbar">@style/Toolbar.Zhihu</item>
-        <item name="album.dropdown.title.color">@color/matisse_album_dropdown_title_text</item>
-        <item name="album.dropdown.count.color">@color/matisse_album_dropdown_count_text</item>
-        <item name="album.element.color">@android:color/white</item>
+        <item name="album.dropdown.title.color">@color/text_2level</item>
+        <item name="album.dropdown.count.color">@color/text_3level</item>
+        <item name="album.element.color">@color/white</item>
         <item name="album.thumbnail.placeholder">
-            @color/matisse_album_dropdown_thumbnail_placeholder
+            @color/gray_bg
         </item>
         <item name="album.emptyView">@drawable/ic_empty_zhihu</item>
-        <item name="album.emptyView.textColor">@color/matisse_album_empty_view</item>
-        <item name="item.placeholder">@color/matisse_item_placeholder</item>
+        <item name="album.emptyView.textColor">@color/text_3level</item>
+        <item name="item.placeholder">@color/gray_bg</item>
         <item name="item.checkCircle.backgroundColor">
-            @color/matisse_item_checkCircle_backgroundColor
+            @color/primary_gray
         </item>
-        <item name="item.checkCircle.borderColor">@color/matisse_item_checkCircle_borderColor</item>
-        <item name="page.bg">@color/matisse_page_bg</item>
-        <item name="bottomToolbar.bg">@color/matisse_bottom_toolbar_bg</item>
-        <item name="bottomToolbar.preview.textColor">@color/matisse_bottom_toolbar_preview</item>
-        <item name="bottomToolbar.apply.textColor">@color/matisse_bottom_toolbar_apply</item>
+        <item name="item.checkCircle.borderColor">@color/primary</item>
+        <item name="page.bg">@color/white_bg</item>
+        <item name="bottomToolbar.bg">@color/white_bg</item>
+        <item name="bottomToolbar.preview.textColor">@color/bottom_toolbar_preview</item>
+        <item name="bottomToolbar.apply.textColor">@color/bottom_toolbar_apply</item>
         <item name="preview.bottomToolbar.back.textColor">
-            @color/matisse_preview_bottom_toolbar_back_text
+            @color/text_2level
         </item>
         <item name="preview.bottomToolbar.apply.textColor">
-            @color/matisse_preview_bottom_toolbar_apply
+            @color/preview_bottom_toolbar_apply
         </item>
         <item name="listPopupWindowStyle">@style/Popup.Zhihu</item>
         <item name="capture.textColor">@color/matisse_capture</item>
@@ -37,7 +37,7 @@
     </style>
 
     <style name="Popup.Zhihu" parent="Widget.AppCompat.Light.ListPopupWindow">
-        <item name="android:popupBackground">@color/matisse_album_popup_bg</item>
+        <item name="android:popupBackground">@color/white_bg</item>
     </style>
 
 </resources>
