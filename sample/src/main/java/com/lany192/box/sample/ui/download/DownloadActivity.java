@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.SimpleActivity;
+import com.github.lany192.arch.activity.BoxActivity;
 import com.github.lany192.arch.items.ItemsAdapter;
 import com.lany192.box.sample.databinding.ActivityDownloadBinding;
 import com.liulishuo.okdownload.DownloadMonitor;
@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/download")
-public class DownloadActivity extends SimpleActivity<DownloadViewModel, ActivityDownloadBinding> {
+public class DownloadActivity extends BoxActivity<DownloadViewModel, ActivityDownloadBinding> {
     private final ItemsAdapter itemsAdapter = new ItemsAdapter();
 
     @Override

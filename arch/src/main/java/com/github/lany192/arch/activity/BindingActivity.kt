@@ -15,7 +15,7 @@ import com.gyf.immersionbar.ImmersionBar
 import java.lang.reflect.ParameterizedType
 
 /**
- * ViewBinding的Activity<基类，包含头部和内容
+ * ViewBinding的Activity基类,包含<头部和内容>
  */
 abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActivity() {
     lateinit var binding: CVB

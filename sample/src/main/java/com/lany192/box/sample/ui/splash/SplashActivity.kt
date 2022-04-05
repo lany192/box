@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.SimpleActivity
+import com.github.lany192.arch.activity.BoxActivity
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.lany192.box.sample.databinding.ActivitySplashBinding
@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 @Route(path = "/ui/splash")
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : SimpleActivity<SplashViewModel, ActivitySplashBinding>() {
+class SplashActivity : BoxActivity<SplashViewModel, ActivitySplashBinding>() {
 
     override fun initImmersionBar(): ImmersionBar {
         return ImmersionBar.with(this)

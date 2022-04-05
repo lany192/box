@@ -6,7 +6,7 @@ import android.view.MenuItem
 import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.SimpleActivity
+import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.hjq.toast.ToastUtils
@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @Route(path = "/ui/main")
 @AndroidEntryPoint
-class MainActivity : SimpleActivity<MainViewModel, ActivityMainBinding>() {
+class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
     // 第一次按退出的时间
     private var mLastClickTime: Long = 0
     private lateinit var userViewModel: UserViewModel

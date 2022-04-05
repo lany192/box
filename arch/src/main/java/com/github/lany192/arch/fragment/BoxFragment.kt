@@ -10,7 +10,7 @@ import com.github.lany192.binding.getBinding
 /**
  * ViewBinding实现基类
  */
-abstract class ModelFragment<VM : ViewModel, VB : ViewBinding> : BindingFragment<VB>() {
+abstract class BoxFragment<VM : ViewModel, VB : ViewBinding> : BindingFragment<VB>() {
     lateinit var viewModel: VM
 
     @CallSuper

@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.main.my
 
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.ModelFragment
+import com.github.lany192.arch.fragment.BoxFragment
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/page/my")
-class MyFragment : ModelFragment<MyViewModel, FragmentMyBinding>() {
+class MyFragment : BoxFragment<MyViewModel, FragmentMyBinding>() {
     private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {

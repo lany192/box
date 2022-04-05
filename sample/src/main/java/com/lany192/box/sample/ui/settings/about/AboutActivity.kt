@@ -5,7 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.SimpleActivity
+import com.github.lany192.arch.activity.BoxActivity
 import com.lany192.box.sample.databinding.ActivityAboutBinding
 import dagger.hilt.android.AndroidEntryPoint
 import de.psdev.licensesdialog.LicensesDialog
@@ -17,7 +17,7 @@ import de.psdev.licensesdialog.model.Notices
 
 @AndroidEntryPoint
 @Route(path = "/ui/about")
-class AboutActivity : SimpleActivity<AboutViewModel, ActivityAboutBinding>() {
+class AboutActivity : BoxActivity<AboutViewModel, ActivityAboutBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

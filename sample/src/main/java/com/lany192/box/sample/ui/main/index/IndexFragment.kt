@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.main.index
 
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.ModelFragment
+import com.github.lany192.arch.fragment.BoxFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.gyf.immersionbar.ImmersionBar
@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/page/index")
-class IndexFragment : ModelFragment<IndexViewModel, FragmentIndexBinding>() {
+class IndexFragment : BoxFragment<IndexViewModel, FragmentIndexBinding>() {
 
     override fun initImmersionBar() {
         ImmersionBar.with(this)

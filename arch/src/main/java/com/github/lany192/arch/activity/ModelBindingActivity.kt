@@ -9,7 +9,7 @@ import com.github.lany192.binding.getBinding
 /**
  * ViewBinding实现基类
  */
-abstract class ModelActivity<VM : ViewModel, CVB : ViewBinding, TVB : ViewBinding> :
+abstract class ModelBindingActivity<VM : ViewModel, CVB : ViewBinding, TVB : ViewBinding> :
     BindingActivity<CVB, TVB>() {
     lateinit var viewModel: VM
 

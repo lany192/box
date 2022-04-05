@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.activity.ModelActivity;
+import com.github.lany192.arch.activity.ModelBindingActivity;
 import com.github.lany192.view.DefaultView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewBinding, TVB extends ViewBinding>
-        extends ModelActivity<VM, CVB, TVB> {
+        extends ModelBindingActivity<VM, CVB, TVB> {
     private final ItemsAdapter itemsAdapter = new ItemsAdapter();
 
     public abstract SmartRefreshLayout getRefreshLayout();
