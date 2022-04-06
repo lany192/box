@@ -9,6 +9,7 @@ import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.R
 import com.github.lany192.arch.items.ViewState
+import com.github.lany192.binding.getBinding
 import com.github.lany192.view.DefaultView
 import com.github.lany192.view.LoadingView
 import com.gyf.immersionbar.ImmersionBar
@@ -46,13 +47,19 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
 
     /**
      * 获取toolbar的ViewBinding实例
+     * 如果不想用反射，复写该方法，去反射。
      */
-    abstract fun getToolbarBinding(): TVB
+    open fun getToolbarBinding(): TVB {
+        return getClass<TVB>(1).getBinding(layoutInflater)
+    }
 
     /**
      * 获取内容的ViewBinding实例
+     * 如果不想用反射，复写该方法，去反射。
      */
-    abstract fun getContentBinding(): CVB
+    open fun getContentBinding(): CVB {
+        return getClass<CVB>(0).getBinding(layoutInflater)
+    }
 
     override fun setTitle(title: CharSequence?) {
         findViewById<TextView>(R.id.title)?.text = title
