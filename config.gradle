@@ -10,7 +10,7 @@ ext {
     ]
     processorDependencies = [
             "glide"     : "com.github.bumptech.glide:compiler:4.12.0",
-            "room"      : "androidx.room:room-compiler:2.3.0",
+            "room"      : "androidx.room:room-compiler:2.4.2",
             //路由增强 https://github.com/lany192/app-router
             "app-router": 'com.github.lany192:app-router:1.4.0',
             //阿里路由 https://github.com/alibaba/ARouter
@@ -53,7 +53,7 @@ ext {
             //存储控件 https://github.com/lany192/KVUtils
             'KVUtils'                         : 'com.github.lany192:KVUtils:1.0.6',
             //glide依赖 https://github.com/bumptech/glide
-            'glide'                           : "com.github.bumptech.glide:glide:4.13.1",
+            'glide'                           : 'com.github.bumptech.glide:glide:4.13.1',
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
             'refresh-layout'                  : 'io.github.scwang90:refresh-layout-kernel:2.0.5',
             'refresh-header'                  : 'io.github.scwang90:refresh-header-classics:2.0.5',
@@ -74,8 +74,8 @@ ext {
             //微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
             'wechat'                          : 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0',
             //room数据库 https://developer.android.google.cn/training/data-storage/room/index.html
-            'room-runtime'                    : "androidx.room:room-runtime:2.3.0",
-            'room-rxjava2'                    : "androidx.room:room-rxjava3:2.3.0",
+            'room-runtime'                    : 'androidx.room:room-runtime:2.4.2',
+            'room-ktx'                        : 'androidx.room:room-ktx:2.4.2',
             //图片压缩 https://github.com/Curzibn/Luban
             'luban'                           : 'top.zibin:Luban:1.1.8',
             //RecyclerView分割线 https://github.com/lany192/ItemDecoration
