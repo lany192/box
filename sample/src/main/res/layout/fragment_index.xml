@@ -5,22 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.flyco.tablayout.PagerTabLayout
+    <com.github.lany192.tablayout.PagerTabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_orange_light"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        app:tl_indicatorColor="#06142E"
-        app:tl_indicatorCornerRadius="1dp"
-        app:tl_indicatorHeight="2dp"
-        app:tl_indicatorMarginBottom="5dp"
-        app:tl_indicatorWidthEqualTitle="true"
-        app:tl_selectedTextColor="#06142E"
-        app:tl_selectedTextSize="20sp"
-        app:tl_unselectedTextColor="#666666"
-        app:tl_unselectedTextSize="18sp" />
+        app:tl_indicator_color="#06142E"
+        app:tl_indicator_corner_radius="1dp"
+        app:tl_indicator_height="2dp"
+        app:tl_indicator_margin_bottom="5dp"
+        app:tl_indicator_width_equal_title="true"
+        app:tl_text_select_color="#06142E"
+        app:tl_text_select_size="20sp"
+        app:tl_text_unselect_color="#666666"
+        app:tl_text_unselect_size="16sp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"

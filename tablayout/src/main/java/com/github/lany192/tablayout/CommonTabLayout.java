@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 没有继承HorizontalScrollView不能滑动,对于ViewPager无依赖
@@ -42,8 +43,7 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     private static final int TEXT_BOLD_NONE = 0;
     private static final int TEXT_BOLD_WHEN_SELECT = 1;
     private static final int TEXT_BOLD_BOTH = 2;
-    private final Context mContext;
-    private final ArrayList<CustomTabEntity> mTabEntitys = new ArrayList<>();
+    private final List<CustomTabEntity> mTabEntitys = new ArrayList<>();
     private final LinearLayout mTabsContainer;
     /**
      * 用于绘制显示器
@@ -130,7 +130,6 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
         setClipChildren(false);
         setClipToPadding(false);
 
-        this.mContext = context;
         mTabsContainer = new LinearLayout(context);
         addView(mTabsContainer);
 
@@ -226,13 +225,13 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
         View tabView;
         for (int i = 0; i < mTabCount; i++) {
             if (mIconGravity == Gravity.LEFT) {
-                tabView = View.inflate(mContext, R.layout.layout_tab_left, null);
+                tabView = View.inflate(getContext(), R.layout.layout_tab_left, null);
             } else if (mIconGravity == Gravity.RIGHT) {
-                tabView = View.inflate(mContext, R.layout.layout_tab_right, null);
+                tabView = View.inflate(getContext(), R.layout.layout_tab_right, null);
             } else if (mIconGravity == Gravity.BOTTOM) {
-                tabView = View.inflate(mContext, R.layout.layout_tab_bottom, null);
+                tabView = View.inflate(getContext(), R.layout.layout_tab_bottom, null);
             } else {
-                tabView = View.inflate(mContext, R.layout.layout_tab_top, null);
+                tabView = View.inflate(getContext(), R.layout.layout_tab_top, null);
             }
 
             tabView.setTag(i);
@@ -874,7 +873,7 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
             float margin = 0;
             if (mIconVisible) {
                 if (iconH <= 0) {
-                    iconH = mContext.getResources().getDrawable(mTabEntitys.get(position).getTabSelectedIcon()).getIntrinsicHeight();
+                    iconH = getResources().getDrawable(mTabEntitys.get(position).getTabSelectedIcon()).getIntrinsicHeight();
                 }
                 margin = mIconMargin;
             }
@@ -929,12 +928,12 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     }
 
     protected int dp2px(float dp) {
-        final float scale = mContext.getResources().getDisplayMetrics().density;
+        final float scale = getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
     }
 
     protected int sp2px(float sp) {
-        final float scale = this.mContext.getResources().getDisplayMetrics().scaledDensity;
+        final float scale = getResources().getDisplayMetrics().scaledDensity;
         return (int) (sp * scale + 0.5f);
     }
 

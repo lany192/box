@@ -30,6 +30,6 @@ class MessageFragment : BoxFragment<MessageViewModel, FragmentMessageBinding>() 
         items.add(TabItem("游戏通知", AppRouter.getGirl()))
         val adapter = TabAdapter(requireActivity(), items)
         binding.viewpager.adapter = adapter
-        binding.tabLayout.setViewPager2(binding.viewpager, adapter.titles)
+        binding.tabLayout.setViewPager(binding.viewpager, adapter.titles)
     }
 }

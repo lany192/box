@@ -29,6 +29,6 @@ class IndexFragment : BoxFragment<IndexViewModel, FragmentIndexBinding>() {
         items.add(TabItem("图片", AppRouter.getGirl()))
         val adapter = TabAdapter(requireActivity(), items)
         binding.viewpager.adapter = adapter
-        binding.tabLayout.setViewPager2(binding.viewpager, adapter.titles)
+        binding.tabLayout.setViewPager(binding.viewpager, adapter.titles)
     }
 }

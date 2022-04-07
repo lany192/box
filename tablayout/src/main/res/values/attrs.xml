@@ -64,6 +64,10 @@
     <!-- title -->
     <!-- 设置字体大小 -->
     <attr name="tl_text_size" format="dimension" />
+    <!-- 设置字体选中大小 -->
+    <attr name="tl_text_select_size" format="dimension" />
+    <!-- 设置字体未选中大小 -->
+    <attr name="tl_text_unselect_size" format="dimension" />
     <!-- 设置字体选中颜色 -->
     <attr name="tl_text_select_color" format="color" />
     <!-- 设置字体未选中颜色 -->
@@ -77,7 +81,7 @@
     <!-- 设置字体全大写 -->
     <attr name="tl_text_all_caps" format="boolean" />
 
-    <declare-styleable name="SlidingTabLayout">
+    <declare-styleable name="PagerTabLayout">
         <!-- indicator -->
         <attr name="tl_indicator_color" />
         <attr name="tl_indicator_height" />
@@ -107,7 +111,8 @@
         <attr name="tl_tab_width" />
 
         <!-- title -->
-        <attr name="tl_text_size" />
+        <attr name="tl_text_select_size" />
+        <attr name="tl_text_unselect_size" />
         <attr name="tl_text_select_color" />
         <attr name="tl_text_unselect_color" />
         <attr name="tl_text_bold" />

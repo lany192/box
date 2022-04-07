@@ -33,7 +33,6 @@ public class SegmentTabLayout extends FrameLayout implements ValueAnimator.Anima
     private static final int TEXT_BOLD_NONE = 0;
     private static final int TEXT_BOLD_WHEN_SELECT = 1;
     private static final int TEXT_BOLD_BOTH = 2;
-    private final Context mContext;
     private final LinearLayout mTabsContainer;
     /**
      * 用于绘制显示器
@@ -107,7 +106,6 @@ public class SegmentTabLayout extends FrameLayout implements ValueAnimator.Anima
         setClipChildren(false);
         setClipToPadding(false);
 
-        this.mContext = context;
         mTabsContainer = new LinearLayout(context);
         addView(mTabsContainer);
 
@@ -191,7 +189,7 @@ public class SegmentTabLayout extends FrameLayout implements ValueAnimator.Anima
         this.mTabCount = mTitles.length;
         View tabView;
         for (int i = 0; i < mTabCount; i++) {
-            tabView = View.inflate(mContext, R.layout.layout_tab_segment, null);
+            tabView = View.inflate(getContext(), R.layout.layout_tab_segment, null);
             tabView.setTag(i);
             addTab(i, tabView);
         }
@@ -726,12 +724,12 @@ public class SegmentTabLayout extends FrameLayout implements ValueAnimator.Anima
     }
 
     protected int dp2px(float dp) {
-        final float scale = mContext.getResources().getDisplayMetrics().density;
+        final float scale = getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
     }
 
     protected int sp2px(float sp) {
-        final float scale = this.mContext.getResources().getDisplayMetrics().scaledDensity;
+        final float scale = getResources().getDisplayMetrics().scaledDensity;
         return (int) (sp * scale + 0.5f);
     }
 
