@@ -22,6 +22,19 @@ kapt {
 
 android {
     compileSdk apk.compileSdkVersion
+
+    //签名配置
+    signingConfigs {
+        config {
+            keyAlias 'box'
+            keyPassword 'box2022'
+            storeFile file('box.key')
+            storePassword 'box2022'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
     defaultConfig {
         applicationId apk.appId
         minSdk apk.minSdkVersion
@@ -30,7 +43,7 @@ android {
         versionName apk.versionName
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        signingConfig signingConfigs.config
         renderscriptTargetApi apk.minSdkVersion
         vectorDrawables {
             useSupportLibrary true
@@ -48,11 +61,13 @@ android {
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
+            signingConfig signingConfigs.config
         }
         release {
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

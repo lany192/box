@@ -9,66 +9,80 @@ interface ApiService {
      * 获取省市县数据
      */
     @GET("https://xzwcn.oss-cn-shanghai.aliyuncs.com/config/city.json")
-    fun cityInfo(): Observable<Result<List<Area>>>
+    suspend fun getCityList(): ApiResult<List<Area>>
 
     @GET("/article/list/{page}/json")
-    fun getHomeArticles(@Path("page") page: Int): Observable<Result<ArticleList>>
+    suspend fun getArticleList(@Path("page") page: Int): ApiResult<ArticleList>
+
+
+    /**
+     * 获取省市县数据
+     */
+    @GET("https://xzwcn.oss-cn-shanghai.aliyuncs.com/config/city.json")
+    fun cityInfo(): Observable<ApiResult<List<Area>>>
+
+    @GET("/article/list/{page}/json")
+    fun getHomeArticles(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
+
 
     @GET("/banner/json")
-    fun getBanner(): Observable<Result<List<Banner>>>
+    fun getBanner(): Observable<ApiResult<List<Banner>>>
 
     @GET("/tree/json")
-    fun getSystemType(): Observable<Result<List<SystemParent>>>
+    fun getSystemType(): Observable<ApiResult<List<SystemParent>>>
 
     @GET("/article/list/{page}/json")
     fun getSystemTypeDetail(
         @Path("page") page: Int,
         @Query("cid") cid: Int
-    ): Observable<Result<ArticleList>>
+    ): Observable<ApiResult<ArticleList>>
 
     @GET("/navi/json")
-    fun getNavigation(): Observable<Result<List<Navigation>>>
+    fun getNavigation(): Observable<ApiResult<List<Navigation>>>
 
     @GET("/project/tree/json")
-    fun getProjectType(): Observable<Result<List<SystemParent>>>
+    fun getProjectType(): Observable<ApiResult<List<SystemParent>>>
 
     @GET("/wxarticle/chapters/json")
-    fun getBlogType(): Observable<Result<List<SystemParent>>>
+    fun getBlogType(): Observable<ApiResult<List<SystemParent>>>
 
     @GET("/wxarticle/list/{id}/{page}/json")
     fun getBlogArticle(
         @Path("id") id: Int,
         @Path("page") page: Int
-    ): Observable<Result<ArticleList>>
+    ): Observable<ApiResult<ArticleList>>
 
     @GET("/project/list/{page}/json")
     fun getProjectTypeDetail(
         @Path("page") page: Int,
         @Query("cid") cid: Int
-    ): Observable<Result<ArticleList>>
+    ): Observable<ApiResult<ArticleList>>
 
     @GET("/article/listproject/{page}/json")
-    fun getLastedProject(@Path("page") page: Int): Observable<Result<ArticleList>>
+    fun getLastedProject(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
 
     @GET("/friend/json")
-    fun getWebsites(): Observable<Result<List<Hot>>>
+    fun getWebsites(): Observable<ApiResult<List<Hot>>>
 
     @GET("/hotkey/json")
-    fun getHot(): Observable<Result<List<Hot>>>
+    fun getHot(): Observable<ApiResult<List<Hot>>>
 
     @FormUrlEncoded
     @POST("/article/query/{page}/json")
-    fun searchHot(@Path("page") page: Int, @Field("k") key: String): Observable<Result<ArticleList>>
+    fun searchHot(
+        @Path("page") page: Int,
+        @Field("k") key: String
+    ): Observable<ApiResult<ArticleList>>
 
     @FormUrlEncoded
     @POST("/user/login")
     fun login(
         @Field("username") userName: String,
         @Field("password") passWord: String
-    ): Observable<Result<User>>
+    ): Observable<ApiResult<User>>
 
     @GET("/user/logout/json")
-    fun logOut(): Observable<Result<Any>>
+    fun logOut(): Observable<ApiResult<Any>>
 
     @FormUrlEncoded
     @POST("/user/register")
@@ -76,24 +90,24 @@ interface ApiService {
         @Field("username") userName: String,
         @Field("password") passWord: String,
         @Field("repassword") rePassWord: String
-    ): Observable<Result<User>>
+    ): Observable<ApiResult<User>>
 
     @GET("/lg/collect/list/{page}/json")
-    fun getCollectArticles(@Path("page") page: Int): Observable<Result<ArticleList>>
+    fun getCollectArticles(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
 
     @POST("/lg/collect/{id}/json")
-    fun collectArticle(@Path("id") id: Int): Observable<Result<ArticleList>>
+    fun collectArticle(@Path("id") id: Int): Observable<ApiResult<ArticleList>>
 
     @POST("/lg/uncollect_originId/{id}/json")
-    fun cancelCollectArticle(@Path("id") id: Int): Observable<Result<ArticleList>>
+    fun cancelCollectArticle(@Path("id") id: Int): Observable<ApiResult<ArticleList>>
 
     @GET("/user_article/list/{page}/json")
-    fun getSquareArticleList(@Path("page") page: Int): Observable<Result<ArticleList>>
+    fun getSquareArticleList(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
 
     @FormUrlEncoded
     @POST("/lg/user_article/add/json")
     fun shareArticle(
         @Field("title") title: String,
         @Field("link") url: String
-    ): Observable<Result<String>>
+    ): Observable<ApiResult<String>>
 }

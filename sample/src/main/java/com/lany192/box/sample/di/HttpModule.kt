@@ -1,8 +1,10 @@
 package com.lany192.box.sample.di
 
+import com.elvishew.xlog.XLog
 import com.google.gson.GsonBuilder
 import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.data.api.ApiService
+import com.lany192.box.sample.repository.BoxRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,9 +26,9 @@ class HttpModule {
     @Singleton
     @Provides
     fun provideClient(): OkHttpClient {
-        val logInterceptor = HttpLoggingInterceptor()
+        val logInterceptor = HttpLoggingInterceptor(XLog::i)
         if (BuildConfig.DEBUG) {
-            logInterceptor.level = HttpLoggingInterceptor.Level.BASIC
+            logInterceptor.level = HttpLoggingInterceptor.Level.BODY
         } else {
             logInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
@@ -61,5 +63,11 @@ class HttpModule {
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideBoxRepository(apiService: ApiService): BoxRepository {
+        return BoxRepository(apiService)
     }
 }

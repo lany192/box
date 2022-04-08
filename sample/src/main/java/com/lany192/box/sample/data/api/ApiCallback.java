@@ -1,7 +1,7 @@
 package com.lany192.box.sample.data.api;
 
 import com.elvishew.xlog.XLog;
-import com.lany192.box.sample.data.bean.Result;
+import com.lany192.box.sample.data.bean.ApiResult;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
@@ -11,19 +11,19 @@ import io.reactivex.rxjava3.disposables.Disposable;
 /**
  * 接口回调封装
  */
-public interface ApiCallback<T> extends Observer<Result<T>> {
+public interface ApiCallback<T> extends Observer<ApiResult<T>> {
     @Override
     default void onSubscribe(@NonNull Disposable d) {
 
     }
 
     @Override
-    default void onNext(Result<T> result) {
-        if (result.getCode() == 0) {
-            onSuccess(result.getMsg(), result.getData());
+    default void onNext(ApiResult<T> apiResult) {
+        if (apiResult.getCode() == 0) {
+            onSuccess(apiResult.getMsg(), apiResult.getData());
         } else {
-            XLog.i("接口错误:" + result.getMsg());
-            onFailure(result.getMsg(), result.getCode());
+            XLog.i("接口错误:" + apiResult.getMsg());
+            onFailure(apiResult.getMsg(), apiResult.getCode());
         }
     }
 

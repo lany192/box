@@ -6,18 +6,12 @@ import android.net.Uri
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import com.github.lany192.utils.ImageUtils
-import okhttp3.HttpUrl
 
 import java.io.File
 
 @JvmSynthetic
 fun ImageView.load(uri: String?) {
     ImageUtils.show(this, uri)
-}
-
-@JvmSynthetic
-fun ImageView.load(url: HttpUrl?) {
-    ImageUtils.show(this, url)
 }
 
 @JvmSynthetic
