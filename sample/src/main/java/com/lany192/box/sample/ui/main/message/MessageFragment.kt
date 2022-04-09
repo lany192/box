@@ -25,7 +25,7 @@ class MessageFragment : BoxFragment<MessageViewModel, FragmentMessageBinding>() 
     override fun init() {
         super.init()
         val items: MutableList<TabItem> = ArrayList()
-        items.add(TabItem("互动", AppRouter.getArticle()))
+        items.add(TabItem("互动", AppRouter.getCity()))
         items.add(TabItem("系统消息", AppRouter.getCity()))
         items.add(TabItem("游戏通知", AppRouter.getGirl()))
         val adapter = TabAdapter(requireActivity(), items)
