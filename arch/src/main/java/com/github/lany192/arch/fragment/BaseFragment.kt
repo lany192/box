@@ -20,11 +20,6 @@ abstract class BaseFragment : Fragment() {
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
     private var loadingDialog: LoadingDialog? = null
 
-    /**
-     * 是否执行过懒加载
-     */
-    private var lazyLoaded = false
-
     @CallSuper
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
@@ -39,16 +34,6 @@ abstract class BaseFragment : Fragment() {
         if (immersionBarEnabled()) {
             initImmersionBar()
         }
-        if (!lazyLoaded && !isHidden) {
-            onLazyLoad()
-            lazyLoaded = true
-        }
-    }
-
-    @CallSuper
-    override fun onDestroyView() {
-        super.onDestroyView()
-        lazyLoaded = false
     }
 
     @CallSuper

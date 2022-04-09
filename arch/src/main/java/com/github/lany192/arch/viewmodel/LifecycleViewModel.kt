@@ -90,6 +90,7 @@ open class LifecycleViewModel : ViewModel(), DefaultLifecycleObserver {
     /**
      * 如果需要懒加载，逻辑写在这里,只被调用一次
      */
+    @CallSuper
     protected open fun onLazyLoad() {
         log.i("懒加载...")
     }

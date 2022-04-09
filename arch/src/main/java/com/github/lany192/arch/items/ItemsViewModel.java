@@ -146,6 +146,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
     @CallSuper
     @Override
     public void onLazyLoad() {
+        super.onLazyLoad();
         request(true);
     }
 }
