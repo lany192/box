@@ -17,7 +17,7 @@ open class BaseRepository {
     @JvmField
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
 
-    suspend fun <T : Any> executeReqWithFlow(
+    suspend fun <T : Any> request(
         block: suspend () -> ApiResult<T>,
         callback: HttpCallback<T>
     ) {
@@ -33,7 +33,7 @@ open class BaseRepository {
             }
             .onEmpty {
                 log.i("测试executeReqWithFlow:onEmpty")
-                callback.onFailure(result.msg, 999)
+                callback.onFailure("无返回内容", 999)
             }
             .catch { exception ->
                 run {
