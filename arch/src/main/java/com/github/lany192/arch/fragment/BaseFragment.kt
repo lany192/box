@@ -20,6 +20,12 @@ abstract class BaseFragment : Fragment() {
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
     private var loadingDialog: LoadingDialog? = null
 
+    /**
+     * 是否执行过懒加载
+     */
+    private var lazyLoaded = false
+
+    @CallSuper
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         if (!EventBus.getDefault().isRegistered(this)) {
@@ -27,11 +33,37 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
+    @CallSuper
+    override fun onResume() {
+        super.onResume()
+        if (immersionBarEnabled()) {
+            initImmersionBar()
+        }
+        if (!lazyLoaded && !isHidden) {
+            onLazyLoad()
+            lazyLoaded = true
+        }
+    }
+
+    @CallSuper
+    override fun onDestroyView() {
+        super.onDestroyView()
+        lazyLoaded = false
+    }
+
+    @CallSuper
     override fun onDestroy() {
         super.onDestroy()
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this)
         }
+    }
+
+    /**
+     * 如果需要懒加载，逻辑写在这里,只被调用一次
+     */
+    protected open fun onLazyLoad() {
+        log.i("懒加载...")
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -57,14 +89,6 @@ abstract class BaseFragment : Fragment() {
     @CallSuper
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        if (immersionBarEnabled()) {
-            initImmersionBar()
-        }
-    }
-
-    @CallSuper
-    override fun onResume() {
-        super.onResume()
         if (immersionBarEnabled()) {
             initImmersionBar()
         }
