@@ -44,13 +44,6 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    /**
-     * 如果需要懒加载，逻辑写在这里,只被调用一次
-     */
-    protected open fun onLazyLoad() {
-        log.i("懒加载...")
-    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEvent(event: Void) {
     }
