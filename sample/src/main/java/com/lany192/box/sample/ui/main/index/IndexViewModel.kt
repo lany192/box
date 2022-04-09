@@ -23,18 +23,8 @@ class IndexViewModel @Inject constructor(private val repository: BoxRepository) 
     private fun requestCityInfo() {
         log.i("请求城市数据接口")
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getCityList(sss)
+            repository.getCityList { _, areas -> items.postValue(areas) }
         }
-
-//        apiService.cityInfo().subscribe(object : ApiCallback<List<Area>> {
-//            override fun onSuccess(msg: String, areas: List<Area>) {
-//                items.postValue(areas)
-//            }
-//
-//            override fun onFailure(msg: String, code: Int) {
-//                ToastUtils.show(msg)
-//            }
-//        })
     }
 
 }

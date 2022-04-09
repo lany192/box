@@ -2,6 +2,9 @@ package com.lany192.box.sample.ui.main.index.article
 
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.items.ItemsViewModel
+import com.github.lany192.arch.utils.ListUtils
+import com.hjq.toast.ToastUtils
+import com.lany192.box.sample.data.api.HttpCallback
 import com.lany192.box.sample.data.bean.ArticleList
 import com.lany192.box.sample.data.bean.StateLiveData
 import com.lany192.box.sample.repository.BoxRepository
@@ -17,31 +20,27 @@ class ArticleViewModel @Inject constructor(private val repository: BoxRepository
 
     override fun request(refresh: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getArticleList(page, sss)
-        }
+            repository.getArticleList(page, object : HttpCallback<ArticleList> {
 
-//
-//        apiService.getHomeArticles(page)
-//            .subscribe(object : ApiCallback<ArticleList> {
-//
-//                override fun onSuccess(msg: String, result: ArticleList) {
-//                    if (ListUtils.isEmpty(result.datas)) {
-//                        moreLoadEnd()
-//                    } else {
-//                        if (refresh) {
-//                            resetItems(result.datas)
-//                            refreshFinish()
-//                        } else {
-//                            addItems(result.datas)
-//                            moreLoadFinish()
-//                        }
-//                    }
-//                }
-//
-//                override fun onFailure(msg: String, code: Int) {
-//                    ToastUtils.show(msg)
-//                    finishRequest()
-//                }
-//            })
+                override fun onSuccess(msg: String, result: ArticleList) {
+                    if (ListUtils.isEmpty(result.datas)) {
+                        moreLoadEnd()
+                    } else {
+                        if (refresh) {
+                            resetItems(result.datas)
+                            refreshFinish()
+                        } else {
+                            addItems(result.datas)
+                            moreLoadFinish()
+                        }
+                    }
+                }
+
+                override fun onFailure(msg: String, code: Int) {
+                    ToastUtils.show(msg)
+                    finishRequest()
+                }
+            })
+        }
     }
 }

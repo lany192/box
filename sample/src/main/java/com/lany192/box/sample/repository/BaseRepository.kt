@@ -3,6 +3,7 @@ package com.lany192.box.sample.repository
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
 import com.github.lany192.utils.JsonUtils
+import com.lany192.box.sample.data.api.HttpCallback
 import com.lany192.box.sample.data.bean.ApiResult
 import com.lany192.box.sample.data.bean.StateLiveData
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +16,37 @@ import kotlinx.coroutines.flow.*
 open class BaseRepository {
     @JvmField
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
+
+    suspend fun <T : Any> executeReqWithFlow(
+        block: suspend () -> ApiResult<T>,
+        callback: HttpCallback<T>
+    ) {
+        var result = ApiResult<T>()
+        flow {
+            val respResult = block.invoke()
+            result = respResult
+            emit(respResult)
+        }
+            .flowOn(Dispatchers.IO)
+            .onStart {
+                log.i("测试executeReqWithFlow:onStart")
+            }
+            .onEmpty {
+                log.i("测试executeReqWithFlow:onEmpty")
+                callback.onFailure(result.msg, 999)
+            }
+            .catch { exception ->
+                run {
+                    log.e(exception)
+                    callback.onFailure(result.msg, result.code)
+                }
+            }
+            .collect {
+                log.i("测试executeReqWithFlow: collect")
+                log.json(JsonUtils.object2json(it))
+                callback.onSuccess(result.msg, result.data)
+            }
+    }
 
     suspend fun <T : Any> executeReqWithFlow(
         block: suspend () -> ApiResult<T>,
