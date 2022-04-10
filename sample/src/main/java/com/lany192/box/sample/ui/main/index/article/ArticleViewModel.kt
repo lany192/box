@@ -6,7 +6,6 @@ import com.github.lany192.arch.utils.ListUtils
 import com.hjq.toast.ToastUtils
 import com.lany192.box.sample.data.api.HttpCallback
 import com.lany192.box.sample.data.bean.ArticleList
-import com.lany192.box.sample.data.bean.StateLiveData
 import com.lany192.box.sample.repository.BoxRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ArticleViewModel @Inject constructor(private val repository: BoxRepository) :
     ItemsViewModel() {
-    var sss = StateLiveData<ArticleList>()
 
     override fun request(refresh: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {

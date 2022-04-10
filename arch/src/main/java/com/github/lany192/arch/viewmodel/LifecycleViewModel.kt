@@ -31,6 +31,31 @@ open class LifecycleViewModel : ViewModel(), DefaultLifecycleObserver {
      */
     private var lazyLoaded = false
 
+    @CallSuper
+    override fun onCreate(owner: LifecycleOwner) {
+        log.i("onCreate")
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
+    @CallSuper
+    override fun onResume(owner: LifecycleOwner) {
+        log.i("onResume")
+        if (!lazyLoaded) {
+            lazyLoaded = true
+            onLazyLoad()
+        }
+    }
+
+    @CallSuper
+    override fun onDestroy(owner: LifecycleOwner) {
+        log.i("onDestroy")
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this)
+        }
+    }
+
     fun showLoadingDialog() {
         if (loadingState.hasActiveObservers()) {
             loadingState.postValue(true)
@@ -99,28 +124,4 @@ open class LifecycleViewModel : ViewModel(), DefaultLifecycleObserver {
     fun onEvent(event: NetWorkEvent?) {
     }
 
-    @CallSuper
-    override fun onResume(owner: LifecycleOwner) {
-        if (!lazyLoaded) {
-            lazyLoaded = true
-            onLazyLoad()
-        }
-        log.i("onResume")
-    }
-
-    @CallSuper
-    override fun onCreate(owner: LifecycleOwner) {
-        log.i("onCreate")
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this)
-        }
-    }
-
-    @CallSuper
-    override fun onDestroy(owner: LifecycleOwner) {
-        log.i("onDestroy")
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this)
-        }
-    }
 }
