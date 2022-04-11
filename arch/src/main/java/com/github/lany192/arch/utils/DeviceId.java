@@ -13,8 +13,8 @@ import androidx.core.content.PermissionChecker;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
-import com.github.lany192.kv.KVUtils;
 import com.github.lany192.utils.ContextUtils;
+import com.github.lany192.utils.KVUtils;
 import com.github.lany192.utils.MD5Utils;
 
 import java.io.BufferedReader;
