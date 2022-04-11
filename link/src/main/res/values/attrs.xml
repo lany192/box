@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LinkBuilder">
+        <attr name="defaultLinkColor" format="color" />
+        <attr name="defaultTextColorOfHighlightedLink" format="color" />
+    </declare-styleable>
+
+    <attr name="linkBuilderStyle" format="reference" />
+</resources>

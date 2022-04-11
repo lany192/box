@@ -107,4 +107,5 @@ dependencies {
     implementation project(':matisse')
     implementation project(':permission')
     implementation project(':tablayout')
+    implementation project(':link')
 }

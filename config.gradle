@@ -88,8 +88,6 @@ ext {
             'number-picker'                   : 'io.github.ShawnLin013:number-picker:2.4.13',
             //通知事件 https://github.com/greenrobot/EventBus
             'event-bus'                       : 'org.greenrobot:eventbus:3.2.0',
-            //超链接处理 https://github.com/klinker24/Android-TextView-LinkBuilder
-            'link-builder'                    : 'com.klinkerapps:link_builder:2.0.5',
             //下载框架 https://github.com/lany192/okdownload
             'okdownload'                      : 'com.github.lany192:okdownload:2.0.2',
             //开源协议对话框
