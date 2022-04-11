@@ -8,7 +8,6 @@ import com.lany192.box.sample.data.api.HttpCallback
 import com.lany192.box.sample.data.bean.ArticleList
 import com.lany192.box.sample.repository.BoxRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,10 +16,13 @@ class ArticleViewModel @Inject constructor(private val repository: BoxRepository
     ItemsViewModel() {
 
     override fun request(refresh: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
+        log.i("1线程测试" + Thread.currentThread().name)
+        viewModelScope.launch {
+            log.i("2线程测试" + Thread.currentThread().name)
             repository.getArticleList(page, object : HttpCallback<ArticleList> {
 
                 override fun onSuccess(msg: String, result: ArticleList) {
+                    log.i("5线程测试" + Thread.currentThread().name)
                     if (ListUtils.isEmpty(result.datas)) {
                         moreLoadEnd()
                     } else {

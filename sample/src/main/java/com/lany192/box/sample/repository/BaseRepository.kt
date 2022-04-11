@@ -25,6 +25,7 @@ open class BaseRepository {
         flow {
             val respResult = block.invoke()
             result = respResult
+            log.i("3线程测试" + Thread.currentThread().name)
             emit(respResult)
         }
             .flowOn(Dispatchers.IO)
@@ -42,6 +43,7 @@ open class BaseRepository {
                 }
             }
             .collect {
+                log.i("4线程测试" + Thread.currentThread().name)
                 log.i("测试executeReqWithFlow: collect")
                 if (result.code == 0) {
                     callback.onSuccess(result.msg, result.data)
