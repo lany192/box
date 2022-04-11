@@ -43,8 +43,11 @@ open class BaseRepository {
             }
             .collect {
                 log.i("测试executeReqWithFlow: collect")
-                log.json(JsonUtils.object2json(it))
-                callback.onSuccess(result.msg, result.data)
+                if (result.code == 0) {
+                    callback.onSuccess(result.msg, result.data)
+                } else {
+                    callback.onFailure(result.msg, result.code)
+                }
             }
     }
 
