@@ -22,16 +22,27 @@ abstract class BindingAdapter<T, VB : ViewBinding> : BaseQuickAdapter<T, Binding
     }
 
     override fun convert(holder: BindingHolder<VB>, item: T) {
+        holder.binding.root.setOnClickListener {
+            onItemClicked(
+                holder.binding,
+                item,
+                holder.bindingAdapterPosition
+            )
+        }
         convert(holder.binding, item, holder.bindingAdapterPosition)
     }
 
     protected abstract fun convert(binding: VB, item: T, position: Int)
 
     /**
-     * 获取第几个泛型的class
+     * 获取第几个泛型的class，如果被继承，需要注意index的顺序
      */
+    @Suppress("UNCHECKED_CAST")
     open fun <T> getClass(index: Int): Class<T> {
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
 
+    open fun onItemClicked(binding: VB, item: T, position: Int) {
+
+    }
 }
