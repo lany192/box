@@ -48,6 +48,7 @@ public class ItemsView extends BindingView<ViewItemsBinding> {
             }
         });
         binding.recyclerView.getRecycledViewPool().setMaxRecycledViews(0, 10);
+        binding.recyclerView.setItemAnimator(null);
     }
 
     public RecyclerView getRecyclerView() {
