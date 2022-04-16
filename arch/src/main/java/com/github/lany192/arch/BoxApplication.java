@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import com.elvishew.xlog.LogConfiguration;
 import com.elvishew.xlog.LogLevel;
 import com.elvishew.xlog.XLog;
+import com.elvishew.xlog.formatter.message.json.DefaultJsonFormatter;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.github.lany192.arch.utils.PhoneUtils;
@@ -38,7 +39,10 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         DialogHelper.get().init(this);
         initCatchException();
         initRefreshView();
-        Log.i(TAG,"测试");
+
+        XLog.i("json测试：");
+        String json = "{\"time\":\"2022-04-16 20:48:14\",\"code\":200,\"msg\":\"当前已经是最新版本\",\"data\":{\"client\":\"android\",\"enable\":false}}";
+        XLog.json(json);
     }
 
     @NonNull
@@ -76,6 +80,13 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         LogConfiguration config = new LogConfiguration
                 .Builder()
                 .logLevel(LogLevel.ALL)
+                .jsonFormatter(data -> {
+                    try {
+                        return new DefaultJsonFormatter().format(data);
+                    } catch (Exception e) {
+                        return "{\"code\":999999,\"msg\":\"json格式异常\"}";
+                    }
+                })
                 .tag("XLog")
                 .build();
         String logPath = getFilesDir().getPath() + "/log/";

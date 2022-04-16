@@ -13,11 +13,11 @@ import com.google.android.material.imageview.ShapeableImageView;
 public class SquareImageView extends ShapeableImageView {
 
     public SquareImageView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public SquareImageView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public SquareImageView(Context context, @Nullable AttributeSet attrs, int defStyle) {
