@@ -6,7 +6,7 @@ ext {
             versionName      : '1.0.0',
             minSdkVersion    : 21,
             compileSdkVersion: 32,
-            targetSdkVersion : 29,
+            targetSdkVersion : 30,
     ]
     processorDependencies = [
             "glide"     : "com.github.bumptech.glide:compiler:4.13.1",
@@ -35,8 +35,8 @@ ext {
             'androidx-multidex'               : 'androidx.multidex:multidex:2.0.1',
             'androidx-material'               : 'com.google.android.material:material:1.5.0',
             //协程
-            'coroutines-core'         : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0',
-            'coroutines-android'      : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0',
+            'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0',
+            'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0',
             //日志工具 https://github.com/elvishew/xLog
             'xlog'                            : 'com.elvishew:xlog:1.11.0',
             //Toast工具 https://github.com/getActivity/ToastUtils

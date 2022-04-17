@@ -1,6 +1,7 @@
 package com.lany192.box.sample.di
 
 import com.github.lany192.arch.network.HttpLogInterceptor
+import com.github.lany192.arch.network.ParamsInterceptor
 import com.google.gson.GsonBuilder
 import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.data.api.ApiService
@@ -25,6 +26,7 @@ class HttpModule {
     fun provideClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
+            .addInterceptor(ParamsInterceptor())
             .addInterceptor(HttpLogInterceptor(BuildConfig.DEBUG))
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
