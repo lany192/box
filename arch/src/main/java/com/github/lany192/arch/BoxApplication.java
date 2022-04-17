@@ -39,10 +39,6 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         DialogHelper.get().init(this);
         initCatchException();
         initRefreshView();
-
-        XLog.i("json测试：");
-        String json = "{\"time\":\"2022-04-16 20:48:14\",\"code\":200,\"msg\":\"当前已经是最新版本\",\"data\":{\"client\":\"android\",\"enable\":false}}";
-        XLog.json(json);
     }
 
     @NonNull
@@ -82,9 +78,9 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
                 .logLevel(LogLevel.ALL)
                 .jsonFormatter(data -> {
                     try {
-                        return new DefaultJsonFormatter().format(data);
+                        return " \n" + new DefaultJsonFormatter().format(data);
                     } catch (Exception e) {
-                        return "{\"code\":999999,\"msg\":\"json格式异常\"}";
+                        return " \n{\"code\":999999,\"msg\":\"json格式异常：" + e.getMessage() + "\"}";
                     }
                 })
                 .tag("XLog")
