@@ -17,8 +17,15 @@ abstract class ItemBinder<T, VB : ViewBinding> : BaseItemBinder<T, BindingHolder
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<VB> {
-        val binding: VB = getClass<VB>(1).getBinding(LayoutInflater.from(parent.context), parent)
-        return BindingHolder(binding)
+        return BindingHolder(getViewBinding(parent))
+    }
+
+    /**
+     * 获取内容的ViewBinding实例。
+     * 如果不想用反射，复写该方法，去反射。
+     */
+    open fun getViewBinding(parent: ViewGroup): VB {
+        return getClass<VB>(1).getBinding(LayoutInflater.from(context), parent)
     }
 
     /**
