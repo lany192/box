@@ -131,4 +131,34 @@ abstract class BaseActivity : AppCompatActivity() {
     fun getColorResId(@ColorRes id: Int): Int {
         return ContextCompat.getColor(this, id)
     }
+
+    open fun onTouchEvent(event: MotionEvent): Boolean {
+        if (event.getAction() === MotionEvent.ACTION_DOWN) {
+            //点击空白区域收起输入法
+            hideSoftInput()
+        }
+        return super.onTouchEvent(event)
+    }
+
+    open fun finish() {
+        //界面关闭的时候关闭输入法
+        hideSoftInput()
+        super.finish()
+    }
+
+    /**
+     * 关闭输入法
+     */
+    protected open fun hideSoftInput() {
+        if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
+            val manager: InputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            if (manager != null) {
+                manager.hideSoftInputFromWindow(
+                    getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS
+                )
+            }
+        }
+    }
 }
