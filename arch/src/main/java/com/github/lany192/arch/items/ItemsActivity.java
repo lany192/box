@@ -59,34 +59,6 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
         itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
-        //Loading对话框状态观察
-        viewModel.getLoadingState().observe(this, show -> {
-            if (show) {
-                showLoadingDialog();
-            } else {
-                cancelLoadingDialog();
-            }
-        });
-        //页面基础状态观察
-        viewModel.getViewState().observe(this, state -> {
-            switch (state) {
-                case CONTENT:
-                    showContentView();
-                    break;
-                case ERROR:
-                    showErrorView();
-                    break;
-                case EMPTY:
-                    showEmptyView();
-                    break;
-                case LOADING:
-                    showLoadingView();
-                    break;
-                case NETWORK:
-                    showNetworkView();
-                    break;
-            }
-        });
         //列表状态观察
         viewModel.getListState().observe(this, state -> {
             switch (state) {
