@@ -1,6 +1,8 @@
 package com.github.lany192.arch.items;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.arch.utils.ListUtils;
@@ -23,6 +25,12 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      * 页码，从1开始
      */
     private int page = 1;
+
+    @Override
+    public void onCreate(@NonNull LifecycleOwner owner) {
+        super.onCreate(owner);
+        getViewState().postValue(ViewState.LOADING);
+    }
 
     /**
      * 是否支持加载更多

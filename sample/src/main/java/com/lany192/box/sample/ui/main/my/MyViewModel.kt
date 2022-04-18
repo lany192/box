@@ -14,12 +14,12 @@ class MyViewModel @Inject constructor(private val apiService: ApiService) : Life
     val items = MutableLiveData<List<Area>>()
 
     override fun onLazyLoad() {
+        super.onLazyLoad()
         requestCityInfo()
     }
 
     private fun requestCityInfo() {
         log.i("请求城市数据接口")
-        showLoadingView()
         apiService.cityInfo().subscribe(object : ApiCallback<List<Area>> {
             override fun onSuccess(msg: String, areas: List<Area>) {
                 items.postValue(areas)
