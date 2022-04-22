@@ -2,14 +2,15 @@ package com.github.lany192.arch.activity
 
 import android.os.Bundle
 import androidx.annotation.CallSuper
-import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.items.ViewState
+import com.github.lany192.arch.viewmodel.LifecycleViewModel
 import com.github.lany192.binding.getBinding
 
 /**
  * ViewBinding实现基类
  */
-abstract class ModelBindingActivity<VM : ViewModel, CVB : ViewBinding, TVB : ViewBinding> :
+abstract class ModelBindingActivity<VM : LifecycleViewModel, CVB : ViewBinding, TVB : ViewBinding> :
     BindingActivity<CVB, TVB>() {
     lateinit var viewModel: VM
 
@@ -17,6 +18,24 @@ abstract class ModelBindingActivity<VM : ViewModel, CVB : ViewBinding, TVB : Vie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = getDefaultViewModel()
+        //Loading对话框状态观察
+        viewModel.loadingState.observe(this) { show: Boolean ->
+            if (show) {
+                showLoadingDialog()
+            } else {
+                cancelLoadingDialog()
+            }
+        }
+        //页面基础状态观察
+        viewModel.viewState.observe(this) { state: ViewState ->
+            when (state) {
+                ViewState.CONTENT -> showContentView()
+                ViewState.ERROR -> showErrorView()
+                ViewState.EMPTY -> showEmptyView()
+                ViewState.LOADING -> showLoadingView()
+                ViewState.NETWORK -> showNetworkView()
+            }
+        }
     }
 
     open fun getDefaultViewModel(): VM {

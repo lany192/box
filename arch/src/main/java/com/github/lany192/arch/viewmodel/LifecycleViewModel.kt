@@ -19,7 +19,7 @@ open class LifecycleViewModel : ViewModel(), DefaultLifecycleObserver {
     /**
      * 观察界面基础状态
      */
-    val viewState = MutableLiveData(ViewState.LOADING)
+    val viewState = MutableLiveData(ViewState.CONTENT)
 
     /**
      * 观察对话框状态

@@ -1,13 +1,13 @@
 package com.lany192.box.sample.ui.download;
 
-import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.AndroidViewModel;
 
 import com.github.lany192.arch.utils.FileUtils;
+import com.github.lany192.arch.viewmodel.LifecycleViewModel;
+import com.github.lany192.utils.ContextUtils;
 import com.liulishuo.okdownload.DownloadContext;
 import com.liulishuo.okdownload.DownloadListener;
 import com.liulishuo.okdownload.DownloadTask;
@@ -24,12 +24,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class DownloadViewModel extends AndroidViewModel {
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
+public class DownloadViewModel extends LifecycleViewModel {
     private final TaskLiveData liveData = new TaskLiveData();
     private final DownloadContext downloadContext;
 
-    public DownloadViewModel(Application application) {
-        super(application);
+    @Inject
+    public DownloadViewModel() {
         List<Task> taskItems = new ArrayList<>();
         taskItems.add(new Task("微信", "http://dldir1.qq.com/weixin/android/weixin6516android1120.apk"));
         taskItems.add(new Task("微信arm64", "https://dldir1.qq.com/weixin/android/weixin8016android2040_arm64.apk"));
@@ -42,7 +47,7 @@ public class DownloadViewModel extends AndroidViewModel {
         DownloadContext.QueueSet queueSet = new DownloadContext.QueueSet();
         queueSet.setMinIntervalMillisCallbackProcess(500);
         queueSet.setPassIfAlreadyCompleted(false);
-        queueSet.setParentPathFile(new File(FileUtils.getCacheDir(application), "download"));
+        queueSet.setParentPathFile(new File(FileUtils.getCacheDir(ContextUtils.getContext()), "download"));
 
         DownloadContext.Builder builder = queueSet.commit();
         List<DownloadTask> tasks = new ArrayList<>();

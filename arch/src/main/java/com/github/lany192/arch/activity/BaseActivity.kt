@@ -1,8 +1,11 @@
 package com.github.lany192.arch.activity
 
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.CallSuper
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -132,16 +135,15 @@ abstract class BaseActivity : AppCompatActivity() {
         return ContextCompat.getColor(this, id)
     }
 
-    open fun onTouchEvent(event: MotionEvent): Boolean {
-        if (event.getAction() === MotionEvent.ACTION_DOWN) {
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (event.action === MotionEvent.ACTION_DOWN) {
             //点击空白区域收起输入法
             hideSoftInput()
         }
         return super.onTouchEvent(event)
     }
 
-    open fun finish() {
-        //界面关闭的时候关闭输入法
+    override fun finish() {
         hideSoftInput()
         super.finish()
     }
@@ -150,15 +152,12 @@ abstract class BaseActivity : AppCompatActivity() {
      * 关闭输入法
      */
     protected open fun hideSoftInput() {
-        if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
+        if (currentFocus != null && currentFocus!!.windowToken != null) {
             val manager: InputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            if (manager != null) {
-                manager.hideSoftInputFromWindow(
-                    getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS
-                )
-            }
+            manager.hideSoftInputFromWindow(
+                currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
+            )
         }
     }
 }
