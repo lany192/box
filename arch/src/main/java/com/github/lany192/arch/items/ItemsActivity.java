@@ -88,10 +88,9 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
             }
         });
         viewModel.getItems().observe(this, data -> {
+            itemsAdapter.setNewInstance(data.getItems());
             if (ListUtils.isEmpty(data.getItems())) {
                 itemsAdapter.setEmptyView(getEmptyView());
-            } else {
-                itemsAdapter.setNewInstance(data.getItems());
             }
         });
     }
