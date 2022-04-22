@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="@string/empty"
         android:textColor="@color/text_3level"
         android:textSize="13sp" />
@@ -29,5 +30,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/touch_refresh"
         android:textColor="@color/text_4level"
-        android:textSize="10sp" />
+        android:textSize="10sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.github.lany192.view;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,6 +54,7 @@ public class DefaultView extends BindingView<ViewDefaultBinding> {
     public void setHint(CharSequence hint) {
         if (!TextUtils.isEmpty(hint)) {
             binding.hint.setText(hint);
+            binding.hint.setVisibility(View.VISIBLE);
         }
     }
 
