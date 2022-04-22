@@ -116,10 +116,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
             }
         });
         viewModel.getItems().observe(this, data -> {
+            itemsAdapter.setNewInstance(data.getItems());
             if (ListUtils.isEmpty(data.getItems())) {
                 itemsAdapter.setEmptyView(getEmptyView());
-            } else {
-                itemsAdapter.setNewInstance(data.getItems());
             }
         });
     }

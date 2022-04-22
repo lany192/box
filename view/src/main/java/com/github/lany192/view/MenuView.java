@@ -147,6 +147,7 @@ public class MenuView extends FrameLayout {
         if (!TextUtils.isEmpty(text)) {
             this.hint = text;
             this.hintText.setText(text);
+            invalidate();
         }
         return this;
     }
