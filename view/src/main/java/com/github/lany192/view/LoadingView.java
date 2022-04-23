@@ -29,6 +29,6 @@ public class LoadingView extends BindingView<ViewLoadingBinding> {
 
     @Override
     public void init(@Nullable AttributeSet attrs) {
-        log.i("---------------------");
+
     }
 }

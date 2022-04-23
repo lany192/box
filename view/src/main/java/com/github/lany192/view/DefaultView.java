@@ -7,6 +7,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
 import com.github.lany192.interfaces.OnSimpleListener;
@@ -45,16 +46,26 @@ public class DefaultView extends BindingView<ViewDefaultBinding> {
         ImageUtils.show(binding.image, object);
     }
 
+    public void setMessage(@StringRes int message) {
+        setMessage(getResources().getString(message));
+    }
+
     public void setMessage(CharSequence message) {
         if (!TextUtils.isEmpty(message)) {
             binding.message.setText(message);
         }
     }
 
+    public void setHint(@StringRes int hint) {
+        setHint(getResources().getString(hint));
+    }
+
     public void setHint(CharSequence hint) {
         if (!TextUtils.isEmpty(hint)) {
             binding.hint.setText(hint);
             binding.hint.setVisibility(View.VISIBLE);
+        } else {
+            binding.hint.setVisibility(View.GONE);
         }
     }
 

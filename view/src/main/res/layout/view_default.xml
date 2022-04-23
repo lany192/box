@@ -11,7 +11,7 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginTop="68dp"
-        tools:src="@drawable/data_empty" />
+        tools:src="@drawable/default_empty" />
 
     <com.github.lany192.textview.BoxTextView
         android:id="@+id/message"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/empty"
+        android:text="@string/default_empty"
         android:textColor="@color/text_3level"
         android:textSize="13sp" />
 
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/touch_refresh"
+        android:text="@string/default_retry"
         android:textColor="@color/text_4level"
         android:textSize="10sp"
         android:visibility="gone"

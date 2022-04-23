@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.R
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.binding.getBinding
 import com.github.lany192.view.DefaultView
@@ -100,13 +101,13 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
 
     open fun getErrorView(): View {
         val view = DefaultView(this)
-        view.setMessage("抱歉，发生异常")
+        view.setMessage(R.string.default_error)
         return view
     }
 
     open fun getEmptyView(): View {
         val view = DefaultView(this)
-        view.setMessage("没有相关内容")
+        view.setMessage(R.string.default_empty)
         return view
     }
 
@@ -116,7 +117,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
 
     open fun getNetworkView(): View {
         val view = DefaultView(this)
-        view.setMessage("网络异常，请检查网络设置。")
+        view.setMessage(R.string.default_network)
         return view
     }
 }

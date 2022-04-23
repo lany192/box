@@ -98,9 +98,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     @NonNull
     public View getEmptyView() {
         DefaultView view = new DefaultView(this);
-        view.setImage(R.drawable.data_empty);
-        view.setMessage("没有发现数据");
-        view.setHint("重新点击试试");
+        view.setImage(R.drawable.default_empty);
+        view.setMessage(R.string.default_empty);
+        view.setHint(R.string.default_retry);
         view.setOnRetryListener(() -> viewModel.onLazyLoad());
         return view;
     }
@@ -108,9 +108,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     @NonNull
     public View getNetworkView() {
         DefaultView view = new DefaultView(this);
-        view.setImage(R.drawable.wifi_error);
-        view.setMessage("当前网络异常");
-        view.setHint("重新点击试试");
+        view.setImage(R.drawable.default_network);
+        view.setMessage(R.string.default_network);
+        view.setHint(R.string.default_retry);
         view.setOnRetryListener(() -> viewModel.onLazyLoad());
         return view;
     }
@@ -118,9 +118,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     @NonNull
     public View getErrorView() {
         DefaultView view = new DefaultView(this);
-        view.setImage(R.drawable.warning);
-        view.setMessage("未知错误");
-        view.setHint("重新点击试试");
+        view.setImage(R.drawable.default_error);
+        view.setMessage(R.string.default_error);
+        view.setHint(R.string.default_retry);
         view.setOnRetryListener(() -> viewModel.onLazyLoad());
         return view;
     }
