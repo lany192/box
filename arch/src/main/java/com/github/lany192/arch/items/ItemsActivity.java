@@ -100,7 +100,7 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
         DefaultView view = new DefaultView(this);
         view.setImage(R.drawable.default_empty);
         view.setMessage(R.string.default_empty);
-        view.setHint(R.string.default_retry);
+
         view.setOnRetryListener(() -> viewModel.onLazyLoad());
         return view;
     }
@@ -110,7 +110,7 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
         DefaultView view = new DefaultView(this);
         view.setImage(R.drawable.default_network);
         view.setMessage(R.string.default_network);
-        view.setHint(R.string.default_retry);
+
         view.setOnRetryListener(() -> viewModel.onLazyLoad());
         return view;
     }
@@ -120,7 +120,7 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
         DefaultView view = new DefaultView(this);
         view.setImage(R.drawable.default_error);
         view.setMessage(R.string.default_error);
-        view.setHint(R.string.default_retry);
+
         view.setOnRetryListener(() -> viewModel.onLazyLoad());
         return view;
     }
