@@ -9,6 +9,7 @@ import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.R
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.binding.getBinding
+import com.github.lany192.layout.FixDragLayout
 import com.github.lany192.view.DefaultView
 import com.github.lany192.view.LoadingView
 import java.lang.reflect.ParameterizedType
@@ -30,7 +31,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = getViewBinding(inflater, container)
-        content = FrameLayout(requireContext())
+        content = FixDragLayout(requireContext())
         content.addView(binding.root)
         init()
         return content
