@@ -26,13 +26,33 @@
 ## 添加依赖
 
 	dependencies {
-		implementation 'com.github.lany192.box:view:+'
-		implementation 'com.github.lany192.box:core:+'
-		implementation 'com.github.lany192.box:dialog:+'
-		implementation 'com.github.lany192.box:arch:+'
-		implementation 'com.github.lany192.box:update:+'
-		implementation 'com.github.lany192.box:update:+'
-		implementation 'com.github.lany192.box:crop:+'
+        implementation 'com.github.lany192.box:arch:4.1.8'
+        implementation 'com.github.lany192.box:view:4.1.8'
+        implementation 'com.github.lany192.box:core:4.1.8'
+        implementation 'com.github.lany192.box:dialog:4.1.8'
+        implementation 'com.github.lany192.box:update:4.1.8'
+        implementation 'com.github.lany192.box:time:4.1.8'
+        implementation 'com.github.lany192.box:crop:4.1.8'
+        implementation 'com.github.lany192.box:matisse:4.1.8'
+        implementation 'com.github.lany192.box:permission:4.1.8'
+        implementation 'com.github.lany192.box:tablayout:4.1.8'
+        implementation 'com.github.lany192.box:link:4.1.8'
+	}
+
+## 添加最新SNAPSHOT版依赖
+
+	dependencies {
+        implementation 'com.github.lany192.box:arch:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:view:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:core:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:dialog:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:update:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:time:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:crop:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:matisse:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:link:master-SNAPSHOT'
 	}
 
 ## 初始化
