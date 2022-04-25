@@ -60,7 +60,7 @@ public class DownloadActivity extends BoxActivity<DownloadViewModel, ActivityDow
             if (data.isChange()) {
                 itemsAdapter.setData(data.getIndex(), data.getDownloadTask());
             } else {
-                itemsAdapter.setNewInstance(data.getTasks());
+                itemsAdapter.setList(data.getTasks());
             }
         });
     }
