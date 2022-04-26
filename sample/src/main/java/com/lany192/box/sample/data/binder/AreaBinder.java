@@ -27,7 +27,7 @@ public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
     }
 
     @Override
-    public void bind(@NonNull ItemAreaBinding binding, Area item, int position) {
+    public void convert(@NonNull ItemAreaBinding binding, Area item, int position) {
         int count = item.getSubarea() != null ? item.getSubarea().size() : 0;
         ImageUtils.show(binding.image, MockUtils.getImageUrl());
         binding.title.setText(item.getName());

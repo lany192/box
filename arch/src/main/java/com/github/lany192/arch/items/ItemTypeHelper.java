@@ -1,6 +1,7 @@
 package com.github.lany192.arch.items;
 
 import androidx.collection.SparseArrayCompat;
+
 import com.elvishew.xlog.XLog;
 
 /**
@@ -9,7 +10,7 @@ import com.elvishew.xlog.XLog;
 public class ItemTypeHelper {
     private final String TAG = getClass().getSimpleName();
     private volatile static ItemTypeHelper instance = null;
-    private SparseArrayCompat<Class<?>> mTypeMap;
+    private final SparseArrayCompat<Class<?>> mTypeMap;
 
     private ItemTypeHelper() {
         mTypeMap = new SparseArrayCompat<>();

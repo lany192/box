@@ -23,7 +23,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
     }
 
     @Override
-    public void bind(@NonNull ItemArticleBinding binding, Article item, int position) {
+    public void convert(@NonNull ItemArticleBinding binding, Article item, int position) {
         ImageUtils.show(binding.image, MockUtils.getImageUrl());
         binding.title.setText(item.getTitle());
         binding.desc.setText(item.getAuthor());

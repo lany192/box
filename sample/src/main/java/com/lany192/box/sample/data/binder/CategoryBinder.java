@@ -10,7 +10,7 @@ import com.lany192.box.sample.databinding.ItemCategoryBinding;
 public class CategoryBinder extends ItemBinder<Category, ItemCategoryBinding> {
 
     @Override
-    public void bind(@NonNull ItemCategoryBinding binding, Category item, int position) {
+    public void convert(@NonNull ItemCategoryBinding binding, Category item, int position) {
         ImageUtils.show(binding.image, item.getUrl());
         binding.title.setText(item.getName());
     }
