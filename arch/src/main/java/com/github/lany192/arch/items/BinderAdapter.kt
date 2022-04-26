@@ -15,17 +15,17 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
  * 使用 Binder 来实现adapter，既可以实现单布局，也能实现多布局
  * 数据实体类也不存继承问题
  *
- * 当有多种条目的时候，避免在convert()中做太多的业务逻辑，把逻辑放在对应的 BaseItemBinder 中。
+ * 当有多种条目的时候，避免在convert()中做太多的业务逻辑，把逻辑放在对应的 BaseBinder 中。
  * 适用于以下情况：
  * 1、实体类不方便扩展，此Adapter的数据类型可以是任意类型，默认情况下不需要实现 getItemType
  * 2、item 类型较多，在convert()中管理起来复杂
  *
- * ViewHolder 由 [BaseItemBinder] 实现，并且每个[BaseItemBinder]可以拥有自己类型的ViewHolder类型。
+ * ViewHolder 由 [BaseBinder] 实现，并且每个[BaseBinder]可以拥有自己类型的ViewHolder类型。
  *
  * 数据类型为Any
  */
-open class BinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any, BaseViewHolder>(0, list),
-    LoadMoreModule {
+open class BinderAdapter(list: MutableList<Any>? = null) :
+    BaseQuickAdapter<Any, BaseViewHolder>(0, list), LoadMoreModule {
 
     /**
      * 用于存储每个 Binder 类型对应的 Diff
@@ -33,7 +33,7 @@ open class BinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any,
     private val classDiffMap = HashMap<Class<*>, DiffUtil.ItemCallback<Any>?>()
 
     private val mTypeMap = HashMap<Class<*>, Int>()
-    private val mBinderArray = SparseArray<BaseItemBinder<Any, *>>()
+    private val mBinderArray = SparseArray<BaseBinder<Any, *>>()
 
     init {
         setDiffCallback(ItemCallback())
@@ -43,11 +43,15 @@ open class BinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any,
      * 添加 ItemBinder
      */
     @JvmOverloads
-    fun <T : Any> addItemBinder(clazz: Class<out T>, baseItemBinder: BaseItemBinder<T, *>, callback: DiffUtil.ItemCallback<T>? = null): BinderAdapter {
+    fun <T : Any> addItemBinder(
+        clazz: Class<out T>,
+        BaseBinder: BaseBinder<T, *>,
+        callback: DiffUtil.ItemCallback<T>? = null
+    ): BinderAdapter {
         val itemType = mTypeMap.size + 1
         mTypeMap[clazz] = itemType
-        mBinderArray.append(itemType, baseItemBinder as BaseItemBinder<Any, *>)
-        baseItemBinder._adapter = this
+        mBinderArray.append(itemType, BaseBinder as BaseBinder<Any, *>)
+        BaseBinder._adapter = this
         callback?.let {
             classDiffMap[clazz] = it as DiffUtil.ItemCallback<Any>
         }
@@ -57,8 +61,11 @@ open class BinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any,
     /**
      * kotlin 可以使用如下方法添加 ItemBinder，更加简单
      */
-    inline fun <reified T : Any> addItemBinder(baseItemBinder: BaseItemBinder<T, *>, callback: DiffUtil.ItemCallback<T>? = null): BinderAdapter {
-        addItemBinder(T::class.java, baseItemBinder, callback)
+    inline fun <reified T : Any> addItemBinder(
+        BaseBinder: BaseBinder<T, *>,
+        callback: DiffUtil.ItemCallback<T>? = null
+    ): BinderAdapter {
+        addItemBinder(T::class.java, BaseBinder, callback)
         return this
     }
 
@@ -93,15 +100,15 @@ open class BinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any,
         getItemBinder(holder.itemViewType).convert(holder, item, payloads)
     }
 
-    open fun getItemBinder(viewType: Int): BaseItemBinder<Any, BaseViewHolder> {
+    open fun getItemBinder(viewType: Int): BaseBinder<Any, BaseViewHolder> {
         val binder = mBinderArray[viewType]
         checkNotNull(binder) { "getItemBinder: viewType '$viewType' no such Binder found，please use addItemBinder() first!" }
-        return binder as BaseItemBinder<Any, BaseViewHolder>
+        return binder as BaseBinder<Any, BaseViewHolder>
     }
 
-    open fun getItemBinderOrNull(viewType: Int): BaseItemBinder<Any, BaseViewHolder>? {
+    open fun getItemBinderOrNull(viewType: Int): BaseBinder<Any, BaseViewHolder>? {
         val binder = mBinderArray[viewType]
-        return binder as? BaseItemBinder<Any, BaseViewHolder>
+        return binder as? BaseBinder<Any, BaseViewHolder>
     }
 
     override fun getDefItemViewType(position: Int): Int {
@@ -129,7 +136,7 @@ open class BinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any,
         return getItemBinderOrNull(holder.itemViewType)?.onFailedToRecycleView(holder) ?: false
     }
 
-    protected fun findViewType(clazz : Class<*>):Int {
+    protected fun findViewType(clazz: Class<*>): Int {
         val type = mTypeMap[clazz]
         checkNotNull(type) { "findViewType: ViewType: $clazz Not Find!" }
         return type

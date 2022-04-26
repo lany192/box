@@ -5,11 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.elvishew.xlog.Logger
+import com.elvishew.xlog.XLog
 
 /**
  * Binder 的基类
  */
-abstract class BaseItemBinder<T, VH : BaseViewHolder> {
+abstract class BaseBinder<T, VH : BaseViewHolder> {
+    @JvmField
+    protected var log: Logger.Builder = XLog.tag(javaClass.name)
+
     private val clickViewIds by lazy(LazyThreadSafetyMode.NONE) { ArrayList<Int>() }
     private val longClickViewIds by lazy(LazyThreadSafetyMode.NONE) { ArrayList<Int>() }
 
@@ -58,11 +63,11 @@ abstract class BaseItemBinder<T, VH : BaseViewHolder> {
     }
 
     /**
-     * Called when a view created by this [BaseItemBinder] has been attached to a window.
-     * 当此[BaseItemBinder]出现在屏幕上的时候，会调用此方法
+     * Called when a view created by this [BaseBinder] has been attached to a window.
+     * 当此[BaseBinder]出现在屏幕上的时候，会调用此方法
      *
      * This can be used as a reasonable signal that the view is about to be seen
-     * by the user. If the [BaseItemBinder] previously freed any resources in
+     * by the user. If the [BaseBinder] previously freed any resources in
      * [onViewDetachedFromWindow][.onViewDetachedFromWindow]
      * those resources should be restored here.
      *
@@ -71,9 +76,9 @@ abstract class BaseItemBinder<T, VH : BaseViewHolder> {
     open fun onViewAttachedToWindow(holder: VH) {}
 
     /**
-     * Called when a view created by this [BaseItemBinder] has been detached from its
+     * Called when a view created by this [BaseBinder] has been detached from its
      * window.
-     * 当此[BaseItemBinder]从屏幕上移除的时候，会调用此方法
+     * 当此[BaseBinder]从屏幕上移除的时候，会调用此方法
      *
      * Becoming detached from the window is not necessarily a permanent condition;
      * the consumer of an Adapter's views may choose to cache views offscreen while they
