@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
-import com.chad.library.adapter.base.binder.BaseItemBinder
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
 import com.github.lany192.arch.adapter.BindingHolder
