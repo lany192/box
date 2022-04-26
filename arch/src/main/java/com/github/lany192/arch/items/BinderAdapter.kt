@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.module.BaseLoadMoreModule
+import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
 /**
@@ -22,7 +24,8 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
  *
  * 数据类型为Any
  */
-open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any, BaseViewHolder>(0, list) {
+open class BinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any, BaseViewHolder>(0, list),
+    LoadMoreModule {
 
     /**
      * 用于存储每个 Binder 类型对应的 Diff
@@ -40,7 +43,7 @@ open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<
      * 添加 ItemBinder
      */
     @JvmOverloads
-    fun <T : Any> addItemBinder(clazz: Class<out T>, baseItemBinder: BaseItemBinder<T, *>, callback: DiffUtil.ItemCallback<T>? = null): BaseBinderAdapter {
+    fun <T : Any> addItemBinder(clazz: Class<out T>, baseItemBinder: BaseItemBinder<T, *>, callback: DiffUtil.ItemCallback<T>? = null): BinderAdapter {
         val itemType = mTypeMap.size + 1
         mTypeMap[clazz] = itemType
         mBinderArray.append(itemType, baseItemBinder as BaseItemBinder<Any, *>)
@@ -54,9 +57,25 @@ open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<
     /**
      * kotlin 可以使用如下方法添加 ItemBinder，更加简单
      */
-    inline fun <reified T : Any> addItemBinder(baseItemBinder: BaseItemBinder<T, *>, callback: DiffUtil.ItemCallback<T>? = null): BaseBinderAdapter {
+    inline fun <reified T : Any> addItemBinder(baseItemBinder: BaseItemBinder<T, *>, callback: DiffUtil.ItemCallback<T>? = null): BinderAdapter {
         addItemBinder(T::class.java, baseItemBinder, callback)
         return this
+    }
+
+    override fun addLoadMoreModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseLoadMoreModule {
+        return BaseLoadMoreModule(baseQuickAdapter)
+    }
+
+    fun loadMoreComplete() {
+        loadMoreModule.loadMoreComplete()
+    }
+
+    fun loadMoreFail() {
+        loadMoreModule.loadMoreFail()
+    }
+
+    fun loadMoreEnd() {
+        loadMoreModule.loadMoreEnd()
     }
 
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {

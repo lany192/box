@@ -13,10 +13,10 @@ abstract class BaseItemBinder<T, VH : BaseViewHolder> {
     private val clickViewIds by lazy(LazyThreadSafetyMode.NONE) { ArrayList<Int>() }
     private val longClickViewIds by lazy(LazyThreadSafetyMode.NONE) { ArrayList<Int>() }
 
-    internal var _adapter: BaseBinderAdapter? = null
+    internal var _adapter: BinderAdapter? = null
     internal var _context: Context? = null
 
-    val adapter: BaseBinderAdapter
+    val adapter: BinderAdapter
         get() {
             checkNotNull(_adapter) {
                 """This $this has not been attached to BaseBinderAdapter yet.

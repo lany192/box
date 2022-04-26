@@ -17,7 +17,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewBinding, TVB extends ViewBinding>
         extends ModelBindingActivity<VM, CVB, TVB> {
-    private final ItemsAdapter itemsAdapter = new ItemsAdapter();
+    private final BinderAdapter itemsAdapter = new BinderAdapter();
 
     public abstract SmartRefreshLayout getRefreshLayout();
 

@@ -16,7 +16,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBinding>
         extends BoxFragment<VM, VB> {
-    private final ItemsAdapter itemsAdapter = new ItemsAdapter();
+    private final BinderAdapter itemsAdapter = new BinderAdapter();
 
     public RecyclerView.LayoutManager getLayoutManager() {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
