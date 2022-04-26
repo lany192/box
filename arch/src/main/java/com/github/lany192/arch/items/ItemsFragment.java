@@ -48,9 +48,11 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     @Override
     public void init() {
         super.init();
+        if (viewModel.loadMoreEnabled()) {
+            itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
+        }
         itemsAdapter.getLoadMoreModule().setEnableLoadMore(viewModel.loadMoreEnabled());
         itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
-        itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
 
         getRecyclerView().setLayoutManager(getLayoutManager());
         getRecyclerView().setAdapter(itemsAdapter);
