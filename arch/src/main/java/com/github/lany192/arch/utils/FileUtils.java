@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.text.TextUtils;
+import android.webkit.MimeTypeMap;
 
 import com.hjq.toast.ToastUtils;
 
@@ -17,6 +19,32 @@ import java.util.Date;
 import java.util.Locale;
 
 public class FileUtils {
+    /**
+     * 获取文件类型（文件名后缀作为识别标志）
+     */
+    public static String getFileMimeType(String fullPath) {
+        String extension = getFileExtension(fullPath);
+        if (!TextUtils.isEmpty(extension)) {
+            String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+            if (!TextUtils.isEmpty(mimeType)) {
+                return mimeType;
+            }
+        }
+        return "image/jpeg";
+    }
+
+    /**
+     * 获取文件名的扩展名。
+     */
+    public static String getFileExtension(String fullPath) {
+        if (TextUtils.isEmpty(fullPath)) {
+            return "";
+        }
+        if (fullPath.lastIndexOf(".") != -1 && fullPath.lastIndexOf(".") != 0) {
+            return fullPath.substring(fullPath.lastIndexOf(".") + 1);
+        }
+        return "";
+    }
 
     /**
      * 获取APP的工作路径
