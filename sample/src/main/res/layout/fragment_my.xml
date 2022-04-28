@@ -131,4 +131,16 @@
                 app:menu_title="设置" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <com.github.lany192.textview.IconTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="这里测试图标TextView"
+        app:itv_icon="@drawable/android"
+        app:itv_icon_gravity="top"
+        app:itv_icon_padding="8dp"
+        app:itv_icon_size="14dp"
+        app:itv_icon_tint="@color/red" />
 </LinearLayout>

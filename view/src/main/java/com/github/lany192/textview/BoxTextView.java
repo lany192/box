@@ -1,19 +1,21 @@
 package com.github.lany192.textview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.github.lany192.view.R;
-import com.google.android.material.textview.MaterialTextView;
 
-public class BoxTextView extends MaterialTextView {
+@SuppressLint("AppCompatCustomView")
+public class BoxTextView extends TextView {
     /**
      * 是否中等粗细
      */

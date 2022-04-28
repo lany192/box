@@ -8,6 +8,7 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
@@ -17,11 +18,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.StyleableRes;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 
-import com.elvishew.xlog.XLog;
 import com.github.lany192.view.R;
 
 import java.lang.annotation.Retention;
@@ -30,7 +31,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * 带icon的TextView，可定义上下左右位置
  */
-public class IconTextView extends BoxTextView {
+public class IconTextView extends AppCompatTextView {
 
     /**
      * Gravity used to position the icon at the start of the view.
@@ -94,14 +95,14 @@ public class IconTextView extends BoxTextView {
     @Px
     private int iconPadding;
     @IconGravity
-    private int iconGravity;
+    private int iconGravity = ICON_GRAVITY_START;
 
     public IconTextView(@NonNull Context context) {
-        super(context);
+        this(context,null);
     }
 
     public IconTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs,0);
     }
 
     public IconTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -116,7 +117,7 @@ public class IconTextView extends BoxTextView {
             iconSize = attributes.getDimensionPixelSize(R.styleable.IconTextView_itv_icon_size, 0);
             attributes.recycle();
         }
-        XLog.e("哈哈：" + icon);
+        Log.i("测试", "哈哈：" + icon);
         setCompoundDrawablePadding(iconPadding);
         updateIcon(/*needsIconReset=*/icon != null);
     }
