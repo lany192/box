@@ -19,23 +19,24 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.StyleableRes;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 
 import com.github.lany192.view.R;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
  * 带icon的TextView
- * 1.可以定义不同位置
- * 2.可以修改图标颜色
- * 3.可设置图标和文字之间的距离
+ * 1.自定义图标位置
+ * 2.自定义图标颜色
+ * 3.自定义图标图标和文字之间的距离
+ * 4.自定义图标图标大小
  */
-public class IconTextView extends AppCompatTextView {
+public class IconTextView extends MaterialTextView {
 
     /**
      * Gravity used to position the icon at the start of the view.

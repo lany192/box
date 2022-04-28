@@ -1,176 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/a" />
-
-    <com.github.lany192.textview.IconTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@android:color/holo_blue_light"
-        android:gravity="center"
-        android:text="这里测试图标TextView"
-        app:itv_icon="@drawable/android"
-        app:itv_icon_color="@color/red"
-        app:itv_icon_gravity="textStart"
-        app:itv_icon_padding="8dp"
-        app:itv_icon_size="28dp"
-        app:itv_text_middle_bold="true" />
-
-    <com.github.lany192.textview.IconTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@android:color/holo_blue_light"
-        android:padding="8dp"
-        android:text="这里测试图标TextView"
-        app:itv_icon="@drawable/android"
-        app:itv_icon_color="@color/red"
-        app:itv_icon_gravity="top"
-        app:itv_icon_padding="8dp"
-        app:itv_icon_size="28dp" />
-
-    <com.github.lany192.textview.IconTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@android:color/holo_blue_light"
-        android:padding="8dp"
-        android:text="这里测试图标TextView"
-        app:itv_icon="@drawable/android"
-        app:itv_icon_color="@color/red"
-        app:itv_icon_gravity="end"
-        app:itv_icon_padding="16dp"
-        app:itv_icon_size="20dp" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="@color/white_bg"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/a" />
+
+        <com.github.lany192.textview.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/holo_blue_light"
+            android:gravity="center"
+            android:text="这里测试图标TextView"
+            app:itv_icon="@drawable/android"
+            app:itv_icon_gravity="textStart"
+            app:itv_icon_padding="8dp"
+            app:itv_icon_size="28dp"
+            app:itv_text_middle_bold="true" />
+
+        <com.github.lany192.textview.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/holo_blue_light"
+            android:padding="8dp"
+            android:text="这里测试图标TextView"
+            app:itv_icon="@drawable/android"
+            app:itv_icon_color="@color/red"
+            app:itv_icon_gravity="top"
+            app:itv_icon_padding="8dp"
+            app:itv_icon_size="28dp" />
+
+        <com.github.lany192.textview.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/holo_blue_light"
+            android:padding="8dp"
+            android:text="这里测试图标TextView"
+            app:itv_icon="@drawable/android"
+            app:itv_icon_color="@color/red"
+            app:itv_icon_gravity="end"
+            app:itv_icon_padding="16dp"
+            app:itv_icon_size="20dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/white_bg"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-            <com.github.lany192.view.MenuView
-                android:id="@+id/dialog_view"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_title="对话框测试" />
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/outline" />
+                <com.github.lany192.view.MenuView
+                    android:id="@+id/dialog_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="对话框测试" />
 
-            <com.github.lany192.view.MenuView
-                android:id="@+id/login_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:menu_title="登录测试" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/outline" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/outline" />
+                <com.github.lany192.view.MenuView
+                    android:id="@+id/login_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="登录测试" />
 
-            <com.github.lany192.view.MenuView
-                android:id="@+id/download_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:menu_title="下载安装赢积分" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/outline" />
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <com.github.lany192.view.MenuView
+                    android:id="@+id/download_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="下载安装赢积分" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="@color/white_bg"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_1">
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/white_bg"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_1">
 
-            <com.github.lany192.view.MenuView
-                android:id="@+id/hello_view"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu_title="Hello" />
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/outline" />
+                <com.github.lany192.view.MenuView
+                    android:id="@+id/hello_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="Hello" />
 
-            <com.github.lany192.view.MenuView
-                android:id="@+id/test_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:menu_title="功能x" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/outline" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/outline" />
+                <com.github.lany192.view.MenuView
+                    android:id="@+id/test_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="功能x" />
 
-            <com.github.lany192.view.MenuView
-                android:id="@+id/dialog2_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:menu_title="对话框2" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/outline" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/outline" />
+                <com.github.lany192.view.MenuView
+                    android:id="@+id/dialog2_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="对话框2" />
 
-            <com.github.lany192.view.MenuView
-                android:id="@+id/settings_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:menu_title="设置" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/outline" />
 
+                <com.github.lany192.view.MenuView
+                    android:id="@+id/settings_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="设置" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
