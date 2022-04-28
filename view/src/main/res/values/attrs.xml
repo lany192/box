@@ -12,13 +12,15 @@
     </declare-styleable>
 
     <declare-styleable name="IconTextView">
-        <!-- Icon drawable to display at the start of this view. -->
+        <!--文字是否加 中等粗-->
+        <attr name="itv_text_middle_bold" format="boolean" />
+        <!-- Icon 图标资源 -->
         <attr name="itv_icon" format="reference" />
-        <!-- Specifies the width and height to use for the icon drawable. -->
+        <!-- Icon 图标大小 -->
         <attr name="itv_icon_size" format="dimension" />
-        <!-- Tint for icon drawable to display. -->
-        <attr name="itv_icon_tint" format="color" />
-        <!-- Tint mode for icon drawable to display. -->
+        <!-- Icon 图标颜色 -->
+        <attr name="itv_icon_color" format="color" />
+        <!-- Icon 着色模式 -->
         <attr name="itv_icon_tint_mode">
             <!-- The tint is drawn on top of the icon.
                  [Sa + (1 - Sa)*Da, Rc = Sc + (1 - Sa)*Dc] -->
@@ -38,9 +40,9 @@
                  result to valid color values. Saturate(S + D) -->
             <enum name="add" value="16" />
         </attr>
-        <!-- Padding between icon and button text. -->
+        <!-- Icon 和内容之间的距离 -->
         <attr name="itv_icon_padding" format="dimension" />
-        <!-- Specifies how the icon should be positioned on the X axis. -->
+        <!-- Icon相对内容的位置 -->
         <attr name="itv_icon_gravity">
             <!-- Push icon to the start of the button. -->
             <flag name="start" value="0x1" />

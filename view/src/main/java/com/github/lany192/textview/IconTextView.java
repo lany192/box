@@ -7,8 +7,9 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
@@ -29,7 +30,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * 带icon的TextView，可定义上下左右位置
+ * 带icon的TextView
+ * 1.可以定义不同位置
+ * 2.可以修改图标颜色
+ * 3.可设置图标和文字之间的距离
  */
 public class IconTextView extends AppCompatTextView {
 
@@ -96,6 +100,10 @@ public class IconTextView extends AppCompatTextView {
     private int iconPadding;
     @IconGravity
     private int iconGravity = ICON_GRAVITY_START;
+    /**
+     * 是否中等粗细
+     */
+    private boolean middleBold;
 
     public IconTextView(@NonNull Context context) {
         this(context, null);
@@ -111,13 +119,14 @@ public class IconTextView extends AppCompatTextView {
         if (attributes != null) {
             iconPadding = attributes.getDimensionPixelSize(R.styleable.IconTextView_itv_icon_padding, 0);
             iconTintMode = parseTintMode(attributes.getInt(R.styleable.IconTextView_itv_icon_tint_mode, -1));
-            iconTint = getColorStateList(getContext(), attributes, R.styleable.IconTextView_itv_icon_tint);
+            iconTint = getColorStateList(getContext(), attributes, R.styleable.IconTextView_itv_icon_color);
             icon = getDrawable(getContext(), attributes, R.styleable.IconTextView_itv_icon);
             iconGravity = attributes.getInteger(R.styleable.IconTextView_itv_icon_gravity, ICON_GRAVITY_START);
             iconSize = attributes.getDimensionPixelSize(R.styleable.IconTextView_itv_icon_size, 0);
+            middleBold = attributes.getBoolean(R.styleable.IconTextView_itv_text_middle_bold, false);
             attributes.recycle();
         }
-        Log.i("测试", "哈哈：" + (icon == null));
+        setText(getText());
         setCompoundDrawablePadding(iconPadding);
         updateIcon(/*needsIconReset=*/icon != null);
     }
@@ -167,6 +176,25 @@ public class IconTextView extends AppCompatTextView {
             default:
                 return Mode.SRC_IN;
         }
+    }
+
+    /**
+     * 是否中等粗细
+     */
+    public void setTextMiddleBold(boolean middleBold) {
+        this.middleBold = middleBold;
+        setText(getText());
+    }
+
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        //防止空指针
+        if (TextUtils.isEmpty(text)) {
+            text = "";
+        }
+        super.setText(text, type);
+        TextPaint paint = getPaint();
+        paint.setFakeBoldText(middleBold);
     }
 
     @Override
@@ -305,7 +333,6 @@ public class IconTextView extends AppCompatTextView {
     public void setIconPadding(@Px int iconPadding) {
         if (this.iconPadding != iconPadding) {
             this.iconPadding = iconPadding;
-            Log.i("测试：", "iconPadding:" + iconPadding);
             setCompoundDrawablePadding(iconPadding);
         }
     }
@@ -456,20 +483,14 @@ public class IconTextView extends AppCompatTextView {
      * @param needsIconReset Whether to force the drawable to be set
      */
     private void updateIcon(boolean needsIconReset) {
-        Log.i("测试：", "iconSize:" + iconSize);
-        Log.i("测试：", "iconLeft:" + iconLeft);
-        Log.i("测试：", "iconTintMode:" + iconTintMode);
         if (icon != null) {
             icon = DrawableCompat.wrap(icon).mutate();
             DrawableCompat.setTintList(icon, iconTint);
             if (iconTintMode != null) {
                 DrawableCompat.setTintMode(icon, iconTintMode);
             }
-
             int width = iconSize != 0 ? iconSize : icon.getIntrinsicWidth();
             int height = iconSize != 0 ? iconSize : icon.getIntrinsicHeight();
-            Log.i("测试：", "width:" + width);
-            Log.i("测试：", "height:" + height);
             icon.setBounds(iconLeft, iconTop, iconLeft + width, iconTop + height);
             icon.setVisible(true, needsIconReset);
         }
