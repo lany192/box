@@ -98,11 +98,11 @@ public class IconTextView extends AppCompatTextView {
     private int iconGravity = ICON_GRAVITY_START;
 
     public IconTextView(@NonNull Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public IconTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public IconTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -117,7 +117,7 @@ public class IconTextView extends AppCompatTextView {
             iconSize = attributes.getDimensionPixelSize(R.styleable.IconTextView_itv_icon_size, 0);
             attributes.recycle();
         }
-        Log.i("测试", "哈哈：" + icon);
+        Log.i("测试", "哈哈：" + (icon == null));
         setCompoundDrawablePadding(iconPadding);
         updateIcon(/*needsIconReset=*/icon != null);
     }
@@ -305,6 +305,7 @@ public class IconTextView extends AppCompatTextView {
     public void setIconPadding(@Px int iconPadding) {
         if (this.iconPadding != iconPadding) {
             this.iconPadding = iconPadding;
+            Log.i("测试：", "iconPadding:" + iconPadding);
             setCompoundDrawablePadding(iconPadding);
         }
     }
@@ -455,6 +456,9 @@ public class IconTextView extends AppCompatTextView {
      * @param needsIconReset Whether to force the drawable to be set
      */
     private void updateIcon(boolean needsIconReset) {
+        Log.i("测试：", "iconSize:" + iconSize);
+        Log.i("测试：", "iconLeft:" + iconLeft);
+        Log.i("测试：", "iconTintMode:" + iconTintMode);
         if (icon != null) {
             icon = DrawableCompat.wrap(icon).mutate();
             DrawableCompat.setTintList(icon, iconTint);
@@ -464,6 +468,8 @@ public class IconTextView extends AppCompatTextView {
 
             int width = iconSize != 0 ? iconSize : icon.getIntrinsicWidth();
             int height = iconSize != 0 ? iconSize : icon.getIntrinsicHeight();
+            Log.i("测试：", "width:" + width);
+            Log.i("测试：", "height:" + height);
             icon.setBounds(iconLeft, iconTop, iconLeft + width, iconTop + height);
             icon.setVisible(true, needsIconReset);
         }
