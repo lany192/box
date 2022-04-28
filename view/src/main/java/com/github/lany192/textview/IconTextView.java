@@ -511,25 +511,11 @@ public class IconTextView extends AppCompatTextView {
         return iconGravity == ICON_GRAVITY_TOP || iconGravity == ICON_GRAVITY_TEXT_TOP;
     }
 
-    /**
-     * Gets the icon gravity for this button
-     *
-     * @return Icon gravity of the button.
-     * @attr ref com.google.android.material.R.styleable#MaterialButton_iconGravity
-     * @see #setIconGravity(int)
-     */
     @IconGravity
     public int getIconGravity() {
         return iconGravity;
     }
 
-    /**
-     * Sets the icon gravity for this button
-     *
-     * @param iconGravity icon gravity for this button
-     * @attr ref com.google.android.material.R.styleable#MaterialButton_iconGravity
-     * @see #getIconGravity()
-     */
     public void setIconGravity(@IconGravity int iconGravity) {
         if (this.iconGravity != iconGravity) {
             this.iconGravity = iconGravity;
@@ -537,9 +523,6 @@ public class IconTextView extends AppCompatTextView {
         }
     }
 
-    /**
-     * Positions the icon can be set to.
-     */
     @IntDef({
             ICON_GRAVITY_START,
             ICON_GRAVITY_TEXT_START,

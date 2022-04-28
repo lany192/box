@@ -139,7 +139,7 @@
         android:background="@android:color/holo_blue_light"
         android:text="这里测试图标TextView"
         app:itv_icon="@drawable/android"
-        app:itv_icon_gravity="top"
+        app:itv_icon_gravity="textStart"
         app:itv_icon_padding="8dp"
         app:itv_icon_size="14dp"
         app:itv_icon_tint="@color/red" />
