@@ -32,8 +32,13 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     //日志工具 https://github.com/elvishew/xLog
     compileOnly 'com.elvishew:xlog:1.11.0'
-    //Json库 https://github.com/google/gson
-    compileOnly 'com.google.code.gson:gson:2.9.0'
+
+    //Json库 https://github.com/square/moshi
+    implementation 'com.squareup.moshi:moshi:1.13.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.13.0'
+
+
+
     //glide依赖 https://github.com/bumptech/glide
     compileOnly 'com.github.bumptech.glide:glide:4.13.1'
     //存储 https://github.com/Tencent/MMKV

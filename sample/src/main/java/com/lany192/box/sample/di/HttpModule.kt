@@ -2,7 +2,6 @@ package com.lany192.box.sample.di
 
 import com.github.lany192.arch.network.HttpLogInterceptor
 import com.github.lany192.arch.network.ParamsInterceptor
-import com.google.gson.GsonBuilder
 import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.data.api.ApiService
 import dagger.Module
@@ -13,7 +12,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -41,14 +40,7 @@ class HttpModule {
             .baseUrl("https://www.wanandroid.com")
             .client(client)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
-            .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder()
-                        .setDateFormat("yyyy-MM-dd HH:mm:ss")
-                        .serializeNulls()
-                        .create()
-                )
-            )
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
 
