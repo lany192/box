@@ -51,7 +51,6 @@ ext {
             //请求框架 https://github.com/square/retrofit
             'retrofit'                        : 'com.squareup.retrofit2:retrofit:2.9.0',
             'retrofit2-moshi'                 : 'com.squareup.retrofit2:converter-moshi:2.9.0',
-            'retrofit2-rxjava3'               : 'com.squareup.retrofit2:adapter-rxjava3:2.9.0',
             //存储 https://github.com/Tencent/MMKV
             'mmkv'                            : 'com.tencent:mmkv:1.2.13',
             //glide依赖 https://github.com/bumptech/glide

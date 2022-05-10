@@ -83,6 +83,7 @@ android {
     }
     //引入安装包生成配置
     apply from: '../package.gradle'
+    namespace 'com.lany192.box.sample'
 }
 
 dependencies {
