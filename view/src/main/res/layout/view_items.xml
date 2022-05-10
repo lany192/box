@@ -32,6 +32,6 @@
         android:background="@drawable/ico_goto_top"
         android:elevation="16dp"
         android:visibility="gone"
-        app:shapeAppearanceOverlay="@style/image_circle_style"
+        app:shapeAppearanceOverlay="@style/shape_circle"
         tools:visibility="visible" />
 </FrameLayout>

@@ -1,14 +1,14 @@
 package com.lany192.box.sample.data.bean
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 class ApiResult<T> {
-    @SerializedName(value = "code", alternate = ["errorCode"])
+    @Json(name = "errorCode")
     var code = 0
 
-    @SerializedName(value = "msg", alternate = ["errorMsg"])
+    @Json(name = "errorMsg")
     var msg: String? = null
 
-    @SerializedName(value = "data", alternate = ["result"])
+    @Json(name = "result")
     var data: T? = null
 }

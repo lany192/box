@@ -45,9 +45,12 @@ ext {
             'brvah'                           : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7',
             //状态栏工具 https://github.com/gyf-dev/ImmersionBar
             'immersion-bar'                   : 'com.geyifeng.immersionbar:immersionbar:3.2.1',
+            //Json库 https://github.com/square/moshi
+            'moshi'                           : 'com.squareup.moshi:moshi:1.13.0',
+            'moshi-kotlin'                    : 'com.squareup.moshi:moshi-kotlin:1.13.0',
             //请求框架 https://github.com/square/retrofit
             'retrofit'                        : 'com.squareup.retrofit2:retrofit:2.9.0',
-            'retrofit2-gson'                  : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            'retrofit2-moshi'                 : 'com.squareup.retrofit2:converter-moshi:2.9.0',
             'retrofit2-rxjava3'               : 'com.squareup.retrofit2:adapter-rxjava3:2.9.0',
             //存储 https://github.com/Tencent/MMKV
             'mmkv'                            : 'com.tencent:mmkv:1.2.13',
