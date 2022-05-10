@@ -37,10 +37,11 @@ open class BaseRepository {
                 callback.onFailure("无返回内容", 999)
             }
             .catch { exception ->
-                run {
-                    log.e(exception)
-                    callback.onFailure(result.msg, result.code)
-                }
+                exception.printStackTrace()
+//                run {
+//                    log.e(exception)
+//                    callback.onFailure(result.msg, result.code)
+//                }
             }
             .collect {
                 log.i("4线程测试" + Thread.currentThread().name)
