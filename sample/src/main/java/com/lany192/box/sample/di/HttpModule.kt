@@ -4,6 +4,8 @@ import com.github.lany192.arch.network.HttpLogInterceptor
 import com.github.lany192.arch.network.ParamsInterceptor
 import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.data.api.ApiService
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,7 +39,11 @@ class HttpModule {
         return Retrofit.Builder()
             .baseUrl("https://www.wanandroid.com")
             .client(client)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(
+                MoshiConverterFactory.create(
+                    Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+                )
+            )
             .build()
     }
 

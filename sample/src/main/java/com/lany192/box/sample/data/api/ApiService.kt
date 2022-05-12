@@ -14,13 +14,6 @@ interface ApiService {
     @GET("/article/list/{page}/json")
     suspend fun getArticleList(@Path("page") page: Int): ApiResult<ArticleList>
 
-
-    /**
-     * 获取省市县数据
-     */
-    @GET("https://xzwcn.oss-cn-shanghai.aliyuncs.com/config/city.json")
-    fun cityInfo(): Observable<ApiResult<List<Area>>>
-
     @GET("/article/list/{page}/json")
     fun getHomeArticles(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
 

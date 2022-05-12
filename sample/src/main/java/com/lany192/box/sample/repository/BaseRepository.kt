@@ -17,7 +17,7 @@ open class BaseRepository {
         return flow { emit(block()) }
             .flowOn(Dispatchers.IO)
             .catch { e ->
-                log.e(e)
+                e.printStackTrace()
                 when (this) {
                     is IOException -> {
                         log.e("IO异常")

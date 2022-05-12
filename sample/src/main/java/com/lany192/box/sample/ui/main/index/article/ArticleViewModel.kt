@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleViewModel @Inject constructor(private val repository: BoxRepository) :
+class ArticleViewModel @Inject constructor(val repository: BoxRepository) :
     ItemsViewModel() {
 
     override fun request(refresh: Boolean) {

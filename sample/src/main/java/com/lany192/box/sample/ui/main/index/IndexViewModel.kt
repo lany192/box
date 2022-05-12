@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class IndexViewModel @Inject constructor(private val repository: BoxRepository) :
+class IndexViewModel @Inject constructor(val repository: BoxRepository) :
     LifecycleViewModel() {
     val items = MutableLiveData<List<Area>>()
 
