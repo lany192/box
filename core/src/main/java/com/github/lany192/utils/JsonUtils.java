@@ -2,13 +2,14 @@ package com.github.lany192.utils;
 
 import android.text.TextUtils;
 
-import com.squareup.moshi.Moshi;
-import com.squareup.moshi.Types;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
 /**
  * json工具
  */
@@ -17,17 +18,17 @@ public class JsonUtils {
     /**
      * json转对象
      */
-    @SuppressWarnings("unchecked")
     public static <T> T json2object(String json, Type type) {
         if (TextUtils.isEmpty(json)) {
             return null;
         }
+        T t = null;
         try {
-            return (T) new Moshi.Builder().build().adapter(type).nullSafe().fromJson(json);
+            t = new Gson().fromJson(json, type);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return t;
     }
 
     /**
@@ -37,12 +38,13 @@ public class JsonUtils {
         if (TextUtils.isEmpty(json)) {
             return null;
         }
+        T t = null;
         try {
-            return new Moshi.Builder().build().adapter(cls).nullSafe().fromJson(json);
+            t = new Gson().fromJson(json, cls);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return t;
     }
 
     /**
@@ -52,22 +54,35 @@ public class JsonUtils {
         if (object == null) {
             return "";
         }
-        return new Moshi.Builder().build().adapter(Object.class).toJson(object);
+        return new Gson().toJson(object);
     }
 
     /**
      * json转list
      */
-    @SuppressWarnings("unchecked")
-    public static <T> List<T> json2List(String json, Class<T> clazz) {
+    public static <T> List<T> json2List(String json, Class<T[]> clazz) {
         if (TextUtils.isEmpty(json)) {
             return null;
         }
-        Type type = Types.newParameterizedType(List.class, clazz);
-        try {
-            return (List<T>) new Moshi.Builder().build().adapter(type).fromJson(json);
-        } catch (Exception e) {
-            return new ArrayList<>();
+        Gson gson = new Gson();
+        T[] array = gson.fromJson(json, clazz);
+        return Arrays.asList(array);
+    }
+
+    /**
+     * json转ArrayList
+     */
+    public static <T> ArrayList<T> json2ArrayList(String json, Class<T> clazz) {
+        if (TextUtils.isEmpty(json)) {
+            return null;
         }
+        Type type = new TypeToken<ArrayList<JsonObject>>() {
+        }.getType();
+        ArrayList<JsonObject> jsonObjects = new Gson().fromJson(json, type);
+        ArrayList<T> arrayList = new ArrayList<>();
+        for (JsonObject jsonObject : jsonObjects) {
+            arrayList.add(new Gson().fromJson(jsonObject, clazz));
+        }
+        return arrayList;
     }
 }
