@@ -4,10 +4,10 @@ import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.items.ItemsViewModel
 import com.github.lany192.arch.utils.ListUtils
 import com.hjq.toast.ToastUtils
-import com.lany192.box.sample.data.api.HttpCallback
-import com.lany192.box.sample.data.bean.ArticleList
 import com.lany192.box.sample.repository.BoxRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,31 +16,30 @@ class ArticleViewModel @Inject constructor(private val repository: BoxRepository
     ItemsViewModel() {
 
     override fun request(refresh: Boolean) {
-        log.i("1线程测试" + Thread.currentThread().name)
         viewModelScope.launch {
-            log.i("2线程测试" + Thread.currentThread().name)
-            repository.getArticleList(page, object : HttpCallback<ArticleList> {
-
-                override fun onSuccess(msg: String, result: ArticleList) {
-                    log.i("5线程测试" + Thread.currentThread().name)
-                    if (ListUtils.isEmpty(result.datas)) {
-                        moreLoadEnd()
-                    } else {
-                        if (refresh) {
-                            resetItems(result.datas)
-                            refreshFinish()
+            repository.getArticleList(page)
+                .onStart {
+                    log.i("接口开始")
+                }.onCompletion {
+                    log.i("接口结束")
+                }.collect {
+                    if (it.code == 0) {
+                        if (ListUtils.isEmpty(it.data?.datas)) {
+                            moreLoadEnd()
                         } else {
-                            addItems(result.datas)
-                            moreLoadFinish()
+                            if (refresh) {
+                                resetItems(it.data?.datas)
+                                refreshFinish()
+                            } else {
+                                addItems(it.data?.datas)
+                                moreLoadFinish()
+                            }
                         }
+                    } else {
+                        ToastUtils.show(it.msg)
+                        finishRequest()
                     }
                 }
-
-                override fun onFailure(msg: String, code: Int) {
-                    ToastUtils.show(msg)
-                    finishRequest()
-                }
-            })
         }
     }
 }

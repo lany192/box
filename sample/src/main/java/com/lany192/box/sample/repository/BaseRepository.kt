@@ -2,93 +2,33 @@ package com.lany192.box.sample.repository
 
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
-import com.github.lany192.utils.JsonUtils
-import com.lany192.box.sample.data.api.HttpCallback
 import com.lany192.box.sample.data.bean.ApiResult
-import com.lany192.box.sample.data.bean.StateLiveData
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import java.io.IOException
 
-
-/**
- * 具体流程请参考：https://juejin.cn/post/6961055228787425288
- */
 open class BaseRepository {
-    @JvmField
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
 
-    suspend fun <T : Any> request(
-        block: suspend () -> ApiResult<T>,
-        callback: HttpCallback<T>
-    ) {
-        var result = ApiResult<T>()
-        flow {
-            val respResult = block.invoke()
-            result = respResult
-            log.i("3线程测试" + Thread.currentThread().name)
-            emit(respResult)
-        }
+    fun <T> request(block: suspend () -> ApiResult<T>): Flow<ApiResult<T>> {
+        return flow { emit(block()) }
             .flowOn(Dispatchers.IO)
-            .onStart {
-                log.i("测试executeReqWithFlow:onStart")
-            }
-            .onEmpty {
-                log.i("测试executeReqWithFlow:onEmpty")
-                callback.onFailure("无返回内容", 999)
-            }
-            .catch { exception ->
-                exception.printStackTrace()
-//                run {
-//                    log.e(exception)
-//                    callback.onFailure(result.msg, result.code)
-//                }
-            }
-            .collect {
-                log.i("4线程测试" + Thread.currentThread().name)
-                log.i("测试executeReqWithFlow: collect")
-                if (result.code == 0) {
-                    callback.onSuccess(result.msg, result.data)
-                } else {
-                    callback.onFailure(result.msg, result.code)
+            .catch { e ->
+                log.e(e)
+                when (this) {
+                    is IOException -> {
+                        log.e("IO异常")
+                    }
+                    is IllegalArgumentException -> {
+                        log.e("非法参数异常")
+                    }
+                    else -> {
+                        log.e("其他异常")
+                    }
                 }
-            }
-    }
-
-    suspend fun <T : Any> executeReqWithFlow(
-        block: suspend () -> ApiResult<T>,
-        stateLiveData: StateLiveData<T>
-    ) {
-        var result = ApiResult<T>()
-        flow {
-            val respResult = block.invoke()
-            result = respResult
-            stateLiveData.postValue(result)
-            emit(respResult)
-        }
-            .flowOn(Dispatchers.IO)
-            .onStart {
-                log.i("测试executeReqWithFlow:onStart")
-                stateLiveData.postValue(result)
-            }
-            .onEmpty {
-                log.i("测试executeReqWithFlow:onEmpty")
-//                baseResp.dataState = DataState.STATE_EMPTY
-                stateLiveData.postValue(result)
-            }
-            .catch { exception ->
-                run {
-                    log.e(exception)
-                    log.i("测试executeReqWithFlow:code  ${result.code}")
-                    exception.printStackTrace()
-//                    baseResp.dataState = DataState.STATE_ERROR
-//                    baseResp.error = exception
-                    stateLiveData.postValue(result)
-                }
-            }
-            .collect {
-                log.i("测试executeReqWithFlow: collect")
-                log.json(JsonUtils.object2json(it))
-                stateLiveData.postValue(result)
             }
     }
 }

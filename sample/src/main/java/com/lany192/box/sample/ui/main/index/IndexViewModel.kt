@@ -3,11 +3,12 @@ package com.lany192.box.sample.ui.main.index
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
+import com.hjq.toast.ToastUtils
 import com.lany192.box.sample.data.bean.Area
-import com.lany192.box.sample.data.bean.StateLiveData
 import com.lany192.box.sample.repository.BoxRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,16 +16,26 @@ import javax.inject.Inject
 class IndexViewModel @Inject constructor(private val repository: BoxRepository) :
     LifecycleViewModel() {
     val items = MutableLiveData<List<Area>>()
-    var sss = StateLiveData<List<Area>>()
+
     override fun onLazyLoad() {
+        super.onLazyLoad()
         requestCityInfo()
     }
 
     private fun requestCityInfo() {
-        log.i("请求城市数据接口")
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getCityList { _, areas -> items.postValue(areas) }
+        viewModelScope.launch {
+            repository.getCityList()
+                .onStart {
+                    log.i("接口开始")
+                }.onCompletion {
+                    log.i("接口结束")
+                }.collect {
+                    if (it.code == 0) {
+                        items.postValue(it.data)
+                    } else {
+                        ToastUtils.show(it.msg)
+                    }
+                }
         }
     }
-
 }
