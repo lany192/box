@@ -2,7 +2,6 @@ package com.lany192.box.sample.ui.main.index.article
 
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.items.ItemsViewModel
-import com.github.lany192.arch.utils.ListUtils
 import com.hjq.toast.ToastUtils
 import com.lany192.box.sample.repository.BoxRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,21 +21,22 @@ class ArticleViewModel @Inject constructor(val repository: BoxRepository) :
                     log.i("接口开始")
                 }.onCompletion {
                     log.i("接口结束")
-                }.collect {
-                    if (it.code == 0) {
-                        if (ListUtils.isEmpty(it.data?.datas)) {
-                            moreLoadEnd()
-                        } else {
+                }.collect { result ->
+                    if (result.code == 0) {
+                        result.data?.let {
                             if (refresh) {
-                                resetItems(it.data?.datas)
+                                resetItems(it.datas)
                                 refreshFinish()
                             } else {
-                                addItems(it.data?.datas)
+                                addItems(it.datas)
                                 moreLoadFinish()
                             }
-                        }
+                            if (it.over) {
+                                moreLoadEnd()
+                            }
+                        } ?: finishRequest()
                     } else {
-                        ToastUtils.show(it.msg)
+                        ToastUtils.show(result.msg)
                         finishRequest()
                     }
                 }

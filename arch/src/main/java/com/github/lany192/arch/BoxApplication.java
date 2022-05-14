@@ -85,7 +85,7 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
                 })
                 .tag("XLog")
                 .build();
-        String logPath = getFilesDir().getPath() + "/log/";
+        String logPath = getCacheDir().getPath() + "/log/";
         Log.i(TAG, "初始化日志文件路径:" + logPath);
         FilePrinter filePrinter = new FilePrinter
                 .Builder(logPath)
