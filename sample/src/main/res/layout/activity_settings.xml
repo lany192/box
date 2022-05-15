@@ -16,6 +16,7 @@
         app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
+        app:strokeWidth="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -78,6 +79,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        app:strokeWidth="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

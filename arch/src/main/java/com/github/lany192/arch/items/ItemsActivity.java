@@ -57,10 +57,10 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
         getRecyclerView().setAdapter(itemsAdapter);
 
         getRefreshLayout().setEnableLoadMore(false);
-        if (viewModel.loadMoreEnabled()) {
+        if (viewModel.loadMoreEnable()) {
             itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
         }
-        itemsAdapter.getLoadMoreModule().setEnableLoadMore(viewModel.loadMoreEnabled());
+        itemsAdapter.getLoadMoreModule().setEnableLoadMore(viewModel.loadMoreEnable());
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
         //列表状态观察
         viewModel.getListState().observe(this, state -> {

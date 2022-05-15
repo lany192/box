@@ -35,7 +35,14 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
     /**
      * 是否支持加载更多
      */
-    public boolean loadMoreEnabled() {
+    public boolean loadMoreEnable() {
+        return true;
+    }
+
+    /**
+     * 是否支持下拉刷新
+     */
+    public boolean refreshEnable() {
         return true;
     }
 
