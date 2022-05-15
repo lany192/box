@@ -87,7 +87,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      * 异常停止请求
      */
     public void finishRequest() {
-        listState.postValue(ListState.STOP_REQUEST);
+        listState.postValue(ListState.ERROR);
         this.listLiveData.stopRequest();
     }
 
@@ -128,7 +128,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
             request(true);
         } else {
             showNetworkView();
-            listState.postValue(ListState.STOP_REQUEST);
+            listState.postValue(ListState.ERROR);
         }
     }
 
@@ -142,7 +142,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
             request(false);
         } else {
             showNetworkView();
-            listState.postValue(ListState.STOP_REQUEST);
+            listState.postValue(ListState.ERROR);
         }
     }
 

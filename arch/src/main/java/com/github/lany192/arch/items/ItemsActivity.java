@@ -65,7 +65,7 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
         //列表状态观察
         viewModel.getListState().observe(this, state -> {
             switch (state) {
-                case STOP_REQUEST:
+                case ERROR:
                     getRefreshLayout().finishRefresh();
                     itemsAdapter.getLoadMoreModule().loadMoreFail();
                     break;

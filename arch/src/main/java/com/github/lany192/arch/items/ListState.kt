@@ -1,7 +1,7 @@
 package com.github.lany192.arch.items
 
 enum class ListState(val title: String) {
-    STOP_REQUEST("停止请求"),
+    ERROR("请求异常"),
     REFRESHING("正在刷新"),
     REFRESH_FINISH("刷新完成"),
     MORE_LOADING("更多加载中"),

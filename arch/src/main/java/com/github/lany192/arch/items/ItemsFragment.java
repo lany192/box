@@ -64,7 +64,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
         //列表状态观察
         viewModel.getListState().observe(this, state -> {
             switch (state) {
-                case STOP_REQUEST:
+                case ERROR:
                     getRefreshLayout().finishRefresh();
                     itemsAdapter.getLoadMoreModule().loadMoreFail();
                     break;
