@@ -3,10 +3,12 @@ package com.github.lany192.arch.fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
 import com.github.lany192.binding.getBinding
+import kotlinx.coroutines.launch
 
 /**
  * ViewBinding实现基类
@@ -17,22 +19,36 @@ abstract class BoxFragment<VM : LifecycleViewModel, VB : ViewBinding> : BindingF
     @CallSuper
     override fun init() {
         viewModel = getDefaultViewModel()
-        //Loading对话框状态观察
-        viewModel.loadingState.observe(this) { show: Boolean ->
-            if (show) {
-                showLoadingDialog()
-            } else {
-                cancelLoadingDialog()
+        lifecycleScope.launch {
+            //页面基础状态观察
+            launch {
+                viewModel.viewState.collect {
+                    when (it) {
+                        ViewState.CONTENT -> showContentView()
+                        ViewState.ERROR -> showErrorView()
+                        ViewState.EMPTY -> showEmptyView()
+                        ViewState.LOADING -> showLoadingView()
+                        ViewState.NETWORK -> showNetworkView()
+                    }
+                }
             }
-        }
-        //页面基础状态观察
-        viewModel.viewState.observe(this) { state: ViewState ->
-            when (state) {
-                ViewState.CONTENT -> showContentView()
-                ViewState.ERROR -> showErrorView()
-                ViewState.EMPTY -> showEmptyView()
-                ViewState.LOADING -> showLoadingView()
-                ViewState.NETWORK -> showNetworkView()
+            //Loading对话框状态观察
+            launch {
+                viewModel.loadingState.collect {
+                    if (it) {
+                        showLoadingDialog()
+                    } else {
+                        cancelLoadingDialog()
+                    }
+                }
+            }
+            //是否关闭当前界面
+            launch {
+                viewModel.finishState.collect {
+                    if (it) {
+                        requireActivity().finish()
+                    }
+                }
             }
         }
     }
