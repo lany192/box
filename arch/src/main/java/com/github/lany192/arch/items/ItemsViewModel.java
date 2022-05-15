@@ -29,7 +29,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
     @Override
     public void onCreate(@NonNull LifecycleOwner owner) {
         super.onCreate(owner);
-        getViewState().postValue(ViewState.LOADING);
+        showLoadingView();
     }
 
     /**
