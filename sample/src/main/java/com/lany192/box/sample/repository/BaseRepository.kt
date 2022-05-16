@@ -13,7 +13,7 @@ import java.io.IOException
 open class BaseRepository {
     protected var log: Logger.Builder = XLog.tag(javaClass.name)
 
-    fun <T> request(block: suspend () -> ApiResult<T>): Flow<ApiResult<T>> {
+    fun <T : Any> request(block: suspend () -> ApiResult<T>): Flow<ApiResult<T>> {
         return flow { emit(block()) }
             .flowOn(Dispatchers.IO)
             .catch { e ->

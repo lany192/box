@@ -3,18 +3,15 @@ package com.lany192.box.sample.data.bean
 import com.google.gson.annotations.SerializedName
 
 open class PageInfo<T> {
-    /**
-     * 是否有下一页
-     */
-    @SerializedName("hasNext")
-    var hasNext = false
+    val offset: Int = 0
+    val size: Int = 0
+    val total: Int = 0
+    val pageCount: Int = 0
+    val curPage: Int = 0
 
-    @SerializedName("page")
-    var page = 0
+    @SerializedName("over")
+    val over: Boolean = false
 
-    @SerializedName("page_size")
-    var pageSize = 0
-
-    @SerializedName("list")
-    var list: List<T> = ArrayList()
+    @SerializedName("datas")
+    val list: List<T> = ArrayList()
 }

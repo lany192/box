@@ -12,10 +12,13 @@ interface ApiService {
     suspend fun getCityList(): ApiResult<List<Area>>
 
     @GET("/article/list/{page}/json")
-    suspend fun getArticleList(@Path("page") page: Int): ApiResult<ArticleList>
+    suspend fun getArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
     @GET("/article/list/{page}/json")
     fun getHomeArticles(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
+
+    @GET("/user_article/list/{page}/json")
+    suspend fun getSquareArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
 
     @GET("/banner/json")
@@ -40,10 +43,10 @@ interface ApiService {
     fun getBlogType(): Observable<ApiResult<List<SystemParent>>>
 
     @GET("/wxarticle/list/{id}/{page}/json")
-    fun getBlogArticle(
+    suspend fun getBlogArticle(
         @Path("id") id: Int,
         @Path("page") page: Int
-    ): Observable<ApiResult<ArticleList>>
+    ): ApiResult<PageInfo<Article>>
 
     @GET("/project/list/{page}/json")
     fun getProjectTypeDetail(
@@ -94,8 +97,6 @@ interface ApiService {
     @POST("/lg/uncollect_originId/{id}/json")
     fun cancelCollectArticle(@Path("id") id: Int): Observable<ApiResult<ArticleList>>
 
-    @GET("/user_article/list/{page}/json")
-    fun getSquareArticleList(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
 
     @FormUrlEncoded
     @POST("/lg/user_article/add/json")
