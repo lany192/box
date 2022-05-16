@@ -16,25 +16,35 @@ abstract class PageViewModel : ItemsViewModel() {
         block: suspend () -> Flow<ApiResult<T>>
     ) {
         viewModelScope.launch {
-            block().catch { finishRequest() }.collect { result ->
-                if (result.code == 0) {
-                    result.data?.let {
-                        if (refresh) {
-                            resetItems(it.list)
-                            refreshFinish()
-                        } else {
-                            addItems(it.list)
-                            moreLoadFinish()
-                        }
-                        if (it.over) {
-                            moreLoadEnd()
-                        }
-                    } ?: finishRequest()
-                } else {
-                    ToastUtils.show(result.msg)
+            block()
+                .catch {
+                    it.printStackTrace()
                     finishRequest()
+                    showErrorView()
                 }
-            }
+                .collect { result ->
+                    if (result.code == 0) {
+                        if (result.data != null) {
+                            if (refresh) {
+                                resetItems(result.data!!.list)
+                                refreshFinish()
+                            } else {
+                                addItems(result.data!!.list)
+                                moreLoadFinish()
+                            }
+                            if (result.data!!.over) {
+                                moreLoadEnd()
+                            }
+                        } else {
+                            finishRequest()
+                            showErrorView()
+                        }
+                    } else {
+                        ToastUtils.show(result.msg)
+                        finishRequest()
+                        showErrorView()
+                    }
+                }
         }
     }
 }
