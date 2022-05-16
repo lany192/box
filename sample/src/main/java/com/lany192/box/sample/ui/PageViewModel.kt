@@ -9,12 +9,21 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
+import java.util.function.Function
 
 abstract class PageViewModel : ItemsViewModel() {
 
     fun <T : PageInfo<*>> getPageInfo(
         refresh: Boolean,
         block: suspend () -> Flow<ApiResult<T>>
+    ) {
+        getPageInfo(refresh, block) { t -> t.list }
+    }
+
+    fun <T : PageInfo<*>> getPageInfo(
+        refresh: Boolean,
+        block: suspend () -> Flow<ApiResult<T>>,
+        function: Function<T, List<Any?>>
     ) {
         viewModelScope.launch {
             block()
@@ -29,11 +38,12 @@ abstract class PageViewModel : ItemsViewModel() {
                 .collect { result ->
                     if (result.code == 0) {
                         result.data?.apply {
+                            val items = function.apply(result.data!!).filterNotNull()
                             if (refresh) {
-                                resetItems(result.data!!.list)
+                                resetItems(items)
                                 refreshFinish()
                             } else {
-                                addItems(result.data!!.list)
+                                addItems(items)
                                 moreLoadFinish()
                             }
                             if (result.data!!.over) {
