@@ -37,8 +37,9 @@ abstract class PageViewModel : ItemsViewModel() {
                 }
                 .collect { result ->
                     if (result.code == 0) {
-                        result.data?.apply {
-                            val items = function.apply(result.data!!).filterNotNull()
+                        val data = result.data
+                        if (data != null) {
+                            val items = function.apply(data).filterNotNull()
                             if (refresh) {
                                 resetItems(items)
                                 refreshFinish()
@@ -46,10 +47,10 @@ abstract class PageViewModel : ItemsViewModel() {
                                 addItems(items)
                                 moreLoadFinish()
                             }
-                            if (result.data!!.over) {
+                            if (data.over) {
                                 moreLoadEnd()
                             }
-                        } ?: apply {
+                        } else {
                             requestError()
                         }
                     } else {
