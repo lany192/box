@@ -7,6 +7,7 @@ import com.lany192.box.sample.data.bean.ApiResult
 import com.lany192.box.sample.data.bean.PageInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 
 abstract class PageViewModel : ItemsViewModel() {
@@ -19,12 +20,15 @@ abstract class PageViewModel : ItemsViewModel() {
             block()
                 .catch {
                     it.printStackTrace()
-                    finishRequest()
+                    requestError()
                     showErrorView()
+                }
+                .onCompletion {
+                    showContentView()
                 }
                 .collect { result ->
                     if (result.code == 0) {
-                        if (result.data != null) {
+                        result.data?.apply {
                             if (refresh) {
                                 resetItems(result.data!!.list)
                                 refreshFinish()
@@ -35,14 +39,12 @@ abstract class PageViewModel : ItemsViewModel() {
                             if (result.data!!.over) {
                                 moreLoadEnd()
                             }
-                        } else {
-                            finishRequest()
-                            showErrorView()
+                        } ?: apply {
+                            requestError()
                         }
                     } else {
                         ToastUtils.show(result.msg)
-                        finishRequest()
-                        showErrorView()
+                        requestError()
                     }
                 }
         }

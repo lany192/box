@@ -67,7 +67,7 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
             switch (state) {
                 case ERROR:
                     getRefreshLayout().finishRefresh();
-                    itemsAdapter.getLoadMoreModule().loadMoreFail();
+                    itemsAdapter.loadMoreFail();
                     break;
                 case REFRESHING:
                     break;
@@ -79,10 +79,6 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
                 case MORE_LOAD_END:
                     getRefreshLayout().finishRefresh();
                     itemsAdapter.loadMoreEnd();
-                    break;
-                case MORE_LOAD_ERROR:
-                    getRefreshLayout().finishRefresh();
-                    itemsAdapter.loadMoreFail();
                     break;
                 case MORE_LOAD_FINISH:
                     getRefreshLayout().finishRefresh();

@@ -70,13 +70,6 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
     }
 
     /**
-     * 更多加载失败
-     */
-    public void moreLoadError() {
-        listState.postValue(ListState.MORE_LOAD_ERROR);
-    }
-
-    /**
      * 结束加载更多
      */
     public void moreLoadFinish() {
@@ -93,7 +86,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
     /**
      * 异常停止请求
      */
-    public void finishRequest() {
+    public void requestError() {
         listState.postValue(ListState.ERROR);
         this.listLiveData.stopRequest();
     }

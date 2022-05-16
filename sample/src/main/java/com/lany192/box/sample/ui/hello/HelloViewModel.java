@@ -44,7 +44,7 @@ public class HelloViewModel extends ItemsViewModel {
                     @Override
                     public void onFailure(String msg, int code) {
                         ToastUtils.show(msg);
-                        finishRequest();
+                        requestError();
                     }
                 });
     }
