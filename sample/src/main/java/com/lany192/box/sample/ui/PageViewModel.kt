@@ -20,10 +20,10 @@ abstract class PageViewModel : ItemsViewModel() {
                 if (result.code == 0) {
                     result.data?.let {
                         if (refresh) {
-                            resetItems(it.datas)
+                            resetItems(it.list)
                             refreshFinish()
                         } else {
-                            addItems(it.datas)
+                            addItems(it.list)
                             moreLoadFinish()
                         }
                         if (it.over) {
