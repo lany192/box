@@ -7,10 +7,15 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.github.lany192.view.R;
 
@@ -21,6 +26,14 @@ public class EllipsizeTextView extends BoxTextView {
     private TextView.BufferType mBufferType = TextView.BufferType.NORMAL;
     private Layout mLayout;
     private CharSequence mOrigText;
+    private final int mOrigMaxLines;
+    String PACK_UP = "收起";
+    String mToExpandHint = "全文";
+    /**
+     * 是否已经展开
+     */
+    private boolean expand;
+    private boolean expandable;
 
     public EllipsizeTextView(Context context) {
         this(context, null);
@@ -32,13 +45,59 @@ public class EllipsizeTextView extends BoxTextView {
 
     public EllipsizeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mOrigMaxLines = getMaxLines();
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                setTextInternal(getNewTextByConfig(), mBufferType);
+                updateView();
             }
         });
+    }
+
+    private void updateView() {
+        if (expandable) {
+            if (expand) {
+                setTextInternal(getOriginalText(), mBufferType);
+            } else {
+                setTextInternal(getNewTextByConfig(), mBufferType);
+            }
+        } else {
+            setTextInternal(getNewTextByConfig(), mBufferType);
+        }
+    }
+
+    /**
+     * 是否可以展开
+     */
+    public void setExpandable(boolean expandable) {
+        this.expandable = expandable;
+        if (expandable) {
+            setMovementMethod(LinkMovementMethod.getInstance());
+        }
+    }
+
+    private CharSequence getOriginalText() {
+        if (TextUtils.isEmpty(mOrigText)) {
+            return mOrigText;
+        }
+        SpannableStringBuilder builder = new SpannableStringBuilder(mOrigText);
+        builder.append(getContentOfString(PACK_UP));
+        builder.setSpan(new ClickableSpan() {
+            @Override
+            public void updateDrawState(@NonNull TextPaint paint) {
+                paint.setColor(getResources().getColor(R.color.primary));
+                paint.setUnderlineText(false);
+            }
+
+            @Override
+            public void onClick(@NonNull View widget) {
+                expand = false;
+                setMaxLines(mOrigMaxLines);
+                setTextInternal(getNewTextByConfig(), mBufferType);
+            }
+        }, builder.length() - getLengthOfString(PACK_UP), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return builder;
     }
 
     private CharSequence getNewTextByConfig() {
@@ -70,7 +129,7 @@ public class EllipsizeTextView extends BoxTextView {
         }
         int indexEnd = getValidLayout().getLineEnd(getMaxLines() - 1);
         int indexStart = getValidLayout().getLineStart(getMaxLines() - 1);
-        String mToExpandHint = "全文";
+
         String mGapToExpandHint = " ";
         String mEllipsisHint = "...";
         int indexEndTrimmed = indexEnd - getLengthOfString(mEllipsisHint) - (getLengthOfString(mToExpandHint) + getLengthOfString(mGapToExpandHint));
@@ -109,12 +168,30 @@ public class EllipsizeTextView extends BoxTextView {
         }
 
         CharSequence fixText = removeEndLineBreak(mOrigText.subSequence(0, indexEndTrimmedRevised));
-        SpannableStringBuilder ssbShrink = new SpannableStringBuilder(fixText);
-        ssbShrink.append(mEllipsisHint);
-        ssbShrink.append(getContentOfString(mGapToExpandHint));
-        ssbShrink.append(getContentOfString(mToExpandHint));
-        ssbShrink.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.primary)), ssbShrink.length() - getLengthOfString(mToExpandHint), ssbShrink.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return ssbShrink;
+
+        SpannableStringBuilder builder = new SpannableStringBuilder(fixText);
+        builder.append(mEllipsisHint);
+        builder.append(getContentOfString(mGapToExpandHint));
+        builder.append(getContentOfString(mToExpandHint));
+        if (expandable) {
+            builder.setSpan(new ClickableSpan() {
+                @Override
+                public void updateDrawState(@NonNull TextPaint paint) {
+                    paint.setColor(getResources().getColor(R.color.primary));
+                    paint.setUnderlineText(false);
+                }
+
+                @Override
+                public void onClick(@NonNull View widget) {
+                    expand = true;
+                    setMaxLines(Integer.MAX_VALUE);
+                    setTextInternal(getOriginalText(), mBufferType);
+                }
+            }, builder.length() - getLengthOfString(mToExpandHint), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else {
+            builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.primary)), builder.length() - getLengthOfString(mToExpandHint), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return builder;
     }
 
     private CharSequence removeEndLineBreak(CharSequence text) {

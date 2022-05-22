@@ -28,5 +28,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
         binding.title.setText(item.getTitle());
         binding.desc.setText(item.getAuthor());
         binding.time.setText(DateUtils.format(new Date(item.getPublishTime())));
+
+        binding.demo.setExpandable(position % 2 == 0);
     }
 }

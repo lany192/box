@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    app:strokeWidth="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +8,8 @@
     android:background="?attr/selectableItemBackground"
     app:cardBackgroundColor="@color/white_bg"
     app:cardCornerRadius="8dp"
-    app:cardElevation="0dp">
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/LeftRoundedStyle" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Zootopia" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@id/title"
             tools:text="1 h 45 min" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.github.lany192.textview.BoxTextView
             android:id="@+id/time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -68,6 +68,17 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/desc"
             tools:text="1 h 45 min" />
+
+        <com.github.lany192.textview.EllipsizeTextView
+            android:id="@+id/demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:padding="8dp"
+            android:text="@string/lorem_ipsum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
