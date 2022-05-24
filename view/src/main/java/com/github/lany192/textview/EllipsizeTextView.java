@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.elvishew.xlog.XLog;
 import com.github.lany192.view.R;
 
 /**
@@ -104,7 +105,6 @@ public class EllipsizeTextView extends BoxTextView {
         if (TextUtils.isEmpty(mOrigText)) {
             return mOrigText;
         }
-
         mLayout = getLayout();
         int mLayoutWidth = 0;
         if (mLayout != null) {
@@ -136,15 +136,20 @@ public class EllipsizeTextView extends BoxTextView {
         if (indexEndTrimmed <= indexStart) {
             indexEndTrimmed = indexEnd;
         }
-        int remainWidth = getValidLayout().getWidth() -
-                (int) (textPaint.measureText(mOrigText.subSequence(indexStart, indexEndTrimmed).toString()) + 0.5);
-        float widthTailReplaced = textPaint.measureText(getContentOfString(mEllipsisHint)
-                + ((getContentOfString(mToExpandHint) + getContentOfString(mGapToExpandHint))));
+        XLog.i("测试：最后一行开始和结束区间，" + indexStart + "，" + indexEnd + "，处理后的结束索引：" + indexEndTrimmed);
+
+        //遗留宽度
+        int remainWidth = getValidLayout().getWidth() - (int) (textPaint.measureText(mOrigText.subSequence(indexStart, indexEndTrimmed).toString()) + 0.5);
+        //追加文字的宽度
+        float widthTailReplaced = textPaint.measureText(getContentOfString(mEllipsisHint) + ((getContentOfString(mToExpandHint) + getContentOfString(mGapToExpandHint))));
 
         int indexEndTrimmedRevised = indexEndTrimmed;
         int extraOffset = 0;
         int extraWidth = 0;
+
+        XLog.i("测试：2222222222222222222222222，" + remainWidth + "，" + widthTailReplaced + "，" + indexEndTrimmed);
         if (remainWidth > widthTailReplaced) {
+            XLog.i("测试：333333333333333333333");
             while (remainWidth > widthTailReplaced + extraWidth) {
                 extraOffset++;
                 if (indexEndTrimmed + extraOffset <= mOrigText.length()) {
@@ -156,6 +161,7 @@ public class EllipsizeTextView extends BoxTextView {
             }
             indexEndTrimmedRevised += extraOffset - 1;
         } else {
+            XLog.i("测试：4444444444444444444444444");
             while (remainWidth + extraWidth < widthTailReplaced) {
                 extraOffset--;
                 if (indexEndTrimmed + extraOffset > indexStart) {
@@ -166,6 +172,8 @@ public class EllipsizeTextView extends BoxTextView {
             }
             indexEndTrimmedRevised += extraOffset;
         }
+        XLog.i("测试：555" + mOrigText.subSequence(0, indexEndTrimmedRevised));
+
 
         CharSequence fixText = removeEndLineBreak(mOrigText.subSequence(0, indexEndTrimmedRevised));
 
