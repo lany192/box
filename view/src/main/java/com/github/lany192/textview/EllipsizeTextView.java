@@ -210,7 +210,9 @@ public class EllipsizeTextView extends BoxTextView {
         if (TextUtils.isEmpty(text)) {
             text = "";
         }
-        mOrigText = text;
+        if (TextUtils.isEmpty(mOrigText)) {
+            mOrigText = text;
+        }
         mBufferType = type;
         setTextInternal(getNewTextByConfig(), type);
     }
