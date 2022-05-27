@@ -23,7 +23,7 @@
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
-    <com.github.lany192.imageview.SquareImageView
+    <com.github.lany192.image.SquareImageView
         android:id="@+id/goto_top"
         android:layout_width="40dp"
         android:layout_height="40dp"

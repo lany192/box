@@ -17,7 +17,7 @@
         android:paddingRight="20dp"
         android:paddingBottom="30dp">
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:textSize="17sp"
             app:text_middle_bold="true" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         android:layout_height="48dp"
         android:orientation="horizontal">
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/left_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -72,7 +72,7 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/right_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"

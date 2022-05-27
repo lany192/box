@@ -23,7 +23,7 @@
             android:layout_height="80dp"
             android:background="@mipmap/ic_launcher" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -157,14 +157,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XX公司 版权所有"
             android:textColor="@color/text_4level"
             android:textSize="13sp" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="copyright © 2021 xxxx, Inc."

@@ -18,7 +18,7 @@
             android:scaleType="fitXY"
             android:src="@mipmap/a" />
 
-        <com.github.lany192.textview.IconTextView
+        <com.github.lany192.text.IconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -31,7 +31,7 @@
             app:itv_icon_size="28dp"
             app:itv_text_middle_bold="true" />
 
-        <com.github.lany192.textview.IconTextView
+        <com.github.lany192.text.IconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -44,7 +44,7 @@
             app:itv_icon_padding="8dp"
             app:itv_icon_size="28dp" />
 
-        <com.github.lany192.textview.IconTextView
+        <com.github.lany192.text.IconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

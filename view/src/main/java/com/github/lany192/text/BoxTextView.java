@@ -1,4 +1,4 @@
-package com.github.lany192.textview;
+package com.github.lany192.text;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

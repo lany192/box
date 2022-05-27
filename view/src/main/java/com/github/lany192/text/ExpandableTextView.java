@@ -1,4 +1,4 @@
-package com.github.lany192.textview;
+package com.github.lany192.text;
 
 import android.content.Context;
 import android.text.DynamicLayout;

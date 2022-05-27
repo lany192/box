@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_green_light">
 
-    <com.github.lany192.textview.BoxTextView
+    <com.github.lany192.text.BoxTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

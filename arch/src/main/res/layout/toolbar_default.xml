@@ -19,7 +19,7 @@
         tools:layout_height="@dimen/actionbar_height"
         tools:layout_width="@dimen/actionbar_height" />
 
-    <com.github.lany192.textview.BoxTextView
+    <com.github.lany192.text.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
@@ -35,7 +35,7 @@
         tools:layout_height="@dimen/actionbar_height"
         tools:text="标题" />
 
-    <com.github.lany192.textview.BoxTextView
+    <com.github.lany192.text.BoxTextView
         android:id="@+id/right"
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
