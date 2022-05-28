@@ -32,17 +32,9 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
-    //日志工具 https://github.com/elvishew/xLog
-    implementation 'com.elvishew:xlog:1.11.0'
-    //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
-    implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.4'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'io.github.scwang90:refresh-layout-kernel:2.0.5'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestDependencies.each { k, v -> androidTestImplementation v }
+    testImplementationDependencies.each { k, v -> testImplementation v }
+    implementationDependencies.each { k, v -> implementation v }
 
     implementation project(':core')
 }

@@ -53,7 +53,7 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
             XLog.tag(TAG).i("手机基本信息:" + PhoneUtils.getBaseInfo());
             XLog.tag(TAG).e(e.getLocalizedMessage());
-            XLog.tag(TAG).enableStackTrace(20).e(TAG, "程序崩溃退出", e);
+            XLog.tag(TAG).enableStackTrace(40).e(TAG, "程序崩溃退出", e);
             Log.e(TAG, "程序崩溃退出", e);
         });
     }

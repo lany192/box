@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.CallSuper
@@ -18,6 +20,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
 import com.github.lany192.arch.R
+import com.github.lany192.arch.event.HideSoftInputEvent
 import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.dialog.LoadingDialog
 import com.gyf.immersionbar.ImmersionBar
@@ -159,5 +162,10 @@ abstract class BaseActivity : AppCompatActivity() {
                 currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
             )
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    open fun onEvent(event: HideSoftInputEvent) {
+        Handler(Looper.getMainLooper()).postDelayed({ hideSoftInput() }, 300)
     }
 }

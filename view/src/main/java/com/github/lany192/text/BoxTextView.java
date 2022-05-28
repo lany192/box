@@ -1,28 +1,29 @@
 package com.github.lany192.text;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.github.lany192.view.R;
+import com.google.android.material.textview.MaterialTextView;
 
-@SuppressLint("AppCompatCustomView")
-public class BoxTextView extends TextView {
+public class BoxTextView extends MaterialTextView {
+    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     /**
      * 是否中等粗细
      */
     private boolean middleBold;
 
     public BoxTextView(Context context) {
-        super(context, null);
+        this(context, null);
     }
 
     public BoxTextView(Context context, @Nullable AttributeSet attrs) {

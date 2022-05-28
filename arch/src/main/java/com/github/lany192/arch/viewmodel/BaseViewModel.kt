@@ -102,7 +102,11 @@ open class BaseViewModel : ViewModel() {
     /**
      * 带加载对话框的请求
      */
-    suspend fun <T> request(block: suspend () -> Flow<T>): Flow<T> {
+    suspend fun <T> requestWithLoading(block: suspend () -> Flow<T>): Flow<T> {
         return block().onStart { showLoadingDialog() }.onCompletion { cancelLoadingDialog() }
+    }
+
+    fun onRetry() {
+
     }
 }

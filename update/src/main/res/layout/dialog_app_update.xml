@@ -10,8 +10,7 @@
     app:bl_corners_topLeftRadius="10dp"
     app:bl_corners_topRightRadius="10dp"
     app:bl_solid_color="@color/white_bg"
-    tools:background="@android:color/holo_orange_dark"
-    >
+    tools:background="@android:color/holo_orange_dark">
 
     <com.github.lany192.text.BoxTextView
         android:id="@+id/title"

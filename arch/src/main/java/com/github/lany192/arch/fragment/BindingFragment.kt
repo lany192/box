@@ -26,9 +26,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
     open val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = getViewBinding(inflater, container)
         content = FixDragLayout(requireContext())

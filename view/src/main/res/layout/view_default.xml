@@ -24,7 +24,7 @@
         android:textSize="13sp" />
 
     <com.github.lany192.text.BoxTextView
-        android:id="@+id/hint"
+        android:id="@+id/retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
