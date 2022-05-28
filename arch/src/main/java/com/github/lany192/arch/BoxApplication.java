@@ -13,6 +13,7 @@ import com.elvishew.xlog.XLog;
 import com.elvishew.xlog.formatter.message.json.DefaultJsonFormatter;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.file.FilePrinter;
+import com.github.lany192.arch.utils.DeviceId;
 import com.github.lany192.arch.utils.PhoneUtils;
 import com.github.lany192.dialog.DialogHelper;
 import com.github.lany192.log.LogFileFormat;
@@ -39,6 +40,7 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         DialogHelper.get().init(this);
         initCatchException();
         initRefreshView();
+        DeviceId.get().grantedSDPermission();
     }
 
     @NonNull
@@ -51,7 +53,7 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
             XLog.tag(TAG).i("手机基本信息:" + PhoneUtils.getBaseInfo());
             XLog.tag(TAG).e(e.getLocalizedMessage());
-            XLog.tag(TAG).enableStackTrace(10).e(TAG, "程序崩溃退出", e);
+            XLog.tag(TAG).enableStackTrace(20).e(TAG, "程序崩溃退出", e);
             Log.e(TAG, "程序崩溃退出", e);
         });
     }
