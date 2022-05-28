@@ -369,6 +369,18 @@ public class IconTextView extends MaterialTextView {
     }
 
     /**
+     * Gets the icon shown for this button, if present.
+     *
+     * @return Icon shown for this button, if present.
+     * @attr ref com.google.android.material.R.styleable#MaterialButton_icon
+     * @see #setIcon(Drawable)
+     * @see #setIcon(int)
+     */
+    public Drawable getIcon() {
+        return icon;
+    }
+
+    /**
      * Sets the icon drawable resource to show for this button. By default, this icon will be shown on
      * the left side of the button.
      *
@@ -377,7 +389,7 @@ public class IconTextView extends MaterialTextView {
      * @see #setIcon(Drawable)
      * @see #getIcon()
      */
-    public void setIconResource(@DrawableRes int iconResourceId) {
+    public void setIcon(@DrawableRes int iconResourceId) {
         Drawable icon = null;
         if (iconResourceId != 0) {
             icon = AppCompatResources.getDrawable(getContext(), iconResourceId);
@@ -386,24 +398,12 @@ public class IconTextView extends MaterialTextView {
     }
 
     /**
-     * Gets the icon shown for this button, if present.
-     *
-     * @return Icon shown for this button, if present.
-     * @attr ref com.google.android.material.R.styleable#MaterialButton_icon
-     * @see #setIcon(Drawable)
-     * @see #setIconResource(int)
-     */
-    public Drawable getIcon() {
-        return icon;
-    }
-
-    /**
      * Sets the icon to show for this button. By default, this icon will be shown on the left side of
      * the button.
      *
      * @param icon Drawable to use for the button's icon.
      * @attr ref com.google.android.material.R.styleable#MaterialButton_icon
-     * @see #setIconResource(int)
+     * @see #setIcon(int)
      * @see #getIcon()
      */
     public void setIcon(@Nullable Drawable icon) {
