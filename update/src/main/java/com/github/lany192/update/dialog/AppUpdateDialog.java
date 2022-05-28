@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.github.lany192.dialog.BottomDialog;
+import com.github.lany192.dialog.BaseDialog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.databinding.DialogAppUpdateBinding;
@@ -16,11 +16,16 @@ import com.github.lany192.update.utils.Constant;
 
 import java.io.File;
 
-public class AppUpdateDialog extends BottomDialog<DialogAppUpdateBinding>
+public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
         implements View.OnClickListener, OnDownloadListener {
     private final int install = 0x45F;
     private boolean forcedUpgrade;
     private File apk;
+
+    @Override
+    protected boolean bottomStyle() {
+        return true;
+    }
 
     @Override
     protected void init() {

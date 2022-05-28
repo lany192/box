@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import androidx.annotation.StringRes;
 
 import com.github.lany192.dialog.databinding.DialogLoadingBinding;
+import com.github.lany192.utils.ContextUtils;
 
 import java.util.Objects;
 
@@ -43,6 +44,6 @@ public class LoadingDialog extends BaseDialog<DialogLoadingBinding> {
     }
 
     public void setMessage(@StringRes int resId) {
-        this.mMessage = getString(resId);
+        this.mMessage = ContextUtils.getContext().getString(resId);
     }
 }

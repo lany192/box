@@ -7,7 +7,7 @@
     <!--主色 - 中-->
     <color name="primary_middle">#338056</color>
     <!--主色 - 灰-->
-    <color name="primary_gray">#4D38985E</color>
+    <color name="primary_gray">#263833</color>
     <!--主色 - 浅-->
     <color name="primary_light">#1A38985E</color>
     <!--辅助 - 红-->
@@ -23,15 +23,13 @@
     <!--一级字-->
     <color name="text_1level">#BCC5CC</color>
     <!--二级字-->
-    <color name="text_2level">#8D9499</color>
+    <color name="text_2level">#98A0A6</color>
     <!--三级字-->
-    <color name="text_3level">#91999E</color>
+    <color name="text_3level">#757B80</color>
     <!--四级字-->
     <color name="text_4level">#54595C</color>
     <!--五级字-->
     <color name="text_5level">#383B3D</color>
-    <!--星星-->
-    <color name="star">#373B3D</color>
     <!--底色-->
     <color name="gray_bg">#111214</color>
     <!--标签描边-->
@@ -46,4 +44,6 @@
     <color name="white_bg">#1C1D21</color>
     <!--图标白色 -->
     <color name="icon_white">#54595C</color>
+    <!--特殊色 -->
+    <color name="special">#232429</color>
 </resources>
