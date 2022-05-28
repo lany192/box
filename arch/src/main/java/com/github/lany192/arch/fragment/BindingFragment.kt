@@ -30,7 +30,7 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
     ): View {
         _binding = getViewBinding(inflater, container)
         content = FixDragLayout(requireContext())
-        content.addView(binding.root)
+        content.addView(_binding!!.root)
         init()
         return content
     }
