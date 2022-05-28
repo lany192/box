@@ -17,7 +17,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ContextUtils;
-import com.github.lany192.utils.MD5Utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -25,6 +24,15 @@ import java.util.List;
 
 public class PhoneUtils {
     private static String BASE_INFO;
+
+    /**
+     * app重启
+     */
+    public static void restart(Context context) {
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
+    }
 
     /**
      * 获取手机的基本信息:系统类型/屏幕信息/手机型号/系统版本号/app版本号/发布渠道/手机号码
@@ -77,8 +85,6 @@ public class PhoneUtils {
 
     /**
      * 获取手机型号
-     *
-     * @return
      */
     public static String getPhoneModel() {
         return android.os.Build.MODEL;
@@ -86,8 +92,6 @@ public class PhoneUtils {
 
     /**
      * 序列号
-     *
-     * @return
      */
     public static String getSerial() {
         return android.os.Build.SERIAL;
@@ -95,8 +99,6 @@ public class PhoneUtils {
 
     /**
      * 获取系统版本号
-     *
-     * @return
      */
     public static String getOSVersionName() {
         return android.os.Build.VERSION.RELEASE;
@@ -104,8 +106,6 @@ public class PhoneUtils {
 
     /**
      * 获取系统版本号
-     *
-     * @return
      */
     public static int getOSVersionCode() {
         return android.os.Build.VERSION.SDK_INT;
@@ -113,8 +113,6 @@ public class PhoneUtils {
 
     /**
      * 获取app版本code
-     *
-     * @return
      */
     public static int getAppVersionCode() {
         PackageManager pm = ContextUtils.getContext().getPackageManager();
@@ -129,8 +127,6 @@ public class PhoneUtils {
 
     /**
      * 获取app版本name
-     *
-     * @return
      */
     public static String getAppVersionName() {
         PackageManager pm = ContextUtils.getContext().getPackageManager();
@@ -148,19 +144,6 @@ public class PhoneUtils {
      */
     public static String getAndroidId() {
         return Settings.Secure.getString(ContextUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-    }
-
-    /**
-     * 设备唯一编号
-     *
-     * @return
-     */
-    public static String getPhoneId() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getDeviceId());
-        sb.append(getAndroidId());
-        sb.append(getSerial());
-        return MD5Utils.md5(sb.toString());
     }
 
     /**
