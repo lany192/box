@@ -7,7 +7,7 @@ import com.github.lany192.binding.getBinding
 /**
  * 默认toolbar，无ViewModel
  */
-abstract class ContentActivity<VB : ViewBinding> : BindingActivity<VB, ToolbarDefaultBinding>() {
+abstract class ContentActivity<VB : ViewBinding> : VBActivity<VB, ToolbarDefaultBinding>() {
 
     override fun getToolbarBinding(): ToolbarDefaultBinding {
         return ToolbarDefaultBinding.inflate(layoutInflater)

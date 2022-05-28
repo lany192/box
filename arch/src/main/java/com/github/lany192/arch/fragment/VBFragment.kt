@@ -17,7 +17,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * ViewBinding实现基类
  */
-abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
+abstract class VBFragment<VB : ViewBinding> : BaseFragment() {
     private var _binding: VB? = null
 
     private lateinit var content: FrameLayout

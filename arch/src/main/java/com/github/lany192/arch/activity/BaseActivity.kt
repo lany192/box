@@ -52,6 +52,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    @CallSuper
     override fun onDestroy() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this)

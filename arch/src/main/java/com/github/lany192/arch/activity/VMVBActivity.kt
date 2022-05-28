@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 /**
  * ViewBinding实现基类
  */
-abstract class ModelBindingActivity<VM : LifecycleViewModel, CVB : ViewBinding, TVB : ViewBinding> :
-    BindingActivity<CVB, TVB>() {
+abstract class VMVBActivity<VM : LifecycleViewModel, CVB : ViewBinding, TVB : ViewBinding> :
+    VBActivity<CVB, TVB>() {
 
     lateinit var viewModel: VM
 

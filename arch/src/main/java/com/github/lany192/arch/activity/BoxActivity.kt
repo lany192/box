@@ -9,7 +9,7 @@ import com.github.lany192.binding.getBinding
  * 使用默认toolbar
  */
 abstract class BoxActivity<VM : LifecycleViewModel, VB : ViewBinding> :
-    ModelBindingActivity<VM, VB, ToolbarDefaultBinding>() {
+    VMVBActivity<VM, VB, ToolbarDefaultBinding>() {
 
     override fun getToolbarBinding(): ToolbarDefaultBinding {
         return ToolbarDefaultBinding.inflate(layoutInflater)
