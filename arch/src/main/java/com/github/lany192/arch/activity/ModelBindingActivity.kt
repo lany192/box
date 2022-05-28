@@ -1,12 +1,14 @@
 package com.github.lany192.arch.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.CallSuper
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
 import com.github.lany192.binding.getBinding
+import com.github.lany192.view.DefaultView
 import kotlinx.coroutines.launch
 
 /**
@@ -65,5 +67,11 @@ abstract class ModelBindingActivity<VM : LifecycleViewModel, CVB : ViewBinding, 
 
     override fun getContentBinding(): CVB {
         return getClass<CVB>(1).getBinding(layoutInflater)
+    }
+
+    override fun getErrorView(): View {
+        val view = DefaultView(this)
+        view.setMessage(viewModel.error.value)
+        return view
     }
 }

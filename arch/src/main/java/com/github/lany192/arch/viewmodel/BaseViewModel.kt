@@ -27,9 +27,15 @@ open class BaseViewModel : ViewModel() {
      */
     private val _finishState = MutableStateFlow(false)
 
+    /**
+     * 异常信息
+     */
+    private val _error = MutableStateFlow<CharSequence>("发现异常")
+
     val viewState: StateFlow<ViewState> = _viewState
     val loadingState: StateFlow<Boolean> = _loadingState
     val finishState: StateFlow<Boolean> = _finishState
+    val error: StateFlow<CharSequence> = _error
 
     /**
      * 显示加载对话框
@@ -64,6 +70,14 @@ open class BaseViewModel : ViewModel() {
      * 显示异常界面
      */
     fun showErrorView() {
+        _viewState.value = ViewState.ERROR
+    }
+
+    /**
+     * 显示异常界面
+     */
+    fun showErrorView(error: CharSequence) {
+        _error.value = error
         _viewState.value = ViewState.ERROR
     }
 

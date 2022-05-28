@@ -1,6 +1,7 @@
 package com.github.lany192.arch.fragment
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.lifecycle.lifecycleScope
@@ -8,6 +9,7 @@ import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
 import com.github.lany192.binding.getBinding
+import com.github.lany192.view.DefaultView
 import kotlinx.coroutines.launch
 
 /**
@@ -60,4 +62,11 @@ abstract class BoxFragment<VM : LifecycleViewModel, VB : ViewBinding> : BindingF
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
         return getClass<VB>(1).getBinding(inflater, container)
     }
+
+    override fun getErrorView(): View {
+        val view = DefaultView(this)
+        view.setMessage(viewModel.error.value)
+        return view
+    }
+
 }
