@@ -35,7 +35,7 @@ public class BoxButton extends MaterialButton {
         super(context, attrs, defStyleAttr);
         if (attrs != null) {
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.BoxButton);
-            middleBold = typedArray.getBoolean(R.styleable.BoxButton_text_middle_bold, middleBold);
+            middleBold = typedArray.getBoolean(R.styleable.BoxButton_text_style_middle_bold, middleBold);
             typedArray.recycle();
         }
         setText(getText());

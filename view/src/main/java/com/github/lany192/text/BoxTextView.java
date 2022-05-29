@@ -34,7 +34,7 @@ public class BoxTextView extends MaterialTextView {
         super(context, attrs, defStyleAttr);
         if (attrs != null) {
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.BoxTextView);
-            middleBold = typedArray.getBoolean(R.styleable.BoxTextView_text_middle_bold, middleBold);
+            middleBold = typedArray.getBoolean(R.styleable.BoxTextView_text_style_middle_bold, middleBold);
             typedArray.recycle();
         }
         setText(getText());

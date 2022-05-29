@@ -32,7 +32,7 @@ public class RatioImageView extends ShapeableImageView {
         super(context, attrs, defStyleAttr);
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RatioImageView, 0, 0);
-            ratio = array.getFloat(R.styleable.RatioImageView_riv_ratio, 0.0f);
+            ratio = array.getFloat(R.styleable.RatioImageView_image_ratio, 0.0f);
             array.recycle();
         }
     }

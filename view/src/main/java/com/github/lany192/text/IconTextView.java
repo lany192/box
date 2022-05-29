@@ -118,13 +118,13 @@ public class IconTextView extends MaterialTextView {
         super(context, attrs, defStyleAttr);
         final TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.IconTextView, 0, 0);
         if (attributes != null) {
-            iconPadding = attributes.getDimensionPixelSize(R.styleable.IconTextView_itv_icon_padding, 0);
-            iconTintMode = parseTintMode(attributes.getInt(R.styleable.IconTextView_itv_icon_tint_mode, -1));
-            iconTint = getColorStateList(getContext(), attributes, R.styleable.IconTextView_itv_icon_color);
-            icon = getDrawable(getContext(), attributes, R.styleable.IconTextView_itv_icon);
-            iconGravity = attributes.getInteger(R.styleable.IconTextView_itv_icon_gravity, ICON_GRAVITY_START);
-            iconSize = attributes.getDimensionPixelSize(R.styleable.IconTextView_itv_icon_size, 0);
-            middleBold = attributes.getBoolean(R.styleable.IconTextView_itv_text_middle_bold, false);
+            iconPadding = attributes.getDimensionPixelSize(R.styleable.IconTextView_icon_padding, 0);
+            iconTintMode = parseTintMode(attributes.getInt(R.styleable.IconTextView_icon_tint_mode, -1));
+            iconTint = getColorStateList(getContext(), attributes, R.styleable.IconTextView_icon_color);
+            icon = getDrawable(getContext(), attributes, R.styleable.IconTextView_icon);
+            iconGravity = attributes.getInteger(R.styleable.IconTextView_icon_gravity, ICON_GRAVITY_START);
+            iconSize = attributes.getDimensionPixelSize(R.styleable.IconTextView_icon_size, 0);
+            middleBold = attributes.getBoolean(R.styleable.IconTextView_text_style_middle_bold, false);
             attributes.recycle();
         }
         setText(getText());

@@ -13,5 +13,5 @@
         android:text="手机密码登录"
         android:textColor="#26262A"
         android:textSize="24sp"
-        app:text_middle_bold="true" />
+        app:text_style_middle_bold="true" />
 </FrameLayout>

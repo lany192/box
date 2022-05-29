@@ -31,7 +31,7 @@
         android:maxLines="1"
         android:textColor="@color/text_1level"
         android:textSize="18sp"
-        app:text_middle_bold="true"
+        app:text_style_middle_bold="true"
         tools:layout_height="@dimen/actionbar_height"
         tools:text="标题" />
 
