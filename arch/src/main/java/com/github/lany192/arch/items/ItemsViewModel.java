@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.viewmodel.LifecycleViewModel;
-import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.NetUtils;
 
 import java.util.List;
@@ -123,7 +122,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      */
     public void onRefresh() {
         listState.postValue(ListState.REFRESHING);
-        if (NetUtils.isAvailable(ContextUtils.getContext())) {
+        if (NetUtils.isAvailable()) {
             page = 1;
             request(true);
         } else {
@@ -137,7 +136,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      */
     public void onLoadMore() {
         listState.postValue(ListState.MORE_LOADING);
-        if (NetUtils.isAvailable(ContextUtils.getContext())) {
+        if (NetUtils.isAvailable()) {
             page += 1;
             request(false);
         } else {
