@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 /**
  * ViewBinding实现基类
  */
-abstract class BoxFragment<VM : LifecycleViewModel, VB : ViewBinding> : VBFragment<VB>() {
+abstract class VMVBFragment<VM : LifecycleViewModel, VB : ViewBinding> : VBFragment<VB>() {
     lateinit var viewModel: VM
 
     @CallSuper

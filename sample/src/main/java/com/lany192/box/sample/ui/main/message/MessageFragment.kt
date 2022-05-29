@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.main.message
 
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.BoxFragment
+import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.gyf.immersionbar.ImmersionBar
@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/page/message")
-class MessageFragment : BoxFragment<MessageViewModel, FragmentMessageBinding>() {
+class MessageFragment : VMVBFragment<MessageViewModel, FragmentMessageBinding>() {
 
     override fun initImmersionBar() {
         ImmersionBar.with(this)
@@ -24,7 +24,7 @@ class MessageFragment : BoxFragment<MessageViewModel, FragmentMessageBinding>() 
 
     override fun init() {
         super.init()
-        val items: MutableList<TabItem> = ArrayList()
+        val items = mutableListOf<TabItem>()
         items.add(TabItem("互动", AppRouter.getGirl()))
         items.add(TabItem("系统消息", AppRouter.getCity()))
         items.add(TabItem("游戏通知", AppRouter.getGirl()))

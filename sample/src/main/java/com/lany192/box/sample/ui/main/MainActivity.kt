@@ -31,7 +31,7 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> ToastUtils.show("首页：" + userInfo.name) }
-        val items: MutableList<TabItem> = ArrayList()
+        val items = mutableListOf<TabItem>()
         items.add(TabItem("首页", AppRouter.getIndex()))
         items.add(TabItem("发现", AppRouter.getDiscover()))
         items.add(TabItem("消息", AppRouter.getMessage()))
