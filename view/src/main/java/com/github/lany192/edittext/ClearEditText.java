@@ -16,7 +16,6 @@ import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 
 import androidx.annotation.DrawableRes;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
 
 import com.github.lany192.view.R;
@@ -25,7 +24,7 @@ import com.github.lany192.view.R;
 /**
  * 带删除功能的EditText
  */
-public class ClearEditText extends AppCompatEditText implements OnFocusChangeListener, TextWatcher {
+public class ClearEditText extends BoxEditText implements OnFocusChangeListener, TextWatcher {
     private Drawable mLeftDrawable;
     private boolean hasFocus;
     @DrawableRes
@@ -55,9 +54,9 @@ public class ClearEditText extends AppCompatEditText implements OnFocusChangeLis
     private void init(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ClearEditText);
-            mClearDrawableResId = a.getResourceId(R.styleable.ClearEditText_clear_drawable, mClearDrawableResId);
+            mClearDrawableResId = a.getResourceId(R.styleable.ClearEditText_clear_icon, mClearDrawableResId);
             mClearDrawableSize = a.getDimension(R.styleable.ClearEditText_clear_size, dp2px(18));
-            mLeftDrawableResId = a.getResourceId(R.styleable.ClearEditText_left_drawable, -1);
+            mLeftDrawableResId = a.getResourceId(R.styleable.ClearEditText_left_icon, -1);
             mLeftDrawableSize = a.getDimension(R.styleable.ClearEditText_left_size, dp2px(18));
             a.recycle();
         }

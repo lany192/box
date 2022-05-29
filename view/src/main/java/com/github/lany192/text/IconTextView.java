@@ -24,7 +24,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 
 import com.github.lany192.view.R;
-import com.google.android.material.textview.MaterialTextView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -36,7 +35,7 @@ import java.lang.annotation.RetentionPolicy;
  * 3.自定义图标图标和文字之间的距离
  * 4.自定义图标图标大小
  */
-public class IconTextView extends MaterialTextView {
+public class IconTextView extends BoxTextView {
 
     /**
      * Gravity used to position the icon at the start of the view.
