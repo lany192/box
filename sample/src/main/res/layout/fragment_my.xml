@@ -18,6 +18,17 @@
             android:scaleType="fitXY"
             android:src="@mipmap/a" />
 
+        <com.github.lany192.text.CheckTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="这里测试图标TextView"
+            app:itv_icon_gravity="textStart"
+            app:itv_icon_padding="2dp"
+            app:itv_icon_size="20dp"
+            app:itv_text_middle_bold="true" />
+
         <com.github.lany192.text.IconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
