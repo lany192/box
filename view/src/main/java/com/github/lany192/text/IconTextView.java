@@ -1,4 +1,4 @@
-package com.github.lany192.textview;
+package com.github.lany192.text;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -24,7 +24,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 
 import com.github.lany192.view.R;
-import com.google.android.material.textview.MaterialTextView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -36,7 +35,7 @@ import java.lang.annotation.RetentionPolicy;
  * 3.自定义图标图标和文字之间的距离
  * 4.自定义图标图标大小
  */
-public class IconTextView extends MaterialTextView {
+public class IconTextView extends BoxTextView {
 
     /**
      * Gravity used to position the icon at the start of the view.
@@ -118,13 +117,13 @@ public class IconTextView extends MaterialTextView {
         super(context, attrs, defStyleAttr);
         final TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.IconTextView, 0, 0);
         if (attributes != null) {
-            iconPadding = attributes.getDimensionPixelSize(R.styleable.IconTextView_itv_icon_padding, 0);
-            iconTintMode = parseTintMode(attributes.getInt(R.styleable.IconTextView_itv_icon_tint_mode, -1));
-            iconTint = getColorStateList(getContext(), attributes, R.styleable.IconTextView_itv_icon_color);
-            icon = getDrawable(getContext(), attributes, R.styleable.IconTextView_itv_icon);
-            iconGravity = attributes.getInteger(R.styleable.IconTextView_itv_icon_gravity, ICON_GRAVITY_START);
-            iconSize = attributes.getDimensionPixelSize(R.styleable.IconTextView_itv_icon_size, 0);
-            middleBold = attributes.getBoolean(R.styleable.IconTextView_itv_text_middle_bold, false);
+            iconPadding = attributes.getDimensionPixelSize(R.styleable.IconTextView_icon_padding, 0);
+            iconTintMode = parseTintMode(attributes.getInt(R.styleable.IconTextView_icon_tint_mode, -1));
+            iconTint = getColorStateList(getContext(), attributes, R.styleable.IconTextView_icon_color);
+            icon = getDrawable(getContext(), attributes, R.styleable.IconTextView_icon);
+            iconGravity = attributes.getInteger(R.styleable.IconTextView_icon_gravity, ICON_GRAVITY_START);
+            iconSize = attributes.getDimensionPixelSize(R.styleable.IconTextView_icon_size, 0);
+            middleBold = attributes.getBoolean(R.styleable.IconTextView_text_style_middle_bold, false);
             attributes.recycle();
         }
         setText(getText());
@@ -369,6 +368,18 @@ public class IconTextView extends MaterialTextView {
     }
 
     /**
+     * Gets the icon shown for this button, if present.
+     *
+     * @return Icon shown for this button, if present.
+     * @attr ref com.google.android.material.R.styleable#MaterialButton_icon
+     * @see #setIcon(Drawable)
+     * @see #setIcon(int)
+     */
+    public Drawable getIcon() {
+        return icon;
+    }
+
+    /**
      * Sets the icon drawable resource to show for this button. By default, this icon will be shown on
      * the left side of the button.
      *
@@ -377,7 +388,7 @@ public class IconTextView extends MaterialTextView {
      * @see #setIcon(Drawable)
      * @see #getIcon()
      */
-    public void setIconResource(@DrawableRes int iconResourceId) {
+    public void setIcon(@DrawableRes int iconResourceId) {
         Drawable icon = null;
         if (iconResourceId != 0) {
             icon = AppCompatResources.getDrawable(getContext(), iconResourceId);
@@ -386,24 +397,12 @@ public class IconTextView extends MaterialTextView {
     }
 
     /**
-     * Gets the icon shown for this button, if present.
-     *
-     * @return Icon shown for this button, if present.
-     * @attr ref com.google.android.material.R.styleable#MaterialButton_icon
-     * @see #setIcon(Drawable)
-     * @see #setIconResource(int)
-     */
-    public Drawable getIcon() {
-        return icon;
-    }
-
-    /**
      * Sets the icon to show for this button. By default, this icon will be shown on the left side of
      * the button.
      *
      * @param icon Drawable to use for the button's icon.
      * @attr ref com.google.android.material.R.styleable#MaterialButton_icon
-     * @see #setIconResource(int)
+     * @see #setIcon(int)
      * @see #getIcon()
      */
     public void setIcon(@Nullable Drawable icon) {

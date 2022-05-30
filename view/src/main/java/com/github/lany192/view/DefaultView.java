@@ -62,10 +62,10 @@ public class DefaultView extends BindingView<ViewDefaultBinding> {
 
     public void setHint(CharSequence hint) {
         if (!TextUtils.isEmpty(hint)) {
-            binding.hint.setText(hint);
-            binding.hint.setVisibility(View.VISIBLE);
+            binding.retry.setText(hint);
+            binding.retry.setVisibility(View.VISIBLE);
         } else {
-            binding.hint.setVisibility(View.GONE);
+            binding.retry.setVisibility(View.GONE);
         }
     }
 

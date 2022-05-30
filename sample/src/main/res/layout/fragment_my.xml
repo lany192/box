@@ -18,47 +18,58 @@
             android:scaleType="fitXY"
             android:src="@mipmap/a" />
 
-        <com.github.lany192.textview.IconTextView
+        <com.github.lany192.text.CheckTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="这里测试图标TextView"
+            app:icon_gravity="textStart"
+            app:icon_padding="2dp"
+            app:icon_size="20dp"
+            app:text_style_middle_bold="true" />
+
+        <com.github.lany192.text.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
             android:background="@android:color/holo_blue_light"
             android:gravity="center"
             android:text="这里测试图标TextView"
-            app:itv_icon="@drawable/android"
-            app:itv_icon_gravity="textStart"
-            app:itv_icon_padding="8dp"
-            app:itv_icon_size="28dp"
-            app:itv_text_middle_bold="true" />
+            app:icon="@drawable/android"
+            app:icon_gravity="textStart"
+            app:icon_padding="8dp"
+            app:icon_size="28dp"
+            app:text_style_middle_bold="true" />
 
-        <com.github.lany192.textview.IconTextView
+        <com.github.lany192.text.IconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@android:color/holo_blue_light"
             android:padding="8dp"
             android:text="这里测试图标TextView"
-            app:itv_icon="@drawable/android"
-            app:itv_icon_color="@color/red"
-            app:itv_icon_gravity="top"
-            app:itv_icon_padding="8dp"
-            app:itv_icon_size="28dp" />
+            app:icon="@drawable/android"
+            app:icon_color="@color/red"
+            app:icon_gravity="top"
+            app:icon_padding="8dp"
+            app:icon_size="28dp" />
 
-        <com.github.lany192.textview.IconTextView
+        <com.github.lany192.text.IconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@android:color/holo_blue_light"
             android:padding="8dp"
             android:text="这里测试图标TextView"
-            app:itv_icon="@drawable/android"
-            app:itv_icon_color="@color/red"
-            app:itv_icon_gravity="end"
-            app:itv_icon_padding="16dp"
-            app:itv_icon_size="20dp" />
+            app:icon="@drawable/android"
+            app:icon_color="@color/red"
+            app:icon_gravity="end"
+            app:icon_padding="16dp"
+            app:icon_size="20dp" />
 
         <com.google.android.material.card.MaterialCardView
-        app:strokeWidth="0dp"
             android:id="@+id/card_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +81,8 @@
             app:cardElevation="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -113,7 +125,6 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            app:strokeWidth="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -124,7 +135,8 @@
             app:cardElevation="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_1">
+            app:layout_constraintTop_toBottomOf="@id/card_1"
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -10,10 +10,9 @@
     app:bl_corners_topLeftRadius="10dp"
     app:bl_corners_topRightRadius="10dp"
     app:bl_solid_color="@color/white_bg"
-    tools:background="@android:color/holo_orange_dark"
-    >
+    tools:background="@android:color/holo_orange_dark">
 
-    <com.github.lany192.textview.BoxTextView
+    <com.github.lany192.text.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +22,7 @@
         android:textSize="18sp"
         tools:text="发现新版v2.0.1可以下载啦！" />
 
-    <com.github.lany192.textview.BoxTextView
+    <com.github.lany192.text.BoxTextView
         android:id="@+id/size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +43,7 @@
         android:layout_marginRight="16dp"
         android:overScrollMode="never">
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

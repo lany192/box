@@ -45,7 +45,7 @@ public class NetworkHelper implements DefaultLifecycleObserver {
         public void onReceive(Context context, Intent intent) {
             if (Objects.equals(intent.getAction(), ConnectivityManager.CONNECTIVITY_ACTION)) {
                 XLog.tag("TAG").i("网络变化了--------------------");
-                EventBus.getDefault().post(new NetWorkEvent(NetUtils.isAvailable(context)));
+                EventBus.getDefault().post(new NetWorkEvent(NetUtils.isAvailable()));
             }
         }
     };

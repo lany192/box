@@ -99,9 +99,9 @@ public class RealtimeBlurView extends View {
         prepare(getContext(), bmp, 4);
         bmp.recycle();
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RealtimeBlurView);
-        mBlurRadius = a.getDimension(R.styleable.RealtimeBlurView_realtimeBlurRadius, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
-        mDownsampleFactor = a.getFloat(R.styleable.RealtimeBlurView_realtimeDownsampleFactor, 4);
-        mOverlayColor = a.getColor(R.styleable.RealtimeBlurView_realtimeOverlayColor, 0xAAFFFFFF);
+        mBlurRadius = a.getDimension(R.styleable.RealtimeBlurView_image_blur_radius, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
+        mDownsampleFactor = a.getFloat(R.styleable.RealtimeBlurView_image_down_sample_factor, 4);
+        mOverlayColor = a.getColor(R.styleable.RealtimeBlurView_image_overlay_color, 0xAAFFFFFF);
         a.recycle();
 
         mPaint = new Paint();

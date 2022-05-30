@@ -31,7 +31,7 @@
             android:layout_marginEnd="8dp"
             android:background="@color/outline" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,6 +42,6 @@
             android:text="@android:string/cancel"
             android:textColor="@color/text_2level"
             android:textSize="14sp"
-            app:text_middle_bold="true" />
+            app:text_style_middle_bold="true" />
     </LinearLayout>
 </FrameLayout>

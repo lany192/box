@@ -10,9 +10,14 @@ import java.util.List;
 /**
  * 通用底部菜单对话框
  */
-public class MenuDialog extends BottomDialog<DialogMenuBinding> {
+public class MenuDialog extends BaseDialog<DialogMenuBinding> {
     private List<String> items = new ArrayList<>();
     private OnListener listener;
+
+    @Override
+    protected boolean bottomStyle() {
+        return true;
+    }
 
     @Override
     protected void init() {

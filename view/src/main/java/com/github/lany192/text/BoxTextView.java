@@ -1,4 +1,4 @@
-package com.github.lany192.textview;
+package com.github.lany192.text;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,32 +10,31 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import com.elvishew.xlog.Logger;
+import com.elvishew.xlog.XLog;
 import com.github.lany192.view.R;
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 
-/**
- * 1.防止出现空指针
- * 2.显示中等粗字体
- */
-public class BoxButton extends MaterialButton {
+public class BoxTextView extends MaterialTextView {
+    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
     /**
      * 是否中等粗细
      */
     private boolean middleBold;
 
-    public BoxButton(Context context) {
+    public BoxTextView(Context context) {
         this(context, null);
     }
 
-    public BoxButton(Context context, @Nullable AttributeSet attrs) {
+    public BoxTextView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BoxButton(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BoxTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         if (attrs != null) {
-            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.BoxButton);
-            middleBold = typedArray.getBoolean(R.styleable.BoxButton_text_middle_bold, middleBold);
+            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.BoxTextView);
+            middleBold = typedArray.getBoolean(R.styleable.BoxTextView_text_style_middle_bold, middleBold);
             typedArray.recycle();
         }
         setText(getText());
@@ -60,11 +59,6 @@ public class BoxButton extends MaterialButton {
         paint.setFakeBoldText(middleBold);
     }
 
-    /**
-     * 设置颜色
-     *
-     * @param id 资源id
-     */
     public void setTextColorId(@ColorRes int id) {
         super.setTextColor(ContextCompat.getColor(getContext(), id));
     }

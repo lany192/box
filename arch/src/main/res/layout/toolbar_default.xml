@@ -19,7 +19,7 @@
         tools:layout_height="@dimen/actionbar_height"
         tools:layout_width="@dimen/actionbar_height" />
 
-    <com.github.lany192.textview.BoxTextView
+    <com.github.lany192.text.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
@@ -31,11 +31,11 @@
         android:maxLines="1"
         android:textColor="@color/text_1level"
         android:textSize="18sp"
-        app:text_middle_bold="true"
+        app:text_style_middle_bold="true"
         tools:layout_height="@dimen/actionbar_height"
         tools:text="标题" />
 
-    <com.github.lany192.textview.BoxTextView
+    <com.github.lany192.text.BoxTextView
         android:id="@+id/right"
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"

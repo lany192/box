@@ -3,6 +3,7 @@ package com.lany192.box.sample.ui.splash
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
@@ -17,8 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SplashActivity : BoxActivity<SplashViewModel, ActivitySplashBinding>() {
 
     override fun initImmersionBar(): ImmersionBar {
-        return ImmersionBar.with(this)
-            .hideBar(BarHide.FLAG_HIDE_BAR)
+        return ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_BAR)
     }
 
     override fun hasToolbar(): Boolean {
@@ -32,7 +32,7 @@ class SplashActivity : BoxActivity<SplashViewModel, ActivitySplashBinding>() {
             finish()
         }
         viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             AppRouter.startMain()
             finish()
         }, 1000)

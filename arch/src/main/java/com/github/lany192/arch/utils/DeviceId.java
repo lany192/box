@@ -47,6 +47,20 @@ public class DeviceId {
         return instance;
     }
 
+    /**
+     * 获得了SD卡权限，需要将sd上的id替换到SP和内存上
+     */
+    public void grantedSDPermission() {
+        String sdId = getDeviceIdFromSD();
+        //校验两个ID：如果SP中可以读取到id，与从SD卡中读取id进行比较是否相等
+        if (!TextUtils.isEmpty(sdId) && !sdId.equals(deviceId)) {
+            //如果能读取到SD卡上的id，保存到SP中
+            KVUtils.get().putString(KEY_DEVICE_ID, sdId);
+            //修改内存中的值
+            deviceId = sdId;
+        }
+    }
+
     public String getDeviceId() {
         //1.先判断内存中是否已经有id，如果有值，直接读取
         if (!TextUtils.isEmpty(deviceId)) {

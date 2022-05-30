@@ -1,4 +1,4 @@
-package com.github.lany192.textview;
+package com.github.lany192.text;
 
 import android.content.Context;
 import android.text.DynamicLayout;
@@ -9,7 +9,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -20,91 +19,54 @@ import androidx.annotation.NonNull;
 import com.github.lany192.view.R;
 
 /**
- * 设置了最大行数的TextView,省略号之后追加“全文”
+ * 可展开 TextView
+ * 通过maxLines控制收起时的最大行数
  */
-public class EllipsizeTextView extends BoxTextView {
+public class ExpandableTextView extends BoxTextView {
+    private final String MORE_TEXT = "更多";
     private TextView.BufferType mBufferType = TextView.BufferType.NORMAL;
     private Layout mLayout;
     private CharSequence mOrigText;
-    private final int mOrigMaxLines;
-    String PACK_UP = "收起";
-    String mToExpandHint = "全文";
     /**
      * 是否已经展开
      */
     private boolean expand;
-    private boolean expandable;
 
-    public EllipsizeTextView(Context context) {
+    public ExpandableTextView(Context context) {
         this(context, null);
     }
 
-    public EllipsizeTextView(Context context, AttributeSet attrs) {
+    public ExpandableTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public EllipsizeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ExpandableTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mOrigMaxLines = getMaxLines();
+        setMovementMethod(LinkMovementMethod.getInstance());
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                updateView();
+                if (expand) {
+                    setTextInternal(getOriginalText(), mBufferType);
+                } else {
+                    setTextInternal(getNewTextByConfig(), mBufferType);
+                }
             }
         });
-    }
-
-    private void updateView() {
-        if (expandable) {
-            if (expand) {
-                setTextInternal(getOriginalText(), mBufferType);
-            } else {
-                setTextInternal(getNewTextByConfig(), mBufferType);
-            }
-        } else {
-            setTextInternal(getNewTextByConfig(), mBufferType);
-        }
-    }
-
-    /**
-     * 是否可以展开
-     */
-    public void setExpandable(boolean expandable) {
-        this.expandable = expandable;
-        if (expandable) {
-            setMovementMethod(LinkMovementMethod.getInstance());
-        }
     }
 
     private CharSequence getOriginalText() {
         if (TextUtils.isEmpty(mOrigText)) {
             return mOrigText;
         }
-        SpannableStringBuilder builder = new SpannableStringBuilder(mOrigText);
-        builder.append(getContentOfString(PACK_UP));
-        builder.setSpan(new ClickableSpan() {
-            @Override
-            public void updateDrawState(@NonNull TextPaint paint) {
-                paint.setColor(getResources().getColor(R.color.primary));
-                paint.setUnderlineText(false);
-            }
-
-            @Override
-            public void onClick(@NonNull View widget) {
-                expand = false;
-                setMaxLines(mOrigMaxLines);
-                setTextInternal(getNewTextByConfig(), mBufferType);
-            }
-        }, builder.length() - getLengthOfString(PACK_UP), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return builder;
+        return mOrigText;
     }
 
     private CharSequence getNewTextByConfig() {
         if (TextUtils.isEmpty(mOrigText)) {
             return mOrigText;
         }
-
         mLayout = getLayout();
         int mLayoutWidth = 0;
         if (mLayout != null) {
@@ -118,7 +80,6 @@ public class EllipsizeTextView extends BoxTextView {
                 mLayoutWidth = getWidth() - getPaddingLeft() - getPaddingRight();
             }
         }
-
         TextPaint textPaint = getPaint();
 
         mLayout = new DynamicLayout(mOrigText, textPaint, mLayoutWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
@@ -129,17 +90,16 @@ public class EllipsizeTextView extends BoxTextView {
         }
         int indexEnd = getValidLayout().getLineEnd(getMaxLines() - 1);
         int indexStart = getValidLayout().getLineStart(getMaxLines() - 1);
-
         String mGapToExpandHint = " ";
         String mEllipsisHint = "...";
-        int indexEndTrimmed = indexEnd - getLengthOfString(mEllipsisHint) - (getLengthOfString(mToExpandHint) + getLengthOfString(mGapToExpandHint));
+        int indexEndTrimmed = indexEnd - getLengthOfString(mEllipsisHint) - (getLengthOfString(MORE_TEXT) + getLengthOfString(mGapToExpandHint));
         if (indexEndTrimmed <= indexStart) {
             indexEndTrimmed = indexEnd;
         }
         int remainWidth = getValidLayout().getWidth() -
                 (int) (textPaint.measureText(mOrigText.subSequence(indexStart, indexEndTrimmed).toString()) + 0.5);
         float widthTailReplaced = textPaint.measureText(getContentOfString(mEllipsisHint)
-                + ((getContentOfString(mToExpandHint) + getContentOfString(mGapToExpandHint))));
+                + ((getContentOfString(MORE_TEXT) + getContentOfString(mGapToExpandHint))));
 
         int indexEndTrimmedRevised = indexEndTrimmed;
         int extraOffset = 0;
@@ -168,29 +128,24 @@ public class EllipsizeTextView extends BoxTextView {
         }
 
         CharSequence fixText = removeEndLineBreak(mOrigText.subSequence(0, indexEndTrimmedRevised));
-
         SpannableStringBuilder builder = new SpannableStringBuilder(fixText);
         builder.append(mEllipsisHint);
         builder.append(getContentOfString(mGapToExpandHint));
-        builder.append(getContentOfString(mToExpandHint));
-        if (expandable) {
-            builder.setSpan(new ClickableSpan() {
-                @Override
-                public void updateDrawState(@NonNull TextPaint paint) {
-                    paint.setColor(getResources().getColor(R.color.primary));
-                    paint.setUnderlineText(false);
-                }
+        builder.append(getContentOfString(MORE_TEXT));
+        builder.setSpan(new ClickableSpan() {
+            @Override
+            public void updateDrawState(@NonNull TextPaint paint) {
+                paint.setColor(getResources().getColor(R.color.primary));
+                paint.setUnderlineText(false);
+            }
 
-                @Override
-                public void onClick(@NonNull View widget) {
-                    expand = true;
-                    setMaxLines(Integer.MAX_VALUE);
-                    setTextInternal(getOriginalText(), mBufferType);
-                }
-            }, builder.length() - getLengthOfString(mToExpandHint), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else {
-            builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.primary)), builder.length() - getLengthOfString(mToExpandHint), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
+            @Override
+            public void onClick(@NonNull View widget) {
+                expand = true;
+                setMaxLines(Integer.MAX_VALUE);
+                setTextInternal(getOriginalText(), mBufferType);
+            }
+        }, builder.length() - getLengthOfString(MORE_TEXT), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return builder;
     }
 

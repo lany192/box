@@ -17,7 +17,7 @@
         android:foreground="?attr/selectableItemBackground"
         tools:ignore="UnusedAttribute">
 
-        <com.github.lany192.imageview.SquareImageView
+        <com.github.lany192.image.SquareImageView
             android:id="@+id/image"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/LeftRoundedStyle" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Zootopia" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@id/title"
             tools:text="1 h 45 min" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             app:layout_constraintTop_toBottomOf="@id/desc"
             tools:text="1 h 45 min" />
 
-        <com.github.lany192.textview.EllipsizeTextView
+        <com.github.lany192.text.EllipsizeTextView
             android:id="@+id/demo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

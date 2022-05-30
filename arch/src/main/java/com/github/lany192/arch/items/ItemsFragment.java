@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.fragment.BoxFragment;
+import com.github.lany192.arch.fragment.VMVBFragment;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.view.DefaultView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBinding>
-        extends BoxFragment<VM, VB> {
+        extends VMVBFragment<VM, VB> {
     private final BinderAdapter itemsAdapter = new BinderAdapter();
 
     public RecyclerView.LayoutManager getLayoutManager() {

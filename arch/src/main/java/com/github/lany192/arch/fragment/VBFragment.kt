@@ -17,7 +17,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * ViewBinding实现基类
  */
-abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
+abstract class VBFragment<VB : ViewBinding> : BaseFragment() {
     private var _binding: VB? = null
 
     private lateinit var content: FrameLayout
@@ -26,13 +26,11 @@ abstract class BindingFragment<VB : ViewBinding> : BaseFragment() {
     open val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = getViewBinding(inflater, container)
         content = FixDragLayout(requireContext())
-        content.addView(binding.root)
+        content.addView(_binding!!.root)
         init()
         return content
     }

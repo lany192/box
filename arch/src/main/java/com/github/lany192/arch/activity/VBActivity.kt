@@ -18,7 +18,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * ViewBinding的Activity基类,包含<头部和内容>
  */
-abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActivity() {
+abstract class VBActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActivity() {
     lateinit var binding: CVB
     lateinit var toolbar: TVB
 
@@ -84,8 +84,7 @@ abstract class BindingActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActiv
             content.addView(
                 view,
                 LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
                 )
             )
             super.setContentView(content)

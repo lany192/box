@@ -32,7 +32,7 @@
             app:strokeColor="@color/blue"
             app:strokeWidth="1dp" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:layout_constraintTop_toBottomOf="@id/image"
             tools:text="Zootopia" />
 
-        <com.github.lany192.textview.BoxTextView
+        <com.github.lany192.text.BoxTextView
             android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

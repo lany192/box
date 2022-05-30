@@ -1,4 +1,4 @@
-package com.github.lany192.imageview;
+package com.github.lany192.image;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -6,14 +6,14 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <com.github.lany192.imageview.SquareImageView
+    <com.github.lany192.image.SquareImageView
         android:id="@+id/image"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginTop="68dp"
         tools:src="@drawable/default_empty" />
 
-    <com.github.lany192.textview.BoxTextView
+    <com.github.lany192.text.BoxTextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,8 +23,8 @@
         android:textColor="@color/text_3level"
         android:textSize="13sp" />
 
-    <com.github.lany192.textview.BoxTextView
-        android:id="@+id/hint"
+    <com.github.lany192.text.BoxTextView
+        android:id="@+id/retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
