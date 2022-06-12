@@ -8,54 +8,21 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.View
+import android.widget.Toast
 import kotlin.math.ceil
 
 /**
  * 限制最大行数且在最后显示...全文
  */
-class ExpandTextView @JvmOverloads constructor(
+class MoreTextView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : BoxTextView(context, attrs, defStyleAttr) {
-    private var mBufferType = BufferType.NORMAL
 
-    /**
-     * 尾部更多文字
-     */
-    private val moreText: String = "...全文"
-
-    /**
-     * 是否已经展开
-     */
-    private var expand = false
-
-    private var expandable = false
-
-    private var mOrigText: CharSequence? = null
-
-    /**
-     * 是否可以展开
-     */
-    fun setExpandable(expandable: Boolean) {
-        this.expand = false
-        this.expandable = expandable
-        if (expandable) {
-            movementMethod = LinkMovementMethod.getInstance()
-            highlightColor = Color.TRANSPARENT
-        }
-    }
-
-    override fun setText(text: CharSequence, type: BufferType) {
-        mBufferType = type
-        if (TextUtils.isEmpty(text)) {
-            super.setText(text, type)
-            return
-        }
-        if (TextUtils.isEmpty(mOrigText)) {
-            mOrigText = text
-        }
-        super.setText(text, type)
+    init {
+        movementMethod = LinkMovementMethod.getInstance()
+        highlightColor = Color.TRANSPARENT
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -69,13 +36,16 @@ class ExpandTextView @JvmOverloads constructor(
      * 裁剪内容
      */
     private fun clipContent(): SpannableStringBuilder {
-        var offset = 1
+        val moreText = "...全文"
         val indexEnd = layout.getLineEnd(maxLines - 1)
         val tempText = text.subSequence(0, indexEnd)
-        var offsetWidth = layout.paint.measureText(tempText[indexEnd - 1].toString()).toInt()
+
         val moreWidth = ceil(layout.paint.measureText(moreText).toDouble()).toInt()
+
+        var offsetWidth = layout.paint.measureText(tempText[indexEnd - 1].toString()).toInt()
         //表情字节个数
         var countEmoji = 0
+        var offset = 1
         while (indexEnd > offset && offsetWidth <= moreWidth) {
             //当前字节是否位表情
             val isEmoji = isEmoji(tempText[indexEnd - offset])
@@ -98,20 +68,16 @@ class ExpandTextView @JvmOverloads constructor(
 
         val sb = SpannableString(moreText)
         sb.setSpan(ForegroundColorSpan(Color.BLUE), 3, sb.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-        if (expandable) {
-            sb.setSpan(object : ClickableSpan() {
-                override fun updateDrawState(paint: TextPaint) {
-                    paint.color = Color.GREEN
-                    paint.isUnderlineText = false
-                }
+        sb.setSpan(object : ClickableSpan() {
+            override fun updateDrawState(paint: TextPaint) {
+                paint.color = Color.GREEN
+                paint.isUnderlineText = false
+            }
 
-                override fun onClick(widget: View) {
-                    expand = true
-                    maxLines = Int.MAX_VALUE
-                    text = mOrigText
-                }
-            }, 3, sb.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-        }
+            override fun onClick(widget: View) {
+                Toast.makeText(context, "点击了全文", Toast.LENGTH_SHORT).show()
+            }
+        }, 3, sb.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         stringBuilder.append(sb)
         return stringBuilder
     }
