@@ -28,14 +28,14 @@ class MoreTextView @JvmOverloads constructor(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (lineCount > maxLines) {
-            text = clipContent()
+            text = clipText()
         }
     }
 
     /**
      * 裁剪内容
      */
-    private fun clipContent(): SpannableStringBuilder {
+    private fun clipText(): SpannableStringBuilder {
         val moreText = "...全文"
         val indexEnd = layout.getLineEnd(maxLines - 1)
         val tempText = text.subSequence(0, indexEnd)
