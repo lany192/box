@@ -35,9 +35,6 @@ class MoreTextView @JvmOverloads constructor(
         }
     }
 
-    /**
-     * 裁剪内容
-     */
     private fun clipText(): SpannableStringBuilder {
         val moreText = "...全文"
         val indexEnd = layout.getLineEnd(maxLines - 1)
