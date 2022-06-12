@@ -34,7 +34,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
 
         String ss = "本游戏是一款文字 生存 战斗养成独立游戏。" +
                 "游戏<a href=\"http://www.qq.com\" target=\"_self\">链接跳转</a>难度较高，跪求新人选" +
-                "择新手模式。本游戏讲述一个16岁离家出走少年在外的种种虐心遭遇。游戏无内购、无广告、无需联网哦";
+                "择新手模式。本游戏讲述一个16岁离家出走少年在外的种种<br/>虐心遭遇。游戏无内购、无广告、无需联网哦";
 
 
         binding.demo.setText(Html.fromHtml(ss));

@@ -61,7 +61,6 @@ class ExpandTextView @JvmOverloads constructor(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (lineCount > maxLines) {
-            //如果大于设置的最大行数
             val (stringBuilder, sb) = clipContent()
             stringBuilder.append(sb)
             text = stringBuilder
@@ -73,16 +72,7 @@ class ExpandTextView @JvmOverloads constructor(
      */
     private fun clipContent(): Pair<SpannableStringBuilder, SpannableString> {
         var offset = 1
-        val staticLayout = StaticLayout(
-            text,
-            layout.paint,
-            layout.width,
-            Layout.Alignment.ALIGN_NORMAL,
-            layout.spacingMultiplier,
-            layout.spacingAdd,
-            false
-        )
-        val indexEnd = staticLayout.getLineEnd(maxLines - 1)
+        val indexEnd = layout.getLineEnd(maxLines - 1)
         val tempText = text.subSequence(0, indexEnd)
         var offsetWidth = layout.paint.measureText(tempText[indexEnd - 1].toString()).toInt()
         val moreWidth = ceil(layout.paint.measureText(moreText).toDouble()).toInt()
@@ -90,7 +80,7 @@ class ExpandTextView @JvmOverloads constructor(
         var countEmoji = 0
         while (indexEnd > offset && offsetWidth <= moreWidth) {
             //当前字节是否位表情
-            val isEmoji = isEmojiCharacter(tempText[indexEnd - offset])
+            val isEmoji = isEmoji(tempText[indexEnd - offset])
             if (isEmoji) {
                 countEmoji += 1
             }
@@ -144,7 +134,7 @@ class ExpandTextView @JvmOverloads constructor(
                 val charText = tempText[indexEnd - offset1]
                 offsetWidth1 += layout.paint.measureText(charText.toString()).toInt()
                 //一个表情两个字符，避免截取一半字符出现乱码或者显示不全...全文
-                if (offsetWidth1 > moreWidth && isEmojiCharacter(charText)) {
+                if (offsetWidth1 > moreWidth && isEmoji(charText)) {
                     offset1++
                 }
             }
@@ -155,7 +145,7 @@ class ExpandTextView @JvmOverloads constructor(
         return Pair(offset1, offsetWidth1)
     }
 
-    private fun isEmojiCharacter(codePoint: Char): Boolean {
+    private fun isEmoji(codePoint: Char): Boolean {
         return !(codePoint.toInt() == 0x0 || codePoint.toInt() == 0x9 || codePoint.toInt() == 0xA || codePoint.toInt() == 0xD || codePoint.toInt() in 0x20..0xD7FF || codePoint.toInt() in 0xE000..0xFFFD || codePoint.toInt() in 0x10000..0x10FFFF)
     }
 }
