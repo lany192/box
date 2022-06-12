@@ -61,16 +61,14 @@ class ExpandTextView @JvmOverloads constructor(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (lineCount > maxLines) {
-            val (stringBuilder, sb) = clipContent()
-            stringBuilder.append(sb)
-            text = stringBuilder
+            text = clipContent()
         }
     }
 
     /**
      * 裁剪内容
      */
-    private fun clipContent(): Pair<SpannableStringBuilder, SpannableString> {
+    private fun clipContent(): SpannableStringBuilder {
         var offset = 1
         val indexEnd = layout.getLineEnd(maxLines - 1)
         val tempText = text.subSequence(0, indexEnd)
@@ -114,7 +112,8 @@ class ExpandTextView @JvmOverloads constructor(
                 }
             }, 3, sb.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         }
-        return Pair(stringBuilder, sb)
+        stringBuilder.append(sb)
+        return stringBuilder
     }
 
     private fun getOffsetWidth(
