@@ -69,7 +69,7 @@
             app:layout_constraintTop_toBottomOf="@id/desc"
             tools:text="1 h 45 min" />
 
-        <com.github.lany192.text.EllipsizeTextView
+        <com.github.lany192.text.DemoTextView
             android:id="@+id/demo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
