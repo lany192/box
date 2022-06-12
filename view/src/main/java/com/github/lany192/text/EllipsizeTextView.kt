@@ -49,6 +49,7 @@ open class EllipsizeTextView @JvmOverloads constructor(
                 builder.getSpanStart(span), builder.getSpanEnd(span),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
+            builder.removeSpan(span)
         }
         super.setText(builder, type)
     }
