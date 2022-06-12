@@ -8,13 +8,12 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.View
-import android.widget.Toast
 import kotlin.math.ceil
 
 /**
  * 限制最大行数且在最后显示...全文
  */
-class DemoTextView @JvmOverloads constructor(
+class ExpandTextView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -48,15 +47,15 @@ class DemoTextView @JvmOverloads constructor(
     }
 
     override fun setText(text: CharSequence, type: BufferType) {
-        var content = text
-        if (TextUtils.isEmpty(content)) {
-            content = ""
+        mBufferType = type
+        if (TextUtils.isEmpty(text)) {
+            super.setText(text, type)
+            return
         }
         if (TextUtils.isEmpty(mOrigText)) {
-            mOrigText = content
+            mOrigText = text
         }
-        mBufferType = type
-        super.setText(content, type)
+        super.setText(text, type)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -121,10 +120,7 @@ class DemoTextView @JvmOverloads constructor(
                 override fun onClick(widget: View) {
                     expand = true
                     maxLines = Int.MAX_VALUE
-                    setText(mOrigText)
-                    requestLayout()
-
-                    Toast.makeText(context, "1展开全文", Toast.LENGTH_SHORT).show()
+                    text = mOrigText
                 }
             }, 3, sb.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         }
