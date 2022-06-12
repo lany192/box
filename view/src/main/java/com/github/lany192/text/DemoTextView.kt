@@ -65,7 +65,6 @@ class DemoTextView @JvmOverloads constructor(
             //如果大于设置的最大行数
             val (stringBuilder, sb) = clipContent()
             stringBuilder.append(sb)
-            //setMeasuredDimension(measuredWidth, getDesiredHeight(layout))
             text = stringBuilder
         }
     }
@@ -158,29 +157,6 @@ class DemoTextView @JvmOverloads constructor(
             offsetWidth1 += layout.paint.measureText(charText.toString()).toInt()
         }
         return Pair(offset1, offsetWidth1)
-    }
-
-    /**
-     * 获取内容高度
-     */
-    private fun getDesiredHeight(layout: Layout?): Int {
-        if (layout == null) {
-            return 0
-        }
-        val lineTop: Int
-        val lineCount = layout.lineCount
-        val compoundPaddingTop =
-            compoundPaddingTop + compoundPaddingBottom - lineSpacingExtra.toInt()
-        lineTop = when {
-            lineCount > maxLines -> {
-                //文字行数超过最大行
-                layout.getLineTop(maxLines)
-            }
-            else -> {
-                layout.getLineTop(lineCount)
-            }
-        }
-        return (lineTop + compoundPaddingTop).coerceAtLeast(suggestedMinimumHeight)
     }
 
     private fun isEmojiCharacter(codePoint: Char): Boolean {
