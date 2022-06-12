@@ -18,6 +18,8 @@ open class EllipsizeTextView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : BoxTextView(context, attrs, defStyleAttr) {
 
+    private val moreText = "...全文"
+
     init {
         movementMethod = LinkMovementMethod.getInstance()
         highlightColor = Color.TRANSPARENT
@@ -62,7 +64,7 @@ open class EllipsizeTextView @JvmOverloads constructor(
     }
 
     private fun clipText(): SpannableStringBuilder {
-        val moreText = "...全文"
+
         val indexEnd = layout.getLineEnd(maxLines - 1)
         val tempText = text.subSequence(0, indexEnd)
 
@@ -85,7 +87,6 @@ open class EllipsizeTextView @JvmOverloads constructor(
                 if (text.isNotEmpty() && countEmoji % 2 == 0) {
                     val charText = tempText[indexEnd - offset]
                     offsetWidth += layout.paint.measureText(charText.toString()).toInt()
-                    //一个表情两个字符，避免截取一半字符出现乱码或者显示不全...全文
                     if (offsetWidth > moreWidth && isEmoji(charText)) {
                         offset++
                     }
