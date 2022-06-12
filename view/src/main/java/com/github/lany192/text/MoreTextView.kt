@@ -2,7 +2,10 @@ package com.github.lany192.text
 
 import android.content.Context
 import android.graphics.Color
-import android.text.*
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
@@ -53,14 +56,21 @@ class MoreTextView @JvmOverloads constructor(
                 countEmoji += 1
             }
             offset++
-            val pair = getOffsetWidth(
-                indexEnd,
-                offset,
-                tempText,
-                countEmoji, offsetWidth, layout, moreWidth
-            )
-            offset = pair.first
-            offsetWidth = pair.second
+
+            if (indexEnd > offset) {
+                val text = tempText[indexEnd - offset - 1].toString().trim()
+                if (text.isNotEmpty() && countEmoji % 2 == 0) {
+                    val charText = tempText[indexEnd - offset]
+                    offsetWidth += layout.paint.measureText(charText.toString()).toInt()
+                    //一个表情两个字符，避免截取一半字符出现乱码或者显示不全...全文
+                    if (offsetWidth > moreWidth && isEmoji(charText)) {
+                        offset++
+                    }
+                }
+            } else {
+                val charText = tempText[indexEnd - offset]
+                offsetWidth += layout.paint.measureText(charText.toString()).toInt()
+            }
         }
         val ssbShrink = tempText.subSequence(0, indexEnd - offset)
         val stringBuilder = SpannableStringBuilder(ssbShrink)
@@ -80,34 +90,6 @@ class MoreTextView @JvmOverloads constructor(
         }, 3, sb.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         stringBuilder.append(sb)
         return stringBuilder
-    }
-
-    private fun getOffsetWidth(
-        indexEnd: Int,
-        offset: Int,
-        tempText: CharSequence,
-        countEmoji: Int,
-        offsetWidth: Int,
-        layout: Layout,
-        moreWidth: Int
-    ): Pair<Int, Int> {
-        var offset1 = offset
-        var offsetWidth1 = offsetWidth
-        if (indexEnd > offset1) {
-            val text = tempText[indexEnd - offset1 - 1].toString().trim()
-            if (text.isNotEmpty() && countEmoji % 2 == 0) {
-                val charText = tempText[indexEnd - offset1]
-                offsetWidth1 += layout.paint.measureText(charText.toString()).toInt()
-                //一个表情两个字符，避免截取一半字符出现乱码或者显示不全...全文
-                if (offsetWidth1 > moreWidth && isEmoji(charText)) {
-                    offset1++
-                }
-            }
-        } else {
-            val charText = tempText[indexEnd - offset1]
-            offsetWidth1 += layout.paint.measureText(charText.toString()).toInt()
-        }
-        return Pair(offset1, offsetWidth1)
     }
 
     private fun isEmoji(codePoint: Char): Boolean {
