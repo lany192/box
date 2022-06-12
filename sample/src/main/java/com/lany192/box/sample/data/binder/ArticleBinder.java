@@ -1,6 +1,5 @@
 package com.lany192.box.sample.data.binder;
 
-import android.text.Html;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -10,6 +9,7 @@ import com.github.lany192.arch.adapter.BindingHolder;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.utils.DateUtils;
 import com.github.lany192.utils.ImageUtils;
+import com.github.lany192.utils.StringUtils;
 import com.lany192.box.sample.MockUtils;
 import com.lany192.box.sample.data.bean.Article;
 import com.lany192.box.sample.databinding.ItemArticleBinding;
@@ -35,7 +35,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
                 "择新手模式。本游戏讲述一个16岁离家出走少年在外的种种<br/>虐心遭遇。游戏无内购、无广告、无需联网哦";
 
 
-        binding.demo.setText(Html.fromHtml(ss));
+        binding.demo.setText(StringUtils.getHtml(ss));
     }
 
 }
