@@ -32,7 +32,7 @@ open class EllipsizeTextView @JvmOverloads constructor(
         if (text is Spannable) {
             val spans = text.getSpans(0, text.length, URLSpan::class.java)
             val builder = SpannableStringBuilder(text)
-            //            builder.clearSpans();
+//                        builder.clearSpans();
             for (span in spans) {
                 val startIndex = text.getSpanStart(span)
                 val endIndex = text.getSpanEnd(span)
