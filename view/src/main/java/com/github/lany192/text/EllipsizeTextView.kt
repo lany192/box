@@ -25,27 +25,30 @@ open class EllipsizeTextView @JvmOverloads constructor(
         highlightColor = Color.TRANSPARENT
     }
 
-    override fun setText(content: CharSequence, type: BufferType?) {
-        val text = if (TextUtils.isEmpty(content)) {
+    override fun setText(text: CharSequence, type: BufferType?) {
+        val builder = if (TextUtils.isEmpty(text)) {
             SpannableStringBuilder("")
         } else {
-            SpannableStringBuilder(content)
+            SpannableStringBuilder(text)
         }
         //添加超链接点击跳转功能
-        val spans = text.getSpans(0, text.length, URLSpan::class.java)
-        val builder = SpannableStringBuilder(text)
+        val spans = builder.getSpans(0, text.length, URLSpan::class.java)
         for (span in spans) {
-            builder.setSpan(object : ClickableSpan() {
+            builder.setSpan(
+                object : ClickableSpan() {
 
-                override fun updateDrawState(ds: TextPaint) {
-                    ds.color = Color.RED
-                    ds.isUnderlineText = false
-                }
+                    override fun updateDrawState(ds: TextPaint) {
+                        ds.color = Color.RED
+                        ds.isUnderlineText = false
+                    }
 
-                override fun onClick(widget: View) {
-                    Toast.makeText(context, "测试1", Toast.LENGTH_SHORT).show()
-                }
-            }, text.getSpanStart(span), text.getSpanEnd(span), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    override fun onClick(widget: View) {
+                        Toast.makeText(context, "测试1", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                builder.getSpanStart(span), builder.getSpanEnd(span),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
         }
         super.setText(builder, type)
     }
