@@ -39,6 +39,7 @@ class DemoTextView @JvmOverloads constructor(
      * 是否可以展开
      */
     fun setExpandable(expandable: Boolean) {
+        this.expand = false
         this.expandable = expandable
         if (expandable) {
             movementMethod = LinkMovementMethod.getInstance()
@@ -62,9 +63,9 @@ class DemoTextView @JvmOverloads constructor(
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (lineCount > maxLines) {
             //如果大于设置的最大行数
-            val (layout, stringBuilder, sb) = clipContent()
+            val (stringBuilder, sb) = clipContent()
             stringBuilder.append(sb)
-            setMeasuredDimension(measuredWidth, getDesiredHeight(layout))
+            //setMeasuredDimension(measuredWidth, getDesiredHeight(layout))
             text = stringBuilder
         }
     }
@@ -72,9 +73,8 @@ class DemoTextView @JvmOverloads constructor(
     /**
      * 裁剪内容
      */
-    private fun clipContent(): Triple<Layout, SpannableStringBuilder, SpannableString> {
+    private fun clipContent(): Pair<SpannableStringBuilder, SpannableString> {
         var offset = 1
-        val layout = layout
         val staticLayout = StaticLayout(
             text,
             layout.paint,
@@ -129,7 +129,7 @@ class DemoTextView @JvmOverloads constructor(
                 }
             }, 3, sb.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         }
-        return Triple(layout, stringBuilder, sb)
+        return Pair(stringBuilder, sb)
     }
 
     private fun getOffsetWidth(

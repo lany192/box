@@ -69,16 +69,33 @@
             app:layout_constraintTop_toBottomOf="@id/desc"
             tools:text="1 h 45 min" />
 
-        <com.github.lany192.text.DemoTextView
-            android:id="@+id/demo"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="3"
-            android:padding="8dp"
-            android:text="@string/lorem_ipsum"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image" />
+            app:layout_constraintTop_toBottomOf="@id/image">
+
+            <com.github.lany192.text.DemoTextView
+                android:id="@+id/demo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:padding="8dp"
+                android:text="@string/lorem_ipsum" />
+
+            <com.github.lany192.text.BoxTextView
+                android:id="@+id/demo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:padding="8dp"
+                android:text="@string/lorem_ipsum" />
+        </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
