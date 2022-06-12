@@ -26,34 +26,28 @@ open class EllipsizeTextView @JvmOverloads constructor(
     }
 
     override fun setText(content: CharSequence, type: BufferType?) {
-        var text = content
-        if (TextUtils.isEmpty(text)) {
-            text = ""
+        val text = if (TextUtils.isEmpty(content)) {
+            SpannableStringBuilder("")
+        } else {
+            SpannableStringBuilder(content)
         }
         //添加超链接点击跳转功能
-        if (text is Spannable) {
-            val spans = text.getSpans(0, text.length, URLSpan::class.java)
-            val builder = SpannableStringBuilder(text)
-//                        builder.clearSpans();
-            for (span in spans) {
-                val startIndex = text.getSpanStart(span)
-                val endIndex = text.getSpanEnd(span)
-                builder.setSpan(object : ClickableSpan() {
+        val spans = text.getSpans(0, text.length, URLSpan::class.java)
+        val builder = SpannableStringBuilder(text)
+        for (span in spans) {
+            builder.setSpan(object : ClickableSpan() {
 
-                    override fun updateDrawState(ds: TextPaint) {
-                        ds.color = Color.RED
-                        ds.isUnderlineText = false
-                    }
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.color = Color.RED
+                    ds.isUnderlineText = false
+                }
 
-                    override fun onClick(widget: View) {
-                        Toast.makeText(context, "测试1", Toast.LENGTH_SHORT).show()
-                    }
-                }, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            }
-            super.setText(builder, type)
-        } else {
-            super.setText(text, type)
+                override fun onClick(widget: View) {
+                    Toast.makeText(context, "测试1", Toast.LENGTH_SHORT).show()
+                }
+            }, text.getSpanStart(span), text.getSpanEnd(span), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
+        super.setText(builder, type)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
