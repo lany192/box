@@ -94,8 +94,5 @@
                 android:padding="8dp"
                 android:text="@string/lorem_ipsum" />
         </LinearLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.google.android.material.card.MaterialCardView>
