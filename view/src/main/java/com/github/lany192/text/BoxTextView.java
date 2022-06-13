@@ -60,6 +60,10 @@ public class BoxTextView extends MaterialTextView {
     }
 
     public void setTextColorId(@ColorRes int id) {
-        super.setTextColor(ContextCompat.getColor(getContext(), id));
+        super.setTextColor(getColor(id));
+    }
+
+    public int getColor(@ColorRes int id) {
+        return ContextCompat.getColor(getContext(), id);
     }
 }
