@@ -139,9 +139,9 @@ public class EllipsizeTextView extends BoxTextView {
         return stringBuilder;
     }
 
-    private boolean isEmoji(char codePoint) {
-        return codePoint == 0x0 || codePoint == 0x9 || codePoint == 0xA
-                || codePoint == 0xD || codePoint >= 0x20 && codePoint <= 0xD7FF
-                || codePoint >= 0xE000 && codePoint <= 0xFFFD;
+    private boolean isEmoji(char str) {
+        return str == 0x0 || str == 0x9 || str == 0xA
+                || str == 0xD || str >= 0x20 && str <= 0xD7FF
+                || str >= 0xE000 && str <= 0xFFFD;
     }
 }
