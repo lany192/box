@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="3"
                 android:padding="8dp"
-                android:text="@string/lorem_ipsum" />
+                android:text="@string/sss" />
 
             <com.github.lany192.text.BoxTextView
                 android:id="@+id/demo2"
@@ -92,7 +92,7 @@
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:padding="8dp"
-                android:text="@string/lorem_ipsum" />
+                android:text="@string/sss" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

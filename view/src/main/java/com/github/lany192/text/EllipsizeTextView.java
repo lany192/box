@@ -114,6 +114,10 @@ public class EllipsizeTextView extends BoxTextView {
                 char charText = temp.charAt(indexEnd - offset);
                 offsetWidth += getTextNeedWidth(String.valueOf(charText));
             }
+            log.i("测试indexEnd:" + indexEnd);
+            log.i("测试offset:" + offset);
+            log.i("测试offsetWidth:" + offsetWidth);
+            log.i("测试moreWidth:" + moreWidth);
         }
         CharSequence clip = temp.subSequence(0, indexEnd - offset);
 
