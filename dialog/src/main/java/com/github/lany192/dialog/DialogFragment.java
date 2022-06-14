@@ -121,13 +121,14 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     public void cancel() {
-        if (getDialog() != null) {
-            getDialog().cancel();
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.remove(this);
+            transaction.commitAllowingStateLoss();
+        } else {
+            log.e("对话框context异常");
         }
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.remove(this);
-        fragmentTransaction.commitAllowingStateLoss();
     }
 
     private FragmentActivity context2activity(Context context) {
