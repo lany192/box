@@ -25,7 +25,7 @@ import okio.BufferedSource;
 import okio.GzipSource;
 
 public class HttpLogInterceptor implements Interceptor {
-    private final Logger.Builder log = XLog.tag("API");
+    private final Logger.Builder log = XLog.tag("接口请求");
     private final boolean debug;
 
     public HttpLogInterceptor(boolean debug) {
