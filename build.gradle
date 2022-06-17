@@ -2,12 +2,12 @@ buildscript {
     apply from: 'config.gradle'
     repositories {
         google()
-        maven { url 'https://maven.aliyun.com/repository/public' }
         mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.1'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.42'
         classpath 'com.alibaba:arouter-register:1.0.2'
     }
@@ -15,9 +15,9 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/public' }
         mavenCentral()
         google()
+        maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url "https://jitpack.io" }
     }
 }

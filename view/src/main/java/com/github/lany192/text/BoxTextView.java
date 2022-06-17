@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.utils.StringUtils;
 import com.github.lany192.view.R;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -60,6 +61,14 @@ public class BoxTextView extends MaterialTextView {
     }
 
     public void setTextColorId(@ColorRes int id) {
-        super.setTextColor(ContextCompat.getColor(getContext(), id));
+        super.setTextColor(getColor(id));
+    }
+
+    public int getColor(@ColorRes int id) {
+        return ContextCompat.getColor(getContext(), id);
+    }
+
+    public void setHtml(String text) {
+        setText(StringUtils.getHtml(text));
     }
 }

@@ -32,16 +32,3 @@ fun <V : ViewBinding> Class<*>.getBinding(
         throw RuntimeException("The ViewBinding inflate function has been changed.", ex)
     }
 }
-
-internal fun Class<*>.checkMethod(): Boolean {
-    return try {
-        getMethod(
-            "inflate",
-            LayoutInflater::class.java
-        )
-        true
-    } catch (ex: Exception) {
-        false
-    }
-}
-
