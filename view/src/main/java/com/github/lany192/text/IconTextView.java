@@ -23,6 +23,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 
+import com.bumptech.glide.Glide;
 import com.github.lany192.view.R;
 
 import java.lang.annotation.Retention;
@@ -560,5 +561,16 @@ public class IconTextView extends BoxTextView {
     })
     @Retention(RetentionPolicy.SOURCE)
     public @interface IconGravity {
+    }
+
+    public void setIcon(String url) {
+        try {
+            setIcon(Glide.with(getContext())
+                    .load(url)
+                    .submit()
+                    .get());
+        } catch (Exception ignored) {
+
+        }
     }
 }
