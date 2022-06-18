@@ -378,7 +378,25 @@ public class IconTextView extends BoxTextView {
     public Drawable getIcon() {
         return icon;
     }
+    
+    public void setIcon(@NonNull String url) {
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+        try {
+            Glide.with(getContext())
+                    .load(url)
+                    .into(new SimpleTarget<Drawable>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            setIcon(resource);
+                        }
+                    });
+        } catch (Exception ignored) {
 
+        }
+    }
+    
     /**
      * Sets the icon drawable resource to show for this button. By default, this icon will be shown on
      * the left side of the button.
