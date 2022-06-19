@@ -22,7 +22,7 @@ public class LoadingDialog extends BaseDialog<DialogLoadingBinding> {
     @Override
     protected void init() {
         if (!TextUtils.isEmpty(mMessage)) {
-            binding.message.setText(mMessage);
+            getBinding().message.setText(mMessage);
         }
     }
 

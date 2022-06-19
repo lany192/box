@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
@@ -22,11 +23,11 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.github.lany192.view.R;
 
@@ -383,7 +384,7 @@ public class IconTextView extends BoxTextView {
     public Drawable getIcon() {
         return icon;
     }
-    
+
     public void setIcon(@NonNull String url) {
         if (TextUtils.isEmpty(url)) {
             return;
@@ -392,17 +393,28 @@ public class IconTextView extends BoxTextView {
             Glide.with(getContext())
                     .load(url)
                     .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
-                    .into(new SimpleTarget<Drawable>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+                    .into(new CustomViewTarget<View, Drawable>(this) {
+
+                        @Override
+                        protected void onResourceCleared(@Nullable Drawable placeholder) {
+                            setIcon(0);
+                        }
+
+                        @Override
+                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                            setIcon(0);
+                        }
+
                         @Override
                         public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                             setIcon(resource);
                         }
                     });
-        } catch (Exception ignored) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    
+
     /**
      * Sets the icon drawable resource to show for this button. By default, this icon will be shown on
      * the left side of the button.

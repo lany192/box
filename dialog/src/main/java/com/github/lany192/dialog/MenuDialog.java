@@ -21,17 +21,17 @@ public class MenuDialog extends BaseDialog<DialogMenuBinding> {
 
     @Override
     protected void init() {
-        binding.listView.setAdapter(new ArrayAdapter<>(getContext(),
+        getBinding().listView.setAdapter(new ArrayAdapter<>(getContext(),
                 R.layout.item_dialog_menu,
                 R.id.title,
                 items));
-        binding.listView.setOnItemClickListener((adapterView, view, position, l) -> {
+        getBinding().listView.setOnItemClickListener((adapterView, view, position, l) -> {
             if (listener != null) {
                 listener.onItemClick(position);
             }
             cancel();
         });
-        binding.cancel.setOnClickListener(v -> cancel());
+        getBinding().cancel.setOnClickListener(v -> cancel());
     }
 
     public void setItems(List<String> items) {
