@@ -5,9 +5,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.lany192.arch.R;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.utils.NetUtils;
+import com.hjq.toast.ToastUtils;
 
 import java.util.List;
 
@@ -140,7 +142,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
             page += 1;
             request(false);
         } else {
-            showNetworkView();
+            ToastUtils.show(R.string.default_network);
             listState.postValue(ListState.ERROR);
         }
     }
