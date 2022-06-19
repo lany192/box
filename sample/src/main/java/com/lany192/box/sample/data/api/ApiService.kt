@@ -1,7 +1,7 @@
 package com.lany192.box.sample.data.api
 
 import com.lany192.box.sample.data.bean.*
-import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.flow.Flow
 import retrofit2.http.*
 
 interface ApiService {
@@ -9,99 +9,97 @@ interface ApiService {
      * 获取省市县数据
      */
     @GET("https://xzwcn.oss-cn-shanghai.aliyuncs.com/config/city.json")
-    suspend fun getCityList(): ApiResult<List<Area>>
+    suspend fun getCityList(): Flow<ApiResult<List<Area>>>
 
     @GET("/article/list/{page}/json")
-    suspend fun getArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
+    suspend fun getArticleList(@Path("page") page: Int): Flow<ApiResult<PageInfo<Article>>>
 
     @GET("/article/list/{page}/json")
-    fun getHomeArticles(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
+    suspend fun getHomeArticles(@Path("page") page: Int): Flow<ApiResult<ArticleList>>
 
     @GET("/user_article/list/{page}/json")
-    suspend fun getSquareArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
-
+    suspend fun getSquareArticleList(@Path("page") page: Int): Flow<ApiResult<PageInfo<Article>>>
 
     @GET("/banner/json")
-    fun getBanner(): Observable<ApiResult<List<Banner>>>
+    suspend fun getBanner(): Flow<ApiResult<List<Banner>>>
 
     @GET("/tree/json")
-    fun getSystemType(): Observable<ApiResult<List<SystemParent>>>
+    suspend fun getSystemType(): Flow<ApiResult<List<SystemParent>>>
 
     @GET("/article/list/{page}/json")
-    fun getSystemTypeDetail(
+    suspend fun getSystemTypeDetail(
         @Path("page") page: Int,
         @Query("cid") cid: Int
-    ): Observable<ApiResult<ArticleList>>
+    ): Flow<ApiResult<ArticleList>>
 
     @GET("/navi/json")
-    fun getNavigation(): Observable<ApiResult<List<Navigation>>>
+    suspend fun getNavigation(): Flow<ApiResult<List<Navigation>>>
 
     @GET("/project/tree/json")
-    fun getProjectType(): Observable<ApiResult<List<SystemParent>>>
+    suspend fun getProjectType(): Flow<ApiResult<List<SystemParent>>>
 
     @GET("/wxarticle/chapters/json")
-    fun getBlogType(): Observable<ApiResult<List<SystemParent>>>
+    suspend fun getBlogType(): Flow<ApiResult<List<SystemParent>>>
 
     @GET("/wxarticle/list/{id}/{page}/json")
     suspend fun getBlogArticle(
         @Path("id") id: Int,
         @Path("page") page: Int
-    ): ApiResult<PageInfo<Article>>
+    ): Flow<ApiResult<PageInfo<Article>>>
 
     @GET("/project/list/{page}/json")
-    fun getProjectTypeDetail(
+    suspend fun getProjectTypeDetail(
         @Path("page") page: Int,
         @Query("cid") cid: Int
-    ): Observable<ApiResult<ArticleList>>
+    ): Flow<ApiResult<ArticleList>>
 
     @GET("/article/listproject/{page}/json")
-    fun getLastedProject(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
+    suspend fun getLastedProject(@Path("page") page: Int): Flow<ApiResult<ArticleList>>
 
     @GET("/friend/json")
-    fun getWebsites(): Observable<ApiResult<List<Hot>>>
+    suspend fun getWebsites(): Flow<ApiResult<List<Hot>>>
 
     @GET("/hotkey/json")
-    fun getHot(): Observable<ApiResult<List<Hot>>>
+    suspend fun getHot(): Flow<ApiResult<List<Hot>>>
 
     @FormUrlEncoded
     @POST("/article/query/{page}/json")
-    fun searchHot(
+    suspend fun searchHot(
         @Path("page") page: Int,
         @Field("k") key: String
-    ): Observable<ApiResult<ArticleList>>
+    ): Flow<ApiResult<ArticleList>>
 
     @FormUrlEncoded
     @POST("/user/login")
-    fun login(
+    suspend fun login(
         @Field("username") userName: String,
         @Field("password") passWord: String
-    ): Observable<ApiResult<User>>
+    ): Flow<ApiResult<User>>
 
     @GET("/user/logout/json")
-    fun logOut(): Observable<ApiResult<Any>>
+    suspend fun logOut(): Flow<ApiResult<Any>>
 
     @FormUrlEncoded
     @POST("/user/register")
-    fun register(
+    suspend fun register(
         @Field("username") userName: String,
         @Field("password") passWord: String,
         @Field("repassword") rePassWord: String
-    ): Observable<ApiResult<User>>
+    ): Flow<ApiResult<User>>
 
     @GET("/lg/collect/list/{page}/json")
-    fun getCollectArticles(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
+    suspend fun getCollectArticles(@Path("page") page: Int): Flow<ApiResult<ArticleList>>
 
     @POST("/lg/collect/{id}/json")
-    fun collectArticle(@Path("id") id: Int): Observable<ApiResult<ArticleList>>
+    suspend fun collectArticle(@Path("id") id: Int): Flow<ApiResult<ArticleList>>
 
     @POST("/lg/uncollect_originId/{id}/json")
-    fun cancelCollectArticle(@Path("id") id: Int): Observable<ApiResult<ArticleList>>
-
+    suspend fun cancelCollectArticle(@Path("id") id: Int): Flow<ApiResult<ArticleList>>
 
     @FormUrlEncoded
     @POST("/lg/user_article/add/json")
-    fun shareArticle(
+    suspend fun shareArticle(
         @Field("title") title: String,
         @Field("link") url: String
-    ): Observable<ApiResult<String>>
+    ): Flow<ApiResult<String>>
 }
