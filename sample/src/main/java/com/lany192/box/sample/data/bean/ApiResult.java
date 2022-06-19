@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName;
 import com.lany192.box.sample.R;
 
 public class ApiResult<T> {
-    @SerializedName(value = "code")
+    @SerializedName(value = "code", alternate = {"errorCode"})
     private int code;
 
-    @SerializedName(value = "msg")
+    @SerializedName(value = "msg", alternate = {"errorMsg"})
     private String msg;
 
-    @SerializedName(value = "result")
+    @SerializedName(value = "result", alternate = {"data"})
     private T result;
 
     public static <T> ApiResult<T> network() {
