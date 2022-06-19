@@ -31,7 +31,7 @@ class MyViewModel @Inject constructor(val repository: BoxRepository) :
                     log.i("接口结束")
                 }.collect {
                     if (it.code == 0) {
-                        items.postValue(it.data)
+                        items.postValue(it.result)
                     } else {
                         ToastUtils.show(it.msg)
                     }

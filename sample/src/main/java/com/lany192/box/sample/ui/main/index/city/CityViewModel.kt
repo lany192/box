@@ -23,10 +23,10 @@ class CityViewModel @Inject constructor(val repository: BoxRepository) : ItemsVi
                 }.collect {
                     if (it.code == 0) {
                         if (refresh) {
-                            resetItems(it.data)
+                            resetItems(it.result)
                             refreshFinish()
                         } else {
-                            addItems(it.data)
+                            addItems(it.result)
                             moreLoadFinish()
                         }
                         moreLoadEnd()

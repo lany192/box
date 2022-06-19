@@ -37,7 +37,7 @@ abstract class PageViewModel : ItemsViewModel() {
                 }
                 .collect { result ->
                     if (result.code == 0) {
-                        val data = result.data
+                        val data = result.result
                         if (data != null) {
                             val items = function.apply(data).filterNotNull()
                             if (refresh) {
