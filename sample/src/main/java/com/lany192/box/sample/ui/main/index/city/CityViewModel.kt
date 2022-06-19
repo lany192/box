@@ -31,7 +31,7 @@ class CityViewModel @Inject constructor(val repository: BoxRepository) : ItemsVi
                         }
                         moreLoadEnd()
                     } else {
-                        ToastUtils.show(it.message)
+                        ToastUtils.show(it.msg)
                     }
                 }
         }

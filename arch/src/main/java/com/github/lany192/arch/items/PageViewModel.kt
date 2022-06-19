@@ -57,7 +57,7 @@ abstract class PageViewModel : ItemsViewModel() {
                             requestError()
                         }
                     } else {
-                        ToastUtils.show(it.message)
+                        ToastUtils.show(it.msg)
                         requestError()
                     }
                 }

@@ -33,7 +33,7 @@ class MyViewModel @Inject constructor(val repository: BoxRepository) :
                     if (it.code == 0) {
                         items.postValue(it.result)
                     } else {
-                        ToastUtils.show(it.message)
+                        ToastUtils.show(it.msg)
                     }
                 }
         }
