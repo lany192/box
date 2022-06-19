@@ -5,7 +5,6 @@ import com.github.lany192.arch.repository.BaseRepository
 import com.lany192.box.sample.data.api.ApiService
 import com.lany192.box.sample.data.bean.Area
 import com.lany192.box.sample.data.bean.Article
-import com.lany192.box.sample.data.bean.ArticleList
 import com.lany192.box.sample.data.bean.PageInfo
 import kotlinx.coroutines.flow.Flow
 
@@ -23,7 +22,7 @@ class BoxRepository(private val service: ApiService) : BaseRepository() {
         return request { service.getSquareArticleList(page) }
     }
 
-    fun getHomeArticles(page: Int): Flow<ApiResult<ArticleList>> {
+    fun getHomeArticles(page: Int): Flow<ApiResult<PageInfo<Article>>> {
         return request { service.getHomeArticles(page) }
     }
 }

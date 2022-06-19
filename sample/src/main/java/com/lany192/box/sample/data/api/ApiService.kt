@@ -15,7 +15,7 @@ interface ApiService {
     suspend fun getArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
     @GET("/article/list/{page}/json")
-    suspend fun getHomeArticles(@Path("page") page: Int): ApiResult<ArticleList>
+    suspend fun getHomeArticles(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
     @GET("/user_article/list/{page}/json")
     suspend fun getSquareArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>

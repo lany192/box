@@ -4,7 +4,7 @@ import com.github.lany192.arch.R;
 import com.github.lany192.utils.ContextUtils;
 import com.google.gson.annotations.SerializedName;
 
-public class ApiResult<T> {
+public class ApiResult<T> implements Result<T> {
     @SerializedName(value = "code", alternate = {"errorCode"})
     private int code;
 
@@ -21,31 +21,32 @@ public class ApiResult<T> {
         return result;
     }
 
-    /**
-     * 请求是否成功
-     */
-    public boolean isSuccess() {
-        return code == 200;
+    @Override
+    public boolean success() {
+        return code == 0;
     }
 
+    @Override
     public int getCode() {
         return code;
+    }
+
+    @Override
+    public String getMessage() {
+        return msg;
+    }
+
+    @Override
+    public T getResult() {
+        return result;
     }
 
     public void setCode(int code) {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public T getResult() {
-        return result;
     }
 
     public void setResult(T result) {

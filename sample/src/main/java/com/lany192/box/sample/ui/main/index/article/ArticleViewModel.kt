@@ -1,7 +1,7 @@
 package com.lany192.box.sample.ui.main.index.article
 
+import com.github.lany192.arch.items.PageViewModel
 import com.lany192.box.sample.repository.BoxRepository
-import com.lany192.box.sample.ui.PageViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
