@@ -36,7 +36,7 @@ public class ItemsView extends BindingView<ViewItemsBinding> {
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
                 if (layoutManager instanceof LinearLayoutManager) {
@@ -71,7 +71,7 @@ public class ItemsView extends BindingView<ViewItemsBinding> {
         binding.refreshLayout.setEnableLoadMore(enable);
     }
 
-    public void setAdapter(@Nullable RecyclerView.Adapter adapter) {
+    public <VH extends RecyclerView.ViewHolder> void setAdapter(@Nullable RecyclerView.Adapter<VH> adapter) {
         binding.recyclerView.setAdapter(adapter);
     }
 
