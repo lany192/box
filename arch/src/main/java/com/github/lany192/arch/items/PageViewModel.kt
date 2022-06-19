@@ -39,7 +39,7 @@ abstract class PageViewModel : ItemsViewModel() {
         viewModelScope.launch {
             block()
                 .collect {
-                    if (it.success()) {
+                    if (isSuccess(it)) {
                         val result = it.result
                         if (result != null) {
                             val items = function.apply(result).filterNotNull()
@@ -62,5 +62,9 @@ abstract class PageViewModel : ItemsViewModel() {
                     }
                 }
         }
+    }
+
+    open fun <T> isSuccess(result: ApiResult<T>): Boolean {
+        return result.code == 200
     }
 }

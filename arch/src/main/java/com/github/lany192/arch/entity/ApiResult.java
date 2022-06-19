@@ -22,11 +22,6 @@ public class ApiResult<T> implements Result<T> {
     }
 
     @Override
-    public boolean success() {
-        return code == 0;
-    }
-
-    @Override
     public int getCode() {
         return code;
     }
