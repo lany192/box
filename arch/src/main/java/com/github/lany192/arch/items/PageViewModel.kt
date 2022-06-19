@@ -50,7 +50,7 @@ abstract class PageViewModel : ItemsViewModel() {
                                 addItems(items)
                                 moreLoadFinish()
                             }
-                            if (result.hasNext()) {
+                            if (!result.hasNext()) {
                                 moreLoadEnd()
                             }
                         } else {
