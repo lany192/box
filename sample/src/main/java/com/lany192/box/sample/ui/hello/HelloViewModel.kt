@@ -14,6 +14,6 @@ class HelloViewModel @Inject constructor(var repository: BoxRepository) : PageVi
     }
 
     override fun request(refresh: Boolean) {
-        getPageInfo(refresh) { repository.getHomeArticles(page) }
+        requestPage(refresh) { repository.getHomeArticles(page) }
     }
 }

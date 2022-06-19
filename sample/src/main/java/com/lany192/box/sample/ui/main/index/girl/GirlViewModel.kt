@@ -14,6 +14,6 @@ class GirlViewModel @Inject constructor(val repository: BoxRepository) : PageVie
     }
 
     override fun request(refresh: Boolean) {
-        getPageInfo(refresh) { repository.getSquareArticleList(page) }
+        requestPage(refresh) { repository.getSquareArticleList(page) }
     }
 }

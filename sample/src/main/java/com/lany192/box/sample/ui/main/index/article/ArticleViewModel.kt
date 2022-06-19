@@ -15,6 +15,6 @@ class ArticleViewModel @Inject constructor(val repository: BoxRepository) :
     }
 
     override fun request(refresh: Boolean) {
-        getPageInfo(refresh) { repository.getArticleList(page) }
+        requestPage(refresh) { repository.getArticleList(page) }
     }
 }
