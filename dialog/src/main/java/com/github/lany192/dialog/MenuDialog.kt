@@ -45,6 +45,6 @@ class MenuDialog : BaseDialog<DialogMenuBinding>() {
     }
 
     interface OnListener {
-        suspend fun onItemClick(position: Int)
+        fun onItemClick(position: Int)
     }
 }
