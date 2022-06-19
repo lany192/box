@@ -1,7 +1,12 @@
 package com.lany192.box.sample.repository
 
+import com.github.lany192.arch.entity.ApiResult
+import com.github.lany192.arch.repository.BaseRepository
 import com.lany192.box.sample.data.api.ApiService
-import com.lany192.box.sample.data.bean.*
+import com.lany192.box.sample.data.bean.Area
+import com.lany192.box.sample.data.bean.Article
+import com.lany192.box.sample.data.bean.ArticleList
+import com.lany192.box.sample.data.bean.PageInfo
 import kotlinx.coroutines.flow.Flow
 
 class BoxRepository(private val service: ApiService) : BaseRepository() {

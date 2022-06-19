@@ -1,5 +1,6 @@
 package com.lany192.box.sample.data.api
 
+import com.github.lany192.arch.entity.ApiResult
 import com.lany192.box.sample.data.bean.*
 import retrofit2.http.*
 

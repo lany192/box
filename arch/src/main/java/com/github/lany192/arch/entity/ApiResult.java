@@ -1,14 +1,14 @@
-package com.lany192.box.sample.data.bean;
+package com.github.lany192.arch.entity;
 
+import com.github.lany192.arch.R;
 import com.github.lany192.utils.ContextUtils;
 import com.google.gson.annotations.SerializedName;
-import com.lany192.box.sample.R;
 
 public class ApiResult<T> {
     @SerializedName(value = "code", alternate = {"errorCode"})
     private int code;
 
-    @SerializedName(value = "msg", alternate = {"errorMsg"})
+    @SerializedName(value = "msg", alternate = {"errorMsg", "message"})
     private String msg;
 
     @SerializedName(value = "result", alternate = {"data"})

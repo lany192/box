@@ -1,9 +1,9 @@
-package com.lany192.box.sample.repository
+package com.github.lany192.arch.repository
 
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
+import com.github.lany192.arch.entity.ApiResult
 import com.github.lany192.utils.NetUtils
-import com.lany192.box.sample.data.bean.ApiResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
