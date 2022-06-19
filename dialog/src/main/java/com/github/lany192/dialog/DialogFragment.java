@@ -16,6 +16,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -24,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
+import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.DensityUtils;
 
 import java.util.ArrayList;
@@ -144,6 +146,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
 
     public int getColor(@ColorRes int colorResId) {
         return ContextCompat.getColor(requireContext(), colorResId);
+    }
+
+    public String getStringId(@StringRes int resId) {
+        return ContextUtils.getContext().getString(resId);
     }
 
     protected abstract void init();
