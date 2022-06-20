@@ -48,12 +48,8 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     @Override
     public void init() {
         super.init();
-        if (viewModel.loadMoreEnable()) {
-            itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
-        }
         itemsAdapter.getLoadMoreModule().setEnableLoadMore(viewModel.loadMoreEnable());
         itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
-
         getRecyclerView().setLayoutManager(getLayoutManager());
         getRecyclerView().setAdapter(itemsAdapter);
         if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(itemsAdapter) != null) {
@@ -61,6 +57,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
         }
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
+        if (viewModel.loadMoreEnable()) {
+            itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
+        }
         //列表状态观察
         viewModel.getListState().observe(this, state -> {
             switch (state) {

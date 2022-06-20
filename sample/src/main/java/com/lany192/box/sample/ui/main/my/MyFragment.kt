@@ -7,7 +7,6 @@ import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
 import com.gyf.immersionbar.ImmersionBar
-import com.hjq.toast.ToastUtils
 import com.lany192.box.sample.R
 import com.lany192.box.sample.data.bean.UserInfo
 import com.lany192.box.sample.databinding.FragmentMyBinding
@@ -45,15 +44,12 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
     }
 
     private fun showDialog2() {
-        val menus: MutableList<String> = ArrayList()
+        val menus = mutableListOf<String>()
         for (i in 0..4) {
             menus.add("test$i")
         }
         val dialog = MenuDialog()
         dialog.setItems(menus)
-        dialog.setOnListener {
-            ToastUtils.show(it.toString())
-        }
         dialog.show()
     }
 

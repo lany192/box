@@ -1,7 +1,7 @@
 package com.lany192.box.sample.data.api
 
+import com.github.lany192.arch.entity.ApiResult
 import com.lany192.box.sample.data.bean.*
-import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.*
 
 interface ApiService {
@@ -15,32 +15,31 @@ interface ApiService {
     suspend fun getArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
     @GET("/article/list/{page}/json")
-    fun getHomeArticles(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
+    suspend fun getHomeArticles(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
     @GET("/user_article/list/{page}/json")
     suspend fun getSquareArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
-
     @GET("/banner/json")
-    fun getBanner(): Observable<ApiResult<List<Banner>>>
+    suspend fun getBanner(): ApiResult<List<Banner>>
 
     @GET("/tree/json")
-    fun getSystemType(): Observable<ApiResult<List<SystemParent>>>
+    suspend fun getSystemType(): ApiResult<List<SystemParent>>
 
     @GET("/article/list/{page}/json")
-    fun getSystemTypeDetail(
+    suspend fun getSystemTypeDetail(
         @Path("page") page: Int,
         @Query("cid") cid: Int
-    ): Observable<ApiResult<ArticleList>>
+    ): ApiResult<ArticleList>
 
     @GET("/navi/json")
-    fun getNavigation(): Observable<ApiResult<List<Navigation>>>
+    suspend fun getNavigation(): ApiResult<List<Navigation>>
 
     @GET("/project/tree/json")
-    fun getProjectType(): Observable<ApiResult<List<SystemParent>>>
+    suspend fun getProjectType(): ApiResult<List<SystemParent>>
 
     @GET("/wxarticle/chapters/json")
-    fun getBlogType(): Observable<ApiResult<List<SystemParent>>>
+    suspend fun getBlogType(): ApiResult<List<SystemParent>>
 
     @GET("/wxarticle/list/{id}/{page}/json")
     suspend fun getBlogArticle(
@@ -49,59 +48,58 @@ interface ApiService {
     ): ApiResult<PageInfo<Article>>
 
     @GET("/project/list/{page}/json")
-    fun getProjectTypeDetail(
+    suspend fun getProjectTypeDetail(
         @Path("page") page: Int,
         @Query("cid") cid: Int
-    ): Observable<ApiResult<ArticleList>>
+    ): ApiResult<ArticleList>
 
     @GET("/article/listproject/{page}/json")
-    fun getLastedProject(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
+    suspend fun getLastedProject(@Path("page") page: Int): ApiResult<ArticleList>
 
     @GET("/friend/json")
-    fun getWebsites(): Observable<ApiResult<List<Hot>>>
+    suspend fun getWebsites(): ApiResult<List<Hot>>
 
     @GET("/hotkey/json")
-    fun getHot(): Observable<ApiResult<List<Hot>>>
+    suspend fun getHot(): ApiResult<List<Hot>>
 
     @FormUrlEncoded
     @POST("/article/query/{page}/json")
-    fun searchHot(
+    suspend fun searchHot(
         @Path("page") page: Int,
         @Field("k") key: String
-    ): Observable<ApiResult<ArticleList>>
+    ): ApiResult<ArticleList>
 
     @FormUrlEncoded
     @POST("/user/login")
-    fun login(
+    suspend fun login(
         @Field("username") userName: String,
         @Field("password") passWord: String
-    ): Observable<ApiResult<User>>
+    ): ApiResult<User>
 
     @GET("/user/logout/json")
-    fun logOut(): Observable<ApiResult<Any>>
+    suspend fun logOut(): ApiResult<Any>
 
     @FormUrlEncoded
     @POST("/user/register")
-    fun register(
+    suspend fun register(
         @Field("username") userName: String,
         @Field("password") passWord: String,
         @Field("repassword") rePassWord: String
-    ): Observable<ApiResult<User>>
+    ): ApiResult<User>
 
     @GET("/lg/collect/list/{page}/json")
-    fun getCollectArticles(@Path("page") page: Int): Observable<ApiResult<ArticleList>>
+    suspend fun getCollectArticles(@Path("page") page: Int): ApiResult<ArticleList>
 
     @POST("/lg/collect/{id}/json")
-    fun collectArticle(@Path("id") id: Int): Observable<ApiResult<ArticleList>>
+    suspend fun collectArticle(@Path("id") id: Int): ApiResult<ArticleList>
 
     @POST("/lg/uncollect_originId/{id}/json")
-    fun cancelCollectArticle(@Path("id") id: Int): Observable<ApiResult<ArticleList>>
-
+    suspend fun cancelCollectArticle(@Path("id") id: Int): ApiResult<ArticleList>
 
     @FormUrlEncoded
     @POST("/lg/user_article/add/json")
-    fun shareArticle(
+    suspend fun shareArticle(
         @Field("title") title: String,
         @Field("link") url: String
-    ): Observable<ApiResult<String>>
+    ): ApiResult<String>
 }

@@ -9,13 +9,20 @@ import com.github.lany192.binding.getBinding
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseDialog<VB : ViewBinding> : DialogFragment() {
-    lateinit var binding: VB
+    private var _binding: VB? = null
+
+    open val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = getViewBinding(inflater, container)
-        return binding.root
+        _binding = getViewBinding(inflater, container)
+        return _binding!!.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     /**

@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
@@ -24,6 +25,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.CustomViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.github.lany192.view.R;
 
 import java.lang.annotation.Retention;
@@ -380,6 +385,36 @@ public class IconTextView extends BoxTextView {
         return icon;
     }
 
+    public void setIcon(@NonNull String url) {
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+        try {
+            Glide.with(getContext())
+                    .load(url)
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                    .into(new CustomViewTarget<View, Drawable>(this) {
+
+                        @Override
+                        protected void onResourceCleared(@Nullable Drawable placeholder) {
+                            setIcon(0);
+                        }
+
+                        @Override
+                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                            setIcon(0);
+                        }
+
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            setIcon(resource);
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Sets the icon drawable resource to show for this button. By default, this icon will be shown on
      * the left side of the button.
@@ -561,16 +596,5 @@ public class IconTextView extends BoxTextView {
     })
     @Retention(RetentionPolicy.SOURCE)
     public @interface IconGravity {
-    }
-
-    public void setIcon(String url) {
-        try {
-            setIcon(Glide.with(getContext())
-                    .load(url)
-                    .submit()
-                    .get());
-        } catch (Exception ignored) {
-
-        }
     }
 }

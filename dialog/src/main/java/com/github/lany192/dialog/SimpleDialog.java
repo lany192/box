@@ -52,58 +52,58 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
     @Override
     protected void init() {
         if (TextUtils.isEmpty(mTitle)) {
-            binding.title.setVisibility(View.GONE);
+            getBinding().title.setVisibility(View.GONE);
         } else {
-            binding.title.setText(mTitle);
-            binding.title.setTextSize(titleSize);
-            binding.title.setVisibility(View.VISIBLE);
-            binding.title.setTextColorId(mTitleColor);
+            getBinding().title.setText(mTitle);
+            getBinding().title.setTextSize(titleSize);
+            getBinding().title.setVisibility(View.VISIBLE);
+            getBinding().title.setTextColorId(mTitleColor);
         }
         if (!TextUtils.isEmpty(mMessage)) {
-            binding.content.setText(mMessage);
-            binding.content.setGravity(gravity);
-            binding.content.setTextSize(mMsgTextSize);
-            binding.content.setTextColorId(R.color.text_2level);
+            getBinding().content.setText(mMessage);
+            getBinding().content.setGravity(gravity);
+            getBinding().content.setTextSize(mMsgTextSize);
+            getBinding().content.setTextColorId(R.color.text_2level);
             if (movementMethod != null) {
-                binding.content.setMovementMethod(movementMethod);
+                getBinding().content.setMovementMethod(movementMethod);
             } else {
-                binding.content.setMovementMethod(ScrollingMovementMethod.getInstance());
+                getBinding().content.setMovementMethod(ScrollingMovementMethod.getInstance());
             }
         }
         if (isShowDivider) {
-            binding.divider.setVisibility(View.VISIBLE);
+            getBinding().divider.setVisibility(View.VISIBLE);
         } else {
-            binding.divider.setVisibility(View.GONE);
+            getBinding().divider.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(mRightText)) {
-            binding.rightButton.setText(mRightText);
-            binding.rightButton.setVisibility(View.VISIBLE);
+            getBinding().rightButton.setText(mRightText);
+            getBinding().rightButton.setVisibility(View.VISIBLE);
             if (mRightTextColor != 0) {
-                binding.rightButton.setTextColor(getColor(mRightTextColor));
+                getBinding().rightButton.setTextColor(getColor(mRightTextColor));
             }
-            binding.rightButton.setOnClickListener(v -> {
+            getBinding().rightButton.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnRightListener) {
                     mOnRightListener.onCallback();
                 }
             });
         } else {
-            binding.rightButton.setVisibility(View.GONE);
+            getBinding().rightButton.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(mLeftText)) {
-            binding.leftButton.setText(mLeftText);
-            binding.leftButton.setVisibility(View.VISIBLE);
+            getBinding().leftButton.setText(mLeftText);
+            getBinding().leftButton.setVisibility(View.VISIBLE);
             if (mLeftTextColor != 0) {
-                binding.leftButton.setTextColor(getColor(mLeftTextColor));
+                getBinding().leftButton.setTextColor(getColor(mLeftTextColor));
             }
-            binding.leftButton.setOnClickListener(v -> {
+            getBinding().leftButton.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnLeftListener) {
                     mOnLeftListener.onCallback();
                 }
             });
         } else {
-            binding.leftButton.setVisibility(View.GONE);
+            getBinding().leftButton.setVisibility(View.GONE);
         }
     }
 
