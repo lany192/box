@@ -1,16 +1,14 @@
 package com.github.lany192.text;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -19,21 +17,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.view.R;
-import com.hjq.toast.ToastUtils;
 
-public class EllipsizeTextView extends BoxTextView {
+public class ExpandTextView extends BoxTextView {
     private TextView.BufferType mBufferType = TextView.BufferType.NORMAL;
     private CharSequence original;
+    /**
+     * 是否可以展开
+     */
+    private boolean expandable;
 
-    public EllipsizeTextView(Context context) {
+    public ExpandTextView(Context context) {
         this(context, null);
     }
 
-    public EllipsizeTextView(Context context, AttributeSet attrs) {
+    public ExpandTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public EllipsizeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ExpandTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -43,32 +44,13 @@ public class EllipsizeTextView extends BoxTextView {
             text = "";
         }
         mBufferType = type;
-        original = text;
         setMovementMethod(LinkMovementMethod.getInstance());
-        setHighlightColor(Color.TRANSPARENT);
-        SpannableStringBuilder builder = new SpannableStringBuilder(text);
-        //添加超链接点击跳转功能
-        URLSpan[] spans = builder.getSpans(0, text.length(), URLSpan.class);
-        for (URLSpan span : spans) {
-            builder.setSpan(new ClickableSpan() {
-                @Override
-                public void updateDrawState(@NonNull TextPaint ds) {
-                    ds.setColor(Color.RED);
-                    ds.setUnderlineText(false);
-                }
-
-                @Override
-                public void onClick(@NonNull View widget) {
-                    ToastUtils.show("测试");
-                }
-            }, builder.getSpanStart(span), builder.getSpanEnd(span), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            builder.removeSpan(span);
-        }
+        original = text;
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                EllipsizeTextView.super.setText(getNewText(), mBufferType);
+                ExpandTextView.super.setText(getNewText(), mBufferType);
             }
         });
         super.setText(original, type);
@@ -82,7 +64,7 @@ public class EllipsizeTextView extends BoxTextView {
             return original;
         }
 
-        String more = "全文";
+        String more = "更多";
         String moreStr = "... " + more;
         TextPaint textPaint = getLayout().getPaint();
 
@@ -106,19 +88,23 @@ public class EllipsizeTextView extends BoxTextView {
         CharSequence fixText = removeEndLineBreak(original.subSequence(0, indexEnd - offset));
         SpannableStringBuilder builder = new SpannableStringBuilder(fixText);
         builder.append(moreStr);
-        builder.setSpan(new ClickableSpan() {
-            @Override
-            public void updateDrawState(@NonNull TextPaint paint) {
-                paint.setColor(getColor(R.color.primary));
-                paint.setUnderlineText(false);
-            }
+        if (expandable) {
+            builder.setSpan(new ClickableSpan() {
+                @Override
+                public void updateDrawState(@NonNull TextPaint paint) {
+                    paint.setColor(getColor(R.color.primary));
+                    paint.setUnderlineText(false);
+                }
 
-            @Override
-            public void onClick(@NonNull View widget) {
-                setMaxLines(Integer.MAX_VALUE);
-                EllipsizeTextView.super.setText(original, mBufferType);
-            }
-        }, builder.length() - more.length(), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                @Override
+                public void onClick(@NonNull View widget) {
+                    setMaxLines(Integer.MAX_VALUE);
+                    ExpandTextView.super.setText(original, mBufferType);
+                }
+            }, builder.length() - more.length(), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else {
+            builder.setSpan(new ForegroundColorSpan(getColor(R.color.primary)), builder.length() - more.length(), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
         return builder;
     }
 
@@ -138,5 +124,9 @@ public class EllipsizeTextView extends BoxTextView {
             text = text.subSequence(0, text.length() - 1);
         }
         return text;
+    }
+
+    public void setExpandable(boolean enable) {
+        this.expandable = enable;
     }
 }
