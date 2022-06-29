@@ -7,6 +7,7 @@ import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
 import com.gyf.immersionbar.ImmersionBar
+import com.hjq.toast.ToastUtils
 import com.lany192.box.sample.R
 import com.lany192.box.sample.data.bean.UserInfo
 import com.lany192.box.sample.databinding.FragmentMyBinding
@@ -41,6 +42,9 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
             )
         }
         binding.image.load(R.mipmap.a)
+
+        binding.checkView.setOnCheckChangeListener { ToastUtils.show(it) }
+        binding.checkView.isChecked = true
     }
 
     private fun showDialog2() {

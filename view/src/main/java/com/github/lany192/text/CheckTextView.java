@@ -27,24 +27,26 @@ public class CheckTextView extends IconTextView implements Checkable {
     public CheckTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOnClickListener(v -> toggle());
-        setChecked(checked);
+        showIcon();
     }
 
     public boolean isChecked() {
         return checked;
     }
 
-    public void setChecked(boolean checked) {
-        if (this.checked != checked) {
-            if (mListener != null) {
-                mListener.onChanged(this.checked);
-            }
-        }
-        this.checked = checked;
+    private void showIcon() {
         if (this.checked) {
             setIcon(R.drawable.ico_check);
         } else {
             setIcon(R.drawable.ico_uncheck);
+        }
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+        showIcon();
+        if (mListener != null) {
+            mListener.onChanged(this.checked);
         }
     }
 
