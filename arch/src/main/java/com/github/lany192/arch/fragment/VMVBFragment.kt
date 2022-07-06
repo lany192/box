@@ -19,8 +19,13 @@ abstract class VMVBFragment<VM : LifecycleViewModel, VB : ViewBinding> : VBFragm
     lateinit var viewModel: VM
 
     @CallSuper
-    override fun init() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         viewModel = getDefaultViewModel()
+    }
+
+    @CallSuper
+    override fun init() {
         lifecycleScope.launch {
             //页面基础状态观察
             launch {
