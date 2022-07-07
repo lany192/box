@@ -1,5 +1,6 @@
 package com.github.lany192.arch.fragment
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +20,8 @@ abstract class VMVBFragment<VM : LifecycleViewModel, VB : ViewBinding> : VBFragm
     lateinit var viewModel: VM
 
     @CallSuper
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(state: Bundle?) {
+        super.onCreate(state)
         viewModel = getDefaultViewModel()
     }
 
