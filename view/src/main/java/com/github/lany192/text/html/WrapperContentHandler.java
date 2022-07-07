@@ -11,7 +11,7 @@ import org.xml.sax.XMLReader;
 
 public class WrapperContentHandler implements ContentHandler, Html.TagHandler {
     private ContentHandler mContentHandler;
-    private WrapperTagHandler mTagHandler;
+    private final WrapperTagHandler mTagHandler;
     private Editable mSpannableStringBuilder;
 
     public WrapperContentHandler(WrapperTagHandler tagHandler) {

@@ -1,5 +1,6 @@
 package com.github.lany192.arch.fragment
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +19,13 @@ import kotlinx.coroutines.launch
 abstract class VMVBFragment<VM : LifecycleViewModel, VB : ViewBinding> : VBFragment<VB>() {
     lateinit var viewModel: VM
 
+    override fun onCreate(state: Bundle?) {
+        super.onCreate(state)
+        viewModel = getDefaultViewModel()
+    }
+
     @CallSuper
     override fun init() {
-        viewModel = getDefaultViewModel()
         lifecycleScope.launch {
             //页面基础状态观察
             launch {
