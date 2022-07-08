@@ -5,7 +5,7 @@ import com.github.lany192.arch.entity.ApiResult
 import com.github.lany192.arch.entity.Page
 import com.hjq.toast.ToastUtils
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 import java.util.function.Function
 
@@ -39,9 +39,12 @@ abstract class PageViewModel : ItemsViewModel() {
     ) {
         viewModelScope.launch {
             block()
-                .catch {
-                    log.e("请求异常:", it)
-                    ToastUtils.show(it.message)
+                .onCompletion {
+                    if (it != null) {
+                        showErrorView(it.message.toString())
+                    } else {
+                        showContentView()
+                    }
                 }
                 .collect {
                     if (isSuccess(it)) {

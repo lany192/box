@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 abstract class VMVBFragment<VM : LifecycleViewModel, VB : ViewBinding> : VBFragment<VB>() {
     lateinit var viewModel: VM
 
-    @CallSuper
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         viewModel = getDefaultViewModel()

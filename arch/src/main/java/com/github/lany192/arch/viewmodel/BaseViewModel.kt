@@ -1,9 +1,11 @@
 package com.github.lany192.arch.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
 import com.github.lany192.arch.items.ViewState
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 
 open class BaseViewModel : ViewModel() {
@@ -122,5 +124,10 @@ open class BaseViewModel : ViewModel() {
 
     fun onRetry() {
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
     }
 }
