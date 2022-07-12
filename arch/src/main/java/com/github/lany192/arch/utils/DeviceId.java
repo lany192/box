@@ -58,6 +58,8 @@ public class DeviceId {
             KVUtils.get().putString(KEY_DEVICE_ID, sdId);
             //修改内存中的值
             deviceId = sdId;
+        } else {
+            saveDeviceId(deviceId);
         }
     }
 
