@@ -17,7 +17,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
     /**
      * 列表数据集合
      */
-    private final ListLiveData listLiveData = new ListLiveData();
+    private final ItemsLiveData liveData = new ItemsLiveData();
     /**
      * 列表状态监测
      */
@@ -51,8 +51,8 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
         return page;
     }
 
-    public ListLiveData getItems() {
-        return listLiveData;
+    public ItemsLiveData getItems() {
+        return liveData;
     }
 
     public MutableLiveData<ListState> getListState() {
@@ -89,7 +89,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      */
     public void requestError() {
         listState.postValue(ListState.ERROR);
-        this.listLiveData.stopRequest();
+        this.liveData.stopRequest();
     }
 
     /**
@@ -99,7 +99,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      */
     @SuppressWarnings("unchecked")
     public void resetItems(List<?> items) {
-        this.listLiveData.setItems((List<Object>) items);
+        this.liveData.setItems((List<Object>) items);
         if (ListUtils.isEmpty(items)) {
             showEmptyView();
         }
@@ -113,7 +113,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      */
     @SuppressWarnings("unchecked")
     public void addItems(List<?> items) {
-        this.listLiveData.addItems((List<Object>) items);
+        this.liveData.addItems((List<Object>) items);
         if (ListUtils.isEmpty(items)) {
             this.showListState(ListState.MORE_LOAD_END);
         }

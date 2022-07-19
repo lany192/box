@@ -20,8 +20,7 @@ abstract class PageFragment<VM : ItemsViewModel> : ItemsFragment<VM, FragmentPag
     }
 
     override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
+        inflater: LayoutInflater, container: ViewGroup?
     ): FragmentPageBinding {
         return FragmentPageBinding.inflate(inflater, container, false)
     }
