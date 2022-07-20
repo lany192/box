@@ -9,10 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @Route(path = "/page/city")
 class CityFragment : PageFragment<CityViewModel>() {
 
-    override fun getItemSpanSize(viewType: Int, position: Int): Int {
-        return 1
-    }
-
     override fun init() {
         super.init()
         register(AreaBinder())

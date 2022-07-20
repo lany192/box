@@ -89,7 +89,6 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      */
     public void requestError() {
         listState.postValue(ListState.ERROR);
-        this.liveData.stopRequest();
     }
 
     /**
@@ -97,7 +96,6 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      *
      * @param items 数据集
      */
-    @SuppressWarnings("unchecked")
     public void resetItems(List<?> items) {
         this.liveData.setItems((List<Object>) items);
         if (ListUtils.isEmpty(items)) {
@@ -111,7 +109,6 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
      *
      * @param items 数据集
      */
-    @SuppressWarnings("unchecked")
     public void addItems(List<?> items) {
         this.liveData.addItems((List<Object>) items);
         if (ListUtils.isEmpty(items)) {
