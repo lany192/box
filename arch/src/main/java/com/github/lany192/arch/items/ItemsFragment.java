@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
@@ -19,21 +20,13 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     private final BinderAdapter itemsAdapter = new BinderAdapter();
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         return layoutManager;
     }
 
     public <T, B extends ViewBinding> void register(ItemBinder<T, B> binder) {
         itemsAdapter.addItemBinder(binder.getClass(0), binder);
-    }
-
-    public int getSpanCount() {
-        return 2;
-    }
-
-    public int getItemSpanSize(int viewType, int position) {
-        return getSpanCount();
     }
 
     public RecyclerView.ItemDecoration getItemDecoration(RecyclerView.Adapter<?> adapter) {
@@ -49,17 +42,21 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     public void init() {
         super.init();
         itemsAdapter.getLoadMoreModule().setEnableLoadMore(viewModel.loadMoreEnable());
-        itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
-        getRecyclerView().setLayoutManager(getLayoutManager());
+        if (viewModel.loadMoreEnable()) {
+            itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
+                if (itemsAdapter.getLoadMoreModule().isEnableLoadMore()) {
+                    viewModel.onLoadMore();
+                }
+            });
+        }
         getRecyclerView().setAdapter(itemsAdapter);
+        getRecyclerView().setLayoutManager(getLayoutManager());
         if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(itemsAdapter) != null) {
             getRecyclerView().addItemDecoration(getItemDecoration(itemsAdapter));
         }
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
-        if (viewModel.loadMoreEnable()) {
-            itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> viewModel.onLoadMore());
-        }
+
         //列表状态观察
         viewModel.getListState().observe(this, state -> {
             switch (state) {
