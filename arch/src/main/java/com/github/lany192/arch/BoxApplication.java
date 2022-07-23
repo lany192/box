@@ -14,7 +14,6 @@ import com.elvishew.xlog.formatter.message.json.DefaultJsonFormatter;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.file.FilePrinter;
 import com.github.lany192.arch.utils.DeviceId;
-import com.github.lany192.arch.utils.PhoneUtils;
 import com.github.lany192.dialog.DialogHelper;
 import com.github.lany192.log.LogFileFormat;
 import com.github.lany192.log.LogFileNameGenerator;
@@ -38,24 +37,16 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         ToastUtils.init(this);
         initLog();
         DialogHelper.get().init(this);
-        initCatchException();
         initRefreshView();
         DeviceId.get().grantedSDPermission();
+        //处理异常
+        CrashHelper.getInstance();
     }
 
     @NonNull
     @Override
     public ViewModelStore getViewModelStore() {
         return mAppViewModelStore;
-    }
-
-    private void initCatchException() {
-        Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
-            XLog.tag(TAG).i("手机基本信息:" + PhoneUtils.getBaseInfo());
-            XLog.tag(TAG).e(e.getLocalizedMessage());
-            XLog.tag(TAG).enableStackTrace(40).e(TAG, "程序崩溃退出", e);
-            Log.e(TAG, "程序崩溃退出", e);
-        });
     }
 
     private void initRefreshView() {
