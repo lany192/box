@@ -35,6 +35,6 @@ class SplashActivity : BoxActivity<SplashViewModel, ActivitySplashBinding>() {
         Handler(Looper.getMainLooper()).postDelayed({
             AppRouter.startMain()
             finish()
-        }, 1000)
+        }, 2000)
     }
 }
