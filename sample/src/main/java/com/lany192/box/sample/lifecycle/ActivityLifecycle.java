@@ -22,6 +22,7 @@ public class ActivityLifecycle implements SimpleActivityLifecycleCallbacks {
     @CallSuper
     @Override
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+        XLog.tag(activity.getClass().getSimpleName()).i(" onActivityCreated()");
         //给Activity界面注入参数
         ARouter.getInstance().inject(activity);
         if (activity instanceof FragmentActivity) {
