@@ -9,6 +9,7 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -35,6 +36,7 @@ public class SampleApp extends BoxApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             initShortcuts();
         }
