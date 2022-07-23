@@ -5,7 +5,6 @@ import android.view.View;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
@@ -20,13 +19,21 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     private final BinderAdapter itemsAdapter = new BinderAdapter();
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         return layoutManager;
     }
 
     public <T, B extends ViewBinding> void register(ItemBinder<T, B> binder) {
         itemsAdapter.addItemBinder(binder.getClass(0), binder);
+    }
+
+    public int getSpanCount() {
+        return 2;
+    }
+
+    public int getItemSpanSize(int viewType, int position) {
+        return getSpanCount();
     }
 
     public RecyclerView.ItemDecoration getItemDecoration(RecyclerView.Adapter<?> adapter) {
@@ -49,14 +56,14 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
                 }
             });
         }
-        getRecyclerView().setAdapter(itemsAdapter);
+        itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
         getRecyclerView().setLayoutManager(getLayoutManager());
+        getRecyclerView().setAdapter(itemsAdapter);
         if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(itemsAdapter) != null) {
             getRecyclerView().addItemDecoration(getItemDecoration(itemsAdapter));
         }
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
-
         //列表状态观察
         viewModel.getListState().observe(this, state -> {
             switch (state) {

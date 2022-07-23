@@ -6,7 +6,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
@@ -25,13 +24,21 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
     public abstract RecyclerView getRecyclerView();
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, getSpanCount());
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         return layoutManager;
     }
 
     public <T, B extends ViewBinding> void register(ItemBinder<T, B> binder) {
         itemsAdapter.addItemBinder(binder.getClass(0), binder);
+    }
+
+    public int getSpanCount() {
+        return 2;
+    }
+
+    public int getItemSpanSize(int viewType, int position) {
+        return getSpanCount();
     }
 
     public RecyclerView.ItemDecoration getItemDecoration(RecyclerView.Adapter<?> adapter) {
@@ -49,11 +56,13 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
                 }
             });
         }
-        getRecyclerView().setAdapter(itemsAdapter);
-        getRecyclerView().setLayoutManager(getLayoutManager());
         if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(itemsAdapter) != null) {
             getRecyclerView().addItemDecoration(getItemDecoration(itemsAdapter));
         }
+        itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
+
+        getRecyclerView().setLayoutManager(getLayoutManager());
+        getRecyclerView().setAdapter(itemsAdapter);
 
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());

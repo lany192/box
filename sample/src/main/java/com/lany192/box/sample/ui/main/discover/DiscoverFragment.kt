@@ -24,6 +24,16 @@ class DiscoverFragment : ItemsFragment<DiscoverViewModel, FragmentDiscoverBindin
             .init()
     }
 
+    override fun getSpanCount(): Int {
+        return 4
+    }
+
+    override fun getItemSpanSize(viewType: Int, position: Int): Int {
+        return if (position < 4) {
+            1
+        } else 2
+    }
+
     override fun getRefreshLayout(): SmartRefreshLayout {
         return binding.itemsView.refreshLayout
     }
