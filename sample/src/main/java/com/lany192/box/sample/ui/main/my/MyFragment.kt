@@ -3,6 +3,7 @@ package com.lany192.box.sample.ui.main.my
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
+import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
@@ -13,6 +14,8 @@ import com.lany192.box.sample.data.bean.UserInfo
 import com.lany192.box.sample.databinding.FragmentMyBinding
 import com.lany192.box.sample.ui.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.util.*
 
 @AndroidEntryPoint
 @Route(path = "/page/my")
@@ -20,10 +23,8 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
     private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .statusBarDarkFont(false)
-            .navigationBarColor(android.R.color.holo_green_light)
-            .init()
+        ImmersionBar.with(this).statusBarDarkFont(false)
+            .navigationBarColor(android.R.color.holo_green_light).init()
     }
 
     override fun init() {
@@ -36,10 +37,11 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.settingsView.setOnClickListener { AppRouter.startSettings() }
         binding.helloView.setOnClickListener { AppRouter.startHello() }
         binding.dialog2View.setOnClickListener { showDialog2() }
+        binding.birthday.setOnClickListener {
+            BirthdayDialog(LocalDate.of(2001,1,2)).show()
+        }
         binding.testView.setOnClickListener {
-            userViewModel.setName(
-                "我是张三"
-            )
+            userViewModel.setName("我是张三")
         }
         binding.image.load(R.mipmap.a)
 

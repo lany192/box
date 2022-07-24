@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        app:bl_corners_radius="12dp"
+        app:bl_solid_color="@color/date_selected_bg" />
+
+    <LinearLayout
+        android:id="@+id/pickers"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:np_dividerDistance="0dp"
+            app:np_itemSpacing="2dp"
+            app:np_dividerThickness="0dp"
+            app:np_selectedTextColor="@color/text_2level"
+            app:np_selectedTextSize="15sp"
+            app:np_textColor="@color/text_3level"
+            app:np_textSize="13sp"
+            tools:background="@android:color/holo_blue_light" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:np_dividerDistance="0dp"
+            app:np_itemSpacing="2dp"
+            app:np_dividerThickness="0dp"
+            app:np_selectedTextColor="@color/text_2level"
+            app:np_selectedTextSize="15sp"
+            app:np_textColor="@color/text_3level"
+            app:np_textSize="13sp"
+            tools:background="@android:color/holo_blue_light" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:np_dividerDistance="0dp"
+            app:np_itemSpacing="2dp"
+            app:np_dividerThickness="0dp"
+            app:np_selectedTextColor="@color/text_2level"
+            app:np_selectedTextSize="15sp"
+            app:np_textColor="@color/text_3level"
+            app:np_textSize="13sp"
+            tools:background="@android:color/holo_blue_light" />
+    </LinearLayout>
+</FrameLayout>

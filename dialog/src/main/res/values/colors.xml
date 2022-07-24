@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--日期选择选中背景色 -->
+    <color name="date_selected_bg">#EDF0F2</color>
+
+</resources>
