@@ -19,6 +19,11 @@
         <item name="android:windowContentOverlay">@null</item>
 
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <!-- 全局滚动条样式 -->
+        <item name="android:scrollbarSize">2dp</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_thumb</item>
+        <item name="android:scrollbarTrackVertical">@drawable/scrollbar_vertical_track</item>
     </style>
 
     <style name="MainTheme" parent="@style/AppTheme">
