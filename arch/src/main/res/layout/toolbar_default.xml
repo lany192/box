@@ -5,8 +5,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    tools:background="@android:color/holo_blue_bright"
-    tools:layout_height="@dimen/actionbar_height">
+    tools:background="@android:color/holo_blue_bright">
 
     <ImageButton
         android:id="@+id/back"
@@ -15,9 +14,7 @@
         android:layout_alignParentBottom="true"
         android:background="?android:attr/actionBarItemBackground"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/vector_back_black"
-        tools:layout_height="@dimen/actionbar_height"
-        tools:layout_width="@dimen/actionbar_height" />
+        android:src="@drawable/vector_back_black"/>
 
     <com.github.lany192.text.BoxTextView
         android:id="@+id/title"
