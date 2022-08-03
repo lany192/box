@@ -1,13 +1,11 @@
 package com.github.lany192.arch.activity
 
-import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.MotionEvent
-import android.view.inputmethod.InputMethodManager
 import androidx.annotation.CallSuper
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -23,6 +21,7 @@ import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
 import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.dialog.LoadingDialog
+import com.github.lany192.utils.KeyBoardUtils
 import com.gyf.immersionbar.ImmersionBar
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -61,7 +60,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: Void?) {
+    fun onEvent(event: Void) {
 
     }
 
@@ -139,34 +138,26 @@ abstract class BaseActivity : AppCompatActivity() {
         return ContextCompat.getColor(this, id)
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (event.action === MotionEvent.ACTION_DOWN) {
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        if (event.action == MotionEvent.ACTION_DOWN) {
             //点击空白区域收起输入法
-            hideSoftInput()
+            KeyBoardUtils.hide(this)
         }
-        return super.onTouchEvent(event)
+        return super.dispatchTouchEvent(event)
+    }
+
+    override fun onBackPressed() {
+        KeyBoardUtils.hide(this)
+        super.onBackPressed()
     }
 
     override fun finish() {
-        hideSoftInput()
+        KeyBoardUtils.hide(this)
         super.finish()
-    }
-
-    /**
-     * 关闭输入法
-     */
-    protected open fun hideSoftInput() {
-        if (currentFocus != null && currentFocus!!.windowToken != null) {
-            val manager: InputMethodManager =
-                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            manager.hideSoftInputFromWindow(
-                currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
-            )
-        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEvent(event: HideSoftInputEvent) {
-        Handler(Looper.getMainLooper()).postDelayed({ hideSoftInput() }, 300)
+        Handler(Looper.getMainLooper()).postDelayed({ KeyBoardUtils.hide(this) }, 300)
     }
 }
