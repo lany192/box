@@ -2,10 +2,7 @@ package com.github.lany192.arch.utils;
 
 import static android.Manifest.permission;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Environment;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import androidx.core.content.ContextCompat;
@@ -27,10 +24,19 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
+/**
+ * 维护一个唯一不变的设备id
+ * 注：
+ * 1、目前做不到百分百正确，只能尽量保证唯一不变
+ * 2、KV和SD上保存的值是加密保存的
+ * 3、id稳定性主要取决是否有SD读写权限
+ */
 public class DeviceId {
     private volatile static DeviceId instance = null;
     private final Logger.Builder log = XLog.tag("DeviceId");
-    private final String KEY_DEVICE_ID = "APP_DEVICE_ID";
+    private final String KEY_DEVICE_ID = "BOX_DEVICE_ID";
+    private final String SD_FILE_NAME1 = "ida";
+    private final String SD_FILE_NAME2 = "idb";
     private String deviceId;
 
     private DeviceId() {
@@ -48,61 +54,55 @@ public class DeviceId {
     }
 
     /**
-     * 获得了SD卡权限，需要将sd上的id替换到SP和内存上
+     * 获得了SD卡权限，需要将sd上的id替换到KV和内存上
      */
     public void grantedSDPermission() {
-        String sdId = getDeviceIdFromSD();
-        //校验两个ID：如果SP中可以读取到id，与从SD卡中读取id进行比较是否相等
-        if (!TextUtils.isEmpty(sdId) && !sdId.equals(deviceId)) {
-            //如果能读取到SD卡上的id，保存到SP中
-            KVUtils.get().putString(KEY_DEVICE_ID, sdId);
-            //修改内存中的值
-            deviceId = sdId;
+        if (checkPermission()) {
+            String sdId = getDeviceIdFromSD();
+            //校验两个ID：如果KV中可以读取到id，与从SD卡中读取id进行比较是否相等
+            if (!TextUtils.isEmpty(sdId) && !sdId.equals(deviceId)) {
+                //如果能读取到SD卡上的id，保存到KV中
+                KVUtils.get().putString(KEY_DEVICE_ID, sdId);
+                //修改内存中的值
+                deviceId = sdId;
+            } else {
+                saveDeviceId(deviceId);
+            }
         } else {
-            saveDeviceId(deviceId);
+            log.i("未授权，忽略校正动作");
         }
     }
 
-    public String getDeviceId() {
-        //1.先判断内存中是否已经有id，如果有值，直接读取
-        if (!TextUtils.isEmpty(deviceId)) {
-            log.i("获取内存中的ID值:" + deviceId);
-            return deviceId;
-        }
-        //2.判断SP中是否有值，优先获取SP里的值是因为不需要权限
-        deviceId = KVUtils.get().getString(KEY_DEVICE_ID);
-        if (!TextUtils.isEmpty(deviceId)) {
-            String id = getDeviceIdFromSD();
-            //校验两个ID：如果SP中可以读取到id，与从SD卡中读取id进行比较是否相等
-            if (TextUtils.isEmpty(id) || !deviceId.equals(id)) {
-                //如果两个id不相等，用SP上的id覆盖SD卡上的id，防止SD卡上的值被人为修改，SP上的值是加密保存的改不了
-                save2SD(deviceId);
+    /**
+     * 获取唯一设备码
+     */
+    public synchronized String getDeviceId() {
+        if (TextUtils.isEmpty(deviceId)) {
+            String sdId = getDeviceIdFromSD();
+            String kvId = KVUtils.get().getString(KEY_DEVICE_ID);
+            log.i("KV的值:" + kvId + "，SD的值:" + sdId);
+            if (TextUtils.isEmpty(sdId)) {
+                if (TextUtils.isEmpty(kvId)) {
+                    deviceId = createDeviceId();
+                    log.i("获取随机值:" + deviceId);
+                    saveDeviceId(deviceId);
+                } else {
+                    deviceId = kvId;
+                    log.i("保存到SD:" + deviceId);
+                    save2SD(deviceId);
+                    log.i("获取KV值:" + deviceId);
+                }
+            } else {
+                deviceId = sdId;
+                if (TextUtils.isEmpty(kvId) || !kvId.equals(sdId)) {
+                    log.i("保存到KV:" + deviceId);
+                    KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
+                }
+                log.i("获取SD值:" + deviceId);
             }
-            log.i("获取SP上的ID值:" + deviceId);
-            return deviceId;
+        } else {
+//            log.i("获取内存值:" + deviceId);
         }
-        //3.如果内存中没有id,读取设备系统自带id
-        deviceId = getAndroidDeviceId(ContextUtils.getContext());
-        log.i("获取系统自带的ID值:" + deviceId);
-        //如果系统有自带id，保存起来，防止权限被关后不能再次读取
-        if (!TextUtils.isEmpty(deviceId)) {
-            saveDeviceId(deviceId);
-            return deviceId;
-        }
-        //4.如果系统不自带、SP中又没有ID，读取SD卡上的id
-        deviceId = getDeviceIdFromSD();
-        log.i("获取SD卡上的ID值:" + deviceId);
-        if (!TextUtils.isEmpty(deviceId)) {
-            //如果能读取到SD卡上的id，保存到SP中
-            KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
-            return deviceId;
-        }
-        //5.如果系统不自带id、SP和SD卡上都没有id，生成随机id。保存到SP和SD卡中
-        deviceId = getUUID();
-        //新生成的id要保存起来，保存到SP、SD
-        KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
-        save2SD(deviceId);
-        log.i("获取随机生成ID值:" + deviceId);
         return deviceId;
     }
 
@@ -110,60 +110,129 @@ public class DeviceId {
      * 保存设备id
      */
     private void saveDeviceId(String deviceId) {
-        //保存到SP
-        KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
-        //保存到SD卡
-        save2SD(deviceId);
-    }
-
-    /**
-     * 获取系统自带的deviceId
-     */
-    private String getAndroidDeviceId(Context context) {
-        if (ContextCompat.checkSelfPermission(context, permission.READ_PHONE_STATE)
-                == PermissionChecker.PERMISSION_GRANTED) {
-            TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            try {
-                @SuppressLint("HardwareIds") String deviceId = manager.getDeviceId();
-                if (!TextUtils.isEmpty(deviceId)) {
-                    StringBuilder builder = new StringBuilder(MD5Utils.md5(deviceId));
-                    //前面两位换成KP
-                    builder.replace(0, 2, "kp");
-                    return builder.toString().toLowerCase();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (!TextUtils.isEmpty(deviceId)) {
+            log.i("保存到KV:" + deviceId);
+            KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
+            log.i("保存到SD:" + deviceId);
+            save2SD(deviceId);
+        } else {
+            log.i("空值不保存");
         }
-        log.i("没有读取设备信息权限");
-        return "";
     }
 
     /**
      * 获取外部存在的完整文件路径
-     * /storage/emulated/0/Documents/.info
+     * /storage/emulated/0/Documents/.kp
      */
-    private String getDeviceIdFilePath() {
-        String dirPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath() + File.separator;
-        File file = new File(dirPath + ".info");
+    private String getDeviceIdFilePath(String filename) {
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath();
+        File file = new File(path);
         if (!file.exists()) {
-            try {
-                boolean result = file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            boolean result = file.mkdirs();
+            log.i("目录不存在，创建目录。创建结果：" + result);
         }
-        log.i("设备id文件路径:" + file.getPath());
-        return file.getPath();
+        return path + File.separator + "." + filename;
     }
 
     /**
-     * 从外部存储的公共目录上读取
+     * 从外部存储的公共目录上读取,
+     * 读取两个sd上的id，校验是否被修改
      */
     private String getDeviceIdFromSD() {
-        if (ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED) {
-            String filePath = getDeviceIdFilePath();
+        if (checkPermission()) {
+            String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
+            String id1 = readFromFile(filePath1);
+            String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
+            String id2 = readFromFile(filePath2);
+            log.i("SD读取的设备码:设备码1：" + id1 + ",设备码2:" + id2);
+            if (TextUtils.isEmpty(id1) || TextUtils.isEmpty(id2)) {
+                log.i("未读取到id");
+                return "";
+            }
+            if (!id1.equals(id2)) {
+                log.i("两个sd上的id不相同");
+                return "";
+            }
+            return id1;
+        } else {
+            log.i("没有SD卡权限，读取失败");
+            return "";
+        }
+    }
+
+    private void save2SD(String id) {
+        if (checkPermission()) {
+            //将内容加密
+            String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
+            String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
+            save2file(id, filePath1);
+            save2file(id, filePath2);
+        } else {
+            log.i("没有SD卡权限，保存失败！");
+        }
+    }
+
+    /**
+     * 设备号生成规则：先生成一个UUID，签名31位md5后取第6位替换uuid最后位作为校验码
+     */
+    private String createDeviceId() {
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String tmp = uuid.substring(0, 31);
+        String md5 = MD5Utils.md5(tmp);
+        String id = tmp + md5.toCharArray()[5];
+        return id.toLowerCase();
+    }
+
+    /**
+     * 保存内容到文件中
+     *
+     * @param content  内容
+     * @param filePath 完整文件路径
+     */
+    private void save2file(String content, String filePath) {
+        if (checkPermission()) {
+            BufferedWriter writer = null;
+            try {
+                File file = new File(filePath);
+                if (!file.exists()) {
+                    boolean result = file.createNewFile();
+                }
+                OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8);
+                writer = new BufferedWriter(write);
+                writer.write(content);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (writer != null) {
+                        writer.flush();
+                        writer.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            log.i("没有SD卡权限，保存失败！");
+        }
+    }
+
+    /**
+     * 从文件中读取内容
+     *
+     * @param filePath 完整文件路径
+     * @return 内容
+     */
+    private String readFromFile(String filePath) {
+        if (checkPermission()) {
             File file = new File(filePath);
+            if (!file.exists()) {
+                try {
+                    boolean result = file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             BufferedReader reader = null;
             StringBuilder sb = new StringBuilder();
             try {
@@ -186,42 +255,16 @@ public class DeviceId {
                 return sb.toString();
             }
         } else {
-            log.i("没有读SD卡权限");
+            log.i("没有SD卡权限");
             return "";
         }
     }
 
-    private void save2SD(String content) {
-        if (ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED) {
-            String filePath = getDeviceIdFilePath();
-            BufferedWriter writer = null;
-            try {
-                File file = new File(filePath);
-                OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8);
-                writer = new BufferedWriter(write);
-                writer.write(content);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (writer != null) {
-                        writer.flush();
-                        writer.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            log.i("没有写SD卡权限");
-        }
-    }
-
-    private String getUUID() {
-        String id = UUID.randomUUID().toString().replace("-", "");
-        StringBuilder builder = new StringBuilder(id);
-        //前面两位换成KP
-        builder.replace(0, 2, "ly");
-        return builder.toString().toLowerCase();
+    /**
+     * 是否有SD卡权限
+     */
+    private boolean checkPermission() {
+        return ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED;
     }
 }

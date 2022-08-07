@@ -24,10 +24,14 @@ public class KeyBoardUtils {
     /**
      * 关闭软键盘
      */
-    public static void hide(Context context) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null && ((Activity) context).getCurrentFocus() != null) {
-            imm.hideSoftInputFromWindow(((Activity) context).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    public static void hide(Activity activity) {
+        if (activity != null) {
+            if (activity.getCurrentFocus() != null && activity.getCurrentFocus().getWindowToken() != null) {
+                InputMethodManager manager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (manager != null) {
+                    manager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
         }
     }
 
