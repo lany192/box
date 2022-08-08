@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Process;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -28,10 +29,13 @@ public class PhoneUtils {
     /**
      * app重启
      */
-    public static void restart(Context context) {
+    public static void restart() {
+        Context context = ContextUtils.getContext();
         Intent intent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
+        System.exit(0);
+        Process.killProcess(Process.myPid());
     }
 
     /**
