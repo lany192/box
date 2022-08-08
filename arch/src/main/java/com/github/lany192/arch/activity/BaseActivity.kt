@@ -128,9 +128,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun initImmersionBar(): ImmersionBar {
         return ImmersionBar.with(this)
-            .statusBarDarkFont(true)
+            .statusBarDarkFont(resources.getBoolean(R.bool.status_bar_dark_font))
             .navigationBarColor(R.color.white_bg)
-            .navigationBarDarkIcon(true)
+            .navigationBarDarkIcon(resources.getBoolean(R.bool.navigation_bar_dark_icon))
     }
 
     @ColorInt
