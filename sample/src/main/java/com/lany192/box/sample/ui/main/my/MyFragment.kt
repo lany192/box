@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.AppRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
+import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
 import com.github.lany192.utils.DensityUtils
-import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.ToastUtils
 import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.R
@@ -31,8 +31,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
     private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(false)
-            .navigationBarColor(android.R.color.holo_green_light).init()
+        BarUtils.init(this).init()
     }
 
     override fun init() {

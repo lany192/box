@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
-import com.gyf.immersionbar.ImmersionBar
+import com.github.lany192.arch.utils.BarUtils
 import com.lany192.box.sample.databinding.FragmentIndexBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,9 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class IndexFragment : VMVBFragment<IndexViewModel, FragmentIndexBinding>() {
 
     override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .statusBarDarkFont(false)
-            .navigationBarColor(android.R.color.holo_orange_light)
+        BarUtils.init(this)
             .titleBar(binding.tabLayout)
             .init()
     }

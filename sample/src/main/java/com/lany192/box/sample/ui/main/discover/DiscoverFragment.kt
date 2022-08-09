@@ -3,9 +3,9 @@ package com.lany192.box.sample.ui.main.discover
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.items.ItemsFragment
+import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.decoration.Divider
 import com.github.lany192.decoration.ItemDecoration
-import com.gyf.immersionbar.ImmersionBar
 import com.lany192.box.sample.data.binder.CategoryBinder
 import com.lany192.box.sample.data.binder.ImageBinder
 import com.lany192.box.sample.databinding.FragmentDiscoverBinding
@@ -17,9 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DiscoverFragment : ItemsFragment<DiscoverViewModel, FragmentDiscoverBinding>() {
 
     override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .statusBarDarkFont(false)
-            .navigationBarColor(android.R.color.holo_red_light)
+        BarUtils.init(this)
             .titleBar(binding.toolbar)
             .init()
     }

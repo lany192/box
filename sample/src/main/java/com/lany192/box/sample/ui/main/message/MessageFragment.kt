@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
-import com.gyf.immersionbar.ImmersionBar
+import com.github.lany192.arch.utils.BarUtils
 import com.lany192.box.sample.databinding.FragmentMessageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,10 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MessageFragment : VMVBFragment<MessageViewModel, FragmentMessageBinding>() {
 
     override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .statusBarDarkFont(true)
-            .navigationBarColor(android.R.color.white)
-            .navigationBarDarkIcon(true)
+        BarUtils.init(this)
             .titleBar(binding.toolbar)
             .init()
     }
