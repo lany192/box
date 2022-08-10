@@ -35,8 +35,8 @@ ext {
             'androidx-multidex'               : 'androidx.multidex:multidex:2.0.1',
             'androidx-material'               : 'com.google.android.material:material:1.6.1',
             //协程 https://github.com/Kotlin/kotlinx.coroutines
-            'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3',
-            'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3',
+            'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4',
+            'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4',
             //日志工具 https://github.com/elvishew/xLog
             'xlog'                            : 'com.elvishew:xlog:1.11.0',
             //Toast工具 https://github.com/getActivity/ToastUtils

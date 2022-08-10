@@ -61,14 +61,14 @@ public class MenuView extends FrameLayout {
     private void init(AttributeSet attrs, int defStyle) {
         final TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.MenuView, defStyle, 0);
         title = a.getString(R.styleable.MenuView_menu_title);
-        titleSize = a.getDimension(R.styleable.MenuView_menu_title_size, 16);
+        titleSize = a.getDimension(R.styleable.MenuView_menu_title_size, 14);
         titleColor = a.getColor(R.styleable.MenuView_menu_title_color, getResources().getColor(R.color.text_2level));
 
         subtitle = a.getString(R.styleable.MenuView_menu_subtitle);
-        subtitleSize = a.getDimension(R.styleable.MenuView_menu_subtitle_size, 11);
+        subtitleSize = a.getDimension(R.styleable.MenuView_menu_subtitle_size, 10);
         subtitleColor = a.getColor(R.styleable.MenuView_menu_subtitle_color, getResources().getColor(R.color.text_4level));
 
-        hintSize = a.getDimension(R.styleable.MenuView_menu_hint_size, 11);
+        hintSize = a.getDimension(R.styleable.MenuView_menu_hint_size, 10);
         hintColor = a.getColor(R.styleable.MenuView_menu_hint_color, getResources().getColor(R.color.text_3level));
         hint = a.getString(R.styleable.MenuView_menu_hint);
 

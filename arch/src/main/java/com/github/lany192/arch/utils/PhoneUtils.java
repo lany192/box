@@ -7,10 +7,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Process;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 
 import androidx.fragment.app.FragmentActivity;
@@ -18,8 +18,6 @@ import androidx.fragment.app.FragmentActivity;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ContextUtils;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.List;
 
 public class PhoneUtils {
@@ -28,10 +26,13 @@ public class PhoneUtils {
     /**
      * app重启
      */
-    public static void restart(Context context) {
+    public static void restart() {
+        Context context = ContextUtils.getContext();
         Intent intent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
+        System.exit(0);
+        Process.killProcess(Process.myPid());
     }
 
     /**
@@ -140,61 +141,6 @@ public class PhoneUtils {
     }
 
     /**
-     * 获取androidId
-     */
-    public static String getAndroidId() {
-        return Settings.Secure.getString(ContextUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-    }
-
-    /**
-     * 获取设备号DeviceId
-     */
-    public static String getDeviceId() {
-        TelephonyManager tm = (TelephonyManager) ContextUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-        return tm.getDeviceId();
-    }
-
-    public static String getMac() {
-        String result;
-        String Mac;
-        result = callCmd("busybox ifconfig", "HWaddr");
-
-        if (result == null) {
-            return "网络出错，请检查网络";
-        }
-        if (result.length() > 0 && result.contains("HWaddr")) {
-            Mac = result.substring(result.indexOf("HWaddr") + 6, result.length() - 1);
-            if (Mac.length() > 1) {
-                result = Mac.toLowerCase();
-            }
-        }
-        return result.trim();
-    }
-
-    private static String callCmd(String cmd, String filter) {
-        String result = "";
-        String line = "";
-        try {
-            Process proc = Runtime.getRuntime().exec(cmd);
-            InputStreamReader is = new InputStreamReader(proc.getInputStream());
-            BufferedReader br = new BufferedReader(is);
-
-            //执行命令cmd，只取结果中含有filter的这一行
-            while ((line = br.readLine()) != null && line.contains(filter) == false) {
-                //result += line;
-                Log.i("test", "line: " + line);
-            }
-
-            result = line;
-            Log.i("test", "result: " + result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-
-    /**
      * 读取配置文件中的渠道代码
      *
      * @return
@@ -229,18 +175,16 @@ public class PhoneUtils {
      * 检查是否开启'不保留活动'
      */
     public static void checkAlwaysFinishDialog(final FragmentActivity activity) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            int alwaysFinish = Settings.Global.getInt(activity.getContentResolver(), Settings.Global.ALWAYS_FINISH_ACTIVITIES, 0);
-            if (alwaysFinish == 1) {
-                SimpleDialog dialog = new SimpleDialog();
-                dialog.setMessage("检测到您已开启'不保留活动'功能,导致APP部分功能无法正常使用。建议您找到'系统设置'下的'开发者选项'，将'不保留活动'功能关闭。");
-                dialog.setRightButton("设置", () -> {
-                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
-                    activity.startActivity(intent);
-                });
-                dialog.setLeftButton("取消", null);
-                dialog.show(activity);
-            }
+        int alwaysFinish = Settings.Global.getInt(activity.getContentResolver(), Settings.Global.ALWAYS_FINISH_ACTIVITIES, 0);
+        if (alwaysFinish == 1) {
+            SimpleDialog dialog = new SimpleDialog();
+            dialog.setMessage("检测到您已开启'不保留活动'功能,导致APP部分功能无法正常使用。建议您找到'系统设置'下的'开发者选项'，将'不保留活动'功能关闭。");
+            dialog.setRightButton("设置", () -> {
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
+                activity.startActivity(intent);
+            });
+            dialog.setLeftButton("取消", null);
+            dialog.show(activity);
         }
     }
 

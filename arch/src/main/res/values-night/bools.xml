@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--状态栏图标是否为深色-->
+    <bool name="status_bar_dark_font">false</bool>
+    <!--导航栏图标是否为深色-->
+    <bool name="navigation_bar_dark_icon">false</bool>
+</resources>

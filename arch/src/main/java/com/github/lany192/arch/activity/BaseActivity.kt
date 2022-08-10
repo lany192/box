@@ -20,6 +20,7 @@ import com.elvishew.xlog.XLog
 import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
 import com.github.lany192.arch.network.NetworkHelper
+import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.LoadingDialog
 import com.github.lany192.utils.KeyBoardUtils
 import com.gyf.immersionbar.ImmersionBar
@@ -127,10 +128,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun initImmersionBar(): ImmersionBar {
-        return ImmersionBar.with(this)
-            .statusBarDarkFont(true)
-            .navigationBarColor(R.color.white_bg)
-            .navigationBarDarkIcon(true)
+        return BarUtils.init(this)
     }
 
     @ColorInt

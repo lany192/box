@@ -3,3 +3,5 @@
   public static ** inflate(...);
   public static ** bind(***);
 }
+
+-keep class com.github.lany192.view.BindingView.** { *; }
