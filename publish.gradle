@@ -4,6 +4,8 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
+                groupId = 'com.github.lany192.box'
+                version = apk.versionName
                 from components.release
                 pom {
                     licenses {
