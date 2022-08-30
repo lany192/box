@@ -18,4 +18,18 @@ afterEvaluate {
             }
         }
     }
+    android.libraryVariants.all { variant ->
+        println("模块名称:" + ${project.name})
+        File outputFile = variant.outputs.first().outputFile
+        tasks.named("assemble${variant.name.capitalize()}").configure {
+            doLast {
+                copy {
+                    from outputFile
+                    into "../app/libs"
+                    include '**/*.aar'
+                    rename { "${project.name}_${apk.versionName}.aar" }
+                }
+            }
+        }
+    }
 }
