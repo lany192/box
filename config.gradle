@@ -12,7 +12,7 @@ ext {
             'glide'     : 'com.github.bumptech.glide:compiler:4.13.2',
             'room'      : 'androidx.room:room-compiler:2.4.2',
             //路由增强 https://github.com/lany192/app-router
-            'app-router': 'com.github.lany192:app-router:1.4.0',
+            'app-router': 'com.github.lany192:app-router:1.4.1',
             //阿里路由 https://github.com/alibaba/ARouter
             'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
     ]
