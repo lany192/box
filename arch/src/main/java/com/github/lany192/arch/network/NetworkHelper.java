@@ -1,14 +1,10 @@
 package com.github.lany192.arch.network;
 
-import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.Network;
-import android.net.NetworkRequest;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -16,8 +12,6 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.elvishew.xlog.XLog;
 import com.github.lany192.arch.event.NetWorkEvent;
-import com.github.lany192.permission.PermissionUtils;
-import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -66,25 +60,25 @@ public class NetworkHelper implements DefaultLifecycleObserver {
 
     @Override
     public void onResume(@NonNull LifecycleOwner owner) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                && PermissionUtils.hasPermission(ContextUtils.getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
-                && PermissionUtils.hasPermission(ContextUtils.getContext(), Manifest.permission.WRITE_SETTINGS)) {
-            ConnectivityManager manager = (ConnectivityManager) ContextUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-            manager.requestNetwork(new NetworkRequest.Builder().build(), networkCallback);
-        } else {
-            ContextUtils.getContext().registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+//                && PermissionUtils.hasPermission(ContextUtils.getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
+//                && PermissionUtils.hasPermission(ContextUtils.getContext(), Manifest.permission.WRITE_SETTINGS)) {
+//            ConnectivityManager manager = (ConnectivityManager) ContextUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+//            manager.requestNetwork(new NetworkRequest.Builder().build(), networkCallback);
+//        } else {
+//            ContextUtils.getContext().registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+//        }
     }
 
     @Override
     public void onPause(@NonNull LifecycleOwner owner) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                && PermissionUtils.hasPermission(ContextUtils.getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
-                && PermissionUtils.hasPermission(ContextUtils.getContext(), Manifest.permission.WRITE_SETTINGS)) {
-            ConnectivityManager manager = (ConnectivityManager) ContextUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-            manager.unregisterNetworkCallback(networkCallback);
-        } else {
-            ContextUtils.getContext().unregisterReceiver(receiver);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+//                && PermissionUtils.hasPermission(ContextUtils.getContext(), Manifest.permission.CHANGE_NETWORK_STATE)
+//                && PermissionUtils.hasPermission(ContextUtils.getContext(), Manifest.permission.WRITE_SETTINGS)) {
+//            ConnectivityManager manager = (ConnectivityManager) ContextUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+//            manager.unregisterNetworkCallback(networkCallback);
+//        } else {
+//            ContextUtils.getContext().unregisterReceiver(receiver);
+//        }
     }
 }
