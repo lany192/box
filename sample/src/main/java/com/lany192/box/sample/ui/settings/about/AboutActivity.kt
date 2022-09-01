@@ -3,7 +3,7 @@ package com.lany192.box.sample.ui.settings.about
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import com.alibaba.android.arouter.AppRouter
+import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.lany192.box.sample.databinding.ActivityAboutBinding
@@ -24,13 +24,13 @@ class AboutActivity : BoxActivity<AboutViewModel, ActivityAboutBinding>() {
         binding.licenceView.setOnClickListener { showLicensesDialog() }
         binding.marketView.setOnClickListener { gotoMarket() }
         binding.privacyView.setOnClickListener {
-            AppRouter.startBrowser("隐私政策", "https://www.baidu.com")
+            SampleRouter.startBrowser("隐私政策", "https://www.baidu.com")
         }
         binding.protocolView.setOnClickListener {
-            AppRouter.startBrowser("用户协议", "https://www.baidu.com")
+            SampleRouter.startBrowser("用户协议", "https://www.baidu.com")
         }
         binding.feedbackView.setOnClickListener {
-            AppRouter.startFeedback()
+            SampleRouter.startFeedback()
         }
     }
 

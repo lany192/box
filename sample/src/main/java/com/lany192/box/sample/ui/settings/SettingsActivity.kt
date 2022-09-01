@@ -3,7 +3,7 @@ package com.lany192.box.sample.ui.settings
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import com.alibaba.android.arouter.AppRouter
+import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.dialog.SimpleDialog
@@ -39,9 +39,9 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
             }
         }
         binding.noticeView.setOnClickListener {
-            AppRouter.startBrowser("百度也不知道", "https://www.baidu.com")
+            SampleRouter.startBrowser("百度也不知道", "https://www.baidu.com")
         }
-        binding.aboutView.setOnClickListener { AppRouter.startAbout() }
+        binding.aboutView.setOnClickListener { SampleRouter.startAbout() }
     }
 
     private fun showCacheDialog() {
