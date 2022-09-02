@@ -98,29 +98,27 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.43.1'
     kapt 'com.google.dagger:hilt-android-compiler:2.43.1'
 
-    if (precompile.toBoolean()) {
-        implementation 'com.github.lany192.box:arch:' + apk.versionName
-        implementation 'com.github.lany192.box:view:' + apk.versionName
-        implementation 'com.github.lany192.box:core:' + apk.versionName
-        implementation 'com.github.lany192.box:dialog:' + apk.versionName
-        implementation 'com.github.lany192.box:update:' + apk.versionName
-        implementation 'com.github.lany192.box:time:' + apk.versionName
-        implementation 'com.github.lany192.box:crop:' + apk.versionName
-        implementation 'com.github.lany192.box:matisse:' + apk.versionName
-        implementation 'com.github.lany192.box:permission:' + apk.versionName
-        implementation 'com.github.lany192.box:tablayout:' + apk.versionName
-        implementation 'com.github.lany192.box:link:' + apk.versionName
-    } else {
-        implementation project(':arch')
-        implementation project(':core')
-        implementation project(':view')
-        implementation project(':dialog')
-        implementation project(':update')
-        implementation project(':time')
-        implementation project(':crop')
-        implementation project(':matisse')
-        implementation project(':permission')
-        implementation project(':tablayout')
-        implementation project(':link')
-    }
+    implementation 'com.github.lany192.box:arch:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:view:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:core:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:dialog:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:update:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:time:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:crop:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:matisse:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:link:master-SNAPSHOT'
+
+//    implementation project(':arch')
+//    implementation project(':core')
+//    implementation project(':view')
+//    implementation project(':dialog')
+//    implementation project(':update')
+//    implementation project(':time')
+//    implementation project(':crop')
+//    implementation project(':matisse')
+//    implementation project(':permission')
+//    implementation project(':tablayout')
+//    implementation project(':link')
 }

@@ -1,10 +1,13 @@
 apply plugin: 'maven-publish'
 
+group = apk.groupId
+version = apk.versionName
+
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                groupId = 'com.github.lany192.box'
+                groupId = apk.groupId
                 version = apk.versionName
                 from components.release
                 pom {
@@ -18,18 +21,18 @@ afterEvaluate {
             }
         }
     }
-//    android.libraryVariants.all { variant ->
-//        println "模块module名称:${project.name}_${variant.name}"
-//        File outputFile = variant.outputs.first().outputFile
-//        tasks.named("assemble${variant.name.capitalize()}").configure {
-//            doLast {
-//                copy {
-//                    from outputFile
-//                    into "../sample/libs"
-//                    include '**/*.aar'
-//                    rename { "${project.name}_${apk.versionName}.aar" }
-//                }
-//            }
-//        }
-//    }
+    android.libraryVariants.all { variant ->
+        println "模块module名称:${project.name}_${variant.name}"
+        File outputFile = variant.outputs.first().outputFile
+        tasks.named("assemble${variant.name.capitalize()}").configure {
+            doLast {
+                copy {
+                    from outputFile
+                    into "../sample/libs"
+                    include '**/*.aar'
+                    rename { "${project.name}_${apk.versionName}.aar" }
+                }
+            }
+        }
+    }
 }
