@@ -22,6 +22,7 @@ allprojects {
         mavenLocal()
         maven { url "https://jitpack.io" }
     }
+    //配置说明 https://juejin.cn/post/6908232077200588814
     configurations.all { Configuration c ->
         // 所有的依赖降级策略
         c.resolutionStrategy {
