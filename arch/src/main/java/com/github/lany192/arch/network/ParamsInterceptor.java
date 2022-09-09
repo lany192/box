@@ -14,12 +14,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class ParamsInterceptor implements Interceptor {
-    private HashMap<String, String> headers = new HashMap<>();
+    private Map<String, String> headers = new HashMap<>();
 
     public ParamsInterceptor() {
     }
 
-    public ParamsInterceptor(HashMap<String, String> headers) {
+    public ParamsInterceptor(Map<String, String> headers) {
         this.headers = headers;
     }
 
