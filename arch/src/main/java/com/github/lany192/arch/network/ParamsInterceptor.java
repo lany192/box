@@ -7,18 +7,19 @@ import com.github.lany192.arch.utils.PhoneUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class ParamsInterceptor implements Interceptor {
-    private HashMap<String, Object> headers = new HashMap<>();
+    private HashMap<String, String> headers = new HashMap<>();
 
     public ParamsInterceptor() {
     }
 
-    public ParamsInterceptor(HashMap<String, Object> headers) {
+    public ParamsInterceptor(HashMap<String, String> headers) {
         this.headers = headers;
     }
 
@@ -33,7 +34,9 @@ public class ParamsInterceptor implements Interceptor {
         builder.addHeader("version", String.valueOf(PhoneUtils.getAppVersionCode()));
         builder.addHeader("client", "android");
         if (headers != null && headers.size() > 0) {
-//            builder.addHeader("token", UserHelper.get().getToken());
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.addHeader(entry.getKey(), "" + entry.getValue());
+            }
         }
         return chain.proceed(builder.build());
     }
