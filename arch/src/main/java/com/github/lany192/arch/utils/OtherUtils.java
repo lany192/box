@@ -1,10 +1,14 @@
 package com.github.lany192.arch.utils;
 
+import android.graphics.Color;
 import android.os.Build;
+
+import androidx.annotation.ColorInt;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Random;
 
 public class OtherUtils {
 
@@ -30,4 +34,18 @@ public class OtherUtils {
             }
         }
     }
+
+
+    /**
+     * 随机颜色
+     */
+    @ColorInt
+    public static int getRandomColor() {
+        Random random = new Random();
+        int r = random.nextInt(256);
+        int g = random.nextInt(256);
+        int b = random.nextInt(256);
+        return Color.argb(20, r, g, b);
+    }
+
 }
