@@ -8,6 +8,8 @@ ext {
             minSdkVersion    : 21,
             compileSdkVersion: 32,
             targetSdkVersion : 32,
+            //脱糖库版本
+            desugar          : '1.1.5'
     ]
     processorDependencies = [
             'glide'     : 'com.github.bumptech.glide:compiler:4.13.2',
@@ -122,12 +124,8 @@ ext {
 //    'umeng-share'   : 'com.github.lany192.umeng:share:1.0.7',
             //日历控件 https://github.com/prolificinteractive/material-calendarview
 //    'material-calendarview'   : 'com.github.prolificinteractive:material-calendarview:2.0.1',
-            //缩放图片 https://github.com/MikeOrtiz/TouchImageView
-//    'touch-imageview'     : 'com.github.MikeOrtiz:TouchImageView:3.0.5',
             //斜体TextView控件 https://github.com/linger1216/labelview
 //    'label-view'      : 'com.github.linger1216:labelview:v1.1.2',
-            //二维码 https://github.com/zxing/zxing
-//    'zxing-core'      : 'com.google.zxing:core:3.4.0',
             //转场动画 https://github.com/skydoves/TransformationLayout
 //    'transformation-layout': 'com.github.skydoves:transformationlayout:1.1.1',
     ]
