@@ -1,27 +1,36 @@
-def buildTime = new Date().format('yyyyMMddHHmm')
 Properties properties = new Properties()
 File propertyFile = new File(rootDir.getAbsolutePath() + "/local.properties")
 properties.load(propertyFile.newDataInputStream())
+
+def buildTime = new Date().format('MMddHHmm')
+def dirTime = new Date().format('yyyyMMdd_HHmm')
+
+//apk输出根路径，如果有需要输出到其它路径，在local.properties配置APK_OUT_PATH
+def ROOT_PATH = properties.getProperty("APK_OUT_PATH", rootDir.getPath()) + "/apk"
+//zip文件夹
+def ZIP_FOLDER_PATH = ROOT_PATH + "/zip/" + dirTime + "/"
 
 project.android.applicationVariants.all { variant ->
     if (variant.buildType.name != "debug") {
         def variantName = variant.name.capitalize()
         //apk输出路径
-        def OUTPUT_PATH = properties.getProperty("APK_OUT_PATH", rootDir.getPath()) + "/apk/" + variant.name + "/" + apk.versionName + "/" + buildTime
+        def OUTPUT_PATH = ROOT_PATH + "/" + variant.name + "/" + dirTime
         //apk文件名称
-        def FILE_NAME = "box_" + versionName + "_" + new Date().format('MMddHHmm') + ".apk"
-        //默认apk生成路径
-        def APK_PATH = OUTPUT_PATH + "/" + FILE_NAME
-        //渠道包配置信息
-        def CHANNEL_CONFIG_PATH = rootDir.getPath() + "/channel_config"
-        //渠道walle工具jar
-        def WALLE_JAR_PATH = rootDir.getPath() + "/walle-cli-all-1.1.7.jar"
+        def FILE_NAME = "box_" + versionName + "_" + buildTime + ".apk"
 
-        variant.packageApplicationProvider.get().outputDirectory = new File(OUTPUT_PATH)
         variant.outputs.all {
             outputFileName = FILE_NAME
         }
-        // 拷贝mappings.txt文件到apk输出目录
+        variant.assemble.doLast {
+            copy {
+                variant.outputs.all { file ->
+                    copy {
+                        from file.outputFile
+                        into OUTPUT_PATH
+                    }
+                }
+            }
+        }
         if (variant.buildType.isMinifyEnabled()) {
             variant.getAssembleProvider().configure() {
                 it.doLast {
@@ -38,20 +47,67 @@ project.android.applicationVariants.all { variant ->
         project.tasks.create("${variantName}")
                 .dependsOn("assemble${variantName}")
                 .doLast {
-                    println "\n非渠道包:" + APK_PATH
-                    println "\n--- 打包任务完成---"
-                }
-                .group("Package")
-        project.tasks.create("${variantName}Channels")
-                .dependsOn("assemble${variantName}")
-                .doLast {
-                    println "\n--- 开始生成渠道包"
-                    exec {
-                        commandLine "java", "-Dfile.encoding=utf-8", "-jar", WALLE_JAR_PATH, "batch", "-f", CHANNEL_CONFIG_PATH, APK_PATH
-                    }
-                    println "\n渠道包目录:" + OUTPUT_PATH
+                    println "\n${variantName} apk包路径:" + OUTPUT_PATH + "/" + FILE_NAME
                     println "\n--- 打包任务完成---"
                 }
                 .group("Package")
     }
 }
+//拷贝任务
+project.tasks.create("copy2zip")
+        .dependsOn("assembleDevelop", "assembleRelease")
+        .doFirst {
+            println "\n拷贝开始..."
+        }
+        .doLast {
+            //测试环境的包
+            def DEVELOP_APK_PATH = ROOT_PATH + "/develop/" + dirTime + "/" + "box_" + apk.versionName + "_dev_" + buildTime + ".apk"
+            println "\n测试环境apk包:" + DEVELOP_APK_PATH
+            //正式环境的包
+            def RELEASE_APK_PATH = ROOT_PATH + "/release/" + dirTime + "/" + "box_" + apk.versionName + "_" + buildTime + ".apk"
+            println "\n正式环境apk包:" + RELEASE_APK_PATH
+
+            File zipDir = new File(ZIP_FOLDER_PATH)
+            if (!zipDir.exists()) {
+                zipDir.mkdirs()
+            }
+            println "\n拷贝到zip文件夹：" + ZIP_FOLDER_PATH
+            copy {
+                from DEVELOP_APK_PATH
+                into ZIP_FOLDER_PATH
+            }
+            copy {
+                from RELEASE_APK_PATH
+                into ZIP_FOLDER_PATH
+            }
+            println "\n拷贝完成"
+        }
+//压缩任务
+project.tasks.create(name: "zipApk", type: Zip, dependsOn: "copy2zip") {
+    doFirst {
+        println "\n压缩开始..."
+    }
+    archiveName dirTime + ".zip"
+    destinationDir file(ROOT_PATH + "/zip/")
+    from(ZIP_FOLDER_PATH) {
+        include("*.apk")
+        exclude("**/*.zip")
+    }
+    doLast {
+        def dir = file(ZIP_FOLDER_PATH)
+        println "\n删除多余文件和文件夹"
+        dir.eachFile { file ->
+            file.delete()
+        }
+        dir.delete()
+        println "\n压缩完成"
+    }
+}
+//同时打正式、测试包，并且压缩成zip文件
+project.tasks.create("develop&release&zip")
+        .dependsOn("zipApk")
+        .doLast {
+            println "\nzip所在文件夹:" + ROOT_PATH + "/zip/"
+            println "\n--- 打包、拷贝、压缩任务完成---"
+        }
+        .group("Package")

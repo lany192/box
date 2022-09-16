@@ -57,18 +57,28 @@ android {
         viewBinding true
     }
     buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        develop {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            matchingFallbacks = ['release']
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            versionNameSuffix '_dev'
+        }
         debug {
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
             signingConfig signingConfigs.config
-        }
-        release {
-            minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources true
-            signingConfig signingConfigs.config
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            versionNameSuffix '_dev'
         }
     }
     compileOptions {
