@@ -26,17 +26,17 @@
 ## 添加依赖
 
 	dependencies {
-        implementation 'com.github.lany192.box:arch:4.1.8'
-        implementation 'com.github.lany192.box:view:4.1.8'
-        implementation 'com.github.lany192.box:core:4.1.8'
-        implementation 'com.github.lany192.box:dialog:4.1.8'
-        implementation 'com.github.lany192.box:update:4.1.8'
-        implementation 'com.github.lany192.box:time:4.1.8'
-        implementation 'com.github.lany192.box:crop:4.1.8'
-        implementation 'com.github.lany192.box:matisse:4.1.8'
-        implementation 'com.github.lany192.box:permission:4.1.8'
-        implementation 'com.github.lany192.box:tablayout:4.1.8'
-        implementation 'com.github.lany192.box:link:4.1.8'
+        implementation 'com.github.lany192.box:arch:4.2.0'
+        implementation 'com.github.lany192.box:view:4.2.0'
+        implementation 'com.github.lany192.box:core:4.2.0'
+        implementation 'com.github.lany192.box:dialog:4.2.0'
+        implementation 'com.github.lany192.box:update:4.2.0'
+        implementation 'com.github.lany192.box:time:4.2.0'
+        implementation 'com.github.lany192.box:crop:4.2.0'
+        implementation 'com.github.lany192.box:matisse:4.2.0'
+        implementation 'com.github.lany192.box:permission:4.2.0'
+        implementation 'com.github.lany192.box:tablayout:4.2.0'
+        implementation 'com.github.lany192.box:link:4.2.0'
 	}
 
 ## 添加最新SNAPSHOT版依赖
