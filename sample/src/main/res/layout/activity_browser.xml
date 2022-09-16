@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.github.lany192.x5web.X5WebView
+    <com.github.lany192.webview.X5WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="0dp"

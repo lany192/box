@@ -32,12 +32,9 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
-//    androidTestDependencies.each { k, v -> androidTestImplementation v }
-//    testImplementationDependencies.each { k, v -> testImplementation v }
-//    implementationDependencies.each { k, v -> implementation v }
+    androidTestDependencies.each { k, v -> androidTestImplementation v }
+    testImplementationDependencies.each { k, v -> testImplementation v }
+    implementationDependencies.each { k, v -> implementation v }
 
     implementation project(':core')
-
-    //tencent x5 https://x5.tencent.com/docs/index.html
-    implementation 'com.tencent.tbs:tbssdk:54002-beta'
 }

@@ -94,10 +94,6 @@ dependencies {
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
 
-    //https://dagger.dev/hilt/
-    implementation 'com.google.dagger:hilt-android:2.43.2'
-    kapt 'com.google.dagger:hilt-android-compiler:2.43.2'
-
     implementation 'com.github.lany192.box:arch:master-SNAPSHOT'
     implementation 'com.github.lany192.box:view:master-SNAPSHOT'
     implementation 'com.github.lany192.box:core:master-SNAPSHOT'
@@ -109,16 +105,9 @@ dependencies {
     implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
     implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
     implementation 'com.github.lany192.box:link:master-SNAPSHOT'
-
-//    implementation project(':arch')
-//    implementation project(':core')
-//    implementation project(':view')
-//    implementation project(':dialog')
-//    implementation project(':update')
-//    implementation project(':time')
-//    implementation project(':crop')
-//    implementation project(':matisse')
-//    implementation project(':permission')
-//    implementation project(':tablayout')
-//    implementation project(':link')
+    implementation 'com.github.lany192.box:html:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:richeditor:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:webview:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:scanner:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
 }
