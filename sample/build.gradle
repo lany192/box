@@ -72,7 +72,7 @@ android {
         }
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
+        //coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -87,7 +87,7 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:' + apk.desugar
+    //coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:' + apk.desugar
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     processorDependencies.each { k, v -> kapt v }
