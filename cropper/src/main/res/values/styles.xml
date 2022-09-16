@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="CropperTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/cropper_main_color</item>
+        <item name="colorPrimaryDark">@color/cropper_main_color</item>
+        <item name="colorAccent">@color/cropper_main_color</item>
+    </style>
+</resources>
