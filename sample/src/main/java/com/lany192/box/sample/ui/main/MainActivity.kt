@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MenuItem
 import androidx.viewpager2.widget.ViewPager2
-import com.alibaba.android.arouter.AppRouter
+import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.arch.tab.TabAdapter
@@ -32,10 +32,10 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> ToastUtils.show("首页：" + userInfo.name) }
         val items = mutableListOf<TabItem>()
-        items.add(TabItem("首页", AppRouter.getIndex()))
-        items.add(TabItem("发现", AppRouter.getDiscover()))
-        items.add(TabItem("消息", AppRouter.getMessage()))
-        items.add(TabItem("我的", AppRouter.getMy()))
+        items.add(TabItem("首页", SampleRouter.getIndex()))
+        items.add(TabItem("发现", SampleRouter.getDiscover()))
+        items.add(TabItem("消息", SampleRouter.getMessage()))
+        items.add(TabItem("我的", SampleRouter.getMy()))
         binding.viewpager.isUserInputEnabled = false
         binding.viewpager.offscreenPageLimit = items.size
         binding.viewpager.adapter = TabAdapter(this, items)

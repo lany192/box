@@ -1,6 +1,6 @@
 package com.lany192.box.sample.ui.main.index
 
-import com.alibaba.android.arouter.AppRouter
+import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.tab.TabAdapter
@@ -22,9 +22,9 @@ class IndexFragment : VMVBFragment<IndexViewModel, FragmentIndexBinding>() {
     override fun init() {
         super.init()
         val items = mutableListOf<TabItem>()
-        items.add(TabItem("推荐", AppRouter.getArticle()))
-        items.add(TabItem("地区", AppRouter.getCity()))
-        items.add(TabItem("图片", AppRouter.getGirl()))
+        items.add(TabItem("推荐", SampleRouter.getArticle()))
+        items.add(TabItem("地区", SampleRouter.getCity()))
+        items.add(TabItem("图片", SampleRouter.getGirl()))
         val adapter = TabAdapter(requireActivity(), items)
         binding.viewpager.adapter = adapter
         binding.tabLayout.setViewPager(binding.viewpager, adapter.titles)

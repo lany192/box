@@ -100,7 +100,11 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
             log.d("已经显示，忽略......");
         } else {
             flag = true;
-            super.show(manager, tag);
+            try {
+                super.show(manager, tag);
+            } catch (Exception e) {
+                log.e("对话框显示异常：" + e.getMessage());
+            }
             new Handler().post(() -> flag = false);
         }
     }

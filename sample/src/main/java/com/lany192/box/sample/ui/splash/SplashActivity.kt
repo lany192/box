@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.alibaba.android.arouter.AppRouter
+import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.utils.ImageUtils
@@ -36,7 +36,7 @@ class SplashActivity : BoxActivity<SplashViewModel, ActivitySplashBinding>() {
         ImageUtils.show(binding.image, R.mipmap.demo)
         viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
         Handler(Looper.getMainLooper()).postDelayed({
-            AppRouter.startMain()
+            SampleRouter.startMain()
             finish()
         }, 3000)
     }

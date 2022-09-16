@@ -1,6 +1,6 @@
 package com.lany192.box.sample.ui.main.message
 
-import com.alibaba.android.arouter.AppRouter
+import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.tab.TabAdapter
@@ -22,9 +22,9 @@ class MessageFragment : VMVBFragment<MessageViewModel, FragmentMessageBinding>()
     override fun init() {
         super.init()
         val items = mutableListOf<TabItem>()
-        items.add(TabItem("互动", AppRouter.getGirl()))
-        items.add(TabItem("系统消息", AppRouter.getCity()))
-        items.add(TabItem("游戏通知", AppRouter.getGirl()))
+        items.add(TabItem("互动", SampleRouter.getGirl()))
+        items.add(TabItem("系统消息", SampleRouter.getCity()))
+        items.add(TabItem("游戏通知", SampleRouter.getGirl()))
         val adapter = TabAdapter(requireActivity(), items)
         binding.viewpager.adapter = adapter
         binding.tabLayout.setViewPager(binding.viewpager, adapter.titles)

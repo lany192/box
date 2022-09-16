@@ -4,22 +4,19 @@ import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.utils.DeviceId;
 import com.github.lany192.arch.utils.PhoneUtils;
+import com.github.lany192.arch.utils.UserInfo;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class ParamsInterceptor implements Interceptor {
-    private HashMap<String, Object> headers = new HashMap<>();
+    private final UserInfo userInfo;
 
-    public ParamsInterceptor() {
-    }
-
-    public ParamsInterceptor(HashMap<String, Object> headers) {
-        this.headers = headers;
+    public ParamsInterceptor(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     @NonNull
@@ -32,8 +29,9 @@ public class ParamsInterceptor implements Interceptor {
         builder.addHeader("deviceId", DeviceId.get().getDeviceId());
         builder.addHeader("version", String.valueOf(PhoneUtils.getAppVersionCode()));
         builder.addHeader("client", "android");
-        if (headers != null && headers.size() > 0) {
-//            builder.addHeader("token", UserHelper.get().getToken());
+        if (userInfo != null) {
+            builder.addHeader("token", userInfo.getToken());
+            builder.addHeader("uid", String.valueOf(userInfo.getUserId()));
         }
         return chain.proceed(builder.build());
     }

@@ -4,21 +4,43 @@ buildscript {
         google()
         mavenCentral()
         maven { url 'https://maven.aliyun.com/repository/public' }
+        mavenLocal()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.2'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20'
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.43.1'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.43.2'
         classpath 'com.alibaba:arouter-register:1.0.2'
     }
 }
 
 allprojects {
-    repositories {
-        mavenCentral()
-        google()
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url "https://jitpack.io" }
+    //配置说明 https://juejin.cn/post/6908232077200588814
+    configurations.all { Configuration c ->
+        // 所有的依赖降级策略
+        c.resolutionStrategy {
+            dependencySubstitution {
+                all { DependencySubstitution dependency ->
+                    if (dependency.requested instanceof ModuleComponentSelector) {
+                        // 如果发现项目内存在 group +name 等于远端的group+name  那么直接采用本地工程进行编译
+                        def p = rootProject.allprojects.find { p -> p.group == dependency.requested.group && p.name == dependency.requested.module }
+                        if (p != null) {
+                            dependency.useTarget(project(p.path), 'selected local project')
+                        }
+                    }
+                }
+            }
+        }
+    }
+    afterEvaluate {
+        if (project.plugins.hasPlugin('com.android.library') || project.plugins.hasPlugin('com.android.application')) {
+            def android = project.extensions.getByName('android')
+            android.compileOptions {
+                coreLibraryDesugaringEnabled true
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+        }
     }
 }
 

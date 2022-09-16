@@ -3,7 +3,7 @@ package com.lany192.box.sample.ui.main.my
 import android.content.pm.ActivityInfo
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
-import com.alibaba.android.arouter.AppRouter
+import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.utils.BarUtils
@@ -38,11 +38,11 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         super.init()
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> binding.testView.hint(userInfo.name) }
-        binding.downloadView.setOnClickListener { AppRouter.startDownload() }
+        binding.downloadView.setOnClickListener { SampleRouter.startDownload() }
         binding.dialogView.setOnClickListener { showDialog() }
-        binding.loginView.setOnClickListener { AppRouter.startLogin() }
-        binding.settingsView.setOnClickListener { AppRouter.startSettings() }
-        binding.helloView.setOnClickListener { AppRouter.startHello() }
+        binding.loginView.setOnClickListener { SampleRouter.startLogin() }
+        binding.settingsView.setOnClickListener { SampleRouter.startSettings() }
+        binding.helloView.setOnClickListener { SampleRouter.startHello() }
         binding.dialog2View.setOnClickListener { showDialog2() }
         binding.birthday.setOnClickListener {
             BirthdayDialog(LocalDate.of(2001, 1, 2)).show()

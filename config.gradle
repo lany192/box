@@ -2,19 +2,24 @@ ext {
     // 安装包
     apk = [
             appId            : 'com.lany192.box.sample',
+            groupId          : 'com.github.lany192.box',
             versionCode      : 1,
             versionName      : '1.0.0',
             minSdkVersion    : 21,
             compileSdkVersion: 32,
             targetSdkVersion : 32,
+            //脱糖库版本
+            desugar          : '1.1.5'
     ]
     processorDependencies = [
             'glide'     : 'com.github.bumptech.glide:compiler:4.13.2',
             'room'      : 'androidx.room:room-compiler:2.4.2',
             //路由增强 https://github.com/lany192/app-router
-            'app-router': 'com.github.lany192:app-router:1.4.0',
+            'app-router': 'com.github.lany192:app-router:1.4.1',
             //阿里路由 https://github.com/alibaba/ARouter
             'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
+            //注入依赖 https://dagger.dev/hilt/
+            'hilt'      : 'com.google.dagger:hilt-android-compiler:2.43.2',
     ]
     androidTestDependencies = [
             'junit'   : 'androidx.test.ext:junit:1.1.3',
@@ -34,9 +39,12 @@ ext {
             'androidx-constraint-layout'      : 'androidx.constraintlayout:constraintlayout:2.1.4',
             'androidx-multidex'               : 'androidx.multidex:multidex:2.0.1',
             'androidx-material'               : 'com.google.android.material:material:1.6.1',
+            'androidx-exifinterface'          : 'androidx.exifinterface:exifinterface:1.3.3',
             //协程 https://github.com/Kotlin/kotlinx.coroutines
             'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4',
             'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4',
+            //注入依赖 https://dagger.dev/hilt/
+            'hilt'                            : 'com.google.dagger:hilt-android:2.43.2',
             //日志工具 https://github.com/elvishew/xLog
             'xlog'                            : 'com.elvishew:xlog:1.11.0',
             //Toast工具 https://github.com/getActivity/ToastUtils
@@ -63,9 +71,7 @@ ext {
             'walle'                           : 'com.meituan.android.walle:library:1.1.7',
             //阿里界面路由 https://github.com/alibaba/ARouter
             "arouter"                         : 'com.alibaba:arouter-api:1.5.2',
-            //腾讯X5内核 https://github.com/lany192/webview
-            'webview'                         : 'com.github.lany192.webview:x5web:1.0.2',
-            //tencent x5 https://x5.tencent.com/docs/index.html
+            //腾讯x5 https://x5.tencent.com/docs/index.html
             'tbssdk'                          : 'com.tencent.tbs:tbssdk:44176',
             //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
             'background-core'                 : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.4',
@@ -95,21 +101,26 @@ ext {
             //banner https://github.com/youth5201314/banner
             'banner'                          : 'io.github.youth5201314:banner:2.2.2',
             //图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
-            'TouchImageView'                  : 'com.github.MikeOrtiz:TouchImageView:3.1.0'
+            'TouchImageView'                  : 'com.github.MikeOrtiz:TouchImageView:3.1.0',
+            //二维码 https://github.com/zxing/zxing
+            'zxing'                           : 'com.google.zxing:core:3.5.0',
+            //相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
+            'camera-core'                     : 'androidx.camera:camera-core:1.1.0',
+            'camera-camera2'                  : 'androidx.camera:camera-camera2:1.1.0',
+            'camera-lifecycle'                : 'androidx.camera:camera-lifecycle:1.1.0',
+            'camera-view'                     : 'androidx.camera:camera-view:1.1.0',
+            'camera-extensions'               : 'androidx.camera:camera-extensions:1.1.0',
+            //https://github.com/ReactiveX/RxJava
+            'rxjava3'                         : 'io.reactivex.rxjava3:rxjava:3.1.3',
+            //https://github.com/ReactiveX/RxAndroid
+            'rxandroid3'                      : 'io.reactivex.rxjava3:rxandroid:3.0.0',
+            //https://github.com/jaredrummler/materialspinner
+            'spinner'                         : 'com.jaredrummler:material-spinner:1.3.1',
 
-
-//            //友盟 https://github.com/lany192/umeng
-//            'umeng-analysis'                  : 'com.github.lany192.umeng:analysis:1.0.7',
-//    'umeng-push'    : 'com.github.lany192.umeng:push:1.0.7',
-//    'umeng-share'   : 'com.github.lany192.umeng:share:1.0.7',
             //日历控件 https://github.com/prolificinteractive/material-calendarview
 //    'material-calendarview'   : 'com.github.prolificinteractive:material-calendarview:2.0.1',
-            //缩放图片 https://github.com/MikeOrtiz/TouchImageView
-//    'touch-imageview'     : 'com.github.MikeOrtiz:TouchImageView:3.0.5',
             //斜体TextView控件 https://github.com/linger1216/labelview
 //    'label-view'      : 'com.github.linger1216:labelview:v1.1.2',
-            //二维码 https://github.com/zxing/zxing
-//    'zxing-core'      : 'com.google.zxing:core:3.4.0',
             //转场动画 https://github.com/skydoves/TransformationLayout
 //    'transformation-layout': 'com.github.skydoves:transformationlayout:1.1.1',
     ]

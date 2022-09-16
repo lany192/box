@@ -23,24 +23,6 @@
         }
     }
 
-## 添加依赖
-
-	dependencies {
-        implementation 'com.github.lany192.box:arch:4.1.8'
-        implementation 'com.github.lany192.box:view:4.1.8'
-        implementation 'com.github.lany192.box:core:4.1.8'
-        implementation 'com.github.lany192.box:dialog:4.1.8'
-        implementation 'com.github.lany192.box:update:4.1.8'
-        implementation 'com.github.lany192.box:time:4.1.8'
-        implementation 'com.github.lany192.box:crop:4.1.8'
-        implementation 'com.github.lany192.box:matisse:4.1.8'
-        implementation 'com.github.lany192.box:permission:4.1.8'
-        implementation 'com.github.lany192.box:tablayout:4.1.8'
-        implementation 'com.github.lany192.box:link:4.1.8'
-	}
-
-## 添加最新SNAPSHOT版依赖
-
 	dependencies {
         implementation 'com.github.lany192.box:arch:master-SNAPSHOT'
         implementation 'com.github.lany192.box:view:master-SNAPSHOT'
@@ -53,6 +35,11 @@
         implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
         implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
         implementation 'com.github.lany192.box:link:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:html:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:richeditor:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:webview:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:scanner:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
 	}
 
 ## 初始化
