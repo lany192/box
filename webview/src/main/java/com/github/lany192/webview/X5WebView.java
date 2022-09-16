@@ -9,6 +9,7 @@ import android.widget.AbsoluteLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.github.lany192.utils.DensityUtils;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
@@ -22,7 +23,7 @@ public class X5WebView extends WebView {
     public X5WebView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         mProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 8);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DensityUtils.dp2px(2));
         mProgressBar.setLayoutParams(layoutParams);
         Drawable drawable = context.getResources().getDrawable(R.drawable.web_progress_bar_states);
         mProgressBar.setProgressDrawable(drawable);

@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
         <shape>
-            <corners android:radius="2dp" />
+            <corners android:radius="1dp" />
             <solid android:color="@android:color/transparent" />
         </shape>
     </item>
@@ -11,9 +11,9 @@
             <shape>
                 <corners android:radius="2dp" />
                 <gradient
-                    android:centerColor="#46EC2A"
-                    android:endColor="#46EC2A"
-                    android:startColor="#46EC2A" />
+                    android:centerColor="#1EA807"
+                    android:endColor="#1EA807"
+                    android:startColor="#1EA807" />
             </shape>
         </clip>
     </item>
