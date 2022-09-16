@@ -32,6 +32,12 @@ afterEvaluate {
 //                    include '**/*.aar'
 //                    rename { "${project.name}_${apk.versionName}.aar" }
 //                }
+//                copy {
+//                    from outputFile
+//                    into "../sample/libs"
+//                    include '**/*.jar'
+//                    rename { "${project.name}_${apk.versionName}.jar" }
+//                }
 //            }
 //        }
     }
