@@ -37,6 +37,7 @@
         implementation 'com.github.lany192.box:permission:4.2.0'
         implementation 'com.github.lany192.box:tablayout:4.2.0'
         implementation 'com.github.lany192.box:link:4.2.0'
+        implementation 'com.github.lany192.box:html:master-SNAPSHOT'
 	}
 
 ## 添加最新SNAPSHOT版依赖
@@ -53,6 +54,7 @@
         implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
         implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
         implementation 'com.github.lany192.box:link:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:html:master-SNAPSHOT'
 	}
 
 ## 初始化
