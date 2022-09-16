@@ -1,4 +1,6 @@
-package com.github.lany192.text.html;
+
+
+package com.github.lany192.html;
 
 import android.text.Editable;
 import android.text.Html;
@@ -11,7 +13,7 @@ import org.xml.sax.XMLReader;
 
 public class WrapperContentHandler implements ContentHandler, Html.TagHandler {
     private ContentHandler mContentHandler;
-    private final WrapperTagHandler mTagHandler;
+    private WrapperTagHandler mTagHandler;
     private Editable mSpannableStringBuilder;
 
     public WrapperContentHandler(WrapperTagHandler tagHandler) {

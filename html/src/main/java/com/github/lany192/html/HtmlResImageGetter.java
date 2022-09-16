@@ -1,4 +1,5 @@
-package com.github.lany192.text.html;
+
+package com.github.lany192.html;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

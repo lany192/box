@@ -1,4 +1,6 @@
-package com.github.lany192.text.html;
+
+
+package com.github.lany192.html;
 
 import android.text.Html.ImageGetter;
 
@@ -18,13 +20,33 @@ public class HtmlFormatterBuilder {
         return html;
     }
 
+    public ImageGetter getImageGetter() {
+        return imageGetter;
+    }
+
+    public ClickableTableSpan getClickableTableSpan() {
+        return clickableTableSpan;
+    }
+
+    public DrawTableLinkSpan getDrawTableLinkSpan() {
+        return drawTableLinkSpan;
+    }
+
+    public OnClickATagListener getOnClickATagListener() {
+        return onClickATagListener;
+    }
+
+    public float getIndent() {
+        return indent;
+    }
+
+    public boolean isRemoveTrailingWhiteSpace() {
+        return removeTrailingWhiteSpace;
+    }
+
     public HtmlFormatterBuilder setHtml(@Nullable final String html) {
         this.html = html;
         return this;
-    }
-
-    public ImageGetter getImageGetter() {
-        return imageGetter;
     }
 
     public HtmlFormatterBuilder setImageGetter(@Nullable final ImageGetter imageGetter) {
@@ -32,17 +54,9 @@ public class HtmlFormatterBuilder {
         return this;
     }
 
-    public ClickableTableSpan getClickableTableSpan() {
-        return clickableTableSpan;
-    }
-
     public HtmlFormatterBuilder setClickableTableSpan(@Nullable final ClickableTableSpan clickableTableSpan) {
         this.clickableTableSpan = clickableTableSpan;
         return this;
-    }
-
-    public DrawTableLinkSpan getDrawTableLinkSpan() {
-        return drawTableLinkSpan;
     }
 
     public HtmlFormatterBuilder setDrawTableLinkSpan(@Nullable final DrawTableLinkSpan drawTableLinkSpan) {
@@ -50,25 +64,13 @@ public class HtmlFormatterBuilder {
         return this;
     }
 
-    public OnClickATagListener getOnClickATagListener() {
-        return onClickATagListener;
-    }
-
     public void setOnClickATagListener(OnClickATagListener onClickATagListener) {
         this.onClickATagListener = onClickATagListener;
-    }
-
-    public float getIndent() {
-        return indent;
     }
 
     public HtmlFormatterBuilder setIndent(final float indent) {
         this.indent = indent;
         return this;
-    }
-
-    public boolean isRemoveTrailingWhiteSpace() {
-        return removeTrailingWhiteSpace;
     }
 
     public HtmlFormatterBuilder setRemoveTrailingWhiteSpace(final boolean removeTrailingWhiteSpace) {

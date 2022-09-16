@@ -1,4 +1,6 @@
-package com.github.lany192.text.html;
+
+
+package com.github.lany192.html;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -51,27 +53,27 @@ public class DrawTableLinkSpan extends ReplacementSpan {
         canvas.drawText(mTableLinkText, x, bottom, paint2);
     }
 
-    public String getTableLinkText() {
-        return mTableLinkText;
-    }
-
     public void setTableLinkText(String tableLinkText) {
         this.mTableLinkText = tableLinkText;
-    }
-
-    public float getTextSize() {
-        return mTextSize;
     }
 
     public void setTextSize(float textSize) {
         this.mTextSize = textSize;
     }
 
-    public int getTextColor() {
-        return mTextColor;
-    }
-
     public void setTextColor(int textColor) {
         this.mTextColor = textColor;
+    }
+
+    public String getTableLinkText() {
+        return mTableLinkText;
+    }
+
+    public float getTextSize() {
+        return mTextSize;
+    }
+
+    public int getTextColor() {
+        return mTextColor;
     }
 }

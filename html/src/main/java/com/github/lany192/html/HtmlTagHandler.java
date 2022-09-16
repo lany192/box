@@ -1,4 +1,5 @@
-package com.github.lany192.text.html;
+
+package com.github.lany192.html;
 
 import android.text.Editable;
 import android.text.Html;
@@ -30,63 +31,8 @@ public class HtmlTagHandler implements WrapperTagHandler {
     public static final String LIST_ITEM = "HTML_TEXTVIEW_ESCAPED_LI_TAG";
     public static final String A_ITEM = "HTML_TEXTVIEW_ESCAPED_A_TAG";
     public static final String PLACEHOLDER_ITEM = "HTML_TEXTVIEW_ESCAPED_PLACEHOLDER";
-    private static final int defaultIndent = 10;
-    private static final int defaultListItemIndent = defaultIndent * 2;
-    private static final BulletSpan defaultBullet = new BulletSpan(defaultIndent);
-    private static int userGivenIndent = -1;
-    /**
-     * List indentation in pixels. Nested lists use multiple of this.
-     */
-    /**
-     * Keeps track of lists (ol, ul). On bottom of Stack is the outermost list
-     * and on top of Stack is the most nested list
-     */
-    Stack<String> lists = new Stack<>();
-    /**
-     * Tracks indexes of ordered lists so that after a nested list ends
-     * we can continue with correct index of outer list
-     */
-    Stack<Integer> olNextIndex = new Stack<>();
-    /**
-     * Running HTML table string based off of the root table tag. Root table tag being the tag which
-     * isn't embedded within any other table tag. Example:
-     * <!-- This is the root level opening table tag. This is where we keep track of tables. -->
-     * <table>
-     * ...
-     * <table> <!-- Non-root table tags -->
-     * ...
-     * </table>
-     * ...
-     * </table>
-     * <!-- This is the root level closing table tag and the end of the string we track. -->
-     */
-    StringBuilder tableHtmlBuilder = new StringBuilder();
-    /**
-     * Tells us which level of table tag we're on; ultimately used to find the root table tag.
-     */
-    int tableTagLevel = 0;
-    private ClickableTableSpan clickableTableSpan;
-    private DrawTableLinkSpan drawTableLinkSpan;
-    private HtmlFormatter.TagClickListenerProvider onClickATagListenerProvider;
 
     public HtmlTagHandler() {
-    }
-
-    /**
-     * Get last marked position of a specific tag kind (private class)
-     */
-    private static Object getLast(Editable text, Class kind) {
-        Object[] objs = text.getSpans(0, text.length(), kind);
-        if (objs.length == 0) {
-            return null;
-        } else {
-            for (int i = objs.length; i > 0; i--) {
-                if (text.getSpanFlags(objs[i - 1]) == Spannable.SPAN_MARK_MARK) {
-                    return objs[i - 1];
-                }
-            }
-            return null;
-        }
     }
 
     /**
@@ -113,6 +59,83 @@ public class HtmlTagHandler implements WrapperTagHandler {
         html = html.replace("</a>", "</" + A_ITEM + ">");
 
         return html;
+    }
+
+    /**
+     * Keeps track of lists (ol, ul). On bottom of Stack is the outermost list
+     * and on top of Stack is the most nested list
+     */
+    Stack<String> lists = new Stack<>();
+    /**
+     * Tracks indexes of ordered lists so that after a nested list ends
+     * we can continue with correct index of outer list
+     */
+    Stack<Integer> olNextIndex = new Stack<>();
+    /**
+     * List indentation in pixels. Nested lists use multiple of this.
+     */
+    /**
+     * Running HTML table string based off of the root table tag. Root table tag being the tag which
+     * isn't embedded within any other table tag. Example:
+     * <!-- This is the root level opening table tag. This is where we keep track of tables. -->
+     * <table>
+     * ...
+     * <table> <!-- Non-root table tags -->
+     * ...
+     * </table>
+     * ...
+     * </table>
+     * <!-- This is the root level closing table tag and the end of the string we track. -->
+     */
+    StringBuilder tableHtmlBuilder = new StringBuilder();
+    /**
+     * Tells us which level of table tag we're on; ultimately used to find the root table tag.
+     */
+    int tableTagLevel = 0;
+
+    private static int userGivenIndent = -1;
+    private static final int defaultIndent = 10;
+    private static final int defaultListItemIndent = defaultIndent * 2;
+    private static final BulletSpan defaultBullet = new BulletSpan(defaultIndent);
+    private ClickableTableSpan clickableTableSpan;
+    private DrawTableLinkSpan drawTableLinkSpan;
+    private HtmlFormatter.TagClickListenerProvider onClickATagListenerProvider;
+
+    private static class Ul {
+    }
+
+    private static class Ol {
+    }
+
+    private static class A {
+        private String text;
+        private String href;
+
+        private A(String text, String href) {
+            this.text = text;
+            this.href = href;
+        }
+    }
+
+    private static class Code {
+    }
+
+    private static class Center {
+    }
+
+    private static class Strike {
+    }
+
+    private static class Table {
+    }
+
+    private static class Tr {
+    }
+
+    private static class Th {
+    }
+
+    private static class Td {
     }
 
     @Override
@@ -364,6 +387,23 @@ public class HtmlTagHandler implements WrapperTagHandler {
         return extractedSpanText;
     }
 
+    /**
+     * Get last marked position of a specific tag kind (private class)
+     */
+    private static Object getLast(Editable text, Class kind) {
+        Object[] objs = text.getSpans(0, text.length(), kind);
+        if (objs.length == 0) {
+            return null;
+        } else {
+            for (int i = objs.length; i > 0; i--) {
+                if (text.getSpanFlags(objs[i - 1]) == Spannable.SPAN_MARK_MARK) {
+                    return objs[i - 1];
+                }
+            }
+            return null;
+        }
+    }
+
     // Util method for setting pixels.
     public void setListIndentPx(float px) {
         userGivenIndent = Math.round(px);
@@ -379,42 +419,5 @@ public class HtmlTagHandler implements WrapperTagHandler {
 
     public void setOnClickATagListenerProvider(HtmlFormatter.TagClickListenerProvider onClickATagListenerProvider) {
         this.onClickATagListenerProvider = onClickATagListenerProvider;
-    }
-
-    private static class Ul {
-    }
-
-    private static class Ol {
-    }
-
-    private static class A {
-        private String text;
-        private String href;
-
-        private A(String text, String href) {
-            this.text = text;
-            this.href = href;
-        }
-    }
-
-    private static class Code {
-    }
-
-    private static class Center {
-    }
-
-    private static class Strike {
-    }
-
-    private static class Table {
-    }
-
-    private static class Tr {
-    }
-
-    private static class Th {
-    }
-
-    private static class Td {
     }
 }

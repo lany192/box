@@ -1,4 +1,6 @@
-package com.github.lany192.text.html;
+
+
+package com.github.lany192.html;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

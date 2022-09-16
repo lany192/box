@@ -1,4 +1,5 @@
-package com.github.lany192.text.html;
+
+package com.github.lany192.html;
 
 import android.text.Layout;
 import android.text.Selection;

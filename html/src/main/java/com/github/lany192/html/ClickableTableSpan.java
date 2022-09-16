@@ -1,4 +1,6 @@
-package com.github.lany192.text.html;
+
+
+package com.github.lany192.html;
 
 import android.text.style.ClickableSpan;
 
@@ -14,11 +16,11 @@ public abstract class ClickableTableSpan extends ClickableSpan {
     // Otherwise, we end up removing the clicking from earlier tables.
     public abstract ClickableTableSpan newInstance();
 
-    public String getTableHtml() {
-        return tableHtml;
-    }
-
     public void setTableHtml(String tableHtml) {
         this.tableHtml = tableHtml;
+    }
+
+    public String getTableHtml() {
+        return tableHtml;
     }
 }
