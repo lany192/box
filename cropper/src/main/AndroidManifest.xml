@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.lany192.cropper">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
 
