@@ -29,7 +29,7 @@ ext {
             'junit': 'junit:junit:4.13.2'
     ]
     implementationDependencies = [
-            'androidx-appcompat'              : 'androidx.appcompat:appcompat:1.4.2',
+            'androidx-appcompat'              : 'androidx.appcompat:appcompat:1.5.0',
             'androidx-activity-ktx'           : 'androidx.activity:activity-ktx:1.5.0',
             'androidx-fragment-ktx'           : 'androidx.fragment:fragment-ktx:1.5.0',
             'androidx-core-ktx'               : 'androidx.core:core-ktx:1.8.0',
@@ -50,7 +50,7 @@ ext {
             //Toast工具 https://github.com/getActivity/ToastUtils
             'toast'                           : 'com.github.getActivity:ToastUtils:10.5',
             //适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-            'brvah'                           : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7',
+            'brvah'                           : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.8',
             //状态栏工具 https://github.com/gyf-dev/ImmersionBar
             'immersion-bar'                   : 'com.geyifeng.immersionbar:immersionbar:3.2.2',
             //请求框架 https://github.com/square/retrofit
