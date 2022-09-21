@@ -8,9 +8,13 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.elvishew.xlog.XLog;
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
+import com.github.lany192.interfaces.SimpleFragmentLifecycleCallbacks;
 import com.github.lany192.utils.ContextUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
@@ -50,22 +54,32 @@ public class UmengUtils {
         mApplication.registerActivityLifecycleCallbacks(new SimpleActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-                String simpleName = activity.getClass().getSimpleName();
-                UmengUtils.onPageStart(simpleName);
+                UmengUtils.onPageStart(activity.getClass().getName());
+                if (activity instanceof FragmentActivity) {
+                    ((FragmentActivity) activity).getSupportFragmentManager().registerFragmentLifecycleCallbacks(new SimpleFragmentLifecycleCallbacks() {
+
+                        @Override
+                        public void onFragmentCreated(@NonNull FragmentManager fm, @NonNull Fragment f, @Nullable Bundle savedInstanceState) {
+                            UmengUtils.onPageStart(f.getClass().getName());
+                        }
+
+                        @Override
+                        public void onFragmentDestroyed(@NonNull FragmentManager fm, @NonNull Fragment f) {
+                            UmengUtils.onPageEnd(f.getClass().getName());
+                        }
+                    }, false);
+                }
             }
 
             @Override
             public void onActivityDestroyed(@NonNull Activity activity) {
-                String simpleName = activity.getClass().getSimpleName();
-                UmengUtils.onPageEnd(simpleName);
+                UmengUtils.onPageEnd(activity.getClass().getName());
             }
         });
     }
 
     /**
      * 统计页面开始。
-     *
-     * @param name 页面名称
      */
     public static void onPageStart(String name) {
         if (init) {
@@ -80,8 +94,6 @@ public class UmengUtils {
 
     /**
      * 统计页面结束。
-     *
-     * @param name 页面名称
      */
     public static void onPageEnd(String name) {
         if (init) {
