@@ -103,19 +103,19 @@ ext {
             //图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
             'TouchImageView'                  : 'com.github.MikeOrtiz:TouchImageView:3.1.0',
             //二维码 https://github.com/zxing/zxing
-            'zxing'                           : 'com.google.zxing:core:3.5.0',
+            'zxing'            : 'com.google.zxing:core:3.5.0',
             //相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
-            'camera-core'                     : 'androidx.camera:camera-core:1.1.0',
-            'camera-camera2'                  : 'androidx.camera:camera-camera2:1.1.0',
-            'camera-lifecycle'                : 'androidx.camera:camera-lifecycle:1.1.0',
-            'camera-view'                     : 'androidx.camera:camera-view:1.1.0',
-            'camera-extensions'               : 'androidx.camera:camera-extensions:1.1.0',
+            'camera-core'      : 'androidx.camera:camera-core:1.1.0',
+            'camera-camera2'   : 'androidx.camera:camera-camera2:1.1.0',
+            'camera-lifecycle' : 'androidx.camera:camera-lifecycle:1.1.0',
+            'camera-view'      : 'androidx.camera:camera-view:1.1.0',
+            'camera-extensions': 'androidx.camera:camera-extensions:1.1.0',
             //https://github.com/ReactiveX/RxJava
-            'rxjava3'                         : 'io.reactivex.rxjava3:rxjava:3.1.3',
+            'rxjava3'          : 'io.reactivex.rxjava3:rxjava:3.1.3',
             //https://github.com/ReactiveX/RxAndroid
-            'rxandroid3'                      : 'io.reactivex.rxjava3:rxandroid:3.0.0',
+            'rxandroid3'       : 'io.reactivex.rxjava3:rxandroid:3.0.0',
             //https://github.com/jaredrummler/materialspinner
-            'spinner'                         : 'com.jaredrummler:material-spinner:1.3.1',
+            'spinner'          : 'com.jaredrummler:material-spinner:1.3.1',
 
             //日历控件 https://github.com/prolificinteractive/material-calendarview
 //    'material-calendarview'   : 'com.github.prolificinteractive:material-calendarview:2.0.1',
@@ -123,5 +123,10 @@ ext {
 //    'label-view'      : 'com.github.linger1216:labelview:v1.1.2',
             //转场动画 https://github.com/skydoves/TransformationLayout
 //    'transformation-layout': 'com.github.skydoves:transformationlayout:1.1.1',
+
+            //友盟统计 https://developer.umeng.com/docs/119267/detail/118584
+            'umeng-common'     : 'com.umeng.umsdk:common:9.5.2',
+            'umeng-asms'       : 'com.umeng.umsdk:asms:1.6.3',
+            'umeng-apm'        : 'com.umeng.umsdk:apm:1.7.0',
     ]
 }

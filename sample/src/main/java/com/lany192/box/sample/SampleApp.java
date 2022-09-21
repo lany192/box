@@ -14,6 +14,8 @@ import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
+import com.github.lany192.umeng.UmengConfig;
+import com.github.lany192.umeng.UmengUtils;
 import com.hjq.toast.ToastUtils;
 import com.lany192.box.sample.lifecycle.ActivityLifecycle;
 import com.lany192.box.sample.ui.settings.about.AboutActivity;
@@ -46,6 +48,12 @@ public class SampleApp extends BoxApplication {
         ToastUtils.setDebugMode(BuildConfig.DEBUG);
         // 处理RxJava返回的无人处理的错误
         RxJavaPlugins.setErrorHandler(new ConsumerAdapter<>());
+
+        UmengConfig config = new UmengConfig();
+        config.setAppId("xxxxxxx");
+        config.setChannel("umeng");
+        config.setMessageSecret("xxxxxxxxxxxxx");
+        UmengUtils.preInit(this, config);
     }
 
     private void initARouter() {
