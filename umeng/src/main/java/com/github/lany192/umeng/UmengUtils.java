@@ -50,32 +50,32 @@ public class UmengUtils {
             MobclickAgent.setCatchUncaughtExceptions(!mConfig.isDebug());
             UMConfigure.setLogEnabled(mConfig.isDebug());
             init = true;
-        }).start();
-        mApplication.registerActivityLifecycleCallbacks(new SimpleActivityLifecycleCallbacks() {
-            @Override
-            public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-                UmengUtils.onPageStart(activity.getClass().getName());
-                if (activity instanceof FragmentActivity) {
-                    ((FragmentActivity) activity).getSupportFragmentManager().registerFragmentLifecycleCallbacks(new SimpleFragmentLifecycleCallbacks() {
+            mApplication.registerActivityLifecycleCallbacks(new SimpleActivityLifecycleCallbacks() {
+                @Override
+                public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+                    onPageStart(activity.getClass().getName());
+                    if (activity instanceof FragmentActivity) {
+                        ((FragmentActivity) activity).getSupportFragmentManager().registerFragmentLifecycleCallbacks(new SimpleFragmentLifecycleCallbacks() {
 
-                        @Override
-                        public void onFragmentCreated(@NonNull FragmentManager fm, @NonNull Fragment f, @Nullable Bundle savedInstanceState) {
-                            UmengUtils.onPageStart(f.getClass().getName());
-                        }
+                            @Override
+                            public void onFragmentCreated(@NonNull FragmentManager fm, @NonNull Fragment f, @Nullable Bundle savedInstanceState) {
+                                onPageStart(f.getClass().getName());
+                            }
 
-                        @Override
-                        public void onFragmentDestroyed(@NonNull FragmentManager fm, @NonNull Fragment f) {
-                            UmengUtils.onPageEnd(f.getClass().getName());
-                        }
-                    }, false);
+                            @Override
+                            public void onFragmentDestroyed(@NonNull FragmentManager fm, @NonNull Fragment f) {
+                                onPageEnd(f.getClass().getName());
+                            }
+                        }, false);
+                    }
                 }
-            }
 
-            @Override
-            public void onActivityDestroyed(@NonNull Activity activity) {
-                UmengUtils.onPageEnd(activity.getClass().getName());
-            }
-        });
+                @Override
+                public void onActivityDestroyed(@NonNull Activity activity) {
+                    onPageEnd(activity.getClass().getName());
+                }
+            });
+        }).start();
     }
 
     /**
