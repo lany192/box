@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PermissionInfo;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Process;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.TypedValue;
 
@@ -67,8 +67,7 @@ public class PhoneUtils {
                     + getPhoneModel() + ";"
                     + getOSVersionCode() + ";"
                     + getAppVersionCode() + ";"
-                    + getChannelCode() + ";"
-                    + getPhoneNumber();
+                    + getChannelCode() + ";";
         }
         return BASE_INFO;
     }
@@ -92,18 +91,6 @@ public class PhoneUtils {
      */
     public static int getDeviceHeight() {
         return ContextUtils.getContext().getResources().getDisplayMetrics().heightPixels;
-    }
-
-    /**
-     * 获取本机号码，注意要添加权限android.permission.READ_PHONE_STATE
-     */
-    public static String getPhoneNumber() {
-        try {
-            TelephonyManager mTelephonyMgr = (TelephonyManager) ContextUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-            return mTelephonyMgr.getLine1Number();
-        } catch (Exception e) {
-            return "";
-        }
     }
 
     /**
