@@ -4,6 +4,7 @@ buildscript {
         google()
         mavenCentral()
         maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://artifact.bytedance.com/repository/byteX/' }
         mavenLocal()
     }
     dependencies {
@@ -11,6 +12,11 @@ buildscript {
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20'
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.43.2'
         classpath 'com.alibaba:arouter-register:1.0.2'
+
+        classpath 'com.bytedance.android.byteX:base-plugin:0.3.0'
+        classpath 'com.bytedance.android.byteX:refer-check-plugin:0.3.0'
+        //hook 工具 https://github.com/Knight-ZXW/LancetX
+        classpath "io.github.knight-zxw:lancet-plugin:0.0.1"
     }
 }
 
