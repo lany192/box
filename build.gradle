@@ -47,3 +47,34 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// 项目构建之前
+gradle.settingsEvaluated {
+    println "初始化阶段0 settingsEvaluated"
+}
+gradle.projectsLoaded {
+    println "初始化阶段1 projectsLoaded"
+}
+// 配置阶段
+gradle.beforeProject {
+    println "配置阶段0 beforeProject"
+}
+gradle.afterProject {
+    println "配置阶段1 afterProject"
+}
+gradle.projectsEvaluated {
+    println "配置阶段2 projectsEvaluated"
+}
+gradle.taskGraph.whenReady {
+    println "配置阶段3 taskGraph.whenReady"
+}
+// 执行阶段
+gradle.taskGraph.beforeTask {
+    println "执行阶段0 taskGraph.beforeTask"
+}
+gradle.taskGraph.afterTask {
+    println "执行阶段1 taskGraph.afterTask"
+}
+gradle.buildFinished {
+    println "执行阶段2 buildFinished"
+}
