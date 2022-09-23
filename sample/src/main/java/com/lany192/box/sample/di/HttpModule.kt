@@ -2,8 +2,8 @@ package com.lany192.box.sample.di
 
 import com.github.lany192.arch.network.HttpLogInterceptor
 import com.github.lany192.arch.network.ParamsInterceptor
-import com.github.lany192.arch.utils.UserInfo
 import com.lany192.box.sample.BuildConfig
+import com.lany192.box.sample.TokenInterceptor
 import com.lany192.box.sample.data.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -24,16 +24,8 @@ class HttpModule {
     fun provideClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
-            .addInterceptor(ParamsInterceptor(object : UserInfo {
-                override fun getUserId(): Int {
-                    return 0
-                }
-
-                override fun getToken(): String {
-                    return ""
-                }
-
-            }))
+            .addInterceptor(TokenInterceptor())
+            .addInterceptor(ParamsInterceptor(HashMap<String, String>()))
             .addInterceptor(HttpLogInterceptor(BuildConfig.DEBUG))
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
