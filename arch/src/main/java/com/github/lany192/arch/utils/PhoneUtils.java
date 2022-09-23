@@ -23,6 +23,9 @@ import java.util.List;
 public class PhoneUtils {
     private static String BASE_INFO;
 
+    /**
+     * 获取声明的权限
+     */
     public static String[] getRequestedPermissions(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {
@@ -64,10 +67,10 @@ public class PhoneUtils {
         if (TextUtils.isEmpty(BASE_INFO)) {
             BASE_INFO = "android" + ";"
                     + getScreenInfo() + ";"
-                    + getPhoneModel() + ";"
                     + getOSVersionCode() + ";"
                     + getAppVersionCode() + ";"
-                    + getChannelCode() + ";";
+                    + getAppVersionName() + ";"
+                    + DeviceId.get().getDeviceId() + ";";
         }
         return BASE_INFO;
     }
@@ -98,13 +101,6 @@ public class PhoneUtils {
      */
     public static String getPhoneModel() {
         return android.os.Build.MODEL;
-    }
-
-    /**
-     * 序列号
-     */
-    public static String getSerial() {
-        return android.os.Build.SERIAL;
     }
 
     /**
@@ -147,17 +143,6 @@ public class PhoneUtils {
             e.printStackTrace();
         }
         return "1.0.0";
-    }
-
-    /**
-     * 读取配置文件中的渠道代码
-     *
-     * @return
-     */
-    public static String getChannelCode() {
-        String code = getMetaData("UMENG_CHANNEL");
-        //XLog.tag(TAG).i(" 渠道号 == " + code);
-        return code;
     }
 
     public static String getMetaData(String key) {

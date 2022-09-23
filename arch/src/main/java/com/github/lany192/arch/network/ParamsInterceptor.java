@@ -24,11 +24,9 @@ public class ParamsInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Request.Builder builder = request.newBuilder();
-        builder.addHeader("Content-Type", "application/json;charset=UTF-8");
         builder.addHeader("User-Agent", PhoneUtils.getBaseInfo());
         builder.addHeader("deviceId", DeviceId.get().getDeviceId());
         builder.addHeader("version", String.valueOf(PhoneUtils.getAppVersionCode()));
-        builder.addHeader("client", "android");
         if (headers != null && headers.size() > 0) {
             for (Map.Entry<String, String> entry : headers.entrySet()) {
                 builder.addHeader(entry.getKey(), "" + entry.getValue());
