@@ -15,7 +15,7 @@ ext {
             'glide'     : 'com.github.bumptech.glide:compiler:4.13.2',
             'room'      : 'androidx.room:room-compiler:2.4.2',
             //路由增强 https://github.com/lany192/app-router
-            'app-router': 'com.github.lany192:app-router:1.4.1',
+            'app-router': 'com.github.lany192:app-router:1.4.2',
             //阿里路由 https://github.com/alibaba/ARouter
             'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
             //注入依赖 https://dagger.dev/hilt/
@@ -83,25 +83,25 @@ ext {
             //图片压缩 https://github.com/Curzibn/Luban
             'luban'                           : 'top.zibin:Luban:1.1.8',
             //RecyclerView分割线 https://github.com/lany192/ItemDecoration
-            'decoration'                      : 'com.github.lany192:ItemDecoration:1.21',
+            'decoration'       : 'com.github.lany192:ItemDecoration:1.21',
             //显示红点或者浮标 https://github.com/qstumn/BadgeView
-            'badge-view'                      : 'q.rorbin:badgeview:1.1.3',
+            'badge-view'       : 'q.rorbin:badgeview:1.1.3',
             //flexbox控件 https://github.com/google/flexbox-layout
-            'flexbox'                         : 'com.google.android.flexbox:flexbox:3.0.0',
+            'flexbox'          : 'com.google.android.flexbox:flexbox:3.0.0',
             //自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
-            'number-picker'                   : 'io.github.ShawnLin013:number-picker:2.4.13',
+            'number-picker'    : 'io.github.ShawnLin013:number-picker:2.4.13',
             //通知事件 https://github.com/greenrobot/EventBus
-            'event-bus'                       : 'org.greenrobot:eventbus:3.2.0',
+            'event-bus'        : 'org.greenrobot:eventbus:3.2.0',
             //下载框架 https://github.com/lany192/okdownload
-            'okdownload'                      : 'com.github.lany192:okdownload:2.0.2',
+            'okdownload'       : 'com.github.lany192:okdownload:2.0.2',
             //开源协议对话框
-            'licenses'                        : 'de.psdev.licensesdialog:licensesdialog:2.1.0',
+            'licenses'         : 'de.psdev.licensesdialog:licensesdialog:2.1.0',
             //支付宝打赏 https://github.com/fython/AlipayZeroSdk
-            'alipay-zero-sdk'                 : 'moe.feng:AlipayZeroSdk:1.1',
+            'alipay-zero-sdk'  : 'moe.feng:AlipayZeroSdk:1.1',
             //banner https://github.com/youth5201314/banner
-            'banner'                          : 'io.github.youth5201314:banner:2.2.2',
+            'banner'           : 'io.github.youth5201314:banner:2.2.2',
             //图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
-            'TouchImageView'                  : 'com.github.MikeOrtiz:TouchImageView:3.1.0',
+            'TouchImageView'   : 'com.github.MikeOrtiz:TouchImageView:3.1.0',
             //二维码 https://github.com/zxing/zxing
             'zxing'            : 'com.google.zxing:core:3.5.0',
             //相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
