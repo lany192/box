@@ -128,5 +128,7 @@ ext {
             'umeng-common'     : 'com.umeng.umsdk:common:9.5.2',
             'umeng-asms'       : 'com.umeng.umsdk:asms:1.6.3',
             'umeng-apm'        : 'com.umeng.umsdk:apm:1.7.0',
+            //异常捕获 https://github.com/iqiyi/xCrash
+            'xcrash'           : 'com.iqiyi.xcrash:xcrash-android-lib:3.0.0',
     ]
 }

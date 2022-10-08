@@ -25,6 +25,7 @@ import java.util.List;
 
 import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+import xcrash.XCrash;
 
 @HiltAndroidApp
 public class SampleApp extends BoxApplication {
@@ -33,6 +34,7 @@ public class SampleApp extends BoxApplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+        XCrash.init(this);
     }
 
     @Override
