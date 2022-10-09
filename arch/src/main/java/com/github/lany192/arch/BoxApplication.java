@@ -1,11 +1,13 @@
 package com.github.lany192.arch;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.multidex.MultiDex;
 
 import com.elvishew.xlog.LogConfiguration;
 import com.elvishew.xlog.LogLevel;
@@ -24,9 +26,18 @@ import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
+import xcrash.XCrash;
+
 public class BoxApplication extends Application implements ViewModelStoreOwner {
     private final String TAG = "Box";
     private ViewModelStore mAppViewModelStore;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+        XCrash.init(this);
+    }
 
     @Override
     public void onCreate() {

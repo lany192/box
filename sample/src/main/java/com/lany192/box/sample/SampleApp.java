@@ -1,7 +1,6 @@
 package com.lany192.box.sample;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
@@ -10,7 +9,6 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
@@ -25,17 +23,9 @@ import java.util.List;
 
 import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
-import xcrash.XCrash;
 
 @HiltAndroidApp
 public class SampleApp extends BoxApplication {
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-        XCrash.init(this);
-    }
 
     @Override
     public void onCreate() {
