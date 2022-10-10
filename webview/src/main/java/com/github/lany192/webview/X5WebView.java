@@ -45,7 +45,7 @@ public class X5WebView extends WebView {
         webSetting.setBuiltInZoomControls(true);
         webSetting.setUseWideViewPort(true);
         webSetting.setSupportMultipleWindows(true);
-        // webSetting.setLoadWithOverviewMode(true);
+        webSetting.setLoadWithOverviewMode(true);
         webSetting.setAppCacheEnabled(true);
         // webSetting.setDatabaseEnabled(true);
         webSetting.setDomStorageEnabled(true);
