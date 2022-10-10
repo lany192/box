@@ -49,18 +49,18 @@ public class DemoLayout extends FrameLayout {
                 XLog.i("滑动测试：dx==" + dx + ",dy==" + dy);
                 if (Math.abs(dx) > Math.abs(dy)) {
                     if (dx > 0) {
-                        //右
+                        XLog.i("滑动测试:右滑动");
                         getParent().requestDisallowInterceptTouchEvent(false);
                     } else {
-                        //左
+                        XLog.i("滑动测试:左滑动");
                         getParent().requestDisallowInterceptTouchEvent(false);
                     }
                 } else {
                     if (dy > 0) {
-                        //下
+                        XLog.i("滑动测试:下滑动");
                         getParent().requestDisallowInterceptTouchEvent(true);
                     } else {
-                        //上
+                        XLog.i("滑动测试:上滑动");
                         getParent().requestDisallowInterceptTouchEvent(false);
                     }
                 }
