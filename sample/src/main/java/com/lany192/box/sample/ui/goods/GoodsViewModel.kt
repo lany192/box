@@ -1,23 +1,27 @@
 package com.lany192.box.sample.ui.goods
 
-import com.github.lany192.arch.entity.ApiResult
-import com.github.lany192.arch.items.PageViewModel
-import com.lany192.box.sample.repository.BoxRepository
+import androidx.lifecycle.viewModelScope
+import com.github.lany192.arch.items.ItemsViewModel
+import com.lany192.box.sample.data.api.ApiService
+import com.lany192.box.sample.data.bean.ViewPagerItem
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GoodsViewModel @Inject constructor(var repository: BoxRepository) : PageViewModel() {
-
-    override fun <T> isSuccess(result: ApiResult<T>): Boolean {
-        return result.code == 0
-    }
+class GoodsViewModel @Inject constructor(var service: ApiService) : ItemsViewModel() {
 
     override fun loadMoreEnable(): Boolean {
         return false
     }
 
     override fun request(refresh: Boolean) {
-        requestPage(refresh) { repository.getHomeArticles(page) }
+        viewModelScope.launch {
+            val items = mutableListOf<Any>()
+            items.addAll(service.getHomeArticles(1).result.list)
+            items.add(ViewPagerItem())
+            resetItems(items)
+            refreshFinish()
+        }
     }
 }
