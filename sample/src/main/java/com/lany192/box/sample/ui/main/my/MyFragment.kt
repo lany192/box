@@ -43,6 +43,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.loginView.setOnClickListener { SampleRouter.startLogin() }
         binding.settingsView.setOnClickListener { SampleRouter.startSettings() }
         binding.helloView.setOnClickListener { SampleRouter.startHello() }
+        binding.goods.setOnClickListener { SampleRouter.startGoods() }
         binding.dialog2View.setOnClickListener { showDialog2() }
         binding.birthday.setOnClickListener {
             BirthdayDialog(LocalDate.of(2001, 1, 2)).show()
