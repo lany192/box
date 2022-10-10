@@ -58,10 +58,10 @@ public class DemoLayout extends FrameLayout {
                 } else {
                     if (dy > 0) {
                         XLog.i("滑动测试:下滑动");
-                        getParent().requestDisallowInterceptTouchEvent(true);
+                        getParent().requestDisallowInterceptTouchEvent(false);
                     } else {
                         XLog.i("滑动测试:上滑动");
-                        getParent().requestDisallowInterceptTouchEvent(false);
+                        getParent().requestDisallowInterceptTouchEvent(true);
                     }
                 }
             } else if (e.getAction() == MotionEvent.ACTION_UP) {
