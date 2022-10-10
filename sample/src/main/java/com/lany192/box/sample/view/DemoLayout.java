@@ -3,66 +3,72 @@ package com.lany192.box.sample.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewParent;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import com.elvishew.xlog.XLog;
 
 public class DemoLayout extends FrameLayout {
-    private RecyclerView recyclerView;
-    private boolean isTop;
+    private boolean subclass;
+    private boolean parentClass;
+    private float initialX;
+    private float initialY;
 
-    public DemoLayout(Context context) {
-        super(context, null);
+    public DemoLayout(@NonNull Context context) {
+        this(context, null);
     }
 
-    public DemoLayout(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        this.recyclerView = getParentRecyclerView();
-        if (recyclerView != null) {
-            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
-                @Override
-                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                    LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                    int firstVisibleItemPosition = manager.findFirstVisibleItemPosition();
-                    isTop = firstVisibleItemPosition == 19;
-                }
-            });
-        }
+    public DemoLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
-    private RecyclerView getParentRecyclerView() {
-        ViewParent viewParent = this.getParent();
-        if (!(viewParent instanceof View)) {
-            viewParent = null;
-        }
-        View v;
-        for (v = (View) viewParent; v != null && !(v instanceof RecyclerView); v = (View) viewParent) {
-            viewParent = v.getParent();
-            if (!(viewParent instanceof View)) {
-                viewParent = null;
-            }
-        }
-        View var2 = v;
-        if (!(v instanceof RecyclerView)) {
-            var2 = null;
-        }
-        return (RecyclerView) var2;
+    public DemoLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    public void setSubclass(boolean subclass) {
+        this.subclass = subclass;
+    }
+
+    public void setParentClass(boolean parentClass) {
+        this.parentClass = parentClass;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
-        if (isTop) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        } else {
-            getParent().requestDisallowInterceptTouchEvent(true);
+        if (subclass && parentClass) {
+            if (e.getAction() == MotionEvent.ACTION_DOWN) {
+                initialX = e.getX();
+                initialY = e.getY();
+                getParent().requestDisallowInterceptTouchEvent(true);
+            } else if (e.getAction() == MotionEvent.ACTION_MOVE) {
+                float dx = e.getX() - initialX;
+                float dy = e.getY() - initialY;
+                XLog.i("滑动测试：dx==" + dx + ",dy==" + dy);
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    if (dx > 0) {
+                        //右
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    } else {
+                        //左
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                } else {
+                    if (dy > 0) {
+                        //下
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                    } else {
+                        //上
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                }
+            } else if (e.getAction() == MotionEvent.ACTION_UP) {
+                getParent().requestDisallowInterceptTouchEvent(false);
+            }
         }
         return super.onInterceptTouchEvent(e);
     }
+
 }
