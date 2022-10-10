@@ -22,8 +22,13 @@
         app:tl_text_unselect_color="#666666"
         app:tl_text_unselect_size="16sp" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+    <com.lany192.box.sample.view.DemoLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.lany192.box.sample.view.DemoLayout>
 </LinearLayout>

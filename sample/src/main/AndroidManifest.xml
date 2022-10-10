@@ -15,7 +15,7 @@
         <activity
             android:name=".ui.goods.GoodsActivity"
             android:exported="false"
-            android:label="测试Goods"
+            android:label="列表测试"
             android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.hello.HelloActivity"

@@ -19,7 +19,7 @@ public class ViewPagerBinder extends ItemBinder<ViewPagerItem, ItemViewPagerBind
     public void convert(@NonNull ItemViewPagerBinding binding, ViewPagerItem item, int position) {
         List<TabItem> items = new ArrayList<>();
         items.add(new TabItem("标题1", SampleRouter.getArticle()));
-        items.add(new TabItem("标题2", SampleRouter.getGirl()));
+        items.add(new TabItem("标题1", SampleRouter.getArticle()));
         TabAdapter adapter = new TabAdapter((FragmentActivity) getContext(), items);
         binding.viewPager.setAdapter(adapter);
         binding.tabLayout.setViewPager(binding.viewPager, adapter.getTitles());

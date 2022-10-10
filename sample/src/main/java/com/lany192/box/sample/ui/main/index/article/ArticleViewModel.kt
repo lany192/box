@@ -14,6 +14,10 @@ class ArticleViewModel @Inject constructor(val repository: BoxRepository) :
         return result.code == 0
     }
 
+    override fun refreshEnable(): Boolean {
+        return false
+    }
+
     override fun request(refresh: Boolean) {
         requestPage(refresh) { repository.getArticleList(page) }
     }

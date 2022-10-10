@@ -1,5 +1,8 @@
 package com.lany192.box.sample.ui.goods;
 
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -28,5 +31,10 @@ public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBi
     @Override
     public RecyclerView getRecyclerView() {
         return binding.recyclerView;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }

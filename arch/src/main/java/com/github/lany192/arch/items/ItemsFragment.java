@@ -63,7 +63,10 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
             getRecyclerView().addItemDecoration(getItemDecoration(itemsAdapter));
         }
         getRefreshLayout().setEnableLoadMore(false);
-        getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
+        getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
+        if (viewModel.refreshEnable()) {
+            getRefreshLayout().setOnRefreshListener(refreshLayout -> viewModel.onRefresh());
+        }
         //列表状态观察
         viewModel.getListState().observe(this, state -> {
             switch (state) {
