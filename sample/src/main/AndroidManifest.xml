@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.goods.GoodsActivity"
+            android:exported="false"
+            android:label="测试Goods"
+            android:screenOrientation="nosensor" />
+        <activity
             android:name=".ui.hello.HelloActivity"
             android:exported="false"
             android:label="测试hello"
