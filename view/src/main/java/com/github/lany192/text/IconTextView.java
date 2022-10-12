@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -106,10 +105,6 @@ public class IconTextView extends BoxTextView {
     private int iconPadding;
     @IconGravity
     private int iconGravity = ICON_GRAVITY_START;
-    /**
-     * 是否中等粗细
-     */
-    private boolean middleBold;
 
     public IconTextView(@NonNull Context context) {
         this(context, null);
@@ -129,7 +124,10 @@ public class IconTextView extends BoxTextView {
             icon = getDrawable(getContext(), attributes, R.styleable.IconTextView_icon);
             iconGravity = attributes.getInteger(R.styleable.IconTextView_icon_gravity, ICON_GRAVITY_START);
             iconSize = attributes.getDimensionPixelSize(R.styleable.IconTextView_icon_size, 0);
-            middleBold = attributes.getBoolean(R.styleable.IconTextView_text_style_middle_bold, false);
+            boolean middleBold = attributes.getBoolean(R.styleable.IconTextView_text_style_middle_bold, false);
+            if (middleBold) {
+                setMiddleBold(true);
+            }
             attributes.recycle();
         }
         setText(getText());
@@ -182,25 +180,6 @@ public class IconTextView extends BoxTextView {
             default:
                 return Mode.SRC_IN;
         }
-    }
-
-    /**
-     * 是否中等粗细
-     */
-    public void setTextMiddleBold(boolean middleBold) {
-        this.middleBold = middleBold;
-        setText(getText());
-    }
-
-    @Override
-    public void setText(CharSequence text, BufferType type) {
-        //防止空指针
-        if (TextUtils.isEmpty(text)) {
-            text = "";
-        }
-        super.setText(text, type);
-        TextPaint paint = getPaint();
-        paint.setFakeBoldText(middleBold);
     }
 
     @Override

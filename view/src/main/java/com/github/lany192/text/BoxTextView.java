@@ -3,7 +3,6 @@ package com.github.lany192.text;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextPaint;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import androidx.annotation.ColorRes;
@@ -44,17 +43,13 @@ public class BoxTextView extends MaterialTextView {
     /**
      * 是否中等粗细
      */
-    public void setTextMiddleBold(boolean middleBold) {
+    public void setMiddleBold(boolean middleBold) {
         this.middleBold = middleBold;
         setText(getText());
     }
 
     @Override
     public void setText(CharSequence text, BufferType type) {
-        //防止空指针
-        if (TextUtils.isEmpty(text)) {
-            text = "";
-        }
         super.setText(text, type);
         TextPaint paint = getPaint();
         paint.setFakeBoldText(middleBold);
