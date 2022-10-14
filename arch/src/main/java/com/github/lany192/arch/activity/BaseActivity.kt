@@ -1,5 +1,6 @@
 package com.github.lany192.arch.activity
 
+import android.Manifest
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
 import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.arch.utils.BarUtils
+import com.github.lany192.arch.utils.DeviceId
 import com.github.lany192.dialog.LoadingDialog
 import com.github.lany192.utils.KeyBoardUtils
 import com.gyf.immersionbar.ImmersionBar
@@ -157,5 +159,20 @@ abstract class BaseActivity : AppCompatActivity() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEvent(event: HideSoftInputEvent) {
         Handler(Looper.getMainLooper()).postDelayed({ KeyBoardUtils.hide(this) }, 300)
+    }
+
+    @CallSuper
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (permissions.isNotEmpty()
+            && (permissions.contains(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    || permissions.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+        ) {
+            DeviceId.get().grantedSDPermission()
+        }
     }
 }
