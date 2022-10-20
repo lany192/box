@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.databinding.ActivityGoodsBinding;
 import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
 import com.github.lany192.arch.items.ItemsActivity;
 import com.lany192.box.sample.data.binder.ArticleBinder;
 import com.lany192.box.sample.data.binder.ViewPagerBinder;
+import com.lany192.box.sample.databinding.ActivityGoodsBinding;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
