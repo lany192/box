@@ -52,15 +52,20 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
             userViewModel.setName("我是张三")
         }
         binding.image.load(R.mipmap.a)
-
+        binding.gif1.load("https://img.zcool.cn/community/01ef345bcd8977a8012099c82483d3.gif")
+        binding.gif2.load("https://img.zcool.cn/community/01b8355bcd8978a801213deaae9e9c.gif")
         binding.checkView.setOnCheckChangeListener { ToastUtils.show(it) }
         binding.checkView.isChecked = true
         binding.imagePicker.setOnClickListener {
             Matisse.from(this)
                 .choose(MimeType.of(MimeType.JPEG, MimeType.PNG, MimeType.WEBP), false)
-                .countable(true).capture(true).captureStrategy(CaptureStrategy(true,
-                    BuildConfig.APPLICATION_ID + ".fileprovider",
-                    "images")).gridExpectedSize(DensityUtils.dp2px(120f))
+                .countable(true).capture(true).captureStrategy(
+                    CaptureStrategy(
+                        true,
+                        BuildConfig.APPLICATION_ID + ".fileprovider",
+                        "images"
+                    )
+                ).gridExpectedSize(DensityUtils.dp2px(120f))
                 .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT).thumbnailScale(0.85f)
                 .imageEngine(GlideEngine()).showSingleMediaType(true).originalEnable(true)
                 .maxOriginalSize(10).autoHideToolbarOnSingleTap(true)

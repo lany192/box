@@ -18,6 +18,25 @@
             android:scaleType="fitXY"
             android:src="@mipmap/a" />
 
+        <com.github.lany192.image.RatioImageView
+            android:id="@+id/gif1"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="4dp"
+            app:shapeAppearance="@style/shape_rounded_16dp"
+            app:strokeColor="@android:color/white"
+            app:strokeWidth="4dp" />
+
+        <com.github.lany192.image.RatioImageView
+            android:id="@+id/gif2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:shapeAppearance="@style/shape_rounded_16dp"
+            app:strokeColor="@android:color/white"
+            app:strokeWidth="4dp" />
+
         <com.github.lany192.text.CheckTextView
             android:id="@+id/check_view"
             android:layout_width="wrap_content"
