@@ -86,14 +86,14 @@ public class PhoneUtils {
      * 获取屏幕宽度(px)
      */
     public static int getDeviceWidth() {
-        return ContextUtils.getContext().getResources().getDisplayMetrics().widthPixels;
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 
     /**
      * 获取屏幕的高度(px)
      */
     public static int getDeviceHeight() {
-        return ContextUtils.getContext().getResources().getDisplayMetrics().heightPixels;
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
     /**
