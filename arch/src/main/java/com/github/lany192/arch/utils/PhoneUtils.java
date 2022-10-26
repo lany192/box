@@ -11,8 +11,6 @@ import android.os.Bundle;
 import android.os.Process;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.view.KeyCharacterMap;
-import android.view.ViewConfiguration;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -210,9 +208,24 @@ public class PhoneUtils {
      * 是否有导航栏
      */
     public static boolean hasNavigationBar() {
-        boolean hasMenuKey = ViewConfiguration.get(ContextUtils.getContext()).hasPermanentMenuKey();
-        boolean hasBackKey = KeyCharacterMap.deviceHasKey(4);
-        return !hasMenuKey && !hasBackKey;
+        boolean hasNavigationBar = false;
+        try {
+            Resources rs = ContextUtils.getContext().getResources();
+            int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+            if (id > 0) {
+                hasNavigationBar = rs.getBoolean(id);
+            }
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+        }
+        return hasNavigationBar;
     }
 
     /**
