@@ -11,7 +11,8 @@ import android.os.Bundle;
 import android.os.Process;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.TypedValue;
+import android.view.KeyCharacterMap;
+import android.view.ViewConfiguration;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -182,19 +183,36 @@ public class PhoneUtils {
         }
     }
 
+
     /**
      * 获取状态栏高度
      */
     public static int getStatusBarHeight() {
-        int result = 24;
         int resId = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0) {
-            result = Resources.getSystem().getDimensionPixelSize(resId);
-        } else {
-            result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                    result, Resources.getSystem().getDisplayMetrics());
+            return Resources.getSystem().getDimensionPixelSize(resId);
         }
-        return result;
+        return 0;
+    }
+
+    /**
+     * 获取导航栏高度
+     */
+    public static int getNavigationBarHeight() {
+        int resId = Resources.getSystem().getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resId > 0) {
+            return Resources.getSystem().getDimensionPixelSize(resId);
+        }
+        return 0;
+    }
+
+    /**
+     * 是否有导航栏
+     */
+    public static boolean hasNavigationBar() {
+        boolean hasMenuKey = ViewConfiguration.get(ContextUtils.getContext()).hasPermanentMenuKey();
+        boolean hasBackKey = KeyCharacterMap.deviceHasKey(4);
+        return !hasMenuKey && !hasBackKey;
     }
 
     /**
