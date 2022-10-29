@@ -11,7 +11,7 @@ import android.widget.EditText;
 /**
  * 输入法工具
  */
-public class KeyBoardUtils {
+public class KeyboardUtils {
 
     /**
      * 开启软键盘

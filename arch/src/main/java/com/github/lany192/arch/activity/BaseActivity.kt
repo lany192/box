@@ -24,7 +24,7 @@ import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.arch.utils.DeviceId
 import com.github.lany192.dialog.LoadingDialog
-import com.github.lany192.utils.KeyBoardUtils
+import com.github.lany192.utils.KeyboardUtils
 import com.gyf.immersionbar.ImmersionBar
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -141,24 +141,24 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             //点击空白区域收起输入法
-            KeyBoardUtils.hide(this)
+            KeyboardUtils.hide(this)
         }
         return super.dispatchTouchEvent(event)
     }
 
     override fun onBackPressed() {
-        KeyBoardUtils.hide(this)
+        KeyboardUtils.hide(this)
         super.onBackPressed()
     }
 
     override fun finish() {
-        KeyBoardUtils.hide(this)
+        KeyboardUtils.hide(this)
         super.finish()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEvent(event: HideSoftInputEvent) {
-        Handler(Looper.getMainLooper()).postDelayed({ KeyBoardUtils.hide(this) }, 300)
+        Handler(Looper.getMainLooper()).postDelayed({ KeyboardUtils.hide(this) }, 300)
     }
 
     @CallSuper
