@@ -1,6 +1,5 @@
 package com.github.lany192.utils;
 
-
 import android.app.Activity;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -14,16 +13,20 @@ import android.widget.PopupWindow;
  * 检测键盘弹出与收起，计算键盘当前高度
  */
 public class KeyboardWatcher extends PopupWindow implements OnGlobalLayoutListener {
+    //PopupWindow的布局视图
     private final View rootView;
+    //键盘监听器回调
     private final OnKeyboardListener listener;
+    //未弹出输入法时的可见高度
     private int windowVisibleDisplayHeight;
+    //是否显示输入法
+    private boolean showKeyboard;
 
     public KeyboardWatcher(Activity activity, OnKeyboardListener listener) {
         super(activity);
         this.listener = listener;
         rootView = new View(activity);
         setContentView(rootView);
-
         // 监听PopupWindow Layout变化
         rootView.getViewTreeObserver().addOnGlobalLayoutListener(this);
         setBackgroundDrawable(new ColorDrawable(0));
@@ -52,9 +55,11 @@ public class KeyboardWatcher extends PopupWindow implements OnGlobalLayoutListen
         }
         // 两者的差值就是键盘的高度
         int keyboardHeight = windowVisibleDisplayHeight - rect.bottom;
-        boolean showKeyboard = keyboardHeight > 0;
-        if (listener != null) {
-            listener.onChanged(showKeyboard, keyboardHeight);
+        if (showKeyboard != (keyboardHeight > 0)) {
+            showKeyboard = keyboardHeight > 0;
+            if (listener != null) {
+                listener.onChanged(showKeyboard, keyboardHeight);
+            }
         }
     }
 
@@ -62,3 +67,4 @@ public class KeyboardWatcher extends PopupWindow implements OnGlobalLayoutListen
         void onChanged(boolean showKeyboard, int height);
     }
 }
+
