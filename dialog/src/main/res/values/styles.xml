@@ -1,11 +1,12 @@
 <resources>
 
-    <style name="BottomDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+    <style name="BottomDialogTheme" parent="@style/Theme.AppCompat.DayNight.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@style/BottomDialogAnimation</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_drawable</item>
     </style>
 
     <style name="BottomDialogAnimation" parent="android:Animation">
