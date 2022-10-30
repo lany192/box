@@ -84,6 +84,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
             menus.add("test$i")
         }
         val dialog = MenuDialog()
+        dialog.setTitle("我是标题")
         dialog.setItems(menus)
         dialog.show()
     }

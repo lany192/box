@@ -16,7 +16,7 @@ import com.github.lany192.view.R;
 import com.google.android.material.textview.MaterialTextView;
 
 public class BoxTextView extends MaterialTextView {
-    protected Logger.Builder log = XLog.tag(getClass().getSimpleName());
+    protected final String TAG = getClass().getSimpleName();
     /**
      * 是否中等粗细
      */
