@@ -19,8 +19,6 @@ public class KeyboardWatcher extends PopupWindow implements OnGlobalLayoutListen
     private final OnKeyboardListener listener;
     //未弹出输入法时的可见高度
     private int windowVisibleDisplayHeight;
-    //是否显示输入法
-    private boolean showKeyboard;
 
     public KeyboardWatcher(Activity activity, OnKeyboardListener listener) {
         super(activity);
@@ -55,11 +53,8 @@ public class KeyboardWatcher extends PopupWindow implements OnGlobalLayoutListen
         }
         // 两者的差值就是键盘的高度
         int keyboardHeight = windowVisibleDisplayHeight - rect.bottom;
-        if (showKeyboard != (keyboardHeight > 0)) {
-            showKeyboard = keyboardHeight > 0;
-            if (listener != null) {
-                listener.onChanged(showKeyboard, keyboardHeight);
-            }
+        if (listener != null) {
+            listener.onChanged(keyboardHeight > 0, keyboardHeight);
         }
     }
 
