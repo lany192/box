@@ -2,6 +2,7 @@ package com.github.lany192.arch.repository
 
 import com.elvishew.xlog.Logger
 import com.elvishew.xlog.XLog
+import com.github.lany192.arch.BuildConfig
 import com.github.lany192.arch.entity.ApiResult
 import com.github.lany192.utils.NetUtils
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +28,11 @@ open class BaseRepository {
         }.flowOn(Dispatchers.IO)
             .catch {
                 log.e("请求异常:", it)
-                emit(ApiResult.network())
+                if (BuildConfig.DEBUG) {
+                    emit(ApiResult.network(it.message))
+                } else {
+                    emit(ApiResult.network())
+                }
             }
     }
 }

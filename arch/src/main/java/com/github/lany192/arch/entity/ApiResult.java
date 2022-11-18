@@ -21,6 +21,13 @@ public class ApiResult<T> {
         return result;
     }
 
+    public static <T> ApiResult<T> network(String error) {
+        ApiResult<T> result = new ApiResult<>();
+        result.setCode(-1);
+        result.setMsg(error);
+        return result;
+    }
+
     public int getCode() {
         return code;
     }
