@@ -20,17 +20,18 @@ public class LogUtils {
         final String namePrefix = application.getClass().getSimpleName() + "_box";
         //缓存天数
         final int cacheDays = 7;
+        //日志等级
+        int level = debug ? Xlog.LEVEL_VERBOSE : Xlog.LEVEL_INFO;
 
         //init xlog
         Xlog xlog = new Xlog();
         Log.setLogImp(xlog);
 
+        //是否控制台打印
         Log.setConsoleLogOpen(debug);
-        if (debug) {
-            Log.appenderOpen(Xlog.LEVEL_VERBOSE, Xlog.AppednerModeAsync, cachePath, logPath, namePrefix, cacheDays);
-        } else {
-            Log.appenderOpen(Xlog.LEVEL_INFO, Xlog.AppednerModeAsync, cachePath, logPath, namePrefix, cacheDays);
-        }
+
+        Log.appenderOpen(level, Xlog.AppednerModeAsync, cachePath, logPath, namePrefix, cacheDays);
+
         Log.i("Xlog", "日志储存路径:" + logPath);
     }
 
