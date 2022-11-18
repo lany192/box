@@ -77,7 +77,7 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 
     @Override
     public void onTerminate() {
-        LogUtils.exit();
+        LogUtils.close();
         super.onTerminate();
     }
 

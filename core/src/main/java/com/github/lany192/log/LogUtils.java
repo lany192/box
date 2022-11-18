@@ -6,7 +6,9 @@ import com.tencent.mars.xlog.Log;
 import com.tencent.mars.xlog.Xlog;
 
 public class LogUtils {
-
+    /**
+     * 初始化XLog
+     */
     public static void init(Application application, boolean debug) {
         //加载必要so
         System.loadLibrary("c++_shared");
@@ -40,7 +42,8 @@ public class LogUtils {
         return new XLog(tag);
     }
 
-    public static void exit() {
+    public static void close() {
+        Log.i("Xlog", "日志close()");
         Log.appenderClose();
     }
 
