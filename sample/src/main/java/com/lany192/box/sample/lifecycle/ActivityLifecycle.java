@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
-import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 
 /**
  * Activity生命周期
@@ -22,7 +22,7 @@ public class ActivityLifecycle implements SimpleActivityLifecycleCallbacks {
     @CallSuper
     @Override
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-        LogUtils.tag(activity.getClass().getSimpleName()).i(" onActivityCreated()");
+        XLog.tag(activity.getClass().getSimpleName()).i(" onActivityCreated()");
         //给Activity界面注入参数
         ARouter.getInstance().inject(activity);
         if (activity instanceof FragmentActivity) {
@@ -41,7 +41,7 @@ public class ActivityLifecycle implements SimpleActivityLifecycleCallbacks {
     @CallSuper
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
-        LogUtils.tag(activity.getClass().getSimpleName()).i(" onActivityDestroyed()");
+        XLog.tag(activity.getClass().getSimpleName()).i(" onActivityDestroyed()");
         if (activity instanceof FragmentActivity) {
             ((FragmentActivity) activity).getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(fragmentLifecycle);
         }

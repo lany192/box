@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 
-import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.KVUtils;
@@ -33,7 +32,7 @@ import java.util.UUID;
  */
 public class DeviceId {
     private volatile static DeviceId instance = null;
-    private final XLog log = LogUtils.tag("DeviceId");
+    private final XLog log = XLog.tag("DeviceId");
     private final String KEY_DEVICE_ID = "BOX_DEVICE_ID";
     private final String SD_FILE_NAME1 = "ida";
     private final String SD_FILE_NAME2 = "idb";

@@ -12,8 +12,9 @@ public class XLog {
         this.tag = tag;
     }
 
-
-    private static final int JSON_INDENT = 4;
+    public static XLog tag(String tag) {
+        return new XLog(tag);
+    }
 
     /**
      * 格式化json
@@ -24,6 +25,7 @@ public class XLog {
             w("JSON empty.");
             return "";
         }
+        final int JSON_INDENT = 4;
         try {
             if (json.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(json);

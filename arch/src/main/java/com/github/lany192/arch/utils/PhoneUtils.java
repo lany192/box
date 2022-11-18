@@ -159,7 +159,7 @@ public class PhoneUtils {
             Bundle bundle = appInfo.metaData;
             if (bundle != null) {
                 value = bundle.getString(key);
-                //LogUtils.tag(TAG).i("key:" + key + "-----value:" + value);
+                //XLog.tag(TAG).i("key:" + key + "-----value:" + value);
             }
         }
         return value;

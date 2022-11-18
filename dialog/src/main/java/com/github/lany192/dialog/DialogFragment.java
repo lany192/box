@@ -23,7 +23,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.DensityUtils;
@@ -38,7 +37,7 @@ import java.util.Objects;
 public abstract class DialogFragment extends androidx.fragment.app.DialogFragment
         implements Comparable<DialogFragment> {
     protected final String TAG = this.getClass().getName();
-    protected XLog log = LogUtils.tag(TAG);
+    protected XLog log = XLog.tag(TAG);
 
     private boolean canceledOnTouchOutside = true;
     private boolean isInitLoaded;

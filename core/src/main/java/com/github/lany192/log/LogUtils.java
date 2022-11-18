@@ -6,8 +6,6 @@ import com.tencent.mars.xlog.Log;
 import com.tencent.mars.xlog.Xlog;
 
 public class LogUtils {
-    //默认TAG
-    private final static String TAG = "Xlog";
 
     public static void init(Application application, boolean debug) {
         //加载必要so
@@ -33,86 +31,62 @@ public class LogUtils {
         } else {
             Log.appenderOpen(Xlog.LEVEL_INFO, Xlog.AppednerModeAsync, cachePath, logPath, namePrefix, cacheDays);
         }
-        Log.i(TAG, "日志储存路径:" + logPath);
-    }
-
-    public static void exit() {
-        Log.appenderClose();
+        Log.i("Xlog", "日志储存路径:" + logPath);
     }
 
     public static XLog tag(String tag) {
         return new XLog(tag);
     }
 
-    public static void f(String tag, String msg) {
-        Log.f(tag, msg);
+    public static void exit() {
+        Log.appenderClose();
     }
 
     public static void f(String msg) {
-        Log.f(TAG, msg);
-    }
-
-    public static void e(String tag, String msg) {
-        Log.e(tag, msg);
+        Log.f("Xlog", msg);
     }
 
     public static void e(String msg) {
-        Log.e(TAG, msg);
-    }
-
-    public static void w(String tag, String msg) {
-        Log.w(tag, msg);
+        Log.e("Xlog", msg);
     }
 
     public static void w(String msg) {
-        Log.w(TAG, msg);
-    }
-
-    public static void i(String tag, String msg) {
-        Log.i(tag, msg);
+        Log.w("Xlog", msg);
     }
 
     public static void i(String msg) {
-        Log.i(TAG, msg);
-    }
-
-    public static void d(String tag, String msg) {
-        Log.d(tag, msg);
+        Log.i("Xlog", msg);
     }
 
     public static void d(String msg) {
-        Log.d(TAG, msg);
-    }
-
-    public static void v(String tag, String msg) {
-        Log.v(tag, msg);
+        Log.d("Xlog", msg);
     }
 
     public static void v(String msg) {
-        Log.v(TAG, msg);
+        Log.v("Xlog", msg);
     }
 
-    public static void f(String tag, String format, Object... obj) {
-        Log.f(tag, format, obj);
+    public static void f(String format, Object... obj) {
+        Log.f("Xlog", format, obj);
     }
 
-    public static void e(String tag, String format, Object... obj) {
-        Log.e(tag, format, obj);
+    public static void e(String format, Object... obj) {
+        Log.e("Xlog", format, obj);
     }
 
-    public static void w(String tag, String format, Object... obj) {
-        Log.w(tag, format, obj);
+    public static void w(String format, Object... obj) {
+        Log.w("Xlog", format, obj);
     }
 
-    public static void i(String tag, String format, Object... obj) {
-        Log.i(tag, format, obj);
+    public static void i(String format, Object... obj) {
+        Log.i("Xlog", format, obj);
     }
 
-    public static void d(String tag, String format, Object... obj) {
-        Log.d(tag, format, obj);
+    public static void d(String format, Object... obj) {
+        Log.d("Xlog", format, obj);
     }
 
-    public static void v(String tag, String format, Object... obj) {
-        Log.v(tag, format, obj);
+    public static void v(String format, Object... obj) {
+        Log.v("Xlog", format, obj);
     }
 }

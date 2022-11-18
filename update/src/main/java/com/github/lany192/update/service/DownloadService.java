@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
@@ -27,7 +26,7 @@ import java.io.File;
 import java.util.List;
 
 public final class DownloadService extends Service implements OnDownloadListener {
-    private final XLog log = LogUtils.tag(getClass().getSimpleName());
+    private final XLog log = XLog.tag(getClass().getSimpleName());
     private int smallIcon;
     private String apkUrl;
     private String apkName;

@@ -6,7 +6,6 @@ import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
-import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 
 /**
@@ -16,7 +15,7 @@ import com.github.lany192.log.XLog;
  */
 @Interceptor(priority = 1, name = "登录拦截器")
 public class LoginInterceptor implements IInterceptor {
-    private final XLog log = LogUtils.tag(getClass().getSimpleName());
+    private final XLog log = XLog.tag(getClass().getSimpleName());
 
     @Override
     public void init(Context context) {

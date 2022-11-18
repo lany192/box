@@ -22,7 +22,6 @@ import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.arch.utils.DeviceId
 import com.github.lany192.dialog.LoadingDialog
-import com.github.lany192.log.LogUtils
 import com.github.lany192.log.XLog
 import com.github.lany192.utils.KeyboardUtils
 import com.gyf.immersionbar.ImmersionBar
@@ -35,7 +34,7 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class BaseActivity : AppCompatActivity() {
     @JvmField
-    protected var log: XLog = LogUtils.tag(javaClass.simpleName)
+    protected var log: XLog = XLog.tag(javaClass.simpleName)
 
     private var loadingDialog: LoadingDialog? = null
 

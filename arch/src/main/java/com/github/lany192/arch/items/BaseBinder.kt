@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.github.lany192.log.LogUtils
 import com.github.lany192.log.XLog
 
 /**
@@ -13,7 +12,7 @@ import com.github.lany192.log.XLog
  */
 abstract class BaseBinder<T, VH : BaseViewHolder> {
     @JvmField
-    protected var log: XLog = LogUtils.tag(javaClass.name)
+    protected var log: XLog = XLog.tag(javaClass.name)
 
     private val clickViewIds by lazy(LazyThreadSafetyMode.NONE) { ArrayList<Int>() }
     private val longClickViewIds by lazy(LazyThreadSafetyMode.NONE) { ArrayList<Int>() }

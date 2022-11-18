@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 
-import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
@@ -21,7 +20,7 @@ import java.lang.ref.SoftReference;
 public class UpdateManager {
     private static SoftReference<Context> context;
     private static UpdateManager manager;
-    private final XLog log = LogUtils.tag(getClass().getSimpleName());
+    private final XLog log = XLog.tag(getClass().getSimpleName());
     /**
      * 要更新apk的下载地址
      */

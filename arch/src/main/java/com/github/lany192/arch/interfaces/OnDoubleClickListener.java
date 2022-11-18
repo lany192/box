@@ -3,7 +3,7 @@ package com.github.lany192.arch.interfaces;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 
 
 /**
@@ -33,7 +33,7 @@ public class OnDoubleClickListener implements View.OnTouchListener {
                     if (mCallback != null) {
                         mCallback.onDoubleClick(v);
                     } else {
-                        LogUtils.tag(TAG).e(TAG + "   请在构造方法中传入一个双击回调");
+                        XLog.tag(TAG).e(TAG + "   请在构造方法中传入一个双击回调");
                     }
                     count = 0;
                     firstClickTime = 0;

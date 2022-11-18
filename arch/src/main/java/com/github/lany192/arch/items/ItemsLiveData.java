@@ -2,7 +2,6 @@ package com.github.lany192.arch.items;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ItemsLiveData extends MutableLiveData<ItemsLiveData> {
-    private final XLog log = LogUtils.tag(getClass().getName());
+    private final XLog log = XLog.tag(getClass().getName());
     private List<Object> items = new ArrayList<>();
 
     public List<Object> getItems() {

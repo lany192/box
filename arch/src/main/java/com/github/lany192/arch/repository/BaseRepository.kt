@@ -2,7 +2,6 @@ package com.github.lany192.arch.repository
 
 import com.github.lany192.arch.BuildConfig
 import com.github.lany192.arch.entity.ApiResult
-import com.github.lany192.log.LogUtils
 import com.github.lany192.log.XLog
 import com.github.lany192.utils.NetUtils
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 open class BaseRepository {
-    protected var log: XLog = LogUtils.tag(javaClass.name)
+    protected var log: XLog = XLog.tag(javaClass.name)
 
     /**
      * 执行接口请求，Flow方式

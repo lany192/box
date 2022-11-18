@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.utils.PhoneUtils;
 import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 import com.github.lany192.utils.KVUtils;
 
 import java.io.PrintWriter;
@@ -39,8 +40,8 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
     public void uncaughtException(@NonNull Thread thread, @NonNull Throwable e) {
         String error = getError(e);
         KVUtils.get().putString(KEY_APP_ERROR_INFO, error);
-        LogUtils.tag("app崩溃退出").i("基础信息:" + PhoneUtils.getBaseInfo());
-        LogUtils.tag("app崩溃退出").i(error);
+        XLog.tag("app崩溃退出").i("基础信息:" + PhoneUtils.getBaseInfo());
+        XLog.tag("app崩溃退出").i(error);
     }
 
     /**
