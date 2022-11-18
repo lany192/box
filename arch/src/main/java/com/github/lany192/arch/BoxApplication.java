@@ -10,9 +10,9 @@ import androidx.multidex.MultiDex;
 
 import com.github.lany192.arch.utils.DeviceId;
 import com.github.lany192.dialog.DialogHelper;
+import com.github.lany192.log.LogUtils;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.KVUtils;
-import com.github.lany192.utils.LogUtils;
 import com.hjq.toast.ToastUtils;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;

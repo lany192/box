@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.github.lany192.utils.LogUtils;
+import com.github.lany192.log.LogUtils;
 
 public class DemoLayout extends FrameLayout {
     private boolean subclass;

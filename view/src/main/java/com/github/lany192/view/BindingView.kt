@@ -7,8 +7,8 @@ import android.widget.FrameLayout
 import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.binding.getBinding
-import com.github.lany192.utils.LogUtils
-import com.github.lany192.utils.XLog
+import com.github.lany192.log.LogUtils
+import com.github.lany192.log.XLog
 import java.lang.reflect.ParameterizedType
 
 /**

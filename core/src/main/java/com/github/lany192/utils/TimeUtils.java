@@ -1,5 +1,7 @@
 package com.github.lany192.utils;
 
+import com.github.lany192.log.LogUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

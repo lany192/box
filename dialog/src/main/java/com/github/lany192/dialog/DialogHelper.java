@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 
 import java.lang.ref.SoftReference;
 import java.util.PriorityQueue;

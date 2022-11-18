@@ -7,14 +7,14 @@ import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.dialog.AppUpdateDialog;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
 
 import java.lang.ref.SoftReference;
 

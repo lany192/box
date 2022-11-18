@@ -1,4 +1,4 @@
-package com.github.lany192.utils;
+package com.github.lany192.log;
 
 import android.app.Application;
 

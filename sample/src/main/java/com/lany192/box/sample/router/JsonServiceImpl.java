@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.service.SerializationService;
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 import com.github.lany192.utils.JsonUtils;
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
 
 import java.lang.reflect.Type;
 

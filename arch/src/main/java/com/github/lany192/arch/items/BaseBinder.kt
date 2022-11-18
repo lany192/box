@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.github.lany192.utils.LogUtils
-import com.github.lany192.utils.XLog
+import com.github.lany192.log.LogUtils
+import com.github.lany192.log.XLog
 
 /**
  * Binder 的基类

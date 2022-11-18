@@ -11,7 +11,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.github.lany192.arch.event.NetWorkEvent;
-import com.github.lany192.utils.LogUtils;
+import com.github.lany192.log.LogUtils;
 import com.github.lany192.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;

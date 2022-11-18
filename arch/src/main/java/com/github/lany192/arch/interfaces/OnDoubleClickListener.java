@@ -3,7 +3,7 @@ package com.github.lany192.arch.interfaces;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.github.lany192.utils.LogUtils;
+import com.github.lany192.log.LogUtils;
 
 
 /**

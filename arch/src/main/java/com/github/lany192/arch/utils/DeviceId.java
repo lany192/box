@@ -8,11 +8,11 @@ import android.text.TextUtils;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.KVUtils;
-import com.github.lany192.utils.LogUtils;
 import com.github.lany192.utils.MD5Utils;
-import com.github.lany192.utils.XLog;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -2,9 +2,9 @@ package com.github.lany192.arch.repository
 
 import com.github.lany192.arch.BuildConfig
 import com.github.lany192.arch.entity.ApiResult
-import com.github.lany192.utils.LogUtils
+import com.github.lany192.log.LogUtils
+import com.github.lany192.log.XLog
 import com.github.lany192.utils.NetUtils
-import com.github.lany192.utils.XLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

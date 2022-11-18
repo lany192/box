@@ -22,9 +22,9 @@ import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.arch.utils.DeviceId
 import com.github.lany192.dialog.LoadingDialog
+import com.github.lany192.log.LogUtils
+import com.github.lany192.log.XLog
 import com.github.lany192.utils.KeyboardUtils
-import com.github.lany192.utils.LogUtils
-import com.github.lany192.utils.XLog
 import com.gyf.immersionbar.ImmersionBar
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.listener.OnDownloadListener;
@@ -20,8 +22,6 @@ import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
 import com.github.lany192.update.utils.FileUtil;
 import com.github.lany192.update.utils.NotificationUtil;
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
 
 import java.io.File;
 import java.util.List;

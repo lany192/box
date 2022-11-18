@@ -2,8 +2,8 @@ package com.github.lany192.arch.items;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 
 import java.util.ArrayList;
 import java.util.List;

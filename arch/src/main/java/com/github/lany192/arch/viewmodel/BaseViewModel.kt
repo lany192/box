@@ -3,8 +3,8 @@ package com.github.lany192.arch.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.items.ViewState
-import com.github.lany192.utils.LogUtils
-import com.github.lany192.utils.XLog
+import com.github.lany192.log.LogUtils
+import com.github.lany192.log.XLog
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 

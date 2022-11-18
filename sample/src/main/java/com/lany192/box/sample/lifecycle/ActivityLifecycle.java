@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
-import com.github.lany192.utils.LogUtils;
+import com.github.lany192.log.LogUtils;
 
 /**
  * Activity生命周期

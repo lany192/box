@@ -6,8 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 
 /**
  * 中转界面，不显示

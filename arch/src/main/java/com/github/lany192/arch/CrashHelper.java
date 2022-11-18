@@ -5,8 +5,8 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.utils.PhoneUtils;
+import com.github.lany192.log.LogUtils;
 import com.github.lany192.utils.KVUtils;
-import com.github.lany192.utils.LogUtils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

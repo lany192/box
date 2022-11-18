@@ -14,8 +14,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
 import com.github.lany192.interfaces.SimpleFragmentLifecycleCallbacks;
+import com.github.lany192.log.LogUtils;
 import com.github.lany192.utils.ContextUtils;
-import com.github.lany192.utils.LogUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 

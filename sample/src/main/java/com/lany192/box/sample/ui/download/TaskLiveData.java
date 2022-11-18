@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.download;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.lany192.utils.LogUtils;
+import com.github.lany192.log.LogUtils;
 import com.liulishuo.okdownload.DownloadTask;
 
 import java.util.ArrayList;

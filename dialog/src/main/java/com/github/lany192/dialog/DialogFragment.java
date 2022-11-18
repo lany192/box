@@ -23,10 +23,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.DensityUtils;
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,8 +6,8 @@ import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 
 /**
  * 跳转过程中进行登录检查，需要登录的先登录再跳转

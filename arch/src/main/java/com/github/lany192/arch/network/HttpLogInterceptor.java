@@ -2,8 +2,8 @@ package com.github.lany192.arch.network;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.utils.LogUtils;
-import com.github.lany192.utils.XLog;
+import com.github.lany192.log.LogUtils;
+import com.github.lany192.log.XLog;
 
 import java.io.EOFException;
 import java.io.IOException;

@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.github.lany192.arch.R
 import com.github.lany192.dialog.LoadingDialog
-import com.github.lany192.utils.LogUtils
-import com.github.lany192.utils.XLog
+import com.github.lany192.log.LogUtils
+import com.github.lany192.log.XLog
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
