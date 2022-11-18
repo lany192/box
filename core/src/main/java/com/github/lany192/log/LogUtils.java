@@ -16,8 +16,6 @@ public class LogUtils {
 
         //日志储存路径
         final String logPath = application.getFilesDir() + "/xlog";
-        //缓存路径
-        final String cachePath = application.getCacheDir() + "/xlog";
         //日志文件前缀
         final String namePrefix = application.getClass().getSimpleName() + "_box";
         //缓存天数
@@ -32,7 +30,7 @@ public class LogUtils {
         //是否控制台打印
         Log.setConsoleLogOpen(debug);
 
-        Log.appenderOpen(level, Xlog.AppednerModeAsync, cachePath, logPath, namePrefix, cacheDays);
+        Log.appenderOpen(level, Xlog.AppednerModeAsync, "", logPath, namePrefix, cacheDays);
 
         Log.i("Xlog", "日志debug:" + debug);
         Log.i("Xlog", "日志储存路径:" + logPath);
