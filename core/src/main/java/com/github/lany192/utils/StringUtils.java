@@ -6,8 +6,6 @@ import android.text.TextUtils;
 
 import androidx.core.text.HtmlCompat;
 
-import com.elvishew.xlog.XLog;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,7 +57,7 @@ public class StringUtils {
             try {
                 return Integer.parseInt(str);
             } catch (Exception e) {
-                XLog.e("string2int格式装换异常：" + e.getMessage());
+                LogUtils.e("string2int格式装换异常：" + e.getMessage());
             }
         }
         return defaultValue;
@@ -77,7 +75,7 @@ public class StringUtils {
             try {
                 return Long.parseLong(str);
             } catch (Exception e) {
-                XLog.e("string2long格式装换异常：" + e.getMessage());
+                LogUtils.e("string2long格式装换异常：" + e.getMessage());
             }
         }
         return defaultValue;

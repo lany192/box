@@ -2,8 +2,8 @@ package com.github.lany192.arch.network;
 
 import androidx.annotation.NonNull;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
+import com.github.lany192.utils.LogUtils;
+import com.github.lany192.utils.XLog;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -25,7 +25,7 @@ import okio.BufferedSource;
 import okio.GzipSource;
 
 public class HttpLogInterceptor implements Interceptor {
-    private final Logger.Builder log = XLog.tag("接口请求");
+    private final XLog log = LogUtils.tag("接口请求");
     private final boolean debug;
 
     public HttpLogInterceptor(boolean debug) {

@@ -8,9 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
+import com.github.lany192.utils.LogUtils;
+import com.github.lany192.utils.XLog;
 
 import java.lang.ref.SoftReference;
 import java.util.PriorityQueue;
@@ -21,7 +21,7 @@ import java.util.Queue;
  */
 public class DialogHelper {
     private static DialogHelper instance;
-    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
+    private final XLog log = LogUtils.tag(getClass().getSimpleName());
     /**
      * 带优先级弹窗队列
      */

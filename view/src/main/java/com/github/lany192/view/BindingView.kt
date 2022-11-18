@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
-import com.elvishew.xlog.Logger
-import com.elvishew.xlog.XLog
 import com.github.lany192.binding.getBinding
+import com.github.lany192.utils.LogUtils
+import com.github.lany192.utils.XLog
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -22,7 +22,7 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     private val registry = LifecycleRegistry(this)
 
     @JvmField
-    protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
+    protected var log: XLog = LogUtils.tag(javaClass.simpleName)
 
     lateinit var binding: VB
 

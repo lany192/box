@@ -4,9 +4,9 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import com.elvishew.xlog.XLog;
 import com.github.lany192.arch.utils.PhoneUtils;
 import com.github.lany192.utils.KVUtils;
+import com.github.lany192.utils.LogUtils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -39,8 +39,8 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
     public void uncaughtException(@NonNull Thread thread, @NonNull Throwable e) {
         String error = getError(e);
         KVUtils.get().putString(KEY_APP_ERROR_INFO, error);
-        XLog.tag("app崩溃退出").i("基础信息:" + PhoneUtils.getBaseInfo());
-        XLog.tag("app崩溃退出").i(error);
+        LogUtils.tag("app崩溃退出").i("基础信息:" + PhoneUtils.getBaseInfo());
+        LogUtils.tag("app崩溃退出").i(error);
     }
 
     /**
@@ -49,7 +49,7 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
     private void checkError() {
         String error = KVUtils.get().getString(KEY_APP_ERROR_INFO);
         if (!TextUtils.isEmpty(error)) {
-            XLog.i("上次app崩溃信息：" + error);
+            LogUtils.i("上次app崩溃信息：" + error);
             KVUtils.get().putString(KEY_APP_ERROR_INFO, "");
         }
     }

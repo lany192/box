@@ -8,16 +8,16 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
-import com.elvishew.xlog.Logger
-import com.elvishew.xlog.XLog
 import com.github.lany192.arch.R
 import com.github.lany192.dialog.LoadingDialog
+import com.github.lany192.utils.LogUtils
+import com.github.lany192.utils.XLog
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseFragment : Fragment() {
-    protected var log: Logger.Builder = XLog.tag(javaClass.name)
+    protected var log: XLog = LogUtils.tag(javaClass.name)
     private var loadingDialog: LoadingDialog? = null
 
     @CallSuper

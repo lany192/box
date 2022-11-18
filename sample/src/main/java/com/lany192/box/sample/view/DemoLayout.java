@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.elvishew.xlog.XLog;
+import com.github.lany192.utils.LogUtils;
 
 public class DemoLayout extends FrameLayout {
     private boolean subclass;
@@ -46,21 +46,21 @@ public class DemoLayout extends FrameLayout {
             } else if (e.getAction() == MotionEvent.ACTION_MOVE) {
                 float dx = e.getX() - initialX;
                 float dy = e.getY() - initialY;
-                XLog.i("滑动测试：dx==" + dx + ",dy==" + dy);
+                LogUtils.i("滑动测试：dx==" + dx + ",dy==" + dy);
                 if (Math.abs(dx) > Math.abs(dy)) {
                     if (dx > 0) {
-                        XLog.i("滑动测试:右滑动");
+                        LogUtils.i("滑动测试:右滑动");
                         getParent().requestDisallowInterceptTouchEvent(false);
                     } else {
-                        XLog.i("滑动测试:左滑动");
+                        LogUtils.i("滑动测试:左滑动");
                         getParent().requestDisallowInterceptTouchEvent(false);
                     }
                 } else {
                     if (dy > 0) {
-                        XLog.i("滑动测试:下滑动");
+                        LogUtils.i("滑动测试:下滑动");
                         getParent().requestDisallowInterceptTouchEvent(false);
                     } else {
-                        XLog.i("滑动测试:上滑动");
+                        LogUtils.i("滑动测试:上滑动");
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
                 }

@@ -6,8 +6,8 @@ import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
+import com.github.lany192.utils.LogUtils;
+import com.github.lany192.utils.XLog;
 
 /**
  * 跳转过程中进行登录检查，需要登录的先登录再跳转
@@ -16,7 +16,7 @@ import com.elvishew.xlog.XLog;
  */
 @Interceptor(priority = 1, name = "登录拦截器")
 public class LoginInterceptor implements IInterceptor {
-    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
+    private final XLog log = LogUtils.tag(getClass().getSimpleName());
 
     @Override
     public void init(Context context) {

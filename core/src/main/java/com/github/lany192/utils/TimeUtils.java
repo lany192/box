@@ -1,7 +1,5 @@
 package com.github.lany192.utils;
 
-import com.elvishew.xlog.XLog;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -10,7 +8,6 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Formatter;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -73,7 +70,7 @@ public class TimeUtils {
             return sdf.parse(dateStr);
         } catch (ParseException e) {
             e.printStackTrace();
-            XLog.e("时间字符串 " + dateStr + " 转Date失败:" + e.getMessage());
+            LogUtils.e("时间字符串 " + dateStr + " 转Date失败:" + e.getMessage());
         }
         return null;
     }
@@ -84,7 +81,7 @@ public class TimeUtils {
             return sdf.parse(dateStr);
         } catch (ParseException e) {
             e.printStackTrace();
-            XLog.e("时间字符串 " + dateStr + " 转Date失败:" + e.getMessage());
+            LogUtils.e("时间字符串 " + dateStr + " 转Date失败:" + e.getMessage());
         }
         return null;
     }
@@ -100,7 +97,7 @@ public class TimeUtils {
             return sdf.parse(dateStr);
         } catch (ParseException e) {
             e.printStackTrace();
-            XLog.e("时间字符串 " + dateStr + " 转Date失败:" + e.getMessage());
+            LogUtils.e("时间字符串 " + dateStr + " 转Date失败:" + e.getMessage());
         }
         return null;
     }

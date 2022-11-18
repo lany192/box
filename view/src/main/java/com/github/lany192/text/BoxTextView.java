@@ -9,8 +9,6 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.github.lany192.utils.StringUtils;
 import com.github.lany192.view.R;
 import com.google.android.material.textview.MaterialTextView;

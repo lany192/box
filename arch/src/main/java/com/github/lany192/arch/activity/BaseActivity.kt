@@ -16,8 +16,6 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
-import com.elvishew.xlog.Logger
-import com.elvishew.xlog.XLog
 import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
 import com.github.lany192.arch.network.NetworkHelper
@@ -25,6 +23,8 @@ import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.arch.utils.DeviceId
 import com.github.lany192.dialog.LoadingDialog
 import com.github.lany192.utils.KeyboardUtils
+import com.github.lany192.utils.LogUtils
+import com.github.lany192.utils.XLog
 import com.gyf.immersionbar.ImmersionBar
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -35,7 +35,7 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class BaseActivity : AppCompatActivity() {
     @JvmField
-    protected var log: Logger.Builder = XLog.tag(javaClass.simpleName)
+    protected var log: XLog = LogUtils.tag(javaClass.simpleName)
 
     private var loadingDialog: LoadingDialog? = null
 

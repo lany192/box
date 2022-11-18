@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.elvishew.xlog.XLog;
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
 import com.github.lany192.interfaces.SimpleFragmentLifecycleCallbacks;
 import com.github.lany192.utils.ContextUtils;
+import com.github.lany192.utils.LogUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
@@ -112,7 +112,7 @@ public class UmengUtils {
     public static void event(String eventId) {
         if (init) {
             if (mConfig.isDebug()) {
-                XLog.d("eventId:%s", eventId);
+                LogUtils.d("eventId:%s", eventId);
                 return;
             }
             if (TextUtils.isEmpty(eventId)) {
@@ -149,7 +149,7 @@ public class UmengUtils {
                 return;
             }
             if (!mConfig.isDebug()) {
-                XLog.d("eventId:%s, params:%s", eventId, params);
+                LogUtils.d("eventId:%s, params:%s", eventId, params);
                 MobclickAgent.onEvent(ContextUtils.getContext(), eventId, params);
             }
         }

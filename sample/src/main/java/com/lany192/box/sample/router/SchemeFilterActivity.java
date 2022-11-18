@@ -6,14 +6,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
+import com.github.lany192.utils.LogUtils;
+import com.github.lany192.utils.XLog;
 
 /**
  * 中转界面，不显示
  */
 public class SchemeFilterActivity extends FragmentActivity {
-    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
+    private final XLog log = LogUtils.tag(getClass().getSimpleName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

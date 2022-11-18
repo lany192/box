@@ -8,11 +8,11 @@ import android.text.TextUtils;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.KVUtils;
+import com.github.lany192.utils.LogUtils;
 import com.github.lany192.utils.MD5Utils;
+import com.github.lany192.utils.XLog;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -33,7 +33,7 @@ import java.util.UUID;
  */
 public class DeviceId {
     private volatile static DeviceId instance = null;
-    private final Logger.Builder log = XLog.tag("DeviceId");
+    private final XLog log = LogUtils.tag("DeviceId");
     private final String KEY_DEVICE_ID = "BOX_DEVICE_ID";
     private final String SD_FILE_NAME1 = "ida";
     private final String SD_FILE_NAME2 = "idb";

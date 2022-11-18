@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.elvishew.xlog.Logger
-import com.elvishew.xlog.XLog
+import com.github.lany192.utils.LogUtils
+import com.github.lany192.utils.XLog
 
 /**
  * Binder 的基类
  */
 abstract class BaseBinder<T, VH : BaseViewHolder> {
     @JvmField
-    protected var log: Logger.Builder = XLog.tag(javaClass.name)
+    protected var log: XLog = LogUtils.tag(javaClass.name)
 
     private val clickViewIds by lazy(LazyThreadSafetyMode.NONE) { ArrayList<Int>() }
     private val longClickViewIds by lazy(LazyThreadSafetyMode.NONE) { ArrayList<Int>() }

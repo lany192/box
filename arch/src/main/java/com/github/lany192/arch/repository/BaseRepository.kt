@@ -1,10 +1,10 @@
 package com.github.lany192.arch.repository
 
-import com.elvishew.xlog.Logger
-import com.elvishew.xlog.XLog
 import com.github.lany192.arch.BuildConfig
 import com.github.lany192.arch.entity.ApiResult
+import com.github.lany192.utils.LogUtils
 import com.github.lany192.utils.NetUtils
+import com.github.lany192.utils.XLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 open class BaseRepository {
-    protected var log: Logger.Builder = XLog.tag(javaClass.name)
+    protected var log: XLog = LogUtils.tag(javaClass.name)
 
     /**
      * 执行接口请求，Flow方式

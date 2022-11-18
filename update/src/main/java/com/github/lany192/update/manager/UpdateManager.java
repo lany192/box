@@ -7,21 +7,21 @@ import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.github.lany192.update.R;
 import com.github.lany192.update.config.UpdateConfig;
 import com.github.lany192.update.dialog.AppUpdateDialog;
 import com.github.lany192.update.service.DownloadService;
 import com.github.lany192.update.utils.ApkUtil;
 import com.github.lany192.update.utils.Constant;
+import com.github.lany192.utils.LogUtils;
+import com.github.lany192.utils.XLog;
 
 import java.lang.ref.SoftReference;
 
 public class UpdateManager {
     private static SoftReference<Context> context;
     private static UpdateManager manager;
-    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
+    private final XLog log = LogUtils.tag(getClass().getSimpleName());
     /**
      * 要更新apk的下载地址
      */

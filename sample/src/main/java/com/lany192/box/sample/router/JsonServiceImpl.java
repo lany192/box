@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.service.SerializationService;
-import com.elvishew.xlog.Logger;
-import com.elvishew.xlog.XLog;
 import com.github.lany192.utils.JsonUtils;
+import com.github.lany192.utils.LogUtils;
+import com.github.lany192.utils.XLog;
 
 import java.lang.reflect.Type;
 
@@ -17,7 +17,7 @@ import java.lang.reflect.Type;
  */
 @Route(path = "/service/json")
 public class JsonServiceImpl implements SerializationService {
-    private final Logger.Builder log = XLog.tag(getClass().getSimpleName());
+    private final XLog log = LogUtils.tag(getClass().getSimpleName());
 
     @Override
     public void init(Context context) {

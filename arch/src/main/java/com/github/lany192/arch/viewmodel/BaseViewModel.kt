@@ -2,9 +2,9 @@ package com.github.lany192.arch.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elvishew.xlog.Logger
-import com.elvishew.xlog.XLog
 import com.github.lany192.arch.items.ViewState
+import com.github.lany192.utils.LogUtils
+import com.github.lany192.utils.XLog
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 
@@ -12,7 +12,7 @@ open class BaseViewModel : ViewModel() {
     /**
      * 日志打印
      */
-    protected val log: Logger.Builder = XLog.tag(javaClass.simpleName)
+    protected val log: XLog = LogUtils.tag(javaClass.simpleName)
 
     /**
      * 观察界面基础状态

@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.download;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.elvishew.xlog.XLog;
+import com.github.lany192.utils.LogUtils;
 import com.liulishuo.okdownload.DownloadTask;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class TaskLiveData extends MutableLiveData<TaskLiveData> {
     }
 
     public void change(DownloadTask task) {
-        XLog.i("任务id:" + task.getId());
+        LogUtils.i("任务id:" + task.getId());
         this.change = true;
         index = tasks.indexOf(task);
         this.downloadTask = task;

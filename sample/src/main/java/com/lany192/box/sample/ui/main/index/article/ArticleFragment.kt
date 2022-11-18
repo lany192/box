@@ -3,8 +3,8 @@ package com.lany192.box.sample.ui.main.index.article
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.elvishew.xlog.XLog
 import com.github.lany192.arch.items.ItemsFragment
+import com.github.lany192.utils.LogUtils
 import com.lany192.box.sample.data.binder.ArticleBinder
 import com.lany192.box.sample.databinding.FragmentArticleBinding
 import com.lany192.box.sample.ui.goods.DemoEvent
@@ -36,7 +36,7 @@ class ArticleFragment : ItemsFragment<ArticleViewModel, FragmentArticleBinding>(
                 super.onScrolled(recyclerView, dx, dy)
                 val manager = recyclerView.layoutManager as LinearLayoutManager?
                 val firstVisibleItemPosition = manager!!.findFirstVisibleItemPosition()
-                XLog.i("子类滑动测试：$firstVisibleItemPosition")
+                LogUtils.i("子类滑动测试：$firstVisibleItemPosition")
                 binding.demoLayout.setSubclass(firstVisibleItemPosition >= 0)
             }
         })
@@ -44,7 +44,7 @@ class ArticleFragment : ItemsFragment<ArticleViewModel, FragmentArticleBinding>(
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: DemoEvent) {
-        XLog.i("父类滑动测试：" + event.firstVisibleItemPosition)
+        LogUtils.i("父类滑动测试：" + event.firstVisibleItemPosition)
         binding.demoLayout.setParentClass(event.firstVisibleItemPosition == 19)
     }
 }
