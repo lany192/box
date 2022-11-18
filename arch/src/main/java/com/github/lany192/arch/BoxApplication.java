@@ -20,7 +20,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import xcrash.XCrash;
 
-public class BoxApplication extends Application implements ViewModelStoreOwner {
+public abstract class BoxApplication extends Application implements ViewModelStoreOwner {
     private ViewModelStore mAppViewModelStore;
 
     @Override
@@ -34,15 +34,23 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
     public void onCreate() {
         super.onCreate();
         ContextUtils.setApplicationContext(this);
+
         mAppViewModelStore = new ViewModelStore();
+
+        LogUtils.init(this, debug());
+
         KVUtils.get().init(this);
+
         ToastUtils.init(this);
-        LogUtils.init(this, BuildConfig.DEBUG);
+        ToastUtils.setDebugMode(debug());
+
         DialogHelper.get().init(this);
-        initRefreshView();
+
         DeviceId.get().grantedSDPermission();
         //处理异常
         CrashHelper.getInstance();
+
+        initRefreshView();
     }
 
     @NonNull
@@ -72,4 +80,6 @@ public class BoxApplication extends Application implements ViewModelStoreOwner {
         LogUtils.exit();
         super.onTerminate();
     }
+
+    public abstract boolean debug();
 }

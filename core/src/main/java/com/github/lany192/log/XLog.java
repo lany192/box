@@ -41,7 +41,7 @@ public class XLog {
             e(e.getMessage());
             return json;
         }
-        return formattedString;
+        return " \n" + formattedString;
     }
 
     public void json(String json) {

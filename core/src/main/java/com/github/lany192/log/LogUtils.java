@@ -32,6 +32,7 @@ public class LogUtils {
 
         Log.appenderOpen(level, Xlog.AppednerModeAsync, cachePath, logPath, namePrefix, cacheDays);
 
+        Log.i("Xlog", "日志debug:" + debug);
         Log.i("Xlog", "日志储存路径:" + logPath);
     }
 
