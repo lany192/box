@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.ListPopupWindow;
 
-import com.zhihu.matisse.R;
+import com.github.lany192.matisse.R;
 import com.zhihu.matisse.internal.entity.Album;
 import com.zhihu.matisse.internal.utils.Platform;
 

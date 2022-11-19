@@ -14,7 +14,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.R;
+import com.github.lany192.matisse.R;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.IncapableCause;
 import com.zhihu.matisse.internal.entity.Item;

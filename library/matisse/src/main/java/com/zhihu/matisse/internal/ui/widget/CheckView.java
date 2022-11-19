@@ -19,7 +19,7 @@ import android.view.View;
 
 import androidx.core.content.res.ResourcesCompat;
 
-import com.zhihu.matisse.R;
+import com.github.lany192.matisse.R;
 
 public class CheckView extends View {
 

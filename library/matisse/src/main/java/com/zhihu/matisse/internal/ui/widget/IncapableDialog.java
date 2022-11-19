@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-import com.zhihu.matisse.R;
+import com.github.lany192.matisse.R;
 
 public class IncapableDialog extends DialogFragment {
 

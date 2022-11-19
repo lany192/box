@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.zhihu.matisse.R;
+import com.github.lany192.matisse.R;
 
 public class CheckRadioView extends AppCompatImageView {
 

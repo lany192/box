@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.Nullable;
 
-import com.zhihu.matisse.R;
+import com.github.lany192.matisse.R;
 import com.zhihu.matisse.internal.loader.AlbumLoader;
 
 public class Album implements Parcelable {

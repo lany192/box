@@ -25,7 +25,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'com.zhihu.matisse'
+    namespace 'com.github.lany192.' + project.getName()
+//    namespace 'com.zhihu.matisse'
 }
 
 dependencies {
