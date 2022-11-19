@@ -22,10 +22,26 @@ class IndexFragment : VMVBFragment<IndexViewModel, FragmentIndexBinding>() {
     override fun init() {
         super.init()
         val items = mutableListOf<TabItem>()
-        items.add(TabItem("推荐", SampleRouter.getArticle()))
-        items.add(TabItem("地区", SampleRouter.getCity()))
-        items.add(TabItem("图片", SampleRouter.getGirl()))
-        val adapter = TabAdapter(requireActivity(), items)
+        items.add(
+            TabItem(
+                "推荐",
+                SampleRouter.getArticle()
+            )
+        )
+        items.add(
+            TabItem(
+                "地区",
+                SampleRouter.getCity()
+            )
+        )
+        items.add(
+            TabItem(
+                "图片",
+                SampleRouter.getGirl()
+            )
+        )
+        val adapter =
+            TabAdapter(requireActivity(), items)
         binding.viewpager.adapter = adapter
         binding.tabLayout.setViewPager(binding.viewpager, adapter.titles)
     }

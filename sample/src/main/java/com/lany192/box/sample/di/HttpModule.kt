@@ -25,8 +25,16 @@ class HttpModule {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .addInterceptor(TokenInterceptor())
-            .addInterceptor(ParamsInterceptor(HashMap<String, String>()))
-            .addInterceptor(HttpLogInterceptor(BuildConfig.DEBUG))
+            .addInterceptor(
+                ParamsInterceptor(
+                    HashMap<String, String>()
+                )
+            )
+            .addInterceptor(
+                HttpLogInterceptor(
+                    BuildConfig.DEBUG
+                )
+            )
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
