@@ -33,6 +33,7 @@ dependencies {
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
 
+    implementation project(':library:log')
     implementation project(':library:core')
     implementation project(':library:permission')
 }

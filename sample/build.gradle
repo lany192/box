@@ -142,4 +142,5 @@ dependencies {
     implementation 'com.github.lany192.box:scanner:master-SNAPSHOT'
     implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
     implementation 'com.github.lany192.box:umeng:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:log:master-SNAPSHOT'
 }

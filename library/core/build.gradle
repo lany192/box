@@ -34,4 +34,6 @@ dependencies {
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
+
+    implementation project(':library:log')
 }

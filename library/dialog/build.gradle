@@ -31,10 +31,12 @@ android {
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:' + apk.desugar
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-    implementation project(':library:core')
-    implementation project(':library:view')
 
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
+
+    implementation project(':library:log')
+    implementation project(':library:core')
+    implementation project(':library:view')
 }
