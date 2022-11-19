@@ -25,7 +25,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'com.github.lany192.arch'
+    namespace 'com.github.lany192.' + project.getName()
 }
 
 dependencies {
