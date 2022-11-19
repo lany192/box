@@ -6,8 +6,8 @@ ext {
             versionCode      : 1,
             versionName      : '1.0.0',
             minSdkVersion    : 21,
-            compileSdkVersion: 32,
-            targetSdkVersion : 32,
+            compileSdkVersion: 33,
+            targetSdkVersion : 33,
             //脱糖库版本
             desugar          : '1.1.5'
     ]
@@ -39,50 +39,50 @@ ext {
             'androidx-recyclerview'           : 'androidx.recyclerview:recyclerview:1.2.1',
             'androidx-constraint-layout'      : 'androidx.constraintlayout:constraintlayout:2.1.4',
             'androidx-multidex'               : 'androidx.multidex:multidex:2.0.1',
-            'androidx-material'     : 'com.google.android.material:material:1.6.1',
-            'androidx-exifinterface': 'androidx.exifinterface:exifinterface:1.3.3',
+            'androidx-material'               : 'com.google.android.material:material:1.6.1',
+            'androidx-exifinterface'          : 'androidx.exifinterface:exifinterface:1.3.3',
             //协程 https://github.com/Kotlin/kotlinx.coroutines
-            'coroutines-core'       : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4',
-            'coroutines-android'    : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4',
+            'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4',
+            'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4',
             //注入依赖 https://dagger.dev/hilt/
-            'hilt'                  : 'com.google.dagger:hilt-android:2.44',
+            'hilt'                            : 'com.google.dagger:hilt-android:2.44',
             //Toast工具 https://github.com/getActivity/ToastUtils
-            'toast'                 : 'com.github.getActivity:ToastUtils:10.5',
+            'toast'                           : 'com.github.getActivity:ToastUtils:10.5',
             //适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-            'brvah'                 : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.9',
+            'brvah'                           : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.9',
             //状态栏工具 https://github.com/gyf-dev/ImmersionBar
-            'immersion-bar'         : 'com.geyifeng.immersionbar:immersionbar:3.2.2',
+            'immersion-bar'                   : 'com.geyifeng.immersionbar:immersionbar:3.2.2',
             //请求框架 https://github.com/square/retrofit
-            'retrofit'              : 'com.squareup.retrofit2:retrofit:2.9.0',
-            'retrofit2-gson'        : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            'retrofit'                        : 'com.squareup.retrofit2:retrofit:2.9.0',
+            'retrofit2-gson'                  : 'com.squareup.retrofit2:converter-gson:2.9.0',
             //存储 https://github.com/Tencent/MMKV
-            'mmkv'                  : 'com.tencent:mmkv:1.2.14',
+            'mmkv'                            : 'com.tencent:mmkv:1.2.14',
             //存储 https://github.com/Tencent/mars
-            'mars-xlog'             : 'com.tencent.mars:mars-xlog:1.2.5',
+            'mars-xlog'                       : 'com.tencent.mars:mars-xlog:1.2.5',
 //            //日志工具 https://github.com/elvishew/xLog
 //            'xlog'                            : 'com.elvishew:xlog:1.11.0',
             //tencent 日志工具 https://github.com/Tencent/mars
-            'xlog'                  : 'com.tencent.mars:mars-xlog:1.2.5',
+            'xlog'                            : 'com.tencent.mars:mars-xlog:1.2.5',
             //glide依赖 https://github.com/bumptech/glide
-            'glide'                 : 'com.github.bumptech.glide:glide:4.13.2',
+            'glide'                           : 'com.github.bumptech.glide:glide:4.13.2',
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
-            'refresh-layout'        : 'io.github.scwang90:refresh-layout-kernel:2.0.5',
-            'refresh-header'        : 'io.github.scwang90:refresh-header-classics:2.0.5',
+            'refresh-layout'                  : 'io.github.scwang90:refresh-layout-kernel:2.0.5',
+            'refresh-header'                  : 'io.github.scwang90:refresh-header-classics:2.0.5',
             //多渠道打包工具 https://github.com/Meituan-Dianping/walle 考虑用 https://github.com/Tencent/VasDolly 代替
-            'walle'                 : 'com.meituan.android.walle:library:1.1.7',
+            'walle'                           : 'com.meituan.android.walle:library:1.1.7',
             //阿里界面路由 https://github.com/alibaba/ARouter
-            "arouter"               : 'com.alibaba:arouter-api:1.5.2',
+            "arouter"                         : 'com.alibaba:arouter-api:1.5.2',
             //腾讯x5 https://x5.tencent.com/docs/index.html
-            'tbssdk'                : 'com.tencent.tbs:tbssdk:44226',
+            'tbssdk'                          : 'com.tencent.tbs:tbssdk:44226',
             //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
-            'background-core'       : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.5',
+            'background-core'                 : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.5',
             //微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
-            'wechat'                : 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0',
+            'wechat'                          : 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0',
             //room数据库 https://developer.android.google.cn/training/data-storage/room/index.html
-            'room-runtime'          : 'androidx.room:room-runtime:2.4.3',
-            'room-ktx'              : 'androidx.room:room-ktx:2.4.3',
+            'room-runtime'                    : 'androidx.room:room-runtime:2.4.3',
+            'room-ktx'                        : 'androidx.room:room-ktx:2.4.3',
             //图片压缩 https://github.com/Curzibn/Luban
-            'luban'                 : 'top.zibin:Luban:1.1.8',
+            'luban'                           : 'top.zibin:Luban:1.1.8',
             //RecyclerView分割线 https://github.com/lany192/ItemDecoration
             'decoration'                      : 'com.github.lany192:ItemDecoration:1.21',
             //显示红点或者浮标 https://github.com/qstumn/BadgeView
