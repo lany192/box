@@ -11,8 +11,8 @@ public class ApiResult<T> {
     @SerializedName(value = "msg", alternate = {"errorMsg", "message"})
     private String msg;
 
-    @SerializedName(value = "result", alternate = {"data"})
-    private T result;
+    @SerializedName(value = "data", alternate = {"result"})
+    private T data;
 
     public static <T> ApiResult<T> network() {
         ApiResult<T> result = new ApiResult<>();
@@ -44,11 +44,11 @@ public class ApiResult<T> {
         this.msg = msg;
     }
 
-    public T getResult() {
-        return result;
+    public T getData() {
+        return data;
     }
 
-    public void setResult(T result) {
-        this.result = result;
+    public void setData(T data) {
+        this.data = data;
     }
 }
