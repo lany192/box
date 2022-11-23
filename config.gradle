@@ -15,11 +15,11 @@ ext {
             'glide'     : 'com.github.bumptech.glide:compiler:4.14.2',
             'room'      : 'androidx.room:room-compiler:2.4.3',
             //路由增强 https://github.com/lany192/app-router
-            'app-router': 'com.github.lany192:app-router:1.4.2',
+            'app-router': 'com.github.lany192:app-router:1.4.3',
             //阿里路由 https://github.com/alibaba/ARouter
             'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
             //注入依赖 https://dagger.dev/hilt/
-            'hilt'      : 'com.google.dagger:hilt-android-compiler:2.44',
+            'hilt'      : 'com.google.dagger:hilt-android-compiler:2.44.2',
     ]
     androidTestDependencies = [
             'junit'   : 'androidx.test.ext:junit:1.1.3',
@@ -45,7 +45,7 @@ ext {
             'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4',
             'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4',
             //注入依赖 https://dagger.dev/hilt/
-            'hilt'                            : 'com.google.dagger:hilt-android:2.44',
+            'hilt'                            : 'com.google.dagger:hilt-android:2.44.2',
             //Toast工具 https://github.com/getActivity/ToastUtils
             'toast'                           : 'com.github.getActivity:ToastUtils:10.5',
             //适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
@@ -57,8 +57,6 @@ ext {
             'retrofit2-gson'                  : 'com.squareup.retrofit2:converter-gson:2.9.0',
             //tencent 存储 https://github.com/Tencent/MMKV
             'mmkv'                            : 'com.tencent:mmkv:1.2.14',
-//            //日志工具 https://github.com/elvishew/xLog
-//            'xlog'                            : 'com.elvishew:xlog:1.11.0',
             //tencent 日志工具 https://github.com/Tencent/mars
             'xlog'                            : 'com.tencent.mars:mars-xlog:1.2.5',
             //glide依赖 https://github.com/bumptech/glide
