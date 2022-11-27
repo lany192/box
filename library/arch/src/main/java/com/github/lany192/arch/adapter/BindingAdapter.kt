@@ -10,7 +10,6 @@ import com.github.lany192.log.XLog
 import java.lang.reflect.ParameterizedType
 
 abstract class BindingAdapter<T, VB : ViewBinding> : BaseQuickAdapter<T, BindingHolder<VB>> {
-    @JvmField
     protected var log: XLog = XLog.tag(javaClass.simpleName)
 
     constructor(data: MutableList<T>) : super(0, data)

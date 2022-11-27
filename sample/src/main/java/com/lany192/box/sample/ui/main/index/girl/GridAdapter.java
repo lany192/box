@@ -15,6 +15,5 @@ public class GridAdapter extends BindingAdapter<String, ItemGirlBinding> {
 
     @Override
     protected void convert(@NonNull ItemGirlBinding binding, String item, int position) {
-
     }
 }
