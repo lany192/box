@@ -1,9 +1,11 @@
 package com.github.lany192.arch;
 
+import android.os.Environment;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import com.github.lany192.arch.utils.FileUtils;
 import com.github.lany192.arch.utils.PhoneUtils;
 import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
@@ -12,6 +14,9 @@ import com.github.lany192.utils.KVUtils;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * 异常处理
@@ -40,8 +45,8 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
     public void uncaughtException(@NonNull Thread thread, @NonNull Throwable e) {
         String error = getError(e);
         KVUtils.get().putString(KEY_APP_ERROR_INFO, error);
-        XLog.tag("app崩溃退出").i("基础信息:" + PhoneUtils.getBaseInfo());
         XLog.tag("app崩溃退出").i(error);
+        save2file(error);
     }
 
     /**
@@ -68,6 +73,14 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
             cause = cause.getCause();
         }
         printWriter.close();
-        return writer.toString();
+        return "基础信息:" + PhoneUtils.getBaseInfo() + "\n" + writer;
+    }
+
+    private void save2file(String error) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String fileName = "box_crash_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date()) + ".log";
+            FileUtils.save2file(dirPath + "/" + fileName, error);
+        }
     }
 }
