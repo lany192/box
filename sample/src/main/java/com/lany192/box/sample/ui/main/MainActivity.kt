@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
+import com.github.lany192.arch.utils.ViewUtils
 import com.github.lany192.log.LogUtils
 import com.hjq.toast.ToastUtils
 import com.lany192.box.sample.R
@@ -30,6 +31,7 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ViewUtils.setGrayStyle(this, true)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> ToastUtils.show("首页：" + userInfo.name) }
         val items = mutableListOf<TabItem>()
