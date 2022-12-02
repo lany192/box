@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.items.ItemsFragment
+import com.github.lany192.arch.utils.ViewUtils
 import com.github.lany192.log.LogUtils
 import com.lany192.box.sample.data.binder.ArticleBinder
 import com.lany192.box.sample.databinding.FragmentArticleBinding
@@ -31,6 +32,8 @@ class ArticleFragment : ItemsFragment<ArticleViewModel, FragmentArticleBinding>(
 
     override fun init() {
         super.init()
+        //灰色模式
+        ViewUtils.setGrayStyle(binding.root, true)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

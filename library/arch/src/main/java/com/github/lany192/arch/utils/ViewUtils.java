@@ -38,4 +38,21 @@ public class ViewUtils {
         paint.setColorFilter(new ColorMatrixColorFilter(cm));
         activity.getWindow().getDecorView().setLayerType(View.LAYER_TYPE_HARDWARE, paint);
     }
+
+    /**
+     * 是否显示灰色模式,遇到特殊节日会有设置灰色主题
+     */
+    public static void setGrayStyle(View view, boolean gray) {
+        Paint paint = new Paint();
+        ColorMatrix cm = new ColorMatrix();
+        if (gray) {
+            cm.setSaturation(0.0F);//灰度效果 取值gray（0 - 1）  0是灰色，1取消灰色
+        } else {
+            cm.setSaturation(1.0F);//灰度效果 取值gray（0 - 1）  0是灰色，1取消灰色
+        }
+        paint.setColorFilter(new ColorMatrixColorFilter(cm));
+        if (view != null) {
+            view.setLayerType(View.LAYER_TYPE_HARDWARE, paint);
+        }
+    }
 }
