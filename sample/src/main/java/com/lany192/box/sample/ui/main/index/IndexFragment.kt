@@ -6,6 +6,7 @@ import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.arch.utils.BarUtils
+import com.github.lany192.arch.utils.ViewUtils
 import com.lany192.box.sample.databinding.FragmentIndexBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +22,9 @@ class IndexFragment : VMVBFragment<IndexViewModel, FragmentIndexBinding>() {
 
     override fun init() {
         super.init()
+        //灰色模式
+        ViewUtils.setGrayStyle(binding.root, true)
+
         val items = mutableListOf<TabItem>()
         items.add(
             TabItem(
