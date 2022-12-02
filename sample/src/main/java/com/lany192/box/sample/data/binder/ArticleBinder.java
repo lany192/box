@@ -15,7 +15,12 @@ import com.lany192.box.sample.databinding.ItemArticleBinding;
 
 import java.util.Date;
 
+import javax.inject.Inject;
+
 public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
+    @Inject
+    public ArticleBinder() {
+    }
 
     @Override
     public void onClick(@NonNull BindingHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {

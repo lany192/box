@@ -23,9 +23,6 @@ open class LifecycleViewModel : BaseViewModel(), DefaultLifecycleObserver {
 
     @CallSuper
     override fun onResume(owner: LifecycleOwner) {
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this)
-        }
         if (!lazyLoaded) {
             lazyLoaded = true
             onLazyLoad()

@@ -9,14 +9,13 @@ import android.webkit.MimeTypeMap;
 
 import com.hjq.toast.ToastUtils;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+
+import okio.BufferedSink;
+import okio.BufferedSource;
+import okio.Okio;
+import okio.Sink;
+import okio.Source;
 
 public class FileUtils {
     /**
@@ -127,19 +126,23 @@ public class FileUtils {
     /**
      * 读取文本内容
      */
-    public static String readTextByPath(String path) {
+    public static String readFromFile(String path) {
         File file = new File(path);
         if (file.exists() && !file.isDirectory()) {
-            StringBuilder builder = new StringBuilder();
             try {
-                FileInputStream fileInputStream = new FileInputStream(file);
-                InputStreamReader isr = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
-                BufferedReader br = new BufferedReader(isr);
-                String tmp;
-                while ((tmp = br.readLine()) != null) {
-                    builder.append(tmp);
+                //获取source对象
+                Source read = Okio.source(file);
+                BufferedSource bufferedSource = Okio.buffer(read);
+                StringBuilder builder = new StringBuilder();
+                String result;
+                //循环读取数据
+                while ((result = bufferedSource.readUtf8Line()) != null) {
+                    builder.append(result);
                     builder.append("\n");
                 }
+                //关闭source
+                bufferedSource.close();
+                read.close();
                 return builder.toString();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -149,12 +152,25 @@ public class FileUtils {
     }
 
     /**
-     * 根据日期读取日志内容
+     * 保存内容到文件
      */
-    public static String getLogPathByDate(Context context, Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-        String fileName = sdf.format(date);
-        String path = context.getFilesDir().getPath() + "/logs/app_log_" + fileName + ".log";
-        return readTextByPath(path);
+    public static void save2file(String filePath, String content) {
+        try {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            //获取sink对象
+            Sink write = Okio.sink(file);
+            //获取sink缓冲对象
+            BufferedSink bufferedSink = Okio.buffer(write);
+            //写入数据
+            bufferedSink.writeUtf8(content);
+            //关闭sink
+            bufferedSink.close();
+            write.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
