@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ContextUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -244,5 +245,16 @@ public class PhoneUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 清除app数据，包括撤销授权
+     */
+    public static void clearApp() {
+        try {
+            Runtime.getRuntime().exec("pm clear " + ContextUtils.getContext().getPackageName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
