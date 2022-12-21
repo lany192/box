@@ -14,6 +14,8 @@ import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.view.DefaultView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
+import java.util.List;
+
 public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBinding>
         extends VMVBFragment<VM, VB> {
     private final BinderAdapter itemsAdapter = new BinderAdapter();
@@ -92,11 +94,15 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
             }
         });
         viewModel.getItems().observe(this, data -> {
-            itemsAdapter.setList(data.getItems());
+            setList(data.getItems());
             if (ListUtils.isEmpty(data.getItems())) {
                 itemsAdapter.setEmptyView(getEmptyView());
             }
         });
+    }
+
+    public void setList(List<Object> items) {
+        itemsAdapter.setList(items);
     }
 
     @NonNull
