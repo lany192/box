@@ -43,7 +43,7 @@ public class HttpLogInterceptor implements Interceptor {
         try {
             response = chain.proceed(request);
         } catch (Exception e) {
-            log.i("接口异常: " + e);
+            log.i("接口异常: " + e.getMessage());
             throw e;
         }
 
