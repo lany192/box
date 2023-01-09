@@ -2,10 +2,10 @@ package com.github.lany192.arch.extension
 
 import android.content.Context
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.hjq.toast.ToastUtils
 
 /**
  * Fragment是否存活
@@ -18,6 +18,10 @@ fun Fragment.isAlive(): Boolean {
             && !this.isDetached
 }
 
+fun Any.toast(text: CharSequence) = ToastUtils.show(text)
+
+fun Any.toast(@StringRes textId: Int) = ToastUtils.show(textId)
+
 fun Context.getColorCompat(color: Int) = ContextCompat.getColor(this, color)
 
 val Context.screenWidthPx: Int
@@ -25,12 +29,6 @@ val Context.screenWidthPx: Int
 
 val Context.screenHeightPx: Int
     get() = resources.displayMetrics.heightPixels
-
-fun Context?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) =
-    this?.let { Toast.makeText(it, text, duration).show() }
-
-fun Context?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) =
-    this?.let { Toast.makeText(it, textId, duration).show() }
 
 fun Context.getCompatColor(@ColorRes id: Int) = ContextCompat.getColor(this, id)
 
