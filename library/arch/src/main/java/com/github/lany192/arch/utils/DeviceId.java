@@ -61,7 +61,7 @@ public class DeviceId {
             //校验两个ID：如果KV中可以读取到id，与从SD卡中读取id进行比较是否相等
             if (!TextUtils.isEmpty(sdId) && !sdId.equals(deviceId)) {
                 //如果能读取到SD卡上的id，保存到KV中
-                KVUtils.get().putString(KEY_DEVICE_ID, sdId);
+                KVUtils.putString(KEY_DEVICE_ID, sdId);
                 //修改内存中的值
                 deviceId = sdId;
             } else {
@@ -78,7 +78,7 @@ public class DeviceId {
     public synchronized String getDeviceId() {
         if (TextUtils.isEmpty(deviceId)) {
             String sdId = getDeviceIdFromSD();
-            String kvId = KVUtils.get().getString(KEY_DEVICE_ID);
+            String kvId = KVUtils.getString(KEY_DEVICE_ID);
             log.i("KV的值:" + kvId + "，SD的值:" + sdId);
             if (TextUtils.isEmpty(sdId)) {
                 if (TextUtils.isEmpty(kvId)) {
@@ -95,7 +95,7 @@ public class DeviceId {
                 deviceId = sdId;
                 if (TextUtils.isEmpty(kvId) || !kvId.equals(sdId)) {
                     log.i("保存到KV:" + deviceId);
-                    KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
+                    KVUtils.putString(KEY_DEVICE_ID, deviceId);
                 }
                 log.i("获取SD值:" + deviceId);
             }
@@ -111,7 +111,7 @@ public class DeviceId {
     private void saveDeviceId(String deviceId) {
         if (!TextUtils.isEmpty(deviceId)) {
             log.i("保存到KV:" + deviceId);
-            KVUtils.get().putString(KEY_DEVICE_ID, deviceId);
+            KVUtils.putString(KEY_DEVICE_ID, deviceId);
             log.i("保存到SD:" + deviceId);
             save2SD(deviceId);
         } else {

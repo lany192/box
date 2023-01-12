@@ -44,7 +44,7 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(@NonNull Thread thread, @NonNull Throwable e) {
         String error = getError(e);
-        KVUtils.get().putString(KEY_APP_ERROR_INFO, error);
+        KVUtils.putString(KEY_APP_ERROR_INFO, error);
         XLog.tag("app崩溃退出").i(error);
         save2file(error);
     }
@@ -53,10 +53,10 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
      * 打印app上次崩溃信息，防止崩溃时没有记录到
      */
     private void checkError() {
-        String error = KVUtils.get().getString(KEY_APP_ERROR_INFO);
+        String error = KVUtils.getString(KEY_APP_ERROR_INFO);
         if (!TextUtils.isEmpty(error)) {
             LogUtils.i("上次app崩溃信息：" + error);
-            KVUtils.get().putString(KEY_APP_ERROR_INFO, "");
+            KVUtils.putString(KEY_APP_ERROR_INFO, "");
         }
     }
 

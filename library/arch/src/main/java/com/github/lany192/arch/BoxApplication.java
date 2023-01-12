@@ -39,7 +39,7 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 
         LogUtils.init(this, debug());
 
-        KVUtils.get().init(this);
+        KVUtils.init(this);
 
         ToastUtils.init(this);
         ToastUtils.setView(R.layout.toast_view);
