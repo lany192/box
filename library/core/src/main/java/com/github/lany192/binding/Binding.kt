@@ -12,7 +12,7 @@ fun <V : ViewBinding> Class<*>.getBinding(layoutInflater: LayoutInflater): V {
             LayoutInflater::class.java
         ).invoke(null, layoutInflater) as V
     } catch (ex: Exception) {
-        throw RuntimeException("The ViewBinding inflate function has been changed.", ex)
+        throw RuntimeException("$name The ViewBinding inflate function has been changed.", ex)
     }
 }
 
@@ -29,6 +29,6 @@ fun <V : ViewBinding> Class<*>.getBinding(
             Boolean::class.java
         ).invoke(null, layoutInflater, container, false) as V
     } catch (ex: Exception) {
-        throw RuntimeException("The ViewBinding inflate function has been changed.", ex)
+        throw RuntimeException("$name The ViewBinding inflate function has been changed.", ex)
     }
 }
