@@ -1,7 +1,6 @@
 package com.github.lany192.dialog;
 
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -51,6 +50,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
      * 隐藏监听器
      */
     private final List<DialogInterface.OnDismissListener> dismissListeners = new ArrayList<>();
+    /**
+     * 是否单例模式
+     */
+    private boolean single;
 
     @Override
     public int compareTo(@NonNull DialogFragment other) {
@@ -64,6 +67,20 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         for (DialogInterface.OnDismissListener listener : dismissListeners) {
             listener.onDismiss(dialog);
         }
+    }
+
+    /**
+     * 是否单例模式
+     */
+    public boolean isSingle() {
+        return single;
+    }
+
+    /**
+     * 设置单例模式，多次show，只显示一个对话框
+     */
+    public void setSingle(boolean single) {
+        this.single = single;
     }
 
     /**
@@ -109,7 +126,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     public void show(@NonNull Context context) {
-        FragmentActivity activity = context2activity(context);
+        FragmentActivity activity = ContextUtils.context2activity(context);
         if (activity != null && !activity.isFinishing() && !activity.isDestroyed()) {
             show(activity.getSupportFragmentManager());
         } else {
@@ -134,17 +151,6 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         } else {
             log.e("对话框context异常");
         }
-    }
-
-    private FragmentActivity context2activity(Context context) {
-        if (context == null) {
-            return null;
-        } else if (context instanceof FragmentActivity) {
-            return (FragmentActivity) context;
-        } else if (context instanceof ContextWrapper) {
-            return context2activity(((ContextWrapper) context).getBaseContext());
-        }
-        return null;
     }
 
     public int getColor(@ColorRes int colorResId) {
