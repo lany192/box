@@ -147,7 +147,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         KeyboardUtils.hide(this)
-        super.onBackPressed()
+        onBackPressedDispatcher.onBackPressed()
+        super.finish()
     }
 
     override fun finish() {
