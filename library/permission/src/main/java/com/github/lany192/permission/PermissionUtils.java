@@ -1,5 +1,7 @@
 package com.github.lany192.permission;
 
+import static android.provider.Settings.EXTRA_APP_PACKAGE;
+
 import android.app.AppOpsManager;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -35,6 +37,32 @@ import java.util.List;
 public class PermissionUtils {
 
     public static final String TAG = "PermissionUtils";
+
+    public static void openNotificationSetting(Context context) {
+        try {
+            // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            //这种方案适用于 API 26, 即8.0（含8.0）以上可以用
+            if (Build.VERSION.SDK_INT >= 26) {
+                intent.putExtra(EXTRA_APP_PACKAGE, context.getPackageName());
+                //intent.putExtra(EXTRA_CHANNEL_ID, ContextUtils.getApplication().getApplicationInfo().uid);
+            } else {
+                intent.putExtra("app_package", context.getPackageName());
+                intent.putExtra("app_uid", context.getApplicationInfo().uid);
+            }
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            //下面这种方案是直接跳转到当前应用的设置界面。
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+            intent.setData(uri);
+            context.startActivity(intent);
+        }
+    }
 
     /**
      * 检查权限
