@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.collection.ArraySet;
 import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
@@ -14,6 +15,7 @@ import com.github.lany192.log.XLog;
 import java.lang.ref.SoftReference;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  * Dialog弹窗队列管理
@@ -99,8 +101,20 @@ public class DialogHelper {
         }
     }
 
+    private final Set<Long> ids = new ArraySet<>();
+
     public void show(@NonNull DialogFragment dialog) {
-        dialog.show(currentActivity.get());
+        dialog.addOnDismissListener(dialog1 -> ids.remove(dialog.getDialogId()));
+        if (dialog.isSingle()) {
+            if (ids.contains(dialog.getDialogId())) {
+                log.i("单例对话框，已经显示了，忽略id:" + dialog.getDialogId());
+            } else {
+                ids.add(dialog.getDialogId());
+                dialog.show(currentActivity.get());
+            }
+        } else {
+            dialog.show(currentActivity.get());
+        }
     }
 
     public void init(Application application) {

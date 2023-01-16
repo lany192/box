@@ -55,6 +55,11 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
      */
     private boolean single;
 
+    /**
+     * 对话框id
+     */
+    private long dialogId = System.currentTimeMillis();
+
     @Override
     public int compareTo(@NonNull DialogFragment other) {
         //比较优先级
@@ -69,6 +74,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         }
     }
 
+    public long getDialogId() {
+        return dialogId;
+    }
+
     /**
      * 是否单例模式
      */
@@ -79,8 +88,9 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     /**
      * 设置单例模式，多次show，只显示一个对话框
      */
-    public void setSingle(boolean single) {
-        this.single = single;
+    public void setSingle(long dialogId) {
+        this.dialogId = dialogId;
+        this.single = true;
     }
 
     /**
