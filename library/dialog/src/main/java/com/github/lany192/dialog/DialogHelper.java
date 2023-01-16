@@ -36,6 +36,11 @@ public class DialogHelper {
      */
     private SoftReference<FragmentActivity> currentActivity;
 
+    /**
+     * 正在显示的单例对话框id
+     */
+    private final Set<Long> ids = new ArraySet<>();
+
     private DialogHelper() {
     }
 
@@ -100,8 +105,6 @@ public class DialogHelper {
             currentDialog.show(currentActivity.get());
         }
     }
-
-    private final Set<Long> ids = new ArraySet<>();
 
     public void show(@NonNull DialogFragment dialog) {
         dialog.addOnDismissListener(d -> ids.remove(dialog.getDialogId()));
