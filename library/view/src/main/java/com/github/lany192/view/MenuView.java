@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -65,10 +66,10 @@ public class MenuView extends FrameLayout {
         titleColor = a.getColor(R.styleable.MenuView_menu_title_color, getResources().getColor(R.color.text_2level));
 
         subtitle = a.getString(R.styleable.MenuView_menu_subtitle);
-        subtitleSize = a.getDimension(R.styleable.MenuView_menu_subtitle_size, 10);
+        subtitleSize = a.getDimension(R.styleable.MenuView_menu_subtitle_size, 12);
         subtitleColor = a.getColor(R.styleable.MenuView_menu_subtitle_color, getResources().getColor(R.color.text_4level));
 
-        hintSize = a.getDimension(R.styleable.MenuView_menu_hint_size, 10);
+        hintSize = a.getDimension(R.styleable.MenuView_menu_hint_size, 12);
         hintColor = a.getColor(R.styleable.MenuView_menu_hint_color, getResources().getColor(R.color.text_3level));
         hint = a.getString(R.styleable.MenuView_menu_hint);
 
@@ -104,14 +105,14 @@ public class MenuView extends FrameLayout {
 
         titleText.setText(title);
         titleText.setTextColor(titleColor);
-        titleText.setTextSize(titleSize);
+        titleText.setTextSize(TypedValue.COMPLEX_UNIT_SP, titleSize);
 
         if (TextUtils.isEmpty(subtitle)) {
             subtitleText.setVisibility(View.GONE);
         } else {
             subtitleText.setText(subtitle);
             subtitleText.setTextColor(subtitleColor);
-            subtitleText.setTextSize(subtitleSize);
+            subtitleText.setTextSize(TypedValue.COMPLEX_UNIT_SP, subtitleSize);
             subtitleText.setVisibility(View.VISIBLE);
         }
 
@@ -120,7 +121,7 @@ public class MenuView extends FrameLayout {
         } else {
             hintText.setText(hint);
             hintText.setTextColor(hintColor);
-            hintText.setTextSize(hintSize);
+            hintText.setTextSize(TypedValue.COMPLEX_UNIT_SP, hintSize);
             hintText.setVisibility(View.VISIBLE);
         }
 
@@ -168,14 +169,14 @@ public class MenuView extends FrameLayout {
 
     public MenuView hintTextSize(float size) {
         if (!TextUtils.isEmpty(hint) && size > 0) {
-            this.hintText.setTextSize(size);
+            this.hintText.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         }
         return this;
     }
 
     public MenuView nameTextSize(float size) {
         if (size > 0) {
-            this.titleText.setTextSize(size);
+            this.titleText.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         }
         return this;
     }

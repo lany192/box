@@ -8,6 +8,11 @@ plugins {
 }
 apply plugin: 'LancetX'
 
+// 获取当前的git的commit_id
+def getGitCommitId() {
+    return "git rev-parse --short HEAD".execute().text.trim()
+}
+
 ByteX {
     enable true
     enableInDebug false
