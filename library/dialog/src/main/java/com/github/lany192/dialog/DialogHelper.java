@@ -21,7 +21,7 @@ import java.util.Set;
  * Dialog弹窗队列管理
  */
 public class DialogHelper {
-    private static DialogHelper instance;
+    private volatile static DialogHelper instance;
     private final XLog log = XLog.tag(getClass().getSimpleName());
     /**
      * 带优先级弹窗队列
