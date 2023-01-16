@@ -116,14 +116,9 @@ public class MenuView extends FrameLayout {
             subtitleText.setVisibility(View.VISIBLE);
         }
 
-        if (TextUtils.isEmpty(hint)) {
-            hintText.setVisibility(View.GONE);
-        } else {
-            hintText.setText(hint);
-            hintText.setTextColor(hintColor);
-            hintText.setTextSize(TypedValue.COMPLEX_UNIT_SP, hintSize);
-            hintText.setVisibility(View.VISIBLE);
-        }
+        hintText.setText(hint);
+        hintText.setTextColor(hintColor);
+        hintText.setTextSize(TypedValue.COMPLEX_UNIT_SP, hintSize);
 
         mArrowImg.setVisibility(showArrow ? View.VISIBLE : View.GONE);
     }
