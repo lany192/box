@@ -104,7 +104,7 @@ public class DialogHelper {
     private final Set<Long> ids = new ArraySet<>();
 
     public void show(@NonNull DialogFragment dialog) {
-        dialog.addOnDismissListener(dialog1 -> ids.remove(dialog.getDialogId()));
+        dialog.addOnDismissListener(d -> ids.remove(dialog.getDialogId()));
         if (dialog.isSingle()) {
             if (ids.contains(dialog.getDialogId())) {
                 log.i("单例对话框，已经显示了，忽略id:" + dialog.getDialogId());
