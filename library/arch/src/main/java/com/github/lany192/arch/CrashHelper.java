@@ -9,6 +9,7 @@ import com.github.lany192.arch.utils.FileUtils;
 import com.github.lany192.arch.utils.PhoneUtils;
 import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
+import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.KVUtils;
 
 import java.io.PrintWriter;
@@ -78,8 +79,8 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
 
     private void save2file(String error) {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-            String fileName = "box_crash_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date()) + ".log";
+            String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/crash/" + ContextUtils.getContext().getPackageName() + "/";
+            String fileName = "crash_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date()) + ".log";
             FileUtils.save2file(dirPath + "/" + fileName, error);
         }
     }
