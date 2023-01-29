@@ -31,6 +31,7 @@ allprojects {
                         // 如果发现项目内存在 group +name 等于远端的group+name  那么直接采用本地工程进行编译
                         def p = rootProject.allprojects.find { p -> p.group == dependency.requested.group && p.name == dependency.requested.module }
                         if (p != null) {
+                            println "选择本地模块：" + p.name
                             dependency.useTarget(project(p.path), '选择本地模块')
                         }
                     }
