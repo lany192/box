@@ -16,7 +16,7 @@ public final class KVUtils {
     /**
      * 秘钥,配置默认秘钥，可修改
      */
-    private static String cryptKey = "sdfs@fg#ghfg7sdfs22AwWdf";
+    private static String cryptKey = "sdfs@fg#ghfg7sdfs22A!wWdf";
 
     private KVUtils() {
     }
