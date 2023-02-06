@@ -19,7 +19,6 @@ public final class KVUtils {
     private static String cryptKey = "sdfs@fg#ghfg7sdfs22AwWdf";
 
     private KVUtils() {
-
     }
 
     /**
@@ -62,12 +61,12 @@ public final class KVUtils {
         return getMMKV().getStringSet(key, new HashSet<>());
     }
 
-    public static Set<String> getStringSet(String key, Set<String> defValues) {
-        return getMMKV().getStringSet(key, defValues);
+    public static Set<String> getStringSet(String key, Set<String> defaultValues) {
+        return getMMKV().getStringSet(key, defaultValues);
     }
 
-    public static Set<String> getStringSet(String mapId, String key, Set<String> defValues) {
-        return getMMKV(mapId).getStringSet(key, defValues);
+    public static Set<String> getStringSet(String mapId, String key, Set<String> defaultValues) {
+        return getMMKV(mapId).getStringSet(key, defaultValues);
     }
 
     public static void putStringSet(String key, Set<String> values) {
@@ -87,12 +86,12 @@ public final class KVUtils {
         return getMMKV().decodeDouble(key);
     }
 
-    public static double getDouble(String key, double defValue) {
-        return getMMKV().decodeDouble(key, defValue);
+    public static double getDouble(String key, double defaultValue) {
+        return getMMKV().decodeDouble(key, defaultValue);
     }
 
-    public static double getDouble(String mapId, String key, double defValue) {
-        return getMMKV(mapId).decodeDouble(key, defValue);
+    public static double getDouble(String mapId, String key, double defaultValue) {
+        return getMMKV(mapId).decodeDouble(key, defaultValue);
     }
     //byte[]类型---------------------------------------------------------------------------------
 
@@ -104,12 +103,12 @@ public final class KVUtils {
         return getMMKV().decodeBytes(key);
     }
 
-    public static byte[] getBytes(String key, byte[] defValue) {
-        return getMMKV().decodeBytes(key, defValue);
+    public static byte[] getBytes(String key, byte[] defaultValue) {
+        return getMMKV().decodeBytes(key, defaultValue);
     }
 
-    public static byte[] getBytes(String mapId, String key, byte[] defValue) {
-        return getMMKV(mapId).decodeBytes(key, defValue);
+    public static byte[] getBytes(String mapId, String key, byte[] defaultValue) {
+        return getMMKV(mapId).decodeBytes(key, defaultValue);
     }
     //String类型---------------------------------------------------------------------------------
 
@@ -117,12 +116,12 @@ public final class KVUtils {
         return getMMKV().getString(key, "");
     }
 
-    public static String getString(String key, String defValue) {
-        return getMMKV().getString(key, defValue);
+    public static String getString(String key, String defaultValue) {
+        return getMMKV().getString(key, defaultValue);
     }
 
-    public static String getString(String mapId, String key, String defValue) {
-        return getMMKV(mapId).getString(key, defValue);
+    public static String getString(String mapId, String key, String defaultValue) {
+        return getMMKV(mapId).getString(key, defaultValue);
     }
 
     public static void putString(String key, String value) {
@@ -138,12 +137,12 @@ public final class KVUtils {
         return getMMKV().getBoolean(key, false);
     }
 
-    public static boolean getBoolean(String key, boolean defValue) {
-        return getMMKV().getBoolean(key, defValue);
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        return getMMKV().getBoolean(key, defaultValue);
     }
 
-    public static boolean getBoolean(String mapId, String key, boolean defValue) {
-        return getMMKV(mapId).getBoolean(key, defValue);
+    public static boolean getBoolean(String mapId, String key, boolean defaultValue) {
+        return getMMKV(mapId).getBoolean(key, defaultValue);
     }
 
     public static void putBoolean(String key, boolean value) {
@@ -167,12 +166,12 @@ public final class KVUtils {
         return getMMKV().getInt(key, 0);
     }
 
-    public static int getInt(String key, int defValue) {
-        return getMMKV().getInt(key, defValue);
+    public static int getInt(String key, int defaultValue) {
+        return getMMKV().getInt(key, defaultValue);
     }
 
-    public static int getInt(String mapId, String key, int defValue) {
-        return getMMKV(mapId).getInt(key, defValue);
+    public static int getInt(String mapId, String key, int defaultValue) {
+        return getMMKV(mapId).getInt(key, defaultValue);
     }
 
     //Float类型-----------------------------------------------------------------------------------------------
@@ -188,12 +187,12 @@ public final class KVUtils {
         return getMMKV().getFloat(key, 0f);
     }
 
-    public static float getFloat(String key, float defValue) {
-        return getMMKV().getFloat(key, defValue);
+    public static float getFloat(String key, float defaultValue) {
+        return getMMKV().getFloat(key, defaultValue);
     }
 
-    public static float getFloat(String mapId, String key, float defValue) {
-        return getMMKV(mapId).getFloat(key, defValue);
+    public static float getFloat(String mapId, String key, float defaultValue) {
+        return getMMKV(mapId).getFloat(key, defaultValue);
     }
 
     //Long类型-----------------------------------------------------------------------------------------------
@@ -209,12 +208,12 @@ public final class KVUtils {
         return getMMKV().getLong(key, 0L);
     }
 
-    public static long getLong(String key, long defValue) {
-        return getMMKV().getLong(key, defValue);
+    public static long getLong(String key, long defaultValue) {
+        return getMMKV().getLong(key, defaultValue);
     }
 
-    public static long getLong(String mapId, String key, long defValue) {
-        return getMMKV(mapId).getLong(key, defValue);
+    public static long getLong(String mapId, String key, long defaultValue) {
+        return getMMKV(mapId).getLong(key, defaultValue);
     }
 
     //其他方法-----------------------------------------------------------------------------------------------
