@@ -86,9 +86,10 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     }
 
     /**
-     * 设置单例模式，多次show，只显示一个对话框
+     * 设置单例模式
+     * 指定唯一不变的对话框id表示单例模式，多次调用只显示一次
      */
-    public void setSingle(long dialogId) {
+    public void setId(long dialogId) {
         this.dialogId = dialogId;
         this.single = true;
     }
