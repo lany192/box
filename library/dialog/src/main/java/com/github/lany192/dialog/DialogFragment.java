@@ -58,7 +58,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     /**
      * 对话框id
      */
-    private long dialogId = System.currentTimeMillis();
+    private long dialogId = this.getClass().hashCode();
 
     @Override
     public int compareTo(@NonNull DialogFragment other) {
