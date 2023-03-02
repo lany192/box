@@ -1,5 +1,6 @@
 package com.github.lany192.dialog;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -8,6 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -22,6 +26,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.DensityUtils;
@@ -211,8 +216,27 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
 
     @NonNull
     @Override
-    public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        android.app.Dialog dialog = super.onCreateDialog(savedInstanceState);
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        Dialog dialog = new Dialog(getActivity(), this.getTheme()) {
+            @Override
+            public boolean onTouchEvent(@NonNull MotionEvent event) {
+                if (canceledOnTouchOutside) {
+                    Window window = getWindow();
+                    if (window != null) {
+                        View decorView = window.getDecorView();
+                        int slop = ViewConfiguration.get(getContext()).getScaledWindowTouchSlop();
+                        //是否在对话框外点击
+                        if ((event.getX() < -slop)
+                                || (event.getY() < -slop)
+                                || (event.getX() > (decorView.getWidth() + slop))
+                                || (event.getY() > (decorView.getHeight() + slop))) {
+                            onTouchDialogOutside();
+                        }
+                    }
+                }
+                return super.onTouchEvent(event);
+            }
+        };
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(isCancelable());
         dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
@@ -224,6 +248,13 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         return dialog;
+    }
+
+    /**
+     * 对话框外部点击触发点
+     */
+    public void onTouchDialogOutside() {
+        LogUtils.i("对话框外部点击");
     }
 
     public void setCanceledOnTouchOutside(boolean canceledOnTouchOutside) {
