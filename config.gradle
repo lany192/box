@@ -12,7 +12,7 @@ ext {
             desugar          : '1.1.5'
     ]
     processorDependencies = [
-            'glide'     : 'com.github.bumptech.glide:compiler:4.14.2',
+            'glide'     : 'com.github.bumptech.glide:compiler:4.15.1',
             'room'      : 'androidx.room:room-compiler:2.4.3',
             //路由增强 https://github.com/lany192/app-router
             'app-router': 'com.github.lany192:app-router:1.4.3',
@@ -62,7 +62,7 @@ ext {
             //tencent 日志工具 https://github.com/Tencent/mars
             'xlog'                            : 'com.tencent.mars:mars-xlog:1.2.5',
             //glide依赖 https://github.com/bumptech/glide
-            'glide'                           : 'com.github.bumptech.glide:glide:4.14.2',
+            'glide'                           : 'com.github.bumptech.glide:glide:4.15.1',
             //异常捕获 https://github.com/iqiyi/xCrash
             'xcrash'                          : 'com.iqiyi.xcrash:xcrash-android-lib:3.1.0',
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
