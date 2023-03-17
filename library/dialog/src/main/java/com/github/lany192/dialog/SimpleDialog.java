@@ -12,6 +12,8 @@ import androidx.annotation.StringRes;
 import com.github.lany192.dialog.databinding.DialogSimpleBinding;
 import com.github.lany192.interfaces.OnSimpleListener;
 
+import java.lang.reflect.Modifier;
+
 //    SimpleDialog dialog = new SimpleDialog();
 //    dialog.setTitle("提示");
 //    dialog.setMessage("猜猜我是谁");
@@ -169,5 +171,49 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
     public void setLeftButton(CharSequence leftText) {
         this.mLeftText = leftText;
         this.isShowDivider = true;
+    }
+
+    /**
+     * 开启单例模式
+     */
+    public void setSingle() {
+        setId(getUniqueDialogId());
+    }
+
+    /**
+     * 根据调用类名和执行代码位置获取一个唯一的id
+     */
+    private long getUniqueDialogId() {
+        long dialogId = System.currentTimeMillis();
+        StackTraceElement[] stackTraces = (new Throwable()).getStackTrace();
+        for (StackTraceElement stackTrace : stackTraces) {
+            int lineNumber = stackTrace.getLineNumber();
+            if (lineNumber > 0) {
+                String className = stackTrace.getClassName();
+                try {
+                    Class<?> clazz = Class.forName(className);
+                    if (!filterStackTraceClass(clazz)) {
+                        int hashCode = (stackTrace.getFileName() + ":" + lineNumber).hashCode();
+                        dialogId = Math.abs(hashCode);
+                        log.i("对话框调用信息:当前class:" + className + ",调用代码行数：" + lineNumber);
+                        break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        log.i("生成对话框的id:" + dialogId);
+        return dialogId;
+    }
+
+    private boolean filterStackTraceClass(Class<?> clazz) {
+        if (SimpleDialog.class.equals(clazz)) {
+            return true;
+        } else if (clazz.isInterface()) {
+            return true;
+        } else {
+            return Modifier.isAbstract(clazz.getModifiers());
+        }
     }
 }
