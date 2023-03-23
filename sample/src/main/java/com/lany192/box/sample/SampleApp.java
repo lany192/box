@@ -1,5 +1,7 @@
 package com.lany192.box.sample;
 
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -32,6 +34,9 @@ public class SampleApp extends BoxApplication {
         UmengUtils.preInit(this, config);
 
         ShortcutUtils.init(this);
+
+        Log.i("插桩测试1啊啊", "插桩测试1哈哈哈哈啊");
+        Log.e("插桩测试2啊啊", "插桩测试2哈哈哈哈啊");
     }
 
     @Override
