@@ -1,4 +1,4 @@
-package com.github.lany192.html.richeditor;
+package com.github.lany192.richeditor;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
