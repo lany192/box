@@ -1,4 +1,4 @@
-package com.github.lany192.richeditor;
+package com.github.lany192.html.richeditor;
 
 import android.content.Context;
 import android.graphics.Bitmap;
