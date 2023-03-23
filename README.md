@@ -35,10 +35,7 @@
         implementation 'com.github.lany192.box:matisse:master-SNAPSHOT'
         implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
         implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:link:master-SNAPSHOT'
         implementation 'com.github.lany192.box:html:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:richeditor:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:webview:master-SNAPSHOT'
         implementation 'com.github.lany192.box:scanner:master-SNAPSHOT'
         implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
 	}
