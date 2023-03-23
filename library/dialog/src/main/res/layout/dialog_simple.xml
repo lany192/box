@@ -12,20 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingTop="30dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="30dp">
+        android:padding="24dp">
 
         <com.github.lany192.text.BoxTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="12dp"
             android:gravity="center"
             android:text="提示"
             android:textColor="@color/text_2level"
-            android:textSize="17sp"
+            android:textSize="16sp"
             app:text_style_middle_bold="true" />
 
         <com.github.lany192.text.BoxTextView
@@ -58,8 +55,8 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@android:string/cancel"
-            android:textColor="@color/text_2level"
-            android:textSize="14sp"
+            android:textColor="@color/text_3level"
+            android:textSize="16sp"
             android:visibility="gone"
             tools:visibility="visible" />
 
@@ -80,7 +77,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@android:string/ok"
-            android:textColor="@color/text_2level"
-            android:textSize="14sp" />
+            android:textColor="@color/text_1level"
+            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

@@ -39,11 +39,10 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
     private CharSequence mLeftText;
     private CharSequence mRightText;
     private boolean isShowDivider;
-    private int gravity = Gravity.CENTER;
     @ColorRes
     private int mTitleColor = R.color.text_1level;
-    private float titleSize = 18;
-    private float mMsgTextSize = 16;
+    private float titleSize = 16;
+    private float mMsgTextSize = 14;
     @ColorRes
     private int mRightTextColor = 0;
     @ColorRes
@@ -63,7 +62,13 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
         }
         if (!TextUtils.isEmpty(mMessage)) {
             getBinding().content.setText(mMessage);
-            getBinding().content.setGravity(gravity);
+            getBinding().content.post(() -> {
+                if (getBinding().content.getLineCount() > 1) {
+                    getBinding().content.setGravity(Gravity.LEFT);
+                } else {
+                    getBinding().content.setGravity(Gravity.CENTER);
+                }
+            });
             getBinding().content.setTextSize(mMsgTextSize);
             getBinding().content.setTextColorId(R.color.text_2level);
             if (movementMethod != null) {
@@ -123,10 +128,6 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
 
     public void setTitleSize(float titleSize) {
         this.titleSize = titleSize;
-    }
-
-    public void setGravity(int gravity) {
-        this.gravity = gravity;
     }
 
     public void setMessage(CharSequence message) {
