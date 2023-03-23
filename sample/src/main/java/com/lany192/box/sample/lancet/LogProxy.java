@@ -1,4 +1,4 @@
-package com.lany192.box.sample;
+package com.lany192.box.sample.lancet;
 
 import android.util.Log;
 
@@ -18,6 +18,7 @@ public class LogProxy {
     @TargetMethod(methodName = "i")
     public static int replaceLogI(String tag, String msg) {
         msg = msg + "lancet";
+        tag = "被替换后的" + tag;
         return (int) Origin.call();
     }
 
@@ -26,6 +27,7 @@ public class LogProxy {
     @TargetMethod(methodName = "e")
     public static int replaceLogE(String tag, String msg) {
         msg = msg + "被替换";
-        return Log.e("插桩测试", msg);
+        tag = "被替换后的" + tag;
+        return Log.e(tag, msg);
     }
 }

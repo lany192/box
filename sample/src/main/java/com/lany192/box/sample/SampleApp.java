@@ -1,13 +1,12 @@
 package com.lany192.box.sample;
 
-import android.util.Log;
-
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.umeng.UmengConfig;
 import com.github.lany192.umeng.UmengUtils;
+import com.lany192.box.sample.lancet.LancetTest;
 import com.lany192.box.sample.lifecycle.ActivityLifecycle;
 
 import dagger.hilt.android.HiltAndroidApp;
@@ -34,9 +33,7 @@ public class SampleApp extends BoxApplication {
         UmengUtils.preInit(this, config);
 
         ShortcutUtils.init(this);
-
-        Log.i("插桩测试1啊啊", "插桩测试1哈哈哈哈啊");
-        Log.e("插桩测试2啊啊", "插桩测试2哈哈哈哈啊");
+        LancetTest.test();
     }
 
     @Override
