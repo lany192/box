@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.text.TextPaint
 import android.util.TypedValue
 import android.view.View
+import com.github.lany192.html.R
 
 class TouchableSpan(context: Context, private val link: Link) : TouchableBaseSpan() {
 
