@@ -9,6 +9,7 @@ import android.widget.AbsoluteLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.github.lany192.html.R;
 import com.github.lany192.utils.DensityUtils;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
