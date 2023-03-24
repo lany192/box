@@ -48,6 +48,9 @@ public class VideoActivity extends BoxActivity<VideoViewModel, ActivityVideoBind
 
             }
         });
+
+        binding.playerView.setPlayer(player);
+
         int index = new Random().nextInt(videoUrls.length);
         //填充媒体数据
         player.addMediaItem(MediaItem.fromUri(videoUrls[index]));
@@ -55,6 +58,5 @@ public class VideoActivity extends BoxActivity<VideoViewModel, ActivityVideoBind
         player.prepare();
 //准备完成就开始播放
         player.setPlayWhenReady(true);
-        binding.playerView.setPlayer(player);
     }
 }

@@ -66,9 +66,13 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
                         "images"
                     )
                 ).gridExpectedSize(DensityUtils.dp2px(120f))
-                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT).thumbnailScale(0.85f)
-                .imageEngine(GlideEngine()).showSingleMediaType(true).originalEnable(true)
-                .maxOriginalSize(10).autoHideToolbarOnSingleTap(true)
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                .thumbnailScale(0.85f)
+                .imageEngine(GlideEngine())
+                .showSingleMediaType(true)
+                .originalEnable(true)
+                .maxOriginalSize(10)
+                .autoHideToolbarOnSingleTap(true)
                 .forResult { result: ActivityResult ->
                     if (result.resultCode == AppCompatActivity.RESULT_OK && result.data != null) {
                         val paths = Matisse.obtainPathResult(result.data)
@@ -76,7 +80,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
                     }
                 }
         }
-//        binding.video.setOnClickListener { SampleRouter.startVideo() }
+        binding.video.setOnClickListener { SampleRouter.startVideo() }
     }
 
     private fun showDialog2() {
