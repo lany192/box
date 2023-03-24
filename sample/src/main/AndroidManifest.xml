@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.video.VideoActivity"
+            android:exported="false"
+            android:label="视频测试"
+            android:screenOrientation="nosensor" />
+        <activity
             android:name=".ui.goods.GoodsActivity"
             android:exported="false"
             android:label="列表测试"

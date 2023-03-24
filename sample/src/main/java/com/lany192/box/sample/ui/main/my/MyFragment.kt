@@ -76,6 +76,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
                     }
                 }
         }
+//        binding.video.setOnClickListener { SampleRouter.startVideo() }
     }
 
     private fun showDialog2() {
