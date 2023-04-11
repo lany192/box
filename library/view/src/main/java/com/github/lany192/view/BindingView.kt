@@ -17,8 +17,7 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr), LifecycleOwner {
-    private val registry = LifecycleRegistry(this)
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     @JvmField
     protected var log: XLog = XLog.tag(javaClass.simpleName)
@@ -48,28 +47,4 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
         return ViewModelProvider((context.applicationContext as ViewModelStoreOwner))[modelClass]
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        registry.currentState = Lifecycle.State.CREATED
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        registry.currentState = Lifecycle.State.DESTROYED
-    }
-
-    override fun onWindowVisibilityChanged(visibility: Int) {
-        super.onWindowVisibilityChanged(visibility)
-        if (visibility == VISIBLE) {
-            registry.handleLifecycleEvent(Lifecycle.Event.ON_START)
-            registry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        } else if (visibility == GONE || visibility == INVISIBLE) {
-            registry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-            registry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
-        }
-    }
-
-    override fun getLifecycle(): Lifecycle {
-        return registry
-    }
 }

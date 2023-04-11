@@ -1,37 +1,45 @@
 ext {
     // 安装包
-    apk = [appId            : 'com.lany192.box.sample',
-           groupId          : 'com.github.lany192.box',
-           versionCode      : 1,
-           versionName      : '1.0.0',
-           minSdkVersion    : 21,
-           compileSdkVersion: 33,
-           targetSdkVersion : 33,
-           //脱糖库版本
-           desugar          : '1.1.5']
-    processorDependencies = ['glide'     : 'com.github.bumptech.glide:compiler:4.15.1',
-                             'room'      : 'androidx.room:room-compiler:2.4.3',
-                             //路由增强 https://github.com/lany192/app-router
-                             'app-router': 'com.github.lany192:app-router:1.4.3',
-                             //阿里路由 https://github.com/alibaba/ARouter
-                             'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
-                             //注入依赖 https://dagger.dev/hilt/
-                             'hilt'      : 'com.google.dagger:hilt-android-compiler:2.44.2',]
-    androidTestDependencies = ['junit'   : 'androidx.test.ext:junit:1.1.3',
-                               'espresso': 'androidx.test.espresso:espresso-core:3.4.0']
-    testImplementationDependencies = ['junit': 'junit:junit:4.13.2']
+    apk = [
+            appId            : 'com.lany192.box.sample',
+            groupId          : 'com.github.lany192.box',
+            versionCode      : 1,
+            versionName      : '1.0.0',
+            minSdkVersion    : 21,
+            compileSdkVersion: 33,
+            targetSdkVersion : 33,
+            //脱糖库版本
+            desugar          : '1.1.5'
+    ]
+    processorDependencies = [
+            'glide'     : 'com.github.bumptech.glide:compiler:4.15.1',
+            'room'      : 'androidx.room:room-compiler:2.4.3',
+            //路由增强 https://github.com/lany192/app-router
+            'app-router': 'com.github.lany192:app-router:1.4.3',
+            //阿里路由 https://github.com/alibaba/ARouter
+            'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
+            //注入依赖 https://dagger.dev/hilt/
+            'hilt'      : 'com.google.dagger:hilt-android-compiler:2.44.2'
+    ]
+    androidTestDependencies = [
+            'junit'   : 'androidx.test.ext:junit:1.1.3',
+            'espresso': 'androidx.test.espresso:espresso-core:3.4.0'
+    ]
+    testImplementationDependencies = [
+            'junit': 'junit:junit:4.13.2'
+    ]
     implementationDependencies = [
             //androidx
-            'androidx-appcompat'              : 'androidx.appcompat:appcompat:1.5.1',
-            'androidx-activity-ktx'           : 'androidx.activity:activity-ktx:1.5.1',
-            'androidx-fragment-ktx'           : 'androidx.fragment:fragment-ktx:1.5.1',
-            'androidx-core-ktx'               : 'androidx.core:core-ktx:1.8.0',
-            "androidx-lifecycle-livedata-ktx" : 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1',
-            "androidx-lifecycle-viewmodel-ktx": 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1',
-            'androidx-recyclerview'           : 'androidx.recyclerview:recyclerview:1.2.1',
+            'androidx-appcompat'              : 'androidx.appcompat:appcompat:1.6.1',
+            'androidx-activity-ktx'           : 'androidx.activity:activity-ktx:1.7.0',
+            'androidx-fragment-ktx'           : 'androidx.fragment:fragment-ktx:1.5.6',
+            'androidx-core-ktx'               : 'androidx.core:core-ktx:1.10.0',
+            "androidx-lifecycle-livedata-ktx" : 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1',
+            "androidx-lifecycle-viewmodel-ktx": 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1',
+            'androidx-recyclerview'           : 'androidx.recyclerview:recyclerview:1.3.0',
             'androidx-constraint-layout'      : 'androidx.constraintlayout:constraintlayout:2.1.4',
             'androidx-multidex'               : 'androidx.multidex:multidex:2.0.1',
-            'androidx-material'               : 'com.google.android.material:material:1.7.0',
+            'androidx-material'               : 'com.google.android.material:material:1.8.0',
             'androidx-exifinterface'          : 'androidx.exifinterface:exifinterface:1.3.3',
             'androidx-paging-ktx'             : 'androidx.paging:paging-runtime-ktx:3.1.1',
             'androidx-paging'                 : 'androidx.paging:paging-runtime:3.1.1',
@@ -129,7 +137,7 @@ ext {
 
             //https://github.com/NightWhistler/HtmlSpanner
             'HtmlSpanner'                     : 'com.github.NightWhistler:HtmlSpanner:0.4',
-
-
+            //重启工具库 https://github.com/JakeWharton/ProcessPhoenix
+            'process-phoenix'                 : 'com.jakewharton:process-phoenix:2.1.2',
     ]
 }

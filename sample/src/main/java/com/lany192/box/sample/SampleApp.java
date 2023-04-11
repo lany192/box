@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.umeng.UmengConfig;
 import com.github.lany192.umeng.UmengUtils;
+import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.lany192.box.sample.lancet.LancetTest;
 import com.lany192.box.sample.lifecycle.ActivityLifecycle;
 
@@ -18,6 +19,9 @@ public class SampleApp extends BoxApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (ProcessPhoenix.isPhoenixProcess(this)) {
+            return;
+        }
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         initARouter();
