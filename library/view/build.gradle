@@ -21,15 +21,16 @@ android {
         }
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
     namespace 'com.github.lany192.' + project.getName()
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:' + apk.desugar
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
     androidTestDependencies.each { k, v -> androidTestImplementation v }

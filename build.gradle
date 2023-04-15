@@ -8,15 +8,15 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'com.android.tools.build:gradle:8.0.0'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0'
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.44.2'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.45'
         classpath 'com.alibaba:arouter-register:1.0.2'
-        //https://github.com/bytedance/ByteX
-        classpath 'com.bytedance.android.byteX:base-plugin:0.3.0'
-        classpath 'com.bytedance.android.byteX:refer-check-plugin:0.3.0'
-        //hook 工具 https://github.com/Knight-ZXW/LancetX
-        classpath "io.github.knight-zxw:lancet-plugin:0.0.4"
+//        //https://github.com/bytedance/ByteX
+//        classpath 'com.bytedance.android.byteX:base-plugin:0.3.0'
+//        classpath 'com.bytedance.android.byteX:refer-check-plugin:0.3.0'
+//        //hook 工具 https://github.com/Knight-ZXW/LancetX
+//        classpath "io.github.knight-zxw:lancet-plugin:0.0.4"
     }
 }
 

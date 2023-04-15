@@ -87,8 +87,8 @@ project.tasks.create(name: "zipApk", type: Zip, dependsOn: "copy2zip") {
     doFirst {
         println "\n压缩开始..."
     }
-    archiveName dirTime + ".zip"
-    destinationDir file(ROOT_PATH + "/zip/")
+    archiveFileName = dirTime + ".zip"
+    destinationDirectory = file(ROOT_PATH + "/zip/")
     from(ZIP_FOLDER_PATH) {
         include("*.apk")
         exclude("**/*.zip")

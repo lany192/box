@@ -4,22 +4,22 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
-    id 'bytex'
-}
-apply plugin: 'LancetX'
-
-ByteX {
-    enable true
-    enableInDebug false
-    logLevel "DEBUG"
+//    id 'bytex'
+//    id 'LancetX'
 }
 
-
-LancetX {
-    enable true
-    enableInDebug true
-
-}
+//ByteX {
+//    enable true
+//    enableInDebug false
+//    logLevel "DEBUG"
+//}
+//
+//
+//LancetX {
+//    enable true
+//    enableInDebug true
+//
+//}
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -105,9 +105,11 @@ android {
         }
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
     packagingOptions {
         resources {
@@ -119,13 +121,11 @@ android {
             excludes += ['META-INF/INDEX.LIST', 'META-INF/DEPENDENCIES', 'META-INF/LGPL2.1']
         }
     }
-    //引入安装包生成配置
-    apply from: '../package.gradle'
+
     namespace 'com.lany192.box.sample'
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:' + apk.desugar
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     processorDependencies.each { k, v -> kapt v }
@@ -151,3 +151,5 @@ dependencies {
     implementation 'com.github.lany192.box:umeng:master-SNAPSHOT'
     implementation 'com.github.lany192.box:log:master-SNAPSHOT'
 }
+//引入安装包生成配置
+apply from: '../package.gradle'
