@@ -17,7 +17,7 @@ import com.github.lany192.update.utils.Constant;
 import java.io.File;
 
 public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
-        implements View.OnClickListener, OnDownloadListener {
+        implements OnDownloadListener {
     private final int install = 0x45F;
     private boolean forcedUpgrade;
     private File apk;
@@ -34,8 +34,24 @@ public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
         forcedUpgrade = configuration.isForcedUpgrade();
         binding.progressBar.setVisibility(forcedUpgrade ? View.VISIBLE : View.GONE);
         binding.update.setTag(0);
-        binding.update.setOnClickListener(this);
-        binding.cancel.setOnClickListener(this);
+        binding.update.setOnClickListener(v -> {
+            if ((int) binding.update.getTag() == install) {
+                installApk();
+                return;
+            }
+            if (forcedUpgrade) {
+                binding.update.setEnabled(false);
+                binding.update.setText(R.string.background_downloading);
+            } else {
+                dismiss();
+            }
+            requireContext().startService(new Intent(getContext(), DownloadService.class));
+        });
+        binding.cancel.setOnClickListener(v -> {
+            if (!forcedUpgrade) {
+                dismiss();
+            }
+        });
 
         //强制升级
         if (forcedUpgrade) {
@@ -54,28 +70,6 @@ public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
             binding.size.setVisibility(View.VISIBLE);
         }
         binding.description.setText(UpdateManager.getInstance().getApkDescription());
-    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.cancel) {
-            if (!forcedUpgrade) {
-                dismiss();
-            }
-        } else if (id == R.id.update) {
-            if ((int) binding.update.getTag() == install) {
-                installApk();
-                return;
-            }
-            if (forcedUpgrade) {
-                binding.update.setEnabled(false);
-                binding.update.setText(R.string.background_downloading);
-            } else {
-                dismiss();
-            }
-            getContext().startService(new Intent(getContext(), DownloadService.class));
-        }
     }
 
     /**
