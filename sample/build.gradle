@@ -101,7 +101,7 @@ android {
             signingConfig signingConfigs.config
             versionNameSuffix '_dev'
             //打包时间
-            buildConfigField "String", "BUILD_TIME", ""
+            buildConfigField "String", "BUILD_TIME", "\"2000-01-01 01:01\""
         }
     }
     compileOptions {
