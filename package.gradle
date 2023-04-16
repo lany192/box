@@ -2,31 +2,30 @@ Properties properties = new Properties()
 File propertyFile = new File(rootDir.getAbsolutePath() + "/local.properties")
 properties.load(propertyFile.newDataInputStream())
 
-def buildTime = new Date().format('MMddHHmm')
-def dirTime = new Date().format('yyyyMMdd_HHmm')
+def buildTime = new Date().format('yyyyMMddHHmm')
 
 //apk输出根路径，如果有需要输出到其它路径，在local.properties配置APK_OUT_PATH
 def ROOT_PATH = properties.getProperty("APK_OUT_PATH", rootDir.getPath()) + "/apk"
 //zip文件夹
-def ZIP_FOLDER_PATH = ROOT_PATH + "/zip/" + dirTime + "/"
+def ZIP_FOLDER_PATH = ROOT_PATH + "/zip/" + buildTime + "/"
 
 project.android.applicationVariants.all { variant ->
     if (variant.buildType.name != "debug") {
         def variantName = variant.name.capitalize()
         //apk输出路径
-        def OUTPUT_PATH = ROOT_PATH + "/" + variant.name + "/" + dirTime
+        def OUTPUT_PATH = ROOT_PATH + "/" + buildTime
         //apk文件名称
         def FILE_NAME = "box_" + versionName + "_" + buildTime + ".apk"
 
-        variant.outputs.all {
-            outputFileName = FILE_NAME
-        }
         variant.assemble.doLast {
             copy {
                 variant.outputs.all { file ->
                     copy {
                         from file.outputFile
                         into OUTPUT_PATH
+                        rename { String fileName ->
+                            FILE_NAME
+                        }
                     }
                 }
             }
@@ -61,10 +60,10 @@ project.tasks.create("copy2zip")
         }
         .doLast {
             //测试环境的包
-            def DEVELOP_APK_PATH = ROOT_PATH + "/develop/" + dirTime + "/" + "box_" + apk.versionName + "_dev_" + buildTime + ".apk"
+            def DEVELOP_APK_PATH = ROOT_PATH + "/" + buildTime + "/" + "box_" + apk.versionName + "_dev_" + buildTime + ".apk"
             println "\n测试环境apk包:" + DEVELOP_APK_PATH
             //正式环境的包
-            def RELEASE_APK_PATH = ROOT_PATH + "/release/" + dirTime + "/" + "box_" + apk.versionName + "_" + buildTime + ".apk"
+            def RELEASE_APK_PATH = ROOT_PATH + "/" + buildTime + "/" + "box_" + apk.versionName + "_" + buildTime + ".apk"
             println "\n正式环境apk包:" + RELEASE_APK_PATH
 
             File zipDir = new File(ZIP_FOLDER_PATH)
@@ -87,7 +86,7 @@ project.tasks.create(name: "zipApk", type: Zip, dependsOn: "copy2zip") {
     doFirst {
         println "\n压缩开始..."
     }
-    archiveFileName = dirTime + ".zip"
+    archiveFileName = buildTime + ".zip"
     destinationDirectory = file(ROOT_PATH + "/zip/")
     from(ZIP_FOLDER_PATH) {
         include("*.apk")
