@@ -53,64 +53,64 @@ public class SimpleDialog extends BaseDialog<DialogSimpleBinding> {
     @Override
     protected void init() {
         if (TextUtils.isEmpty(mTitle)) {
-            getBinding().title.setVisibility(View.GONE);
+            binding.title.setVisibility(View.GONE);
         } else {
-            getBinding().title.setText(mTitle);
-            getBinding().title.setTextSize(titleSize);
-            getBinding().title.setVisibility(View.VISIBLE);
-            getBinding().title.setTextColorId(mTitleColor);
+            binding.title.setText(mTitle);
+            binding.title.setTextSize(titleSize);
+            binding.title.setVisibility(View.VISIBLE);
+            binding.title.setTextColorId(mTitleColor);
         }
         if (!TextUtils.isEmpty(mMessage)) {
-            getBinding().content.setText(mMessage);
-            getBinding().content.post(() -> {
-                if (getBinding().content.getLineCount() > 1) {
-                    getBinding().content.setGravity(Gravity.LEFT);
+            binding.content.setText(mMessage);
+            binding.content.post(() -> {
+                if (binding.content.getLineCount() > 1) {
+                    binding.content.setGravity(Gravity.LEFT);
                 } else {
-                    getBinding().content.setGravity(Gravity.CENTER);
+                    binding.content.setGravity(Gravity.CENTER);
                 }
             });
-            getBinding().content.setTextSize(mMsgTextSize);
-            getBinding().content.setTextColorId(R.color.text_2level);
+            binding.content.setTextSize(mMsgTextSize);
+            binding.content.setTextColorId(R.color.text_2level);
             if (movementMethod != null) {
-                getBinding().content.setMovementMethod(movementMethod);
+                binding.content.setMovementMethod(movementMethod);
             } else {
-                getBinding().content.setMovementMethod(ScrollingMovementMethod.getInstance());
+                binding.content.setMovementMethod(ScrollingMovementMethod.getInstance());
             }
         }
         if (isShowDivider) {
-            getBinding().divider.setVisibility(View.VISIBLE);
+            binding.divider.setVisibility(View.VISIBLE);
         } else {
-            getBinding().divider.setVisibility(View.GONE);
+            binding.divider.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(mRightText)) {
-            getBinding().rightButton.setText(mRightText);
-            getBinding().rightButton.setVisibility(View.VISIBLE);
+            binding.rightButton.setText(mRightText);
+            binding.rightButton.setVisibility(View.VISIBLE);
             if (mRightTextColor != 0) {
-                getBinding().rightButton.setTextColor(getColor(mRightTextColor));
+                binding.rightButton.setTextColor(getColor(mRightTextColor));
             }
-            getBinding().rightButton.setOnClickListener(v -> {
+            binding.rightButton.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnRightListener) {
                     mOnRightListener.onCallback();
                 }
             });
         } else {
-            getBinding().rightButton.setVisibility(View.GONE);
+            binding.rightButton.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(mLeftText)) {
-            getBinding().leftButton.setText(mLeftText);
-            getBinding().leftButton.setVisibility(View.VISIBLE);
+            binding.leftButton.setText(mLeftText);
+            binding.leftButton.setVisibility(View.VISIBLE);
             if (mLeftTextColor != 0) {
-                getBinding().leftButton.setTextColor(getColor(mLeftTextColor));
+                binding.leftButton.setTextColor(getColor(mLeftTextColor));
             }
-            getBinding().leftButton.setOnClickListener(v -> {
+            binding.leftButton.setOnClickListener(v -> {
                 cancel();
                 if (null != mOnLeftListener) {
                     mOnLeftListener.onCallback();
                 }
             });
         } else {
-            getBinding().leftButton.setVisibility(View.GONE);
+            binding.leftButton.setVisibility(View.GONE);
         }
     }
 

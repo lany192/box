@@ -32,28 +32,28 @@ public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
         UpdateConfig configuration = UpdateManager.getInstance().getConfiguration();
         configuration.setOnDownloadListener(this);
         forcedUpgrade = configuration.isForcedUpgrade();
-        getBinding().progressBar.setVisibility(forcedUpgrade ? View.VISIBLE : View.GONE);
-        getBinding().update.setTag(0);
-        getBinding().update.setOnClickListener(this);
-        getBinding().cancel.setOnClickListener(this);
+        binding.progressBar.setVisibility(forcedUpgrade ? View.VISIBLE : View.GONE);
+        binding.update.setTag(0);
+        binding.update.setOnClickListener(this);
+        binding.cancel.setOnClickListener(this);
 
         //强制升级
         if (forcedUpgrade) {
-            getBinding().cancel.setVisibility(View.GONE);
+            binding.cancel.setVisibility(View.GONE);
             setCanceledOnTouchOutside(false);
             setCancelable(false);
         }
         //设置界面数据
         if (!TextUtils.isEmpty(UpdateManager.getInstance().getApkVersionName())) {
             String newVersion = getString(R.string.dialog_new);
-            getBinding().title.setText(String.format(newVersion, UpdateManager.getInstance().getApkVersionName()));
+            binding.title.setText(String.format(newVersion, UpdateManager.getInstance().getApkVersionName()));
         }
         if (!TextUtils.isEmpty(UpdateManager.getInstance().getApkSize())) {
             String newVersionSize = getString(R.string.dialog_new_size);
-            getBinding().size.setText(String.format(newVersionSize, UpdateManager.getInstance().getApkSize()));
-            getBinding().size.setVisibility(View.VISIBLE);
+            binding.size.setText(String.format(newVersionSize, UpdateManager.getInstance().getApkSize()));
+            binding.size.setVisibility(View.VISIBLE);
         }
-        getBinding().description.setText(UpdateManager.getInstance().getApkDescription());
+        binding.description.setText(UpdateManager.getInstance().getApkDescription());
     }
 
     @Override
@@ -64,13 +64,13 @@ public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
                 dismiss();
             }
         } else if (id == R.id.update) {
-            if ((int) getBinding().update.getTag() == install) {
+            if ((int) binding.update.getTag() == install) {
                 installApk();
                 return;
             }
             if (forcedUpgrade) {
-                getBinding().update.setEnabled(false);
-                getBinding().update.setText(R.string.background_downloading);
+                binding.update.setEnabled(false);
+                binding.update.setText(R.string.background_downloading);
             } else {
                 dismiss();
             }
@@ -92,11 +92,11 @@ public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
 
     @Override
     public void downloading(int max, int progress) {
-        if (max != -1 && getBinding().progressBar.getVisibility() == View.VISIBLE) {
+        if (max != -1 && binding.progressBar.getVisibility() == View.VISIBLE) {
             int curr = (int) (progress / (double) max * 100.0);
-            getBinding().progressBar.setProgress(curr);
+            binding.progressBar.setProgress(curr);
         } else {
-            getBinding().progressBar.setVisibility(View.GONE);
+            binding.progressBar.setVisibility(View.GONE);
         }
     }
 
@@ -104,9 +104,9 @@ public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
     public void done(File apk) {
         this.apk = apk;
         if (forcedUpgrade) {
-            getBinding().update.setTag(install);
-            getBinding().update.setEnabled(true);
-            getBinding().update.setText(R.string.click_hint);
+            binding.update.setTag(install);
+            binding.update.setEnabled(true);
+            binding.update.setText(R.string.click_hint);
         }
     }
 
