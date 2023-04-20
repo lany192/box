@@ -12,10 +12,10 @@ import androidx.fragment.app.FragmentActivity;
 import com.github.lany192.interfaces.SimpleActivityLifecycleCallbacks;
 import com.github.lany192.log.XLog;
 
-import java.lang.ref.SoftReference;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * Dialog弹窗队列管理
@@ -31,10 +31,8 @@ public class DialogHelper {
      * 当前正在显示对话框
      */
     private DialogFragment currentDialog;
-    /**
-     * 当前Activity
-     */
-    private SoftReference<FragmentActivity> currentActivity;
+
+    private Stack<Activity> activityStack = new Stack<>();
 
     /**
      * 正在显示的单例对话框id
@@ -93,51 +91,70 @@ public class DialogHelper {
             return;
         }
         if (!queue.isEmpty()) {
-            currentDialog = queue.poll();
-            currentDialog.addOnDismissListener(dialog -> {
-                if (currentDialog != null) {
-                    currentDialog.cancel();
-                    currentDialog = null;
-                }
-                log.i("显示下一个对话框" + queue.size());
-                show();
-            });
-            currentDialog.show(currentActivity.get());
+            FragmentActivity activity = getTopActivity();
+            if (activity != null) {
+                currentDialog = queue.poll();
+                currentDialog.addOnDismissListener(dialog -> {
+                    if (currentDialog != null) {
+                        currentDialog.cancel();
+                        currentDialog = null;
+                    }
+                    log.i("显示下一个对话框" + queue.size());
+                    show();
+                });
+                currentDialog.show(activity);
+            } else {
+                log.e("没有context，不能调起对话框");
+            }
         }
     }
 
     public void show(@NonNull DialogFragment dialog) {
-        dialog.addOnDismissListener(d -> ids.remove(dialog.getDialogId()));
-        if (dialog.isSingle()) {
-            if (ids.contains(dialog.getDialogId())) {
-                log.i("单例对话框，已经显示了，忽略id:" + dialog.getDialogId());
+        FragmentActivity activity = getTopActivity();
+        if (activity != null) {
+            dialog.addOnDismissListener(d -> ids.remove(dialog.getDialogId()));
+            if (dialog.isSingle()) {
+                if (ids.contains(dialog.getDialogId())) {
+                    log.i("单例对话框，已经显示了，忽略id:" + dialog.getDialogId());
+                } else {
+                    ids.add(dialog.getDialogId());
+                    dialog.show(activity);
+                }
             } else {
-                ids.add(dialog.getDialogId());
-                dialog.show(currentActivity.get());
+                dialog.show(activity);
             }
         } else {
-            dialog.show(currentActivity.get());
+            log.e("没有context，不能调起对话框");
         }
+    }
+
+    private FragmentActivity getTopActivity() {
+        Activity activity = activityStack.lastElement();
+        if (activity != null) {
+            if (activity instanceof FragmentActivity) {
+                if (!activity.isFinishing() && !activity.isDestroyed()) {
+                    return (FragmentActivity) activity;
+                } else {
+                    activityStack.remove(activity);
+                }
+            }
+        }
+        if (activityStack.size() > 0) {
+            return getTopActivity();
+        }
+        return null;
     }
 
     public void init(Application application) {
         application.registerActivityLifecycleCallbacks(new SimpleActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-                if (activity instanceof FragmentActivity) {
-                    currentActivity = new SoftReference<>((FragmentActivity) activity);
-                }
-            }
-
-            @Override
-            public void onActivityResumed(@NonNull Activity activity) {
-                if (activity instanceof FragmentActivity) {
-                    currentActivity = new SoftReference<>((FragmentActivity) activity);
-                }
+                activityStack.add(activity);
             }
 
             @Override
             public void onActivityDestroyed(@NonNull Activity activity) {
+                activityStack.remove(activity);
                 if (currentDialog != null && currentDialog.requireActivity() == activity) {
                     log.i("宿主销毁，主动注销对话框");
                     currentDialog.cancel();
