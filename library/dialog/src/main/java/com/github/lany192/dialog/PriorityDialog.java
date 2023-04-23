@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -31,6 +32,7 @@ import com.github.lany192.log.XLog;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.DensityUtils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -38,8 +40,7 @@ import java.util.Objects;
 /**
  * 对话框基类
  */
-public abstract class DialogFragment extends androidx.fragment.app.DialogFragment
-        implements Comparable<DialogFragment> {
+public abstract class PriorityDialog extends DialogFragment implements Comparable<PriorityDialog> {
     protected final String TAG = this.getClass().getName();
     protected XLog log = XLog.tag(TAG);
 
@@ -66,7 +67,7 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
     private long dialogId = this.getClass().hashCode();
 
     @Override
-    public int compareTo(@NonNull DialogFragment other) {
+    public int compareTo(@NonNull PriorityDialog other) {
         //比较优先级
         return other.getPriority() - getPriority();
     }
@@ -133,8 +134,21 @@ public abstract class DialogFragment extends androidx.fragment.app.DialogFragmen
         } else {
             flag = true;
             try {
-                super.show(manager, tag);
-            } catch (Exception e) {
+                //super.show(manager, tag);
+
+                Field dismissed = DialogFragment.class.getDeclaredField("mDismissed");
+                dismissed.setAccessible(true);
+                dismissed.set(this, false);
+
+                Field shown = DialogFragment.class.getDeclaredField("mShownByMe");
+                shown.setAccessible(true);
+                shown.set(this, true);
+
+                FragmentTransaction ft = manager.beginTransaction();
+                ft.add(this, tag);
+                ft.commitAllowingStateLoss();
+            } catch(Exception e) {
+                e.printStackTrace();
                 log.e("对话框显示异常：" + e.getMessage());
             }
             new Handler().post(() -> flag = false);

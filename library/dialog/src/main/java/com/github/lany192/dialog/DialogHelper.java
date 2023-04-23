@@ -26,13 +26,15 @@ public class DialogHelper {
     /**
      * 带优先级弹窗队列
      */
-    private final Queue<DialogFragment> queue = new PriorityQueue<>();
+    private final Queue<PriorityDialog> dialogQueue = new PriorityQueue<>();
     /**
      * 当前正在显示对话框
      */
-    private DialogFragment currentDialog;
-
-    private Stack<Activity> activityStack = new Stack<>();
+    private PriorityDialog currentDialog;
+    /**
+     * 堆栈
+     */
+    private final Stack<FragmentActivity> activityStack = new Stack<>();
 
     /**
      * 正在显示的单例对话框id
@@ -53,22 +55,26 @@ public class DialogHelper {
         return instance;
     }
 
-    public void push2show(@NonNull DialogFragment dialog) {
-        queue.offer(dialog);
-        show();
-        log.i("加入队列,并且显示" + queue.size());
+    public void push2show(@NonNull PriorityDialog dialog) {
+        if (dialog != null) {
+            dialogQueue.offer(dialog);
+            show();
+            log.i("加入队列,并且显示" + dialogQueue.size());
+        }
     }
 
-    public void push2queue(@NonNull DialogFragment dialog) {
-        queue.offer(dialog);
-        log.i("加入队列不展示,暂不显示" + queue.size());
+    public void push2queue(@NonNull PriorityDialog dialog) {
+        if (dialog != null) {
+            dialogQueue.offer(dialog);
+            log.i("加入队列不展示,暂不显示" + dialogQueue.size());
+        }
     }
 
     /**
      * 清空队列
      */
     public void clear() {
-        queue.clear();
+        dialogQueue.clear();
         if (currentDialog != null) {
             currentDialog.cancel();
             currentDialog = null;
@@ -90,16 +96,16 @@ public class DialogHelper {
             log.i("正在显示对话框");
             return;
         }
-        if (!queue.isEmpty()) {
+        if (!dialogQueue.isEmpty()) {
             FragmentActivity activity = getTopActivity();
             if (activity != null) {
-                currentDialog = queue.poll();
+                currentDialog = dialogQueue.poll();
                 currentDialog.addOnDismissListener(dialog -> {
                     if (currentDialog != null) {
                         currentDialog.cancel();
                         currentDialog = null;
                     }
-                    log.i("显示下一个对话框" + queue.size());
+                    log.i("显示下一个对话框" + dialogQueue.size());
                     show();
                 });
                 currentDialog.show(activity);
@@ -109,18 +115,14 @@ public class DialogHelper {
         }
     }
 
-    public void show(@NonNull DialogFragment dialog) {
+    public void show(@NonNull PriorityDialog dialog) {
         FragmentActivity activity = getTopActivity();
         if (activity != null) {
-            dialog.addOnDismissListener(d -> ids.remove(dialog.getDialogId()));
-            if (dialog.isSingle()) {
-                if (ids.contains(dialog.getDialogId())) {
-                    log.i("单例对话框，已经显示了，忽略id:" + dialog.getDialogId());
-                } else {
-                    ids.add(dialog.getDialogId());
-                    dialog.show(activity);
-                }
+            if (dialog.isSingle() && ids.contains(dialog.getDialogId())) {
+                log.i("单例对话框，已经显示了，忽略id:" + dialog.getDialogId());
             } else {
+                ids.add(dialog.getDialogId());
+                dialog.addOnDismissListener(d -> ids.remove(dialog.getDialogId()));
                 dialog.show(activity);
             }
         } else {
@@ -129,14 +131,12 @@ public class DialogHelper {
     }
 
     private FragmentActivity getTopActivity() {
-        Activity activity = activityStack.lastElement();
+        FragmentActivity activity = activityStack.lastElement();
         if (activity != null) {
-            if (activity instanceof FragmentActivity) {
-                if (!activity.isFinishing() && !activity.isDestroyed()) {
-                    return (FragmentActivity) activity;
-                } else {
-                    activityStack.remove(activity);
-                }
+            if (!activity.isFinishing() && !activity.isDestroyed()) {
+                return activity;
+            } else {
+                activityStack.remove(activity);
             }
         }
         if (activityStack.size() > 0) {
@@ -149,7 +149,9 @@ public class DialogHelper {
         application.registerActivityLifecycleCallbacks(new SimpleActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-                activityStack.add(activity);
+                if (activity instanceof FragmentActivity) {
+                    activityStack.add((FragmentActivity) activity);
+                }
             }
 
             @Override
