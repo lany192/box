@@ -23,7 +23,9 @@ open class BaseRepository {
             }
         }.flowOn(Dispatchers.IO)
             .onCompletion { exception ->
-                log.e("onCompletion：$exception")
+                exception?.let {
+                    log.e("onCompletion：$it")
+                }
             }
             .catch {
                 log.e("请求异常:${it.message}")
