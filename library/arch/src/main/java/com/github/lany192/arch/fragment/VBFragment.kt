@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.arch.R
 import com.github.lany192.arch.items.ViewState
@@ -25,14 +26,24 @@ abstract class VBFragment<VB : ViewBinding> : BaseFragment() {
 
     open val binding get() = _binding!!
 
+    private var init = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = getViewBinding(inflater, container)
         content = FixDragLayout(requireContext())
         content.addView(_binding!!.root)
-        init()
         return content
+    }
+
+    @CallSuper
+    override fun onResume() {
+        super.onResume()
+        if (!init) {
+            init = true
+            init()
+        }
     }
 
     override fun onDestroyView() {
@@ -43,6 +54,7 @@ abstract class VBFragment<VB : ViewBinding> : BaseFragment() {
     /**
      * 获取第几个泛型的class
      */
+    @Suppress("UNCHECKED_CAST")
     open fun <T> getClass(index: Int): Class<T> {
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
@@ -83,15 +95,19 @@ abstract class VBFragment<VB : ViewBinding> : BaseFragment() {
             ViewState.CONTENT -> {
                 content.addView(binding.root)
             }
+
             ViewState.ERROR -> {
                 content.addView(getErrorView())
             }
+
             ViewState.LOADING -> {
                 content.addView(getLoadingView())
             }
+
             ViewState.NETWORK -> {
                 content.addView(getNetworkView())
             }
+
             ViewState.EMPTY -> {
                 content.addView(getEmptyView())
             }
