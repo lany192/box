@@ -7,8 +7,8 @@
     android:orientation="vertical">
 
     <ProgressBar
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_gravity="center"
         android:indeterminate="true"
         android:indeterminateDrawable="@drawable/ico_loading" />
@@ -19,5 +19,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/loading"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 </LinearLayout>

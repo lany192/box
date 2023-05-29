@@ -12,7 +12,7 @@ import com.github.lany192.arch.items.ViewState
 import com.github.lany192.binding.getBinding
 import com.github.lany192.layout.FixDragLayout
 import com.github.lany192.view.DefaultView
-import com.github.lany192.view.LoadingView
+import com.github.lany192.view.databinding.ViewLoadingBinding
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -127,7 +127,7 @@ abstract class VBFragment<VB : ViewBinding> : BaseFragment() {
     }
 
     open fun getLoadingView(): View {
-        return LoadingView(this)
+        return ViewLoadingBinding.inflate(layoutInflater).root
     }
 
     open fun getNetworkView(): View {

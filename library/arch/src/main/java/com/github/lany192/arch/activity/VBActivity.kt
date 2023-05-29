@@ -11,7 +11,7 @@ import com.github.lany192.arch.R
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.binding.getBinding
 import com.github.lany192.view.DefaultView
-import com.github.lany192.view.LoadingView
+import com.github.lany192.view.databinding.ViewLoadingBinding
 import com.gyf.immersionbar.ImmersionBar
 import java.lang.reflect.ParameterizedType
 
@@ -120,7 +120,7 @@ abstract class VBActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActivity()
     }
 
     open fun getLoadingView(): View {
-        return LoadingView(this)
+        return ViewLoadingBinding.inflate(layoutInflater).root
     }
 
     open fun getNetworkView(): View {
@@ -159,15 +159,19 @@ abstract class VBActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActivity()
             ViewState.CONTENT -> {
                 content.addView(binding.root)
             }
+
             ViewState.ERROR -> {
                 content.addView(getErrorView())
             }
+
             ViewState.LOADING -> {
                 content.addView(getLoadingView())
             }
+
             ViewState.NETWORK -> {
                 content.addView(getNetworkView())
             }
+
             ViewState.EMPTY -> {
                 content.addView(getEmptyView())
             }
