@@ -5,8 +5,17 @@ import android.view.ViewGroup
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
+import com.github.lany192.arch.BuildConfig
 import com.github.lany192.arch.adapter.BindingHolder
+import com.github.lany192.arch.entity.ApiResult
 import com.github.lany192.binding.getBinding
+import com.github.lany192.utils.NetUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
 import java.lang.reflect.ParameterizedType
 
 abstract class ItemBinder<T, VB : ViewBinding> : BaseBinder<T, BindingHolder<VB>>() {
@@ -38,5 +47,32 @@ abstract class ItemBinder<T, VB : ViewBinding> : BaseBinder<T, BindingHolder<VB>
 
     fun getColor(@ColorRes colorResId: Int): Int {
         return ContextCompat.getColor(context, colorResId)
+    }
+
+    /**
+     * 执行接口请求，Flow方式
+     */
+    fun <T> request(block: suspend () -> ApiResult<T>): Flow<ApiResult<T>> {
+        return flow {
+            if (NetUtils.isAvailable()) {
+                emit(block())
+            } else {
+                log.e("请求异常:无网络")
+                emit(ApiResult.network())
+            }
+        }.flowOn(Dispatchers.IO)
+            .onCompletion { exception ->
+                exception?.let {
+                    log.e("onCompletion：$it")
+                }
+            }
+            .catch {
+                log.e("请求异常:${it.message}")
+                if (BuildConfig.DEBUG) {
+                    emit(ApiResult.network(it.message))
+                } else {
+                    emit(ApiResult.network())
+                }
+            }
     }
 }
