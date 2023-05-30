@@ -30,11 +30,11 @@ abstract class ItemBinder<T, VB : ViewBinding> : BaseBinder<T, BindingHolder<VB>
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
 
-    override fun convert(holder: BindingHolder<VB>, data: T) {
-        convert(holder.binding, data, holder.bindingAdapterPosition)
+    override fun convert(holder: BindingHolder<VB>, item: T) {
+        convert(holder.binding, item, holder.bindingAdapterPosition)
     }
 
-    abstract fun convert(binding: VB, data: T, position: Int)
+    abstract fun convert(binding: VB, item: T, position: Int)
 
     fun getColor(@ColorRes colorResId: Int): Int {
         return ContextCompat.getColor(context, colorResId)
