@@ -1,5 +1,6 @@
 ext {
-    module = true
+    //模块调试
+    module = false
     // 安装包
     apk = [
             appId            : 'com.lany192.box',
