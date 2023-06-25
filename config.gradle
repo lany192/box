@@ -1,7 +1,9 @@
 ext {
+    //模块调试
+    module = false
     // 安装包
     apk = [
-            appId            : 'com.lany192.box.sample',
+            appId            : 'com.lany192.box',
             groupId          : 'com.github.lany192.box',
             versionCode      : 1,
             versionName      : '1.0.0',
@@ -138,6 +140,6 @@ ext {
             //https://github.com/NightWhistler/HtmlSpanner
             'HtmlSpanner'                     : 'com.github.NightWhistler:HtmlSpanner:0.4',
             //重启工具库 https://github.com/JakeWharton/ProcessPhoenix
-            'process-phoenix'                 : 'com.jakewharton:process-phoenix:2.1.2',
+            'process-phoenix': 'com.jakewharton:process-phoenix:2.1.2'
     ]
 }
