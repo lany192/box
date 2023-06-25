@@ -58,6 +58,16 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    packagingOptions {
+        resources {
+            excludes += ['**/*.properties', '**/*.txt']
+            excludes += ['META-INF/*.info', 'META-INF/*.version']
+            excludes += ['META-INF/*.md', 'META-INF/*.kotlin_module']
+            excludes += ['META-INF/maven/com.squareup.okio/okio/pom.xml', 'META-INF/ASL2.0']
+            excludes += ['META-INF/MANIFEST.MF', 'META-INF/NOTICE', 'META-INF/LICENSE']
+            excludes += ['META-INF/INDEX.LIST', 'META-INF/DEPENDENCIES', 'META-INF/LGPL2.1']
+        }
+    }
 }
 
 dependencies {
