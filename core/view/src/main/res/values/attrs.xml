@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SpanTextView">
+        <attr name="selected_text" format="string|reference" />
+        <attr name="selected_text_color" format="color|reference" />
+        <attr name="selected_under_line" format="boolean|reference" />
+        <attr name="selected_clickable" format="boolean|reference" />
+        <attr name="selected_strike_through" format="boolean|reference" />
+        <attr name="selected_background_color" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ApproveListLayout">
+        <attr name="pic_count" format="integer" />
+        <attr name="pic_size" format="dimension" />
+        <attr name="pic_offset" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="ScrollLayout">
+        <!--背景图片-->
+        <attr name="src" format="reference" />
+        <!--遮罩层颜色，建议带透明度-->
+        <attr name="maskLayerColor" format="color" />
+        <!--是否滚动-->
+        <attr name="isScroll" format="boolean" />
+        <!--滚动速度,建议取值区间 [1,50] -->
+        <attr name="speed" format="integer">
+            <enum name="slow" value="1" />
+            <enum name="ordinary" value="3" />
+            <enum name="fast" value="5" />
+        </attr>
+        <!-- 滚动方向,默认是竖直方向滚动-->
+        <attr name="scrollOrientation" format="integer">
+            <enum name="toTop" value="0" />
+            <enum name="toBottom" value="1" />
+            <enum name="toLeft" value="2" />
+            <enum name="toRight" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>

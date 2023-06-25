@@ -1,0 +1,85 @@
+if (apk.module) {
+    plugins.apply('com.android.library')
+} else {
+    plugins.apply('com.android.application')
+}
+plugins.apply('kotlin-android')
+plugins.apply('kotlin-kapt')
+plugins.apply('kotlin-parcelize')
+plugins.apply('dagger.hilt.android.plugin')
+plugins.apply('com.alibaba.arouter')
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    namespace apk.appId + '.' + project.getName()
+    compileSdk apk.compileSdkVersion
+
+    defaultConfig {
+        minSdk apk.minSdkVersion
+        targetSdk apk.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        if (!apk.module) {
+            applicationId namespace
+            versionCode apk.versionCode
+            versionName apk.versionName
+        }
+    }
+    sourceSets {
+        main {
+            if (apk.module) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    androidTestDependencies.each { k, v -> androidTestImplementation v }
+    processorDependencies.each { k, v -> kapt v }
+    testImplementationDependencies.each { k, v -> testImplementation v }
+    implementationDependencies.each { k, v -> implementation v }
+
+    implementation 'com.github.lany192.box:arch:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:view:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:core:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:dialog:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:update:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:time:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:crop:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:matisse:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:html:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:scanner:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:umeng:master-SNAPSHOT'
+    implementation 'com.github.lany192.box:log:master-SNAPSHOT'
+}

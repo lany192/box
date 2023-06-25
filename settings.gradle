@@ -11,6 +11,12 @@ dependencyResolutionManagement {
 rootProject.name = "box"
 include ':sample'
 
+include ':core:common'
+include ':core:database'
+include ':core:network'
+include ':core:model'
+include ':core:view'
+
 include ':library:arch'
 include ':library:view'
 include ':library:core'
@@ -26,3 +32,7 @@ include ':library:scanner'
 include ':library:cropper'
 include ':library:umeng'
 include ':library:log'
+
+include ':feature:video'
+include ':feature:hello'
+include ':feature:login'

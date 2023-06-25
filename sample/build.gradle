@@ -43,7 +43,7 @@ android {
         config {
             keyAlias 'box'
             keyPassword 'box2022'
-            storeFile file('box.key')
+            storeFile file('../box.key')
             storePassword 'box2022'
             enableV1Signing true
             enableV2Signing true
@@ -53,7 +53,7 @@ android {
     }
 
     defaultConfig {
-        applicationId apk.appId
+        applicationId apk.appId + '.' + project.getName()
         minSdk apk.minSdkVersion
         targetSdk apk.targetSdkVersion
         versionCode apk.versionCode

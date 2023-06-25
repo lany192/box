@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/index"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/white_bg"
+            android:elevation="16dp"
+            android:gravity="center"
+            android:text="首页"
+            android:textColor="@color/selector_tab_color"
+            android:textSize="16sp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/location"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/white_bg"
+            android:elevation="16dp"
+            android:gravity="center"
+            android:text="同城"
+            android:textColor="@color/selector_tab_color"
+            android:textSize="16sp" />
+
+        <FrameLayout
+            android:id="@+id/publish"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:background="@drawable/push_bg"
+            android:elevation="16dp">
+
+            <View
+                android:layout_width="63dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@color/white_bg" />
+
+            <ImageView
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/push_icon_bg"
+                android:padding="8dp"
+                android:src="@drawable/ic_add_bold"
+                app:backgroundTint="@color/text_1level"
+                app:borderWidth="0dp"
+                app:elevation="13dp" />
+        </FrameLayout>
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/message"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/white_bg"
+            android:elevation="16dp"
+            android:gravity="center"
+            android:text="消息"
+            android:textColor="@color/selector_tab_color"
+            android:textSize="16sp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/my"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/white_bg"
+            android:elevation="16dp"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@color/selector_tab_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>
