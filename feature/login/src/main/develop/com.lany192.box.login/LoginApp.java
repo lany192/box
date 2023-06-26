@@ -1,4 +1,4 @@
-package com.lany192.box.hello;
+package com.lany192.box.login;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -9,7 +9,7 @@ import com.jakewharton.processphoenix.ProcessPhoenix;
 import dagger.hilt.android.HiltAndroidApp;
 
 @HiltAndroidApp
-public class HelloApp extends BoxApplication {
+public class LoginApp extends BoxApplication {
 
     @Override
     public void onCreate() {

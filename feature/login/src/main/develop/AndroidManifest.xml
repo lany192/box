@@ -2,12 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name="com.github.lany192.arch.BoxApplication"
-        android:allowBackup="true"
+        android:name=".LoginApp"
         android:icon="@mipmap/ic_launcher"
         android:label="Login测试"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
