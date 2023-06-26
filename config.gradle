@@ -1,6 +1,6 @@
 ext {
     //模块模式：true表示当前是个library，false则表示是个application
-    isModuleMode = false
+    isModuleMode = true
     // 安装包
     apk = [
             appId            : 'com.lany192.box',

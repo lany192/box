@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".HelloApp"
         android:icon="@mipmap/ic_launcher"
         android:label="Hello测试"
         android:roundIcon="@mipmap/ic_launcher_round"
