@@ -1,4 +1,4 @@
-if (apk.singleMode) {
+if (isModule.toBoolean()) {
     plugins.apply('com.android.application')
 } else {
     plugins.apply('com.android.library')
@@ -26,7 +26,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        if (apk.singleMode) {
+        if (isModule.toBoolean()) {
             applicationId apk.appId + '.' + project.getName()
             versionCode apk.versionCode
             versionName apk.versionName
@@ -35,7 +35,7 @@ android {
 
     sourceSets {
         main {
-            if (apk.singleMode) {
+            if (isModule.toBoolean()) {
                 java.srcDirs = ['src/main/java', 'src/main/develop']
                 manifest.srcFile 'src/main/develop/AndroidManifest.xml'
             } else {
