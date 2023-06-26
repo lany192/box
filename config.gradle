@@ -1,6 +1,6 @@
 ext {
     //模块模式：false表示当前是个library，true则表示是个application
-    singleMode = false
+    singleMode = true
     // 安装包
     apk = [
             appId            : 'com.lany192.box',
@@ -19,7 +19,7 @@ ext {
             //阿里路由 https://github.com/alibaba/ARouter
             'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
             //注入依赖 https://dagger.dev/hilt/
-            'hilt'      : 'com.google.dagger:hilt-android-compiler:2.45'
+            'hilt'      : 'com.google.dagger:hilt-android-compiler:2.46.1'
     ]
     androidTestDependencies = [
             'junit'   : 'androidx.test.ext:junit:1.1.3',
@@ -60,7 +60,7 @@ ext {
             'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4',
             'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4',
             //注入依赖 https://dagger.dev/hilt/
-            'hilt'                            : 'com.google.dagger:hilt-android:2.45',
+            'hilt'                            : 'com.google.dagger:hilt-android:2.46.1',
             //Toast工具 https://github.com/getActivity/ToastUtils
             'toast'                           : 'com.github.getActivity:ToastUtils:10.5',
             //适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
