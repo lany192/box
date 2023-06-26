@@ -27,7 +27,7 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         if (apk.singleMode) {
-            applicationId namespace
+            applicationId apk.appId + '.' + project.getName()
             versionCode apk.versionCode
             versionName apk.versionName
         }
