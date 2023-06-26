@@ -1,7 +1,7 @@
-if (apk.moduleMode) {
-    plugins.apply('com.android.library')
-} else {
+if (apk.singleMode) {
     plugins.apply('com.android.application')
+} else {
+    plugins.apply('com.android.library')
 }
 plugins.apply('kotlin-android')
 plugins.apply('kotlin-kapt')
@@ -26,7 +26,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        if (!apk.moduleMode) {
+        if (apk.singleMode) {
             applicationId namespace
             versionCode apk.versionCode
             versionName apk.versionName
@@ -35,11 +35,11 @@ android {
 
     sourceSets {
         main {
-            if (apk.moduleMode) {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            } else {
+            if (apk.singleMode) {
                 java.srcDirs = ['src/main/java', 'src/main/develop']
                 manifest.srcFile 'src/main/develop/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
             }
         }
     }
