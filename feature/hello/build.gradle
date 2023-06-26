@@ -17,9 +17,6 @@ kapt {
 
 android {
     namespace apk.appId + '.' + project.getName()
-
-    resourcePrefix project.getName() + '_'
-
     compileSdk apk.compileSdkVersion
 
     defaultConfig {

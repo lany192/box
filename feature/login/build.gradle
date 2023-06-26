@@ -17,9 +17,6 @@ kapt {
 
 android {
     namespace apk.appId + '.' + project.getName()
-
-    resourcePrefix project.getName() + '_'
-
     compileSdk apk.compileSdkVersion
 
     defaultConfig {
@@ -35,12 +32,14 @@ android {
             versionName apk.versionName
         }
     }
+
     sourceSets {
         main {
             if (apk.moduleMode) {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             } else {
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                java.srcDirs = ['src/main/java', 'src/main/develop']
+                manifest.srcFile 'src/main/develop/AndroidManifest.xml'
             }
         }
     }
