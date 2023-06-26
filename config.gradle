@@ -1,6 +1,6 @@
 ext {
-    //模块调试
-    module = false
+    //模块模式：true表示当前是个library，false则表示是个application
+    isModuleMode = false
     // 安装包
     apk = [
             appId            : 'com.lany192.box',
@@ -9,9 +9,7 @@ ext {
             versionName      : '1.0.0',
             minSdkVersion    : 21,
             compileSdkVersion: 33,
-            targetSdkVersion : 33,
-            //脱糖库版本
-            desugar          : '1.1.5'
+            targetSdkVersion : 33
     ]
     processorDependencies = [
             'glide'     : 'com.github.bumptech.glide:compiler:4.15.1',

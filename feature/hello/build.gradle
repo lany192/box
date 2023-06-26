@@ -1,4 +1,4 @@
-if (apk.module) {
+if (apk.moduleMode) {
     plugins.apply('com.android.library')
 } else {
     plugins.apply('com.android.application')
@@ -29,18 +29,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        if (!apk.module) {
+        if (!apk.moduleMode) {
             applicationId namespace
             versionCode apk.versionCode
             versionName apk.versionName
         }
     }
+
     sourceSets {
         main {
-            if (apk.module) {
+            if (apk.moduleMode) {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             } else {
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                java.srcDirs = ['src/main/java', 'src/main/develop']
+                manifest.srcFile 'src/main/develop/AndroidManifest.xml'
             }
         }
     }
