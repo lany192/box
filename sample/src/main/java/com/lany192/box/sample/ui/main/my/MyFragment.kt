@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.BirthdayDialog
@@ -13,6 +14,8 @@ import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
 import com.github.lany192.utils.DensityUtils
 import com.hjq.toast.ToastUtils
+import com.lany192.box.router.provider.HelloProvider
+import com.lany192.box.router.provider.LoginProvider
 import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.R
 import com.lany192.box.sample.data.bean.UserInfo
@@ -81,6 +84,12 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
                 }
         }
         binding.video.setOnClickListener { SampleRouter.startVideo() }
+        binding.test1.setOnClickListener {
+            ARouter.getInstance().navigation(HelloProvider::class.java).startHello()
+        }
+        binding.test2.setOnClickListener {
+            ARouter.getInstance().navigation(LoginProvider::class.java).startLogin()
+        }
     }
 
     private fun showDialog2() {
