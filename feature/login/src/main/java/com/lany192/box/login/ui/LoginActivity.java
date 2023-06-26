@@ -4,8 +4,13 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lany192.box.login.R;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+@Route(path = "/login/main")
 public class LoginActivity extends AppCompatActivity {
 
     @Override
