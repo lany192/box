@@ -11,8 +11,8 @@ import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.log.LogUtils
 import com.hjq.toast.ToastUtils
+import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.sample.R
-import com.lany192.box.sample.data.bean.UserInfo
 import com.lany192.box.sample.databinding.ActivityMainBinding
 import com.lany192.box.sample.ui.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint

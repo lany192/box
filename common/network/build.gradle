@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+
+android {
+    namespace apk.appId + '.' + project.getName()
+    compileSdk apk.compileSdkVersion
+    defaultConfig {
+        minSdk apk.minSdkVersion
+        targetSdk apk.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    androidTestDependencies.each { k, v -> androidTestImplementation v }
+    testImplementationDependencies.each { k, v -> testImplementation v }
+    implementationDependencies.each { k, v -> implementation v }
+
+    implementation project(path: ':library:arch')
+    implementation project(path: ':library:view')
+    implementation project(path: ':library:core')
+    implementation project(path: ':library:dialog')
+    implementation project(path: ':library:update')
+    implementation project(path: ':library:time')
+    implementation project(path: ':library:crop')
+    implementation project(path: ':library:matisse')
+    implementation project(path: ':library:permission')
+    implementation project(path: ':library:tablayout')
+    implementation project(path: ':library:html')
+    implementation project(path: ':library:scanner')
+    implementation project(path: ':library:cropper')
+    implementation project(path: ':library:umeng')
+    implementation project(path: ':library:log')
+}

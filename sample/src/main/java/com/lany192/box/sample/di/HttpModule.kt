@@ -2,9 +2,9 @@ package com.lany192.box.sample.di
 
 import com.github.lany192.arch.network.HttpLogInterceptor
 import com.github.lany192.arch.network.ParamsInterceptor
+import com.lany192.box.network.data.api.ApiService
 import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.TokenInterceptor
-import com.lany192.box.sample.data.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

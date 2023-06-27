@@ -1,7 +1,7 @@
 package com.lany192.box.sample.di
 
-import com.lany192.box.sample.data.api.ApiService
-import com.lany192.box.sample.repository.BoxRepository
+import com.lany192.box.network.data.api.ApiService
+import com.lany192.box.network.repository.BoxRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

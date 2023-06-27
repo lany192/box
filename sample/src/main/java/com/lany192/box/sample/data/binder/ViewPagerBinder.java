@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.SampleRouter;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.tab.TabAdapter;
 import com.github.lany192.arch.tab.TabItem;
-import com.lany192.box.sample.data.bean.ViewPagerItem;
+import com.lany192.box.network.data.bean.ViewPagerItem;
 import com.lany192.box.sample.databinding.ItemViewPagerBinding;
 
 import java.util.ArrayList;

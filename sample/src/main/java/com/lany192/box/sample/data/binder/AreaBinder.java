@@ -9,8 +9,8 @@ import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ImageUtils;
 import com.hjq.toast.ToastUtils;
+import com.lany192.box.network.data.bean.Area;
 import com.lany192.box.sample.MockUtils;
-import com.lany192.box.sample.data.bean.Area;
 import com.lany192.box.sample.databinding.ItemAreaBinding;
 
 public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {

@@ -3,7 +3,7 @@ package com.lany192.box.sample.ui.user;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.lany192.box.sample.data.bean.UserInfo;
+import com.lany192.box.network.data.bean.UserInfo;
 
 import javax.inject.Inject;
 

@@ -1,13 +1,13 @@
-if (apk.module) {
-    plugins.apply('com.android.library')
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.application'
 } else {
-    plugins.apply('com.android.application')
+    apply plugin: 'com.android.library'
 }
-plugins.apply('kotlin-android')
-plugins.apply('kotlin-kapt')
-plugins.apply('kotlin-parcelize')
-plugins.apply('dagger.hilt.android.plugin')
-plugins.apply('com.alibaba.arouter')
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.alibaba.arouter'
 
 kapt {
     arguments {
@@ -26,18 +26,26 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        if (!apk.module) {
+        if (isModule.toBoolean()) {
             applicationId namespace
             versionCode apk.versionCode
             versionName apk.versionName
+            multiDexEnabled true
+            ndk {
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
         }
     }
+
     sourceSets {
         main {
-            if (apk.module) {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
+            if (isModule.toBoolean()) {
+                java.srcDirs = ['src/main/java', 'src/develop/java']
+                res.srcDirs = ['/src/main/res', '/src/develop/res']
+                manifest.srcFile 'src/develop/AndroidManifest.xml'
             } else {
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                java.srcDirs = ['src/main/java']
+                manifest.srcFile 'src/main/AndroidManifest.xml'
             }
         }
     }
@@ -77,21 +85,21 @@ dependencies {
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
 
-    implementation 'com.github.lany192.box:arch:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:view:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:core:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:dialog:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:update:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:time:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:crop:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:matisse:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:html:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:scanner:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:umeng:master-SNAPSHOT'
-    implementation 'com.github.lany192.box:log:master-SNAPSHOT'
-
     implementation project(path: ':common:router')
+
+    implementation project(path: ':library:arch')
+    implementation project(path: ':library:view')
+    implementation project(path: ':library:core')
+    implementation project(path: ':library:dialog')
+    implementation project(path: ':library:update')
+    implementation project(path: ':library:time')
+    implementation project(path: ':library:crop')
+    implementation project(path: ':library:matisse')
+    implementation project(path: ':library:permission')
+    implementation project(path: ':library:tablayout')
+    implementation project(path: ':library:html')
+    implementation project(path: ':library:scanner')
+    implementation project(path: ':library:cropper')
+    implementation project(path: ':library:umeng')
+    implementation project(path: ':library:log')
 }

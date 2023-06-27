@@ -4,13 +4,12 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.alibaba.android.arouter.SampleRouter;
 import com.github.lany192.arch.adapter.BindingHolder;
 import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.utils.DateUtils;
 import com.github.lany192.utils.ImageUtils;
+import com.lany192.box.network.data.bean.Article;
 import com.lany192.box.sample.MockUtils;
-import com.lany192.box.sample.data.bean.Article;
 import com.lany192.box.sample.databinding.ItemArticleBinding;
 
 import java.util.Date;
@@ -24,7 +23,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
 
     @Override
     public void onClick(@NonNull BindingHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
-        SampleRouter.startBrowser(item.getTitle(), item.getLink());
+        //SampleRouter.startBrowser(item.getTitle(), item.getLink());
     }
 
     @Override
