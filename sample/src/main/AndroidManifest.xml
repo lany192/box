@@ -38,11 +38,6 @@
             android:label="设置"
             android:screenOrientation="nosensor" />
         <activity
-            android:name=".ui.browser.BrowserActivity"
-            android:exported="false"
-            android:label="浏览器"
-            android:screenOrientation="nosensor" />
-        <activity
             android:name=".ui.main.MainActivity"
             android:exported="false"
             android:label="主界面"
