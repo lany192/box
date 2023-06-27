@@ -2,16 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".LoginApp"
+        android:name=".BrowserApp"
         android:icon="@mipmap/ic_launcher"
-        android:label="Login测试"
+        android:label="网页测试"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.BrowserActivity"
             android:exported="true"
-            android:label="Login测试"
+            android:label="网页测试"
             android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

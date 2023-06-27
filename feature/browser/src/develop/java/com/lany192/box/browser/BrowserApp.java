@@ -1,4 +1,4 @@
-package com.lany192.box.login;
+package com.lany192.box.browser;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -10,7 +10,7 @@ import com.jakewharton.processphoenix.ProcessPhoenix;
 import dagger.hilt.android.HiltAndroidApp;
 
 @HiltAndroidApp
-public class LoginApp extends BoxApplication {
+public class BrowserApp extends BoxApplication {
 
     @Override
     public void onCreate() {
@@ -20,7 +20,7 @@ public class LoginApp extends BoxApplication {
         }
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         initARouter();
-        ToastUtils.show("开发模式：" + getString(R.string.login_test));
+        ToastUtils.show("开发模式");
     }
 
     @Override

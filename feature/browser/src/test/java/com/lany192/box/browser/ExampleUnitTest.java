@@ -1,4 +1,4 @@
-package com.lany192.box.login;
+package com.lany192.box.browser;
 
 import static org.junit.Assert.assertEquals;
 
