@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
+import com.hjq.toast.ToastUtils;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
 import dagger.hilt.android.HiltAndroidApp;
@@ -19,6 +20,7 @@ public class HelloApp extends BoxApplication {
         }
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         initARouter();
+        ToastUtils.show("开发模式");
     }
 
     @Override
