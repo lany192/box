@@ -3,7 +3,7 @@ package com.lany192.box.sample.ui.main.index.city
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.items.ItemsViewModel
 import com.hjq.toast.ToastUtils
-import com.lany192.box.sample.repository.BoxRepository
+import com.lany192.box.network.repository.BoxRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
