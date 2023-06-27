@@ -1,4 +1,4 @@
-package com.lany192.box.sample.router;
+package com.lany192.box.router.ui;
 
 
 import android.net.Uri;
