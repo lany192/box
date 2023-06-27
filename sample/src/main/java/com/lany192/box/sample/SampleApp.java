@@ -7,8 +7,8 @@ import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.umeng.UmengConfig;
 import com.github.lany192.umeng.UmengUtils;
 import com.jakewharton.processphoenix.ProcessPhoenix;
+import com.lany192.box.router.lifecycle.ActivityLifecycle;
 import com.lany192.box.sample.lancet.LancetTest;
-import com.lany192.box.sample.lifecycle.ActivityLifecycle;
 
 import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;

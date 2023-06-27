@@ -1,4 +1,4 @@
-package com.lany192.box.sample.lifecycle;
+package com.lany192.box.router.lifecycle;
 
 import android.os.Bundle;
 
@@ -8,12 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.github.lany192.interfaces.SimpleFragmentLifecycleCallbacks;
 
 /**
  * Fragment 生命周期
  */
-public class FragmentLifecycle extends SimpleFragmentLifecycleCallbacks {
+public class FragmentLifecycle extends FragmentManager.FragmentLifecycleCallbacks {
 
     public FragmentLifecycle() {
         super();
