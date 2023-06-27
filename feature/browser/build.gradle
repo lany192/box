@@ -1,0 +1,105 @@
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.alibaba.arouter'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    namespace apk.appId + '.' + project.getName()
+    compileSdk apk.compileSdkVersion
+
+    defaultConfig {
+        minSdk apk.minSdkVersion
+        targetSdk apk.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        if (isModule.toBoolean()) {
+            applicationId namespace
+            versionCode apk.versionCode
+            versionName apk.versionName
+            multiDexEnabled true
+            ndk {
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            if (isModule.toBoolean()) {
+                java.srcDirs = ['src/main/java', 'src/develop/java']
+                res.srcDirs = ['/src/main/res', '/src/develop/res']
+                manifest.srcFile 'src/develop/AndroidManifest.xml'
+            } else {
+                java.srcDirs = ['src/main/java']
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    packagingOptions {
+        resources {
+            excludes += ['**/*.properties', '**/*.txt']
+            excludes += ['META-INF/*.info', 'META-INF/*.version']
+            excludes += ['META-INF/*.md', 'META-INF/*.kotlin_module']
+            excludes += ['META-INF/maven/com.squareup.okio/okio/pom.xml', 'META-INF/ASL2.0']
+            excludes += ['META-INF/MANIFEST.MF', 'META-INF/NOTICE', 'META-INF/LICENSE']
+            excludes += ['META-INF/INDEX.LIST', 'META-INF/DEPENDENCIES', 'META-INF/LGPL2.1']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    androidTestDependencies.each { k, v -> androidTestImplementation v }
+    processorDependencies.each { k, v -> kapt v }
+    testImplementationDependencies.each { k, v -> testImplementation v }
+    implementationDependencies.each { k, v -> implementation v }
+
+    implementation project(path: ':common:router')
+
+    implementation project(path: ':library:arch')
+    implementation project(path: ':library:view')
+    implementation project(path: ':library:core')
+    implementation project(path: ':library:dialog')
+    implementation project(path: ':library:update')
+    implementation project(path: ':library:time')
+    implementation project(path: ':library:crop')
+    implementation project(path: ':library:matisse')
+    implementation project(path: ':library:permission')
+    implementation project(path: ':library:tablayout')
+    implementation project(path: ':library:html')
+    implementation project(path: ':library:scanner')
+    implementation project(path: ':library:cropper')
+    implementation project(path: ':library:umeng')
+    implementation project(path: ':library:log')
+}

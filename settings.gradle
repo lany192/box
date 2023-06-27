@@ -27,7 +27,8 @@ include ':library:cropper'
 include ':library:umeng'
 include ':library:log'
 
-include ':feature:hello'
+include ':feature:browser'
 include ':feature:login'
+include ':feature:hello'
 
 include ':common:router'
