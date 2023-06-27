@@ -177,7 +177,7 @@ dependencies {
     implementation project(path: ':common:router')
 
     implementation project(path: ':feature:hello')
-//    implementation project(path: ':feature:login')
+    implementation project(path: ':feature:login')
 }
 //引入安装包生成配置
 apply from: '../package.gradle'

@@ -1,4 +1,4 @@
-package com.lany192.box.sample.ui.login
+package com.lany192.box.login.ui
 
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

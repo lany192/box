@@ -43,9 +43,15 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> binding.testView.hint(userInfo.name) }
         binding.downloadView.setOnClickListener { SampleRouter.startDownload() }
         binding.dialogView.setOnClickListener { showDialog() }
-        binding.loginView.setOnClickListener { SampleRouter.startLogin() }
+        binding.loginView.setOnClickListener {
+            val provider = ARouter.getInstance().navigation(LoginProvider::class.java)
+            provider?.startLogin()
+        }
         binding.settingsView.setOnClickListener { SampleRouter.startSettings() }
-        binding.helloView.setOnClickListener { SampleRouter.startHello() }
+        binding.helloView.setOnClickListener {
+            val provider = ARouter.getInstance().navigation(HelloProvider::class.java)
+            provider?.startHello()
+        }
         binding.goods.setOnClickListener { SampleRouter.startGoods() }
         binding.dialog2View.setOnClickListener { showDialog2() }
         binding.birthday.setOnClickListener {
@@ -85,10 +91,12 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         }
         binding.video.setOnClickListener { SampleRouter.startVideo() }
         binding.test1.setOnClickListener {
-            ARouter.getInstance().navigation(HelloProvider::class.java).startHello()
+            val provider = ARouter.getInstance().navigation(HelloProvider::class.java)
+            provider?.startHello()
         }
         binding.test2.setOnClickListener {
-            ARouter.getInstance().navigation(LoginProvider::class.java).startLogin()
+            val provider = ARouter.getInstance().navigation(LoginProvider::class.java)
+            provider?.startLogin()
         }
     }
 
