@@ -4,8 +4,8 @@ import android.content.pm.ActivityInfo
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.SampleRouter
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.BirthdayDialog
@@ -28,9 +28,17 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 
+
 @AndroidEntryPoint
 @Route(path = "/page/my")
 class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
+
+    @Autowired
+    lateinit var loginProvider: LoginProvider
+
+    @Autowired
+    lateinit var helloProvider: HelloProvider
+
     private lateinit var userViewModel: UserViewModel
 
     override fun initImmersionBar() {
@@ -44,13 +52,11 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.downloadView.setOnClickListener { SampleRouter.startDownload() }
         binding.dialogView.setOnClickListener { showDialog() }
         binding.loginView.setOnClickListener {
-            val provider = ARouter.getInstance().navigation(LoginProvider::class.java)
-            provider?.startLogin()
+            loginProvider.startLogin()
         }
         binding.settingsView.setOnClickListener { SampleRouter.startSettings() }
         binding.helloView.setOnClickListener {
-            val provider = ARouter.getInstance().navigation(HelloProvider::class.java)
-            provider?.startHello()
+            helloProvider.startHello()
         }
         binding.goods.setOnClickListener { SampleRouter.startGoods() }
         binding.dialog2View.setOnClickListener { showDialog2() }
@@ -91,12 +97,10 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         }
         binding.video.setOnClickListener { SampleRouter.startVideo() }
         binding.test1.setOnClickListener {
-            val provider = ARouter.getInstance().navigation(HelloProvider::class.java)
-            provider?.startHello()
+            helloProvider.startHello()
         }
         binding.test2.setOnClickListener {
-            val provider = ARouter.getInstance().navigation(LoginProvider::class.java)
-            provider?.startLogin()
+            loginProvider.startLogin()
         }
     }
 
