@@ -1,4 +1,4 @@
-package com.lany192.box.sample.data.model
+package com.lany192.box.network.data.model
 
 /**
  * 所有网络通讯数据模型实体类的基类。

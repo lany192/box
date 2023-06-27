@@ -6,8 +6,8 @@ import com.github.lany192.arch.items.ItemsFragment
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.decoration.Divider
 import com.github.lany192.decoration.ItemDecoration
-import com.lany192.box.sample.data.binder.CategoryBinder
-import com.lany192.box.sample.data.binder.ImageBinder
+import com.lany192.box.network.data.binder.CategoryBinder
+import com.lany192.box.network.data.binder.ImageBinder
 import com.lany192.box.sample.databinding.FragmentDiscoverBinding
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint

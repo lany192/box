@@ -1,4 +1,4 @@
-package com.lany192.box.sample.data.model
+package com.lany192.box.network.data.model
 
 /**
  * 首页-推荐列表，响应实体类。

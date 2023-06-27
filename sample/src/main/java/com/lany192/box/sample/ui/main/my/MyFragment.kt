@@ -14,11 +14,11 @@ import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
 import com.github.lany192.utils.DensityUtils
 import com.hjq.toast.ToastUtils
+import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.router.provider.HelloProvider
 import com.lany192.box.router.provider.LoginProvider
 import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.R
-import com.lany192.box.sample.data.bean.UserInfo
 import com.lany192.box.sample.databinding.FragmentMyBinding
 import com.lany192.box.sample.ui.user.UserViewModel
 import com.zhihu.matisse.GlideEngine
