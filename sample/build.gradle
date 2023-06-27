@@ -129,6 +129,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     processorDependencies.each { k, v -> kapt v }
     testImplementationDependencies.each { k, v -> testImplementation v }
@@ -175,6 +176,7 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
 
     implementation project(path: ':common:router')
+    implementation project(path: ':common:network')
 
     implementation project(path: ':feature:browser')
     implementation project(path: ':feature:hello')
