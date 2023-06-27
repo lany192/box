@@ -1,4 +1,4 @@
-package com.lany192.box.sample;
+package com.lany192.box.network;
 
 import androidx.annotation.NonNull;
 

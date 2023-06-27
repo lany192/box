@@ -86,6 +86,7 @@ dependencies {
     implementationDependencies.each { k, v -> implementation v }
 
     implementation project(path: ':common:router')
+    implementation project(path: ':common:network')
 
     implementation project(path: ':library:arch')
     implementation project(path: ':library:view')

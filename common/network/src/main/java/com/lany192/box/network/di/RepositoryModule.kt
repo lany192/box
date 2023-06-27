@@ -1,4 +1,4 @@
-package com.lany192.box.sample.di
+package com.lany192.box.network.di
 
 import com.lany192.box.network.data.api.ApiService
 import com.lany192.box.network.repository.BoxRepository
