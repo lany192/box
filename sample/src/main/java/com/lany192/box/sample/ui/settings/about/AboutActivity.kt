@@ -4,8 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.alibaba.android.arouter.SampleRouter
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
+import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.sample.databinding.ActivityAboutBinding
 import dagger.hilt.android.AndroidEntryPoint
 import de.psdev.licensesdialog.LicensesDialog
@@ -18,16 +20,18 @@ import de.psdev.licensesdialog.model.Notices
 @AndroidEntryPoint
 @Route(path = "/ui/about")
 class AboutActivity : BoxActivity<AboutViewModel, ActivityAboutBinding>() {
+    @Autowired
+    lateinit var browserProvider: BrowserProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.licenceView.setOnClickListener { showLicensesDialog() }
         binding.marketView.setOnClickListener { gotoMarket() }
         binding.privacyView.setOnClickListener {
-            SampleRouter.startBrowser("隐私政策", "https://www.baidu.com")
+            browserProvider.startBrowser("隐私政策", "https://www.baidu.com")
         }
         binding.protocolView.setOnClickListener {
-            SampleRouter.startBrowser("用户协议", "https://www.baidu.com")
+            browserProvider.startBrowser("用户协议", "https://www.baidu.com")
         }
         binding.feedbackView.setOnClickListener {
             SampleRouter.startFeedback()

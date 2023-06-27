@@ -1,4 +1,4 @@
-package com.lany192.box.network.data.binder;
+package com.lany192.box.sample.data.binder;
 
 import android.view.View;
 

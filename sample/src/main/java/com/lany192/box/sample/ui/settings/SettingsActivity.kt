@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.alibaba.android.arouter.SampleRouter
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.dialog.SimpleDialog
@@ -12,6 +13,7 @@ import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
 import com.hjq.toast.ToastUtils
+import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.ActivitySettingsBinding
 import com.lany192.box.sample.ui.user.UserViewModel
@@ -23,11 +25,13 @@ import moe.feng.alipay.zerosdk.AlipayZeroSdk
 class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>() {
     private lateinit var userViewModel: UserViewModel
 
+    @Autowired
+    lateinit var browserProvider: BrowserProvider
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         binding.cacheView.hint(CacheUtils.getCacheSize(this))
-
         binding.versionView.setOnClickListener { checkVersion() }
         binding.cacheView.setOnClickListener { showCacheDialog() }
         binding.permissionView.setOnClickListener { permissionSetting() }
@@ -39,7 +43,7 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
             }
         }
         binding.noticeView.setOnClickListener {
-            SampleRouter.startBrowser("百度也不知道", "https://www.baidu.com")
+            browserProvider.startBrowser("百度也不知道", "https://www.baidu.com")
         }
         binding.aboutView.setOnClickListener { SampleRouter.startAbout() }
     }
