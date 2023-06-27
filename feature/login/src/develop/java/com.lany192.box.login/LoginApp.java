@@ -20,7 +20,7 @@ public class LoginApp extends BoxApplication {
         }
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         initARouter();
-        ToastUtils.show("开发模式");
+        ToastUtils.show("开发模式：" + getString(R.string.login_test));
     }
 
     @Override
