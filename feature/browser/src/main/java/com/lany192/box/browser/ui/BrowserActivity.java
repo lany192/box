@@ -22,6 +22,7 @@ public class BrowserActivity extends ContentActivity<ActivityBrowserBinding> {
         super.onCreate(savedInstanceState);
         setTitle(title);
         binding.webview.loadUrl(url);
-        log.i("test");
+        log.i("标题:" + title);
+        log.i("链接:" + url);
     }
 }
