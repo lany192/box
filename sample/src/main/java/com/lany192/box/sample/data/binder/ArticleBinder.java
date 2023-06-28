@@ -31,7 +31,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
     @Override
     public void convert(@NonNull ItemArticleBinding binding, Article item, int position) {
         ImageUtils.show(binding.image, MockUtils.getImageUrl());
-        binding.title.setText(item.getTitle());
+        binding.title.setText(item.getTitle() + position);
         binding.desc.setText(item.getAuthor());
         binding.time.setText(DateUtils.format(new Date(item.getPublishTime())));
 

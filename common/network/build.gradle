@@ -1,6 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 
 android {
     namespace apk.appId + '.' + project.getName()
@@ -32,6 +40,7 @@ dependencies {
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
+    processorDependencies.each { k, v -> kapt v }
 
     implementation project(path: ':library:arch')
     implementation project(path: ':library:view')
