@@ -67,24 +67,30 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
                 binding.navigationView.menu.getItem(position).isChecked = true
             }
         })
+        //去掉选中图标的背景色
+        binding.navigationView.isItemActiveIndicatorEnabled = false
         binding.navigationView.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.menu_main_index -> {
                     binding.viewpager.setCurrentItem(0, false)
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.menu_main_pic -> {
                     binding.viewpager.setCurrentItem(1, false)
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.menu_main_city -> {
                     binding.viewpager.setCurrentItem(2, false)
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.menu_main_my -> {
                     binding.viewpager.setCurrentItem(3, false)
                     return@setOnItemSelectedListener true
                 }
+
                 else -> {}
             }
             false
