@@ -38,47 +38,47 @@ ext {
             'androidx-constraint-layout'      : 'androidx.constraintlayout:constraintlayout:2.1.4',
             'androidx-multidex'               : 'androidx.multidex:multidex:2.0.1',
             'androidx-material'               : 'com.google.android.material:material:1.8.0',
-            'androidx-exifinterface'        : 'androidx.exifinterface:exifinterface:1.3.3',
-            'androidx-paging-ktx'           : 'androidx.paging:paging-runtime-ktx:3.1.1',
-            'androidx-paging'               : 'androidx.paging:paging-runtime:3.1.1',
+            'androidx-exifinterface'          : 'androidx.exifinterface:exifinterface:1.3.3',
+            'androidx-paging-ktx'             : 'androidx.paging:paging-runtime-ktx:3.1.1',
+            'androidx-paging'                 : 'androidx.paging:paging-runtime:3.1.1',
             //播放器 https://developer.android.google.cn/jetpack/androidx/releases/media3
-            'androidx-media3-exoplayer'     : 'androidx.media3:media3-exoplayer:1.0.0',
-            'androidx-media3-exoplayer-dash': 'androidx.media3:media3-exoplayer-dash:1.0.0',
-            'androidx-media3-ui'            : 'androidx.media3:media3-ui:1.0.0',
+            'androidx-media3-exoplayer'       : 'androidx.media3:media3-exoplayer:1.0.0',
+            'androidx-media3-exoplayer-dash'  : 'androidx.media3:media3-exoplayer-dash:1.0.0',
+            'androidx-media3-ui'              : 'androidx.media3:media3-ui:1.0.0',
             //相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
-            'androidx-camera-core'          : 'androidx.camera:camera-core:1.2.1',
-            'androidx-camera-camera2'       : 'androidx.camera:camera-camera2:1.2.1',
-            'androidx-camera-lifecycle'     : 'androidx.camera:camera-lifecycle:1.2.1',
-            'androidx-camera-view'          : 'androidx.camera:camera-view:1.2.1',
-            'androidx-camera-extensions'    : 'androidx.camera:camera-extensions:1.2.1',
+            'androidx-camera-core'            : 'androidx.camera:camera-core:1.2.1',
+            'androidx-camera-camera2'         : 'androidx.camera:camera-camera2:1.2.1',
+            'androidx-camera-lifecycle'       : 'androidx.camera:camera-lifecycle:1.2.1',
+            'androidx-camera-view'            : 'androidx.camera:camera-view:1.2.1',
+            'androidx-camera-extensions'      : 'androidx.camera:camera-extensions:1.2.1',
             //数据库 https://developer.android.google.cn/training/data-storage/room/index.html
-            'androidx-room-runtime'         : 'androidx.room:room-runtime:2.4.3',
-            'androidx-room-ktx'             : 'androidx.room:room-ktx:2.4.3',
+            'androidx-room-runtime'           : 'androidx.room:room-runtime:2.4.3',
+            'androidx-room-ktx'               : 'androidx.room:room-ktx:2.4.3',
             //协程 https://github.com/Kotlin/kotlinx.coroutines
-            'coroutines-core'               : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4',
-            'coroutines-android'            : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4',
+            'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2',
+            'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2',
             //注入依赖 https://dagger.dev/hilt/
-            'hilt'                          : 'com.google.dagger:hilt-android:2.45',
+            'hilt'                            : 'com.google.dagger:hilt-android:2.45',
             //Toast工具 https://github.com/getActivity/ToastUtils
-            'toast'                         : 'com.github.getActivity:ToastUtils:10.5',
+            'toast'                           : 'com.github.getActivity:ToastUtils:10.5',
             //适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-            'brvah'                         : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.11',
+            'brvah'                           : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.11',
             //状态栏工具 https://github.com/gyf-dev/ImmersionBar
-            'immersion-bar'                 : 'com.geyifeng.immersionbar:immersionbar:3.2.2',
+            'immersion-bar'                   : 'com.geyifeng.immersionbar:immersionbar:3.2.2',
             //请求框架 https://github.com/square/retrofit
-            'retrofit'                      : 'com.squareup.retrofit2:retrofit:2.9.0',
-            'retrofit2-gson'                : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            'retrofit'                        : 'com.squareup.retrofit2:retrofit:2.9.0',
+            'retrofit2-gson'                  : 'com.squareup.retrofit2:converter-gson:2.9.0',
             //tencent 存储 https://github.com/Tencent/MMKV
-            'mmkv'                          : 'com.tencent:mmkv:1.2.14',
+            'mmkv'                            : 'com.tencent:mmkv:1.2.14',
             //tencent 日志工具 https://github.com/Tencent/mars
-            'xlog'                          : 'com.tencent.mars:mars-xlog:1.2.5',
+            'xlog'                            : 'com.tencent.mars:mars-xlog:1.2.5',
             //glide依赖 https://github.com/bumptech/glide
-            'glide'                         : 'com.github.bumptech.glide:glide:4.15.1',
+            'glide'                           : 'com.github.bumptech.glide:glide:4.15.1',
             //异常捕获 https://github.com/iqiyi/xCrash
-            'xcrash'                        : 'com.iqiyi.xcrash:xcrash-android-lib:3.1.0',
+            'xcrash'                          : 'com.iqiyi.xcrash:xcrash-android-lib:3.1.0',
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
-            'refresh-layout'                : 'io.github.scwang90:refresh-layout-kernel:2.0.5',
-            'refresh-header'                : 'io.github.scwang90:refresh-header-classics:2.0.5',
+            'refresh-layout'                  : 'io.github.scwang90:refresh-layout-kernel:2.0.5',
+            'refresh-header'                  : 'io.github.scwang90:refresh-header-classics:2.0.5',
             //多渠道打包工具 https://github.com/Meituan-Dianping/walle 考虑用 https://github.com/Tencent/VasDolly 代替
             'walle'                           : 'com.meituan.android.walle:library:1.1.7',
             //阿里界面路由 https://github.com/alibaba/ARouter
@@ -136,6 +136,6 @@ ext {
             //https://github.com/NightWhistler/HtmlSpanner
             'HtmlSpanner'                     : 'com.github.NightWhistler:HtmlSpanner:0.4',
             //重启工具库 https://github.com/JakeWharton/ProcessPhoenix
-            'process-phoenix': 'com.jakewharton:process-phoenix:2.1.2'
+            'process-phoenix'                 : 'com.jakewharton:process-phoenix:2.1.2'
     ]
 }
