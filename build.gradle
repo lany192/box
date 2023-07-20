@@ -6,14 +6,17 @@ buildscript {
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
         maven { url 'https://artifact.bytedance.com/repository/byteX/' }
         mavenLocal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.0.2'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20'
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.45'
-        classpath 'com.alibaba:arouter-register:1.0.2'
+        //arouter
+        classpath 'com.github.lany192.app-router:arouter-gradle-plugin:1.4.5'
+
 //        //https://github.com/bytedance/ByteX
 //        classpath 'com.bytedance.android.byteX:base-plugin:0.3.0'
 //        classpath 'com.bytedance.android.byteX:refer-check-plugin:0.3.0'
@@ -45,8 +48,8 @@ allprojects {
         if (project.plugins.hasPlugin('com.android.library') || project.plugins.hasPlugin('com.android.application')) {
             def android = project.extensions.getByName('android')
             android.compileOptions {
-                sourceCompatibility JavaVersion.VERSION_1_8
-                targetCompatibility JavaVersion.VERSION_1_8
+                sourceCompatibility JavaVersion.VERSION_17
+                targetCompatibility JavaVersion.VERSION_17
             }
         }
     }
