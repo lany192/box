@@ -1,6 +1,6 @@
 package com.github.lany192.log;
 
-import android.app.Application;
+import android.content.Context;
 
 import com.tencent.mars.xlog.Log;
 import com.tencent.mars.xlog.Xlog;
@@ -9,15 +9,15 @@ public class LogUtils {
     /**
      * 初始化XLog
      */
-    public static void init(Application application, boolean debug) {
+    public static void init(Context context, boolean debug) {
         //加载必要so
         System.loadLibrary("c++_shared");
         System.loadLibrary("marsxlog");
 
         //日志储存路径
-        final String logPath = application.getFilesDir() + "/xlog";
+        final String logPath = context.getFilesDir() + "/xlog";
         //日志文件前缀
-        final String namePrefix = application.getClass().getSimpleName() + "_box";
+        final String namePrefix = context.getClass().getSimpleName() + "_box";
         //缓存天数
         final int cacheDays = 7;
         //日志等级
