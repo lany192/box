@@ -173,7 +173,7 @@ dependencies {
 //    implementation 'com.github.lany192.box:log:master-SNAPSHOT'
 
     //内存泄漏检测 https://github.com/square/leakcanary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
