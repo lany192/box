@@ -11,8 +11,6 @@ import androidx.multidex.MultiDex;
 import com.github.lany192.arch.utils.DeviceId;
 import com.github.lany192.dialog.DialogHelper;
 import com.github.lany192.log.LogUtils;
-import com.github.lany192.utils.ContextUtils;
-import com.github.lany192.utils.KVUtils;
 import com.hjq.toast.ToastUtils;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
@@ -33,13 +31,13 @@ public abstract class BoxApplication extends Application implements ViewModelSto
     @Override
     public void onCreate() {
         super.onCreate();
-        ContextUtils.setApplicationContext(this);
+//        ContextUtils.setApplicationContext(this);
 
         mAppViewModelStore = new ViewModelStore();
 
-        LogUtils.init(this, debug());
+//        LogUtils.init(this, debug());
 
-        KVUtils.init(this);
+//        KVUtils.init(this);
 
         ToastUtils.init(this);
         ToastUtils.setView(R.layout.toast_view);
@@ -49,7 +47,7 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 
         DeviceId.get().grantedSDPermission();
         //处理异常
-        CrashHelper.getInstance();
+//        CrashHelper.getInstance();
 
         initRefreshView();
     }

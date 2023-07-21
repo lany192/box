@@ -1,6 +1,7 @@
 package com.lany192.box.sample.ui.main.discover
 
 import android.os.Handler
+import android.os.Looper
 import com.github.lany192.arch.items.ItemsViewModel
 import com.lany192.box.network.data.bean.Category
 import com.lany192.box.sample.MockUtils
@@ -24,7 +25,7 @@ class DiscoverViewModel @Inject constructor() : ItemsViewModel() {
             for (i in 0..4) {
                 images.add(MockUtils.getImageUrl())
             }
-            Handler().postDelayed({
+            Handler(Looper.myLooper()!!).postDelayed({
                 if (refresh) {
                     resetItems(images)
                     refreshFinish()
