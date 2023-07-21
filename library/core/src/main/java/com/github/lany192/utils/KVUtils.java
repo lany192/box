@@ -1,6 +1,6 @@
 package com.github.lany192.utils;
 
-import android.app.Application;
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.tencent.mmkv.MMKV;
@@ -24,7 +24,7 @@ public final class KVUtils {
     /**
      * 初始化
      */
-    public static void init(Application context) {
+    public static void init(Context context) {
         MMKV.initialize(context);
     }
 
