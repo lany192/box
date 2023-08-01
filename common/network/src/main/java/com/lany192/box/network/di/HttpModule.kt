@@ -5,6 +5,8 @@ import com.github.lany192.arch.network.ParamsInterceptor
 import com.lany192.box.network.BuildConfig
 import com.lany192.box.network.TokenInterceptor
 import com.lany192.box.network.data.api.ApiService
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,6 +14,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -44,10 +47,15 @@ class HttpModule {
     @Singleton
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
         return Retrofit.Builder()
             .baseUrl("https://www.wanandroid.com")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
 
