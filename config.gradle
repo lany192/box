@@ -68,7 +68,7 @@ ext {
             'immersion-bar'                   : 'com.geyifeng.immersionbar:immersionbar:3.2.2',
             //请求框架 https://github.com/square/retrofit
             'retrofit'                        : 'com.squareup.retrofit2:retrofit:2.9.0',
-            'retrofit2-gson'                  : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            'retrofit2-moshi'                 : 'com.squareup.retrofit2:converter-moshi:2.9.0',
             //tencent 存储 https://github.com/Tencent/MMKV
             'mmkv'                            : 'com.tencent:mmkv:1.2.14',
             //tencent 日志工具 https://github.com/Tencent/mars
@@ -146,5 +146,7 @@ ext {
 //            'autodispose-lifecycle'           : 'com.uber.autodispose2:autodispose-lifecycle:2.2.1',
 //            'autodispose-android'             : 'com.uber.autodispose2:autodispose-android:2.2.1',
             'autodispose-androidx-lifecycle'  : 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.2.1',
+            //https://github.com/google/gson
+            'gson'                            : 'com.google.code.gson:gson:2.10.1'
     ]
 }
