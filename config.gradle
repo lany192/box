@@ -139,6 +139,12 @@ ext {
             //https://github.com/NightWhistler/HtmlSpanner
             'HtmlSpanner'                     : 'com.github.NightWhistler:HtmlSpanner:0.4',
             //重启工具库 https://github.com/JakeWharton/ProcessPhoenix
-            'process-phoenix'                 : 'com.jakewharton:process-phoenix:2.1.2'
+            'process-phoenix'                 : 'com.jakewharton:process-phoenix:2.1.2',
+
+            //RxJava 扩展 https://github.com/uber/AutoDispose
+            'autodispose'                     : 'com.uber.autodispose2:autodispose:2.2.1',
+//            'autodispose-lifecycle'           : 'com.uber.autodispose2:autodispose-lifecycle:2.2.1',
+//            'autodispose-android'             : 'com.uber.autodispose2:autodispose-android:2.2.1',
+            'autodispose-androidx-lifecycle'  : 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.2.1',
     ]
 }
