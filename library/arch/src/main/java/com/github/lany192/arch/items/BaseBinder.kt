@@ -93,7 +93,7 @@ abstract class BaseBinder<T, VH : BaseViewHolder> {
      * @param item T
      * @param position Int
      */
-    open fun onClick(holder: VH, view: View, item: T, position: Int) {}
+    open fun onItemClick(holder: VH, view: View, item: T, position: Int) {}
 
     /**
      * item 若想实现条目长按事件则重写该方法

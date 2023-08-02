@@ -156,7 +156,7 @@ open class BinderAdapter(list: MutableList<Any>? = null) :
                 val itemViewType = viewHolder.itemViewType
                 val binder = getItemBinder(itemViewType)
 
-                binder.onClick(viewHolder, it, data[position], position)
+                binder.onItemClick(viewHolder, it, data[position], position)
             }
         }
         if (getOnItemLongClickListener() == null) {
