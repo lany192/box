@@ -45,17 +45,17 @@ abstract class BaseBinder<T, VH : BaseViewHolder> {
     /**
      * 在此处对设置item数据
      * @param holder VH
-     * @param data T
+     * @param item T
      */
-    abstract fun convert(holder: VH, data: T)
+    abstract fun convert(holder: VH, item: T)
 
     /**
      * 使用局部刷新时候，会调用此方法
      * @param holder VH
-     * @param data T
+     * @param item T
      * @param payloads List<Any>
      */
-    open fun convert(holder: VH, data: T, payloads: List<Any>) {}
+    open fun convert(holder: VH, item: T, payloads: List<Any>) {}
 
     open fun onFailedToRecycleView(holder: VH): Boolean {
         return false
@@ -90,19 +90,19 @@ abstract class BaseBinder<T, VH : BaseViewHolder> {
     /**
      * item 若想实现条目点击事件则重写该方法
      * @param holder VH
-     * @param data T
+     * @param item T
      * @param position Int
      */
-    open fun onClick(holder: VH, view: View, data: T, position: Int) {}
+    open fun onClick(holder: VH, view: View, item: T, position: Int) {}
 
     /**
      * item 若想实现条目长按事件则重写该方法
      * @param holder VH
-     * @param data T
+     * @param item T
      * @param position Int
      * @return Boolean
      */
-    open fun onLongClick(holder: VH, view: View, data: T, position: Int): Boolean {
+    open fun onLongClick(holder: VH, view: View, item: T, position: Int): Boolean {
         return false
     }
 
@@ -110,20 +110,20 @@ abstract class BaseBinder<T, VH : BaseViewHolder> {
      * item 子控件的点击事件
      * @param holder VH
      * @param view View
-     * @param data T
+     * @param item T
      * @param position Int
      */
-    open fun onChildClick(holder: VH, view: View, data: T, position: Int) {}
+    open fun onChildClick(holder: VH, view: View, item: T, position: Int) {}
 
     /**
      * item 子控件的长按事件
      * @param holder VH
      * @param view View
-     * @param data T
+     * @param item T
      * @param position Int
      * @return Boolean
      */
-    open fun onChildLongClick(holder: VH, view: View, data: T, position: Int): Boolean {
+    open fun onChildLongClick(holder: VH, view: View, item: T, position: Int): Boolean {
         return false
     }
 
