@@ -1,15 +1,16 @@
-package com.lany192.box.sample.data.binder;
+package com.lany192.box.sample.data.binder
 
-import androidx.annotation.NonNull;
+import com.github.lany192.arch.items.ItemBinder
+import com.github.lany192.extensions.load
+import com.lany192.box.sample.databinding.ItemImageBinding
+import kotlinx.coroutines.launch
 
-import com.github.lany192.arch.items.ItemBinder;
-import com.github.lany192.utils.ImageUtils;
-import com.lany192.box.sample.databinding.ItemImageBinding;
+class ImageBinder : ItemBinder<String, ItemImageBinding>() {
 
-public class ImageBinder extends ItemBinder<String, ItemImageBinding> {
+    override fun convert(binding: ItemImageBinding, item: String, position: Int) {
+        binding.image.load(item)
+        lifecycleScope.launch {
 
-    @Override
-    public void convert(@NonNull ItemImageBinding binding, String url, int position) {
-        ImageUtils.show(binding.image, url);
+        }
     }
 }

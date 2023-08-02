@@ -16,7 +16,7 @@ import com.lany192.box.sample.databinding.ItemAreaBinding;
 public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
 
     @Override
-    public void onClick(@NonNull BindingHolder<ItemAreaBinding> holder, @NonNull View view, Area area, int position) {
+    public void onItemClick(@NonNull BindingHolder<ItemAreaBinding> holder, @NonNull View view, Area area, int position) {
         int count = area.getSubarea() != null ? area.getSubarea().size() : 0;
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");

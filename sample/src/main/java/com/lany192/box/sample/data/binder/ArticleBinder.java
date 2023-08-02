@@ -24,7 +24,7 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
     }
 
     @Override
-    public void onClick(@NonNull BindingHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
+    public void onItemClick(@NonNull BindingHolder<ItemArticleBinding> holder, @NonNull View view, Article item, int position) {
         ARouter.getInstance().navigation(BrowserProvider.class).startBrowser(item.getTitle(), item.getLink());
     }
 
