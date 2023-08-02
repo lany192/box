@@ -112,7 +112,7 @@ public final class NotificationUtil {
             uri = Uri.fromFile(apk);
         }
         intent.setDataAndType(uri, "application/vnd.android.package-archive");
-        PendingIntent pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Builder builder = builderNotification(context, icon, title, content)
                 .setContentIntent(pi);
         Notification notification = builder.build();
