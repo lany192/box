@@ -28,12 +28,6 @@ public class SampleApp extends BoxApplication {
         // 处理RxJava返回的无人处理的错误
         RxJavaPlugins.setErrorHandler(new ConsumerAdapter<>());
 
-        UmengConfig config = new UmengConfig();
-        config.setAppId("xxxxxxx");
-        config.setChannel("umeng");
-        config.setMessageSecret("xxxxxxxxxxxxx");
-        UmengUtils.preInit(this, config);
-
         ShortcutUtils.init(this);
         LancetTest.test();
     }
@@ -50,5 +44,4 @@ public class SampleApp extends BoxApplication {
         }
         ARouter.init(this);
     }
-
 }

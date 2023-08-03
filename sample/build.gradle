@@ -73,7 +73,6 @@ android {
         //git提交记录id
         buildConfigField "String", "GIT_COMMIT_ID", "\"${"git rev-parse --short HEAD".execute().text.trim()}\""
     }
-
     buildFeatures {
         viewBinding true
     }
@@ -168,7 +167,6 @@ dependencies {
 //    implementation 'com.github.lany192.box:html:master-SNAPSHOT'
 //    implementation 'com.github.lany192.box:scanner:master-SNAPSHOT'
 //    implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
-//    implementation 'com.github.lany192.box:umeng:master-SNAPSHOT'
 //    implementation 'com.github.lany192.box:log:master-SNAPSHOT'
 
     //内存泄漏检测 https://github.com/square/leakcanary
@@ -180,11 +178,6 @@ dependencies {
     implementation project(path: ':feature:browser')
     implementation project(path: ':feature:hello')
     implementation project(path: ':feature:login')
-
-    //友盟 https://developer.umeng.com/docs/119267/detail/118584
-    implementation 'com.umeng.umsdk:common:9.6.3'
-    implementation 'com.umeng.umsdk:asms:1.8.0'
-    implementation 'com.umeng.umsdk:apm:1.9.2'
 }
 //引入安装包生成配置
 apply from: '../package.gradle'
