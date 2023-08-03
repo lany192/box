@@ -99,37 +99,41 @@ ext {
             'background-core'                 : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.6',
 
             //图片压缩 https://github.com/Curzibn/Luban
-            'luban'                           : 'top.zibin:Luban:1.1.8',
+            'luban'           : 'top.zibin:Luban:1.1.8',
             //RecyclerView分割线 https://github.com/lany192/ItemDecoration
-            'decoration'                      : 'com.github.lany192:ItemDecoration:1.21',
+            'decoration'      : 'com.github.lany192:ItemDecoration:1.21',
             //键盘监听器 https://github.com/lany192/KeyboardWatcher
-            'keyboard-watcher'                : 'com.github.lany192:KeyboardWatcher:1.0.1',
+            'keyboard-watcher': 'com.github.lany192:KeyboardWatcher:1.0.1',
             //显示红点或者浮标 https://github.com/qstumn/BadgeView
 //            'badge-view'                      : 'q.rorbin:badgeview:1.1.3',
             //flexbox控件 https://github.com/google/flexbox-layout
-            'flexbox'                         : 'com.google.android.flexbox:flexbox:3.0.0',
+            'flexbox'         : 'com.google.android.flexbox:flexbox:3.0.0',
             //自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
-            'number-picker'                   : 'io.github.ShawnLin013:number-picker:2.4.13',
+            'number-picker'   : 'io.github.ShawnLin013:number-picker:2.4.13',
             //通知事件 https://github.com/greenrobot/EventBus
-            'event-bus'                       : 'org.greenrobot:eventbus:3.3.1',
+            'event-bus'       : 'org.greenrobot:eventbus:3.3.1',
             //下载框架 https://github.com/lany192/okdownload
-            'okdownload'                      : 'com.github.lany192:okdownload:2.0.2',
+            'okdownload'      : 'com.github.lany192:okdownload:2.0.2',
             //开源协议对话框
-            'licenses'                        : 'de.psdev.licensesdialog:licensesdialog:2.1.0',
+            'licenses'        : 'de.psdev.licensesdialog:licensesdialog:2.1.0',
             //支付宝打赏 https://github.com/fython/AlipayZeroSdk
-            'alipay-zero-sdk'                 : 'moe.feng:AlipayZeroSdk:1.1',
+            'alipay-zero-sdk' : 'moe.feng:AlipayZeroSdk:1.1',
             //banner https://github.com/youth5201314/banner
-            'banner'                        : 'io.github.youth5201314:banner:2.2.2',
+            'banner'          : 'io.github.youth5201314:banner:2.2.2',
             //图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
-            'TouchImageView'                : 'com.github.MikeOrtiz:TouchImageView:3.2.1',
+            'touch-imageview' : 'com.github.MikeOrtiz:TouchImageView:3.5',
             //二维码 https://github.com/zxing/zxing
-            'zxing'                         : 'com.google.zxing:core:3.5.0',
+            'zxing'           : 'com.google.zxing:core:3.5.0',
             //https://github.com/ReactiveX/RxJava
-            'rxjava3'                       : 'io.reactivex.rxjava3:rxjava:3.1.3',
+            'rxjava3'         : 'io.reactivex.rxjava3:rxjava:3.1.3',
             //https://github.com/ReactiveX/RxAndroid
-            'rxandroid3'                    : 'io.reactivex.rxjava3:rxandroid:3.0.0',
+            'rxandroid3'      : 'io.reactivex.rxjava3:rxandroid:3.0.0',
             //https://github.com/jaredrummler/materialspinner
-            'spinner'                       : 'com.jaredrummler:material-spinner:1.3.1',
+            'spinner'         : 'com.jaredrummler:material-spinner:1.3.1',
+            //https://github.com/NightWhistler/HtmlSpanner
+            'html-spanner'    : 'com.github.NightWhistler:HtmlSpanner:0.4',
+            //重启工具库 https://github.com/JakeWharton/ProcessPhoenix
+            'process-phoenix' : 'com.jakewharton:process-phoenix:2.1.2',
 
             //日历控件 https://github.com/prolificinteractive/material-calendarview
 //    'material-calendarview'   : 'com.github.prolificinteractive:material-calendarview:2.0.1',
@@ -138,22 +142,12 @@ ext {
             //转场动画 https://github.com/skydoves/TransformationLayout
 //    'transformation-layout': 'com.github.skydoves:transformationlayout:1.1.1',
 
-            //友盟统计 https://developer.umeng.com/docs/119267/detail/118584
-            'umeng-common'                  : 'com.umeng.umsdk:common:9.6.3',
-            'umeng-asms'                    : 'com.umeng.umsdk:asms:1.8.0',
-            'umeng-apm'                     : 'com.umeng.umsdk:apm:1.7.0',
-
-            //https://github.com/NightWhistler/HtmlSpanner
-            'HtmlSpanner'                   : 'com.github.NightWhistler:HtmlSpanner:0.4',
-            //重启工具库 https://github.com/JakeWharton/ProcessPhoenix
-            'process-phoenix'               : 'com.jakewharton:process-phoenix:2.1.2',
-
             //RxJava 扩展 https://github.com/uber/AutoDispose
-            'autodispose'                   : 'com.uber.autodispose2:autodispose:2.2.1',
+//            'autodispose'                   : 'com.uber.autodispose2:autodispose:2.2.1',
 //            'autodispose-lifecycle'           : 'com.uber.autodispose2:autodispose-lifecycle:2.2.1',
 //            'autodispose-android'             : 'com.uber.autodispose2:autodispose-android:2.2.1',
-            'autodispose-androidx-lifecycle': 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.2.1',
+//            'autodispose-androidx-lifecycle': 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.2.1',
             //https://github.com/google/gson
-            'gson'                          : 'com.google.code.gson:gson:2.10.1'
+//            'gson'                          : 'com.google.code.gson:gson:2.10.1'
     ]
 }

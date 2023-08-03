@@ -55,6 +55,6 @@ dependencies {
     implementation project(path: ':library:html')
     implementation project(path: ':library:scanner')
     implementation project(path: ':library:cropper')
-    implementation project(path: ':library:umeng')
+
     implementation project(path: ':library:log')
 }
