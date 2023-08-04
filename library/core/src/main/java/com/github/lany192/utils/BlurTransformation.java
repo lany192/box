@@ -35,7 +35,7 @@ public class BlurTransformation implements Transformation<Bitmap> {
         Paint paint = new Paint();
         paint.setFlags(Paint.FILTER_BITMAP_FLAG);
         canvas.drawBitmap(toTransform, 0, 0, paint);
-        Bitmap transformed = ImageUtils.blur(context, bitmap, 14, 1);
+        Bitmap transformed = ImageUtils.blur(bitmap, 14);
 
         final Resource<Bitmap> result;
         if (toTransform.equals(transformed)) {

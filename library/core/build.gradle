@@ -36,5 +36,6 @@ dependencies {
     testImplementationDependencies.each { k, v -> testImplementation v }
     implementationDependencies.each { k, v -> implementation v }
 
-    implementation project(':library:log')
+    implementation project(path: ':library:log')
+    implementation project(path: ':library:toolkit')
 }
