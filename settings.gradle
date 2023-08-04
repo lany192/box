@@ -37,7 +37,7 @@ include ':library:html'
 include ':library:scanner'
 include ':library:cropper'
 include ':library:log'
-include ':library:renderscript-toolkit'
+include ':library:toolkit'
 
 include ':common:network'
 include ':common:router'
