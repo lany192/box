@@ -147,7 +147,10 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
                 FragmentTransaction ft = manager.beginTransaction();
                 ft.add(this, tag);
                 ft.commitAllowingStateLoss();
-            } catch(Exception e) {
+                if (isSingle()) {
+                    DialogHelper.get().addSingleDialogId(getDialogId());
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
                 log.e("对话框显示异常：" + e.getMessage());
             }

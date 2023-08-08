@@ -121,7 +121,6 @@ public class DialogHelper {
             if (dialog.isSingle() && ids.contains(dialog.getDialogId())) {
                 log.i("单例对话框，已经显示了，忽略id:" + dialog.getDialogId());
             } else {
-                ids.add(dialog.getDialogId());
                 dialog.addOnDismissListener(d -> ids.remove(dialog.getDialogId()));
                 dialog.show(activity);
             }
@@ -164,5 +163,9 @@ public class DialogHelper {
                 }
             }
         });
+    }
+
+    public void addSingleDialogId(long dialogId) {
+        ids.add(dialogId);
     }
 }
