@@ -11,12 +11,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/image"
+        <com.lany192.box.sample.view.RippleLayout
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/a" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/a" />
+        </com.lany192.box.sample.view.RippleLayout>
 
         <com.github.lany192.image.RatioImageView
             android:id="@+id/gif1"
