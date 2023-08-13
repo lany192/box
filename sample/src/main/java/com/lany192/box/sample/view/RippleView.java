@@ -62,7 +62,7 @@ public class RippleView extends View {
         mSpeed = tya.getFloat(R.styleable.mRippleView_cSpeed, 0.6f);
         mDensity = tya.getInt(R.styleable.mRippleView_cDensity, 10);
         mIsFill = tya.getBoolean(R.styleable.mRippleView_cIsFill, false);
-        mIsAlpha = tya.getBoolean(R.styleable.mRippleView_cIsAlpha, true);
+        mIsAlpha = tya.getBoolean(R.styleable.mRippleView_cIsAlpha, false);
         tya.recycle();
 
         mPaint = new Paint();
@@ -132,29 +132,21 @@ public class RippleView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int myWidthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
-        int myWidthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
-        int myHeightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
-        int myHeightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
-
         // 获取宽度
-        if (myWidthSpecMode == MeasureSpec.EXACTLY) {
+        if (MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY) {
             // match_parent
-            mWidth = myWidthSpecSize;
+            mWidth = MeasureSpec.getSize(widthMeasureSpec);;
         } else {
             // wrap_content
             mWidth = DensityUtils.dp2px(120);
         }
-
         // 获取高度
-        if (myHeightSpecMode == MeasureSpec.EXACTLY) {
-            mHeight = myHeightSpecSize;
+        if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY) {
+            mHeight =  MeasureSpec.getSize(heightMeasureSpec);
         } else {
             // wrap_content
             mHeight = DensityUtils.dp2px(120);
         }
-
-        // 设置该view的宽高
         setMeasuredDimension((int) mWidth, (int) mHeight);
     }
 
