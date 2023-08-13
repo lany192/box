@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -30,6 +29,8 @@ public class RippleView extends View {
 
     // 声波的圆圈集合
     private List<Circle> mRipples;
+
+    private int sqrtNumber;
 
     // 圆圈扩散的速度
     private int mSpeed;
@@ -83,10 +84,13 @@ public class RippleView extends View {
 
         // 添加第一个圆圈
         mRipples = new ArrayList<>();
-        Circle c = new Circle(0, 0, 255);
+        Circle c = new Circle(0, 255);
         mRipples.add(c);
 
-        mDensity = DensityUtils.dp2px(mDensity);
+        mDensity = DensityUtils.dp2px( mDensity);
+
+        // 设置View的圆为半透明
+        setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override
@@ -112,15 +116,10 @@ public class RippleView extends View {
         for (int i = 0; i < mRipples.size(); i++) {
             Circle c = mRipples.get(i);
             mPaint.setAlpha(c.alpha);// （透明）0~255（不透明）
+            canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
 
-            float radius = c.width - mPaint.getStrokeWidth();
-
-
-            canvas.drawRoundRect(new RectF(0, 0, mWidth / 2, mHeight / 2), radius, radius, mPaint);
-
-            //canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
             // 当圆超出View的宽度后删除
-            if (c.width > mWidth) {
+            if (c.width > mWidth / 2) {
                 mRipples.remove(i);
             } else {
                 // 计算不透明的数值，这里有个小知识，就是如果不加上double的话，255除以一个任意比它大的数都将是0
@@ -130,7 +129,6 @@ public class RippleView extends View {
                 }
                 // 修改这个值控制速度
                 c.width += mSpeed;
-                c.height += mSpeed;
             }
         }
 
@@ -138,8 +136,53 @@ public class RippleView extends View {
         // 里面添加圆
         if (mRipples.size() > 0) {
             // 控制第二个圆出来的间距
-            if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px(mDensity)) {
-                mRipples.add(new Circle(0, 0, 255));
+            if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px( mDensity)) {
+                mRipples.add(new Circle(0, 255));
+            }
+        }
+
+
+        invalidate();
+
+        canvas.restore();
+    }
+
+
+    /**
+     * 圆到对角线
+     *
+     * @param canvas
+     */
+    private void drawOutCircle(Canvas canvas) {
+        canvas.save();
+
+        // 使用勾股定律求得一个外切正方形中心点离角的距离
+        sqrtNumber = (int) (Math.sqrt(mWidth * mWidth + mHeight * mHeight) / 2);
+
+        // 变大
+        for (int i = 0; i < mRipples.size(); i++) {
+
+            // 启动圆圈
+            Circle c = mRipples.get(i);
+            mPaint.setAlpha(c.alpha);// （透明）0~255（不透明）
+            canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
+
+            // 当圆超出对角线后删掉
+            if (c.width > sqrtNumber) {
+                mRipples.remove(i);
+            } else {
+                // 计算不透明的度数
+                double degree = 255 - c.width * (255 / (double) sqrtNumber);
+                c.alpha = (int) degree;
+                c.width += 1;
+            }
+        }
+
+        // 里面添加圆
+        if (mRipples.size() > 0) {
+            // 控制第二个圆出来的间距
+            if (mRipples.get(mRipples.size() - 1).width == 50) {
+                mRipples.add(new Circle(0, 255));
             }
         }
         invalidate();
@@ -160,7 +203,7 @@ public class RippleView extends View {
             mWidth = myWidthSpecSize;
         } else {
             // wrap_content
-            mWidth = DensityUtils.dp2px(120);
+            mWidth = DensityUtils.dp2px( 120);
         }
 
         // 获取高度
@@ -168,7 +211,7 @@ public class RippleView extends View {
             mHeight = myHeightSpecSize;
         } else {
             // wrap_content
-            mHeight = DensityUtils.dp2px(120);
+            mHeight = DensityUtils.dp2px( 120);
         }
 
         // 设置该view的宽高
@@ -176,15 +219,14 @@ public class RippleView extends View {
     }
 
 
-    private class Circle {
-        Circle(int width, int height, int alpha) {
+    class Circle {
+        Circle(int width, int alpha) {
             this.width = width;
-            this.height = height;
             this.alpha = alpha;
         }
 
         int width;
-        int height;
+
         int alpha;
     }
 
