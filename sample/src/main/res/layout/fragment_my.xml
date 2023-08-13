@@ -287,8 +287,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:menu_title="test2" />
+
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <com.lany192.box.sample.view.RippleView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cColor="#ff0000"
+            app:cDensity="10"
+            app:cIsAlpha="true"
+            app:cIsFill="true" />
+
+        <com.lany192.box.sample.view.RippleView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cColor="#00ff00"
+            app:cDensity="10"
+            app:cIsAlpha="true"
+            app:cIsFill="true" />
+
+        <com.lany192.box.sample.view.RippleView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cColor="#0000ff"
+            app:cDensity="10"
+            app:cIsAlpha="true"
+            app:cIsFill="true" />
     </LinearLayout>
 </ScrollView>
