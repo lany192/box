@@ -78,7 +78,7 @@ public class RippleView extends View {
 
         // 添加第一个圆圈
         mRipples = new ArrayList<>();
-        mRipples.add(new Circle(DensityUtils.dp2px(10), DensityUtils.dp2px(10),255));
+        mRipples.add(new Circle(DensityUtils.dp2px(48), DensityUtils.dp2px(24),255));
 
         mDensity = DensityUtils.dp2px(mDensity);
     }
@@ -101,9 +101,7 @@ public class RippleView extends View {
             float right = mWidth / 2 + circle.width;
             float bottom = mHeight / 2 + circle.width * ratio;
 
-            RectF rectF = new RectF(left, top, right, bottom);
-
-            canvas.drawRoundRect(rectF, radius, radius, mPaint);
+            canvas.drawRoundRect(left, top, right, bottom, radius, radius, mPaint);
 
             // 当圆超出View的宽度后删除
             if (circle.width > mWidth / 2) {
