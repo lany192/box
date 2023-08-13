@@ -30,7 +30,7 @@ public class RippleView extends View {
     private float mHeight;
 
     // 声波的圆圈集合
-    private List<Circle> mRipples;
+    private List<Rectangle> mRipples;
 
     // 圆圈扩散的速度
     private float mSpeed;
@@ -78,7 +78,7 @@ public class RippleView extends View {
 
         // 添加第一个圆圈
         mRipples = new ArrayList<>();
-        mRipples.add(new Circle(DensityUtils.dp2px(48), DensityUtils.dp2px(24),255));
+        mRipples.add(new Rectangle(DensityUtils.dp2px(48), DensityUtils.dp2px(24), 255));
 
         mDensity = DensityUtils.dp2px(mDensity);
     }
@@ -89,7 +89,7 @@ public class RippleView extends View {
         canvas.save();
         // 处理每个圆的宽度和透明度
         for (int i = 0; i < mRipples.size(); i++) {
-            Circle circle = mRipples.get(i);
+            Rectangle circle = mRipples.get(i);
             mPaint.setAlpha(circle.alpha);// （透明）0~255（不透明）
 
             float radius = circle.width - mPaint.getStrokeWidth();
@@ -114,13 +114,14 @@ public class RippleView extends View {
                 }
                 // 修改这个值控制速度
                 circle.width += mSpeed;
+                circle.height += mSpeed;
             }
         }
         // 里面添加圆
         if (mRipples.size() > 0) {
             // 控制第二个圆出来的间距
             if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px(mDensity)) {
-                mRipples.add(new Circle(DensityUtils.dp2px(10), DensityUtils.dp2px(10),255));
+                mRipples.add(new Rectangle(DensityUtils.dp2px(10), DensityUtils.dp2px(10), 255));
             }
         }
         invalidate();
@@ -150,8 +151,8 @@ public class RippleView extends View {
     }
 
 
-    private static class Circle {
-        Circle(float width, float height, int alpha) {
+    private static class Rectangle {
+        Rectangle(float width, float height, int alpha) {
             this.width = width;
             this.height = height;
             this.alpha = alpha;
