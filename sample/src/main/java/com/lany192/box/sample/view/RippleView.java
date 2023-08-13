@@ -62,7 +62,7 @@ public class RippleView extends View {
         mSpeed = tya.getFloat(R.styleable.mRippleView_cSpeed, 0.6f);
         mDensity = tya.getInt(R.styleable.mRippleView_cDensity, 10);
         mIsFill = tya.getBoolean(R.styleable.mRippleView_cIsFill, false);
-        mIsAlpha = tya.getBoolean(R.styleable.mRippleView_cIsAlpha, false);
+        mIsAlpha = tya.getBoolean(R.styleable.mRippleView_cIsAlpha, true);
         tya.recycle();
 
         mPaint = new Paint();
@@ -78,7 +78,7 @@ public class RippleView extends View {
 
         // 添加第一个圆圈
         mRipples = new ArrayList<>();
-        mRipples.add(new Circle(DensityUtils.dp2px(10), 255));
+        mRipples.add(new Circle(DensityUtils.dp2px(10), DensityUtils.dp2px(10),255));
 
         mDensity = DensityUtils.dp2px(mDensity);
     }
@@ -122,7 +122,7 @@ public class RippleView extends View {
         if (mRipples.size() > 0) {
             // 控制第二个圆出来的间距
             if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px(mDensity)) {
-                mRipples.add(new Circle(DensityUtils.dp2px(10), 255));
+                mRipples.add(new Circle(DensityUtils.dp2px(10), DensityUtils.dp2px(10),255));
             }
         }
         invalidate();
@@ -135,14 +135,15 @@ public class RippleView extends View {
         // 获取宽度
         if (MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY) {
             // match_parent
-            mWidth = MeasureSpec.getSize(widthMeasureSpec);;
+            mWidth = MeasureSpec.getSize(widthMeasureSpec);
+            ;
         } else {
             // wrap_content
             mWidth = DensityUtils.dp2px(120);
         }
         // 获取高度
         if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY) {
-            mHeight =  MeasureSpec.getSize(heightMeasureSpec);
+            mHeight = MeasureSpec.getSize(heightMeasureSpec);
         } else {
             // wrap_content
             mHeight = DensityUtils.dp2px(120);
@@ -152,13 +153,13 @@ public class RippleView extends View {
 
 
     private static class Circle {
-        Circle(float width, int alpha) {
+        Circle(float width, float height, int alpha) {
             this.width = width;
             this.alpha = alpha;
         }
 
         float width;
-
+        float height;
         int alpha;
     }
 
