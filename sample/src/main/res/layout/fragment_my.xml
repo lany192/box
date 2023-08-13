@@ -292,8 +292,8 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.lany192.box.sample.view.RippleView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
             android:layout_gravity="center_horizontal"
             android:background="#eeeeee"
             app:cColor="#ff0000"

@@ -31,10 +31,8 @@ public class RippleView extends View {
     // 声波的圆圈集合
     private List<Circle> mRipples;
 
-    private int sqrtNumber;
-
     // 圆圈扩散的速度
-    private int mSpeed;
+    private float mSpeed;
 
     // 圆圈之间的密度
     private int mDensity;
@@ -58,20 +56,14 @@ public class RippleView extends View {
 
     public RippleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        // 获取用户配置属性
         TypedArray tya = context.obtainStyledAttributes(attrs, R.styleable.mRippleView);
         mColor = tya.getColor(R.styleable.mRippleView_cColor, Color.BLUE);
-        mSpeed = tya.getInt(R.styleable.mRippleView_cSpeed, 1);
+        mSpeed = tya.getFloat(R.styleable.mRippleView_cSpeed, 0.4f);
         mDensity = tya.getInt(R.styleable.mRippleView_cDensity, 10);
         mIsFill = tya.getBoolean(R.styleable.mRippleView_cIsFill, false);
         mIsAlpha = tya.getBoolean(R.styleable.mRippleView_cIsAlpha, false);
         tya.recycle();
 
-        init();
-    }
-
-    private void init() {
-        // 设置画笔样式
         mPaint = new Paint();
         mPaint.setColor(mColor);
         mPaint.setStrokeWidth(DensityUtils.dp2px(1));
@@ -85,34 +77,16 @@ public class RippleView extends View {
 
         // 添加第一个圆圈
         mRipples = new ArrayList<>();
-        Circle c = new Circle(0, 255);
+        Circle c = new Circle(DensityUtils.dp2px(20), 255);
         mRipples.add(c);
 
         mDensity = DensityUtils.dp2px(mDensity);
-
-        // 设置View的圆为半透明
-        setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        // 内切正方形
-        drawInCircle(canvas);
-
-        // 外切正方形
-        // drawOutCircle(canvas);
-    }
-
-    /**
-     * 圆到宽度
-     *
-     * @param canvas
-     */
-    private void drawInCircle(Canvas canvas) {
         canvas.save();
-
         // 处理每个圆的宽度和透明度
         for (int i = 0; i < mRipples.size(); i++) {
             Circle c = mRipples.get(i);
@@ -120,14 +94,14 @@ public class RippleView extends View {
 
             float radius = c.width - mPaint.getStrokeWidth();
 
+            float ratio = 0.5f;
+
             float left = mWidth - mWidth / 2 - c.width;
-            float top = mWidth - mWidth / 2 - c.width / 2;
+            float top = mWidth - mWidth / 2 - c.width * ratio;
             float right = mWidth - mWidth / 2 + c.width;
-            float bottom = mWidth - mWidth / 2 + c.width / 2;
+            float bottom = mWidth - mWidth / 2 + c.width * ratio;
 
             canvas.drawRoundRect(new RectF(left, top, right, bottom), radius, radius, mPaint);
-
-//            canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
 
             // 当圆超出View的宽度后删除
             if (c.width > mWidth / 2) {
@@ -142,58 +116,11 @@ public class RippleView extends View {
                 c.width += mSpeed;
             }
         }
-
-
         // 里面添加圆
         if (mRipples.size() > 0) {
             // 控制第二个圆出来的间距
             if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px(mDensity)) {
-                mRipples.add(new Circle(0, 255));
-            }
-        }
-
-
-        invalidate();
-
-        canvas.restore();
-    }
-
-
-    /**
-     * 圆到对角线
-     *
-     * @param canvas
-     */
-    private void drawOutCircle(Canvas canvas) {
-        canvas.save();
-
-        // 使用勾股定律求得一个外切正方形中心点离角的距离
-        sqrtNumber = (int) (Math.sqrt(mWidth * mWidth + mHeight * mHeight) / 2);
-
-        // 变大
-        for (int i = 0; i < mRipples.size(); i++) {
-
-            // 启动圆圈
-            Circle c = mRipples.get(i);
-            mPaint.setAlpha(c.alpha);// （透明）0~255（不透明）
-            canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
-
-            // 当圆超出对角线后删掉
-            if (c.width > sqrtNumber) {
-                mRipples.remove(i);
-            } else {
-                // 计算不透明的度数
-                double degree = 255 - c.width * (255 / (double) sqrtNumber);
-                c.alpha = (int) degree;
-                c.width += 1;
-            }
-        }
-
-        // 里面添加圆
-        if (mRipples.size() > 0) {
-            // 控制第二个圆出来的间距
-            if (mRipples.get(mRipples.size() - 1).width == 50) {
-                mRipples.add(new Circle(0, 255));
+                mRipples.add(new Circle(DensityUtils.dp2px(3), 255));
             }
         }
         invalidate();
@@ -230,13 +157,13 @@ public class RippleView extends View {
     }
 
 
-    class Circle {
-        Circle(int width, int alpha) {
+    private static class Circle {
+        Circle(float width, int alpha) {
             this.width = width;
             this.alpha = alpha;
         }
 
-        int width;
+        float width;
 
         int alpha;
     }
