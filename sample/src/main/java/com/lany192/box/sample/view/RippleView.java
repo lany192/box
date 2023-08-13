@@ -155,6 +155,7 @@ public class RippleView extends View {
     private static class Circle {
         Circle(float width, float height, int alpha) {
             this.width = width;
+            this.height = height;
             this.alpha = alpha;
         }
 
