@@ -100,7 +100,10 @@ public class RippleView extends View {
             float top = mHeight / 2 - circle.width * ratio;
             float right = mWidth / 2 + circle.width;
             float bottom = mHeight / 2 + circle.width * ratio;
-            canvas.drawRoundRect(new RectF(left, top, right, bottom), radius, radius, mPaint);
+
+            RectF rectF = new RectF(left, top, right, bottom);
+
+            canvas.drawRoundRect(rectF, radius, radius, mPaint);
 
             // 当圆超出View的宽度后删除
             if (circle.width > mWidth / 2) {
