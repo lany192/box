@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.github.lany192.utils.DensityUtils;
 import com.lany192.box.sample.R;
@@ -29,8 +30,6 @@ public class RippleView extends View {
 
     // 声波的圆圈集合
     private List<Circle> mRipples;
-
-    private int sqrtNumber;
 
     // 圆圈扩散的速度
     private int mSpeed;
@@ -88,9 +87,6 @@ public class RippleView extends View {
         mRipples.add(c);
 
         mDensity = DensityUtils.dp2px( mDensity);
-
-        // 设置View的圆为半透明
-        setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override
@@ -117,7 +113,6 @@ public class RippleView extends View {
             Circle c = mRipples.get(i);
             mPaint.setAlpha(c.alpha);// （透明）0~255（不透明）
             canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
-
             // 当圆超出View的宽度后删除
             if (c.width > mWidth / 2) {
                 mRipples.remove(i);
@@ -137,51 +132,6 @@ public class RippleView extends View {
         if (mRipples.size() > 0) {
             // 控制第二个圆出来的间距
             if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px( mDensity)) {
-                mRipples.add(new Circle(0, 255));
-            }
-        }
-
-
-        invalidate();
-
-        canvas.restore();
-    }
-
-
-    /**
-     * 圆到对角线
-     *
-     * @param canvas
-     */
-    private void drawOutCircle(Canvas canvas) {
-        canvas.save();
-
-        // 使用勾股定律求得一个外切正方形中心点离角的距离
-        sqrtNumber = (int) (Math.sqrt(mWidth * mWidth + mHeight * mHeight) / 2);
-
-        // 变大
-        for (int i = 0; i < mRipples.size(); i++) {
-
-            // 启动圆圈
-            Circle c = mRipples.get(i);
-            mPaint.setAlpha(c.alpha);// （透明）0~255（不透明）
-            canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
-
-            // 当圆超出对角线后删掉
-            if (c.width > sqrtNumber) {
-                mRipples.remove(i);
-            } else {
-                // 计算不透明的度数
-                double degree = 255 - c.width * (255 / (double) sqrtNumber);
-                c.alpha = (int) degree;
-                c.width += 1;
-            }
-        }
-
-        // 里面添加圆
-        if (mRipples.size() > 0) {
-            // 控制第二个圆出来的间距
-            if (mRipples.get(mRipples.size() - 1).width == 50) {
                 mRipples.add(new Circle(0, 255));
             }
         }
