@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -87,7 +88,7 @@ public class RippleView extends View {
         Circle c = new Circle(0, 255);
         mRipples.add(c);
 
-        mDensity = DensityUtils.dp2px( mDensity);
+        mDensity = DensityUtils.dp2px(mDensity);
 
         // 设置View的圆为半透明
         setBackgroundColor(Color.TRANSPARENT);
@@ -116,7 +117,17 @@ public class RippleView extends View {
         for (int i = 0; i < mRipples.size(); i++) {
             Circle c = mRipples.get(i);
             mPaint.setAlpha(c.alpha);// （透明）0~255（不透明）
-            canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
+
+            float radius = c.width - mPaint.getStrokeWidth();
+
+            float left = mWidth - mWidth / 2 - c.width;
+            float top = mWidth - mWidth / 2 - c.width / 2;
+            float right = mWidth - mWidth / 2 + c.width;
+            float bottom = mWidth - mWidth / 2 + c.width / 2;
+
+            canvas.drawRoundRect(new RectF(left, top, right, bottom), radius, radius, mPaint);
+
+//            canvas.drawCircle(mWidth / 2, mHeight / 2, c.width - mPaint.getStrokeWidth(), mPaint);
 
             // 当圆超出View的宽度后删除
             if (c.width > mWidth / 2) {
@@ -136,7 +147,7 @@ public class RippleView extends View {
         // 里面添加圆
         if (mRipples.size() > 0) {
             // 控制第二个圆出来的间距
-            if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px( mDensity)) {
+            if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px(mDensity)) {
                 mRipples.add(new Circle(0, 255));
             }
         }
@@ -203,7 +214,7 @@ public class RippleView extends View {
             mWidth = myWidthSpecSize;
         } else {
             // wrap_content
-            mWidth = DensityUtils.dp2px( 120);
+            mWidth = DensityUtils.dp2px(120);
         }
 
         // 获取高度
@@ -211,7 +222,7 @@ public class RippleView extends View {
             mHeight = myHeightSpecSize;
         } else {
             // wrap_content
-            mHeight = DensityUtils.dp2px( 120);
+            mHeight = DensityUtils.dp2px(120);
         }
 
         // 设置该view的宽高
