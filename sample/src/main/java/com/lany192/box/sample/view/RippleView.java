@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.github.lany192.utils.DensityUtils;
@@ -58,10 +59,10 @@ public class RippleView extends View {
         super(context, attrs, defStyleAttr);
         TypedArray tya = context.obtainStyledAttributes(attrs, R.styleable.mRippleView);
         mColor = tya.getColor(R.styleable.mRippleView_cColor, Color.BLUE);
-        mSpeed = tya.getFloat(R.styleable.mRippleView_cSpeed, 0.4f);
+        mSpeed = tya.getFloat(R.styleable.mRippleView_cSpeed, 0.6f);
         mDensity = tya.getInt(R.styleable.mRippleView_cDensity, 10);
         mIsFill = tya.getBoolean(R.styleable.mRippleView_cIsFill, false);
-        mIsAlpha = tya.getBoolean(R.styleable.mRippleView_cIsAlpha, false);
+        mIsAlpha = tya.getBoolean(R.styleable.mRippleView_cIsAlpha, true);
         tya.recycle();
 
         mPaint = new Paint();
@@ -77,8 +78,7 @@ public class RippleView extends View {
 
         // 添加第一个圆圈
         mRipples = new ArrayList<>();
-        Circle c = new Circle(DensityUtils.dp2px(20), 255);
-        mRipples.add(c);
+        mRipples.add(new Circle(DensityUtils.dp2px(10), 255));
 
         mDensity = DensityUtils.dp2px(mDensity);
     }
@@ -89,38 +89,37 @@ public class RippleView extends View {
         canvas.save();
         // 处理每个圆的宽度和透明度
         for (int i = 0; i < mRipples.size(); i++) {
-            Circle c = mRipples.get(i);
-            mPaint.setAlpha(c.alpha);// （透明）0~255（不透明）
+            Circle circle = mRipples.get(i);
+            mPaint.setAlpha(circle.alpha);// （透明）0~255（不透明）
 
-            float radius = c.width - mPaint.getStrokeWidth();
+            float radius = circle.width - mPaint.getStrokeWidth();
 
             float ratio = 0.5f;
 
-            float left = mWidth - mWidth / 2 - c.width;
-            float top = mWidth - mWidth / 2 - c.width * ratio;
-            float right = mWidth - mWidth / 2 + c.width;
-            float bottom = mWidth - mWidth / 2 + c.width * ratio;
-
+            float left = mWidth / 2 - circle.width;
+            float top = mHeight / 2 - circle.width * ratio;
+            float right = mWidth / 2 + circle.width;
+            float bottom = mHeight / 2 + circle.width * ratio;
             canvas.drawRoundRect(new RectF(left, top, right, bottom), radius, radius, mPaint);
 
             // 当圆超出View的宽度后删除
-            if (c.width > mWidth / 2) {
+            if (circle.width > mWidth / 2) {
                 mRipples.remove(i);
             } else {
                 // 计算不透明的数值，这里有个小知识，就是如果不加上double的话，255除以一个任意比它大的数都将是0
                 if (mIsAlpha) {
-                    double alpha = 255 - c.width * (255 / ((double) mWidth / 2));
-                    c.alpha = (int) alpha;
+                    double alpha = 255 - circle.width * (255 / ((double) mWidth / 2));
+                    circle.alpha = (int) alpha;
                 }
                 // 修改这个值控制速度
-                c.width += mSpeed;
+                circle.width += mSpeed;
             }
         }
         // 里面添加圆
         if (mRipples.size() > 0) {
             // 控制第二个圆出来的间距
             if (mRipples.get(mRipples.size() - 1).width > DensityUtils.dp2px(mDensity)) {
-                mRipples.add(new Circle(DensityUtils.dp2px(3), 255));
+                mRipples.add(new Circle(DensityUtils.dp2px(10), 255));
             }
         }
         invalidate();
