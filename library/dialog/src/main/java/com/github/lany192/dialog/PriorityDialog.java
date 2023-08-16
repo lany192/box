@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -176,13 +175,23 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
     }
 
     public void cancel() {
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null) {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.remove(this);
-            transaction.commitAllowingStateLoss();
-        } else {
-            log.e("对话框context异常");
+        try {
+            dismissNow();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                dismissAllowingStateLoss();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                FragmentManager fragmentManager = getFragmentManager();
+                if (fragmentManager != null) {
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.remove(this);
+                    transaction.commitAllowingStateLoss();
+                } else {
+                    log.e("对话框context异常");
+                }
+            }
         }
     }
 
@@ -253,18 +262,30 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
                 }
                 return super.onTouchEvent(event);
             }
+
+            @Override
+            public void onBackPressed() {
+                onBackKeyClicked();
+                if (isCancelable()) {
+                    super.onBackPressed();
+                }
+            }
         };
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(isCancelable());
         dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
-        if (!isCancelable()) {
-            dialog.setOnKeyListener((dialog1, keyCode, event) -> keyCode == KeyEvent.KEYCODE_BACK);
-        }
         Window window = dialog.getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         return dialog;
+    }
+
+    /**
+     * 对话框外部点击触发点
+     */
+    public void onBackKeyClicked() {
+        LogUtils.i("返回按键点击");
     }
 
     /**
