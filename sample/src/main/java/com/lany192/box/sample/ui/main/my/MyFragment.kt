@@ -102,6 +102,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.test2.setOnClickListener {
             loginProvider.startLogin()
         }
+        binding.roundLayout.setRadius(30f)
     }
 
     private fun showDialog2() {
