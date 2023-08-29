@@ -4,9 +4,6 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.coroutineScope
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.github.lany192.log.XLog
 
@@ -41,12 +38,6 @@ abstract class BaseBinder<T, VH : BaseViewHolder> {
             }
             return _context!!
         }
-
-    /**
-     * 作用域
-     */
-    val lifecycleScope: LifecycleCoroutineScope
-        get() = (context as LifecycleOwner).lifecycle.coroutineScope
 
     val data: MutableList<Any> get() = adapter.data
 
