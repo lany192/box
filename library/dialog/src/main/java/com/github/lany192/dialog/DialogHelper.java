@@ -158,7 +158,9 @@ public class DialogHelper {
 
             @Override
             public void onActivityDestroyed(@NonNull Activity activity) {
-                activityStack.remove(activity);
+                if (activity instanceof FragmentActivity) {
+                    activityStack.remove((FragmentActivity) activity);
+                }
                 if (currentDialog != null && currentDialog.requireActivity() == activity) {
                     log.i("宿主销毁，主动注销对话框");
                     currentDialog.cancel();
