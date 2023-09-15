@@ -130,6 +130,9 @@ public class DialogHelper {
     }
 
     private FragmentActivity getTopActivity() {
+        if(activityStack.isEmpty()){
+            return null;
+        }
         FragmentActivity activity = activityStack.lastElement();
         if (activity != null) {
             if (!activity.isFinishing() && !activity.isDestroyed()) {
