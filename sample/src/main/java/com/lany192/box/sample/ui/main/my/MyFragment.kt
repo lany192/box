@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.BirthdayDialog
+import com.github.lany192.dialog.ImageDialog
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
@@ -103,6 +104,9 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
             loginProvider.startLogin()
         }
         binding.roundLayout.setRadius(30f)
+        binding.test3.setOnClickListener {
+            showImageDialog()
+        }
     }
 
     private fun showDialog2() {
@@ -123,5 +127,11 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         dialog.setRightButton("确定") { }
         dialog.setLeftButton("取消") { }
         dialog.show()
+    }
+
+    private fun showImageDialog() {
+        val dialog = ImageDialog()
+        dialog.setImage("http://bizhi.zhuoku.com/2019/12/03/bingshiyi/bing01.jpg")
+        dialog.showWhenLoaded(activity)
     }
 }
