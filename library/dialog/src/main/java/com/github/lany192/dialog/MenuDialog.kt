@@ -16,7 +16,7 @@ class MenuDialog : BaseDialog<DialogMenuBinding>() {
 
     private var listener: OnItemListener? = null
 
-    private var title: String? = null;
+    private var title: String? = null
 
     override fun bottomStyle(): Boolean {
         return true
@@ -29,7 +29,7 @@ class MenuDialog : BaseDialog<DialogMenuBinding>() {
             R.id.title, items
         )
         binding.listView.onItemClickListener =
-            AdapterView.OnItemClickListener { adapterView: AdapterView<*>?, view: View?, position: Int, l: Long ->
+            AdapterView.OnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
                 listener?.onItemClick(position)
                 cancel()
             }
