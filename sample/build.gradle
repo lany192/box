@@ -152,6 +152,7 @@ dependencies {
     implementation project(path: ':library:cropper')
     implementation project(path: ':library:log')
     implementation project(path: ':library:toolkit')
+    implementation project(path: ':library:video')
 
 
 //    implementation 'com.github.lany192.box:arch:master-SNAPSHOT'
