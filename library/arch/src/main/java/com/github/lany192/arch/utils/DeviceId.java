@@ -34,8 +34,6 @@ public class DeviceId {
     private volatile static DeviceId instance = null;
     private final XLog log = XLog.tag("DeviceId");
     private final String KEY_DEVICE_ID = "BOX_DEVICE_ID";
-    private final String SD_FILE_NAME1 = "ida";
-    private final String SD_FILE_NAME2 = "idb";
     private String deviceId;
 
     private DeviceId() {
@@ -99,8 +97,6 @@ public class DeviceId {
                 }
                 log.i("获取SD值:" + deviceId);
             }
-        } else {
-//            log.i("获取内存值:" + deviceId);
         }
         return deviceId;
     }
@@ -123,14 +119,28 @@ public class DeviceId {
      * 获取外部存在的完整文件路径
      * /storage/emulated/0/Documents/.kp
      */
-    private String getDeviceIdFilePath(String filename) {
+    private String getDeviceIdFileSDPath() {
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath();
         File file = new File(path);
         if (!file.exists()) {
             boolean result = file.mkdirs();
             log.i("目录不存在，创建目录。创建结果：" + result);
         }
-        return path + File.separator + "." + filename;
+        return path + File.separator + ".id";
+    }
+
+    /**
+     * 获取OBB文件路径
+     * /storage/emulated/0/Android/obb/com.xxx.xx/.kp
+     */
+    private String getDeviceIdFileObbPath() {
+        String path = ContextUtils.getContext().getObbDir().getPath();
+        File file = new File(path);
+        if (!file.exists()) {
+            boolean result = file.mkdirs();
+            log.i("目录不存在，创建目录。创建结果：" + result);
+        }
+        return path + File.separator + ".id";
     }
 
     /**
@@ -139,33 +149,37 @@ public class DeviceId {
      */
     private String getDeviceIdFromSD() {
         if (checkPermission()) {
-            String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
-            String id1 = readFromFile(filePath1);
-            String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
-            String id2 = readFromFile(filePath2);
+            String path1 = getDeviceIdFileSDPath();
+            String id1 = readFromFile(path1);
+            String path2 = getDeviceIdFileObbPath();
+            String id2 = readFromFile(path2);
             log.i("SD读取的设备码:设备码1：" + id1 + ",设备码2:" + id2);
-            if (TextUtils.isEmpty(id1) || TextUtils.isEmpty(id2)) {
+            if (!TextUtils.isEmpty(id1) && !TextUtils.isEmpty(id2)) {
+                if (!id1.equals(id2)) {
+                    log.i("两个sd上的id不相同");
+                    return "";
+                }
+                if (checkDeviceId(id1)) {
+                    return id1;
+                } else {
+                    log.i("检测到非法id");
+                }
+            } else {
                 log.i("未读取到id");
-                return "";
             }
-            if (!id1.equals(id2)) {
-                log.i("两个sd上的id不相同");
-                return "";
-            }
-            return id1;
         } else {
             log.i("没有SD卡权限，读取失败");
-            return "";
         }
+        return "";
     }
 
     private void save2SD(String id) {
         if (checkPermission()) {
             //将内容加密
-            String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
-            String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
-            save2file(id, filePath1);
-            save2file(id, filePath2);
+            String path1 = getDeviceIdFileSDPath();
+            String path2 = getDeviceIdFileObbPath();
+            save2file(id, path1);
+            save2file(id, path2);
         } else {
             log.i("没有SD卡权限，保存失败！");
         }
@@ -180,6 +194,18 @@ public class DeviceId {
         String md5 = MD5Utils.md5(tmp);
         String id = tmp + md5.toCharArray()[5];
         return id.toLowerCase();
+    }
+
+    /**
+     * 校验id是否正确
+     */
+    private boolean checkDeviceId(String id) {
+        if (!TextUtils.isEmpty(id) && id.length() == 32) {
+            char a = id.toCharArray()[31];
+            char b = MD5Utils.md5(id.substring(0, 31)).toCharArray()[5];
+            return a == b;
+        }
+        return false;
     }
 
     /**
