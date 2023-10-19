@@ -18,7 +18,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
@@ -39,7 +38,7 @@ public class DeviceId {
     private DeviceId() {
     }
 
-    public static DeviceId get() {
+    public static DeviceId getInstance() {
         if (instance == null) {
             synchronized (DeviceId.class) {
                 if (instance == null) {
@@ -116,73 +115,39 @@ public class DeviceId {
     }
 
     /**
-     * 获取外部存在的完整文件路径
-     * /storage/emulated/0/Documents/.kp
-     */
-    private String getDeviceIdFileSDPath() {
-        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath();
-        File file = new File(path);
-        if (!file.exists()) {
-            boolean result = file.mkdirs();
-            log.i("目录不存在，创建目录。创建结果：" + result);
-        }
-        return path + File.separator + ".id";
-    }
-
-    /**
-     * 获取OBB文件路径
-     * /storage/emulated/0/Android/obb/com.xxx.xx/.kp
-     */
-    private String getDeviceIdFileObbPath() {
-        String path = ContextUtils.getContext().getObbDir().getPath();
-        File file = new File(path);
-        if (!file.exists()) {
-            boolean result = file.mkdirs();
-            log.i("目录不存在，创建目录。创建结果：" + result);
-        }
-        return path + File.separator + ".id";
-    }
-
-    /**
      * 从外部存储的公共目录上读取,
      * 读取两个sd上的id，校验是否被修改
      */
     private String getDeviceIdFromSD() {
-        if (checkPermission()) {
-            String path1 = getDeviceIdFileSDPath();
-            String id1 = readFromFile(path1);
-            String path2 = getDeviceIdFileObbPath();
-            String id2 = readFromFile(path2);
-            log.i("SD读取的设备码:设备码1：" + id1 + ",设备码2:" + id2);
-            if (!TextUtils.isEmpty(id1) && !TextUtils.isEmpty(id2)) {
-                if (!id1.equals(id2)) {
-                    log.i("两个sd上的id不相同");
-                    return "";
-                }
-                if (checkDeviceId(id1)) {
-                    return id1;
-                } else {
-                    log.i("检测到非法id");
-                }
-            } else {
-                log.i("未读取到id");
-            }
-        } else {
-            log.i("没有SD卡权限，读取失败");
+        String obbPath = getDeviceIdFileObbPath();
+        String sdPath = getDeviceIdFileSDPath();
+
+        String obbId = getIdByFilePath(obbPath, false);
+        String sdId = getIdByFilePath(sdPath, true);
+
+        log.i("SD读取的设备码:设备码sdId：" + sdId + ",设备码obbId:" + obbId);
+        if (TextUtils.isEmpty(sdId) && !TextUtils.isEmpty(obbId)) {
+            log.i("obbId有数据，sdId未发现");
+            save2file(obbId, sdPath, true);
         }
-        return "";
+        if (!TextUtils.isEmpty(sdId) && TextUtils.isEmpty(obbId)) {
+            log.i("sdId有数据，obbId未发现");
+            save2file(sdId, obbPath, false);
+        }
+        if (TextUtils.isEmpty(sdId) && TextUtils.isEmpty(obbId)) {
+            log.i("未读取到sdId和obbId");
+            return "";
+        }
+        if (!sdId.equals(obbId)) {
+            log.i("两个sd上的id不相同");
+            return "";
+        }
+        return sdId;
     }
 
     private void save2SD(String id) {
-        if (checkPermission()) {
-            //将内容加密
-            String path1 = getDeviceIdFileSDPath();
-            String path2 = getDeviceIdFileObbPath();
-            save2file(id, path1);
-            save2file(id, path2);
-        } else {
-            log.i("没有SD卡权限，保存失败！");
-        }
+        save2file(id, getDeviceIdFileSDPath(), true);
+        save2file(id, getDeviceIdFileObbPath(), false);
     }
 
     /**
@@ -210,79 +175,111 @@ public class DeviceId {
 
     /**
      * 保存内容到文件中
-     *
-     * @param content  内容
-     * @param filePath 完整文件路径
      */
-    private void save2file(String content, String filePath) {
-        if (checkPermission()) {
-            BufferedWriter writer = null;
-            try {
-                File file = new File(filePath);
-                if (!file.exists()) {
-                    boolean result = file.createNewFile();
-                }
-                OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8);
-                writer = new BufferedWriter(write);
-                writer.write(content);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (writer != null) {
-                        writer.flush();
-                        writer.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    private void save2file(String text, String filePath, boolean needPermission) {
+        if (needPermission && !checkPermission()) {
+            log.i("没有SD卡权限");
+            return;
+        }
+        BufferedWriter writer = null;
+        try {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                boolean result = file.createNewFile();
             }
-        } else {
-            log.i("没有SD卡权限，保存失败！");
+            OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8);
+            writer = new BufferedWriter(write);
+            writer.write(text);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.flush();
+                    writer.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     /**
      * 从文件中读取内容
-     *
-     * @param filePath 完整文件路径
-     * @return 内容
      */
-    private String readFromFile(String filePath) {
-        if (checkPermission()) {
-            File file = new File(filePath);
-            if (!file.exists()) {
-                try {
-                    boolean result = file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            BufferedReader reader = null;
-            StringBuilder sb = new StringBuilder();
+    private String getIdByFilePath(String filePath, boolean needPermission) {
+        String id = "";
+        if (needPermission && !checkPermission()) {
+            log.i("没有SD卡权限");
+            return id;
+        }
+        if (TextUtils.isEmpty(filePath)) {
+            log.i("路径为空");
+            return id;
+        }
+        File file = new File(filePath);
+        if (!file.exists()) {
             try {
-                reader = new BufferedReader(new FileReader(file));
-                String tempString;
-                while ((tempString = reader.readLine()) != null) {
-                    sb.append(tempString);
-                }
-                reader.close();
+                boolean result = file.createNewFile();
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (Exception e1) {
-
-                    }
-                }
-                return sb.toString();
             }
-        } else {
-            log.i("没有SD卡权限");
-            return "";
         }
+        BufferedReader reader = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String tempString;
+            while ((tempString = reader.readLine()) != null) {
+                sb.append(tempString);
+            }
+            id = sb.toString();
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        //校验id
+        if (!checkDeviceId(id)) {
+            log.i("非法id：" + id);
+            id = "";
+        }
+        return id;
+    }
+
+    /**
+     * 获取外部存在的完整文件路径
+     * /storage/emulated/0/Documents/.id
+     */
+    private String getDeviceIdFileSDPath() {
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath();
+        File file = new File(path);
+        if (!file.exists()) {
+            boolean result = file.mkdirs();
+            log.i("目录不存在，创建目录。创建结果：" + result);
+        }
+        return path + File.separator + ".id";
+    }
+
+    /**
+     * 获取OBB文件路径
+     * /storage/emulated/0/Android/obb/com.xxx.xx/.id
+     */
+    private String getDeviceIdFileObbPath() {
+        String path = ContextUtils.getContext().getObbDir().getPath();
+        File file = new File(path);
+        if (!file.exists()) {
+            boolean result = file.mkdirs();
+            log.i("目录不存在，创建目录。创建结果：" + result);
+        }
+        return path + File.separator + ".id";
     }
 
     /**

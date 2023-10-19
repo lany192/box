@@ -9,7 +9,7 @@ import com.github.lany192.log.LogUtils
 class CrashInitializer : Initializer<Unit> {
 
     override fun create(context: Context) {
-        DeviceId.get().grantedSDPermission()
+        DeviceId.getInstance().grantedSDPermission()
         CrashHelper.getInstance()
         LogUtils.i("CrashHelper初始化")
     }

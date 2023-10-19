@@ -25,7 +25,7 @@ public class ParamsInterceptor implements Interceptor {
         Request request = chain.request();
         Request.Builder builder = request.newBuilder();
         builder.addHeader("User-Agent", PhoneUtils.getBaseInfo());
-        builder.addHeader("deviceId", DeviceId.get().getDeviceId());
+        builder.addHeader("deviceId", DeviceId.getInstance().getDeviceId());
         builder.addHeader("version", String.valueOf(PhoneUtils.getAppVersionCode()));
         if (headers != null && headers.size() > 0) {
             for (Map.Entry<String, String> entry : headers.entrySet()) {

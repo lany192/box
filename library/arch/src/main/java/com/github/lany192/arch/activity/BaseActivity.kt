@@ -172,7 +172,7 @@ abstract class BaseActivity : AppCompatActivity() {
             && (permissions.contains(Manifest.permission.READ_EXTERNAL_STORAGE)
                     || permissions.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE))
         ) {
-            DeviceId.get().grantedSDPermission()
+            DeviceId.getInstance().grantedSDPermission()
         }
     }
 }
