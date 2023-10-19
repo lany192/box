@@ -34,11 +34,6 @@ public class ImageDialog extends BaseDialog<DialogImageBinding> {
         }
         Glide.with(this)
                 .load(model)
-                .apply(new RequestOptions()
-                        .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .format(DecodeFormat.PREFER_ARGB_8888)
-                )
                 .into(binding.image);
         binding.bottom.setOnTouchListener((v, event) -> {
             cancel();
@@ -74,7 +69,7 @@ public class ImageDialog extends BaseDialog<DialogImageBinding> {
                         .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .format(DecodeFormat.PREFER_ARGB_8888))
-                .addListener(new RequestListener<>() {
+                .addListener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                         ImageDialog.super.show(context);
