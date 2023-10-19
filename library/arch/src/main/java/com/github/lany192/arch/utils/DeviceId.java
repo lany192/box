@@ -79,6 +79,10 @@ public class DeviceId {
         if (TextUtils.isEmpty(deviceId)) {
             String sdId = getDeviceIdFromSD();
             String kvId = KVUtils.getString(KEY_DEVICE_ID);
+            if (!checkDeviceId(kvId)) {
+                log.i("a 非法id");
+                kvId = "";
+            }
             log.i("KV的值:" + kvId + "，SD的值:" + sdId);
             if (TextUtils.isEmpty(sdId)) {
                 if (TextUtils.isEmpty(kvId)) {
