@@ -91,8 +91,8 @@ ext {
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
             'refresh-layout'                  : 'io.github.scwang90:refresh-layout-kernel:2.0.6',
             'refresh-header'                  : 'io.github.scwang90:refresh-header-classics:2.0.6',
-            //多渠道打包工具 https://github.com/Meituan-Dianping/walle 考虑用 https://github.com/Tencent/VasDolly 代替
-            'walle'                           : 'com.meituan.android.walle:library:1.1.7',
+            //多渠道打包工具 https://github.com/Tencent/VasDolly
+            'vasdolly'                        : 'com.tencent.vasdolly:helper:3.0.6',
             //阿里界面路由 https://github.com/alibaba/ARouter
             "arouter"                         : 'com.alibaba:arouter-api:1.5.2',
             //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
