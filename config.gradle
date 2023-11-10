@@ -14,8 +14,8 @@ ext {
             'room'      : 'androidx.room:room-compiler:2.5.0',
             //路由增强 https://github.com/lany192/app-router
             'app-router': 'com.github.lany192.app-router:arouter-compiler:1.5.1',
-            //阿里路由 https://github.com/alibaba/ARouter
-            'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
+//            //阿里路由 https://github.com/alibaba/ARouter
+//            'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
             //注入依赖 https://dagger.dev/hilt/
             'hilt'      : 'com.google.dagger:hilt-android-compiler:2.45'
     ]
@@ -77,8 +77,8 @@ ext {
             'mmkv'                            : 'com.tencent:mmkv:1.3.1',
             //tencent 日志工具 https://github.com/Tencent/mars
             'xlog'                            : 'com.tencent.mars:mars-xlog:1.3.0',
-            //轻量级、高性能的 Hybrid 框架 https://github.com/Tencent/VasSonic
-            'VasSonic'                        : 'com.tencent.sonic:sdk:3.1.1',
+            //提升H5首屏加载速度 https://github.com/Tencent/VasSonic
+            'VasSonic'                        : 'com.tencent.sonic:sdk:3.1.0',
             //微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
             'wechat'                          : 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.18',
             //腾讯x5 https://x5.tencent.com/docs/index.html
@@ -89,8 +89,8 @@ ext {
             //异常捕获 https://github.com/iqiyi/xCrash
             'xcrash'                          : 'com.iqiyi.xcrash:xcrash-android-lib:3.1.0',
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
-            'refresh-layout'                  : 'io.github.scwang90:refresh-layout-kernel:2.0.6',
-            'refresh-header'                  : 'io.github.scwang90:refresh-header-classics:2.0.6',
+            'refresh-layout'                  : 'io.github.scwang90:refresh-layout-kernel:2.1.0',
+            'refresh-header'                  : 'io.github.scwang90:refresh-header-classics:2.1.0',
             //多渠道打包工具 https://github.com/Meituan-Dianping/walle 考虑用 https://github.com/Tencent/VasDolly 代替
             'walle'                           : 'com.meituan.android.walle:library:1.1.7',
             //阿里界面路由 https://github.com/alibaba/ARouter
