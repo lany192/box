@@ -1,7 +1,7 @@
 buildscript {
     apply from: 'config.gradle'
     dependencies {
-        classpath 'com.github.lany192.app-router:arouter-gradle-plugin:1.5.1'
+        classpath 'com.github.lany192.app-router:arouter-gradle-plugin:1.5.4'
 
 //        //https://github.com/bytedance/ByteX
 //        classpath 'com.bytedance.android.byteX:base-plugin:0.3.0'

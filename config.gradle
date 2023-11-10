@@ -13,7 +13,7 @@ ext {
             'glide'     : 'com.github.bumptech.glide:compiler:4.15.1',
             'room'      : 'androidx.room:room-compiler:2.5.0',
             //路由增强 https://github.com/lany192/app-router
-            'app-router': 'com.github.lany192.app-router:arouter-compiler:1.5.1',
+            'app-router': 'com.github.lany192.app-router:arouter-compiler:1.5.4',
             //阿里路由 https://github.com/alibaba/ARouter
             'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
             //注入依赖 https://dagger.dev/hilt/
