@@ -78,7 +78,6 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
@@ -88,7 +87,6 @@ android {
         develop {
             matchingFallbacks = ['release']
             minifyEnabled true
-            zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
@@ -98,7 +96,6 @@ android {
         }
         debug {
             minifyEnabled false
-            zipAlignEnabled false
             shrinkResources false
             signingConfig signingConfigs.config
             versionNameSuffix '_dev'
