@@ -63,7 +63,7 @@ public class DeviceId {
      * 获得了SD卡权限，需要将sd上的id替换到KV和内存上
      */
     public void grantedSDPermission() {
-        if (checkPermission()) {
+        if (checkSDPermission()) {
             String sdId = getDeviceIdFromSD();
             //校验两个ID：如果KV中可以读取到id，与从SD卡中读取id进行比较是否相等
             if (!TextUtils.isEmpty(sdId) && !sdId.equals(deviceId)) {
@@ -196,7 +196,7 @@ public class DeviceId {
      * @param fileName 文件名
      */
     private void save2file(String deviceId, String fileName) {
-        if (checkPermission()) {
+        if (checkSDPermission()) {
             String filePath = getDeviceIdFilePath(fileName);
             BufferedWriter writer = null;
             try {
@@ -219,8 +219,8 @@ public class DeviceId {
                     e.printStackTrace();
                 }
             }
-        } else {
-            Uri contentUri = MediaStore.Files.getContentUri("external");
+        } else if (checkExternalPermission()) {
+            Uri contentUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
             ContentResolver contentResolver = ContextUtils.getContext().getContentResolver();
             ContentValues contentValues = new ContentValues();
             contentValues.put(MediaStore.Images.Media.MIME_TYPE, "text/plain");
@@ -255,7 +255,7 @@ public class DeviceId {
      */
     private String getIdFromSD(String fileName) {
         String deviceId = "";
-        if (checkPermission()) {
+        if (checkSDPermission()) {
             String filePath = getDeviceIdFilePath(fileName);
             File file = new File(filePath);
             if (!file.exists()) {
@@ -286,12 +286,12 @@ public class DeviceId {
                     }
                 }
             }
-        } else {
+        } else if (checkExternalPermission()) {
             String[] projection = {MediaStore.MediaColumns.DATA};
             String selection = MediaStore.MediaColumns.DISPLAY_NAME + "=?";
             String[] selectionArgs = {fileName};
 
-            Uri contentUri = MediaStore.Files.getContentUri("external");
+            Uri contentUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
             ContentResolver resolver = ContextUtils.getContext().getContentResolver();
             Cursor cursor = resolver.query(contentUri, projection, selection, selectionArgs, null);
 
@@ -315,8 +315,18 @@ public class DeviceId {
     /**
      * 是否有SD卡权限
      */
-    private boolean checkPermission() {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
+    private boolean checkSDPermission() {
+        return Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q && ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED;
+    }
+
+    /**
+     * 是否有SD卡权限
+     */
+    private boolean checkExternalPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.MANAGE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED;
+        }
+        return false;
     }
 }
