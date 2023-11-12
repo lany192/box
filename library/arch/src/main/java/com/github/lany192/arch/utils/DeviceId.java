@@ -2,7 +2,13 @@ package com.github.lany192.arch.utils;
 
 import static android.Manifest.permission;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 
 import androidx.core.content.ContextCompat;
@@ -19,6 +25,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
@@ -37,6 +44,7 @@ public class DeviceId {
     private final String SD_FILE_NAME1 = "ida";
     private final String SD_FILE_NAME2 = "idb";
     private String deviceId;
+    private final String ID_FILE_NAME = "device_id.txt";
 
     private DeviceId() {
     }
@@ -68,7 +76,7 @@ public class DeviceId {
                 saveDeviceId(deviceId);
             }
         } else {
-            log.i("未授权，忽略校正动作");
+            //log.i("未授权，忽略校正动作");
         }
     }
 
@@ -142,29 +150,33 @@ public class DeviceId {
      * 读取两个sd上的id，校验是否被修改
      */
     private String getDeviceIdFromSD() {
-        if (checkPermission()) {
-            String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
-            String id1 = readFromFile(filePath1);
-            String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
-            String id2 = readFromFile(filePath2);
-            log.i("SD读取的设备码:设备码1：" + id1 + ",设备码2:" + id2);
-            if (TextUtils.isEmpty(id1) || TextUtils.isEmpty(id2)) {
-                log.i("未读取到id");
-                return "";
-            }
-            if (!id1.equals(id2)) {
-                log.i("两个sd上的id不相同");
-                return "";
-            }
-            return id1;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return getIdByImage();
         } else {
-            log.i("没有SD卡权限，读取失败");
-            return "";
+            if (checkPermission()) {
+                String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
+                String id1 = readFromFile(filePath1);
+                String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
+                String id2 = readFromFile(filePath2);
+                log.i("SD读取的设备码:设备码1：" + id1 + ",设备码2:" + id2);
+                if (TextUtils.isEmpty(id1) || TextUtils.isEmpty(id2)) {
+                    log.i("未读取到id");
+                    return "";
+                }
+                if (!id1.equals(id2)) {
+                    log.i("两个sd上的id不相同");
+                    return "";
+                }
+                return id1;
+            }
         }
+        return "";
     }
 
     private void save2SD(String id) {
-        if (checkPermission()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            save2image(id);
+        } else if (checkPermission()) {
             //将内容加密
             String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
             String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
@@ -284,7 +296,67 @@ public class DeviceId {
      * 是否有SD卡权限
      */
     private boolean checkPermission() {
-        return ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return false;
+        } else {
+            return ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
+                    && ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED;
+        }
+    }
+
+    private String getIdByImage() {
+        String[] projection = {MediaStore.MediaColumns.DATA};
+        String selection = MediaStore.MediaColumns.DISPLAY_NAME + "=?";
+        String[] selectionArgs = {ID_FILE_NAME};
+
+        Uri contentUri = MediaStore.Files.getContentUri("external");
+        ContentResolver resolver = ContextUtils.getContext().getContentResolver();
+        Cursor cursor = resolver.query(contentUri, projection, selection, selectionArgs, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DATA);
+            String filePath = cursor.getString(columnIndex);
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                String deviceId = reader.readLine();
+                return deviceId;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            cursor.close();
+        }
+        return "";
+    }
+
+    private boolean save2image(String deviceId) {
+        Uri contentUri = MediaStore.Files.getContentUri("external");
+
+        ContentResolver contentResolver = ContextUtils.getContext().getContentResolver();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "text/plain");
+        contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, ID_FILE_NAME);
+        contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
+
+        Uri itemUri = contentResolver.insert(contentUri, contentValues);
+        if (itemUri != null) {
+            OutputStream outputStream = null;
+            try {
+                outputStream = contentResolver.openOutputStream(itemUri);
+                if (outputStream != null) {
+                    outputStream.write(deviceId.getBytes());
+                }
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (outputStream != null) {
+                    try {
+                        outputStream.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
