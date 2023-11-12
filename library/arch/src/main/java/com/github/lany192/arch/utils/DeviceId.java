@@ -41,8 +41,8 @@ public class DeviceId {
     private volatile static DeviceId instance = null;
     private final XLog log = XLog.tag("DeviceId");
     private final String KEY_DEVICE_ID = "BOX_DEVICE_ID";
-    private final String SD_FILE_NAME1 = "ida.txt";
-    private final String SD_FILE_NAME2 = "idb.txt";
+    private final String SD_FILE_NAME1 = "vid1.txt";
+    private final String SD_FILE_NAME2 = "vid2.txt";
     private String deviceId;
 
     private DeviceId() {
@@ -74,8 +74,6 @@ public class DeviceId {
             } else {
                 saveDeviceId(deviceId);
             }
-        } else {
-            //log.i("未授权，忽略校正动作");
         }
     }
 
@@ -194,7 +192,7 @@ public class DeviceId {
     /**
      * 保存内容到文件中
      *
-     * @param deviceId  内容
+     * @param deviceId 内容
      * @param fileName 文件名
      */
     private void save2file(String deviceId, String fileName) {
@@ -221,12 +219,12 @@ public class DeviceId {
                     e.printStackTrace();
                 }
             }
-        }else{
+        } else {
             Uri contentUri = MediaStore.Files.getContentUri("external");
             ContentResolver contentResolver = ContextUtils.getContext().getContentResolver();
             ContentValues contentValues = new ContentValues();
             contentValues.put(MediaStore.Images.Media.MIME_TYPE, "text/plain");
-            contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, SD_FILE_NAME1);
+            contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
             contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
 
             Uri itemUri = contentResolver.insert(contentUri, contentValues);
@@ -311,7 +309,6 @@ public class DeviceId {
         if (checkDeviceId(deviceId)) {
             return deviceId;
         }
-        log.i("非法id");
         return "";
     }
 
