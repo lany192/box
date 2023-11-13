@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
+import com.github.lany192.arch.utils.DeviceId;
+import com.hjq.toast.ToastUtils;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.lany192.box.router.lifecycle.ActivityLifecycle;
 import com.lany192.box.sample.lancet.LancetTest;
@@ -30,6 +32,7 @@ public class SampleApp extends BoxApplication {
 
         ShortcutUtils.init(this);
         LancetTest.test();
+        ToastUtils.show("设备id："+ DeviceId.getInstance().getDeviceId());
     }
 
     @Override

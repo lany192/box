@@ -10,12 +10,12 @@ ext {
             targetSdkVersion : 33
     ]
     processorDependencies = [
-            'glide'     : 'com.github.bumptech.glide:compiler:4.16.0',
+            'glide'     : 'com.github.bumptech.glide:compiler:4.15.1',
             'room'      : 'androidx.room:room-compiler:2.5.0',
             //路由增强 https://github.com/lany192/app-router
-            'app-router': 'com.github.lany192.app-router:arouter-compiler:1.5.1',
-//            //阿里路由 https://github.com/alibaba/ARouter
-//            'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
+            'app-router': 'com.github.lany192.app-router:arouter-compiler:1.5.4',
+            //阿里路由 https://github.com/alibaba/ARouter
+            'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
             //注入依赖 https://dagger.dev/hilt/
             'hilt'      : 'com.google.dagger:hilt-android-compiler:2.45'
     ]
@@ -74,10 +74,10 @@ ext {
             'moshi-kotlin'                    : 'com.squareup.moshi:moshi-kotlin:1.13.0',
 
             //tencent 存储 https://github.com/Tencent/MMKV
-            'mmkv'                            : 'com.tencent:mmkv:1.3.1',
+            'mmkv'                            : 'com.tencent:mmkv:1.2.14',
             //tencent 日志工具 https://github.com/Tencent/mars
-            'xlog'                            : 'com.tencent.mars:mars-xlog:1.3.0',
-            //提升H5首屏加载速度 https://github.com/Tencent/VasSonic
+            'xlog'                            : 'com.tencent.mars:mars-xlog:1.2.5',
+            //https://github.com/Tencent/VasSonic
             'VasSonic'                        : 'com.tencent.sonic:sdk:3.1.0',
             //微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
             'wechat'                          : 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.18',
@@ -85,14 +85,14 @@ ext {
             'tbssdk'                          : 'com.tencent.tbs:tbssdk:44286',
 
             //glide依赖 https://github.com/bumptech/glide
-            'glide'                           : 'com.github.bumptech.glide:glide:4.16.0',
+            'glide'                           : 'com.github.bumptech.glide:glide:4.15.1',
             //异常捕获 https://github.com/iqiyi/xCrash
             'xcrash'                          : 'com.iqiyi.xcrash:xcrash-android-lib:3.1.0',
             //刷新套件 https://github.com/scwang90/SmartRefreshLayout
-            'refresh-layout'                  : 'io.github.scwang90:refresh-layout-kernel:2.1.0',
-            'refresh-header'                  : 'io.github.scwang90:refresh-header-classics:2.1.0',
-            //多渠道打包工具 https://github.com/Meituan-Dianping/walle 考虑用 https://github.com/Tencent/VasDolly 代替
-            'walle'                           : 'com.meituan.android.walle:library:1.1.7',
+            'refresh-layout'                  : 'io.github.scwang90:refresh-layout-kernel:2.0.6',
+            'refresh-header'                  : 'io.github.scwang90:refresh-header-classics:2.0.6',
+            //多渠道打包工具 https://github.com/Tencent/VasDolly
+            'vasdolly'                        : 'com.tencent.vasdolly:helper:3.0.6',
             //阿里界面路由 https://github.com/alibaba/ARouter
             "arouter"                         : 'com.alibaba:arouter-api:1.5.2',
             //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
@@ -149,5 +149,8 @@ ext {
 //            'autodispose-androidx-lifecycle': 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.2.1',
             //https://github.com/google/gson
 //            'gson'                          : 'com.google.code.gson:gson:2.10.1'
+
+            //https://github.com/gzu-liyujiang/Android_CN_OAID
+            'oaid'                              : 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.7'
     ]
 }

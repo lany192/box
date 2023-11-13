@@ -2,7 +2,13 @@ package com.github.lany192.arch.utils;
 
 import static android.Manifest.permission;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 
 import androidx.core.content.ContextCompat;
@@ -19,6 +25,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
@@ -34,8 +41,8 @@ public class DeviceId {
     private volatile static DeviceId instance = null;
     private final XLog log = XLog.tag("DeviceId");
     private final String KEY_DEVICE_ID = "BOX_DEVICE_ID";
-    private final String SD_FILE_NAME1 = "ida";
-    private final String SD_FILE_NAME2 = "idb";
+    private final String SD_FILE_NAME1 = "vid1.txt";
+    private final String SD_FILE_NAME2 = "vid2.txt";
     private String deviceId;
 
     private DeviceId() {
@@ -56,7 +63,7 @@ public class DeviceId {
      * 获得了SD卡权限，需要将sd上的id替换到KV和内存上
      */
     public void grantedSDPermission() {
-        if (checkPermission()) {
+        if (checkSDPermission()) {
             String sdId = getDeviceIdFromSD();
             //校验两个ID：如果KV中可以读取到id，与从SD卡中读取id进行比较是否相等
             if (!TextUtils.isEmpty(sdId) && !sdId.equals(deviceId)) {
@@ -67,8 +74,6 @@ public class DeviceId {
             } else {
                 saveDeviceId(deviceId);
             }
-        } else {
-            log.i("未授权，忽略校正动作");
         }
     }
 
@@ -142,37 +147,23 @@ public class DeviceId {
      * 读取两个sd上的id，校验是否被修改
      */
     private String getDeviceIdFromSD() {
-        if (checkPermission()) {
-            String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
-            String id1 = readFromFile(filePath1);
-            String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
-            String id2 = readFromFile(filePath2);
-            log.i("SD读取的设备码:设备码1：" + id1 + ",设备码2:" + id2);
-            if (TextUtils.isEmpty(id1) || TextUtils.isEmpty(id2)) {
-                log.i("未读取到id");
-                return "";
-            }
-            if (!id1.equals(id2)) {
-                log.i("两个sd上的id不相同");
-                return "";
-            }
-            return id1;
-        } else {
-            log.i("没有SD卡权限，读取失败");
+        String id1 = getIdFromSD(SD_FILE_NAME1);
+        String id2 = getIdFromSD(SD_FILE_NAME2);
+        log.i("SD读取的设备码:设备码1：" + id1 + ",设备码2:" + id2);
+        if (TextUtils.isEmpty(id1) || TextUtils.isEmpty(id2)) {
+            log.i("未读取到id");
             return "";
         }
+        if (!id1.equals(id2)) {
+            log.i("两个sd上的id不相同");
+            return "";
+        }
+        return id1;
     }
 
     private void save2SD(String id) {
-        if (checkPermission()) {
-            //将内容加密
-            String filePath1 = getDeviceIdFilePath(SD_FILE_NAME1);
-            String filePath2 = getDeviceIdFilePath(SD_FILE_NAME2);
-            save2file(id, filePath1);
-            save2file(id, filePath2);
-        } else {
-            log.i("没有SD卡权限，保存失败！");
-        }
+        save2file(id, SD_FILE_NAME1);
+        save2file(id, SD_FILE_NAME2);
     }
 
     /**
@@ -201,11 +192,12 @@ public class DeviceId {
     /**
      * 保存内容到文件中
      *
-     * @param content  内容
-     * @param filePath 完整文件路径
+     * @param deviceId 内容
+     * @param fileName 文件名
      */
-    private void save2file(String content, String filePath) {
-        if (checkPermission()) {
+    private void save2file(String deviceId, String fileName) {
+        if (checkSDPermission()) {
+            String filePath = getDeviceIdFilePath(fileName);
             BufferedWriter writer = null;
             try {
                 File file = new File(filePath);
@@ -214,7 +206,7 @@ public class DeviceId {
                 }
                 OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8);
                 writer = new BufferedWriter(write);
-                writer.write(content);
+                writer.write(deviceId);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -227,20 +219,44 @@ public class DeviceId {
                     e.printStackTrace();
                 }
             }
-        } else {
-            log.i("没有SD卡权限，保存失败！");
+        } else if (checkExternalPermission()) {
+            Uri contentUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+            ContentResolver contentResolver = ContextUtils.getContext().getContentResolver();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.Images.Media.MIME_TYPE, "text/plain");
+            contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
+            contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
+
+            Uri itemUri = contentResolver.insert(contentUri, contentValues);
+            if (itemUri != null) {
+                OutputStream outputStream = null;
+                try {
+                    outputStream = contentResolver.openOutputStream(itemUri);
+                    if (outputStream != null) {
+                        outputStream.write(deviceId.getBytes());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (outputStream != null) {
+                        try {
+                            outputStream.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
         }
     }
 
     /**
      * 从文件中读取内容
-     *
-     * @param filePath 完整文件路径
-     * @return 内容
      */
-    private String readFromFile(String filePath) {
-        String id = "";
-        if (checkPermission()) {
+    private String getIdFromSD(String fileName) {
+        String deviceId = "";
+        if (checkSDPermission()) {
+            String filePath = getDeviceIdFilePath(fileName);
             File file = new File(filePath);
             if (!file.exists()) {
                 try {
@@ -258,7 +274,7 @@ public class DeviceId {
                     sb.append(tempString);
                 }
                 reader.close();
-                id = sb.toString();
+                deviceId = sb.toString();
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -266,25 +282,51 @@ public class DeviceId {
                     try {
                         reader.close();
                     } catch (Exception e1) {
-
+                        e1.printStackTrace();
                     }
                 }
             }
-        } else {
-            log.i("没有SD卡权限");
+        } else if (checkExternalPermission()) {
+            String[] projection = {MediaStore.MediaColumns.DATA};
+            String selection = MediaStore.MediaColumns.DISPLAY_NAME + "=?";
+            String[] selectionArgs = {fileName};
+
+            Uri contentUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+            ContentResolver resolver = ContextUtils.getContext().getContentResolver();
+            Cursor cursor = resolver.query(contentUri, projection, selection, selectionArgs, null);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DATA);
+                String filePath = cursor.getString(columnIndex);
+                try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                    deviceId = reader.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                cursor.close();
+            }
         }
-        if (!checkDeviceId(id)) {
-            log.i("非法id");
-            id = "";
+        if (checkDeviceId(deviceId)) {
+            return deviceId;
         }
-        return id;
+        return "";
     }
 
     /**
      * 是否有SD卡权限
      */
-    private boolean checkPermission() {
-        return ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
+    private boolean checkSDPermission() {
+        return Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q && ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED;
+    }
+
+    /**
+     * 是否有SD卡权限
+     */
+    private boolean checkExternalPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return ContextCompat.checkSelfPermission(ContextUtils.getContext(), permission.MANAGE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED;
+        }
+        return false;
     }
 }
