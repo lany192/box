@@ -99,3 +99,7 @@
     事件通知：eventbus
     
     Tab控件：FlycoTabLayout
+
+# 指令打包
+
+    gradlew app:assembleDevelop --debug --stacktrace

@@ -151,6 +151,6 @@ ext {
 //            'gson'                          : 'com.google.code.gson:gson:2.10.1'
 
             //https://github.com/gzu-liyujiang/Android_CN_OAID
-            'oaid'                              : 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.7'
+//            'oaid'                              : 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.7'
     ]
 }
