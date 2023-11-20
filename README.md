@@ -102,4 +102,4 @@
 
 # 指令打包
 
-    gradlew app:assembleDevelop --debug --stacktrace
+    gradlew sample:assembleDevelop --debug --stacktrace
