@@ -145,6 +145,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(event)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         KeyboardUtils.hide(this)
         onBackPressedDispatcher.onBackPressed()
