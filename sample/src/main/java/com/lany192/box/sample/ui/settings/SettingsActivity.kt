@@ -46,6 +46,7 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
             browserProvider.startBrowser("百度也不知道", "https://www.baidu.com")
         }
         binding.aboutView.setOnClickListener { SampleRouter.startAbout() }
+        binding.dayNightView.setOnClickListener { SampleRouter.startDayNight() }
     }
 
     private fun showCacheDialog() {

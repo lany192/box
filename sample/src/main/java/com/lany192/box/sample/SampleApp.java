@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
 import com.github.lany192.arch.utils.DeviceId;
+import com.github.lany192.utils.KVUtils;
 import com.hjq.toast.ToastUtils;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.lany192.box.router.lifecycle.ActivityLifecycle;
@@ -22,7 +23,8 @@ public class SampleApp extends BoxApplication {
         if (ProcessPhoenix.isPhoenixProcess(this)) {
             return;
         }
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        //初始化主题
+        AppCompatDelegate.setDefaultNightMode(KVUtils.getInt(Constants.KEY_THEME_TYPE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM));
 
         initARouter();
         //注册Activity生命周期监听
