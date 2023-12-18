@@ -14,6 +14,10 @@ import com.lany192.box.sample.MockUtils;
 import com.lany192.box.sample.databinding.ItemAreaBinding;
 
 public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
+    @Override
+    public boolean isFullSpanItem(int itemType) {
+        return false;
+    }
 
     @Override
     public void onItemClick(@NonNull BindingHolder<ItemAreaBinding> holder, @NonNull View view, Area area, int position) {
