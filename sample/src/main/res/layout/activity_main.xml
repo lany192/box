@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemBackground="@color/white_bg"
+        app:itemIconSize="24dp"
         app:itemIconTint="@color/selector_item_gray_color"
         app:itemTextColor="@color/selector_item_gray_color"
         app:labelVisibilityMode="labeled"
