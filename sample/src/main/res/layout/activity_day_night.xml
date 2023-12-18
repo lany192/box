@@ -6,85 +6,72 @@
     android:layout_height="match_parent"
     android:background="@color/gray_bg">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="30dp"
-        app:cardBackgroundColor="@color/white_bg"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeWidth="0dp">
+        android:layout_marginTop="16dp"
+        android:background="@color/white_bg"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.github.lany192.text.IconTextView
+            android:id="@+id/auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="52dp"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="跟随系统"
+            android:textColor="@color/text_2level"
+            android:textSize="14sp"
+            app:icon="@drawable/set_sign_tick"
+            app:icon_gravity="end"
+            app:icon_size="16dp"
+            tools:drawableRightCompat="@drawable/ico_checked" />
 
-            <com.github.lany192.text.IconTextView
-                android:id="@+id/auto"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?selectableItemBackground"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="跟随系统"
-                android:textColor="@color/text_2level"
-                android:textSize="14sp"
-                app:icon="@drawable/set_sign_tick"
-                app:icon_gravity="end"
-                app:icon_size="16dp"
-                tools:drawableRightCompat="@drawable/ico_checked" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/divider" />
+        <com.github.lany192.text.IconTextView
+            android:id="@+id/light"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="日间模式"
+            android:textColor="@color/text_2level"
+            android:textSize="14sp"
+            app:icon="@drawable/set_sign_tick"
+            app:icon_gravity="end"
+            app:icon_size="16dp"
+            tools:drawableRightCompat="@drawable/ico_checked" />
 
-            <com.github.lany192.text.IconTextView
-                android:id="@+id/light"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?selectableItemBackground"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="日间模式"
-                android:textColor="@color/text_2level"
-                android:textSize="14sp"
-                app:icon="@drawable/set_sign_tick"
-                app:icon_gravity="end"
-                app:icon_size="16dp"
-                tools:drawableRightCompat="@drawable/ico_checked" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/divider" />
+        <com.github.lany192.text.IconTextView
+            android:id="@+id/dark"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="夜间模式"
+            android:textColor="@color/text_2level"
+            android:textSize="14sp"
+            app:icon="@drawable/set_sign_tick"
+            app:icon_gravity="end"
+            app:icon_size="16dp"
+            tools:drawableRightCompat="@drawable/ico_checked" />
 
-            <com.github.lany192.text.IconTextView
-                android:id="@+id/dark"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?selectableItemBackground"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="夜间模式"
-                android:textColor="@color/text_2level"
-                android:textSize="14sp"
-                app:icon="@drawable/set_sign_tick"
-                app:icon_gravity="end"
-                app:icon_size="16dp"
-                tools:drawableRightCompat="@drawable/ico_checked" />
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </FrameLayout>
