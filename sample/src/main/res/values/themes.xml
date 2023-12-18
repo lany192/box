@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- 默认背景色 -->
-        <item name="android:windowBackground">@color/white_bg</item>
+        <item name="android:windowBackground">@color/gray_light_bg</item>
         <!--自定义光标-->
         <item name="android:textCursorDrawable">@drawable/cursor_drawable</item>
         <!-- 下行代码就是去除阴影的 -->
