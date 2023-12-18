@@ -13,7 +13,7 @@ import com.chad.library.adapter4.layoutmanager.QuickGridLayoutManager;
 import com.chad.library.adapter4.loadState.LoadState;
 import com.chad.library.adapter4.loadState.trailing.TrailingLoadStateAdapter;
 import com.github.lany192.arch.R;
-import com.github.lany192.arch.adapter.BinderAdapter;
+import com.github.lany192.arch.adapter.MultiAdapter;
 import com.github.lany192.arch.adapter.ItemBinder;
 import com.github.lany192.arch.fragment.VMVBFragment;
 import com.github.lany192.arch.utils.ListUtils;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBinding>
         extends VMVBFragment<VM, VB> {
-    private final BinderAdapter itemsAdapter = new BinderAdapter();
+    private final MultiAdapter mAdapter = new MultiAdapter();
     private QuickAdapterHelper adapterHelper;
 
     public RecyclerView.LayoutManager getLayoutManager() {
@@ -34,7 +34,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     }
 
     public <T, B extends ViewBinding> void register(ItemBinder<T, B> binder) {
-        itemsAdapter.addBinder(binder);
+        mAdapter.addBinder(binder);
     }
 
     public int getSpanCount() {
@@ -53,7 +53,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     @Override
     public void init() {
         super.init();
-        adapterHelper = new QuickAdapterHelper.Builder(itemsAdapter)
+        adapterHelper = new QuickAdapterHelper.Builder(mAdapter)
                 .setTrailingLoadStateAdapter(new TrailingLoadStateAdapter.OnTrailingListener() {
 
                     @Override
@@ -72,9 +72,9 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
                 })
                 .build();
         getRecyclerView().setLayoutManager(getLayoutManager());
-        getRecyclerView().setAdapter(itemsAdapter);
-        if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(itemsAdapter) != null) {
-            getRecyclerView().addItemDecoration(getItemDecoration(itemsAdapter));
+        getRecyclerView().setAdapter(mAdapter);
+        if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(mAdapter) != null) {
+            getRecyclerView().addItemDecoration(getItemDecoration(mAdapter));
         }
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
@@ -108,13 +108,13 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
         viewModel.getItems().observe(this, data -> {
             setList(data.getItems());
             if (ListUtils.isEmpty(data.getItems())) {
-                itemsAdapter.setStateView(getEmptyView());
+                mAdapter.setStateView(getEmptyView());
             }
         });
     }
 
     public void setList(List<Object> items) {
-        itemsAdapter.setItems(items);
+        mAdapter.setItems(items);
     }
 
     @NonNull

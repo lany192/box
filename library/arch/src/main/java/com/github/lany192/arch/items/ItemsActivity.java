@@ -14,7 +14,7 @@ import com.chad.library.adapter4.loadState.LoadState;
 import com.chad.library.adapter4.loadState.trailing.TrailingLoadStateAdapter;
 import com.github.lany192.arch.R;
 import com.github.lany192.arch.activity.VMVBActivity;
-import com.github.lany192.arch.adapter.BinderAdapter;
+import com.github.lany192.arch.adapter.MultiAdapter;
 import com.github.lany192.arch.adapter.ItemBinder;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.view.DefaultView;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewBinding, TVB extends ViewBinding>
         extends VMVBActivity<VM, CVB, TVB> {
-    private final BinderAdapter itemsAdapter = new BinderAdapter();
+    private final MultiAdapter itemsAdapter = new MultiAdapter();
 
     public abstract SmartRefreshLayout getRefreshLayout();
 

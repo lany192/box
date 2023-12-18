@@ -28,6 +28,10 @@ abstract class ItemBinder<T : Any, VB : ViewBinding> : OnBinderListener<T, Bindi
         return getClass<VB>(1).getBinding(LayoutInflater.from(context), parent)
     }
 
+    override fun isFullSpanItem(itemType: Int): Boolean {
+        return true
+    }
+
     override fun onBind(holder: BindingHolder<VB>, position: Int, item: T?) {
         if (item == null) {
             return
@@ -46,7 +50,6 @@ abstract class ItemBinder<T : Any, VB : ViewBinding> : OnBinderListener<T, Bindi
         item: T?,
         position: Int
     ) {
-
     }
 
     /**

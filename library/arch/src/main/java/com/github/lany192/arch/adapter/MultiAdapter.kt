@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference
 /**
  * 多类型布局
  */
-abstract class MultiAdapter(items: List<Any> = emptyList()) :
+open class MultiAdapter(items: List<Any> = emptyList()) :
     BaseQuickAdapter<Any, RecyclerView.ViewHolder>(items) {
     private val mTypeMap = HashMap<Class<*>, Int>()
 
