@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.chad.library.adapter4.QuickAdapterHelper;
+import com.chad.library.adapter4.layoutmanager.QuickGridLayoutManager;
 import com.chad.library.adapter4.loadState.LoadState;
 import com.chad.library.adapter4.loadState.trailing.TrailingLoadStateAdapter;
 import com.github.lany192.arch.R;
@@ -37,7 +38,7 @@ public abstract class ItemsActivity<VM extends ItemsViewModel, CVB extends ViewB
     }
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        GridLayoutManager layoutManager = new GridLayoutManager(this, getSpanCount());
+        QuickGridLayoutManager layoutManager = new QuickGridLayoutManager(this, getSpanCount());
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         return layoutManager;
     }
