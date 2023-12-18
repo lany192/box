@@ -3,4 +3,5 @@
     <item name="toolbar" type="id" />
     <item name="back" type="id" />
     <item name="title" type="id" />
+    <item name="BaseQuickAdapter_key_multi2" type="id" />
 </resources>

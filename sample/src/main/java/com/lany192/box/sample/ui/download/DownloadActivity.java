@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.BoxActivity;
-import com.github.lany192.arch.items.BinderAdapter;
+import com.github.lany192.arch.adapter.BinderAdapter;
 import com.lany192.box.sample.databinding.ActivityDownloadBinding;
 import com.liulishuo.okdownload.DownloadMonitor;
 import com.liulishuo.okdownload.DownloadTask;
@@ -52,15 +52,15 @@ public class DownloadActivity extends BoxActivity<DownloadViewModel, ActivityDow
 
             }
         });
-        itemsAdapter.addItemBinder(DownloadTask.class, new TaskBinder((downloadTask, position) -> viewModel.start(downloadTask)));
+        itemsAdapter.addBinder(new TaskBinder((downloadTask, position) -> viewModel.start(downloadTask)));
         binding.recyclerView.setAdapter(itemsAdapter);
         //解决item刷新时，界面闪烁
         ((SimpleItemAnimator) Objects.requireNonNull(binding.recyclerView.getItemAnimator())).setSupportsChangeAnimations(false);
         viewModel.getItems().observe(this, data -> {
             if (data.isChange()) {
-                itemsAdapter.setData(data.getIndex(), data.getDownloadTask());
+                itemsAdapter.set(data.getIndex(), data.getDownloadTask());
             } else {
-                itemsAdapter.setList(data.getTasks());
+                itemsAdapter.setItems(data.getTasks());
             }
         });
     }

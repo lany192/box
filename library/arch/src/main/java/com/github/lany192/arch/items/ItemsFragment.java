@@ -8,7 +8,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.chad.library.adapter4.QuickAdapterHelper;
+import com.chad.library.adapter4.layoutmanager.QuickGridLayoutManager;
+import com.chad.library.adapter4.loadState.LoadState;
+import com.chad.library.adapter4.loadState.trailing.TrailingLoadStateAdapter;
 import com.github.lany192.arch.R;
+import com.github.lany192.arch.adapter.BinderAdapter;
+import com.github.lany192.arch.adapter.ItemBinder;
 import com.github.lany192.arch.fragment.VMVBFragment;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.view.DefaultView;
@@ -19,23 +25,20 @@ import java.util.List;
 public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBinding>
         extends VMVBFragment<VM, VB> {
     private final BinderAdapter itemsAdapter = new BinderAdapter();
+    private QuickAdapterHelper adapterHelper;
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), getSpanCount());
+        QuickGridLayoutManager layoutManager = new QuickGridLayoutManager(getContext(), getSpanCount());
         layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         return layoutManager;
     }
 
     public <T, B extends ViewBinding> void register(ItemBinder<T, B> binder) {
-        itemsAdapter.addItemBinder(binder.getClass(0), binder);
+        itemsAdapter.addBinder(binder);
     }
 
     public int getSpanCount() {
         return 2;
-    }
-
-    public int getItemSpanSize(int viewType, int position) {
-        return getSpanCount();
     }
 
     public RecyclerView.ItemDecoration getItemDecoration(RecyclerView.Adapter<?> adapter) {
@@ -50,15 +53,24 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
     @Override
     public void init() {
         super.init();
-        itemsAdapter.getLoadMoreModule().setEnableLoadMore(viewModel.loadMoreEnable());
-        if (viewModel.loadMoreEnable()) {
-            itemsAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
-                if (itemsAdapter.getLoadMoreModule().isEnableLoadMore()) {
-                    viewModel.onLoadMore();
-                }
-            });
-        }
-        itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position));
+        adapterHelper = new QuickAdapterHelper.Builder(itemsAdapter)
+                .setTrailingLoadStateAdapter(new TrailingLoadStateAdapter.OnTrailingListener() {
+
+                    @Override
+                    public void onLoad() {
+                        if (viewModel.loadMoreEnable()) {
+                            viewModel.onLoadMore();
+                        }
+                    }
+
+                    @Override
+                    public void onFailRetry() {
+                        if (viewModel.loadMoreEnable()) {
+                            viewModel.onLoadMore();
+                        }
+                    }
+                })
+                .build();
         getRecyclerView().setLayoutManager(getLayoutManager());
         getRecyclerView().setAdapter(itemsAdapter);
         if (getRecyclerView().getItemDecorationCount() < 1 && getItemDecoration(itemsAdapter) != null) {
@@ -74,7 +86,7 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
             switch (state) {
                 case ERROR:
                     getRefreshLayout().finishRefresh();
-                    itemsAdapter.loadMoreFail();
+                    adapterHelper.setTrailingLoadState(new LoadState.Error(new Throwable("加载失败")));
                     break;
                 case REFRESHING:
                     break;
@@ -85,24 +97,24 @@ public abstract class ItemsFragment<VM extends ItemsViewModel, VB extends ViewBi
                     break;
                 case MORE_LOAD_END:
                     getRefreshLayout().finishRefresh();
-                    itemsAdapter.loadMoreEnd();
+                    adapterHelper.setTrailingLoadState(new LoadState.NotLoading(true));
                     break;
                 case MORE_LOAD_FINISH:
                     getRefreshLayout().finishRefresh();
-                    itemsAdapter.loadMoreComplete();
+                    adapterHelper.setTrailingLoadState(new LoadState.NotLoading(true));
                     break;
             }
         });
         viewModel.getItems().observe(this, data -> {
             setList(data.getItems());
             if (ListUtils.isEmpty(data.getItems())) {
-                itemsAdapter.setEmptyView(getEmptyView());
+                itemsAdapter.setStateView(getEmptyView());
             }
         });
     }
 
     public void setList(List<Object> items) {
-        itemsAdapter.setList(items);
+        itemsAdapter.setItems(items);
     }
 
     @NonNull

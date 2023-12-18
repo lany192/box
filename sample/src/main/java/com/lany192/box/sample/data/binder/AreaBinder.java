@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.adapter.BindingHolder;
-import com.github.lany192.arch.items.ItemBinder;
+import com.github.lany192.arch.adapter.ItemBinder;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ImageUtils;
 import com.hjq.toast.ToastUtils;

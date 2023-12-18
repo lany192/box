@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import com.alibaba.android.arouter.SampleRouter;
-import com.github.lany192.arch.items.ItemBinder;
+import com.github.lany192.arch.adapter.ItemBinder;
 import com.github.lany192.arch.tab.TabAdapter;
 import com.github.lany192.arch.tab.TabItem;
 import com.lany192.box.network.data.bean.ViewPagerItem;
