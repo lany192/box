@@ -31,7 +31,7 @@ afterEvaluate {
                     }
                     maven {
                         allowInsecureProtocol true
-                        url = "http://localhost:5001/repository/maven-releases/"
+                        url = "http://localhost:5001/repository/maven-snapshots/"
                         credentials {
                             it.username = "admin"
                             it.password = "dev123456"
