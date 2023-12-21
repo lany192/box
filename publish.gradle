@@ -9,12 +9,32 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = apk.groupId
                 version = apk.versionName
-                from components.release
+                afterEvaluate {
+                    if (plugins.hasPlugin('com.android.application') || plugins.hasPlugin('com.android.library')) {
+                        from components.release
+                    } else if (plugins.hasPlugin("java")) {
+                        from components.java
+                    }
+                }
                 pom {
                     licenses {
                         license {
                             name = "The Apache License, Version 2.0"
                             url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+                }
+                repositories {
+                    maven {
+                        name = 'local_repository'
+                        url = "${rootProject.rootDir}/repository"
+                    }
+                    maven {
+                        allowInsecureProtocol true
+                        url = "http://localhost:5001/repository/maven-releases/"
+                        credentials {
+                            it.username = "admin"
+                            it.password = "dev123456"
                         }
                     }
                 }

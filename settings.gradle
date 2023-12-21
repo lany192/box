@@ -9,6 +9,10 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
         maven { url 'https://www.jitpack.io' }
+        maven {
+            allowInsecureProtocol true
+            url 'http://localhost:5001/repository/maven-public/'
+        }
         mavenLocal()
     }
 }
@@ -22,6 +26,10 @@ dependencyResolutionManagement {
         mavenCentral()
         google()
         maven { url "https://jitpack.io" }
+        maven {
+            allowInsecureProtocol true
+            url 'http://localhost:5001/repository/maven-public/'
+        }
         mavenLocal()
     }
 }
