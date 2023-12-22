@@ -4,7 +4,7 @@ ext {
             appId            : 'com.lany192.box',
             groupId          : 'com.github.lany192.box',
             versionCode      : 1,
-            versionName      : '4.3.5-SNAPSHOT',
+            versionName      : '1.0.0-SNAPSHOT',
             minSdkVersion    : 21,
             compileSdkVersion: 34,
             targetSdkVersion : 34
