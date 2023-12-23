@@ -85,13 +85,20 @@ public class MinIoHelper {
         }
         File file = new File(filePath);
         transferedbytes = 0;
-        PutObjectResult result = client.putObject(new PutObjectRequest(bucketName, objectName, file)
-                .withGeneralProgressListener(progressEvent -> {
-                    if (callback != null) {
-                        transferedbytes += progressEvent.getBytesTransferred();
-                        int process = (int) (transferedbytes * 100 / file.length());
-                        callback.progress(process);
-                    }
-                }));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PutObjectResult result = client.putObject(new PutObjectRequest(bucketName, objectName, file)
+                        .withGeneralProgressListener(progressEvent -> {
+                            if (callback != null) {
+                                transferedbytes += progressEvent.getBytesTransferred();
+                                int process = (int) (transferedbytes * 100 / file.length());
+                                callback.progress(process);
+                            }
+                        }));
+            }
+        }).start();
+
+
     }
 }
