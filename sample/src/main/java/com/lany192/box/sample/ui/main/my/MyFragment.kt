@@ -107,6 +107,9 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.test3.setOnClickListener {
             showImageDialog()
         }
+        binding.test.setOnClickListener {
+            SampleRouter.startTest()
+        }
     }
 
     private fun showDialog2() {

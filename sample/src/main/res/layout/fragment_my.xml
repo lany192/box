@@ -300,6 +300,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:menu_title="test3" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/outline" />
+
+                <com.github.lany192.view.MenuView
+                    android:id="@+id/test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="测试" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

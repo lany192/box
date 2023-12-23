@@ -14,6 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.test.TestActivity"
+            android:exported="false"
+            android:label="测试"
+            android:screenOrientation="nosensor" />
+        <activity
             android:name=".ui.settings.daynight.DayNightActivity"
             android:exported="false"
             android:label="夜间模式"
