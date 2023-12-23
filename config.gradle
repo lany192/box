@@ -134,6 +134,9 @@ ext {
             'html-spanner'                    : 'com.github.NightWhistler:HtmlSpanner:0.4',
             //重启工具库 https://github.com/JakeWharton/ProcessPhoenix
             'process-phoenix'                 : 'com.jakewharton:process-phoenix:2.1.2',
+            //minio库 minio 官方的sdk 只有java 版本的不兼容android，可以尝试使用 amazon s3 的oss sdk 来实现功能
+            'aws-android-sdk'                 : 'com.amazonaws:aws-android-sdk-s3:2.74.0',
+            'aws-mobile-client'               : 'com.amazonaws:aws-android-sdk-mobile-client:2.74.0',
 
             //日历控件 https://github.com/prolificinteractive/material-calendarview
 //    'material-calendarview'   : 'com.github.prolificinteractive:material-calendarview:2.0.1',
