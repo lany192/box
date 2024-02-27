@@ -4,11 +4,10 @@ pluginManagement {
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://www.jitpack.io' }
         google()
         gradlePluginPortal()
         mavenCentral()
-        maven { url 'https://www.jitpack.io' }
         maven {
             allowInsecureProtocol true
             url 'http://localhost:5001/repository/maven-public/'
@@ -22,10 +21,9 @@ dependencyResolutionManagement {
         maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url "https://jitpack.io" }
         mavenCentral()
         google()
-        maven { url "https://jitpack.io" }
         maven {
             allowInsecureProtocol true
             url 'http://localhost:5001/repository/maven-public/'
