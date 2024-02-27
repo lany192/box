@@ -40,5 +40,5 @@ dependencies {
     implementationDependencies.each { k, v -> implementation v }
 
     implementation project(':library:core')
-    implementation project(':library:permission')
+
 }
