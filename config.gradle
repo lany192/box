@@ -98,8 +98,8 @@ ext {
             //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
             'background-core'                 : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.6',
 
-            //图片压缩 https://github.com/Curzibn/Luban
-            'luban'                           : 'top.zibin:Luban:1.1.8',
+            //图片压缩 https://github.com/forJrking/KLuban
+            'kluban'                          : 'com.github.forJrking:KLuban:1.1.0',
             //RecyclerView分割线 https://github.com/lany192/ItemDecoration
             'decoration'                      : 'com.github.lany192:ItemDecoration:1.21',
             //键盘监听器 https://github.com/lany192/KeyboardWatcher
