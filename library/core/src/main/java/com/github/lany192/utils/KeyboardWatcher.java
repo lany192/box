@@ -12,7 +12,7 @@ import android.widget.PopupWindow;
 /**
  * 检测键盘弹出与收起，计算键盘当前高度
  */
-public class KeyboardWatcher extends PopupWindow implements OnGlobalLayoutListener {
+public final class KeyboardWatcher extends PopupWindow implements OnGlobalLayoutListener {
     //PopupWindow的布局视图
     private final View rootView;
     //键盘监听器回调
