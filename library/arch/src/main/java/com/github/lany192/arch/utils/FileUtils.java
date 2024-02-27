@@ -7,7 +7,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 
-import com.hjq.toast.ToastUtils;
+import com.hjq.toast.Toaster;
 
 import java.io.File;
 
@@ -119,7 +119,7 @@ public class FileUtils {
             intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
             context.startActivity(intent);
         } else {
-            ToastUtils.show(filePath + "路径不存在");
+            Toaster.show(filePath + "路径不存在");
         }
     }
 

@@ -10,7 +10,7 @@ import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.log.LogUtils
-import com.hjq.toast.ToastUtils
+import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.ActivityMainBinding
@@ -32,7 +32,7 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
 //        ViewUtils.setGrayStyle(this, true)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
-        userViewModel.userInfo.observe(this) { userInfo: UserInfo -> ToastUtils.show("首页：" + userInfo.name) }
+        userViewModel.userInfo.observe(this) { userInfo: UserInfo -> Toaster.show("首页：" + userInfo.name) }
         val items = mutableListOf<TabItem>()
         items.add(TabItem("首页", SampleRouter.getIndex()))
         items.add(TabItem("发现", SampleRouter.getDiscover()))
@@ -80,7 +80,7 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (System.currentTimeMillis() - mLastClickTime > 3000) {
-                ToastUtils.show("再按一次退出" + getString(R.string.app_name))
+                Toaster.show("再按一次退出" + getString(R.string.app_name))
                 mLastClickTime = System.currentTimeMillis()
                 return false
             }

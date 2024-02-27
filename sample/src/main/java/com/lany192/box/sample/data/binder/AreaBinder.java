@@ -8,7 +8,7 @@ import com.github.lany192.arch.adapter.BindingHolder;
 import com.github.lany192.arch.adapter.ItemBinder;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.utils.ImageUtils;
-import com.hjq.toast.ToastUtils;
+import com.hjq.toast.Toaster;
 import com.lany192.box.network.data.bean.Area;
 import com.lany192.box.sample.MockUtils;
 import com.lany192.box.sample.databinding.ItemAreaBinding;
@@ -25,7 +25,7 @@ public class AreaBinder extends ItemBinder<Area, ItemAreaBinding> {
         SimpleDialog dialog = new SimpleDialog();
         dialog.setTitle("提示");
         dialog.setMessage(area.getName() + count + "个地级市");
-        dialog.setRightButton("确定", () -> ToastUtils.show(area.getName()));
+        dialog.setRightButton("确定", () -> Toaster.show(area.getName()));
         dialog.setLeftButton("取消");
         dialog.show();
     }

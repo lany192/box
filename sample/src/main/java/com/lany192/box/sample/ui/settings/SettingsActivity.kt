@@ -12,7 +12,7 @@ import com.github.lany192.permission.PermissionUtils
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
-import com.hjq.toast.ToastUtils
+import com.hjq.toast.Toaster
 import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.ActivitySettingsBinding
@@ -39,7 +39,7 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
             if (AlipayZeroSdk.hasInstalledAlipayClient(this)) {
                 AlipayZeroSdk.startAlipayClient(this, "fkx125282bvqbijw7s6uh8f")
             } else {
-                ToastUtils.show("感谢您的支持，不过你的手机还没有安装支付宝")
+                Toaster.show("感谢您的支持，不过你的手机还没有安装支付宝")
             }
         }
         binding.noticeView.setOnClickListener {
@@ -55,7 +55,7 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
         dialog.setRightButton("确定") {
             CacheUtils.cleanCache(this)
             binding.cacheView.hint("0KB")
-            ToastUtils.show("缓存清除成功！")
+            Toaster.show("缓存清除成功！")
         }
         dialog.setLeftButton("取消", null)
         dialog.show()

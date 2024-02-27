@@ -9,7 +9,7 @@ import com.github.lany192.arch.R;
 import com.github.lany192.arch.utils.ListUtils;
 import com.github.lany192.arch.viewmodel.LifecycleViewModel;
 import com.github.lany192.utils.NetUtils;
-import com.hjq.toast.ToastUtils;
+import com.hjq.toast.Toaster;
 
 import java.util.List;
 
@@ -139,7 +139,7 @@ public abstract class ItemsViewModel extends LifecycleViewModel {
             page += 1;
             request(false);
         } else {
-            ToastUtils.show(R.string.default_network);
+            Toaster.show(R.string.default_network);
             listState.postValue(ListState.ERROR);
         }
     }

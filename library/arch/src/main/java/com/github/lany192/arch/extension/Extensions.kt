@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.hjq.toast.ToastUtils
+import com.hjq.toast.Toaster
 
 /**
  * Fragment是否存活
@@ -18,9 +18,9 @@ fun Fragment.isAlive(): Boolean {
             && !this.isDetached
 }
 
-fun Any.toast(text: CharSequence) = ToastUtils.show(text)
+fun Any.toast(text: CharSequence) = Toaster.show(text)
 
-fun Any.toast(@StringRes textId: Int) = ToastUtils.show(textId)
+fun Any.toast(@StringRes textId: Int) = Toaster.show(textId)
 
 fun Context.getColorCompat(color: Int) = ContextCompat.getColor(this, color)
 

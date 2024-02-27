@@ -50,8 +50,8 @@ class AboutActivity : BoxActivity<AboutViewModel, ActivityAboutBinding>() {
         )
         notices.addNotice(
             Notice(
-                "ToastUtils",
-                "https://github.com/getActivity/ToastUtils",
+                "Toaster",
+                "https://github.com/getActivity/Toaster",
                 "Copyright 2018 Huang JinQun",
                 ApacheSoftwareLicense20()
             )

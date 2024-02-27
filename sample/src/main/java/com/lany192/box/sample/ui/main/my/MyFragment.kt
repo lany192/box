@@ -14,7 +14,7 @@ import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
 import com.github.lany192.utils.DensityUtils
-import com.hjq.toast.ToastUtils
+import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.router.provider.HelloProvider
 import com.lany192.box.router.provider.LoginProvider
@@ -70,7 +70,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.image.load(R.mipmap.a)
         binding.gif1.load("https://img.zcool.cn/community/01ef345bcd8977a8012099c82483d3.gif")
         binding.gif2.load("https://img.zcool.cn/community/01b8355bcd8978a801213deaae9e9c.gif")
-        binding.checkView.setOnCheckChangeListener { ToastUtils.show(it) }
+        binding.checkView.setOnCheckChangeListener { Toaster.show(it) }
         binding.checkView.isChecked = true
         binding.imagePicker.setOnClickListener {
             Matisse.from(this)
@@ -92,7 +92,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
                 .forResult { result: ActivityResult ->
                     if (result.resultCode == AppCompatActivity.RESULT_OK && result.data != null) {
                         val paths = Matisse.obtainPathResult(result.data)
-                        ToastUtils.show(paths)
+                        Toaster.show(paths)
                     }
                 }
         }

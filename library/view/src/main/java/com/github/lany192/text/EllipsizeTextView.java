@@ -19,7 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.view.R;
-import com.hjq.toast.ToastUtils;
+import com.hjq.toast.Toaster;
 
 public class EllipsizeTextView extends BoxTextView {
     private TextView.BufferType mBufferType = TextView.BufferType.NORMAL;
@@ -59,7 +59,7 @@ public class EllipsizeTextView extends BoxTextView {
 
                 @Override
                 public void onClick(@NonNull View widget) {
-                    ToastUtils.show("测试");
+                    Toaster.show("测试");
                 }
             }, builder.getSpanStart(span), builder.getSpanEnd(span), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             builder.removeSpan(span);

@@ -11,7 +11,7 @@ import androidx.multidex.MultiDex;
 import com.github.lany192.arch.utils.DeviceId;
 import com.github.lany192.dialog.DialogHelper;
 import com.github.lany192.log.LogUtils;
-import com.hjq.toast.ToastUtils;
+import com.hjq.toast.Toaster;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
@@ -39,9 +39,9 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 
 //        KVUtils.init(this);
 
-        ToastUtils.init(this);
-        ToastUtils.setView(R.layout.toast_view);
-        ToastUtils.setDebugMode(debug());
+        Toaster.init(this);
+        Toaster.setView(R.layout.toast_view);
+        Toaster.setDebugMode(debug());
 
         DialogHelper.get().init(this);
 

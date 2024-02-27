@@ -7,8 +7,8 @@ import com.github.lany192.log.LogUtils
 class ToastInitializer : Initializer<Unit> {
 
     override fun create(context: Context) {
-//        ToastUtils.init(context.applicationContext)
-//        ToastUtils.setView(R.layout.toast_view)
+//        Toaster.init(context.applicationContext)
+//        Toaster.setView(R.layout.toast_view)
         LogUtils.i("Toast完成初始化")
     }
 
