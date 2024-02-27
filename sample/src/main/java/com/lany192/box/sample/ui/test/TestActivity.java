@@ -2,10 +2,8 @@ package com.lany192.box.sample.ui.test;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 
 import androidx.annotation.Nullable;
 
@@ -43,7 +41,7 @@ public class TestActivity extends ContentActivity<ActivityTestBinding> {
             MinIoHelper.getInstance().upload("hello", "test.png", file.getPath(), new MinIoHelper.MinIoCallback() {
                 @Override
                 public void progress(int progress) {
-                    binding.result.setText("进度："+progress);
+                    binding.result.setText("进度：" + progress);
                 }
             });
         }
