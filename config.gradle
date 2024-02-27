@@ -125,9 +125,9 @@ ext {
             //二维码 https://github.com/zxing/zxing
             'zxing'                           : 'com.google.zxing:core:3.5.3',
             //https://github.com/ReactiveX/RxJava
-            'rxjava3'                         : 'io.reactivex.rxjava3:rxjava:3.1.6',
+//            'rxjava3'                         : 'io.reactivex.rxjava3:rxjava:3.1.6',
             //https://github.com/ReactiveX/RxAndroid
-            'rxandroid3'                      : 'io.reactivex.rxjava3:rxandroid:3.0.2',
+//            'rxandroid3'                      : 'io.reactivex.rxjava3:rxandroid:3.0.2',
             //https://github.com/jaredrummler/materialspinner
             'spinner'                         : 'com.jaredrummler:material-spinner:1.3.1',
             //https://github.com/NightWhistler/HtmlSpanner
@@ -155,7 +155,7 @@ ext {
 
             //https://github.com/gzu-liyujiang/Android_CN_OAID
 //            'oaid'                              : 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.7'
-            //https://github.com/getActivity/XXPermissions
+            //权限 https://github.com/getActivity/XXPermissions
             'xxpermissions'                   : 'com.github.getActivity:XXPermissions:18.6'
     ]
 }

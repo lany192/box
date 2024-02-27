@@ -145,8 +145,8 @@ dependencies {
 
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
-    implementation project(path: ':library:scanner')
-    implementation project(path: ':library:cropper')
+//    implementation project(path: ':library:scanner')
+//    implementation project(path: ':library:cropper')
     implementation project(path: ':library:log')
     implementation project(path: ':library:toolkit')
     implementation project(path: ':library:video')
