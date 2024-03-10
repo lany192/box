@@ -128,10 +128,19 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
-    androidTestDependencies.each { k, v -> androidTestImplementation v }
-    processorDependencies.each { k, v -> kapt v }
-    testImplementationDependencies.each { k, v -> testImplementation v }
-    implementationDependencies.each { k, v -> implementation v }
+//    androidTestDependencies.each { k, v -> androidTestImplementation v }
+//    processorDependencies.each { k, v -> kapt v }
+//    testImplementationDependencies.each { k, v -> testImplementation v }
+//    implementationDependencies.each { k, v -> implementation v }
+
+    kapt 'com.github.bumptech.glide:compiler:4.16.0'
+    kapt 'androidx.room:room-compiler:2.5.0'
+    kapt 'com.google.dagger:hilt-android-compiler:2.45'
+    kapt 'com.github.lany192.app-router:arouter-compiler:2.0.2'
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit2
+    androidTestImplementation libs.androidx.test.espresso.espresso.core2
 
     //https://github.com/Knight-ZXW/LancetX
     compileOnly 'io.github.knight-zxw:lancet-runtime:0.0.7'

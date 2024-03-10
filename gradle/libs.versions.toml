@@ -1,10 +1,13 @@
 [versions]
 activityKtx = "1.8.2"
-agp = "8.3.0"
+agp = "8.2.2"
 alipayzerosdk = "1.1"
+androidxEspressoCoreVersion = "3.5.1"
+androidxTestExtJunit = "1.1.5"
 appcompat = "1.6.1"
 banner = "2.2.3"
 camera = "1.3.2"
+junit = "4.13.2"
 oss = "2.74.0"
 glide = "4.16.0"
 kluban = "1.1.0"
@@ -55,7 +58,7 @@ xcrash = "3.1.0"
 leakcanary = "2.12"
 okdownload = "2.0.2"
 router = "2.0.2"
-kotlin = "1.9.22"
+kotlin = "1.8.20"
 
 [libraries]
 alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
@@ -86,9 +89,12 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
 androidx-material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-test-espresso-espresso-core2 = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCoreVersion" }
+androidx-test-ext-junit2 = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJunit" }
 arouter-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "router" }
 
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
+junit = { module = "junit:junit", version.ref = "junit" }
 oss-sdk-client = { module = "com.amazonaws:aws-android-sdk-mobile-client", version.ref = "oss" }
 oss-sdk-s33 = { module = "com.amazonaws:aws-android-sdk-s3", version.ref = "oss" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
