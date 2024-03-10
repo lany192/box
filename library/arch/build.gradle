@@ -36,7 +36,7 @@ dependencies {
     implementation project(':library:core')
     implementation project(':library:view')
     implementation project(':library:dialog')
-    implementation project(':library:permission')
+    
 
 
     implementation libs.androidx.appcompat

@@ -141,5 +141,5 @@ dependencies {
     implementation libs.permissions
 
     implementation project(':library:core')
-    implementation project(':library:permission')
+    
 }

@@ -33,7 +33,9 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.matisse.R;
-import com.github.lany192.permission.RxPermissions;
+import com.hjq.permissions.OnPermissionCallback;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.internal.entity.SelectionSpec;
@@ -44,6 +46,7 @@ import com.zhihu.matisse.ui.MatisseActivity;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -262,11 +265,6 @@ public final class SelectionCreator {
 
     /**
      * Provide an image engine.
-     * <p>
-     * There are two built-in image engines:
-     * 1. {@link com.zhihu.matisse.engine.impl.GlideEngine}
-     * 2. {@link com.zhihu.matisse.engine.impl.PicassoEngine}
-     * And you can implement your own image engine.
      *
      * @param imageEngine {@link ImageEngine}
      * @return {@link SelectionCreator} for fluent API.
@@ -304,24 +302,28 @@ public final class SelectionCreator {
 
     /**
      * Start to select media and wait for result.
-     *
-     * @param requestCode Identity of the request Activity or Fragment.
      */
     public void forResult(ActivityResultCallback<ActivityResult> resultCallback) {
         FragmentActivity activity = mMatisse.getActivity();
         if (activity == null) {
             return;
         }
-        Disposable disposable = new RxPermissions(activity).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(aBoolean -> {
-                    if (aBoolean) {
+        XXPermissions.with(activity)
+                .permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .request(new OnPermissionCallback() {
+
+                    @Override
+                    public void onGranted(@NonNull List<String> permissions, boolean allGranted) {
                         ActivityResultFragment fragment = new ActivityResultFragment();
                         fragment.setIntent(new Intent(activity, MatisseActivity.class));
                         fragment.start(activity, resultCallback);
-                    } else {
+                    }
+
+                    @Override
+                    public void onDenied(@NonNull List<String> permissions, boolean doNotAskAgain) {
                         Toast.makeText(activity, R.string.permission_request_denied, Toast.LENGTH_LONG).show();
                     }
-                }, Throwable::printStackTrace);
+                });
     }
 
     public SelectionCreator showPreview(boolean showPreview) {

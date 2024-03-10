@@ -2,12 +2,6 @@ buildscript {
     apply from: 'config.gradle'
     dependencies {
         classpath libs.arouter.register
-
-//        //https://github.com/bytedance/ByteX
-//        classpath 'com.bytedance.android.byteX:base-plugin:0.3.0'
-//        classpath 'com.bytedance.android.byteX:refer-check-plugin:0.3.0'
-//        //hook 工具 https://github.com/Knight-ZXW/LancetX
-//        classpath "io.github.knight-zxw:lancet-plugin:0.0.4"
     }
 }
 
