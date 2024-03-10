@@ -1,0 +1,57 @@
+[versions]
+agp = "8.3.0"
+annotation = "1.7.1"
+asmUtil = "9.6"
+autoServiceAnnotationsVersion = "1.1.1"
+commonsIo = "2.14.0"
+commonsCodec = "1.15"
+commonsLang3Version = "3.13.0"
+commonsCollections4Version = "4.4"
+core = "1.10.1"
+fragment = "1.6.2"
+gradle = "8.3.0"
+javapoetVersion = "1.13.0"
+kotlin = "1.9.22"
+coreKtx = "1.10.1"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.6.1"
+legacySupportV4 = "1.0.0"
+material = "1.11.0"
+activity = "1.8.2"
+constraintlayout = "2.1.4"
+fastjson = "1.2.83"
+arouterRegisterVersion = "2.0.2"
+
+[libraries]
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+androidx-core = { module = "androidx.core:core", version.ref = "core" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "fragment" }
+androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
+apache-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commonsLang3Version" }
+apache-commons-collections4 = { module = "org.apache.commons:commons-collections4", version.ref = "commonsCollections4Version" }
+app-router-arouter-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "arouterRegisterVersion" }
+asm-util = { module = "org.ow2.asm:asm-util", version.ref = "asmUtil" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
+commons-codec = { module = "commons-codec:commons-codec", version.ref = "commonsCodec" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+alibaba-fastjson = { group = "com.alibaba", name = "fastjson", version.ref = "fastjson" }
+service-auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoServiceAnnotationsVersion" }
+squareup-javapoet = { module = "com.squareup:javapoet", version.ref = "javapoetVersion" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+

@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        mavenLocal()
         maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         maven { url 'https://maven.aliyun.com/repository/google' }
@@ -12,12 +13,12 @@ pluginManagement {
             allowInsecureProtocol true
             url 'http://localhost:5001/repository/maven-public/'
         }
-        mavenLocal()
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
+        mavenLocal()
         maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
@@ -28,7 +29,6 @@ dependencyResolutionManagement {
             allowInsecureProtocol true
             url 'http://localhost:5001/repository/maven-public/'
         }
-        mavenLocal()
     }
 }
 rootProject.name = "box"
