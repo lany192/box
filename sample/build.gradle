@@ -140,7 +140,7 @@ dependencies {
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit2
-    androidTestImplementation libs.androidx.test.espresso.espresso.core2
+    androidTestImplementation libs.androidx.test.espresso
 
     //https://github.com/Knight-ZXW/LancetX
     compileOnly 'io.github.knight-zxw:lancet-runtime:0.0.7'
