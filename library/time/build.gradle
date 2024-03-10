@@ -121,7 +121,7 @@ dependencies {
     //图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
     implementation libs.touchimageview
     //二维码 https://github.com/zxing/zxing
-    implementation libs.core
+    implementation libs.zxing
     //https://github.com/ReactiveX/RxJava
     implementation libs.rxjava
     //https://github.com/ReactiveX/RxAndroid
