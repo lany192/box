@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply from: '../../publish.gradle'
-group = apk.groupId
-version = apk.versionName
 
 android {
     compileSdk apk.compileSdkVersion
@@ -37,7 +35,6 @@ android {
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')
-            version '3.22.1'
         }
     }
     namespace 'com.github.lany192.' + project.getName()

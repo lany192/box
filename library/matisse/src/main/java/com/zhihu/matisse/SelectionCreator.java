@@ -33,9 +33,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.matisse.R;
-import com.hjq.permissions.OnPermissionCallback;
-import com.hjq.permissions.Permission;
-import com.hjq.permissions.XXPermissions;
+import com.github.lany192.permission.RxPermissions;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.internal.entity.SelectionSpec;
@@ -46,8 +44,9 @@ import com.zhihu.matisse.ui.MatisseActivity;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Fluent API for building media select specification.
@@ -305,28 +304,24 @@ public final class SelectionCreator {
 
     /**
      * Start to select media and wait for result.
+     *
+     * @param requestCode Identity of the request Activity or Fragment.
      */
     public void forResult(ActivityResultCallback<ActivityResult> resultCallback) {
         FragmentActivity activity = mMatisse.getActivity();
         if (activity == null) {
             return;
         }
-        XXPermissions.with(activity)
-                .permission(Permission.WRITE_EXTERNAL_STORAGE)
-                .request(new OnPermissionCallback() {
-
-                    @Override
-                    public void onGranted(@NonNull List<String> permissions, boolean allGranted) {
+        Disposable disposable = new RxPermissions(activity).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(aBoolean -> {
+                    if (aBoolean) {
                         ActivityResultFragment fragment = new ActivityResultFragment();
                         fragment.setIntent(new Intent(activity, MatisseActivity.class));
                         fragment.start(activity, resultCallback);
-                    }
-
-                    @Override
-                    public void onDenied(@NonNull List<String> permissions, boolean doNotAskAgain) {
+                    } else {
                         Toast.makeText(activity, R.string.permission_request_denied, Toast.LENGTH_LONG).show();
                     }
-                });
+                }, Throwable::printStackTrace);
     }
 
     public SelectionCreator showPreview(boolean showPreview) {

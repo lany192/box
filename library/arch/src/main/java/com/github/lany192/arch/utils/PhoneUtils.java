@@ -71,7 +71,7 @@ public class PhoneUtils {
                     + getOSVersionCode() + ";"
                     + getAppVersionCode() + ";"
                     + getAppVersionName() + ";"
-                    + DeviceId.getInstance().getDeviceId() + ";";
+                    + DeviceId.get().getDeviceId() + ";";
         }
         return BASE_INFO;
     }

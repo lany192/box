@@ -34,10 +34,30 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> Toaster.show("首页：" + userInfo.name) }
         val items = mutableListOf<TabItem>()
-        items.add(TabItem("首页", SampleRouter.getIndex()))
-        items.add(TabItem("发现", SampleRouter.getDiscover()))
-        items.add(TabItem("消息", SampleRouter.getMessage()))
-        items.add(TabItem("我的", SampleRouter.getMy()))
+        items.add(
+            TabItem(
+                "首页",
+                SampleRouter.getIndex()
+            )
+        )
+        items.add(
+            TabItem(
+                "发现",
+                SampleRouter.getDiscover()
+            )
+        )
+        items.add(
+            TabItem(
+                "消息",
+                SampleRouter.getMessage()
+            )
+        )
+        items.add(
+            TabItem(
+                "我的",
+                SampleRouter.getMy()
+            )
+        )
         binding.viewpager.isUserInputEnabled = false
         binding.viewpager.offscreenPageLimit = items.size
         binding.viewpager.adapter =

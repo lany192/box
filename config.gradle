@@ -4,7 +4,7 @@ ext {
             appId            : 'com.lany192.box',
             groupId          : 'com.github.lany192.box',
             versionCode      : 1,
-            versionName      : '1.0.0-SNAPSHOT',
+            versionName      : '4.3.5',
             minSdkVersion    : 21,
             compileSdkVersion: 34,
             targetSdkVersion : 34
@@ -13,11 +13,9 @@ ext {
             'glide'     : 'com.github.bumptech.glide:compiler:4.16.0',
             'room'      : 'androidx.room:room-compiler:2.5.0',
             //路由增强 https://github.com/lany192/app-router
-            'app-router': 'com.github.lany192.app-router:arouter-compiler:1.5.4',
-            //阿里路由 https://github.com/alibaba/ARouter
-            'arouter'   : 'com.alibaba:arouter-compiler:1.5.2',
+            'app-router': 'com.github.lany192.app-router:arouter-compiler:2.0.2',
             //注入依赖 https://dagger.dev/hilt/
-            'hilt'      : 'com.google.dagger:hilt-compiler:2.45'
+            'hilt'      : 'com.google.dagger:hilt-android-compiler:2.45'
     ]
     androidTestDependencies = [
             'junit'   : 'androidx.test.ext:junit:1.1.3',
@@ -59,11 +57,11 @@ ext {
             'coroutines-core'                 : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0',
             'coroutines-android'              : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0',
             //注入依赖 https://dagger.dev/hilt/
-            'hilt'                            : 'com.google.dagger:hilt-android:2.51',
+            'hilt'                            : 'com.google.dagger:hilt-android:2.45',
             //Toast工具 https://github.com/getActivity/Toaster
             'toast'                           : 'com.github.getActivity:Toaster:12.6',
             //适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-            'brvah'                           : 'io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4',
+            'brvah'                           : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.11',
             //状态栏工具 https://github.com/gyf-dev/ImmersionBar
             'immersion-bar'                   : 'com.geyifeng.immersionbar:immersionbar:3.2.2',
             //请求框架 https://github.com/square/retrofit
@@ -94,12 +92,14 @@ ext {
             //多渠道打包工具 https://github.com/Tencent/VasDolly
             'vasdolly'                        : 'com.tencent.vasdolly:helper:3.0.6',
             //阿里界面路由 https://github.com/alibaba/ARouter
-            "arouter"                         : 'com.alibaba:arouter-api:1.5.2',
+            "arouter"                         : 'com.github.lany192.app-router:arouter-api:2.0.2',
             //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
             'background-core'                 : 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.6',
 
             //图片压缩 https://github.com/forJrking/KLuban
             'kluban'                          : 'com.github.forJrking:KLuban:1.1.0',
+            //图片压缩 https://github.com/Curzibn/Luban
+            'luban'                           : 'top.zibin:Luban:1.1.8',
             //RecyclerView分割线 https://github.com/lany192/ItemDecoration
             'decoration'                      : 'com.github.lany192:ItemDecoration:1.21',
             //键盘监听器 https://github.com/lany192/KeyboardWatcher
@@ -125,9 +125,9 @@ ext {
             //二维码 https://github.com/zxing/zxing
             'zxing'                           : 'com.google.zxing:core:3.5.3',
             //https://github.com/ReactiveX/RxJava
-//            'rxjava3'                         : 'io.reactivex.rxjava3:rxjava:3.1.6',
+            'rxjava3'                         : 'io.reactivex.rxjava3:rxjava:3.1.6',
             //https://github.com/ReactiveX/RxAndroid
-//            'rxandroid3'                      : 'io.reactivex.rxjava3:rxandroid:3.0.2',
+            'rxandroid3'                      : 'io.reactivex.rxjava3:rxandroid:3.0.2',
             //https://github.com/jaredrummler/materialspinner
             'spinner'                         : 'com.jaredrummler:material-spinner:1.3.1',
             //https://github.com/NightWhistler/HtmlSpanner

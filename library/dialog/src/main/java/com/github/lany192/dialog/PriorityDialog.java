@@ -158,7 +158,7 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
     }
 
     public void show(@NonNull Context context) {
-        FragmentActivity activity = ContextUtils.context2FragmentActivity(context);
+        FragmentActivity activity = ContextUtils.context2activity(context);
         if (activity != null && !activity.isFinishing() && !activity.isDestroyed()) {
             show(activity.getSupportFragmentManager());
         } else {
@@ -277,16 +277,8 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
         Window window = dialog.getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            window.setDimAmount(getAmount());
         }
         return dialog;
-    }
-
-    /**
-     * 对话框背景蒙层透明度
-     */
-    public float getAmount() {
-        return 0.5f;
     }
 
     /**

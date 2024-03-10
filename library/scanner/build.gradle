@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply from: '../../publish.gradle'
-group = apk.groupId
-version = apk.versionName
 
 android {
     compileSdk apk.compileSdkVersion
@@ -39,5 +37,5 @@ dependencies {
     implementationDependencies.each { k, v -> implementation v }
 
     implementation project(':library:core')
-
+    implementation project(':library:permission')
 }

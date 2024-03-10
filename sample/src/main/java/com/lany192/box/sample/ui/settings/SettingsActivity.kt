@@ -8,10 +8,10 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.dialog.SimpleDialog
+import com.github.lany192.permission.PermissionUtils
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
-import com.hjq.permissions.XXPermissions
 import com.hjq.toast.Toaster
 import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.sample.R
@@ -46,7 +46,6 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
             browserProvider.startBrowser("百度也不知道", "https://www.baidu.com")
         }
         binding.aboutView.setOnClickListener { SampleRouter.startAbout() }
-        binding.dayNightView.setOnClickListener { SampleRouter.startDayNight() }
     }
 
     private fun showCacheDialog() {
@@ -63,7 +62,7 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
 
     private fun permissionSetting() {
         try {
-            XXPermissions.startPermissionActivity(this)
+            PermissionUtils.toPermissionSetting(this)
         } catch (e: Exception) {
             val intent = Intent()
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

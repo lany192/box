@@ -145,7 +145,6 @@ abstract class BaseActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(event)
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         KeyboardUtils.hide(this)
         onBackPressedDispatcher.onBackPressed()
@@ -173,7 +172,7 @@ abstract class BaseActivity : AppCompatActivity() {
             && (permissions.contains(Manifest.permission.READ_EXTERNAL_STORAGE)
                     || permissions.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE))
         ) {
-            DeviceId.getInstance().grantedSDPermission()
+            DeviceId.get().grantedSDPermission()
         }
     }
 }

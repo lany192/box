@@ -2,7 +2,7 @@ package com.lany192.box.sample.data.binder;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.arch.adapter.ItemBinder;
+import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.utils.ImageUtils;
 import com.lany192.box.network.data.bean.Category;
 import com.lany192.box.sample.databinding.ItemCategoryBinding;

@@ -1,8 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply from: '../../publish.gradle'
-group = apk.groupId
-version = apk.versionName
+
 android {
     compileSdk apk.compileSdkVersion
     defaultConfig {
@@ -37,6 +36,7 @@ dependencies {
     implementation project(':library:core')
     implementation project(':library:view')
     implementation project(':library:dialog')
+    implementation project(':library:permission')
 
     androidTestDependencies.each { k, v -> androidTestImplementation v }
     testImplementationDependencies.each { k, v -> testImplementation v }

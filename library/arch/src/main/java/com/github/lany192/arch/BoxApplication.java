@@ -45,7 +45,7 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 
         DialogHelper.get().init(this);
 
-        DeviceId.getInstance().grantedSDPermission();
+        DeviceId.get().grantedSDPermission();
         //处理异常
 //        CrashHelper.getInstance();
 
