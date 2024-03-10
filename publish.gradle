@@ -24,20 +24,20 @@ afterEvaluate {
                         }
                     }
                 }
-                repositories {
-                    maven {
-                        name = 'local_repository'
-                        url = "${rootProject.rootDir}/repository"
-                    }
-                    maven {
-                        allowInsecureProtocol true
-                        url = "http://localhost:5001/repository/maven-snapshots/"
-                        credentials {
-                            it.username = "admin"
-                            it.password = "dev123456"
-                        }
-                    }
-                }
+//                repositories {
+//                    maven {
+//                        name = 'local_repository'
+//                        url = "${rootProject.rootDir}/repository"
+//                    }
+//                    maven {
+//                        allowInsecureProtocol true
+//                        url = "http://localhost:5001/repository/maven-snapshots/"
+//                        credentials {
+//                            it.username = "admin"
+//                            it.password = "dev123456"
+//                        }
+//                    }
+//                }
             }
         }
     }
