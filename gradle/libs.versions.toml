@@ -15,6 +15,7 @@ permissions = "18.6"
 libraryx = "1.7.6"
 phoenix = "2.1.2"
 htmlspanner = "0.4"
+roomCompiler = "2.5.0"
 tbssdk = "44286"
 wechat = "6.8.18"
 sonic = "3.1.0"
@@ -85,15 +86,19 @@ androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", v
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 #数据库 https://developer.android.google.cn/training/data-storage/room/index.html
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
 androidx-material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-test-espresso-espresso-core2 = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCoreVersion" }
 androidx-test-ext-junit2 = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJunit" }
+arouter-compiler = { module = "com.github.lany192.app-router:arouter-compiler", version.ref = "okdownload" }
 arouter-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "router" }
 
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 junit = { module = "junit:junit", version.ref = "junit" }
 oss-sdk-client = { module = "com.amazonaws:aws-android-sdk-mobile-client", version.ref = "oss" }
 oss-sdk-s33 = { module = "com.amazonaws:aws-android-sdk-s3", version.ref = "oss" }

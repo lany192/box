@@ -133,10 +133,10 @@ dependencies {
 //    testImplementationDependencies.each { k, v -> testImplementation v }
 //    implementationDependencies.each { k, v -> implementation v }
 
-    kapt 'com.github.bumptech.glide:compiler:4.16.0'
-    kapt 'androidx.room:room-compiler:2.5.0'
-    kapt 'com.google.dagger:hilt-android-compiler:2.45'
-    kapt 'com.github.lany192.app-router:arouter-compiler:2.0.2'
+    kapt libs.glide.compiler
+    kapt libs.androidx.room.compiler
+    kapt libs.hilt.android.compiler
+    kapt libs.arouter.compiler
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit2
