@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eeeeee"
     android:orientation="vertical"
     tools:context="com.lany192.box.sample.ui.main.MainActivity">
 
@@ -16,14 +17,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/divider" />
+        android:background="#eeeeee" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/white_bg"
-        app:itemIconSize="24dp"
+        app:itemBackground="@android:color/white"
         app:itemIconTint="@color/selector_item_gray_color"
         app:itemTextColor="@color/selector_item_gray_color"
         app:labelVisibilityMode="labeled"

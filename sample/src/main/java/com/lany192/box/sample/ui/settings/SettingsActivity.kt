@@ -46,7 +46,6 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
             browserProvider.startBrowser("百度也不知道", "https://www.baidu.com")
         }
         binding.aboutView.setOnClickListener { SampleRouter.startAbout() }
-        binding.dayNightView.setOnClickListener { SampleRouter.startDayNight() }
     }
 
     private fun showCacheDialog() {
@@ -63,7 +62,7 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
 
     private fun permissionSetting() {
         try {
-            XXPermissions.startPermissionActivity(this)
+            XXPermissions.startPermissionActivity(this, "");
         } catch (e: Exception) {
             val intent = Intent()
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

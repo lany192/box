@@ -37,10 +37,10 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.github.lany192.arch.startup.ContextInitializer"
+                android:name="com.github.lany192.arch.startup.LogInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.github.lany192.arch.startup.LogInitializer"
+                android:name="com.github.lany192.arch.startup.ContextInitializer"
                 android:value="androidx.startup" />
             <meta-data
                 android:name="com.github.lany192.arch.startup.KVInitializer"

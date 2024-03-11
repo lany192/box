@@ -8,10 +8,10 @@ pluginManagement {
         google()
         gradlePluginPortal()
         mavenCentral()
-        maven {
-            allowInsecureProtocol true
-            url 'http://localhost:5001/repository/maven-public/'
-        }
+//        maven {
+//            allowInsecureProtocol true
+//            url 'http://localhost:5001/repository/maven-public/'
+//        }
         mavenLocal()
     }
 }
@@ -24,10 +24,10 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
         mavenCentral()
         google()
-        maven {
-            allowInsecureProtocol true
-            url 'http://localhost:5001/repository/maven-public/'
-        }
+//        maven {
+//            allowInsecureProtocol true
+//            url 'http://localhost:5001/repository/maven-public/'
+//        }
         mavenLocal()
     }
 }
@@ -44,11 +44,10 @@ include ':library:crop'
 include ':library:matisse'
 include ':library:tablayout'
 include ':library:html'
-//include ':library:scanner'
-//include ':library:cropper'
+include ':library:scanner'
+include ':library:cropper'
 include ':library:log'
 include ':library:toolkit'
-include ':library:video'
 
 include ':common:network'
 include ':common:router'

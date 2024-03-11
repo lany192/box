@@ -32,5 +32,3 @@
 -keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
 -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
 #----------------------------------------------
--dontwarn dalvik.system.VMStack
--dontwarn javax.lang.model.element.Element

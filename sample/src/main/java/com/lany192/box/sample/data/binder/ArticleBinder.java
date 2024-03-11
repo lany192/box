@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.adapter.BindingHolder;
-import com.github.lany192.arch.adapter.ItemBinder;
+import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.utils.DateUtils;
 import com.github.lany192.utils.ImageUtils;
 import com.lany192.box.network.data.bean.Article;

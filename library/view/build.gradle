@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply from: '../../publish.gradle'
-group = apk.groupId
-version = apk.versionName
 
 android {
     compileSdk apk.compileSdkVersion
@@ -34,10 +32,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-
-    androidTestDependencies.each { k, v -> androidTestImplementation v }
-    testImplementationDependencies.each { k, v -> testImplementation v }
-    implementationDependencies.each { k, v -> implementation v }
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.material
+    //glide依赖 https://github.com/bumptech/glide
+    implementation libs.glide
+    //Toast工具 https://github.com/getActivity/Toaster
+    implementation libs.toaster
+    //刷新套件 https://github.com/scwang90/SmartRefreshLayout
+    implementation libs.refresh.header
+    implementation libs.refresh.layout
 
     implementation project(':library:log')
     implementation project(':library:core')

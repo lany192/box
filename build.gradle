@@ -1,23 +1,17 @@
 buildscript {
     apply from: 'config.gradle'
     dependencies {
-        classpath 'com.github.lany192.app-router:arouter-gradle-plugin:1.5.4'
-
-//        //https://github.com/bytedance/ByteX
-//        classpath 'com.bytedance.android.byteX:base-plugin:0.3.0'
-//        classpath 'com.bytedance.android.byteX:refer-check-plugin:0.3.0'
-//        //hook 工具 https://github.com/Knight-ZXW/LancetX
-//        classpath "io.github.knight-zxw:lancet-plugin:0.0.4"
+        classpath libs.arouter.register
     }
 }
 
 plugins {
-    id 'com.android.application' version '8.2.2' apply false
-    id 'com.android.library' version '8.2.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
-    id 'org.jetbrains.kotlin.jvm' version '1.8.20' apply false
-    id 'org.jetbrains.kotlin.kapt' version '1.8.20' apply false
-    id 'com.google.dagger.hilt.android' version '2.45' apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.hilt.android) apply false
 }
 
 allprojects {

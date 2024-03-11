@@ -1,0 +1,148 @@
+[versions]
+activityKtx = "1.8.2"
+agp = "8.3.0"
+alipayzerosdk = "1.1" #支付宝打赏 https://github.com/fython/AlipayZeroSdk
+androidxEspressoCoreVersion = "3.5.1"
+androidxTestExtJunit = "1.1.5"
+appcompat = "1.6.1"
+banner = "2.2.3" # banner https://github.com/youth5201314/banner
+camera = "1.3.2" #相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
+junit = "4.13.2"
+oss = "2.74.0" #minio库 minio 官方的sdk 只有java 版本的不兼容android，可以尝试使用 amazon s3 的oss sdk 来实现功能
+glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
+kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
+permissions = "18.6" #权限 https://github.com/getActivity/XXPermissions
+libraryx = "1.7.6" #背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
+phoenix = "2.1.2" #重启工具库 https://github.com/JakeWharton/ProcessPhoenix
+htmlspanner = "0.4" #https://github.com/NightWhistler/HtmlSpanner
+tbssdk = "44286" #腾讯x5 https://x5.tencent.com/docs/index.html
+wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
+sonic = "3.1.0" #https://github.com/Tencent/VasSonic
+xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
+mmkv = "1.3.3" #存储 https://github.com/Tencent/MMKV
+moshi = "1.13.0"
+brvah = "3.0.11" #适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
+hilt = "2.45" #注入依赖 https://dagger.dev/hilt/
+vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
+zxing = "3.5.3" #二维码 https://github.com/zxing/zxing
+coreKtx = "1.12.0"
+constraintlayout = "2.1.4"
+exifinterface = "1.3.7"
+flexbox = "3.0.0" #flexbox控件 https://github.com/google/flexbox-layout
+eventbus = "3.3.1" #通知事件 https://github.com/greenrobot/EventBus
+coroutines = "1.8.0" #协程 https://github.com/Kotlin/kotlinx.coroutines
+fragmentKtx = "1.6.2"
+keyboard = "1.0.1" #键盘监听器 https://github.com/lany192/KeyboardWatcher
+immersionbar = "3.2.2" #状态栏工具 https://github.com/gyf-dev/ImmersionBar
+refresh = "2.1.0" #刷新套件 https://github.com/scwang90/SmartRefreshLayout
+rxjava = "3.1.8" #https://github.com/ReactiveX/RxJava
+decoration = "1.21" #分割线 https://github.com/lany192/ItemDecoration
+licensesdialog = "2.1.0"
+material = "1.11.0"
+lifecycleLivedataKtx = "2.7.0"
+lifecycleViewmodelKtx = "2.7.0"
+materialSpinner = "1.3.1" #https://github.com/jaredrummler/materialspinner
+media3 = "1.3.0" #播放器 https://developer.android.google.cn/jetpack/androidx/releases/media3
+multidex = "2.0.1"
+numberPicker = "2.4.13" #自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
+paging = "3.2.1"
+recyclerview = "1.2.1"
+retrofit = "2.9.0" #请求框架 https://github.com/square/retrofit
+room = "2.6.1" #数据库 https://developer.android.google.cn/training/data-storage/room/index.html
+rxandroid = "3.0.2" #https://github.com/ReactiveX/RxAndroid
+startup = "1.1.1"
+luban = "1.1.8" #图片压缩 https://github.com/Curzibn/Luban
+touchimageview = "3.6" #图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
+xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
+leakcanary = "2.12"
+okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
+router = "2.0.2"
+kotlin = "1.8.20"
+
+[libraries]
+alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "camera" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "camera" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera" }
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3" }
+androidx-media3-exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "media3" }
+androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3" }
+androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startup" }
+androidx-material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCoreVersion" }
+androidx-test-ext-junit2 = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJunit" }
+arouter-compiler = { module = "com.github.lany192.app-router:arouter-compiler", version.ref = "okdownload" }
+arouter-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "router" }
+banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+junit = { module = "junit:junit", version.ref = "junit" }
+oss-sdk-client = { module = "com.amazonaws:aws-android-sdk-mobile-client", version.ref = "oss" }
+oss-sdk-s33 = { module = "com.amazonaws:aws-android-sdk-s3", version.ref = "oss" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
+permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "permissions" }
+background-libraryx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "libraryx" }
+arouter-api = { module = "com.github.lany192.app-router:arouter-api", version.ref = "router" }
+phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
+html-spanner = { module = "com.github.NightWhistler:HtmlSpanner", version.ref = "htmlspanner" }
+tencent-tbs = { module = "com.tencent.tbs:tbssdk", version.ref = "tbssdk" }
+tencent-wechat = { module = "com.tencent.mm.opensdk:wechat-sdk-android", version.ref = "wechat" }
+tencent-sonic = { module = "com.tencent.sonic:sdk", version.ref = "sonic" }
+tencent-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "xlog" }
+tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
+tencent-vasdolly = { module = "com.tencent.vasdolly:helper", version.ref = "vasdolly" }
+moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
+brvah = { module = "com.github.CymChad:BaseRecyclerViewAdapterHelper", version.ref = "brvah" }
+toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+zxing = { module = "com.google.zxing:core", version.ref = "zxing" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
+immersionbar = { module = "com.geyifeng.immersionbar:immersionbar", version.ref = "immersionbar" }
+refresh-header = { module = "io.github.scwang90:refresh-header-classics", version.ref = "refresh" }
+refresh-layout = { module = "io.github.scwang90:refresh-layout-kernel", version.ref = "refresh" }
+decoration = { module = "com.github.lany192:ItemDecoration", version.ref = "decoration" }
+licensesdialog = { module = "de.psdev.licensesdialog:licensesdialog", version.ref = "licensesdialog" }
+material-spinner = { module = "com.jaredrummler:material-spinner", version.ref = "materialSpinner" }
+number-picker = { module = "io.github.ShawnLin013:number-picker", version.ref = "numberPicker" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
+luban = { module = "top.zibin:Luban", version.ref = "luban" }
+touchimageview = { module = "com.github.MikeOrtiz:TouchImageView", version.ref = "touchimageview" }
+xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
+flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
+okdownload = { module = "com.github.lany192:okdownload", version.ref = "okdownload" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+

@@ -1,6 +1,6 @@
 package com.lany192.box.sample.data.binder
 
-import com.github.lany192.arch.adapter.ItemBinder
+import com.github.lany192.arch.items.ItemBinder
 import com.github.lany192.extensions.load
 import com.lany192.box.sample.databinding.ItemImageBinding
 
