@@ -17,6 +17,10 @@ plugins {
 allprojects {
     //配置说明 https://juejin.cn/post/6908232077200588814
     configurations.all { Configuration c ->
+        // 动态版本缓存时效
+        resolutionStrategy.cacheDynamicVersionsFor(10, "minutes")
+        // 快照版本缓存时效
+        resolutionStrategy.cacheChangingModulesFor(4, "hours")
         // 所有的依赖降级策略
         c.resolutionStrategy {
             dependencySubstitution {
