@@ -78,7 +78,6 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
@@ -87,9 +86,8 @@ android {
         }
         develop {
             matchingFallbacks = ['release']
-            minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
             versionNameSuffix '_dev'
@@ -98,7 +96,6 @@ android {
         }
         debug {
             minifyEnabled false
-            zipAlignEnabled false
             shrinkResources false
             signingConfig signingConfigs.config
             versionNameSuffix '_dev'
@@ -127,12 +124,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-
-//    androidTestDependencies.each { k, v -> androidTestImplementation v }
-//    processorDependencies.each { k, v -> kapt v }
-//    testImplementationDependencies.each { k, v -> testImplementation v }
-//    implementationDependencies.each { k, v -> implementation v }
-
     kapt libs.glide.compiler
     kapt libs.androidx.room.compiler
     kapt libs.hilt.android.compiler
