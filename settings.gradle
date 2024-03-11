@@ -4,14 +4,14 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
         google()
-//        maven {
-//            allowInsecureProtocol true
-//            url 'http://localhost:5001/repository/maven-public/'
-//        }
         maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
         mavenLocal()
+//        maven {
+//            allowInsecureProtocol true
+//            url 'http://localhost:5001/repository/maven-public/'
+//        }
     }
 }
 dependencyResolutionManagement {
@@ -20,14 +20,14 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
         mavenCentral()
         google()
-//        maven {
-//            allowInsecureProtocol true
-//            url 'http://localhost:5001/repository/maven-public/'
-//        }
         maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
         mavenLocal()
+//        maven {
+//            allowInsecureProtocol true
+//            url 'http://localhost:5001/repository/maven-public/'
+//        }
     }
 }
 rootProject.name = "box"
