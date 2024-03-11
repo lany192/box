@@ -1,26 +1,22 @@
 pluginManagement {
     repositories {
-//        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
-//        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-//        maven { url 'https://maven.aliyun.com/repository/google' }
-//        maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://www.jitpack.io' }
-        google()
         gradlePluginPortal()
         mavenCentral()
+        google()
 //        maven {
 //            allowInsecureProtocol true
 //            url 'http://localhost:5001/repository/maven-public/'
 //        }
+        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         mavenLocal()
     }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-//        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
-//        maven { url 'https://maven.aliyun.com/repository/google' }
-//        maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url "https://jitpack.io" }
         mavenCentral()
         google()
@@ -28,6 +24,9 @@ dependencyResolutionManagement {
 //            allowInsecureProtocol true
 //            url 'http://localhost:5001/repository/maven-public/'
 //        }
+        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         mavenLocal()
     }
 }
