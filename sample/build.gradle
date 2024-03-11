@@ -86,8 +86,8 @@ android {
         }
         develop {
             matchingFallbacks = ['release']
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
             versionNameSuffix '_dev'
@@ -126,7 +126,7 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     kapt libs.glide.compiler
     kapt libs.androidx.room.compiler
-    kapt libs.hilt.android.compiler
+    kapt libs.hilt.compiler
     kapt libs.arouter.compiler
 
     testImplementation libs.junit
@@ -145,17 +145,12 @@ dependencies {
     implementation project(path: ':library:time')
     implementation project(path: ':library:crop')
     implementation project(path: ':library:matisse')
-    
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
     implementation project(path: ':library:scanner')
     implementation project(path: ':library:cropper')
     implementation project(path: ':library:log')
     implementation project(path: ':library:toolkit')
-
-
-    //内存泄漏检测 https://github.com/square/leakcanary
-    debugImplementation libs.leakcanary
 
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
@@ -164,7 +159,8 @@ dependencies {
     implementation project(path: ':feature:hello')
     implementation project(path: ':feature:login')
 
-
+    //内存泄漏检测 https://github.com/square/leakcanary
+    debugImplementation libs.leakcanary
     implementation libs.androidx.appcompat
     implementation libs.androidx.activity.ktx
     implementation libs.androidx.fragment.ktx

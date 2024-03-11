@@ -37,7 +37,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-    kapt libs.hilt.android.compiler
+    kapt libs.hilt.compiler
 
     implementation libs.androidx.appcompat
     implementation libs.androidx.activity.ktx

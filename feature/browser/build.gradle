@@ -82,7 +82,7 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     kapt libs.glide.compiler
     kapt libs.androidx.room.compiler
-    kapt libs.hilt.android.compiler
+    kapt libs.hilt.compiler
     kapt libs.arouter.compiler
 
     testImplementation libs.junit
