@@ -1,12 +1,12 @@
 pluginManagement {
     repositories {
+        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://www.jitpack.io' }
         gradlePluginPortal()
-        mavenCentral()
         google()
-//        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
-//        maven { url 'https://maven.aliyun.com/repository/google' }
-//        maven { url 'https://maven.aliyun.com/repository/public' }
+        mavenCentral()
         mavenLocal()
 //        maven {
 //            allowInsecureProtocol true
@@ -17,12 +17,12 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url "https://jitpack.io" }
-        mavenCentral()
         google()
-//        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
-//        maven { url 'https://maven.aliyun.com/repository/google' }
-//        maven { url 'https://maven.aliyun.com/repository/public' }
+        mavenCentral()
         mavenLocal()
 //        maven {
 //            allowInsecureProtocol true
