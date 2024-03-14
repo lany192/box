@@ -69,8 +69,6 @@ android {
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
-        //git提交记录id
-        buildConfigField "String", "GIT_COMMIT_ID", "\"${"git rev-parse --short HEAD".execute().text.trim()}\""
     }
     buildFeatures {
         viewBinding true

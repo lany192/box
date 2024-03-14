@@ -75,13 +75,3 @@ gradle.projectsEvaluated {
 gradle.taskGraph.whenReady {
     println "配置阶段3 taskGraph.whenReady"
 }
-// 执行阶段
-gradle.taskGraph.beforeTask {
-    println "执行阶段0 taskGraph.beforeTask"
-}
-gradle.taskGraph.afterTask {
-    println "执行阶段1 taskGraph.afterTask"
-}
-gradle.buildFinished {
-    println "执行阶段2 buildFinished"
-}
