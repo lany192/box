@@ -13,6 +13,7 @@ import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
@@ -32,14 +33,10 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoListener;
 
-import com.github.lany192.video.R;
-
-/**
- * Created by MinhDV on 5/3/18.
- */
 public class JZMediaExo extends JZMediaInterface implements Player.EventListener, VideoListener {
     private SimpleExoPlayer simpleExoPlayer;
     private Runnable callback;
@@ -77,7 +74,7 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
                     .setBufferDurationsMs(360000, 600000, 1000, 5000)
                     .setPrioritizeTimeOverSizeThresholds(false)
                     .setTargetBufferBytes(C.LENGTH_UNSET)
-                    .createDefaultLoadControl();
+                    .build();
 
 
             BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
@@ -97,14 +94,14 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
             MediaSource videoSource;
             if (currUrl.contains(".m3u8")) {
                 videoSource = new HlsMediaSource.Factory(dataSourceFactory)
-                        .createMediaSource(Uri.parse(currUrl));
+                        .createMediaSource(new MediaItem.Builder().setUri(Uri.parse(currUrl)).setMimeType(MimeTypes.APPLICATION_M3U8).build());
                 //addEventListener 这里只有两个参数都要传入值才可以成功设置
                 // 否者会被断言 Assertions.checkArgument(handler != null && eventListener != null);
                 // 并且报错  IllegalArgumentException()  所以不需要添加监听器时 注释掉
                 //      videoSource .addEventListener( handler, null);
             } else {
                 videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
-                        .createMediaSource(Uri.parse(currUrl));
+                        .createMediaSource(new MediaItem.Builder().setUri(Uri.parse(currUrl)).setMimeType(MimeTypes.APPLICATION_M3U8).build());
             }
             simpleExoPlayer.addVideoListener(this);
 
@@ -117,7 +114,8 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
             } else {
                 simpleExoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
             }
-            simpleExoPlayer.prepare(videoSource);
+            simpleExoPlayer.setMediaSource(videoSource);
+            simpleExoPlayer.prepare();
             simpleExoPlayer.setPlayWhenReady(true);
             callback = new onBufferingUpdate();
 
