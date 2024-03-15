@@ -9,34 +9,31 @@ import android.util.Log;
 import android.view.Surface;
 
 import androidx.annotation.NonNull;
-
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.DefaultLoadControl;
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.LoadControl;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.RenderersFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.upstream.BandwidthMeter;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultAllocator;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.util.MimeTypes;
-import com.google.android.exoplayer2.util.Util;
-import com.google.android.exoplayer2.video.VideoListener;
+import androidx.annotation.OptIn;
+import androidx.media3.common.C;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.MimeTypes;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.PlaybackParameters;
+import androidx.media3.common.Player;
+import androidx.media3.common.VideoSize;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.datasource.DataSource;
+import androidx.media3.datasource.DefaultDataSource;
+import androidx.media3.datasource.DefaultHttpDataSource;
+import androidx.media3.exoplayer.DefaultLoadControl;
+import androidx.media3.exoplayer.DefaultRenderersFactory;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.hls.HlsMediaSource;
+import androidx.media3.exoplayer.source.MediaSource;
+import androidx.media3.exoplayer.source.ProgressiveMediaSource;
+import androidx.media3.exoplayer.trackselection.AdaptiveTrackSelection;
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
+import androidx.media3.exoplayer.upstream.DefaultAllocator;
+import androidx.media3.exoplayer.upstream.DefaultBandwidthMeter;
 
 public class JZMediaExo extends JZMediaInterface {
-    private SimpleExoPlayer player;
+    private ExoPlayer player;
     private Runnable callback;
     private String TAG = "JZMediaExo";
     private long previousSeek = 0;
@@ -50,7 +47,7 @@ public class JZMediaExo extends JZMediaInterface {
         player.setPlayWhenReady(true);
     }
 
-    @Override
+    @OptIn(markerClass = UnstableApi.class) @Override
     public void prepare() {
         Log.e(TAG, "prepare");
         Context context = jzvd.getContext();
@@ -61,8 +58,7 @@ public class JZMediaExo extends JZMediaInterface {
         mMediaHandler = new Handler(context.getMainLooper());//主线程还是非主线程，就在这里
         handler = new Handler();
         mMediaHandler.post(() -> {
-
-            player = new SimpleExoPlayer.Builder(context, new DefaultRenderersFactory(context))
+            player = new ExoPlayer.Builder(context, new DefaultRenderersFactory(context))
                     .setTrackSelector(new DefaultTrackSelector(context, new AdaptiveTrackSelection.Factory()))
                     .setLoadControl(new DefaultLoadControl.Builder()
                             .setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE))
@@ -72,8 +68,11 @@ public class JZMediaExo extends JZMediaInterface {
                             .build())
                     .setBandwidthMeter(new DefaultBandwidthMeter.Builder(context).build())
                     .build();
-            // Produces DataSource instances through which media data is loaded.
-            DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, context.getResources().getString(R.string.app_name)));
+            DefaultHttpDataSource.Factory httpFactory = new DefaultHttpDataSource.Factory();
+            httpFactory.setUserAgent(context.getResources().getString(R.string.app_name));
+            httpFactory.setConnectTimeoutMs(5000);
+            httpFactory.setReadTimeoutMs(5000);
+            DataSource.Factory dataSourceFactory = new DefaultDataSource.Factory(context, httpFactory);
 
             String currUrl = jzvd.jzDataSource.getCurrentUrl().toString();
             MediaSource videoSource;
@@ -98,16 +97,7 @@ public class JZMediaExo extends JZMediaInterface {
                                 .setMimeType(MimeTypes.APPLICATION_M3U8)
                                 .build());
             }
-            player.addVideoListener(new VideoListener() {
-                @Override
-                public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
-                    handler.post(() -> jzvd.onVideoSizeChanged((int) (width * pixelWidthHeightRatio), height));
-                }
-            });
-
-            Log.e(TAG, "URL Link = " + currUrl);
-
-            player.addListener(new Player.EventListener() {
+            player.addListener(new Player.Listener() {
 
                 @Override
                 public void onPlayerStateChanged(final boolean playWhenReady, final int playbackState) {
@@ -138,17 +128,25 @@ public class JZMediaExo extends JZMediaInterface {
                 }
 
                 @Override
-                public void onPlayerError(ExoPlaybackException error) {
+                public void onPlayerError(PlaybackException error) {
                     Log.e(TAG, "onPlayerError" + error.toString());
                     handler.post(() -> jzvd.onError(1000, 1000));
                 }
 
-                @Override
-                public void onSeekProcessed() {
-                    handler.post(() -> jzvd.onSeekComplete());
-                }
+//                @Override
+//                public void onSeekProcessed() {
+//                    handler.post(() -> jzvd.onSeekComplete());
+//                }
 
+                @Override
+                public void onVideoSizeChanged(VideoSize videoSize) {
+                    handler.post(() -> jzvd.onVideoSizeChanged(videoSize.width, videoSize.height));
+                }
             });
+
+            Log.e(TAG, "URL Link = " + currUrl);
+
+
             Boolean isLoop = jzvd.jzDataSource.looping;
             if (isLoop) {
                 player.setRepeatMode(Player.REPEAT_MODE_ONE);
@@ -169,7 +167,6 @@ public class JZMediaExo extends JZMediaInterface {
         });
 
     }
-
 
     @Override
     public void pause() {
@@ -201,7 +198,7 @@ public class JZMediaExo extends JZMediaInterface {
     public void release() {
         if (mMediaHandler != null && mMediaHandlerThread != null && player != null) {//不知道有没有妖孽
             HandlerThread tmpHandlerThread = mMediaHandlerThread;
-            SimpleExoPlayer tmpMediaPlayer = player;
+            ExoPlayer tmpMediaPlayer = player;
             JZMediaInterface.SAVED_SURFACE = null;
 
             mMediaHandler.post(() -> {
