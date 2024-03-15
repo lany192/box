@@ -62,24 +62,15 @@ public class JZMediaExo extends JZMediaInterface {
         handler = new Handler();
         mMediaHandler.post(() -> {
 
-            TrackSelector trackSelector = new DefaultTrackSelector(context, new AdaptiveTrackSelection.Factory());
-
-            LoadControl loadControl = new DefaultLoadControl.Builder()
-                    .setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE))
-                    .setBufferDurationsMs(360000, 600000, 1000, 5000)
-                    .setPrioritizeTimeOverSizeThresholds(false)
-                    .setTargetBufferBytes(C.LENGTH_UNSET)
-                    .build();
-
-
-            BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
-            // 2. Create the player
-
-            RenderersFactory renderersFactory = new DefaultRenderersFactory(context);
-            player = new SimpleExoPlayer.Builder(context, renderersFactory)
-                    .setTrackSelector(trackSelector)
-                    .setLoadControl(loadControl)
-                    .setBandwidthMeter(bandwidthMeter)
+            player = new SimpleExoPlayer.Builder(context, new DefaultRenderersFactory(context))
+                    .setTrackSelector(new DefaultTrackSelector(context, new AdaptiveTrackSelection.Factory()))
+                    .setLoadControl(new DefaultLoadControl.Builder()
+                            .setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE))
+                            .setBufferDurationsMs(360000, 600000, 1000, 5000)
+                            .setPrioritizeTimeOverSizeThresholds(false)
+                            .setTargetBufferBytes(C.LENGTH_UNSET)
+                            .build())
+                    .setBandwidthMeter(new DefaultBandwidthMeter.Builder(context).build())
                     .build();
             // Produces DataSource instances through which media data is loaded.
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, context.getResources().getString(R.string.app_name)));
