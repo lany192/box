@@ -34,5 +34,5 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation libs.androidx.appcompat
     implementation libs.androidx.material
-    implementation 'com.google.android.exoplayer:exoplayer:2.13.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.13.2'
 }
