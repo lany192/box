@@ -25,8 +25,6 @@ import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -37,7 +35,7 @@ import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoListener;
 
-public class JZMediaExo extends JZMediaInterface implements Player.EventListener, VideoListener {
+public class JZMediaExo extends JZMediaInterface {
     private SimpleExoPlayer player;
     private Runnable callback;
     private String TAG = "JZMediaExo";
@@ -109,11 +107,57 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
                                 .setMimeType(MimeTypes.APPLICATION_M3U8)
                                 .build());
             }
-            player.addVideoListener(this);
+            player.addVideoListener(new VideoListener() {
+                @Override
+                public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
+                    handler.post(() -> jzvd.onVideoSizeChanged((int) (width * pixelWidthHeightRatio), height));
+                }
+            });
 
             Log.e(TAG, "URL Link = " + currUrl);
 
-            player.addListener(this);
+            player.addListener(new Player.EventListener() {
+
+                @Override
+                public void onPlayerStateChanged(final boolean playWhenReady, final int playbackState) {
+                    Log.e(TAG, "onPlayerStateChanged" + playbackState + "/ready=" + String.valueOf(playWhenReady));
+                    handler.post(() -> {
+                        switch (playbackState) {
+                            case Player.STATE_IDLE: {
+                            }
+                            break;
+                            case Player.STATE_BUFFERING: {
+                                jzvd.onStatePreparingPlaying();
+                                handler.post(callback);
+                            }
+                            break;
+                            case Player.STATE_READY: {
+                                if (playWhenReady) {
+                                    jzvd.onStatePlaying();
+                                } else {
+                                }
+                            }
+                            break;
+                            case Player.STATE_ENDED: {
+                                jzvd.onCompletion();
+                            }
+                            break;
+                        }
+                    });
+                }
+
+                @Override
+                public void onPlayerError(ExoPlaybackException error) {
+                    Log.e(TAG, "onPlayerError" + error.toString());
+                    handler.post(() -> jzvd.onError(1000, 1000));
+                }
+
+                @Override
+                public void onSeekProcessed() {
+                    handler.post(() -> jzvd.onSeekComplete());
+                }
+
+            });
             Boolean isLoop = jzvd.jzDataSource.looping;
             if (isLoop) {
                 player.setRepeatMode(Player.REPEAT_MODE_ONE);
@@ -135,15 +179,6 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
 
     }
 
-    @Override
-    public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
-        handler.post(() -> jzvd.onVideoSizeChanged((int) (width * pixelWidthHeightRatio), height));
-    }
-
-    @Override
-    public void onRenderedFirstFrame() {
-        Log.e(TAG, "onRenderedFirstFrame");
-    }
 
     @Override
     public void pause() {
@@ -210,44 +245,6 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
         player.setPlaybackParameters(playbackParameters);
     }
 
-    @Override
-    public void onPlayerStateChanged(final boolean playWhenReady, final int playbackState) {
-        Log.e(TAG, "onPlayerStateChanged" + playbackState + "/ready=" + String.valueOf(playWhenReady));
-        handler.post(() -> {
-            switch (playbackState) {
-                case Player.STATE_IDLE: {
-                }
-                break;
-                case Player.STATE_BUFFERING: {
-                    jzvd.onStatePreparingPlaying();
-                    handler.post(callback);
-                }
-                break;
-                case Player.STATE_READY: {
-                    if (playWhenReady) {
-                        jzvd.onStatePlaying();
-                    } else {
-                    }
-                }
-                break;
-                case Player.STATE_ENDED: {
-                    jzvd.onCompletion();
-                }
-                break;
-            }
-        });
-    }
-
-    @Override
-    public void onPlayerError(ExoPlaybackException error) {
-        Log.e(TAG, "onPlayerError" + error.toString());
-        handler.post(() -> jzvd.onError(1000, 1000));
-    }
-
-    @Override
-    public void onSeekProcessed() {
-        handler.post(() -> jzvd.onSeekComplete());
-    }
 
     @Override
     public void setSurface(Surface surface) {
