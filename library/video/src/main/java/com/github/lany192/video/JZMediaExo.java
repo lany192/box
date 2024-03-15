@@ -25,6 +25,7 @@ import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
@@ -63,30 +64,50 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
         handler = new Handler();
         mMediaHandler.post(() -> {
 
-            TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory();
-            TrackSelector trackSelector = new DefaultTrackSelector(context, videoTrackSelectionFactory);
+            TrackSelector trackSelector = new DefaultTrackSelector(context, new AdaptiveTrackSelection.Factory());
 
-            LoadControl loadControl = new DefaultLoadControl.Builder().setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE)).setBufferDurationsMs(360000, 600000, 1000, 5000).setPrioritizeTimeOverSizeThresholds(false).setTargetBufferBytes(C.LENGTH_UNSET).build();
+            LoadControl loadControl = new DefaultLoadControl.Builder()
+                    .setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE))
+                    .setBufferDurationsMs(360000, 600000, 1000, 5000)
+                    .setPrioritizeTimeOverSizeThresholds(false)
+                    .setTargetBufferBytes(C.LENGTH_UNSET)
+                    .build();
 
 
             BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
             // 2. Create the player
 
             RenderersFactory renderersFactory = new DefaultRenderersFactory(context);
-            player = new SimpleExoPlayer.Builder(context, renderersFactory).setTrackSelector(trackSelector).setLoadControl(loadControl).setBandwidthMeter(bandwidthMeter).build();
+            player = new SimpleExoPlayer.Builder(context, renderersFactory)
+                    .setTrackSelector(trackSelector)
+                    .setLoadControl(loadControl)
+                    .setBandwidthMeter(bandwidthMeter)
+                    .build();
             // Produces DataSource instances through which media data is loaded.
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, context.getResources().getString(R.string.app_name)));
 
             String currUrl = jzvd.jzDataSource.getCurrentUrl().toString();
             MediaSource videoSource;
             if (currUrl.contains(".m3u8")) {
-                videoSource = new HlsMediaSource.Factory(dataSourceFactory).createMediaSource(new MediaItem.Builder().setUri(Uri.parse(currUrl)).setMimeType(MimeTypes.APPLICATION_M3U8).build());
+                videoSource = new HlsMediaSource
+                        .Factory(dataSourceFactory)
+                        .createMediaSource(new MediaItem
+                                .Builder()
+                                .setUri(Uri.parse(currUrl))
+                                .setMimeType(MimeTypes.APPLICATION_M3U8)
+                                .build());
                 //addEventListener 这里只有两个参数都要传入值才可以成功设置
                 // 否者会被断言 Assertions.checkArgument(handler != null && eventListener != null);
                 // 并且报错  IllegalArgumentException()  所以不需要添加监听器时 注释掉
                 //      videoSource .addEventListener( handler, null);
             } else {
-                videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(new MediaItem.Builder().setUri(Uri.parse(currUrl)).setMimeType(MimeTypes.APPLICATION_M3U8).build());
+                videoSource = new ProgressiveMediaSource
+                        .Factory(dataSourceFactory)
+                        .createMediaSource(new MediaItem
+                                .Builder()
+                                .setUri(Uri.parse(currUrl))
+                                .setMimeType(MimeTypes.APPLICATION_M3U8)
+                                .build());
             }
             player.addVideoListener(this);
 
