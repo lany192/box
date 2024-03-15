@@ -47,6 +47,7 @@ include ':library:scanner'
 include ':library:cropper'
 include ':library:log'
 include ':library:toolkit'
+include ':library:video'
 
 include ':common:network'
 include ':common:router'

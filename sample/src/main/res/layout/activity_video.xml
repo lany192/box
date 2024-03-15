@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.media3.ui.PlayerView
+    <com.github.lany192.video.JzvdStd
         android:id="@+id/player_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
