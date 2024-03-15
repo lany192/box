@@ -63,8 +63,8 @@ public class VideoActivity extends BoxActivity<VideoViewModel, ActivityVideoBind
                         .setUri(Uri.parse(url))
                         .setMimeType(MimeTypes.APPLICATION_M3U8)
                         .build()));
-        binding.playerView.setPlayer(exoPlayer);
         exoPlayer.prepare();
         exoPlayer.setPlayWhenReady(true);
+        binding.playerView.setPlayer(exoPlayer);
     }
 }

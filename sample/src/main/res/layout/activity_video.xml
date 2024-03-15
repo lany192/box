@@ -17,10 +17,11 @@
         android:id="@+id/player_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:show_buffering="when_playing"
-        app:show_shuffle_button="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/video_player" />
+        app:layout_constraintTop_toBottomOf="@id/video_player"
+        app:show_buffering="when_playing"
+        app:show_shuffle_button="true"
+        app:surface_type="surface_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>
