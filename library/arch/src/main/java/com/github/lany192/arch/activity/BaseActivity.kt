@@ -43,13 +43,17 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         lifecycle.addObserver(NetworkHelper.getInstance())
         //控制屏幕方向
-        requestedOrientation = if (isPortraitScreen()) {
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        } else {
-            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-        }
+        requestedOrientation = getCustomRequestedOrientation()
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
+        }
+    }
+
+    open fun getCustomRequestedOrientation(): Int {
+        if (isPortraitScreen()) {
+            return ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        } else {
+            return ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         }
     }
 
