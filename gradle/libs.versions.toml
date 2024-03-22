@@ -12,7 +12,7 @@ oss = "2.74.0" #minio库 minio 官方的sdk 只有java 版本的不兼容android
 glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
 kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
 permissions = "18.6" #权限 https://github.com/getActivity/XXPermissions
-libraryx = "1.7.6" #背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
+backgroundx = "1.7.6" #背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
 phoenix = "2.1.2" #重启工具库 https://github.com/JakeWharton/ProcessPhoenix
 htmlspanner = "0.4" #https://github.com/NightWhistler/HtmlSpanner
 tbssdk = "44286" #腾讯x5 https://x5.tencent.com/docs/index.html
@@ -101,7 +101,7 @@ oss-sdk-s33 = { module = "com.amazonaws:aws-android-sdk-s3", version.ref = "oss"
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
 permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "permissions" }
-background-libraryx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "libraryx" }
+backgroundx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "backgroundx" }
 arouter-api = { module = "com.github.lany192.app-router:arouter-api", version.ref = "router" }
 phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
 html-spanner = { module = "com.github.NightWhistler:HtmlSpanner", version.ref = "htmlspanner" }

@@ -98,7 +98,7 @@ dependencies {
     //阿里界面路由 https://github.com/alibaba/ARouter
     implementation libs.arouter.api
     //背景控件。建议配置属性自动提示，详情见 https://github.com/JavaNoober/BackgroundLibrary
-    implementation libs.background.libraryx
+    implementation libs.backgroundx
     //图片压缩 https://github.com/forJrking/KLuban
     implementation libs.kluban
     //图片压缩 https://github.com/Curzibn/Luban
