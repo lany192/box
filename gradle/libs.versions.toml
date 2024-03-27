@@ -7,7 +7,9 @@ androidxTestExtJunit = "1.1.5"
 appcompat = "1.6.1"
 banner = "2.2.3" # banner https://github.com/youth5201314/banner
 camera = "1.3.2" #相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
+glideCompose = "1.0.0-beta01"
 junit = "4.13.2"
+matisse = "2.0.0" #https://github.com/leavesCZY/Matisse
 oss = "2.74.0" #minio库 minio 官方的sdk 只有java 版本的不兼容android，可以尝试使用 amazon s3 的oss sdk 来实现功能
 glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
 kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
@@ -93,9 +95,11 @@ androidx-test-ext-junit2 = { module = "androidx.test.ext:junit", version.ref = "
 arouter-compiler = { module = "com.github.lany192.app-router:arouter-compiler", version.ref = "okdownload" }
 arouter-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "router" }
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glideCompose" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 junit = { module = "junit:junit", version.ref = "junit" }
+matisse = { module = "io.github.leavesczy:matisse", version.ref = "matisse" }
 oss-sdk-client = { module = "com.amazonaws:aws-android-sdk-mobile-client", version.ref = "oss" }
 oss-sdk-s33 = { module = "com.amazonaws:aws-android-sdk-s3", version.ref = "oss" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }

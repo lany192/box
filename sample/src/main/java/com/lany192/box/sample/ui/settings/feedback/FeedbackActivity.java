@@ -1,50 +1,47 @@
 package com.lany192.box.sample.ui.settings.feedback;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ContentActivity;
-import com.github.lany192.utils.DensityUtils;
-import com.lany192.box.sample.BuildConfig;
+import com.github.lany192.arch.utils.ListUtils;
+import com.github.lany192.utils.JsonUtils;
+import com.hjq.toast.Toaster;
 import com.lany192.box.sample.databinding.ActivityFeedbackBinding;
-import com.zhihu.matisse.GlideEngine;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import github.leavesczy.matisse.DefaultMediaFilter;
+import github.leavesczy.matisse.GlideImageEngine;
+import github.leavesczy.matisse.Matisse;
+import github.leavesczy.matisse.MatisseContract;
+import github.leavesczy.matisse.MediaStoreCaptureStrategy;
+import github.leavesczy.matisse.MediaType;
 
 @AndroidEntryPoint
 @Route(path = "/ui/feedback")
 public class FeedbackActivity extends ContentActivity<ActivityFeedbackBinding> {
 
+    private final ActivityResultLauncher<Matisse> matisseLauncher = registerForActivityResult(new MatisseContract(), result -> {
+        if (!ListUtils.isEmpty(result)) {
+            Toaster.show(JsonUtils.object2json(result));
+        }
+    });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding.button.setOnClickListener(view -> Matisse.from(this)
-                .choose(MimeType.of(MimeType.JPEG, MimeType.PNG, MimeType.WEBP), false)
-                .countable(true)
-                .capture(true)
-                .captureStrategy(new CaptureStrategy(true, BuildConfig.APPLICATION_ID + ".fileprovider", "images"))
-                .maxSelectable(1)
-                .gridExpectedSize(DensityUtils.dp2px(120))
-                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                .thumbnailScale(0.85f)
-                .imageEngine(new GlideEngine())
-                .showSingleMediaType(true)
-                .originalEnable(true)
-                .maxOriginalSize(10)
-                .autoHideToolbarOnSingleTap(true)
-                .forResult(new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-
-                    }
-                }));
+        binding.button.setOnClickListener(v -> {
+            matisseLauncher.launch(
+                    new Matisse(1,
+                            new GlideImageEngine(),
+                            MediaType.ImageAndVideo.INSTANCE,
+                            true,
+                            new DefaultMediaFilter(),
+                            new MediaStoreCaptureStrategy())
+            );
+        });
     }
 
 }

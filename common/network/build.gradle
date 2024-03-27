@@ -153,7 +153,7 @@ dependencies {
     implementation project(path: ':library:update')
     implementation project(path: ':library:time')
     implementation project(path: ':library:crop')
-    implementation project(path: ':library:matisse')
+    
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
     implementation project(path: ':library:scanner')
