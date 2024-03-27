@@ -32,16 +32,13 @@ public class FeedbackActivity extends ContentActivity<ActivityFeedbackBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding.button.setOnClickListener(v -> {
-            matisseLauncher.launch(
-                    new Matisse(1,
-                            new GlideImageEngine(),
-                            MediaType.ImageAndVideo.INSTANCE,
-                            true,
-                            new DefaultMediaFilter(),
-                            new MediaStoreCaptureStrategy())
-            );
-        });
+        binding.button.setOnClickListener(v -> matisseLauncher.launch(
+                new Matisse(1,
+                        new GlideImageEngine(),
+                        MediaType.ImageAndVideo.INSTANCE,
+                        true,
+                        new DefaultMediaFilter(),
+                        new MediaStoreCaptureStrategy())
+        ));
     }
-
 }
