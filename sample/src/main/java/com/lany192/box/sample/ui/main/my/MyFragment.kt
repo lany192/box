@@ -1,8 +1,5 @@
 package com.lany192.box.sample.ui.main.my
 
-import android.content.pm.ActivityInfo
-import androidx.activity.result.ActivityResult
-import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -12,20 +9,21 @@ import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
-import com.github.lany192.utils.DensityUtils
 import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.router.provider.HelloProvider
 import com.lany192.box.router.provider.LoginProvider
-import com.lany192.box.sample.BuildConfig
 import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.FragmentMyBinding
 import com.lany192.box.sample.ui.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import github.leavesczy.matisse.GlideImageEngine
 import github.leavesczy.matisse.Matisse
+import github.leavesczy.matisse.MatisseCapture
+import github.leavesczy.matisse.MatisseCaptureContract
 import github.leavesczy.matisse.MatisseContract
 import github.leavesczy.matisse.MediaResource
+import github.leavesczy.matisse.MediaStoreCaptureStrategy
 import github.leavesczy.matisse.MediaType
 import java.time.LocalDate
 
@@ -52,6 +50,18 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
                 Toaster.show(uri)
             }
         }
+
+    private val takePictureLauncher =
+        registerForActivityResult(MatisseCaptureContract()) { result: MediaResource? ->
+            if (result != null) {
+                val uri = result.uri
+                val path = result.path
+                val name = result.name
+                val mimeType = result.mimeType
+                Toaster.show(uri)
+            }
+        }
+
     override fun initImmersionBar() {
         BarUtils.init(this).init()
     }
@@ -83,34 +93,16 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.checkView.setOnCheckChangeListener { Toaster.show(it) }
         binding.checkView.isChecked = true
         binding.imagePicker.setOnClickListener {
-            mediaPickerLauncher.launch(Matisse(
-                maxSelectable = 1,
-                imageEngine = GlideImageEngine(),
-                mediaType = MediaType.ImageOnly
-            ))
-
-//            Matisse.from(this)
-//                .choose(MimeType.of(MimeType.JPEG, MimeType.PNG, MimeType.WEBP), false)
-//                .countable(true).capture(true).captureStrategy(
-//                    CaptureStrategy(
-//                        true,
-//                        BuildConfig.APPLICATION_ID + ".fileprovider",
-//                        "images"
-//                    )
-//                ).gridExpectedSize(DensityUtils.dp2px(120f))
-//                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-//                .thumbnailScale(0.85f)
-//                .imageEngine(GlideEngine())
-//                .showSingleMediaType(true)
-//                .originalEnable(true)
-//                .maxOriginalSize(10)
-//                .autoHideToolbarOnSingleTap(true)
-//                .forResult { result: ActivityResult ->
-//                    if (result.resultCode == AppCompatActivity.RESULT_OK && result.data != null) {
-//                        val paths = Matisse.obtainPathResult(result.data)
-//                        Toaster.show(paths)
-//                    }
-//                }
+            mediaPickerLauncher.launch(
+                Matisse(
+                    maxSelectable = 1,
+                    imageEngine = GlideImageEngine(),
+                    mediaType = MediaType.ImageOnly
+                )
+            )
+        }
+        binding.photoPicker.setOnClickListener {
+            takePictureLauncher.launch(MatisseCapture(captureStrategy = MediaStoreCaptureStrategy()))
         }
         binding.video.setOnClickListener { SampleRouter.startVideo() }
         binding.test1.setOnClickListener {

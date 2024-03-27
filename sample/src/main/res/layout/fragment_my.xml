@@ -244,6 +244,19 @@
                     android:background="@color/outline" />
 
                 <com.github.lany192.view.MenuView
+                    android:id="@+id/photo_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu_title="拍照" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/outline" />
+
+                <com.github.lany192.view.MenuView
                     android:id="@+id/goods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
