@@ -177,12 +177,6 @@ public class JZUtils {
         return height;
     }
 
-    //获取NavigationBar的高度
-    public static int getNavigationBarHeight(Context context) {
-        boolean var1 = ViewConfiguration.get(context).hasPermanentMenuKey();
-        int var2;
-        return (var2 = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android")) > 0 && !var1 ? context.getResources().getDimensionPixelSize(var2) : 0;
-    }
 
     //获取屏幕的宽度
     public static int getScreenWidth(Context context) {
@@ -190,10 +184,5 @@ public class JZUtils {
         return dm.widthPixels;
     }
 
-    //获取屏幕的高度
-    public static int getScreenHeight(Context context) {
-        DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        return dm.heightPixels;
-    }
 
 }

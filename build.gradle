@@ -1,5 +1,4 @@
 buildscript {
-    apply from: 'config.gradle'
     dependencies {
         classpath libs.arouter.register
     }
@@ -48,6 +47,21 @@ allprojects {
                 jvmTarget = '17'
             }
         }
+    }
+}
+
+allprojects {
+    ext {
+        // 安装包
+        apk = [
+                appId            : 'com.lany192.box',
+                groupId          : 'com.github.lany192.box',
+                versionCode      : 1,
+                versionName      : '1.0.0',
+                minSdkVersion    : 21,
+                compileSdkVersion: 34,
+                targetSdkVersion : 30
+        ]
     }
 }
 
