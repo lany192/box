@@ -61,6 +61,7 @@ leakcanary = "2.12"
 okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
 router = "2.0.2"
 kotlin = "1.8.20"
+rootbeer = "0.1.0" #https://github.com/scottyab/rootbeer
 
 [libraries]
 alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
@@ -142,6 +143,7 @@ flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbo
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 okdownload = { module = "com.github.lany192:okdownload", version.ref = "okdownload" }
+rootbeer = { module = "com.scottyab:rootbeer-lib", version.ref = "rootbeer" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

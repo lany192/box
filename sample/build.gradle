@@ -270,6 +270,8 @@ dependencies {
     implementation libs.oss.sdk.s33
     //权限 https://github.com/getActivity/XXPermissions
     implementation libs.permissions
+
+    implementation libs.rootbeer
 }
 //引入安装包生成配置
 apply from: '../package.gradle'
