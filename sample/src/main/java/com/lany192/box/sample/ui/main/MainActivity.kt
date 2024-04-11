@@ -43,6 +43,12 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
         )
         items.add(
             TabItem(
+                "测试",
+                SampleRouter.getDiscover()
+            )
+        )
+        items.add(
+            TabItem(
                 "发现",
                 SampleRouter.getDiscover()
             )
@@ -76,19 +82,22 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
                     binding.viewpager.setCurrentItem(0, false)
                     return@setOnItemSelectedListener true
                 }
-
-                R.id.menu_main_pic -> {
+                R.id.menu_main_menus -> {
                     binding.viewpager.setCurrentItem(1, false)
                     return@setOnItemSelectedListener true
                 }
-
-                R.id.menu_main_city -> {
+                R.id.menu_main_pic -> {
                     binding.viewpager.setCurrentItem(2, false)
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.menu_main_my -> {
+                R.id.menu_main_city -> {
                     binding.viewpager.setCurrentItem(3, false)
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.menu_main_my -> {
+                    binding.viewpager.setCurrentItem(4, false)
                     return@setOnItemSelectedListener true
                 }
 
