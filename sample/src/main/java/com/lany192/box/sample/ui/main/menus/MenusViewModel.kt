@@ -15,27 +15,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MenusViewModel @Inject constructor(val repository: BoxRepository) :
     LifecycleViewModel() {
-    val items = MutableLiveData<List<Area>>()
 
     override fun onLazyLoad() {
         super.onLazyLoad()
-        requestCityInfo()
     }
 
-    private fun requestCityInfo() {
-        viewModelScope.launch {
-            repository.getCityList()
-                .onStart {
-                    log.i("接口开始")
-                }.onCompletion {
-                    log.i("接口结束")
-                }.collect {
-                    if (it.code == 0) {
-                        items.postValue(it.data)
-                    } else {
-                        Toaster.show(it.msg)
-                    }
-                }
-        }
-    }
 }
