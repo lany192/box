@@ -152,7 +152,7 @@ dependencies {
     implementation project(path: ':library:scanner')
     implementation project(path: ':library:cropper')
     implementation project(path: ':library:log')
-    implementation project(path: ':library:blur')
+    implementation libs.blur
     implementation project(path: ':library:video')
 
     implementation project(path: ':common:router')

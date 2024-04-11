@@ -45,7 +45,6 @@ include ':library:html'
 include ':library:scanner'
 include ':library:cropper'
 include ':library:log'
-include ':library:blur'
 include ':library:video'
 
 include ':common:network'

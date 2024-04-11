@@ -62,6 +62,7 @@ okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
 router = "2.0.2"
 kotlin = "1.8.20"
 rootbeer = "0.1.0" #https://github.com/scottyab/rootbeer
+blur = "b636349" #https://github.com/android/renderscript-intrinsics-replacement-toolkit
 
 [libraries]
 alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
@@ -144,6 +145,7 @@ eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 okdownload = { module = "com.github.lany192:okdownload", version.ref = "okdownload" }
 rootbeer = { module = "com.scottyab:rootbeer-lib", version.ref = "rootbeer" }
+blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
