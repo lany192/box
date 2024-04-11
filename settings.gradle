@@ -46,6 +46,7 @@ include ':library:scanner'
 include ':library:cropper'
 include ':library:log'
 include ':library:video'
+include ':library:toolkit'
 
 include ':common:network'
 include ':common:router'
@@ -54,4 +55,4 @@ include ':feature:browser'
 include ':feature:login'
 include ':feature:hello'
 
-include ':library:toolkit'
+

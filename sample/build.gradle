@@ -146,13 +146,13 @@ dependencies {
     implementation project(path: ':library:update')
     implementation project(path: ':library:time')
     implementation project(path: ':library:crop')
-//    
+    implementation project(path: ':library:toolkit')
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
     implementation project(path: ':library:scanner')
     implementation project(path: ':library:cropper')
     implementation project(path: ':library:log')
-    implementation libs.blur
+
     implementation project(path: ':library:video')
 
     implementation project(path: ':common:router')
@@ -270,7 +270,7 @@ dependencies {
     implementation libs.oss.sdk.s33
     //权限 https://github.com/getActivity/XXPermissions
     implementation libs.permissions
-
+    implementation libs.blur
     implementation libs.rootbeer
 }
 //引入安装包生成配置
