@@ -5,7 +5,7 @@
 using namespace std;
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_github_lany192_toolkit_ToolKit_stringFromJNI(
+Java_com_github_lany192_toolkit_BoxToolKit_stringFromJNI(
         JNIEnv* env,
         jclass clazz) {
     std::string hello = "Hello from C++";
@@ -13,7 +13,7 @@ Java_com_github_lany192_toolkit_ToolKit_stringFromJNI(
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_github_lany192_toolkit_ToolKit_getCurrentProcess(
+Java_com_github_lany192_toolkit_BoxToolKit_getCurrentProcess(
         JNIEnv* env,
         jclass clazz) {
     const std::string &path = "/proc/self/cmdline";

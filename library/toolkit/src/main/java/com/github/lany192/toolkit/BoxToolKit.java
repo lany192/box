@@ -1,6 +1,6 @@
 package com.github.lany192.toolkit;
 
-public class ToolKit {
+public class BoxToolKit {
 
     static {
         System.loadLibrary("toolkit");

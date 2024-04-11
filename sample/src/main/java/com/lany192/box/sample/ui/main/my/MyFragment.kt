@@ -9,6 +9,7 @@ import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extensions.load
+import com.github.lany192.toolkit.BoxToolKit
 import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.router.provider.HelloProvider
@@ -112,6 +113,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
             loginProvider.startLogin()
         }
         binding.roundLayout.setRadius(30f)
+        binding.test3.text = "当前进程：" + BoxToolKit.getCurrentProcess()
     }
 
     private fun showDialog2() {
