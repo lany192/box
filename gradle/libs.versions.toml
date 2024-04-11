@@ -1,6 +1,6 @@
 [versions]
 activityKtx = "1.8.2"
-agp = "8.3.0"
+agp = "8.3.1"
 alipayzerosdk = "1.1" #支付宝打赏 https://github.com/fython/AlipayZeroSdk
 androidxEspressoCoreVersion = "3.5.1"
 androidxTestExtJunit = "1.1.5"

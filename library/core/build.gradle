@@ -141,5 +141,5 @@ dependencies {
     implementation libs.permissions
 
     implementation project(path: ':library:log')
-    implementation project(path: ':library:toolkit')
+    implementation project(path: ':library:blur')
 }
