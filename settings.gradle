@@ -54,3 +54,4 @@ include ':feature:browser'
 include ':feature:login'
 include ':feature:hello'
 
+include ':library:toolkit'
