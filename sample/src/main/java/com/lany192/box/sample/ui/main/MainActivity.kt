@@ -36,34 +36,19 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> Toaster.show("首页：" + userInfo.name) }
         val items = mutableListOf<TabItem>()
         items.add(
-            TabItem(
-                "首页",
-                SampleRouter.getIndex()
-            )
+            TabItem("首页", SampleRouter.getIndex())
         )
         items.add(
-            TabItem(
-                "测试",
-                SampleRouter.getDiscover()
-            )
+            TabItem("测试", SampleRouter.getDiscover())
         )
         items.add(
-            TabItem(
-                "发现",
-                SampleRouter.getDiscover()
-            )
+            TabItem("发现", SampleRouter.getDiscover())
         )
         items.add(
-            TabItem(
-                "消息",
-                SampleRouter.getMessage()
-            )
+            TabItem("消息", SampleRouter.getMessage())
         )
         items.add(
-            TabItem(
-                "我的",
-                SampleRouter.getMy()
-            )
+            TabItem("我的", SampleRouter.getMy())
         )
         binding.viewpager.isUserInputEnabled = false
         binding.viewpager.offscreenPageLimit = items.size
@@ -82,10 +67,12 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
                     binding.viewpager.setCurrentItem(0, false)
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.menu_main_menus -> {
                     binding.viewpager.setCurrentItem(1, false)
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.menu_main_pic -> {
                     binding.viewpager.setCurrentItem(2, false)
                     return@setOnItemSelectedListener true
