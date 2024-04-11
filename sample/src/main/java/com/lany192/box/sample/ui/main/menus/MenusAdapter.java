@@ -1,5 +1,7 @@
 package com.lany192.box.sample.ui.main.menus;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.adapter.BindingAdapter;
@@ -52,7 +54,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
     }
 
     private void test3() {
-        Toaster.show("点击了1");
+        Toaster.show("计算结果：" + hello(1, 2));
     }
 
     private void test4() {
@@ -61,5 +63,10 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
 
     private void test5() {
         Toaster.show("点击了1");
+    }
+
+    private int hello(int x, int y) {
+        Log.d("测试", x + "+" + y + "==" + (x + y));
+        return x + y;
     }
 }

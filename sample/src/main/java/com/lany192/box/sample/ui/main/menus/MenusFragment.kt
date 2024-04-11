@@ -22,7 +22,7 @@ class MenusFragment : VMVBFragment<MenusViewModel, FragmentMenusBinding>() {
         val items = mutableListOf<MenuItem>()
         items.add(MenuItem("root检查", R.drawable.android))
         items.add(MenuItem("当前进程名称", R.drawable.android))
-        items.add(MenuItem("测试点1", R.drawable.android))
+        items.add(MenuItem("加法hook", R.drawable.android))
         items.add(MenuItem("测试点1", R.drawable.android))
         items.add(MenuItem("测试点1", R.drawable.android))
         items.add(MenuItem("测试点1", R.drawable.android))
