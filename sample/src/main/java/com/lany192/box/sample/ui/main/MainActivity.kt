@@ -52,8 +52,7 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
         )
         binding.viewpager.isUserInputEnabled = false
         binding.viewpager.offscreenPageLimit = items.size
-        binding.viewpager.adapter =
-            TabAdapter(this, items)
+        binding.viewpager.adapter = TabAdapter(this, items)
         binding.viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 binding.navigationView.menu.getItem(position).isChecked = true
