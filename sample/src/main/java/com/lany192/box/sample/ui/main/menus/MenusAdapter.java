@@ -3,8 +3,11 @@ package com.lany192.box.sample.ui.main.menus;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.adapter.BindingAdapter;
+import com.github.lany192.dialog.SimpleDialog;
+import com.github.lany192.toolkit.BoxToolKit;
 import com.hjq.toast.Toaster;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
+import com.scottyab.rootbeer.RootBeer;
 
 import java.util.List;
 
@@ -34,11 +37,18 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
     }
 
     private void test1() {
-        Toaster.show("点击了1");
+        if (new RootBeer(getContext()).isRooted()) {
+            SimpleDialog dialog = new SimpleDialog();
+            dialog.setMessage("检测到当前手机已经被root，存在数据不安全情况。为保证良好的用户体验，请选择在非root手机上使用本软件。");
+            dialog.setRightButton("取消");
+            dialog.show();
+        } else {
+            Toaster.show("未发现root");
+        }
     }
 
     private void test2() {
-        Toaster.show("点击了1");
+        Toaster.show(BoxToolKit.getCurrentProcess());
     }
 
     private void test3() {
