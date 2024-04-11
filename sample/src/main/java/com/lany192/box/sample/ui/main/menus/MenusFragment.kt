@@ -3,6 +3,7 @@ package com.lany192.box.sample.ui.main.menus
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.utils.BarUtils
+import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.FragmentMenusBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +19,14 @@ class MenusFragment : VMVBFragment<MenusViewModel, FragmentMenusBinding>() {
 
     override fun init() {
         super.init()
-        //
+        val items = mutableListOf<MenuItem>()
+        items.add(MenuItem("测试点1", R.drawable.android))
+        items.add(MenuItem("测试点1", R.drawable.android))
+        items.add(MenuItem("测试点1", R.drawable.android))
+        items.add(MenuItem("测试点1", R.drawable.android))
+        items.add(MenuItem("测试点1", R.drawable.android))
+        items.add(MenuItem("测试点1", R.drawable.android))
+        items.add(MenuItem("测试点1", R.drawable.android))
+        binding.recyclerView.adapter = MenusAdapter(items)
     }
 }

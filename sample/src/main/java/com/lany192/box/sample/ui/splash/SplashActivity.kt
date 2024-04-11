@@ -39,20 +39,20 @@ class SplashActivity : BoxActivity<SplashViewModel, ActivitySplashBinding>() {
         }
         ImageUtils.show(binding.image, R.mipmap.demo)
         viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
-        if (RootBeer(context).isRooted) {
-            val dialog = SimpleDialog()
-            dialog.setCanceledOnTouchOutside(false)
-            dialog.isCancelable = false
-            dialog.setMessage("检测到当前手机已经被root，存在数据不安全情况。为保证良好的用户体验，请选择在非root手机上使用本软件。")
-            dialog.setRightButton("退出") {
-                finish()
-            }
-            dialog.show()
-        } else {
+//        if (RootBeer(context).isRooted) {
+//            val dialog = SimpleDialog()
+//            dialog.setCanceledOnTouchOutside(false)
+//            dialog.isCancelable = false
+//            dialog.setMessage("检测到当前手机已经被root，存在数据不安全情况。为保证良好的用户体验，请选择在非root手机上使用本软件。")
+//            dialog.setRightButton("退出") {
+//                finish()
+//            }
+//            dialog.show()
+//        } else {
             Handler(Looper.getMainLooper()).postDelayed({
                 SampleRouter.startMain()
                 finish()
             }, 3000)
-        }
+//        }
     }
 }
