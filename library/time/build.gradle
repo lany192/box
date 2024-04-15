@@ -32,5 +32,4 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-    implementation libs.androidx.appcompat
 }
