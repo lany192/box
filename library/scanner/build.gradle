@@ -36,11 +36,6 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
     implementation libs.androidx.appcompat
-
-    implementation libs.androidx.multidex
-    implementation libs.androidx.material
-    implementation libs.androidx.exifinterface
-
     implementation libs.androidx.media3.exoplayer
     implementation libs.androidx.media3.exoplayer.dash
     implementation libs.androidx.media3.ui
@@ -50,21 +45,7 @@ dependencies {
     implementation libs.androidx.camera.view
     implementation libs.androidx.camera.extensions
 
-    //#协程 https://github.com/Kotlin/kotlinx.coroutines
-    implementation libs.coroutines.core
-    implementation libs.coroutines.android
-
-    implementation libs.glide
-
-    //二维码 https://github.com/zxing/zxing
     implementation libs.zxing
-    //https://github.com/ReactiveX/RxJava
-    implementation libs.rxjava
-    //https://github.com/ReactiveX/RxAndroid
-    implementation libs.rxandroid
-
-    //权限 https://github.com/getActivity/XXPermissions
-    implementation libs.permissions
 
     implementation project(':library:core')
     
