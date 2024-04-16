@@ -11,10 +11,15 @@
     app:bl_stroke_color="#999999"
     app:bl_stroke_width="1dp">
 
-    <TextView
+    <com.github.lany192.text.IconTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:icon="@drawable/android"
+        app:icon_gravity="textStart"
+        app:icon_padding="8dp"
+        app:icon_size="20dp"
         android:text="测试" />
 
 </LinearLayout>

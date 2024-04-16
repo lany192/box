@@ -21,6 +21,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
     @Override
     protected void convert(@NonNull ItemMenuBinding binding, MenuItem item, int position) {
         binding.name.setText(item.getName());
+        binding.name.setIcon(item.getResId());
     }
 
     @Override

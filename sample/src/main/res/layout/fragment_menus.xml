@@ -9,6 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        android:background="@android:color/holo_green_light"
         app:title="测试"
         app:titleTextColor="@color/text_1level" />
 
