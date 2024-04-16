@@ -14,9 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MessageFragment : VMVBFragment<MessageViewModel, FragmentMessageBinding>() {
 
     override fun initImmersionBar() {
-        BarUtils.init(this)
-            .titleBar(binding.toolbar)
-            .init()
+        BarUtils.init(this).titleBar(binding.toolbar).init()
     }
 
     override fun init() {
