@@ -63,6 +63,7 @@ router = "2.0.2"
 kotlin = "1.8.20"
 rootbeer = "0.1.0" #https://github.com/scottyab/rootbeer
 blur = "b636349" #https://github.com/android/renderscript-intrinsics-replacement-toolkit
+gson = "2.10.1"
 
 [libraries]
 alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
@@ -146,6 +147,7 @@ leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.re
 okdownload = { module = "com.github.lany192:okdownload", version.ref = "okdownload" }
 rootbeer = { module = "com.scottyab:rootbeer-lib", version.ref = "rootbeer" }
 blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
