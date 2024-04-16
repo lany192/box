@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3" />
+        app:spanCount="2" />
 
 </LinearLayout>
