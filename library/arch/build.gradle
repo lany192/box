@@ -38,8 +38,6 @@ dependencies {
     implementation project(':library:core')
     implementation project(':library:view')
     implementation project(':library:dialog')
-    
-
 
     implementation libs.androidx.appcompat
     implementation libs.androidx.activity.ktx

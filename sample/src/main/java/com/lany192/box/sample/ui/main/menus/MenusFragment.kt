@@ -23,7 +23,7 @@ class MenusFragment : VMVBFragment<MenusViewModel, FragmentMenusBinding>() {
         items.add(MenuItem("root检查", R.drawable.android))
         items.add(MenuItem("当前进程名称", R.drawable.android))
         items.add(MenuItem("加法hook", R.drawable.android))
-        items.add(MenuItem("测试点1", R.drawable.android))
+        items.add(MenuItem("是否是模拟器", R.drawable.android))
         items.add(MenuItem("测试点1", R.drawable.android))
         items.add(MenuItem("测试点1", R.drawable.android))
         items.add(MenuItem("测试点1", R.drawable.android))

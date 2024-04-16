@@ -32,7 +32,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 2) {
             test3();
         } else if (position == 3) {
-            test4();
+            Toaster.show("是否是模拟器：" + BoxToolKit.isEmulator());
         } else if (position == 4) {
             test5();
         }
