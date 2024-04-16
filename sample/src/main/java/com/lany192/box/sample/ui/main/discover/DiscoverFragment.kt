@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.items.ItemsFragment
 import com.github.lany192.arch.utils.BarUtils
+import com.github.lany192.decoration.Border
 import com.github.lany192.decoration.Divider
 import com.github.lany192.decoration.ItemDecoration
 import com.lany192.box.sample.data.binder.CategoryBinder
@@ -46,8 +47,8 @@ class DiscoverFragment : ItemsFragment<DiscoverViewModel, FragmentDiscoverBindin
         register(CategoryBinder())
         binding.itemsView.addItemDecoration(object : ItemDecoration() {
             override fun getDivider(position: Int): Divider {
-                return Divider().setTopWidth(2f).setBottomWidth(2f).setLeftWidth(2f)
-                    .setRightWidth(2f)
+                val border = Border.builder().width(2f).build();
+                return Divider(border, border, border, border)
             }
         })
     }
