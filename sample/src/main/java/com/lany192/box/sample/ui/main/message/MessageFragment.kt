@@ -22,26 +22,10 @@ class MessageFragment : VMVBFragment<MessageViewModel, FragmentMessageBinding>()
     override fun init() {
         super.init()
         val items = mutableListOf<TabItem>()
-        items.add(
-            TabItem(
-                "互动",
-                SampleRouter.getGirl()
-            )
-        )
-        items.add(
-            TabItem(
-                "系统消息",
-                SampleRouter.getCity()
-            )
-        )
-        items.add(
-            TabItem(
-                "游戏通知",
-                SampleRouter.getGirl()
-            )
-        )
-        val adapter =
-            TabAdapter(requireActivity(), items)
+        items.add(TabItem("互动", SampleRouter.getGirl()))
+        items.add(TabItem("系统消息", SampleRouter.getCity()))
+        items.add(TabItem("游戏通知", SampleRouter.getGirl()))
+        val adapter = TabAdapter(requireActivity(), items)
         binding.viewpager.adapter = adapter
         binding.tabLayout.setViewPager(binding.viewpager, adapter.titles)
     }
