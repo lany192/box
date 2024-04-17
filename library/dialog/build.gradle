@@ -38,6 +38,7 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.androidx.material
     implementation libs.number.picker
+    implementation libs.backgroundx
 
     implementation project(':library:log')
     implementation project(':library:core')
