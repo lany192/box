@@ -21,6 +21,11 @@ public class ArticleBinder extends ItemBinder<Article, ItemArticleBinding> {
     }
 
     @Override
+    public boolean isFullSpanItem(int itemType) {
+        return true;
+    }
+
+    @Override
     public void onItemClick(@NonNull ItemArticleBinding holder, Article item, int position) {
         ARouter.getInstance().navigation(BrowserProvider.class).startBrowser(item.getTitle(), item.getLink());
     }

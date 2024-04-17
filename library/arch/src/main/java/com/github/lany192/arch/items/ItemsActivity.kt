@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.chad.library.adapter4.QuickAdapterHelper
+import com.chad.library.adapter4.layoutmanager.QuickGridLayoutManager
 import com.chad.library.adapter4.loadState.LoadState
 import com.chad.library.adapter4.loadState.trailing.TrailingLoadStateAdapter
 import com.github.lany192.arch.activity.VMVBActivity
@@ -45,22 +46,13 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
     }
 
     fun getLayoutManager(): RecyclerView.LayoutManager {
-        val layoutManager = GridLayoutManager(this, getSpanCount())
+        val layoutManager = QuickGridLayoutManager(this, getSpanCount())
         layoutManager.setOrientation(GridLayoutManager.VERTICAL)
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return getItemSpanSize(position)
-            }
-        }
         return layoutManager;
     }
 
     fun getSpanCount(): Int {
         return 2;
-    }
-
-    fun getItemSpanSize(position: Int): Int {
-        return getSpanCount();
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
