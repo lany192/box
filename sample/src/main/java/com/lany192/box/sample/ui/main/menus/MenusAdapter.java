@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.alibaba.android.arouter.SampleRouter;
 import com.github.lany192.arch.adapter.BindingAdapter;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.toolkit.BoxToolKit;
@@ -35,6 +36,8 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 3) {
             Toaster.show("是否是模拟器：" + BoxToolKit.isEmulator());
         } else if (position == 4) {
+            SampleRouter.startHtml();
+        }else if (position == 4) {
             test5();
         }
     }
