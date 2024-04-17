@@ -23,7 +23,7 @@ sonic = "3.1.0" #https://github.com/Tencent/VasSonic
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 mmkv = "1.3.3" #存储 https://github.com/Tencent/MMKV
 moshi = "1.13.0"
-brvah = "3.0.11" #适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+brvah = "4.1.4" #适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
 toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
 hilt = "2.45" #注入依赖 https://dagger.dev/hilt/
 vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
@@ -119,7 +119,7 @@ tencent-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "xlog" }
 tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
 tencent-vasdolly = { module = "com.tencent.vasdolly:helper", version.ref = "vasdolly" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
-brvah = { module = "com.github.CymChad:BaseRecyclerViewAdapterHelper", version.ref = "brvah" }
+brvah = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "brvah" }
 toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 zxing = { module = "com.google.zxing:core", version.ref = "zxing" }

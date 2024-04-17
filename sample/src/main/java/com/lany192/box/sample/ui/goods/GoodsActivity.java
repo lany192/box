@@ -27,11 +27,13 @@ public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBi
         register(new ViewPagerBinder());
     }
 
+    @NonNull
     @Override
     public SmartRefreshLayout getRefreshLayout() {
         return binding.refreshLayout;
     }
 
+    @NonNull
     @Override
     public RecyclerView getRecyclerView() {
         return binding.recyclerView;
@@ -46,6 +48,7 @@ public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBi
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                assert manager != null;
                 int firstVisibleItemPosition = manager.findFirstVisibleItemPosition();
                 EventBus.getDefault().post(new DemoEvent(firstVisibleItemPosition));
             }

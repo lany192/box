@@ -31,7 +31,7 @@ class ArticleFragment : ItemsFragment<ArticleViewModel, FragmentArticleBinding>(
 
     override fun init() {
         super.init()
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        getRecyclerView().addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val manager = recyclerView.layoutManager as LinearLayoutManager?
