@@ -37,7 +37,17 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
             Toaster.show("是否是模拟器：" + BoxToolKit.isEmulator());
         } else if (position == 4) {
             SampleRouter.startHtml();
-        }else if (position == 4) {
+        } else if (position == 5) {
+            test5();
+        } else if (position == 6) {
+            test5();
+        } else if (position == 7) {
+            test5();
+        } else if (position == 8) {
+            test5();
+        } else if (position == 9) {
+            test5();
+        } else if (position == 10) {
             test5();
         }
     }
@@ -66,7 +76,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
     }
 
     private void test5() {
-        Toaster.show("点击了1");
+        Toaster.show("点击了");
     }
 
     private int hello(int x, int y) {
