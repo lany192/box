@@ -47,6 +47,11 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
     fun getLayoutManager(): RecyclerView.LayoutManager {
         val layoutManager = GridLayoutManager(this, getSpanCount())
         layoutManager.setOrientation(GridLayoutManager.VERTICAL)
+        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return getItemSpanSize(position)
+            }
+        }
         return layoutManager;
     }
 
@@ -54,7 +59,7 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         return 2;
     }
 
-    fun getItemSpanSize(viewType: Int, position: Int): Int {
+    fun getItemSpanSize(position: Int): Int {
         return getSpanCount();
     }
 
@@ -62,8 +67,6 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         super.onCreate(savedInstanceState)
         getRecyclerView().setLayoutManager(getLayoutManager());
         getRecyclerView().adapter = helper.adapter
-//        itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position))
-
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
         if (viewModel.refreshEnable()) {
@@ -71,7 +74,7 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         }
         //列表状态观察
         viewModel.listState.observe(this) {
-            when (it) {//常量
+            when (it) {
                 ListState.ERROR -> {
                     getRefreshLayout().finishRefresh()
                 }

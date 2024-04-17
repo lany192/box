@@ -45,6 +45,11 @@ abstract class ItemsFragment <VM : ItemsViewModel, VB : ViewBinding> : VMVBFragm
     fun getLayoutManager(): RecyclerView.LayoutManager {
         val layoutManager = GridLayoutManager(context, getSpanCount())
         layoutManager.setOrientation(GridLayoutManager.VERTICAL)
+        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return getItemSpanSize(position)
+            }
+        }
         return layoutManager;
     }
 
@@ -52,7 +57,7 @@ abstract class ItemsFragment <VM : ItemsViewModel, VB : ViewBinding> : VMVBFragm
         return 2;
     }
 
-    open fun getItemSpanSize(viewType: Int, position: Int): Int {
+    open fun getItemSpanSize(position: Int): Int {
         return getSpanCount();
     }
 
@@ -60,8 +65,6 @@ abstract class ItemsFragment <VM : ItemsViewModel, VB : ViewBinding> : VMVBFragm
         super.init()
         getRecyclerView().setLayoutManager(getLayoutManager());
         getRecyclerView().adapter = helper.adapter
-//        itemsAdapter.setGridSpanSizeLookup((gridLayoutManager, viewType, position) -> getItemSpanSize(viewType, position))
-
         getRefreshLayout().setEnableLoadMore(false);
         getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
         if (viewModel.refreshEnable()) {
