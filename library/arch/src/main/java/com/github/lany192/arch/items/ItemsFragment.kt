@@ -5,8 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.chad.library.adapter4.QuickAdapterHelper
 import com.chad.library.adapter4.layoutmanager.QuickGridLayoutManager
-import com.chad.library.adapter4.loadState.LoadState
-import com.chad.library.adapter4.loadState.trailing.TrailingLoadStateAdapter
 import com.github.lany192.arch.adapter.MultiAdapter
 import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.utils.ListUtils
@@ -22,21 +20,7 @@ abstract class ItemsFragment <VM : ItemsViewModel, VB : ViewBinding> : VMVBFragm
     }
 
     private val helper by lazy(LazyThreadSafetyMode.NONE) {
-        QuickAdapterHelper.Builder(mAdapter)
-            .setTrailingLoadStateAdapter(object : TrailingLoadStateAdapter.OnTrailingListener {
-                override fun onLoad() {
-                    viewModel.onLoadMore()
-                }
-
-                override fun onFailRetry() {
-                    viewModel.onRefresh()
-                }
-
-                override fun isAllowLoading(): Boolean {
-                    return true
-                }
-            })
-            .build()
+        QuickAdapterHelper.Builder(mAdapter).build()
     }
 
     fun <T : Any, VB : ViewBinding> register(binder: ItemBinder<T, VB>) {
@@ -57,10 +41,14 @@ abstract class ItemsFragment <VM : ItemsViewModel, VB : ViewBinding> : VMVBFragm
         super.init()
         getRecyclerView().setLayoutManager(getLayoutManager());
         getRecyclerView().adapter = helper.adapter
-        getRefreshLayout().setEnableLoadMore(false);
+        getRefreshLayout().setEnableLoadMore(true)
+        getRefreshLayout().setOnLoadMoreListener {
+            viewModel.onLoadMore()
+        }
         getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
         if (viewModel.refreshEnable()) {
-            getRefreshLayout().setOnRefreshListener { viewModel.onRefresh() };
+            getRefreshLayout().setOnRefreshListener {
+                viewModel.onRefresh() }
         }
         //列表状态观察
         viewModel.listState.observe(this) {
@@ -83,14 +71,12 @@ abstract class ItemsFragment <VM : ItemsViewModel, VB : ViewBinding> : VMVBFragm
 
                 ListState.MORE_LOAD_END -> {
                     getRefreshLayout().finishRefresh()
-                    //设置状态为未加载，并且没有分页数据了
-                    helper.trailingLoadState = LoadState.NotLoading(false)
+                    getRefreshLayout().finishLoadMore()
                 }
 
                 ListState.MORE_LOAD_FINISH -> {
                     getRefreshLayout().finishRefresh()
-                    //设置状态为未加载，并且还有分页数据
-                    helper.trailingLoadState = LoadState.NotLoading(true)
+                    getRefreshLayout().finishLoadMore()
                 }
             }
         }
