@@ -76,12 +76,12 @@ public class JsonUtils {
         if (TextUtils.isEmpty(json)) {
             return null;
         }
-        Type type = new TypeToken<ArrayList<JsonObject>>() {
-        }.getType();
-        ArrayList<JsonObject> jsonObjects = new Gson().fromJson(json, type);
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<JsonObject>>() {}.getType();
+        ArrayList<JsonObject> jsonObjects = gson.fromJson(json, type);
         ArrayList<T> arrayList = new ArrayList<>();
         for (JsonObject jsonObject : jsonObjects) {
-            arrayList.add(new Gson().fromJson(jsonObject, clazz));
+            arrayList.add(gson.fromJson(jsonObject, clazz));
         }
         return arrayList;
     }
