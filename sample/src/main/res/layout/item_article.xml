@@ -17,12 +17,15 @@
         android:foreground="?attr/selectableItemBackground"
         tools:ignore="UnusedAttribute">
 
-        <com.github.lany192.image.SquareImageView
+        <com.github.lany192.image.RatioImageView
+            android:layout_width="match_parent"
             android:id="@+id/image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            app:image_ratio="1.75"
+            app:layout_constraintRight_toRightOf="parent"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
+            tools:background="@android:color/holo_green_light"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/LeftRoundedStyle" />
 
@@ -35,21 +38,21 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             android:textColor="@color/text_1level"
             android:textSize="15sp"
-            app:layout_constraintLeft_toRightOf="@id/image"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image"
             tools:text="Zootopia" />
 
         <com.github.lany192.text.BoxTextView
             android:id="@+id/desc"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             android:textColor="@color/text_4level"
             android:textSize="14sp"
-            app:layout_constraintLeft_toRightOf="@id/image"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
             tools:text="1 h 45 min" />
@@ -64,7 +67,7 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             android:textColor="@color/text_4level"
             android:textSize="12sp"
-            app:layout_constraintLeft_toRightOf="@id/image"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/desc"
             tools:text="1 h 45 min" />
@@ -75,7 +78,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image">
+            app:layout_constraintTop_toBottomOf="@id/time">
 
             <com.github.lany192.text.EllipsizeTextView
                 android:id="@+id/demo"
