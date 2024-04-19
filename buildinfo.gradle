@@ -1,8 +1,12 @@
+def beginOfSetting = System.currentTimeMillis()
+
 gradle.settingsEvaluated {
     println "初始化阶段0 settingsEvaluated"
 }
 gradle.projectsLoaded {
-    println "初始化阶段1 projectsLoaded"
+    println '----------------------初始化阶段----------------------'
+    println '初始化阶段，耗时：' + (System.currentTimeMillis() - beginOfSetting) + 'ms'
+    println '----------------------初始化阶段----------------------'
 }
 
 
