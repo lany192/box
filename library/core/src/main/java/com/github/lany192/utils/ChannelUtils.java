@@ -18,10 +18,9 @@ public class ChannelUtils {
     /**
      * 获取写入了渠道信息的apk路径
      */
-    public static String getChannelApkPath(Context context,String channel) {
+    public static String getChannelApkPath(Context context, String channel) {
         String apkPath = getApkPath(context);
-
-        return mChannelCache;
+        return apkPath;
     }
 
     /**
