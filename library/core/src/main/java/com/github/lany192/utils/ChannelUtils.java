@@ -15,6 +15,18 @@ public class ChannelUtils {
     private static final String TAG = "ChannelUtils";
     private static String mChannelCache;
 
+    /**
+     * 获取写入了渠道信息的apk路径
+     */
+    public static String getChannelApkPath(Context context,String channel) {
+        String apkPath = getApkPath(context);
+
+        return mChannelCache;
+    }
+
+    /**
+     * 获取渠道号
+     */
     public static String getChannel(Context context) {
         if (mChannelCache == null) {
             String channel = getChannelByV2(context);
@@ -23,7 +35,6 @@ public class ChannelUtils {
             }
             mChannelCache = channel;
         }
-
         return mChannelCache;
     }
 
