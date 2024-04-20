@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.tencent.vasdolly.reader.ChannelReader;
 import com.tencent.vasdolly.reader.IdValueReader;
+import com.tencent.vasdolly.writer.ChannelWriter;
 
 import java.io.File;
 import java.nio.ByteBuffer;
@@ -20,6 +21,12 @@ public class ChannelUtils {
      */
     public static String getChannelApkPath(Context context, String channel) {
         String apkPath = getApkPath(context);
+        try {
+            ChannelWriter.removeChannelByV2(new File(apkPath), false);
+            ChannelWriter.addChannelByV2(new File(apkPath), channel, false);
+        } catch (Exception e) {
+
+        }
         return apkPath;
     }
 
