@@ -66,7 +66,7 @@ public class HttpDownloadManager {
             @Override
             public void progress(@NonNull DownloadTask task, long currentOffset, @NonNull SpeedCalculator taskSpeed) {
                 if (listener != null) {
-                    listener.downloading(100, (int)(currentOffset * 1.0f / totalLength * 100));
+                    listener.downloading(100, (int) (currentOffset * 1.0f / totalLength * 100));
                 }
             }
 

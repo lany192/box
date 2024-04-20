@@ -130,7 +130,7 @@ public class DialogHelper {
     }
 
     private FragmentActivity getTopActivity() {
-        if(activityStack.isEmpty()){
+        if (activityStack.isEmpty()) {
             return null;
         }
         FragmentActivity activity = activityStack.lastElement();

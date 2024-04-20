@@ -93,7 +93,8 @@ dependencies {
     //腾讯x5 https://x5.tencent.com/docs/index.html
     implementation libs.tencent.tbs
     //多渠道打包工具 https://github.com/Tencent/VasDolly
-    implementation libs.tencent.vasdolly
+    implementation libs.tencent.vasdolly.reader
+    implementation libs.tencent.vasdolly.writer
     //glide依赖 https://github.com/bumptech/glide
     implementation libs.glide
     //异常捕获 https://github.com/iqiyi/xCrash
@@ -154,7 +155,7 @@ dependencies {
     implementation project(path: ':library:update')
     implementation project(path: ':library:time')
     implementation project(path: ':library:crop')
-    
+
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
     implementation project(path: ':library:scanner')

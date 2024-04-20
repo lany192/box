@@ -32,8 +32,7 @@
                 android:layout_height="wrap_content"
                 app:menu_hint="发现新版本"
 
-                app:menu_title="版本检查"
-                 />
+                app:menu_title="版本检查" />
 
             <View
                 android:layout_width="wrap_content"

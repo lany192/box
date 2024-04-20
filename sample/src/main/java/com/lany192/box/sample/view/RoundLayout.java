@@ -11,8 +11,10 @@ import android.graphics.PorterDuff.Mode;
 import android.os.Build.VERSION;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import java.util.Arrays;
 
 import static android.graphics.Canvas.ALL_SAVE_FLAG;
@@ -27,7 +29,7 @@ public class RoundLayout extends FrameLayout {
     private final float[] radius;
 
     public RoundLayout(@NonNull Context var1) {
-        this(var1, (AttributeSet)null);
+        this(var1, (AttributeSet) null);
     }
 
     public RoundLayout(@NonNull Context var1, @Nullable AttributeSet var2) {
@@ -87,7 +89,7 @@ public class RoundLayout extends FrameLayout {
 
     protected void onSizeChanged(int var1, int var2, int var3, int var4) {
         super.onSizeChanged(var1, var2, var3, var4);
-        this.rectF.set(0.0F, 0.0F, (float)var1, (float)var2);
+        this.rectF.set(0.0F, 0.0F, (float) var1, (float) var2);
     }
 
     public void draw(Canvas var1) {
@@ -96,7 +98,7 @@ public class RoundLayout extends FrameLayout {
             var1.clipPath(this.path());
             super.draw(var1);
         } else {
-            var1.saveLayer(this.rectF, (Paint)null, ALL_SAVE_FLAG);
+            var1.saveLayer(this.rectF, (Paint) null, ALL_SAVE_FLAG);
             super.draw(var1);
             var1.drawPath(this.path(), this.paint);
         }
@@ -110,7 +112,7 @@ public class RoundLayout extends FrameLayout {
             var1.clipPath(this.path());
             super.dispatchDraw(var1);
         } else {
-            var1.saveLayer(this.rectF, (Paint)null, ALL_SAVE_FLAG);
+            var1.saveLayer(this.rectF, (Paint) null, ALL_SAVE_FLAG);
             super.dispatchDraw(var1);
             var1.drawPath(this.path(), this.paint);
         }

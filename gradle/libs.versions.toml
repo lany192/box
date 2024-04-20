@@ -117,7 +117,8 @@ tencent-wechat = { module = "com.tencent.mm.opensdk:wechat-sdk-android", version
 tencent-sonic = { module = "com.tencent.sonic:sdk", version.ref = "sonic" }
 tencent-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "xlog" }
 tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
-tencent-vasdolly = { module = "com.tencent.vasdolly:helper", version.ref = "vasdolly" }
+tencent-vasdolly-reader = { module = "com.tencent.vasdolly:reader", version.ref = "vasdolly" }
+tencent-vasdolly-writer = { module = "com.tencent.vasdolly:writer", version.ref = "vasdolly" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 brvah = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "brvah" }
 toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }

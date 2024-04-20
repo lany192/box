@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 /**
  * json工具
  */
@@ -77,7 +78,8 @@ public class JsonUtils {
             return null;
         }
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<JsonObject>>() {}.getType();
+        Type type = new TypeToken<ArrayList<JsonObject>>() {
+        }.getType();
         ArrayList<JsonObject> jsonObjects = gson.fromJson(json, type);
         ArrayList<T> arrayList = new ArrayList<>();
         for (JsonObject jsonObject : jsonObjects) {

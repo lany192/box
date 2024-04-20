@@ -7,7 +7,8 @@ public interface OnDownloadListener {
     /**
      * 开始下载
      */
-    default void start(){}
+    default void start() {
+    }
 
     /**
      * 下载中
@@ -22,14 +23,14 @@ public interface OnDownloadListener {
      *
      * @param apk 下载好的apk
      */
-    default void done(File apk){
+    default void done(File apk) {
 
     }
 
     /**
      * 取消下载
      */
-    default void cancel(){
+    default void cancel() {
 
     }
 
@@ -38,7 +39,7 @@ public interface OnDownloadListener {
      *
      * @param e 错误信息
      */
-    default void error(Exception e){
+    default void error(Exception e) {
 
     }
 }

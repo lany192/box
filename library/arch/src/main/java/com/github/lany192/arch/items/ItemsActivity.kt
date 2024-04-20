@@ -51,7 +51,8 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
         if (viewModel.refreshEnable()) {
             getRefreshLayout().setOnRefreshListener {
-                viewModel.onRefresh() };
+                viewModel.onRefresh()
+            };
         }
         //列表状态观察
         viewModel.listState.observe(this) {
@@ -76,6 +77,7 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
                     getRefreshLayout().finishRefresh()
                     getRefreshLayout().finishLoadMore()
                 }
+
                 ListState.MORE_LOAD_FINISH -> {
                     getRefreshLayout().finishRefresh()
                     getRefreshLayout().finishLoadMore()

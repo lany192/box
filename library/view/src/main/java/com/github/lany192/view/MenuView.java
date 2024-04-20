@@ -74,7 +74,6 @@ public class MenuView extends FrameLayout {
         hint = a.getString(R.styleable.MenuView_menu_hint);
 
 
-
         if (a.hasValue(R.styleable.MenuView_menu_icon)) {
             mIconResId = a.getResourceId(R.styleable.MenuView_menu_icon, R.drawable.vector_android);
             showIcon = true;

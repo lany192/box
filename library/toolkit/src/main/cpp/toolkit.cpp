@@ -9,7 +9,7 @@ using namespace std;
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_github_lany192_toolkit_BoxToolKit_stringFromJNI(
-        JNIEnv* env,
+        JNIEnv *env,
         jclass clazz) {
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
@@ -17,7 +17,7 @@ Java_com_github_lany192_toolkit_BoxToolKit_stringFromJNI(
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_github_lany192_toolkit_BoxToolKit_getCurrentProcess(
-        JNIEnv* env,
+        JNIEnv *env,
         jclass clazz) {
     const std::string &path = "/proc/self/cmdline";
     ifstream file;

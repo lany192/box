@@ -10,8 +10,6 @@ gradle.projectsLoaded {
 }
 
 
-
-
 gradle.beforeProject {
     println "配置阶段0 beforeProject"
 }
@@ -20,15 +18,12 @@ gradle.afterProject {
 }
 
 
-
-
 gradle.projectsEvaluated {
     println "配置阶段2 projectsEvaluated"
 }
 gradle.taskGraph.whenReady {
     println "配置阶段3 taskGraph.whenReady"
 }
-
 
 
 //

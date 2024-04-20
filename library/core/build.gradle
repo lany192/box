@@ -42,5 +42,6 @@ dependencies {
     implementation libs.glide
     implementation libs.rxjava
     implementation libs.blur
+    implementation libs.tencent.vasdolly.reader
     implementation project(path: ':library:log')
 }

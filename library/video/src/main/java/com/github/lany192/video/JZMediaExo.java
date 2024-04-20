@@ -47,7 +47,8 @@ public class JZMediaExo extends JZMediaInterface {
         player.setPlayWhenReady(true);
     }
 
-    @OptIn(markerClass = UnstableApi.class) @Override
+    @OptIn(markerClass = UnstableApi.class)
+    @Override
     public void prepare() {
         Log.e(TAG, "prepare");
         Context context = jzvd.getContext();

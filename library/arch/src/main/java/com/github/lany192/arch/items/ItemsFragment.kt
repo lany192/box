@@ -10,7 +10,7 @@ import com.github.lany192.arch.fragment.VMVBFragment
 import com.github.lany192.arch.utils.ListUtils
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
-abstract class ItemsFragment <VM : ItemsViewModel, VB : ViewBinding> : VMVBFragment<VM, VB>() {
+abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragment<VM, VB>() {
     abstract fun getRefreshLayout(): SmartRefreshLayout
 
     abstract fun getRecyclerView(): RecyclerView
@@ -48,7 +48,8 @@ abstract class ItemsFragment <VM : ItemsViewModel, VB : ViewBinding> : VMVBFragm
         getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
         if (viewModel.refreshEnable()) {
             getRefreshLayout().setOnRefreshListener {
-                viewModel.onRefresh() }
+                viewModel.onRefresh()
+            }
         }
         //列表状态观察
         viewModel.listState.observe(this) {

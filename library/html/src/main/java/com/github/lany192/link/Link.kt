@@ -10,26 +10,37 @@ class Link {
 
     @JvmField
     var text: String? = null
+
     @JvmField
     var pattern: Pattern? = null
+
     @JvmField
     var prependedText: String? = null
+
     @JvmField
     var appendedText: String? = null
+
     @JvmField
     var textColor = 0
+
     @JvmField
     var textColorOfHighlightedLink = 0
+
     @JvmField
     var highlightAlpha = DEFAULT_ALPHA
+
     @JvmField
     var underlined = true
+
     @JvmField
     var bold = false
+
     @JvmField
     var typeface: Typeface? = null
+
     @JvmField
     var clickListener: OnClickListener? = null
+
     @JvmField
     var longClickListener: OnLongClickListener? = null
 
