@@ -19,6 +19,9 @@ import java.io.File;
 import java.util.List;
 
 public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
+
+    private String channelApkPath;
+
     public MenusAdapter(@NonNull List<MenuItem> data) {
         super(data);
     }
@@ -42,10 +45,17 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 4) {
             SampleRouter.startHtml();
         } else if (position == 5) {
-            Toaster.show(ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello"));
+            channelApkPath = ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello");
+            Log.i("测试", "apkPath: " + channelApkPath);
+            Toaster.show(channelApkPath);
         } else if (position == 6) {
-            String apkPath = ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello2");
-            Toaster.show(ChannelReader.getChannelByV2(new File(apkPath)));
+            String channel = ChannelReader.getChannelByV2(new File(channelApkPath));
+            Log.i("测试", "v2 channel: " + channel);
+            if (channel == null) {
+                channel = ChannelReader.getChannelByV1(new File(channelApkPath));
+            }
+            Log.i("测试", "v1 channel: " + channel);
+            Toaster.show(channel);
         } else if (position == 7) {
             test5();
         } else if (position == 8) {

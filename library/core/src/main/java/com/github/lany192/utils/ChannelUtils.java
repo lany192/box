@@ -28,7 +28,7 @@ public class ChannelUtils {
         if (TextUtils.isEmpty(apkPath)) {
             return "";
         }
-        String destFilePath = context.getFilesDir().getPath() + File.pathSeparator + channel + ".apk";
+        String destFilePath = context.getCacheDir().getPath() + File.separator + "channel_" + channel + ".apk";
         boolean result = copyFile(apkPath, destFilePath);
         if (result) {
             try {
