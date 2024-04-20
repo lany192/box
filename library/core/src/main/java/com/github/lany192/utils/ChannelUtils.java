@@ -2,6 +2,7 @@ package com.github.lany192.utils;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.tencent.vasdolly.reader.ChannelReader;
@@ -9,6 +10,9 @@ import com.tencent.vasdolly.reader.IdValueReader;
 import com.tencent.vasdolly.writer.ChannelWriter;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Map;
 
@@ -21,14 +25,45 @@ public class ChannelUtils {
      */
     public static String getChannelApkPath(Context context, String channel) {
         String apkPath = getApkPath(context);
-        try {
-            ChannelWriter.removeChannelByV2(new File(apkPath), false);
-            ChannelWriter.addChannelByV2(new File(apkPath), channel, false);
-        } catch (Exception e) {
-
+        if (TextUtils.isEmpty(apkPath)) {
+            return "";
         }
-        return apkPath;
+        String destFilePath = context.getFilesDir().getPath() + File.pathSeparator + channel + ".apk";
+        boolean result = copyFile(apkPath, destFilePath);
+        if (result) {
+            try {
+                ChannelWriter.removeChannelByV2(new File(apkPath), false);
+                ChannelWriter.addChannelByV2(new File(apkPath), channel, false);
+            } catch (Exception e) {
+                e.fillInStackTrace();
+            }
+        }
+        return destFilePath;
     }
+
+    public static boolean copyFile(String srcFilePath, String destFilePath) {
+        try {
+            File srcFile = new File(srcFilePath);
+            File destFile = new File(destFilePath);
+            FileInputStream fileInputStream = new FileInputStream(srcFile);
+            FileOutputStream fileOutputStream = new FileOutputStream(destFile);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fileInputStream.read(buffer)) > 0) {
+                fileOutputStream.write(buffer, 0, length);
+            }
+
+            fileInputStream.close();
+            fileOutputStream.close();
+
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     /**
      * 获取渠道号

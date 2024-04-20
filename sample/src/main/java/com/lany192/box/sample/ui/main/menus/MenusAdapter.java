@@ -8,10 +8,14 @@ import com.alibaba.android.arouter.SampleRouter;
 import com.github.lany192.arch.adapter.BindingAdapter;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.toolkit.BoxToolKit;
+import com.github.lany192.utils.ChannelUtils;
+import com.github.lany192.utils.ContextUtils;
 import com.hjq.toast.Toaster;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
 import com.scottyab.rootbeer.RootBeer;
+import com.tencent.vasdolly.reader.ChannelReader;
 
+import java.io.File;
 import java.util.List;
 
 public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
@@ -38,9 +42,10 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 4) {
             SampleRouter.startHtml();
         } else if (position == 5) {
-            test5();
+            Toaster.show(ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello"));
         } else if (position == 6) {
-            test5();
+            String apkPath = ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello2");
+            Toaster.show(ChannelReader.getChannelByV2(new File(apkPath)));
         } else if (position == 7) {
             test5();
         } else if (position == 8) {
