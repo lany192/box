@@ -32,8 +32,9 @@ public class ChannelUtils {
         boolean result = copyFile(apkPath, destFilePath);
         if (result) {
             try {
+                File file = new File(destFilePath);
                 ChannelWriter.removeChannelByV2(new File(apkPath), false);
-                ChannelWriter.addChannelByV2(new File(apkPath), channel, false);
+                ChannelWriter.addChannelByV2(file, channel, false);
             } catch (Exception e) {
                 e.fillInStackTrace();
             }

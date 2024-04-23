@@ -20,8 +20,6 @@ import java.util.List;
 
 public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
 
-    private String channelApkPath;
-
     public MenusAdapter(@NonNull List<MenuItem> data) {
         super(data);
     }
@@ -45,17 +43,23 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 4) {
             SampleRouter.startHtml();
         } else if (position == 5) {
-            channelApkPath = ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello");
+            String channelApkPath = ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello");
             Log.i("测试", "apkPath: " + channelApkPath);
             Toaster.show(channelApkPath);
         } else if (position == 6) {
-            String channel = ChannelReader.getChannelByV2(new File(channelApkPath));
+            String path = ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello_" + System.currentTimeMillis());
+            File file = new File(path);
+            if (!file.exists()) {
+                Toaster.show("apk不存在");
+                return;
+            }
+            String channel = ChannelReader.getChannelByV2(file);
             Log.i("测试", "v2 channel: " + channel);
             if (channel == null) {
-                channel = ChannelReader.getChannelByV1(new File(channelApkPath));
+                channel = ChannelReader.getChannelByV1(file);
             }
             Log.i("测试", "v1 channel: " + channel);
-            Toaster.show(channel);
+            Toaster.show("渠道信息：" + channel);
         } else if (position == 7) {
             test5();
         } else if (position == 8) {
