@@ -10,9 +10,6 @@ import com.tencent.vasdolly.reader.IdValueReader;
 import com.tencent.vasdolly.writer.ChannelWriter;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Map;
 
@@ -29,7 +26,7 @@ public class ChannelUtils {
             return "";
         }
         String destFilePath = context.getCacheDir().getPath() + File.separator + "channel_" + channel + ".apk";
-        boolean result = copyFile(apkPath, destFilePath);
+        boolean result = FileUtils.copyFile(apkPath, destFilePath);
         if (result) {
             try {
                 File file = new File(destFilePath);
@@ -41,30 +38,6 @@ public class ChannelUtils {
         }
         return destFilePath;
     }
-
-    public static boolean copyFile(String srcFilePath, String destFilePath) {
-        try {
-            File srcFile = new File(srcFilePath);
-            File destFile = new File(destFilePath);
-            FileInputStream fileInputStream = new FileInputStream(srcFile);
-            FileOutputStream fileOutputStream = new FileOutputStream(destFile);
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = fileInputStream.read(buffer)) > 0) {
-                fileOutputStream.write(buffer, 0, length);
-            }
-
-            fileInputStream.close();
-            fileOutputStream.close();
-
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
 
     /**
      * 获取渠道号
