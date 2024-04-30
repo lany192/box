@@ -16,8 +16,11 @@ import com.hjq.toast.Toaster;
 import com.king.camera.scan.CameraScan;
 import com.king.camera.scan.util.LogUtils;
 import com.king.zxing.util.CodeUtils;
+import com.lany192.box.sample.MockUtils;
 import com.lany192.box.sample.R;
 import com.lany192.box.sample.databinding.ActivityZxingBinding;
+
+import org.apache.commons.lang3.RandomUtils;
 
 import java.util.concurrent.Executors;
 
@@ -32,8 +35,8 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
         binding.test2.setOnClickListener(v -> startScan(QRCodeScanActivity.class));
         binding.test3.setOnClickListener(v -> startScan(FullScreenQRCodeScanActivity.class));
         binding.test4.setOnClickListener(v -> startPickPhoto());
-        binding.test5.setOnClickListener(v -> createQRCode("测试文档"));
-        binding.test6.setOnClickListener(v -> createBarCode("123456"));
+        binding.test5.setOnClickListener(v -> createQRCode(MockUtils.getImageUrl()));
+        binding.test6.setOnClickListener(v -> createBarCode(String.valueOf(RandomUtils.nextInt(1000000, 999999999))));
     }
 
     @Override
@@ -91,7 +94,6 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
         startActivityForResult(pickIntent, REQUEST_CODE_PHOTO);
     }
 
-
     /**
      * 生成二维码
      *
@@ -107,7 +109,6 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
                 binding.code1.setImageBitmap(bitmap);
             });
         });
-
     }
 
     /**

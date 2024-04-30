@@ -60,4 +60,8 @@ public class MockUtils {
         }
         return images;
     }
+
+    public static long getLong() {
+        return new Random().nextLong();
+    }
 }

@@ -233,6 +233,9 @@ dependencies {
     implementation libs.permissions
     implementation libs.blur
     implementation libs.rootbeer
+
+    //模拟数据生成 https://github.com/lany192/mock-generator
+    implementation 'com.github.lany192:mock-generator:1.0.4'
 }
 //引入安装包生成配置
 apply from: '../package.gradle'
