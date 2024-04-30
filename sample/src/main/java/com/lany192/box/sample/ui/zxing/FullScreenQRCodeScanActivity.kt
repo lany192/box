@@ -16,7 +16,6 @@ import com.king.zxing.analyze.QRCodeAnalyzer
 
 /**
  * 扫二维码全屏识别示例
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class FullScreenQRCodeScanActivity : BarcodeCameraScanActivity() {
 

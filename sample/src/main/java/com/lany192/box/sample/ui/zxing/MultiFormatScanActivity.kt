@@ -12,7 +12,6 @@ import com.king.zxing.analyze.MultiFormatAnalyzer
 
 /**
  * 连续扫码（识别多种格式）示例
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class MultiFormatScanActivity : BarcodeCameraScanActivity() {
 
@@ -22,7 +21,7 @@ class MultiFormatScanActivity : BarcodeCameraScanActivity() {
         cameraScan.setPlayBeep(true)
     }
 
-    override fun createAnalyzer(): Analyzer<Result>? {
+    override fun createAnalyzer(): Analyzer<Result> {
         // 初始化解码配置
         val decodeConfig = DecodeConfig().apply {
             // 设置是否支持扫垂直的条码
