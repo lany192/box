@@ -2,6 +2,7 @@ package com.lany192.box.sample.ui.zxing;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
@@ -10,6 +11,7 @@ import androidx.core.app.ActivityOptionsCompat;
 
 import com.github.lany192.arch.activity.VBActivity;
 import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
+import com.google.zxing.BarcodeFormat;
 import com.hjq.toast.Toaster;
 import com.king.camera.scan.CameraScan;
 import com.king.camera.scan.util.LogUtils;
@@ -20,8 +22,6 @@ import com.lany192.box.sample.databinding.ActivityZxingBinding;
 import java.util.concurrent.Executors;
 
 public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefaultBinding> {
-    public static final String KEY_TITLE = "key_title";
-    public static final String KEY_IS_QR_CODE = "key_code";
     public static final int REQUEST_CODE_SCAN = 0x01;
     public static final int REQUEST_CODE_PHOTO = 0x02;
 
@@ -32,8 +32,8 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
         binding.test2.setOnClickListener(v -> startScan(QRCodeScanActivity.class));
         binding.test3.setOnClickListener(v -> startScan(FullScreenQRCodeScanActivity.class));
         binding.test4.setOnClickListener(v -> startPickPhoto());
-        binding.test5.setOnClickListener(v -> startGenerateCodeActivity(true, "我是测试内容"));
-        binding.test6.setOnClickListener(v -> startGenerateCodeActivity(false, "我是测试内容"));
+        binding.test5.setOnClickListener(v -> createQRCode("测试文档"));
+        binding.test6.setOnClickListener(v -> createBarCode("123456"));
     }
 
     @Override
@@ -81,17 +81,6 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
         ActivityCompat.startActivityForResult(this, intent, REQUEST_CODE_SCAN, optionsCompat.toBundle());
     }
 
-    /**
-     * 生成二维码/条形码
-     *
-     * @param isQRCode
-     */
-    private void startGenerateCodeActivity(boolean isQRCode, String title) {
-        Intent intent = new Intent(this, CodeActivity.class);
-        intent.putExtra(KEY_IS_QR_CODE, isQRCode);
-        intent.putExtra(KEY_TITLE, title);
-        startActivity(intent);
-    }
 
     /**
      * 开始选择图片
@@ -100,5 +89,40 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
         Intent pickIntent = new Intent(Intent.ACTION_PICK);
         pickIntent.setType("image/*");
         startActivityForResult(pickIntent, REQUEST_CODE_PHOTO);
+    }
+
+
+    /**
+     * 生成二维码
+     *
+     * @param content
+     */
+    private void createQRCode(String content) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            //生成二维码相关放在子线程里面
+            Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.android);
+            Bitmap bitmap = CodeUtils.createQRCode(content, 600, logo);
+            runOnUiThread(() -> {
+                //显示二维码
+                binding.code1.setImageBitmap(bitmap);
+            });
+        });
+
+    }
+
+    /**
+     * 生成条形码
+     *
+     * @param content
+     */
+    private void createBarCode(String content) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            //生成条形码相关放在子线程里面
+            Bitmap bitmap = CodeUtils.createBarCode(content, BarcodeFormat.CODE_128, 800, 200, null, true);
+            runOnUiThread(() -> {
+                //显示条形码
+                binding.code2.setImageBitmap(bitmap);
+            });
+        });
     }
 }
