@@ -109,3 +109,7 @@
 ```bash
 adb shell "dumpsys activity top | grep ACTIVITY | tail -n 1"
 ```
+
+## Star History
+
+[![Stargazers over time](https://starchart.cc/lany192/box.svg?variant=adaptive)](https://starchart.cc/lany192/box)
