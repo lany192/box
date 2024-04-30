@@ -1,5 +1,6 @@
 package com.lany192.box.sample.ui.main.menus;
 
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import com.github.lany192.utils.ChannelUtils;
 import com.github.lany192.utils.ContextUtils;
 import com.hjq.toast.Toaster;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
+import com.lany192.box.sample.ui.zxing.ZxingActivity;
 import com.scottyab.rootbeer.RootBeer;
 import com.tencent.vasdolly.reader.ChannelReader;
 
@@ -61,7 +63,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
             Log.i("测试", "v1 channel: " + channel);
             Toaster.show("渠道信息：" + channel);
         } else if (position == 7) {
-            test5();
+            getContext().startActivity(new Intent(getContext(), ZxingActivity.class));
         } else if (position == 8) {
             test5();
         } else if (position == 9) {
