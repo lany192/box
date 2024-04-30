@@ -51,6 +51,11 @@
         app:bl_stroke_width="1dp" />
 
     <com.github.lany192.text.BoxTextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.github.lany192.text.BoxTextView
         android:id="@+id/test5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,6 +66,12 @@
         app:bl_corners_radius="8dp"
         app:bl_stroke_color="@color/green"
         app:bl_stroke_width="1dp" />
+
+    <ImageView
+        android:id="@+id/code1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 
     <com.github.lany192.text.BoxTextView
         android:id="@+id/test6"
@@ -74,11 +85,6 @@
         app:bl_stroke_color="@color/green"
         app:bl_stroke_width="1dp" />
 
-    <ImageView
-        android:id="@+id/code1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
 
     <ImageView
         android:id="@+id/code2"

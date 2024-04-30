@@ -46,16 +46,14 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
             switch (requestCode) {
                 case REQUEST_CODE_SCAN:
                     String result = CameraScan.parseScanResult(data);
-                    Toaster.show(result);
+                    binding.result.setText(String.format("识别结果：%s", result));
                     break;
                 case REQUEST_CODE_PHOTO:
                     parsePhoto(data);
                     break;
             }
-
         }
     }
-
 
     private void parsePhoto(Intent data) {
         try {
@@ -65,7 +63,7 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
                 final String result = CodeUtils.parseCode(bitmap);
                 runOnUiThread(() -> {
                     LogUtils.d("result:" + result);
-                    Toaster.show(result);
+                    binding.result.setText(String.format("识别结果：%s", result));
                 });
             });
         } catch (Exception e) {
@@ -75,8 +73,6 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
 
     /**
      * 扫码
-     *
-     * @param cls
      */
     private void startScan(Class<?> cls) {
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeCustomAnimation(this, R.anim.in, R.anim.out);
@@ -96,8 +92,6 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
 
     /**
      * 生成二维码
-     *
-     * @param content
      */
     private void createQRCode(String content) {
         Executors.newSingleThreadExecutor().execute(() -> {
@@ -113,8 +107,6 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
 
     /**
      * 生成条形码
-     *
-     * @param content
      */
     private void createBarCode(String content) {
         Executors.newSingleThreadExecutor().execute(() -> {
