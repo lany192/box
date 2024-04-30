@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
@@ -30,6 +28,12 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding.test1.setOnClickListener(v -> startScan(MultiFormatScanActivity.class));
+        binding.test2.setOnClickListener(v -> startScan(QRCodeScanActivity.class));
+        binding.test3.setOnClickListener(v -> startScan(FullScreenQRCodeScanActivity.class));
+        binding.test4.setOnClickListener(v -> startPickPhoto());
+        binding.test5.setOnClickListener(v -> startGenerateCodeActivity(true, "我是测试内容"));
+        binding.test6.setOnClickListener(v -> startGenerateCodeActivity(false, "我是测试内容"));
     }
 
     @Override
@@ -60,9 +64,7 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
                     LogUtils.d("result:" + result);
                     Toaster.show(result);
                 });
-
             });
-
         } catch (Exception e) {
             e.fillInStackTrace();
         }
@@ -98,29 +100,5 @@ public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefau
         Intent pickIntent = new Intent(Intent.ACTION_PICK);
         pickIntent.setType("image/*");
         startActivityForResult(pickIntent, REQUEST_CODE_PHOTO);
-    }
-
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnMultiFormat:
-                startScan(MultiFormatScanActivity.class);
-                break;
-            case R.id.btnQRCode:
-                startScan(QRCodeScanActivity.class);
-                break;
-            case R.id.btnFullQRCode:
-                startScan(FullScreenQRCodeScanActivity.class);
-                break;
-            case R.id.btnPickPhoto:
-                startPickPhoto();
-                break;
-            case R.id.btnGenerateQrCode:
-                startGenerateCodeActivity(true, ((Button) v).getText().toString());
-                break;
-            case R.id.btnGenerateBarcode:
-                startGenerateCodeActivity(false, ((Button) v).getText().toString());
-                break;
-        }
-
     }
 }
