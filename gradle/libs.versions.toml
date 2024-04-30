@@ -27,7 +27,6 @@ brvah = "4.1.4" #适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHel
 toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
 hilt = "2.45" #注入依赖 https://dagger.dev/hilt/
 vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
-zxing = "3.5.3" #二维码 https://github.com/zxing/zxing
 coreKtx = "1.12.0"
 constraintlayout = "2.1.4"
 exifinterface = "1.3.7"
@@ -64,6 +63,7 @@ kotlin = "1.8.20"
 rootbeer = "0.1.0" #https://github.com/scottyab/rootbeer
 blur = "b636349" #https://github.com/android/renderscript-intrinsics-replacement-toolkit
 gson = "2.10.1"
+zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
 
 [libraries]
 alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
@@ -123,7 +123,6 @@ moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 brvah = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "brvah" }
 toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-zxing = { module = "com.google.zxing:core", version.ref = "zxing" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
@@ -149,6 +148,7 @@ okdownload = { module = "com.github.lany192:okdownload", version.ref = "okdownlo
 rootbeer = { module = "com.scottyab:rootbeer-lib", version.ref = "rootbeer" }
 blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxingLite" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -148,7 +148,7 @@ dependencies {
     implementation project(path: ':library:toolkit')
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
-    implementation project(path: ':library:scanner')
+    
     implementation project(path: ':library:cropper')
     implementation project(path: ':library:log')
 
@@ -222,7 +222,7 @@ dependencies {
     implementation libs.alipay.zero.sdk
     implementation libs.banner
     implementation libs.touchimageview
-    implementation libs.zxing
+    implementation libs.zxing.lite
     implementation libs.rxjava
     implementation libs.rxandroid
     implementation libs.material.spinner
