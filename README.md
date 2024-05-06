@@ -12,7 +12,7 @@
 > * Hilt
 > * OkHttp3
 >
-使用MVVM+rxjava3+rxandroid3+retrofit2+Dagger2+OkHttp3组合封装
+使用MVVM+rxjava3+rxandroid3+retrofit2+Hilt+OkHttp3组合封装
 
 ## 引入代码仓库
 
@@ -32,11 +32,8 @@
         implementation 'com.github.lany192.box:update:master-SNAPSHOT'
         implementation 'com.github.lany192.box:time:master-SNAPSHOT'
         implementation 'com.github.lany192.box:crop:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:matisse:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:permission:master-SNAPSHOT'
         implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
         implementation 'com.github.lany192.box:html:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:scanner:master-SNAPSHOT'
         implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
 	}
 
