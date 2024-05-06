@@ -40,17 +40,12 @@ android {
 
     compileSdk apk.compileSdkVersion
 
-    //签名配置
     signingConfigs {
         config {
             keyAlias 'box'
-            keyPassword 'box2022'
-            storeFile file('../box.key')
-            storePassword 'box2022'
-            enableV1Signing true
-            enableV2Signing true
-            enableV3Signing false
-            enableV4Signing false
+            keyPassword 'box2024'
+            storeFile file('../box.jks')
+            storePassword 'box2024'
         }
     }
 

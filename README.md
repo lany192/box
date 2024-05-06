@@ -106,6 +106,17 @@
 ```bash
 adb shell "dumpsys activity top | grep ACTIVITY | tail -n 1"
 ```
+## 一键本地打包
+
+点击左边绿色箭头，开始执行本地打包任务
+
+```bash
+# 测试包
+gradle Develop
+
+# 正式包
+gradle Release
+```
 
 ## Star History
 
