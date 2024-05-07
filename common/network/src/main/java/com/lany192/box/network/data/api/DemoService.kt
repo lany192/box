@@ -8,12 +8,14 @@ interface DemoService {
     /**
      * 获取省市县数据
      */
+    @Headers("domain:test1")
     @GET("https://xzwcn.oss-cn-shanghai.aliyuncs.com/config/city.json")
     suspend fun getCityList(): ApiResult<List<Area>>
 
     @GET("/article/list/{page}/json")
     suspend fun getArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
+    @Headers("domain:test2")
     @GET("/article/list/{page}/json")
     suspend fun getHomeArticles(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
