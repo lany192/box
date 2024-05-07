@@ -35,6 +35,10 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
         return layoutManager;
     }
 
+    fun addOnScrollListener(listener: RecyclerView.OnScrollListener) {
+        getRecyclerView().addOnScrollListener(listener)
+    }
+
     open fun getSpanCount(): Int {
         return 2;
     }

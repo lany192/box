@@ -9,7 +9,6 @@ import com.chad.library.adapter4.layoutmanager.QuickGridLayoutManager
 import com.github.lany192.arch.activity.VMVBActivity
 import com.github.lany192.arch.adapter.MultiAdapter
 import com.github.lany192.arch.utils.ListUtils
-import com.github.lany192.utils.JsonUtils
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewBinding> :
@@ -17,7 +16,9 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
     abstract fun getRefreshLayout(): SmartRefreshLayout
 
     abstract fun getRecyclerView(): RecyclerView
+
     protected lateinit var layoutManager: RecyclerView.LayoutManager
+
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
         MultiAdapter(mutableListOf())
     }
@@ -38,6 +39,10 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
 
     open fun getSpanCount(): Int {
         return 2;
+    }
+
+    fun addOnScrollListener(listener: RecyclerView.OnScrollListener) {
+        getRecyclerView().addOnScrollListener(listener)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
