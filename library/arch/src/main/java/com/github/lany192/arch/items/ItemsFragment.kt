@@ -15,6 +15,8 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
 
     abstract fun getRecyclerView(): RecyclerView
 
+    protected lateinit var layoutManager: RecyclerView.LayoutManager
+
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
         MultiAdapter(mutableListOf())
     }
@@ -39,13 +41,14 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
 
     override fun init() {
         super.init()
-        getRecyclerView().setLayoutManager(getLayoutManager());
+        layoutManager = getLayoutManager()
+        getRecyclerView().setLayoutManager(layoutManager)
         getRecyclerView().adapter = helper.adapter
         getRefreshLayout().setEnableLoadMore(true)
         getRefreshLayout().setOnLoadMoreListener {
             viewModel.onLoadMore()
         }
-        getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
+        getRefreshLayout().setEnableRefresh(viewModel.refreshEnable())
         if (viewModel.refreshEnable()) {
             getRefreshLayout().setOnRefreshListener {
                 viewModel.onRefresh()

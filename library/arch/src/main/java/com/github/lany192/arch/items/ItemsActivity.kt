@@ -17,7 +17,7 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
     abstract fun getRefreshLayout(): SmartRefreshLayout
 
     abstract fun getRecyclerView(): RecyclerView
-
+    protected lateinit var layoutManager: RecyclerView.LayoutManager
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
         MultiAdapter(mutableListOf())
     }
@@ -42,7 +42,8 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getRecyclerView().setLayoutManager(getLayoutManager());
+        layoutManager = getLayoutManager()
+        getRecyclerView().setLayoutManager(layoutManager)
         getRecyclerView().adapter = helper.adapter
         getRefreshLayout().setEnableLoadMore(true)
         getRefreshLayout().setOnLoadMoreListener {
