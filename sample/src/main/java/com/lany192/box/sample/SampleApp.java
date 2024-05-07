@@ -1,6 +1,9 @@
 package com.lany192.box.sample;
 
+import android.os.StrictMode;
+
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.strictmode.FragmentStrictMode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
@@ -43,5 +46,34 @@ public class SampleApp extends BoxApplication {
             ARouter.openDebug();
         }
         ARouter.init(this);
+        enableStrictMode();
+    }
+
+    private void enableStrictMode() {
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectCustomSlowCalls() //API等级11，使用StrictMode.noteSlowCode
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()   // or .detectAll() for all detectable problems
+                    .penaltyDialog() //弹出违规提示对话框
+                    .penaltyLog() //在Logcat 中打印违规异常信息
+                    .penaltyFlashScreen() //API等级11
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects() //API等级11
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
+            FragmentStrictMode.INSTANCE.setDefaultPolicy(new FragmentStrictMode.Policy.Builder()
+                    .penaltyDeath()
+                    .detectFragmentReuse()
+                    .detectWrongFragmentContainer()
+                    .detectRetainInstanceUsage()
+                    .detectSetUserVisibleHint()
+                    .detectFragmentTagUsage()
+                    .build());
+        }
     }
 }
