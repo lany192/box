@@ -13,6 +13,7 @@ import com.github.lany192.utils.ChannelUtils;
 import com.github.lany192.utils.ContextUtils;
 import com.hjq.toast.Toaster;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
+import com.lany192.box.sample.ui.transformation.TransformationActivity;
 import com.lany192.box.sample.ui.zxing.ZxingActivity;
 import com.scottyab.rootbeer.RootBeer;
 import com.tencent.vasdolly.reader.ChannelReader;
@@ -65,7 +66,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 7) {
             getContext().startActivity(new Intent(getContext(), ZxingActivity.class));
         } else if (position == 8) {
-            test5();
+            getContext().startActivity(new Intent(getContext(), TransformationActivity.class));
         } else if (position == 9) {
             test5();
         } else if (position == 10) {

@@ -103,6 +103,14 @@
             android:name=".ui.zxing.QRCodeScanActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
+
+        <activity
+            android:name=".ui.transformation.TransformationActivity"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name=".ui.transformation.TransformationDetailActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
