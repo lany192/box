@@ -30,13 +30,13 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         mAdapter.register(binder)
     }
 
-    fun getLayoutManager(): RecyclerView.LayoutManager {
+    open fun getLayoutManager(): RecyclerView.LayoutManager {
         val layoutManager = QuickGridLayoutManager(this, getSpanCount())
         layoutManager.setOrientation(GridLayoutManager.VERTICAL)
         return layoutManager;
     }
 
-    fun getSpanCount(): Int {
+    open fun getSpanCount(): Int {
         return 2;
     }
 

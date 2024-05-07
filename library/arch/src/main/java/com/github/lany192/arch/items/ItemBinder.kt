@@ -10,10 +10,13 @@ import com.github.lany192.arch.adapter.BindingHolder
 import com.github.lany192.arch.adapter.MultiAdapter
 import com.github.lany192.arch.adapter.OnBinderListener
 import com.github.lany192.binding.getBinding
+import com.github.lany192.log.XLog
 import java.lang.ref.WeakReference
 import java.lang.reflect.ParameterizedType
 
 abstract class ItemBinder<T : Any, VB : ViewBinding> : OnBinderListener<T, BindingHolder<VB>> {
+    @JvmField
+    protected var log: XLog = XLog.tag(javaClass.simpleName)
     internal var weakA: WeakReference<MultiAdapter>? = null
 
     val adapter: MultiAdapter?

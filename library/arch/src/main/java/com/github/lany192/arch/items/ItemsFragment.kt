@@ -27,7 +27,7 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
         mAdapter.register(binder)
     }
 
-    fun getLayoutManager(): RecyclerView.LayoutManager {
+    open fun getLayoutManager(): RecyclerView.LayoutManager {
         val layoutManager = QuickGridLayoutManager(requireContext(), getSpanCount())
         layoutManager.setOrientation(GridLayoutManager.VERTICAL)
         return layoutManager;
