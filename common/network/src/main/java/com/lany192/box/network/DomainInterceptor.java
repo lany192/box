@@ -4,6 +4,8 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import com.github.lany192.log.XLog;
+
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -12,26 +14,37 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class DomainInterceptor implements Interceptor {
+    private final XLog log = XLog.tag(getClass().getSimpleName());
     private static final String DOMAIN_KEY = "domain";
 
     @NonNull
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        Request.Builder builder = request.newBuilder();
         String domain = request.header(DOMAIN_KEY);
-        if (!TextUtils.isEmpty(domain)) {
-            builder.removeHeader(DOMAIN_KEY);
-            HttpUrl httpUrl = request.url();
-            if ("test1".equals(domain)) {
-                builder.url(httpUrl.newBuilder()
-                        .host("hello1")//更换域名
-                        .build());
-            } else if ("test2".equals(domain)) {
-                builder.url(httpUrl.newBuilder()
-                        .host("hello2")//更换域名
-                        .build());
-            }
+        if (TextUtils.isEmpty(domain)) {
+            return chain.proceed(request);
+        }
+        Request.Builder builder = request.newBuilder();
+        log.i("需要动态替换域名：%s", domain);
+        builder.removeHeader(DOMAIN_KEY);
+        HttpUrl newHttpUrl = null;
+        switch (domain.toLowerCase()) {
+            case "oss":
+                newHttpUrl = HttpUrl.parse("https://xzwcn.oss-cn-shanghai.aliyuncs.com");
+                break;
+            case "test1":
+                //newHttpUrl = HttpUrl.parse("https://demo.oss-cn-shanghai.aliyuncs.com");
+                break;
+            case "test2":
+                newHttpUrl = HttpUrl.parse("https://fssdd.oss-cn-shanghai.aliyuncs.com");
+                break;
+            default:
+                newHttpUrl = HttpUrl.parse("https://www.wanandroid.com");
+                break;
+        }
+        if (newHttpUrl != null) {
+            builder.url(newHttpUrl);
         }
         return chain.proceed(builder.build());
     }
