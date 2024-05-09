@@ -29,6 +29,7 @@ class MenusFragment : VMVBFragment<MenusViewModel, FragmentMenusBinding>() {
         items.add(MenuItem("读取分享包的渠道信息", R.drawable.android))
         items.add(MenuItem("扫描测试", R.drawable.android))
         items.add(MenuItem("转场动画", R.drawable.android))
+        items.add(MenuItem("数学练习", R.drawable.android))
         binding.recyclerView.adapter = MenusAdapter(items)
     }
 }

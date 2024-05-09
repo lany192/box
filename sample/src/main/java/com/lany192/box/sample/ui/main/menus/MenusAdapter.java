@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.alibaba.android.arouter.MathRouter;
 import com.alibaba.android.arouter.SampleRouter;
 import com.github.lany192.arch.adapter.BindingAdapter;
 import com.github.lany192.dialog.SimpleDialog;
@@ -68,7 +69,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 8) {
             getContext().startActivity(new Intent(getContext(), TransformationActivity.class));
         } else if (position == 9) {
-            test5();
+            MathRouter.startMath();
         } else if (position == 10) {
             test5();
         }
