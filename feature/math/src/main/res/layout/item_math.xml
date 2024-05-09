@@ -6,13 +6,6 @@
     android:orientation="vertical"
     android:padding="32dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/login_phone_edit"
         android:layout_width="match_parent"
