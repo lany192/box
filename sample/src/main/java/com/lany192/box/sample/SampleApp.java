@@ -46,7 +46,7 @@ public class SampleApp extends BoxApplication {
             ARouter.openDebug();
         }
         ARouter.init(this);
-        enableStrictMode();
+//        enableStrictMode();
     }
 
     private void enableStrictMode() {

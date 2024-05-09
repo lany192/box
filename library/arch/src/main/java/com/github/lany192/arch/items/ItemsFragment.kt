@@ -15,7 +15,7 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
 
     abstract fun getRecyclerView(): RecyclerView
 
-    protected lateinit var layoutManager: RecyclerView.LayoutManager
+    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
         MultiAdapter(mutableListOf())
@@ -29,10 +29,14 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
         mAdapter.register(binder)
     }
 
-    open fun getLayoutManager(): RecyclerView.LayoutManager {
+    open fun createLayoutManager(): RecyclerView.LayoutManager {
         val layoutManager = QuickGridLayoutManager(requireContext(), getSpanCount())
         layoutManager.setOrientation(GridLayoutManager.VERTICAL)
-        return layoutManager;
+        return layoutManager
+    }
+
+    fun getLayoutManager(): RecyclerView.LayoutManager {
+        return layoutManager
     }
 
     fun addOnScrollListener(listener: RecyclerView.OnScrollListener) {
@@ -45,7 +49,7 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
 
     override fun init() {
         super.init()
-        layoutManager = getLayoutManager()
+        layoutManager = createLayoutManager()
         getRecyclerView().setLayoutManager(layoutManager)
         getRecyclerView().adapter = helper.adapter
         getRefreshLayout().setEnableLoadMore(true)
