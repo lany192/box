@@ -22,15 +22,16 @@ public class MathActivity extends BoxActivity<MathViewModel, ActivityMathBinding
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        List<String> data = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-
-        }
-        binding.recyclerView.setAdapter(new BindingAdapter<String, ItemMathBinding>(data) {
+        List<String> items = new ArrayList<>();
+        items.add("加法");
+        items.add("加法");
+        items.add("加法");
+        items.add("加法");
+        binding.recyclerView.setAdapter(new BindingAdapter<String, ItemMathBinding>(items) {
 
             @Override
             protected void convert(@NonNull ItemMathBinding binding, @NonNull String item, int position) {
-
+                binding.title.setText(item);
             }
         });
     }

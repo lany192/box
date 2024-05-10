@@ -1,7 +1,6 @@
 <resources>
 
     <style name="AppTheme" parent="@style/Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorOnPrimary">@color/colorPrimary</item>
