@@ -108,6 +108,7 @@ dependencies {
     implementation libs.arouter.api
     implementation libs.androidx.room.runtime
     implementation libs.androidx.room.ktx
+    implementation libs.decoration
 
     if (isModule.toBoolean()) {
         implementation libs.androidx.multidex
