@@ -2,13 +2,15 @@ package com.lany192.box.math.repository;
 
 public class MathItem {
     private int type;
-    private int a;
-    private int b;
+    private int left;
+    private int right;
 
-    public MathItem(int type, int a, int b) {
+    private int result;
+
+    public MathItem(int type, int left, int right) {
         this.type = type;
-        this.a = a;
-        this.b = b;
+        this.left = left;
+        this.right = right;
     }
 
     public int getType() {
@@ -19,19 +21,27 @@ public class MathItem {
         this.type = type;
     }
 
-    public int getA() {
-        return a;
+    public int getLeft() {
+        return left;
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public void setLeft(int left) {
+        this.left = left;
     }
 
-    public int getB() {
-        return b;
+    public int getRight() {
+        return right;
     }
 
-    public void setB(int b) {
-        this.b = b;
+    public void setRight(int right) {
+        this.right = right;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
     }
 }

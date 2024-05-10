@@ -2,30 +2,29 @@ package com.lany192.box.math.ui.addition;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.lany192.box.math.R;
+import com.github.lany192.arch.activity.BoxActivity;
+import com.lany192.box.math.databinding.ActivityAdditionBinding;
+import com.lany192.box.math.repository.MathItem;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/math/addition")
-public class AdditionActivity extends AppCompatActivity {
+public class AdditionActivity extends BoxActivity<AdditionViewModel, ActivityAdditionBinding> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_addition);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        Random random = new Random();
+        List<MathItem> items = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            items.add(new MathItem(0, random.nextInt(), random.nextInt()));
+        }
+        binding.viewPager.setAdapter(new AdditionAdapter(items));
     }
 }

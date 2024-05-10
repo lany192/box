@@ -5,6 +5,18 @@
         <activity
             android:name=".ui.MathActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.subtraction.SubtractionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.multiplication.MultiplicationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.division.DivisionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.addition.AdditionActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
