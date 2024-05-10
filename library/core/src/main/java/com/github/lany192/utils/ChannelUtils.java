@@ -44,41 +44,32 @@ public class ChannelUtils {
      */
     public static String getChannel(Context context) {
         if (mChannelCache == null) {
-            String channel = getChannelByV2(context);
-            if (channel == null) {
-                channel = getChannelByV1(context);
-            }
+            String apkPath = getApkPath(context);
+            String channel = getChannelByPath(apkPath);
+            Log.i(TAG, "apkPath:" + apkPath + "channel: " + channel);
             mChannelCache = channel;
         }
         return mChannelCache;
     }
 
     /**
-     * if apk use v2 signature , please use this method to get channel info
-     *
-     * @param context
-     * @return
+     * 获取渠道号
      */
-    public static String getChannelByV2(Context context) {
-        String apkPath = getApkPath(context);
-        String channel = ChannelReader.getChannelByV2(new File(apkPath));
-        Log.i(TAG, "getChannelByV2 , channel = " + channel);
-        return channel;
+    public static String getChannelByPath(String path) {
+        if (!TextUtils.isEmpty(path)) {
+            File file = new File(path);
+            if (file.exists()) {
+                String channel = ChannelReader.getChannelByV2(file);
+                if (TextUtils.isEmpty(channel)) {
+                    channel = ChannelReader.getChannelByV1(file);
+                }
+                if (!TextUtils.isEmpty(channel)) {
+                    return channel;
+                }
+            }
+        }
+        return "";
     }
-
-    /**
-     * if apk only use v1 signature , please use this method to get channel info
-     *
-     * @param context
-     * @return
-     */
-    public static String getChannelByV1(Context context) {
-        String apkPath = getApkPath(context);
-        String channel = ChannelReader.getChannelByV1(new File(apkPath));
-        Log.i(TAG, "getChannelByV1 , channel = " + channel);
-        return channel;
-    }
-
 
     /**
      * get String value from apk by id in the v2 signature mode
@@ -137,4 +128,5 @@ public class ChannelUtils {
         }
         return apkPath;
     }
+
 }

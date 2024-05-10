@@ -11,15 +11,12 @@ import com.github.lany192.arch.adapter.BindingAdapter;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.toolkit.BoxToolKit;
 import com.github.lany192.utils.ChannelUtils;
-import com.github.lany192.utils.ContextUtils;
 import com.hjq.toast.Toaster;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
 import com.lany192.box.sample.ui.transformation.TransformationActivity;
 import com.lany192.box.sample.ui.zxing.ZxingActivity;
 import com.scottyab.rootbeer.RootBeer;
-import com.tencent.vasdolly.reader.ChannelReader;
 
-import java.io.File;
 import java.util.List;
 
 public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
@@ -47,22 +44,12 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 4) {
             SampleRouter.startHtml();
         } else if (position == 5) {
-            String channelApkPath = ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello");
+            String channelApkPath = ChannelUtils.getChannelApkPath(getContext(), "hello");
             Log.i("测试", "apkPath: " + channelApkPath);
             Toaster.show(channelApkPath);
         } else if (position == 6) {
-            String path = ChannelUtils.getChannelApkPath(ContextUtils.getContext(), "hello_" + System.currentTimeMillis());
-            File file = new File(path);
-            if (!file.exists()) {
-                Toaster.show("apk不存在");
-                return;
-            }
-            String channel = ChannelReader.getChannelByV2(file);
-            Log.i("测试", "v2 channel: " + channel);
-            if (channel == null) {
-                channel = ChannelReader.getChannelByV1(file);
-            }
-            Log.i("测试", "v1 channel: " + channel);
+            String path = ChannelUtils.getChannelApkPath(getContext(), "hello_" + System.currentTimeMillis());
+            String channel = ChannelUtils.getChannelByPath(path);
             Toaster.show("渠道信息：" + channel);
         } else if (position == 7) {
             getContext().startActivity(new Intent(getContext(), ZxingActivity.class));
