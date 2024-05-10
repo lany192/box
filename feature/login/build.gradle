@@ -80,14 +80,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.ext.junit2
-    androidTestImplementation libs.androidx.test.espresso
-
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
-
     implementation project(path: ':library:arch')
     implementation project(path: ':library:view')
     implementation project(path: ':library:core')
@@ -95,47 +89,40 @@ dependencies {
     implementation project(path: ':library:update')
     implementation project(path: ':library:time')
     implementation project(path: ':library:crop')
-
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
-
     implementation project(path: ':library:cropper')
-
     implementation project(path: ':library:log')
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit2
+    androidTestImplementation libs.androidx.test.espresso
+
+    kapt libs.hilt.compiler
+    kapt libs.arouter.compiler
+
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.material
+    implementation libs.hilt.android
+    implementation libs.arouter.api
 
     if (isModule.toBoolean()) {
         kapt libs.glide.compiler
-        kapt libs.androidx.room.compiler
-        kapt libs.hilt.compiler
-        kapt libs.arouter.compiler
 
-        implementation libs.androidx.appcompat
         implementation libs.androidx.activity.ktx
         implementation libs.androidx.fragment.ktx
         implementation libs.androidx.core.ktx
         implementation libs.androidx.lifecycle.livedata.ktx
         implementation libs.androidx.lifecycle.viewmodel.ktx
         implementation libs.androidx.recyclerview
-        implementation libs.androidx.constraintlayout
         implementation libs.androidx.multidex
-        implementation libs.androidx.material
         implementation libs.androidx.exifinterface
         implementation libs.androidx.paging.runtime.ktx
         implementation libs.androidx.paging.runtime
         implementation libs.androidx.startup.runtime
-        implementation libs.androidx.media3.exoplayer
-        implementation libs.androidx.media3.exoplayer.dash
-        implementation libs.androidx.media3.ui
-        implementation libs.androidx.camera.core
-        implementation libs.androidx.camera.camera2
-        implementation libs.androidx.camera.lifecycle
-        implementation libs.androidx.camera.view
-        implementation libs.androidx.camera.extensions
-        implementation libs.androidx.room.runtime
-        implementation libs.androidx.room.ktx
         implementation libs.coroutines.core
         implementation libs.coroutines.android
-        implementation libs.hilt.android
         implementation libs.toaster
         implementation libs.brvah
         implementation libs.immersionbar
@@ -150,13 +137,10 @@ dependencies {
         implementation libs.tencent.sonic
         implementation libs.tencent.wechat
         implementation libs.tencent.tbs
-        implementation libs.tencent.vasdolly.reader
-        implementation libs.tencent.vasdolly.writer
         implementation libs.glide
         implementation libs.xcrash
         implementation libs.refresh.header
         implementation libs.refresh.layout
-        implementation libs.arouter.api
         implementation libs.backgroundx
         implementation libs.kluban
         implementation libs.luban
@@ -166,27 +150,13 @@ dependencies {
         implementation libs.number.picker
         implementation libs.eventbus
         implementation libs.okdownload
-        implementation libs.licensesdialog
-        implementation libs.alipay.zero.sdk
         implementation libs.banner
         implementation libs.touchimageview
-        implementation libs.zxing.lite
         implementation libs.rxjava
         implementation libs.rxandroid
         implementation libs.material.spinner
         implementation libs.html.spanner
         implementation libs.phoenix
-        implementation libs.oss.sdk.client
-        implementation libs.oss.sdk.s33
         implementation libs.permissions
-    } else {
-        kapt libs.hilt.compiler
-        kapt libs.arouter.compiler
-
-        implementation libs.androidx.appcompat
-        implementation libs.androidx.constraintlayout
-        implementation libs.androidx.material
-        implementation libs.hilt.android
-        implementation libs.arouter.api
     }
 }

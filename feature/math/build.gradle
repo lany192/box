@@ -80,14 +80,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.ext.junit2
-    androidTestImplementation libs.androidx.test.espresso
-
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
-
     implementation project(path: ':library:arch')
     implementation project(path: ':library:view')
     implementation project(path: ':library:core')
@@ -97,26 +91,30 @@ dependencies {
     implementation project(path: ':library:html')
     implementation project(path: ':library:log')
 
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit2
+    androidTestImplementation libs.androidx.test.espresso
+
+    kapt libs.hilt.compiler
+    kapt libs.arouter.compiler
+    kapt libs.androidx.room.compiler
+
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.material
+    implementation libs.androidx.recyclerview
+    implementation libs.brvah
+    implementation libs.hilt.android
+    implementation libs.arouter.api
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+
     if (isModule.toBoolean()) {
-        kapt libs.glide.compiler
-        kapt libs.hilt.compiler
-        kapt libs.arouter.compiler
-        kapt libs.androidx.room.compiler
-
-        implementation libs.androidx.appcompat
-        implementation libs.androidx.recyclerview
-        implementation libs.androidx.constraintlayout
         implementation libs.androidx.multidex
-        implementation libs.androidx.material
         implementation libs.androidx.exifinterface
-
-        implementation libs.androidx.room.runtime
-        implementation libs.androidx.room.ktx
         implementation libs.coroutines.core
         implementation libs.coroutines.android
-        implementation libs.hilt.android
         implementation libs.toaster
-        implementation libs.brvah
         implementation libs.immersionbar
 
         implementation libs.tencent.mmkv
@@ -125,21 +123,9 @@ dependencies {
         implementation libs.xcrash
         implementation libs.refresh.header
         implementation libs.refresh.layout
-        implementation libs.arouter.api
         implementation libs.backgroundx
         implementation libs.eventbus
         implementation libs.phoenix
         implementation libs.permissions
-    } else {
-        kapt libs.hilt.compiler
-        kapt libs.arouter.compiler
-
-        implementation libs.androidx.appcompat
-        implementation libs.androidx.constraintlayout
-        implementation libs.androidx.material
-        implementation libs.androidx.recyclerview
-        implementation libs.brvah
-        implementation libs.hilt.android
-        implementation libs.arouter.api
     }
 }
