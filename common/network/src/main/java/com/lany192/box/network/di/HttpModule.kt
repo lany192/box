@@ -4,6 +4,7 @@ import com.github.lany192.arch.network.HttpLogInterceptor
 import com.github.lany192.arch.network.ParamsInterceptor
 import com.lany192.box.network.BuildConfig
 import com.lany192.box.network.DomainInterceptor
+import com.lany192.box.network.TimeIntervalInterceptor
 import com.lany192.box.network.TokenInterceptor
 import com.lany192.box.network.data.api.ApiService
 import com.squareup.moshi.Moshi
@@ -33,6 +34,7 @@ class HttpModule {
         builder.addInterceptor(TokenInterceptor())
         builder.addInterceptor(ParamsInterceptor(HashMap<String, String>()))
         builder.addInterceptor(HttpLogInterceptor(BuildConfig.DEBUG))
+        builder.addInterceptor(TimeIntervalInterceptor())
         builder.connectTimeout(7, TimeUnit.SECONDS)
         builder.readTimeout(7, TimeUnit.SECONDS)
         builder.writeTimeout(7, TimeUnit.SECONDS)
