@@ -180,7 +180,6 @@ dependencies {
         implementation libs.oss.sdk.s33
         implementation libs.permissions
     } else {
-        kapt libs.glide.compiler
         kapt libs.hilt.compiler
         kapt libs.arouter.compiler
 
@@ -188,12 +187,7 @@ dependencies {
         implementation libs.androidx.constraintlayout
         implementation libs.androidx.material
         implementation libs.hilt.android
-        implementation libs.toaster
         implementation libs.tencent.tbs
-        implementation libs.glide
-        implementation libs.refresh.header
-        implementation libs.refresh.layout
         implementation libs.arouter.api
-        implementation libs.permissions
     }
 }

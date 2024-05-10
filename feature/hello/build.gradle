@@ -180,36 +180,13 @@ dependencies {
         implementation libs.oss.sdk.s33
         implementation libs.permissions
     } else {
-        kapt libs.glide.compiler
         kapt libs.hilt.compiler
         kapt libs.arouter.compiler
 
         implementation libs.androidx.appcompat
-        implementation libs.androidx.activity.ktx
-        implementation libs.androidx.fragment.ktx
-        implementation libs.androidx.core.ktx
-        implementation libs.androidx.lifecycle.livedata.ktx
-        implementation libs.androidx.lifecycle.viewmodel.ktx
-        implementation libs.androidx.recyclerview
         implementation libs.androidx.constraintlayout
-        implementation libs.androidx.multidex
         implementation libs.androidx.material
-        implementation libs.androidx.exifinterface
-        implementation libs.coroutines.core
-        implementation libs.coroutines.android
         implementation libs.hilt.android
-        implementation libs.toaster
-        implementation libs.brvah
-        implementation libs.immersionbar
-        implementation libs.retrofit
-        implementation libs.retrofit.moshi
-        implementation libs.retrofit.gson
-
-        implementation libs.glide
-        implementation libs.refresh.header
-        implementation libs.refresh.layout
         implementation libs.arouter.api
-        implementation libs.eventbus
-        implementation libs.permissions
     }
 }
