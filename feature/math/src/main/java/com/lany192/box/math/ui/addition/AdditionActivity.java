@@ -16,6 +16,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/math/addition")
 public class AdditionActivity extends BoxActivity<AdditionViewModel, ActivityAdditionBinding> {
+    @Override
+    public boolean hasToolbar() {
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
