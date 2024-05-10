@@ -1,4 +1,4 @@
-package com.github.lany192.login;
+package com.github.lany192.math;
 
 import static org.junit.Assert.assertEquals;
 

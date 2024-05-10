@@ -1,4 +1,4 @@
-package com.lany192.box.login;
+package com.lany192.box.math;
 
 import androidx.appcompat.app.AppCompatDelegate;
 

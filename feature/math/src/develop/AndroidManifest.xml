@@ -11,7 +11,7 @@
         <activity
             android:name=".ui.MathActivity"
             android:exported="true"
-            android:label="数学教学"
+            android:label="儿童数学"
             android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
