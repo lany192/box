@@ -39,10 +39,10 @@ dependencies {
     implementation libs.androidx.fragment.ktx
     implementation libs.gson
     implementation libs.tencent.mmkv
+    implementation libs.tencent.xlog
     implementation libs.glide
     implementation libs.rxjava
     implementation libs.blur
     implementation libs.tencent.vasdolly.reader
     implementation libs.tencent.vasdolly.writer
-    implementation project(path: ':library:log')
 }

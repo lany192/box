@@ -36,8 +36,6 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation libs.androidx.material
     implementation libs.okdownload
-
-    implementation project(':library:log')
     implementation project(':library:core')
     implementation project(':library:view')
     implementation project(':library:dialog')

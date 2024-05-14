@@ -100,8 +100,6 @@ dependencies {
 
     implementation project(path: ':library:cropper')
 
-    implementation project(path: ':library:log')
-
     if (isModule.toBoolean()) {
         kapt libs.glide.compiler
         kapt libs.androidx.room.compiler

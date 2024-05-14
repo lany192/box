@@ -55,5 +55,4 @@ dependencies {
     implementation project(path: ':library:core')
     implementation project(path: ':library:dialog')
     implementation project(path: ':library:time')
-    implementation project(path: ':library:log')
 }
