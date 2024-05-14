@@ -1,4 +1,4 @@
-package com.github.lany192.crop;
+package com.github.lany192.cropper.crop;
 
 import static javax.microedition.khronos.egl.EGL10.EGL_ALPHA_SIZE;
 import static javax.microedition.khronos.egl.EGL10.EGL_BLUE_SIZE;

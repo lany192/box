@@ -1,4 +1,4 @@
-package com.github.lany192.crop;
+package com.github.lany192.cropper.crop;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -23,6 +23,8 @@ import android.view.ScaleGestureDetector;
 import android.view.ViewConfiguration;
 
 import androidx.appcompat.widget.AppCompatImageView;
+
+import com.github.lany192.cropper.R;
 
 import java.io.File;
 

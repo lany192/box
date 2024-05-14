@@ -1,4 +1,4 @@
-package com.github.lany192.crop;
+package com.github.lany192.cropper.crop;
 
 
 public class Cubic implements Easing {

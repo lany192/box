@@ -1,4 +1,4 @@
-package com.github.lany192.crop;
+package com.github.lany192.cropper.crop;
 
 public interface Easing {
     double easeOut(double var1, double var3, double var5, double var7);

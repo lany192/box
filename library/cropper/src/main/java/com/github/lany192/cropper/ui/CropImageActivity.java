@@ -2,6 +2,7 @@
 
 package com.github.lany192.cropper.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
@@ -31,6 +32,15 @@ public class CropImageActivity extends AppCompatActivity implements OnSetImageUr
     private CropImageView mCropImageView;
     private CropOptions mOptions;
     private final String TAG = getClass().getSimpleName();
+
+    public static Intent getIntent(Context context, Uri uri, CropOptions options) {
+        Intent intent = new Intent(context, CropImageActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(CropImage.CROP_IMAGE_EXTRA_SOURCE, uri);
+        bundle.putParcelable(CropImage.CROP_IMAGE_EXTRA_OPTIONS, options);
+        intent.putExtra(CropImage.CROP_IMAGE_EXTRA_BUNDLE, bundle);
+        return intent;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
