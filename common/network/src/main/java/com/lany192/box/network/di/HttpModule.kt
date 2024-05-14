@@ -1,7 +1,6 @@
 package com.lany192.box.network.di
 
 import com.github.lany192.arch.network.HttpLogInterceptor
-import com.github.lany192.arch.network.ParamsInterceptor
 import com.lany192.box.network.BuildConfig
 import com.lany192.box.network.interceptor.DomainInterceptor
 import com.lany192.box.network.interceptor.TimeIntervalInterceptor
@@ -31,7 +30,6 @@ class HttpModule {
         builder.retryOnConnectionFailure(true)
         builder.addInterceptor(DomainInterceptor())
         builder.addInterceptor(HeaderInterceptor())
-        builder.addInterceptor(ParamsInterceptor(HashMap<String, String>()))
         builder.addInterceptor(HttpLogInterceptor(BuildConfig.DEBUG))
         builder.addInterceptor(TimeIntervalInterceptor())
         builder.connectTimeout(7, TimeUnit.SECONDS)
