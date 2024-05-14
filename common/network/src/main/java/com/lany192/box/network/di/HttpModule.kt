@@ -3,9 +3,10 @@ package com.lany192.box.network.di
 import com.github.lany192.arch.network.HttpLogInterceptor
 import com.github.lany192.arch.network.ParamsInterceptor
 import com.lany192.box.network.BuildConfig
-import com.lany192.box.network.DomainInterceptor
-import com.lany192.box.network.TimeIntervalInterceptor
-import com.lany192.box.network.TokenInterceptor
+import com.lany192.box.network.interceptor.DomainInterceptor
+import com.lany192.box.network.interceptor.TimeIntervalInterceptor
+import com.lany192.box.network.interceptor.TokenInterceptor
+import com.lany192.box.network.interceptor.UserAgentInterceptor
 import com.lany192.box.network.data.api.ApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -19,7 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-import javax.net.ssl.SSLSession
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -31,6 +31,7 @@ class HttpModule {
         val builder = OkHttpClient.Builder()
         builder.retryOnConnectionFailure(true)
         builder.addInterceptor(DomainInterceptor())
+        builder.addInterceptor(UserAgentInterceptor())
         builder.addInterceptor(TokenInterceptor())
         builder.addInterceptor(ParamsInterceptor(HashMap<String, String>()))
         builder.addInterceptor(HttpLogInterceptor(BuildConfig.DEBUG))

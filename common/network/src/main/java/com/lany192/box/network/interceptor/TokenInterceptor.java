@@ -1,4 +1,4 @@
-package com.lany192.box.network;
+package com.lany192.box.network.interceptor;
 
 import androidx.annotation.NonNull;
 
