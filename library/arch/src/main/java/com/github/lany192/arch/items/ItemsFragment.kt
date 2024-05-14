@@ -44,7 +44,7 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
     }
 
     open fun getSpanCount(): Int {
-        return 2;
+        return 2
     }
 
     override fun init() {

@@ -42,7 +42,7 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
     }
 
     open fun getSpanCount(): Int {
-        return 2;
+        return 2
     }
 
     fun addOnScrollListener(listener: RecyclerView.OnScrollListener) {
@@ -62,7 +62,7 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         if (viewModel.refreshEnable()) {
             getRefreshLayout().setOnRefreshListener {
                 viewModel.onRefresh()
-            };
+            }
         }
         //列表状态观察
         viewModel.listState.observe(this) {
