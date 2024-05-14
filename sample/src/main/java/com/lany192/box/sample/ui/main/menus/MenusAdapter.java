@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.alibaba.android.arouter.MathRouter;
 import com.alibaba.android.arouter.SampleRouter;
 import com.github.lany192.arch.adapter.BindingAdapter;
+import com.github.lany192.arch.utils.DeviceId;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.toolkit.BoxToolKit;
 import com.github.lany192.utils.ChannelUtils;
@@ -58,7 +59,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 9) {
             MathRouter.startMath();
         } else if (position == 10) {
-            test5();
+            Toaster.show(DeviceId.get().getDeviceId());
         }
     }
 
