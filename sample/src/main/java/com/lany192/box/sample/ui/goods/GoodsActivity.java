@@ -42,7 +42,7 @@ public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getRecyclerView().addOnScrollListener(new RecyclerView.OnScrollListener() {
+        addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
