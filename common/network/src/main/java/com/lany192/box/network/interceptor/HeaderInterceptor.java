@@ -48,10 +48,6 @@ public class HeaderInterceptor implements Interceptor {
         builder.append(Build.BOOTLOADER);
         builder.append(";");
         builder.append(PhoneUtils.getScreenInfo());//分辨率
-        builder.append(";");
-        builder.append(PhoneUtils.getOSVersionCode());
-        builder.append(";");
-        builder.append(PhoneUtils.getAppVersionCode());
         builder.append(")");
         return builder.toString();
     }
