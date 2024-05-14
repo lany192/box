@@ -23,10 +23,6 @@ public class LogUtils {
         //日志等级
         int level = debug ? Xlog.LEVEL_VERBOSE : Xlog.LEVEL_INFO;
 
-        //init xlog
-        Xlog xlog = new Xlog();
-        Log.setLogImp(xlog);
-
         //是否控制台打印
         Log.setConsoleLogOpen(debug);
 
@@ -34,6 +30,9 @@ public class LogUtils {
 
         Log.i("Xlog", "日志debug:" + debug);
         Log.i("Xlog", "日志储存路径:" + logPath);
+        //init xlog
+        Xlog xlog = new Xlog();
+        Log.setLogImp(xlog);
     }
 
     public static XLog tag(String tag) {
