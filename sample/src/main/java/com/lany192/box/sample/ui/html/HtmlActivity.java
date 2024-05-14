@@ -29,7 +29,7 @@ public class HtmlActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("测试html");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
