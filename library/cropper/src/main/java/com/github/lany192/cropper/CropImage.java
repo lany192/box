@@ -18,8 +18,6 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 
-import com.github.lany192.cropper.ui.CropImageActivity;
-
 import java.io.File;
 import java.io.InputStream;
 

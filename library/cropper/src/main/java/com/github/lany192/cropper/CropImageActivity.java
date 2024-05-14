@@ -1,6 +1,6 @@
 
 
-package com.github.lany192.cropper.ui;
+package com.github.lany192.cropper;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +17,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.github.lany192.cropper.CropImage;
-import com.github.lany192.cropper.R;
 import com.github.lany192.cropper.entity.CropOptions;
 import com.github.lany192.cropper.entity.CropResult;
 import com.github.lany192.cropper.listeners.OnCropImageCompleteListener;

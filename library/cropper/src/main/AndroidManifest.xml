@@ -3,7 +3,7 @@
     <application>
 
         <activity
-            android:name="com.github.lany192.cropper.ui.CropImageActivity"
+            android:name="com.github.lany192.cropper.CropImageActivity"
             android:exported="true"
             android:theme="@style/CropperTheme" />
 

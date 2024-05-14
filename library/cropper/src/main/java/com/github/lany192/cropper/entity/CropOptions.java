@@ -17,7 +17,7 @@ import com.github.lany192.cropper.enums.CropShape;
 import com.github.lany192.cropper.enums.Guidelines;
 import com.github.lany192.cropper.enums.RequestSizeOptions;
 import com.github.lany192.cropper.enums.ScaleType;
-import com.github.lany192.cropper.ui.CropImageActivity;
+import com.github.lany192.cropper.CropImageActivity;
 
 public class CropOptions implements Parcelable {
 
