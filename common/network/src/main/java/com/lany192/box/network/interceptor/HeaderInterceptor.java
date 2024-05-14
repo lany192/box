@@ -25,8 +25,8 @@ public class HeaderInterceptor implements Interceptor {
         builder.addHeader(UA_NAME, getUserAgent());
         builder.addHeader("deviceId", DeviceId.get().getDeviceId());
         builder.addHeader("version", "1.0.0");
-        builder.addHeader("token", "");
-        builder.addHeader("uid", "");
+        builder.addHeader("token", "xxxxxx");
+        builder.addHeader("uid", String.valueOf(0));
         return chain.proceed(builder.build());
     }
 
