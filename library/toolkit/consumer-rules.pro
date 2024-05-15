@@ -1,0 +1,1 @@
+-keep public class com.github.lany192.toolkit.**{*;}

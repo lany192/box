@@ -140,12 +140,15 @@ dependencies {
     implementation project(path: ':library:update')
     implementation project(path: ':library:time')
     implementation project(path: ':library:toolkit')
+    implementation project(path: ':library:blackbox')
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
     implementation project(path: ':library:cropper')
     implementation project(path: ':library:video')
+
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
+
     implementation project(path: ':feature:browser')
     implementation project(path: ':feature:hello')
     implementation project(path: ':feature:login')

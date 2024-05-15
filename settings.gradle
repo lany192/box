@@ -44,6 +44,7 @@ include ':library:html'
 include ':library:cropper'
 include ':library:video'
 include ':library:toolkit'
+include ':library:blackbox'
 
 include ':common:network'
 include ':common:router'
