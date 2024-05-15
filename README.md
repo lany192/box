@@ -27,14 +27,15 @@
         implementation 'com.github.lany192.box:arch:master-SNAPSHOT'
         implementation 'com.github.lany192.box:view:master-SNAPSHOT'
         implementation 'com.github.lany192.box:core:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:log:master-SNAPSHOT'
         implementation 'com.github.lany192.box:dialog:master-SNAPSHOT'
         implementation 'com.github.lany192.box:update:master-SNAPSHOT'
         implementation 'com.github.lany192.box:time:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:crop:master-SNAPSHOT'
         implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
         implementation 'com.github.lany192.box:html:master-SNAPSHOT'
         implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:toolkit:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:blackbox:master-SNAPSHOT'
+        implementation 'com.github.lany192.box:video:master-SNAPSHOT'
 	}
 
 ## 初始化
