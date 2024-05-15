@@ -6,7 +6,7 @@ public class BoxToolKit {
         System.loadLibrary("toolkit");
     }
 
-    public static native String stringFromJNI();
+    public static native String getMMKVKey();
 
     /**
      * 不需要触发合规提示的获取进程名称方式

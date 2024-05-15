@@ -37,6 +37,7 @@ dependencies {
     implementation project(':library:core')
     implementation project(':library:view')
     implementation project(':library:dialog')
+    implementation project(':library:toolkit')
 
     implementation libs.androidx.appcompat
     implementation libs.androidx.activity.ktx

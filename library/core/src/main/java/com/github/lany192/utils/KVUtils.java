@@ -16,7 +16,7 @@ public final class KVUtils {
     /**
      * 秘钥,配置默认秘钥，可修改
      */
-    private static String cryptKey = "sdfs@fg#ghfg7sdfs22A!wWdf";
+    private static String mmkvCryptKey = "";
 
     private KVUtils() {
     }
@@ -24,7 +24,8 @@ public final class KVUtils {
     /**
      * 初始化
      */
-    public static void init(Context context) {
+    public static void init(Context context, String cryptKey) {
+        mmkvCryptKey = cryptKey;
         MMKV.initialize(context);
     }
 
@@ -35,13 +36,6 @@ public final class KVUtils {
         MMKV.setLogLevel(level);
     }
 
-    /**
-     * 开启加密
-     */
-    public static void setCryptKey(String key) {
-        cryptKey = key;
-    }
-
     private static MMKV getMMKV() {
         return getMMKV(null);
     }
@@ -49,9 +43,9 @@ public final class KVUtils {
     private static MMKV getMMKV(String mapId) {
         MMKV mmkv;
         if (TextUtils.isEmpty(mapId)) {
-            mmkv = MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE, cryptKey);
+            mmkv = MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE, mmkvCryptKey);
         } else {
-            mmkv = MMKV.mmkvWithID(mapId, MMKV.MULTI_PROCESS_MODE, cryptKey);
+            mmkv = MMKV.mmkvWithID(mapId, MMKV.MULTI_PROCESS_MODE, mmkvCryptKey);
         }
         return mmkv;
     }

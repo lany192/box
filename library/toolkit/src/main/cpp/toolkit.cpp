@@ -8,10 +8,10 @@
 using namespace std;
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_github_lany192_toolkit_BoxToolKit_stringFromJNI(
+Java_com_github_lany192_toolkit_BoxToolKit_getMMKVKey(
         JNIEnv *env,
         jclass clazz) {
-    std::string hello = "Hello from C++";
+    std::string hello = "sdfs@fg#ghfg7sdfs22A!wWdf";
     return env->NewStringUTF(hello.c_str());
 }
 
