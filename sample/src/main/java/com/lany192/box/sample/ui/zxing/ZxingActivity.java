@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.VBActivity;
 import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
 import com.google.zxing.BarcodeFormat;
@@ -24,6 +25,10 @@ import org.apache.commons.lang3.RandomUtils;
 
 import java.util.concurrent.Executors;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+@Route(path = "/ui/zxing")
 public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefaultBinding> {
     public static final int REQUEST_CODE_SCAN = 0x01;
     public static final int REQUEST_CODE_PHOTO = 0x02;

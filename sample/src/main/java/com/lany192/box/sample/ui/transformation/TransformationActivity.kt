@@ -3,12 +3,16 @@ package com.lany192.box.sample.ui.transformation
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.VBActivity
 import com.github.lany192.arch.databinding.ToolbarDefaultBinding
 import com.lany192.box.sample.databinding.ActivityTransformationBinding
 import com.lany192.box.sample.ui.transformation.recycler.PosterAdapter
 import com.lany192.box.sample.ui.transformation.recycler.PosterMenuAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@Route(path = "/ui/transformation")
+@AndroidEntryPoint
 class TransformationActivity : VBActivity<ActivityTransformationBinding, ToolbarDefaultBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

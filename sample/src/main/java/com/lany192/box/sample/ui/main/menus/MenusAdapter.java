@@ -1,6 +1,5 @@
 package com.lany192.box.sample.ui.main.menus;
 
-import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -14,8 +13,6 @@ import com.github.lany192.toolkit.BoxToolKit;
 import com.github.lany192.utils.ChannelUtils;
 import com.hjq.toast.Toaster;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
-import com.lany192.box.sample.ui.transformation.TransformationActivity;
-import com.lany192.box.sample.ui.zxing.ZxingActivity;
 import com.scottyab.rootbeer.RootBeer;
 
 import java.util.List;
@@ -53,13 +50,15 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
             String channel = ChannelUtils.getChannelByPath(path);
             Toaster.show("渠道信息：" + channel);
         } else if (position == 7) {
-            getContext().startActivity(new Intent(getContext(), ZxingActivity.class));
+            SampleRouter.startZxing();
         } else if (position == 8) {
-            getContext().startActivity(new Intent(getContext(), TransformationActivity.class));
+            SampleRouter.startTransformation();
         } else if (position == 9) {
             MathRouter.startMath();
         } else if (position == 10) {
             Toaster.show(DeviceId.get().getDeviceId());
+        } else if (position == 11) {
+            SampleRouter.startEncrypt();
         }
     }
 

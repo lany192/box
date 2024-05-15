@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.encrypt.EncryptActivity"
+            android:exported="false"
+            android:label="加密解密"
+            android:screenOrientation="nosensor" />
+        <activity
             android:name=".ui.zxing.ZxingActivity"
             android:exported="false"
             android:label="Zxing测试"
@@ -88,26 +93,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.zxing.FullScreenQRCodeScanActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CameraScanTheme"/>
-
+            android:theme="@style/CameraScanTheme" />
         <activity
             android:name=".ui.zxing.MultiFormatScanActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CameraScanTheme"/>
-
+            android:theme="@style/CameraScanTheme" />
         <activity
             android:name=".ui.zxing.QRCodeScanActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CameraScanTheme"/>
-
+            android:theme="@style/CameraScanTheme" />
         <activity
             android:name=".ui.transformation.TransformationActivity"
             android:launchMode="singleTop" />
-
         <activity
             android:name=".ui.transformation.TransformationDetailActivity"
             android:launchMode="singleTop" />
