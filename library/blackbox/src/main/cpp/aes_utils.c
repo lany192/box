@@ -10,7 +10,7 @@
 #define BLOCKLEN 16
 
 
-// key: goodl-aes-key123
+// key: lanyy-aes-key168
 static const uint8_t *getKey() {
     _JUNK_FUN_0
     const int len = 16;
@@ -18,11 +18,11 @@ static const uint8_t *getKey() {
 
     for (int i = 0; i < len; ++i) {
         switch (i) {
-            case 0:  src[i] = 'g'; break;
-            case 1:  src[i] = 'o'; break;
-            case 2:  src[i] = 'o'; _JUNK_FUN_1 break;
-            case 3:  src[i] = 'd'; break;
-            case 4:  src[i] = 'l'; break;
+            case 0:  src[i] = 'l'; break;
+            case 1:  src[i] = 'a'; break;
+            case 2:  src[i] = 'n'; _JUNK_FUN_1 break;
+            case 3:  src[i] = 'y'; break;
+            case 4:  src[i] = 'y'; break;
             case 5:  src[i] = '-'; break;
             case 6:  src[i] = 'a'; break;
             case 7:  src[i] = 'e'; break;
@@ -32,8 +32,8 @@ static const uint8_t *getKey() {
             case 11: src[i] = 'e'; break;
             case 12: src[i] = 'y'; break;
             case 13: src[i] = '1'; break;
-            case 14: src[i] = '2'; break;
-            case 15: src[i] = '3'; break;
+            case 14: src[i] = '6'; break;
+            case 15: src[i] = '8'; break;
         }
     }
     src[len] = '\0';
@@ -41,7 +41,7 @@ static const uint8_t *getKey() {
     return src;
 }
 
-// iv: goodl-aes-iv1234
+// iv: lanyy-aes-iv6666
 static const uint8_t *getIV() {
     const int len = 16;
     _JUNK_FUN_2
@@ -49,11 +49,11 @@ static const uint8_t *getIV() {
 
     for (int i = 0; i < len; ++i) {
         switch (i) {
-            case 0:  src[i] = 'g'; _JUNK_FUN_0 break;
-            case 1:  src[i] = 'o'; break;
-            case 2:  src[i] = 'o'; break;
-            case 3:  src[i] = 'd'; break;
-            case 4:  src[i] = 'l'; break;
+            case 0:  src[i] = 'l'; _JUNK_FUN_0 break;
+            case 1:  src[i] = 'a'; break;
+            case 2:  src[i] = 'n'; break;
+            case 3:  src[i] = 'y'; break;
+            case 4:  src[i] = 'y'; break;
             case 5:  src[i] = '-'; break;
             case 6:  src[i] = 'a'; break;
             case 7:  src[i] = 'e'; break;
@@ -61,10 +61,10 @@ static const uint8_t *getIV() {
             case 9:  src[i] = '-'; break;
             case 10: src[i] = 'i'; break;
             case 11: src[i] = 'v'; _JUNK_FUN_3 break;
-            case 12: src[i] = '1'; break;
-            case 13: src[i] = '2'; break;
-            case 14: src[i] = '3'; break;
-            case 15: src[i] = '4'; break;
+            case 12: src[i] = '6'; break;
+            case 13: src[i] = '6'; break;
+            case 14: src[i] = '6'; break;
+            case 15: src[i] = '6'; break;
         }
     }
     src[len] = '\0';
