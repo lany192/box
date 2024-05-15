@@ -133,7 +133,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun initImmersionBar(): ImmersionBar {
-        return BarUtils.init(this)
+        return BarUtils.init(this).keyboardEnable(true)
     }
 
     @ColorInt
