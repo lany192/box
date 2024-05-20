@@ -22,7 +22,7 @@ public class HelloApp extends BoxApplication {
         registerActivityLifecycleCallbacks(new ActivityLifecycle());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         initARouter();
-        Toaster.show("开发模式");
+        Toaster.show("开发模式hello");
     }
 
     @Override

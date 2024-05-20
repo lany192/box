@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alibaba.android.arouter.BrowserRouter;
 import com.lany192.box.browser.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
-        binding.button.setOnClickListener(v -> BrowserRouter.startBrowser("百度一下", "https://www.baidu.com"));
+        binding.button.setOnClickListener(v -> BrowserRouter.start("百度一下", "https://www.baidu.com"));
     }
 }

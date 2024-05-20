@@ -1,4 +1,8 @@
-if (isModule.toBoolean()) {
+// 是否是单模块运行
+def isSingleRun() {
+    return current_run_module.contains(project.getName())
+}
+if (isSingleRun()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -26,7 +30,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        if (isModule.toBoolean()) {
+        if (isSingleRun()) {
             applicationId namespace
             versionCode apk.versionCode
             versionName apk.versionName
@@ -39,7 +43,7 @@ android {
 
     sourceSets {
         main {
-            if (isModule.toBoolean()) {
+            if (isSingleRun()) {
                 java.srcDirs = ['src/main/java', 'src/develop/java']
                 res.srcDirs = ['src/main/res', 'src/develop/res']
                 manifest.srcFile 'src/develop/AndroidManifest.xml'
@@ -105,7 +109,11 @@ dependencies {
     implementation libs.hilt.android
     implementation libs.arouter
 
-    if (isModule.toBoolean()) {
+    if (isSingleRun()) {
+        implementation project(path: ':feature:browser')
+        implementation project(path: ':feature:hello')
+        implementation project(path: ':feature:math')
+
         kapt libs.glide.compiler
 
         implementation libs.androidx.activity.ktx
