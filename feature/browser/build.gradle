@@ -1,6 +1,6 @@
 // 是否是单模块运行
 def isSingleRun() {
-    return current_run_module.contains(project.getName())
+    return runing_module == project.getName()
 }
 
 if (isSingleRun()) {
