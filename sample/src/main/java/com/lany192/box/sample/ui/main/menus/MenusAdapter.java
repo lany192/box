@@ -4,15 +4,18 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.alibaba.android.arouter.MathRouter;
-import com.alibaba.android.arouter.SampleRouter;
 import com.github.lany192.arch.adapter.BindingAdapter;
 import com.github.lany192.arch.utils.DeviceId;
 import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.toolkit.BoxToolKit;
 import com.github.lany192.utils.ChannelUtils;
 import com.hjq.toast.Toaster;
+import com.lany192.box.math.ui.MathRouter;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
+import com.lany192.box.sample.ui.encrypt.EncryptRouter;
+import com.lany192.box.sample.ui.html.HtmlRouter;
+import com.lany192.box.sample.ui.transformation.TransformationRouter;
+import com.lany192.box.sample.ui.zxing.ZxingRouter;
 import com.scottyab.rootbeer.RootBeer;
 
 import java.util.List;
@@ -40,7 +43,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 3) {
             Toaster.show("是否是模拟器：" + BoxToolKit.isEmulator());
         } else if (position == 4) {
-            SampleRouter.startHtml();
+            HtmlRouter.start();
         } else if (position == 5) {
             String channelApkPath = ChannelUtils.getChannelApkPath(getContext(), "hello");
             Log.i("测试", "apkPath: " + channelApkPath);
@@ -50,15 +53,15 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
             String channel = ChannelUtils.getChannelByPath(path);
             Toaster.show("渠道信息：" + channel);
         } else if (position == 7) {
-            SampleRouter.startZxing();
+            ZxingRouter.start();
         } else if (position == 8) {
-            SampleRouter.startTransformation();
+            TransformationRouter.start();
         } else if (position == 9) {
-            MathRouter.startMath();
+            MathRouter.start();
         } else if (position == 10) {
             Toaster.show(DeviceId.get().getDeviceId());
         } else if (position == 11) {
-            SampleRouter.startEncrypt();
+            EncryptRouter.start();
         }
     }
 

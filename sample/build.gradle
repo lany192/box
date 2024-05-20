@@ -1,25 +1,13 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.github.lany192.router'
     id 'dagger.hilt.android.plugin'
-//    id 'bytex'
-//    id 'LancetX'
 }
 
-//ByteX {
-//    enable true
-//    enableInDebug false
-//    logLevel "DEBUG"
-//}
-//
-//
-//LancetX {
-//    enable true
-//    enableInDebug true
-//
-//}
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -117,14 +105,18 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-    kapt libs.glide.compiler
-    kapt libs.androidx.room.compiler
-    kapt libs.hilt.compiler
-    kapt libs.arouter.compiler
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
+    kapt libs.glide.compiler
+    kapt libs.androidx.room.compiler
+    kapt libs.hilt.compiler
+
+
+    implementation libs.arouter
+    kapt libs.arouter.compiler
+
 
     //https://github.com/Knight-ZXW/LancetX
     compileOnly 'io.github.knight-zxw:lancet-runtime:0.0.7'
@@ -201,7 +193,7 @@ dependencies {
     implementation libs.xcrash
     implementation libs.refresh.header
     implementation libs.refresh.layout
-    implementation libs.arouter.api
+
     implementation libs.backgroundx
     implementation libs.kluban
     implementation libs.luban

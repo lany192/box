@@ -2,9 +2,12 @@ package com.lany192.box.math.ui;
 
 import androidx.annotation.NonNull;
 
-import com.alibaba.android.arouter.MathRouter;
 import com.github.lany192.arch.adapter.BindingAdapter;
 import com.lany192.box.math.databinding.ItemMathBinding;
+import com.lany192.box.math.ui.addition.AdditionRouter;
+import com.lany192.box.math.ui.division.DivisionRouter;
+import com.lany192.box.math.ui.multiplication.MultiplicationRouter;
+import com.lany192.box.math.ui.subtraction.SubtractionRouter;
 
 import java.util.List;
 
@@ -22,13 +25,13 @@ public class MenuAdapter extends BindingAdapter<String, ItemMathBinding> {
     @Override
     public void onItemClicked(@NonNull ItemMathBinding binding, @NonNull String item, int position) {
         if (position == 0) {
-            MathRouter.startAddition();
+            AdditionRouter.start();
         } else if (position == 1) {
-            MathRouter.startSubtraction();
+            SubtractionRouter.start();
         } else if (position == 2) {
-            MathRouter.startMultiplication();
+            MultiplicationRouter.start();
         } else if (position == 3) {
-            MathRouter.startDivision();
+            DivisionRouter.start();
         }
     }
 }

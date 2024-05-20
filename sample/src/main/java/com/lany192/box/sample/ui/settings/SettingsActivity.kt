@@ -3,7 +3,6 @@ package com.lany192.box.sample.ui.settings
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
@@ -16,6 +15,7 @@ import com.hjq.toast.Toaster
 import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.ActivitySettingsBinding
+import com.lany192.box.sample.ui.settings.about.AboutRouter
 import com.lany192.box.sample.ui.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import moe.feng.alipay.zerosdk.AlipayZeroSdk
@@ -45,7 +45,7 @@ class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>
         binding.noticeView.setOnClickListener {
             browserProvider.startBrowser("百度也不知道", "https://www.baidu.com")
         }
-        binding.aboutView.setOnClickListener { SampleRouter.startAbout() }
+        binding.aboutView.setOnClickListener { AboutRouter.start() }
     }
 
     private fun showCacheDialog() {

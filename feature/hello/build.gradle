@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'com.alibaba.arouter'
+apply plugin: 'com.github.lany192.router'
 
 kapt {
     arguments {
@@ -153,7 +153,7 @@ dependencies {
         implementation libs.xcrash
         implementation libs.refresh.header
         implementation libs.refresh.layout
-        implementation libs.arouter.api
+        implementation libs.arouter
         implementation libs.backgroundx
         implementation libs.kluban
         implementation libs.luban
@@ -184,6 +184,6 @@ dependencies {
         implementation libs.androidx.constraintlayout
         implementation libs.androidx.material
         implementation libs.hilt.android
-        implementation libs.arouter.api
+        implementation libs.arouter
     }
 }

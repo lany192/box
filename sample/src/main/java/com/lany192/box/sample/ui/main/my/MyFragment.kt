@@ -1,6 +1,5 @@
 package com.lany192.box.sample.ui.main.my
 
-import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.fragment.VMVBFragment
@@ -16,7 +15,11 @@ import com.lany192.box.router.provider.HelloProvider
 import com.lany192.box.router.provider.LoginProvider
 import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.FragmentMyBinding
+import com.lany192.box.sample.ui.download.DownloadRouter
+import com.lany192.box.sample.ui.goods.GoodsRouter
+import com.lany192.box.sample.ui.settings.SettingsRouter
 import com.lany192.box.sample.ui.user.UserViewModel
+import com.lany192.box.sample.ui.video.VideoRouter
 import dagger.hilt.android.AndroidEntryPoint
 import github.leavesczy.matisse.GlideImageEngine
 import github.leavesczy.matisse.Matisse
@@ -71,16 +74,16 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         super.init()
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> binding.testView.hint(userInfo.name) }
-        binding.downloadView.setOnClickListener { SampleRouter.startDownload() }
+        binding.downloadView.setOnClickListener { DownloadRouter.start() }
         binding.dialogView.setOnClickListener { showDialog() }
         binding.loginView.setOnClickListener {
             loginProvider.startLogin()
         }
-        binding.settingsView.setOnClickListener { SampleRouter.startSettings() }
+        binding.settingsView.setOnClickListener { SettingsRouter.start() }
         binding.helloView.setOnClickListener {
             helloProvider.startHello()
         }
-        binding.goods.setOnClickListener { SampleRouter.startGoods() }
+        binding.goods.setOnClickListener { GoodsRouter.start() }
         binding.dialog2View.setOnClickListener { showDialog2() }
         binding.birthday.setOnClickListener {
             BirthdayDialog(LocalDate.of(2001, 1, 2)).show()
@@ -105,7 +108,7 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.photoPicker.setOnClickListener {
             takePictureLauncher.launch(MatisseCapture(captureStrategy = MediaStoreCaptureStrategy()))
         }
-        binding.video.setOnClickListener { SampleRouter.startVideo() }
+        binding.video.setOnClickListener { VideoRouter.start() }
         binding.test1.setOnClickListener {
             helloProvider.startHello()
         }

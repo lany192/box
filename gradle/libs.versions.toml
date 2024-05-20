@@ -58,7 +58,7 @@ touchimageview = "3.6" #图片缩放控件 https://github.com/MikeOrtiz/TouchIma
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 leakcanary = "2.14"
 okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
-router = "2.0.2"
+router = "2.0.8" #https://github.com/lany192/app-router
 kotlin = "1.8.20"
 rootbeer = "0.1.0" #https://github.com/scottyab/rootbeer
 blur = "b636349" #https://github.com/android/renderscript-intrinsics-replacement-toolkit
@@ -95,8 +95,11 @@ androidx-startup-runtime = { module = "androidx.startup:startup-runtime", versio
 androidx-material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCoreVersion" }
 androidx-test-ext-junit2 = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJunit" }
-arouter-compiler = { module = "com.github.lany192.app-router:arouter-compiler", version.ref = "okdownload" }
+
+arouter = { module = "com.github.lany192.app-router:arouter", version.ref = "router" }
+arouter-compiler = { module = "com.github.lany192.app-router:arouter-compiler", version.ref = "router" }
 arouter-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "router" }
+
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
 glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glideCompose" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
@@ -109,7 +112,6 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
 permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "permissions" }
 backgroundx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "backgroundx" }
-arouter-api = { module = "com.github.lany192.app-router:arouter-api", version.ref = "router" }
 phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
 html-spanner = { module = "com.github.NightWhistler:HtmlSpanner", version.ref = "htmlspanner" }
 tencent-tbs = { module = "com.tencent.tbs:tbssdk", version.ref = "tbssdk" }

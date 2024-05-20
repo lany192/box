@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MenuItem
 import androidx.viewpager2.widget.ViewPager2
-import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.log.LogUtils
-import com.github.lany192.video.JZMediaExo
 import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.ActivityMainBinding
+import com.lany192.box.sample.ui.main.discover.DiscoverBuilder
+import com.lany192.box.sample.ui.main.index.IndexBuilder
+import com.lany192.box.sample.ui.main.menus.MenusBuilder
+import com.lany192.box.sample.ui.main.message.MessageBuilder
+import com.lany192.box.sample.ui.main.my.MyBuilder
 import com.lany192.box.sample.ui.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,11 +38,11 @@ class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> Toaster.show("首页：" + userInfo.name) }
         val items = mutableListOf<TabItem>()
-        items.add(TabItem("测试", SampleRouter.getMenus()))
-        items.add(TabItem("首页", SampleRouter.getIndex()))
-        items.add(TabItem("发现", SampleRouter.getDiscover()))
-        items.add(TabItem("消息", SampleRouter.getMessage()))
-        items.add(TabItem("我的", SampleRouter.getMy()))
+        items.add(TabItem("测试", MenusBuilder.getFragment()))
+        items.add(TabItem("首页", IndexBuilder.getFragment()))
+        items.add(TabItem("发现", DiscoverBuilder.getFragment()))
+        items.add(TabItem("消息", MessageBuilder.getFragment()))
+        items.add(TabItem("我的", MyBuilder.getFragment()))
         binding.viewpager.isUserInputEnabled = false
         binding.viewpager.offscreenPageLimit = items.size
         binding.viewpager.adapter = TabAdapter(this, items)

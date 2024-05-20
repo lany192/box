@@ -31,7 +31,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation libs.androidx.appcompat
-    implementation libs.arouter.api
+    
+    implementation libs.arouter
 
     implementation project(path: ':library:core')
 }

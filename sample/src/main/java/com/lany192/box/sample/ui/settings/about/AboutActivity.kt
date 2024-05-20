@@ -3,12 +3,12 @@ package com.lany192.box.sample.ui.settings.about
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import com.alibaba.android.arouter.SampleRouter
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.BoxActivity
 import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.sample.databinding.ActivityAboutBinding
+import com.lany192.box.sample.ui.settings.feedback.FeedbackRouter
 import dagger.hilt.android.AndroidEntryPoint
 import de.psdev.licensesdialog.LicensesDialog
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20
@@ -34,7 +34,7 @@ class AboutActivity : BoxActivity<AboutViewModel, ActivityAboutBinding>() {
             browserProvider.startBrowser("用户协议", "https://www.baidu.com")
         }
         binding.feedbackView.setOnClickListener {
-            SampleRouter.startFeedback()
+            FeedbackRouter.start()
         }
     }
 
