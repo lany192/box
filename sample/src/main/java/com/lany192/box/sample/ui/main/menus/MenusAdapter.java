@@ -10,6 +10,7 @@ import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.toolkit.BoxToolKit;
 import com.github.lany192.utils.ChannelUtils;
 import com.hjq.toast.Toaster;
+import com.lany192.box.hello.ui.HelloRouter;
 import com.lany192.box.math.ui.MathRouter;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
 import com.lany192.box.sample.ui.encrypt.EncryptRouter;
@@ -62,6 +63,8 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
             Toaster.show(DeviceId.get().getDeviceId());
         } else if (position == 11) {
             EncryptRouter.start();
+        }else if (position == 12) {
+            HelloRouter.start();
         }
     }
 
