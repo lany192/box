@@ -109,10 +109,16 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
-    kapt libs.glide.compiler
-    kapt libs.androidx.room.compiler
-    kapt libs.hilt.compiler
 
+    implementation libs.glide
+    kapt libs.glide.compiler
+
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+    kapt libs.androidx.room.compiler
+
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
     implementation libs.arouter
     kapt libs.arouter.compiler
@@ -170,11 +176,10 @@ dependencies {
     implementation libs.androidx.camera.lifecycle
     implementation libs.androidx.camera.view
     implementation libs.androidx.camera.extensions
-    implementation libs.androidx.room.runtime
-    implementation libs.androidx.room.ktx
+
     implementation libs.coroutines.core
     implementation libs.coroutines.android
-    implementation libs.hilt.android
+
     implementation libs.toaster
     implementation libs.brvah
     implementation libs.immersionbar
@@ -189,7 +194,7 @@ dependencies {
     implementation libs.tencent.tbs
     implementation libs.tencent.vasdolly.reader
     implementation libs.tencent.vasdolly.writer
-    implementation libs.glide
+
     implementation libs.xcrash
     implementation libs.refresh.header
     implementation libs.refresh.layout
