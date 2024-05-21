@@ -97,19 +97,23 @@ dependencies {
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
 
+    implementation libs.hilt.android
     kapt libs.hilt.compiler
+
+    implementation libs.arouter
     kapt libs.arouter.compiler
+
+
     kapt libs.androidx.room.compiler
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
 
     implementation libs.androidx.appcompat
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.material
     implementation libs.androidx.recyclerview
     implementation libs.brvah
-    implementation libs.hilt.android
-    implementation libs.arouter
-    implementation libs.androidx.room.runtime
-    implementation libs.androidx.room.ktx
+
     implementation libs.decoration
 
     if (isSingleRun()) {

@@ -105,26 +105,35 @@ dependencies {
 
     implementation project(path: ':library:cropper')
 
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+
+    implementation libs.arouter
+    kapt libs.arouter.compiler
+
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.material
+
     if (isSingleRun()) {
         implementation project(path: ':feature:hello')
         implementation project(path: ':feature:login')
         implementation project(path: ':feature:math')
 
+        implementation libs.glide
         kapt libs.glide.compiler
-        kapt libs.androidx.room.compiler
-        kapt libs.hilt.compiler
-        kapt libs.arouter.compiler
 
-        implementation libs.androidx.appcompat
+        implementation libs.androidx.room.runtime
+        implementation libs.androidx.room.ktx
+        kapt libs.androidx.room.compiler
+
         implementation libs.androidx.activity.ktx
         implementation libs.androidx.fragment.ktx
         implementation libs.androidx.core.ktx
         implementation libs.androidx.lifecycle.livedata.ktx
         implementation libs.androidx.lifecycle.viewmodel.ktx
         implementation libs.androidx.recyclerview
-        implementation libs.androidx.constraintlayout
         implementation libs.androidx.multidex
-        implementation libs.androidx.material
         implementation libs.androidx.exifinterface
         implementation libs.androidx.paging.runtime.ktx
         implementation libs.androidx.paging.runtime
@@ -137,11 +146,10 @@ dependencies {
         implementation libs.androidx.camera.lifecycle
         implementation libs.androidx.camera.view
         implementation libs.androidx.camera.extensions
-        implementation libs.androidx.room.runtime
-        implementation libs.androidx.room.ktx
+
         implementation libs.coroutines.core
         implementation libs.coroutines.android
-        implementation libs.hilt.android
+
         implementation libs.toaster
         implementation libs.brvah
         implementation libs.immersionbar
@@ -158,11 +166,11 @@ dependencies {
         implementation libs.tencent.tbs
         implementation libs.tencent.vasdolly.reader
         implementation libs.tencent.vasdolly.writer
-        implementation libs.glide
+
         implementation libs.xcrash
         implementation libs.refresh.header
         implementation libs.refresh.layout
-        implementation libs.arouter
+
         implementation libs.backgroundx
         implementation libs.kluban
         implementation libs.luban
@@ -186,14 +194,6 @@ dependencies {
         implementation libs.oss.sdk.s33
         implementation libs.permissions
     } else {
-        kapt libs.hilt.compiler
-        kapt libs.arouter.compiler
-
-        implementation libs.androidx.appcompat
-        implementation libs.androidx.constraintlayout
-        implementation libs.androidx.material
-        implementation libs.hilt.android
         implementation libs.tencent.tbs
-        implementation libs.arouter
     }
 }

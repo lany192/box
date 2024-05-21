@@ -100,14 +100,15 @@ dependencies {
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
 
+    implementation libs.hilt.android
     kapt libs.hilt.compiler
+
+    implementation libs.arouter
     kapt libs.arouter.compiler
 
     implementation libs.androidx.appcompat
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.material
-    implementation libs.hilt.android
-    implementation libs.arouter
     implementation libs.toaster
 
     if (isSingleRun()) {
