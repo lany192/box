@@ -40,5 +40,5 @@ dependencies {
     implementation libs.toaster
     implementation libs.refresh.header
     implementation libs.refresh.layout
-    implementation project(':library:core')
+    implementation project(path: ':library:core')
 }

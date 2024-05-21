@@ -38,5 +38,5 @@ dependencies {
     implementation libs.tencent.tbs
     implementation libs.html.spanner
 
-    implementation project(':library:core')
+    implementation project(path: ':library:core')
 }

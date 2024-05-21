@@ -36,5 +36,5 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation libs.androidx.appcompat
     implementation libs.androidx.exifinterface
-    implementation project(':library:core')
+    implementation project(path: ':library:core')
 }
