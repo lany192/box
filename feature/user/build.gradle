@@ -2,6 +2,7 @@
 def isSingleRun() {
     return runing_module == project.getName()
 }
+
 if (isSingleRun()) {
     apply plugin: 'com.android.application'
 } else {
@@ -91,6 +92,7 @@ dependencies {
 
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
+
     implementation project(path: ':library:arch')
     implementation project(path: ':library:view')
     implementation project(path: ':library:core')
@@ -112,7 +114,7 @@ dependencies {
     implementation libs.androidx.material
 
     if (isSingleRun()) {
-        implementation project(path: ':feature:browser')
+        implementation project(path: ':feature:hello')
         implementation project(path: ':feature:login')
         implementation project(path: ':feature:math')
 
@@ -129,6 +131,7 @@ dependencies {
         implementation libs.androidx.lifecycle.livedata.ktx
         implementation libs.androidx.lifecycle.viewmodel.ktx
         implementation libs.androidx.recyclerview
+        implementation libs.androidx.multidex
         implementation libs.androidx.exifinterface
         implementation libs.androidx.paging.runtime.ktx
         implementation libs.androidx.paging.runtime
@@ -144,7 +147,7 @@ dependencies {
 
         implementation libs.coroutines.core
         implementation libs.coroutines.android
-        implementation libs.hilt.android
+
         implementation libs.toaster
         implementation libs.brvah
         implementation libs.immersionbar
@@ -165,6 +168,7 @@ dependencies {
         implementation libs.xcrash
         implementation libs.refresh.header
         implementation libs.refresh.layout
+
         implementation libs.backgroundx
         implementation libs.kluban
         implementation libs.luban
@@ -187,5 +191,7 @@ dependencies {
         implementation libs.oss.sdk.client
         implementation libs.oss.sdk.s33
         implementation libs.permissions
+    } else {
+        implementation libs.tencent.tbs
     }
 }

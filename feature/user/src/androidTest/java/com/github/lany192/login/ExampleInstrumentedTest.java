@@ -1,4 +1,4 @@
-package com.github.lany192.hello;
+package com.github.lany192.login;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.github.lany192.hello.test", appContext.getPackageName());
+        assertEquals("com.github.lany192.login.test", appContext.getPackageName());
     }
 }

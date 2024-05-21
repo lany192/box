@@ -1,4 +1,4 @@
-package com.lany192.box.hello;
+package com.lany192.box.browser;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -11,7 +11,7 @@ import com.lany192.box.router.lifecycle.ActivityLifecycle;
 import dagger.hilt.android.HiltAndroidApp;
 
 @HiltAndroidApp
-public class HelloApp extends BoxApplication {
+public class MyApp extends BoxApplication {
 
     @Override
     public void onCreate() {
@@ -22,7 +22,7 @@ public class HelloApp extends BoxApplication {
         registerActivityLifecycleCallbacks(new ActivityLifecycle());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         initARouter();
-        Toaster.show("开发模式hello");
+        Toaster.show("browser开发模式");
     }
 
     @Override
