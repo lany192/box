@@ -108,12 +108,14 @@ dependencies {
     implementation libs.androidx.material
     implementation libs.hilt.android
     implementation libs.arouter
+    implementation libs.toaster
 
     if (isSingleRun()) {
         implementation project(path: ':feature:browser')
         implementation project(path: ':feature:hello')
         implementation project(path: ':feature:math')
 
+        implementation libs.glide
         kapt libs.glide.compiler
 
         implementation libs.androidx.activity.ktx
@@ -129,7 +131,7 @@ dependencies {
         implementation libs.androidx.startup.runtime
         implementation libs.coroutines.core
         implementation libs.coroutines.android
-        implementation libs.toaster
+
         implementation libs.brvah
         implementation libs.immersionbar
         implementation libs.retrofit
@@ -143,7 +145,7 @@ dependencies {
         implementation libs.tencent.sonic
         implementation libs.tencent.wechat
         implementation libs.tencent.tbs
-        implementation libs.glide
+
         implementation libs.xcrash
         implementation libs.refresh.header
         implementation libs.refresh.layout
