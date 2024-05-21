@@ -18,6 +18,8 @@ public final class KVUtils {
      */
     private static String mmkvCryptKey = "";
 
+    private static MMKV defaultMMKV;
+
     private KVUtils() {
     }
 
@@ -41,13 +43,16 @@ public final class KVUtils {
     }
 
     private static MMKV getMMKV(String mapId) {
-        MMKV mmkv;
-        if (TextUtils.isEmpty(mapId)) {
-            mmkv = MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE, mmkvCryptKey);
+        if (TextUtils.isEmpty(mapId) && defaultMMKV != null) {
+            return defaultMMKV;
         } else {
-            mmkv = MMKV.mmkvWithID(mapId, MMKV.MULTI_PROCESS_MODE, mmkvCryptKey);
+            if (TextUtils.isEmpty(mapId)) {
+                defaultMMKV = MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE, mmkvCryptKey);
+                return defaultMMKV;
+            } else {
+                return MMKV.mmkvWithID(mapId, MMKV.MULTI_PROCESS_MODE, mmkvCryptKey);
+            }
         }
-        return mmkv;
     }
 
     //String Set类型---------------------------------------------------------------------------------
