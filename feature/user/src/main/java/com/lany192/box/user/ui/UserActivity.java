@@ -1,17 +1,17 @@
-package com.lany192.box.browser.ui;
+package com.lany192.box.user.ui;
 
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ContentActivity;
-import com.lany192.box.browser.databinding.ActivityBrowserBinding;
+import com.lany192.box.user.databinding.ActivityUserBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-@Route(path = "/browser/main")
-public class BrowserActivity extends ContentActivity<ActivityBrowserBinding> {
+@Route(path = "/user/main")
+public class UserActivity extends ContentActivity<ActivityUserBinding> {
     @Autowired(name = "title", desc = "标题")
     String title;
     @Autowired(name = "url", desc = "链接")

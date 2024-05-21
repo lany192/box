@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".ui.BrowserActivity"
+            android:name=".ui.UserActivity"
             android:exported="false" />
     </application>
 
