@@ -48,6 +48,7 @@ include ':library:blackbox'
 
 include ':common:network'
 include ':common:router'
+include ':common:database'
 
 include ':feature:browser'
 include ':feature:login'

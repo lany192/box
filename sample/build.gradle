@@ -146,6 +146,7 @@ dependencies {
 
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
+    implementation project(path: ':common:database')
 
     implementation project(path: ':feature:browser')
     implementation project(path: ':feature:hello')
