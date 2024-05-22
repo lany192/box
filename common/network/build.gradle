@@ -1,16 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-kapt'
 
-//kapt {
-//    arguments {
-//        arg("AROUTER_MODULE_NAME", project.getName())
-//    }
-//}
 android {
     namespace apk.appId + '.' + project.getName()
     compileSdk apk.compileSdkVersion
