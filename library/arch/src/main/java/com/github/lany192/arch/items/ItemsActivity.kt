@@ -17,7 +17,9 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
 
     abstract fun getRecyclerView(): RecyclerView
 
-    private lateinit var layoutManager: RecyclerView.LayoutManager
+    protected lateinit var layoutManager: RecyclerView.LayoutManager
+
+    protected lateinit var recyclerView: RecyclerView
 
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
         MultiAdapter(mutableListOf())
@@ -37,23 +39,20 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         return layoutManager
     }
 
-    fun getLayoutManager(): RecyclerView.LayoutManager {
-        return layoutManager
-    }
-
     open fun getSpanCount(): Int {
         return 2
     }
 
     fun addOnScrollListener(listener: RecyclerView.OnScrollListener) {
-        getRecyclerView().addOnScrollListener(listener)
+        recyclerView.addOnScrollListener(listener)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        recyclerView = getRecyclerView()
         layoutManager = createLayoutManager()
-        getRecyclerView().setLayoutManager(layoutManager)
-        getRecyclerView().adapter = helper.adapter
+        recyclerView.setLayoutManager(layoutManager)
+        recyclerView.adapter = helper.adapter
         getRefreshLayout().setEnableLoadMore(true)
         getRefreshLayout().setOnLoadMoreListener {
             viewModel.onLoadMore()

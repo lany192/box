@@ -15,7 +15,9 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
 
     abstract fun getRecyclerView(): RecyclerView
 
-    private lateinit var layoutManager: RecyclerView.LayoutManager
+    protected lateinit var layoutManager: RecyclerView.LayoutManager
+
+    protected lateinit var recyclerView: RecyclerView
 
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
         MultiAdapter(mutableListOf())
@@ -35,12 +37,8 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
         return layoutManager
     }
 
-    fun getLayoutManager(): RecyclerView.LayoutManager {
-        return layoutManager
-    }
-
     fun addOnScrollListener(listener: RecyclerView.OnScrollListener) {
-        getRecyclerView().addOnScrollListener(listener)
+        recyclerView.addOnScrollListener(listener)
     }
 
     open fun getSpanCount(): Int {
@@ -49,9 +47,10 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
 
     override fun init() {
         super.init()
+        recyclerView = getRecyclerView()
         layoutManager = createLayoutManager()
-        getRecyclerView().setLayoutManager(layoutManager)
-        getRecyclerView().adapter = helper.adapter
+        recyclerView.setLayoutManager(layoutManager)
+        recyclerView.adapter = helper.adapter
         getRefreshLayout().setEnableLoadMore(true)
         getRefreshLayout().setOnLoadMoreListener {
             viewModel.onLoadMore()
