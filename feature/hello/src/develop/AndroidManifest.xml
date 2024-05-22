@@ -2,17 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".HelloApp"
+        android:name=".MyApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name=".ui.HelloActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
-            android:label="Hello测试"
-            android:screenOrientation="nosensor">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +18,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.HelloActivity"
+            android:exported="false"
+            android:label="Hello测试" />
     </application>
 
 </manifest>

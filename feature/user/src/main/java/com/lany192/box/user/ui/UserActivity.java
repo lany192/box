@@ -21,7 +21,6 @@ public class UserActivity extends ContentActivity<ActivityUserBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(title);
-        binding.webview.loadUrl(url);
-        log.i("标题:" + title + ",链接:" + url);
+        binding.test1.setText("标题:" + title + ",链接:" + url);
     }
 }

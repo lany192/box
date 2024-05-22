@@ -1,9 +1,7 @@
 // 是否是单模块运行
-def isSingleRun() {
-    return runing_module == project.getName()
-}
+def singleRun = run_user_module.toBoolean()
 
-if (isSingleRun()) {
+if (singleRun) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -31,7 +29,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        if (isSingleRun()) {
+        if (singleRun) {
             applicationId namespace
             versionCode apk.versionCode
             versionName apk.versionName
@@ -44,7 +42,7 @@ android {
 
     sourceSets {
         main {
-            if (isSingleRun()) {
+            if (singleRun) {
                 java.srcDirs = ['src/main/java', 'src/develop/java']
                 res.srcDirs = ['src/main/res', 'src/develop/res']
                 manifest.srcFile 'src/develop/AndroidManifest.xml'
@@ -113,7 +111,7 @@ dependencies {
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.material
 
-    if (isSingleRun()) {
+    if (singleRun) {
         implementation project(path: ':feature:hello')
         implementation project(path: ':feature:login')
         implementation project(path: ':feature:math')
