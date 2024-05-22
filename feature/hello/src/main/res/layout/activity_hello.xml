@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".ui.HelloActivity">
@@ -18,25 +19,27 @@
         android:id="@+id/test1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:text="测试1" />
+        android:text="浏览器测试"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/test2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:text="测试2" />
+        android:text="教学测试"
+        android:textColor="@android:color/white" />
+
     <Button
         android:id="@+id/test3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:text="测试3" />
+        android:text="用户测试"
+        android:textColor="@android:color/white" />
+
     <Button
         android:id="@+id/test4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:text="测试4" />
+        android:text="登录测试"
+        android:textColor="@android:color/white" />
 </LinearLayout>

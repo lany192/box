@@ -24,12 +24,12 @@ public class UserActivity extends ContentActivity<ActivityUserBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(title);
-        binding.test1.setText("标题:" + title + ",链接:" + url);
-        binding.button.setOnClickListener(v -> {
-            int userId = new Random().nextInt();
-            KVUtils.putString("key_user_id", String.valueOf(userId));
-            Toaster.show("保存成功:" + userId);
-        });
+
+//        binding.test1.setText("标题:" + title + ",链接:" + url);
+//        binding.button.setOnClickListener(v -> {
+//            int userId = Math.abs(new Random().nextInt());
+//            KVUtils.putString("key_user_id", String.valueOf(userId));
+//            Toaster.show("保存成功:" + userId);
+//        });
     }
 }

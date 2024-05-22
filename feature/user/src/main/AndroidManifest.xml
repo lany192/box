@@ -4,6 +4,7 @@
     <application>
         <activity
             android:name=".ui.UserActivity"
+            android:label="用户信息"
             android:exported="false" />
     </application>
 

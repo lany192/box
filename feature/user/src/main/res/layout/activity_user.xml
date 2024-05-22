@@ -1,25 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="32dp">
+    android:background="@color/gray_bg"
+    android:scrollbars="none">
 
-    <TextView
-        android:id="@+id/test1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/white_bg"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试-写入uid"
-        android:textColor="@android:color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/test1" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/user_avatar_view"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.github.lany192.text.BoxTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="头像"
+                android:textColor="@color/text_2level"
+                android:textSize="15sp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/shape_circle" />
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/vector_more_arrow" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_marginStart="16dp"
+            android:background="@color/outline" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/nice_name_view"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:menu_hint="未设置"
+            app:menu_hint_color="@color/text_4level"
+            app:menu_title="昵称" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_marginStart="16dp"
+            android:background="@color/outline" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/sex_view"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:menu_hint="未设置"
+            app:menu_hint_color="@color/text_4level"
+            app:menu_title="性别" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_marginStart="16dp"
+            android:background="@color/outline" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/signature_view"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:menu_hint="未设置"
+            app:menu_hint_color="@color/text_4level"
+            app:menu_title="个性签名" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_marginStart="16dp"
+            android:background="@color/outline" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/location_view"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:menu_hint="未设置"
+            app:menu_hint_color="@color/text_4level"
+            app:menu_title="所在地区" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_marginStart="16dp"
+            android:background="@color/outline" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/birthday_view"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:menu_hint="未设置"
+            app:menu_hint_color="@color/text_4level"
+            app:menu_title="生日" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_marginStart="16dp"
+            android:background="@color/outline" />
+    </LinearLayout>
+</ScrollView>
