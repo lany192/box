@@ -119,7 +119,7 @@ dependencies {
         implementation project(path: ':feature:browser')
         implementation project(path: ':feature:hello')
         implementation project(path: ':feature:login')
-
+        implementation project(path: ':feature:user')
         implementation libs.androidx.multidex
         implementation libs.androidx.exifinterface
         implementation libs.coroutines.core

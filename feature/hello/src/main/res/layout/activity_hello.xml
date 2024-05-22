@@ -27,4 +27,16 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
         android:text="测试2" />
+    <Button
+        android:id="@+id/test3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="测试3" />
+    <Button
+        android:id="@+id/test4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="测试4" />
 </LinearLayout>

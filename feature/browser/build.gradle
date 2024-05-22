@@ -109,7 +109,7 @@ dependencies {
         implementation project(path: ':feature:hello')
         implementation project(path: ':feature:login')
         implementation project(path: ':feature:math')
-
+        implementation project(path: ':feature:user')
         implementation libs.glide
         kapt libs.glide.compiler
 
