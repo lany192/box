@@ -35,5 +35,8 @@ public class HelloActivity extends AppCompatActivity {
         binding.test2.setOnClickListener(v -> mathProvider.startMath());
         binding.test3.setOnClickListener(v -> userProvider.startUser("dddd", "eeee"));
         binding.test4.setOnClickListener(v -> loginProvider.startLogin());
+        if (userProvider != null) {
+            binding.textView.setText("用户id:" + userProvider.getUserId());
+        }
     }
 }

@@ -152,6 +152,7 @@ dependencies {
     implementation project(path: ':feature:hello')
     implementation project(path: ':feature:login')
     implementation project(path: ':feature:math')
+    implementation project(path: ':feature:user')
 
     //内存泄漏检测 https://github.com/square/leakcanary
     debugImplementation libs.leakcanary
