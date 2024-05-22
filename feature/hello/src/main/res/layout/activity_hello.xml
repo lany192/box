@@ -42,4 +42,11 @@
         android:layout_height="wrap_content"
         android:text="登录测试"
         android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/test5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="图片选择"
+        android:textColor="@android:color/white" />
 </LinearLayout>

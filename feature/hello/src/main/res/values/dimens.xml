@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="grid_expected_size">120dp</dimen>
+</resources>

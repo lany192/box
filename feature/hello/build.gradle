@@ -109,6 +109,8 @@ dependencies {
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.material
 
+    implementation libs.matisse
+    implementation libs.toaster
     if (singleRun) {
         implementation project(path: ':feature:browser')
         implementation project(path: ':feature:login')
@@ -143,7 +145,7 @@ dependencies {
         implementation libs.coroutines.core
         implementation libs.coroutines.android
         implementation libs.hilt.android
-        implementation libs.toaster
+
         implementation libs.brvah
         implementation libs.immersionbar
         implementation libs.retrofit

@@ -127,9 +127,7 @@ dependencies {
     //https://github.com/Knight-ZXW/LancetX
     compileOnly 'io.github.knight-zxw:lancet-runtime:0.0.7'
 
-    //https://github.com/leavesCZY/Matisse
     implementation libs.matisse
-    implementation libs.glide.compose
 
     implementation project(path: ':library:arch')
     implementation project(path: ':library:view')

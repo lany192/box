@@ -21,14 +21,6 @@ import com.lany192.box.sample.ui.settings.SettingsRouter
 import com.lany192.box.sample.ui.user.UserViewModel
 import com.lany192.box.sample.ui.video.VideoRouter
 import dagger.hilt.android.AndroidEntryPoint
-import github.leavesczy.matisse.GlideImageEngine
-import github.leavesczy.matisse.Matisse
-import github.leavesczy.matisse.MatisseCapture
-import github.leavesczy.matisse.MatisseCaptureContract
-import github.leavesczy.matisse.MatisseContract
-import github.leavesczy.matisse.MediaResource
-import github.leavesczy.matisse.MediaStoreCaptureStrategy
-import github.leavesczy.matisse.MediaType
 import java.time.LocalDate
 
 
@@ -43,28 +35,6 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
     lateinit var helloProvider: HelloProvider
 
     private lateinit var userViewModel: UserViewModel
-    private val mediaPickerLauncher =
-        registerForActivityResult(MatisseContract()) { result: List<MediaResource>? ->
-            if (!result.isNullOrEmpty()) {
-                val mediaResource = result[0]
-                val uri = mediaResource.uri
-                val path = mediaResource.path
-                val name = mediaResource.name
-                val mimeType = mediaResource.mimeType
-                Toaster.show(uri)
-            }
-        }
-
-    private val takePictureLauncher =
-        registerForActivityResult(MatisseCaptureContract()) { result: MediaResource? ->
-            if (result != null) {
-                val uri = result.uri
-                val path = result.path
-                val name = result.name
-                val mimeType = result.mimeType
-                Toaster.show(uri)
-            }
-        }
 
     override fun initImmersionBar() {
         BarUtils.init(this).init()
@@ -97,16 +67,10 @@ class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
         binding.checkView.setOnCheckChangeListener { Toaster.show(it) }
         binding.checkView.isChecked = true
         binding.imagePicker.setOnClickListener {
-            mediaPickerLauncher.launch(
-                Matisse(
-                    maxSelectable = 1,
-                    imageEngine = GlideImageEngine(),
-                    mediaType = MediaType.ImageOnly
-                )
-            )
+
         }
         binding.photoPicker.setOnClickListener {
-            takePictureLauncher.launch(MatisseCapture(captureStrategy = MediaStoreCaptureStrategy()))
+
         }
         binding.video.setOnClickListener { VideoRouter.start() }
         binding.test1.setOnClickListener {
