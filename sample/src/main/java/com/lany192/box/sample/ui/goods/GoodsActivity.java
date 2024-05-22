@@ -29,20 +29,20 @@ public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBi
 
     @NonNull
     @Override
-    public SmartRefreshLayout getRefreshLayout() {
+    public SmartRefreshLayout createRefreshLayout() {
         return binding.refreshLayout;
     }
 
     @NonNull
     @Override
-    public RecyclerView getRecyclerView() {
+    public RecyclerView createRecyclerView() {
         return binding.recyclerView;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {

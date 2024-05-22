@@ -21,17 +21,17 @@ class ArticleFragment : ItemsFragment<ArticleViewModel, FragmentArticleBinding>(
         register(ArticleBinder())
     }
 
-    override fun getRefreshLayout(): SmartRefreshLayout {
+    override fun createRefreshLayout(): SmartRefreshLayout {
         return binding.refreshLayout
     }
 
-    override fun getRecyclerView(): RecyclerView {
+    override fun createRecyclerView(): RecyclerView {
         return binding.recyclerView
     }
 
     override fun init() {
         super.init()
-        addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val manager = recyclerView.layoutManager as LinearLayoutManager?

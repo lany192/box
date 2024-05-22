@@ -13,12 +13,8 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewBinding> :
     VMVBActivity<VM, CVB, TVB>() {
-    abstract fun getRefreshLayout(): SmartRefreshLayout
-
-    abstract fun getRecyclerView(): RecyclerView
-
+    protected lateinit var refreshLayout: SmartRefreshLayout
     protected lateinit var layoutManager: RecyclerView.LayoutManager
-
     protected lateinit var recyclerView: RecyclerView
 
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
@@ -43,23 +39,21 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         return 2
     }
 
-    fun addOnScrollListener(listener: RecyclerView.OnScrollListener) {
-        recyclerView.addOnScrollListener(listener)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        recyclerView = getRecyclerView()
+        refreshLayout = createRefreshLayout()
+        recyclerView = createRecyclerView()
         layoutManager = createLayoutManager()
+
         recyclerView.setLayoutManager(layoutManager)
         recyclerView.adapter = helper.adapter
-        getRefreshLayout().setEnableLoadMore(true)
-        getRefreshLayout().setOnLoadMoreListener {
+        refreshLayout.setEnableLoadMore(true)
+        refreshLayout.setOnLoadMoreListener {
             viewModel.onLoadMore()
         }
-        getRefreshLayout().setEnableRefresh(viewModel.refreshEnable());
+        refreshLayout.setEnableRefresh(viewModel.refreshEnable());
         if (viewModel.refreshEnable()) {
-            getRefreshLayout().setOnRefreshListener {
+            refreshLayout.setOnRefreshListener {
                 viewModel.onRefresh()
             }
         }
@@ -67,7 +61,7 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
         viewModel.listState.observe(this) {
             when (it) {
                 ListState.ERROR -> {
-                    getRefreshLayout().finishRefresh()
+                    refreshLayout.finishRefresh()
                 }
 
                 ListState.REFRESHING -> {
@@ -75,7 +69,7 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
                 }
 
                 ListState.REFRESH_FINISH -> {
-                    getRefreshLayout().finishRefresh()
+                    refreshLayout.finishRefresh()
                 }
 
                 ListState.MORE_LOADING -> {
@@ -83,13 +77,13 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
                 }
 
                 ListState.MORE_LOAD_END -> {
-                    getRefreshLayout().finishRefresh()
-                    getRefreshLayout().finishLoadMore()
+                    refreshLayout.finishRefresh()
+                    refreshLayout.finishLoadMore()
                 }
 
                 ListState.MORE_LOAD_FINISH -> {
-                    getRefreshLayout().finishRefresh()
-                    getRefreshLayout().finishLoadMore()
+                    refreshLayout.finishRefresh()
+                    refreshLayout.finishLoadMore()
                 }
             }
         }
@@ -100,4 +94,8 @@ abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewB
             }
         }
     }
+
+    abstract fun createRefreshLayout(): SmartRefreshLayout
+
+    abstract fun createRecyclerView(): RecyclerView
 }

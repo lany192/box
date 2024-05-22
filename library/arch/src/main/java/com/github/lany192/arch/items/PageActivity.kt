@@ -11,11 +11,11 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 abstract class PageActivity<VM : ItemsViewModel> :
     ItemsActivity<VM, ActivityPageBinding, ToolbarDefaultBinding>() {
 
-    override fun getRefreshLayout(): SmartRefreshLayout {
+    override fun createRefreshLayout(): SmartRefreshLayout {
         return binding.itemsView.refreshLayout
     }
 
-    override fun getRecyclerView(): RecyclerView {
+    override fun createRecyclerView(): RecyclerView {
         return binding.itemsView.recyclerView
     }
 

@@ -27,11 +27,11 @@ class DiscoverFragment : ItemsFragment<DiscoverViewModel, FragmentDiscoverBindin
         return 4
     }
 
-    override fun getRefreshLayout(): SmartRefreshLayout {
+    override fun createRefreshLayout(): SmartRefreshLayout {
         return binding.itemsView.refreshLayout
     }
 
-    override fun getRecyclerView(): RecyclerView {
+    override fun createRecyclerView(): RecyclerView {
         return binding.itemsView.recyclerView
     }
 

@@ -11,12 +11,8 @@ import com.github.lany192.arch.utils.ListUtils
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragment<VM, VB>() {
-    abstract fun getRefreshLayout(): SmartRefreshLayout
-
-    abstract fun getRecyclerView(): RecyclerView
-
+    protected lateinit var refreshLayout: SmartRefreshLayout
     protected lateinit var layoutManager: RecyclerView.LayoutManager
-
     protected lateinit var recyclerView: RecyclerView
 
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
@@ -37,27 +33,22 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
         return layoutManager
     }
 
-    fun addOnScrollListener(listener: RecyclerView.OnScrollListener) {
-        recyclerView.addOnScrollListener(listener)
-    }
-
     open fun getSpanCount(): Int {
         return 2
     }
 
     override fun init() {
         super.init()
-        recyclerView = getRecyclerView()
+        refreshLayout = createRefreshLayout()
+        recyclerView = createRecyclerView()
         layoutManager = createLayoutManager()
         recyclerView.setLayoutManager(layoutManager)
         recyclerView.adapter = helper.adapter
-        getRefreshLayout().setEnableLoadMore(true)
-        getRefreshLayout().setOnLoadMoreListener {
-            viewModel.onLoadMore()
-        }
-        getRefreshLayout().setEnableRefresh(viewModel.refreshEnable())
+        refreshLayout.setEnableLoadMore(true)
+        refreshLayout.setOnLoadMoreListener { viewModel.onLoadMore() }
+        refreshLayout.setEnableRefresh(viewModel.refreshEnable())
         if (viewModel.refreshEnable()) {
-            getRefreshLayout().setOnRefreshListener {
+            refreshLayout.setOnRefreshListener {
                 viewModel.onRefresh()
             }
         }
@@ -65,7 +56,7 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
         viewModel.listState.observe(this) {
             when (it) {//常量
                 ListState.ERROR -> {
-                    getRefreshLayout().finishRefresh()
+                    refreshLayout.finishRefresh()
                 }
 
                 ListState.REFRESHING -> {
@@ -73,7 +64,7 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
                 }
 
                 ListState.REFRESH_FINISH -> {
-                    getRefreshLayout().finishRefresh()
+                    refreshLayout.finishRefresh()
                 }
 
                 ListState.MORE_LOADING -> {
@@ -81,13 +72,13 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
                 }
 
                 ListState.MORE_LOAD_END -> {
-                    getRefreshLayout().finishRefresh()
-                    getRefreshLayout().finishLoadMore()
+                    refreshLayout.finishRefresh()
+                    refreshLayout.finishLoadMore()
                 }
 
                 ListState.MORE_LOAD_FINISH -> {
-                    getRefreshLayout().finishRefresh()
-                    getRefreshLayout().finishLoadMore()
+                    refreshLayout.finishRefresh()
+                    refreshLayout.finishLoadMore()
                 }
             }
         }
@@ -98,4 +89,9 @@ abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragme
             }
         }
     }
+
+    abstract fun createRefreshLayout(): SmartRefreshLayout
+
+    abstract fun createRecyclerView(): RecyclerView
+
 }
