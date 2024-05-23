@@ -11,8 +11,7 @@ import com.github.lany192.arch.adapter.MultiAdapter
 import com.github.lany192.arch.utils.ListUtils
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
-abstract class ItemsActivity<VM : ItemsViewModel, CVB : ViewBinding, TVB : ViewBinding> :
-    VMVBActivity<VM, CVB, TVB>() {
+abstract class ItemsActivity<VM : ItemsViewModel, VB : ViewBinding> : VMVBActivity<VM, VB>() {
     protected lateinit var refreshLayout: SmartRefreshLayout
     protected lateinit var layoutManager: RecyclerView.LayoutManager
     protected lateinit var recyclerView: RecyclerView

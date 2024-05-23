@@ -10,10 +10,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.VBActivity;
-import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
+import com.github.lany192.arch.activity.ViewBindingActivity;
 import com.google.zxing.BarcodeFormat;
-import com.hjq.toast.Toaster;
 import com.king.camera.scan.CameraScan;
 import com.king.camera.scan.util.LogUtils;
 import com.king.zxing.util.CodeUtils;
@@ -29,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/zxing")
-public class ZxingActivity extends VBActivity<ActivityZxingBinding, ToolbarDefaultBinding> {
+public class ZxingActivity extends ViewBindingActivity<ActivityZxingBinding> {
     public static final int REQUEST_CODE_SCAN = 0x01;
     public static final int REQUEST_CODE_PHOTO = 0x02;
 

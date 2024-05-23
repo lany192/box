@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.BoxActivity
+import com.github.lany192.arch.activity.VMVBActivity
 import com.github.lany192.utils.ImageUtils
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
@@ -18,14 +18,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 @Route(path = "/ui/splash")
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : BoxActivity<SplashViewModel, ActivitySplashBinding>() {
+class SplashActivity : VMVBActivity<SplashViewModel, ActivitySplashBinding>() {
 
     override fun initImmersionBar(): ImmersionBar {
         return ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_BAR)
-    }
-
-    override fun hasToolbar(): Boolean {
-        return false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

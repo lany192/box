@@ -5,7 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.BoxActivity
+import com.github.lany192.arch.activity.VMVBActivity
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
@@ -22,7 +22,7 @@ import moe.feng.alipay.zerosdk.AlipayZeroSdk
 
 @AndroidEntryPoint
 @Route(path = "/ui/settings")
-class SettingsActivity : BoxActivity<SettingsViewModel, ActivitySettingsBinding>() {
+class SettingsActivity : VMVBActivity<SettingsViewModel, ActivitySettingsBinding>() {
     private lateinit var userViewModel: UserViewModel
 
     @Autowired

@@ -5,7 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.BoxActivity
+import com.github.lany192.arch.activity.VMVBActivity
 import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.sample.databinding.ActivityAboutBinding
 import com.lany192.box.sample.ui.settings.feedback.FeedbackRouter
@@ -19,7 +19,7 @@ import de.psdev.licensesdialog.model.Notices
 
 @AndroidEntryPoint
 @Route(path = "/ui/about")
-class AboutActivity : BoxActivity<AboutViewModel, ActivityAboutBinding>() {
+class AboutActivity : VMVBActivity<AboutViewModel, ActivityAboutBinding>() {
     @Autowired
     lateinit var browserProvider: BrowserProvider
 

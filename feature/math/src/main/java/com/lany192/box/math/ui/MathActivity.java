@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.BoxActivity;
+import com.github.lany192.arch.activity.VMVBActivity;
 import com.github.lany192.decoration.LinearDecoration;
 import com.lany192.box.math.databinding.ActivityMathBinding;
 
@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/math/main")
-public class MathActivity extends BoxActivity<MathViewModel, ActivityMathBinding> {
+public class MathActivity extends VMVBActivity<MathViewModel, ActivityMathBinding> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

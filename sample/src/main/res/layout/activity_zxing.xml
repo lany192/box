@@ -3,9 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="20dp">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_bg"
+        tools:background="@android:color/holo_blue_bright">
 
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="@dimen/actionbar_height"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/actionBarItemBackground"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/vector_back_black" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="240dp"
+            android:maxLines="1"
+            android:textColor="@color/text_1level"
+            android:textSize="18sp"
+            app:text_style_middle_bold="true"
+            tools:layout_height="@dimen/actionbar_height"
+            tools:text="标题" />
+
+    </RelativeLayout>
     <Button
         android:id="@+id/test1"
         android:layout_width="match_parent"

@@ -4,14 +4,14 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.ContentActivity;
+import com.github.lany192.arch.activity.ViewBindingActivity;
 import com.lany192.box.browser.databinding.ActivityBrowserBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/browser/main")
-public class BrowserActivity extends ContentActivity<ActivityBrowserBinding> {
+public class BrowserActivity extends ViewBindingActivity<ActivityBrowserBinding> {
     @Autowired(name = "title", desc = "标题")
     String title;
     @Autowired(name = "url", desc = "链接")

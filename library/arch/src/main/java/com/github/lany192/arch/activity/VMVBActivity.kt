@@ -14,8 +14,7 @@ import kotlinx.coroutines.launch
 /**
  * ViewBinding实现基类
  */
-abstract class VMVBActivity<VM : LifecycleViewModel, CVB : ViewBinding, TVB : ViewBinding> :
-    VBActivity<CVB, TVB>() {
+abstract class VMVBActivity<VM : LifecycleViewModel, VB : ViewBinding> : ViewBindingActivity<VB>() {
 
     lateinit var viewModel: VM
 
@@ -61,12 +60,8 @@ abstract class VMVBActivity<VM : LifecycleViewModel, CVB : ViewBinding, TVB : Vi
         return getViewModel(getClass(0))
     }
 
-    override fun getToolbarBinding(): TVB {
-        return getClass<TVB>(2).getBinding(layoutInflater)
-    }
-
-    override fun getContentBinding(): CVB {
-        return getClass<CVB>(1).getBinding(layoutInflater)
+    override fun getViewBinding(): VB {
+        return getClass<VB>(1).getBinding(layoutInflater)
     }
 
     override fun getErrorView(): View {

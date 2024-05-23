@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.databinding.ToolbarDefaultBinding;
 import com.github.lany192.arch.items.ItemsActivity;
 import com.lany192.box.sample.data.binder.ArticleBinder;
 import com.lany192.box.sample.data.binder.ViewPagerBinder;
@@ -21,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/goods")
-public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBinding, ToolbarDefaultBinding> {
+public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBinding> {
     {
         register(new ArticleBinder());
         register(new ViewPagerBinder());

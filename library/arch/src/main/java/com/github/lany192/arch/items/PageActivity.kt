@@ -8,8 +8,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 /**
  * 通用布局
  */
-abstract class PageActivity<VM : ItemsViewModel> :
-    ItemsActivity<VM, ActivityPageBinding, ToolbarDefaultBinding>() {
+abstract class PageActivity<VM : ItemsViewModel> : ItemsActivity<VM, ActivityPageBinding>() {
 
     override fun createRefreshLayout(): SmartRefreshLayout {
         return binding.itemsView.refreshLayout
@@ -19,11 +18,7 @@ abstract class PageActivity<VM : ItemsViewModel> :
         return binding.itemsView.recyclerView
     }
 
-    override fun getToolbarBinding(): ToolbarDefaultBinding {
-        return ToolbarDefaultBinding.inflate(layoutInflater)
-    }
-
-    override fun getContentBinding(): ActivityPageBinding {
+    override fun getViewBinding(): ActivityPageBinding {
         return ActivityPageBinding.inflate(layoutInflater)
     }
 }

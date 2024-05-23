@@ -5,7 +5,7 @@ import android.view.KeyEvent
 import android.view.MenuItem
 import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.activity.BoxActivity
+import com.github.lany192.arch.activity.VMVBActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.log.LogUtils
@@ -23,14 +23,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @Route(path = "/ui/main")
 @AndroidEntryPoint
-class MainActivity : BoxActivity<MainViewModel, ActivityMainBinding>() {
+class MainActivity : VMVBActivity<MainViewModel, ActivityMainBinding>() {
     // 第一次按退出的时间
     private var mLastClickTime: Long = 0
     private lateinit var userViewModel: UserViewModel
-
-    override fun hasToolbar(): Boolean {
-        return false
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

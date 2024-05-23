@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.ContentActivity;
+import com.github.lany192.arch.activity.ViewBindingActivity;
 import com.github.lany192.utils.KVUtils;
 import com.hjq.toast.Toaster;
 import com.lany192.box.user.databinding.ActivityUserBinding;
@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/user/main")
-public class UserActivity extends ContentActivity<ActivityUserBinding> {
+public class UserActivity extends ViewBindingActivity<ActivityUserBinding> {
     @Autowired(name = "title", desc = "标题")
     String title;
     @Autowired(name = "url", desc = "链接")
