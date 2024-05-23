@@ -48,4 +48,10 @@ public class OtherUtils {
         return Color.argb(20, r, g, b);
     }
 
+    /**
+     * 判断是否是深颜色
+     */
+    public static boolean isDark(@ColorInt int color) {
+        return androidx.core.graphics.ColorUtils.calculateLuminance(color) < 0.5;
+    }
 }

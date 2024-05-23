@@ -5,11 +5,20 @@ package com.github.lany192.utils;
  */
 public class ClickUtils {
     private static long lastClickTime;
-    private static long INTERVAL = 500;
 
     public synchronized static boolean isFast() {
+        long INTERVAL = 500;
         long time = System.currentTimeMillis();
         if (time - lastClickTime < INTERVAL) {
+            return true;
+        }
+        lastClickTime = time;
+        return false;
+    }
+
+    public synchronized static boolean isFast(int interval) {
+        long time = System.currentTimeMillis();
+        if (time - lastClickTime < interval) {
             return true;
         }
         lastClickTime = time;
