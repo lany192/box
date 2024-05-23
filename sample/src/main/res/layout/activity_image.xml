@@ -7,13 +7,42 @@
     android:background="@android:color/holo_blue_light"
     tools:context=".ui.image.ImageActivity">
 
-    <View
+    <RelativeLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="?actionBarSize"
         android:background="@android:color/holo_purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@android:color/holo_blue_bright"
+        tools:layout_height="@dimen/actionbar_height">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="?actionBarSize"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/actionBarItemBackground"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/vector_back_black" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="240dp"
+            android:maxLines="1"
+            android:text="标题"
+            android:textColor="@color/text_1level"
+            android:textSize="18sp"
+            app:text_style_middle_bold="true" />
+
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"

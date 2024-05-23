@@ -14,13 +14,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @Route(path = "/ui/image")
 class ImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val binding = ActivityImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val initPaddingTop = binding.toolbar.paddingTop
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
+            binding.toolbar.setPadding(
+                binding.toolbar.getPaddingLeft(), initPaddingTop + systemBars.top,
+                binding.toolbar.getPaddingRight(), binding.toolbar.paddingBottom
+            )
             Log.i("高度：", "结果：" + systemBars.top + "，结果：" + systemBars.bottom)
             insets
         }
