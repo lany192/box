@@ -1,6 +1,9 @@
 [versions]
-activityKtx = "1.9.0"
+
 agp = "8.4.1"
+kotlin = "1.8.20"
+
+activityKtx = "1.9.0"
 alipayzerosdk = "1.1" #支付宝打赏 https://github.com/fython/AlipayZeroSdk
 androidxEspressoCoreVersion = "3.5.1"
 androidxTestExtJunit = "1.1.5"
@@ -58,7 +61,7 @@ xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 leakcanary = "2.14"
 okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
 router = "2.0.8" #https://github.com/lany192/app-router
-kotlin = "1.8.20"
+
 rootbeer = "0.1.0" #https://github.com/scottyab/rootbeer
 blur = "b636349" #https://github.com/android/renderscript-intrinsics-replacement-toolkit
 gson = "2.10.1"
