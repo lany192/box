@@ -8,7 +8,29 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 public class ViewUtils {
+    public static void applyWindowInsets(View rootView, View toolbar) {
+        int toolbarPaddingTop = toolbar.getPaddingTop();
+        int toolbarHeight = toolbar.getLayoutParams().height;
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
+            ViewGroup.LayoutParams lp = toolbar.getLayoutParams();
+            if (lp != null && lp.height > 0) {
+                lp.height = toolbarHeight + systemBars.top;//增高
+            }
+            toolbar.setPadding(toolbar.getPaddingLeft(),
+                    toolbarPaddingTop + systemBars.top,
+                    toolbar.getPaddingRight(), toolbar.getPaddingBottom()
+            );
+            return insets;
+        });
+    }
+
     /**
      * 增加View的paddingTop,增加的值为状态栏高度
      */
