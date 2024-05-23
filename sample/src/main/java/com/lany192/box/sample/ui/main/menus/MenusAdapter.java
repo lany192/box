@@ -10,13 +10,17 @@ import com.github.lany192.dialog.SimpleDialog;
 import com.github.lany192.toolkit.BoxToolKit;
 import com.github.lany192.utils.ChannelUtils;
 import com.hjq.toast.Toaster;
+import com.lany192.box.browser.ui.BrowserRouter;
 import com.lany192.box.hello.ui.HelloRouter;
+import com.lany192.box.login.ui.LoginRouter;
 import com.lany192.box.math.ui.MathRouter;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
 import com.lany192.box.sample.ui.encrypt.EncryptRouter;
 import com.lany192.box.sample.ui.html.HtmlRouter;
+import com.lany192.box.sample.ui.image.ImageRouter;
 import com.lany192.box.sample.ui.transformation.TransformationRouter;
 import com.lany192.box.sample.ui.zxing.ZxingRouter;
+import com.lany192.box.user.ui.UserRouter;
 import com.scottyab.rootbeer.RootBeer;
 
 import java.util.List;
@@ -63,8 +67,18 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
             Toaster.show(DeviceId.get().getDeviceId());
         } else if (position == 11) {
             EncryptRouter.start();
-        }else if (position == 12) {
+        } else if (position == 12) {
             HelloRouter.start();
+        } else if (position == 13) {
+            BrowserRouter.start("测试", "https//www.baidu.com");
+        } else if (position == 14) {
+            LoginRouter.start();
+        } else if (position == 15) {
+            MathRouter.start();
+        } else if (position == 16) {
+            UserRouter.start("", "");
+        } else if (position == 17) {
+            ImageRouter.start();
         }
     }
 

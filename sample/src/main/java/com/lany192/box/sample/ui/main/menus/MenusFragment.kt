@@ -33,6 +33,11 @@ class MenusFragment : VMVBFragment<MenusViewModel, FragmentMenusBinding>() {
         items.add(MenuItem("设备id", R.drawable.android))
         items.add(MenuItem("加密解密", R.drawable.android))
         items.add(MenuItem("hello模块", R.drawable.android))
+        items.add(MenuItem("browser模块", R.drawable.android))
+        items.add(MenuItem("login模块", R.drawable.android))
+        items.add(MenuItem("math模块", R.drawable.android))
+        items.add(MenuItem("user模块", R.drawable.android))
+        items.add(MenuItem("图片测试", R.drawable.android))
         binding.recyclerView.adapter = MenusAdapter(items)
     }
 }
