@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="bottom"
-    android:minHeight="?actionBarSize">
+    android:minHeight="@dimen/actionbar_height">
 
     <com.github.lany192.view.RealtimeBlurView
         android:id="@+id/blurView"
@@ -14,7 +14,7 @@
     <com.github.lany192.text.BoxTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="?actionBarSize"
+        android:layout_height="@dimen/actionbar_height"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
