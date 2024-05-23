@@ -20,7 +20,6 @@ import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
 import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.arch.utils.BarUtils
-import com.github.lany192.arch.utils.DeviceId
 import com.github.lany192.dialog.LoadingDialog
 import com.github.lany192.log.XLog
 import com.github.lany192.utils.KeyboardUtils
@@ -62,12 +61,24 @@ abstract class BaseActivity : AppCompatActivity() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this)
         }
+        KeyboardUtils.hide(this)
         super.onDestroy()
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: Void) {
+    @CallSuper
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (immersionBarEnabled()) {
+            initImmersionBar().init()
+        }
+    }
 
+    @CallSuper
+    public override fun onResume() {
+        super.onResume()
+        if (immersionBarEnabled()) {
+            initImmersionBar().init()
+        }
     }
 
     /**
@@ -106,22 +117,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    @CallSuper
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        if (immersionBarEnabled()) {
-            initImmersionBar().init()
-        }
-    }
-
-    @CallSuper
-    public override fun onResume() {
-        super.onResume()
-        if (immersionBarEnabled()) {
-            initImmersionBar().init()
-        }
-    }
-
     /**
      * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
      * Immersion bar enabled boolean.
@@ -149,34 +144,8 @@ abstract class BaseActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(event)
     }
 
-    override fun onBackPressed() {
-        KeyboardUtils.hide(this)
-        onBackPressedDispatcher.onBackPressed()
-        super.finish()
-    }
-
-    override fun finish() {
-        KeyboardUtils.hide(this)
-        super.finish()
-    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEvent(event: HideSoftInputEvent) {
         Handler(Looper.getMainLooper()).postDelayed({ KeyboardUtils.hide(this) }, 300)
-    }
-
-    @CallSuper
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (permissions.isNotEmpty()
-            && (permissions.contains(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    || permissions.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE))
-        ) {
-            DeviceId.get().grantedSDPermission()
-        }
     }
 }

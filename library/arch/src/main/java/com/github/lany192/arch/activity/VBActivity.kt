@@ -33,7 +33,7 @@ abstract class VBActivity<CVB : ViewBinding, TVB : ViewBinding> : BaseActivity()
         content.addView(binding.root)
         setContentView(content)
         //如果有返回id，添加监听
-        findViewById<View>(R.id.back)?.setOnClickListener { onBackPressed() }
+        findViewById<View>(R.id.back)?.setOnClickListener { finish() }
         //如果有标题id，设置默认标题值
         findViewById<TextView>(R.id.title)?.text = title
     }
