@@ -1,5 +1,6 @@
 package com.lany192.box.sample.ui.main.menus;
 
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.lany192.box.sample.databinding.ItemMenuBinding;
 import com.lany192.box.sample.ui.encrypt.EncryptRouter;
 import com.lany192.box.sample.ui.html.HtmlRouter;
 import com.lany192.box.sample.ui.image.ImageRouter;
+import com.lany192.box.sample.ui.settings.SettingsRouter;
 import com.lany192.box.sample.ui.transformation.TransformationRouter;
 import com.lany192.box.sample.ui.zxing.ZxingRouter;
 import com.lany192.box.user.ui.UserRouter;
@@ -79,6 +81,8 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
             UserRouter.start("", "");
         } else if (position == 17) {
             ImageRouter.start();
+        }else if (position == 18) {
+            SettingsRouter.start();
         }
     }
 
