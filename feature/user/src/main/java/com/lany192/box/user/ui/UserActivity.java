@@ -1,6 +1,8 @@
 package com.lany192.box.user.ui;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -8,6 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewBindingActivity;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lany192.box.user.databinding.ActivityUserBinding;
+import com.lany192.box.user.ui.nickname.NicknameRouter;
 import com.lany192.box.user.ui.signature.SignatureRouter;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -25,6 +28,7 @@ public class UserActivity extends ViewBindingActivity<ActivityUserBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding.niceNameView.setOnClickListener(v -> NicknameRouter.start());
         binding.signature.setOnClickListener(v -> SignatureRouter.start());
 
 //        binding.test1.setText("标题:" + title + ",链接:" + url);

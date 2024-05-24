@@ -21,6 +21,10 @@
         </activity>
 
         <activity
+            android:name=".ui.nickname.NicknameActivity"
+            android:exported="false"
+            android:label="修改昵称" />
+        <activity
             android:name=".ui.signature.SignatureActivity"
             android:exported="false"
             android:label="修改个性签名" />

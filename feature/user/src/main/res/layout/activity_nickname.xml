@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:background="@color/white_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="@dimen/actionbar_height"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/actionBarItemBackground"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/vector_back_black" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="240dp"
+            android:maxLines="1"
+            android:text="修改昵称"
+            android:textColor="@color/text_1level"
+            android:textSize="18sp"
+            app:text_style_middle_bold="true"
+            tools:layout_height="@dimen/actionbar_height" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentEnd="true"
+            android:background="?android:attr/actionBarItemBackground"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="修改"
+            android:textColor="@color/primary_dark"
+            android:textSize="14sp"
+            tools:layout_height="@dimen/actionbar_height" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <com.github.lany192.edittext.ClearEditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/gray_light_bg"
+            android:focusableInTouchMode="true"
+            android:gravity="start"
+            android:hint="请输入修改的昵称"
+            android:includeFontPadding="false"
+            android:maxLength="20"
+            android:minHeight="100dp"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:textColor="@color/text_2level"
+            android:textColorHint="@color/text_4level"
+            android:textSize="14sp"
+            app:bl_corners_radius="8dp"
+            app:bl_solid_color="@color/gray_light_bg"
+            tools:text="架飞机飞机架飞机飞机架架飞机飞机架飞机飞机架飞机飞机架飞机飞机架飞机飞机架飞机飞机架飞机飞机架飞机飞机飞机飞机架飞机飞机" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="12dp"
+            android:text="昵称最多支持20个字符"
+            android:textColor="@color/text_4level"
+            android:textSize="11sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
