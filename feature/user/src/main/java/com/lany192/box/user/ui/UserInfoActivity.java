@@ -1,8 +1,6 @@
 package com.lany192.box.user.ui;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -17,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/user/main")
-public class UserActivity extends ViewBindingActivity<ActivityUserBinding> {
+public class UserInfoActivity extends ViewBindingActivity<ActivityUserBinding> {
 
     @NonNull
     @Override

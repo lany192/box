@@ -5,7 +5,7 @@ import android.content.Context;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lany192.box.router.provider.UserProvider;
 import com.lany192.box.user.UserHelper;
-import com.lany192.box.user.ui.UserRouter;
+import com.lany192.box.user.ui.UserInfoRouter;
 
 @Route(path = "/user/provider")
 public class UserProviderImpl implements UserProvider {
@@ -17,7 +17,7 @@ public class UserProviderImpl implements UserProvider {
 
     @Override
     public void startUserInfo() {
-        UserRouter.start();
+        UserInfoRouter.start();
     }
 
     @Override
