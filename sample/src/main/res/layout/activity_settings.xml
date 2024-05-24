@@ -7,6 +7,42 @@
     android:background="@color/gray_bg"
     tools:context="com.lany192.box.sample.ui.settings.SettingsActivity">
 
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:background="@color/white_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@android:color/holo_blue_light">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="@dimen/actionbar_height"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/actionBarItemBackground"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/vector_back_black" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="240dp"
+            android:maxLines="1"
+            android:text="设置"
+            android:textColor="@color/text_1level"
+            android:textSize="18sp"
+            app:text_style_middle_bold="true"
+            tools:layout_height="@dimen/actionbar_height" />
+    </RelativeLayout>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_1"
         android:layout_width="match_parent"
@@ -16,10 +52,10 @@
         app:cardBackgroundColor="@color/white_bg"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:strokeWidth="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +67,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_hint="发现新版本"
-
                 app:menu_title="版本检查" />
 
             <View
@@ -45,7 +80,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_hint="0KB"
-
                 app:menu_title="清除缓存" />
 
             <View
@@ -58,7 +92,6 @@
                 android:id="@+id/notice_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 app:menu_title="推送设置" />
 
             <View
@@ -71,14 +104,12 @@
                 android:id="@+id/permission_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 app:menu_title="授权设置" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        app:strokeWidth="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -88,7 +119,8 @@
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_1">
+        app:layout_constraintTop_toBottomOf="@id/card_1"
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,7 +131,6 @@
                 android:id="@+id/share_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 app:menu_title="分享应用" />
 
             <View
@@ -113,7 +144,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_hint="您的鼓励是对我最大的支持"
-
                 app:menu_title="打赏作者" />
 
             <View
@@ -126,7 +156,6 @@
                 android:id="@+id/about_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 app:menu_title="关于" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
