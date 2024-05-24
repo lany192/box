@@ -173,6 +173,6 @@
             android:id="@+id/about_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu_title="关于" />
+            app:menu_title="关于我们" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
