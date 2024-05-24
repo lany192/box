@@ -2,9 +2,12 @@ package com.lany192.box.sample.ui.encrypt;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewBindingActivity;
 import com.github.lany192.blackbox.BlackBox;
+import com.gyf.immersionbar.ImmersionBar;
 import com.lany192.box.sample.databinding.ActivityEncryptBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -12,6 +15,11 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/ui/encrypt")
 public class EncryptActivity extends ViewBindingActivity<ActivityEncryptBinding> {
+    @NonNull
+    @Override
+    public ImmersionBar initImmersionBar() {
+        return super.initImmersionBar().titleBar(binding.toolbar);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

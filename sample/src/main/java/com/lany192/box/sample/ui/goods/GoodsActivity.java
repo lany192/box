@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.items.ItemsActivity;
+import com.gyf.immersionbar.ImmersionBar;
 import com.lany192.box.sample.data.binder.ArticleBinder;
 import com.lany192.box.sample.data.binder.ViewPagerBinder;
 import com.lany192.box.sample.databinding.ActivityGoodsBinding;
@@ -25,7 +26,11 @@ public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBi
         register(new ArticleBinder());
         register(new ViewPagerBinder());
     }
-
+    @NonNull
+    @Override
+    public ImmersionBar initImmersionBar() {
+        return super.initImmersionBar().titleBar(binding.toolbar);
+    }
     @NonNull
     @Override
     public SmartRefreshLayout createRefreshLayout() {

@@ -112,7 +112,7 @@ dependencies {
     implementation libs.androidx.material
     implementation libs.androidx.recyclerview
     implementation libs.brvah
-
+    implementation libs.immersionbar
     implementation libs.decoration
 
     if (singleRun) {
@@ -125,7 +125,6 @@ dependencies {
         implementation libs.coroutines.core
         implementation libs.coroutines.android
         implementation libs.toaster
-        implementation libs.immersionbar
 
         implementation libs.tencent.mmkv
         implementation libs.tencent.xlog

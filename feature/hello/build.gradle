@@ -108,7 +108,7 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.material
-
+    implementation libs.immersionbar
     implementation libs.matisse
     implementation libs.toaster
     if (singleRun) {
@@ -147,7 +147,6 @@ dependencies {
         implementation libs.hilt.android
 
         implementation libs.brvah
-        implementation libs.immersionbar
         implementation libs.retrofit
         implementation libs.retrofit.moshi
         implementation libs.retrofit.gson

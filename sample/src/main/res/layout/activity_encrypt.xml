@@ -2,19 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".ui.encrypt.EncryptActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white_bg"
-        tools:background="@android:color/holo_blue_bright">
+        android:layout_height="@dimen/actionbar_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/back"
@@ -35,12 +34,11 @@
             android:gravity="center"
             android:maxWidth="240dp"
             android:maxLines="1"
+            android:text="下载"
             android:textColor="@color/text_1level"
             android:textSize="18sp"
             app:text_style_middle_bold="true"
-            tools:layout_height="@dimen/actionbar_height"
-            tools:text="标题" />
-
+            tools:layout_height="@dimen/actionbar_height" />
     </RelativeLayout>
 
     <EditText

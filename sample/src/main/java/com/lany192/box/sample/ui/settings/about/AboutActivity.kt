@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
+import com.gyf.immersionbar.ImmersionBar
 import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.sample.databinding.ActivityAboutBinding
 import com.lany192.box.sample.ui.settings.feedback.FeedbackRouter
@@ -22,6 +23,9 @@ import de.psdev.licensesdialog.model.Notices
 class AboutActivity : ViewModelActivity<AboutViewModel, ActivityAboutBinding>() {
     @Autowired
     lateinit var browserProvider: BrowserProvider
+    override fun initImmersionBar(): ImmersionBar {
+        return super.initImmersionBar().titleBar(binding.toolbar)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

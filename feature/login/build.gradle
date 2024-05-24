@@ -108,7 +108,7 @@ dependencies {
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.material
     implementation libs.toaster
-
+    implementation libs.immersionbar
     if (singleRun) {
         implementation project(path: ':feature:browser')
         implementation project(path: ':feature:hello')
@@ -132,7 +132,6 @@ dependencies {
         implementation libs.coroutines.android
 
         implementation libs.brvah
-        implementation libs.immersionbar
         implementation libs.retrofit
         implementation libs.retrofit.moshi
         implementation libs.retrofit.gson
