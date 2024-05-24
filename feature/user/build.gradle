@@ -83,6 +83,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation libs.androidx.activity
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit2

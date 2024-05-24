@@ -65,7 +65,8 @@ router = "2.0.8" #https://github.com/lany192/app-router
 rootbeer = "0.1.0" #https://github.com/scottyab/rootbeer
 blur = "b636349" #https://github.com/android/renderscript-intrinsics-replacement-toolkit
 gson = "2.10.1"
-zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
+zxingLite = "3.1.1"
+activity = "1.8.0" #https://github.com/jenly1314/ZXingLite
 
 [libraries]
 alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
@@ -152,6 +153,7 @@ rootbeer = { module = "com.scottyab:rootbeer-lib", version.ref = "rootbeer" }
 blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxingLite" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

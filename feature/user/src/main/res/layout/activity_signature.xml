@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.signature.SignatureActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:background="@color/white_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="@dimen/actionbar_height"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/actionBarItemBackground"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/vector_back_black" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="240dp"
+            android:maxLines="1"
+            android:textColor="@color/text_1level"
+            android:textSize="18sp"
+            app:text_style_middle_bold="true"
+            tools:layout_height="@dimen/actionbar_height"
+            android:text="修改个性签名" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_alignParentEnd="true"
+            android:background="?android:attr/actionBarItemBackground"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/primary_dark"
+            android:textSize="14sp"
+            tools:layout_height="@dimen/actionbar_height"
+            android:text="修改" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <com.github.lany192.edittext.BoxEditText
+                    android:id="@+id/input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="start|top"
+                    android:hint="请输入你的个性签名"
+                    android:lineSpacingExtra="4dp"
+                    android:maxLength="60"
+                    android:minHeight="90dp"
+                    android:padding="13dp"
+                    android:textColor="@color/text_2level"
+                    android:textSize="13sp"
+                    app:bl_corners_radius="12dp"
+                    app:bl_solid_color="@color/gray_light_bg" />
+
+                <com.github.lany192.text.BoxTextView
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="12dp"
+                    android:text="0/60"
+                    android:textColor="@color/text_4level"
+                    android:textSize="11sp" />
+            </FrameLayout>
+
+            <com.github.lany192.text.BoxTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="12dp"
+                android:text="个性签名最多支持60个字符"
+                android:textColor="@color/text_4level"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

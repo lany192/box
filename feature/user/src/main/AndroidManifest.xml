@@ -3,9 +3,13 @@
 
     <application>
         <activity
+            android:name=".ui.signature.SignatureActivity"
+            android:exported="false"
+            android:label="修改个性签名" />
+        <activity
             android:name=".ui.UserActivity"
-            android:label="用户信息"
-            android:exported="false" />
+            android:exported="false"
+            android:label="用户信息" />
     </application>
 
 </manifest>

@@ -4,15 +4,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
-import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewBindingActivity;
-import com.github.lany192.utils.KVUtils;
 import com.gyf.immersionbar.ImmersionBar;
-import com.hjq.toast.Toaster;
 import com.lany192.box.user.databinding.ActivityUserBinding;
-
-import java.util.Random;
+import com.lany192.box.user.ui.signature.SignatureRouter;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -29,6 +25,7 @@ public class UserActivity extends ViewBindingActivity<ActivityUserBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding.signature.setOnClickListener(v -> SignatureRouter.start());
 
 //        binding.test1.setText("标题:" + title + ",链接:" + url);
 //        binding.button.setOnClickListener(v -> {
