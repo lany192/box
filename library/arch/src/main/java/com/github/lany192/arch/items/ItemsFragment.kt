@@ -6,11 +6,11 @@ import androidx.viewbinding.ViewBinding
 import com.chad.library.adapter4.QuickAdapterHelper
 import com.chad.library.adapter4.layoutmanager.QuickGridLayoutManager
 import com.github.lany192.arch.adapter.MultiAdapter
-import com.github.lany192.arch.fragment.VMVBFragment
+import com.github.lany192.arch.fragment.ViewModelFragment
 import com.github.lany192.arch.utils.ListUtils
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
-abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : VMVBFragment<VM, VB>() {
+abstract class ItemsFragment<VM : ItemsViewModel, VB : ViewBinding> : ViewModelFragment<VM, VB>() {
     protected lateinit var refreshLayout: SmartRefreshLayout
     protected lateinit var layoutManager: RecyclerView.LayoutManager
     protected lateinit var recyclerView: RecyclerView

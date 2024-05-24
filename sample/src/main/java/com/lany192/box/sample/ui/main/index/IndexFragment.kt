@@ -1,7 +1,7 @@
 package com.lany192.box.sample.ui.main.index
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.VMVBFragment
+import com.github.lany192.arch.fragment.ViewModelFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.arch.utils.BarUtils
@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/page/index")
-class IndexFragment : VMVBFragment<IndexViewModel, FragmentIndexBinding>() {
+class IndexFragment : ViewModelFragment<IndexViewModel, FragmentIndexBinding>() {
 
     override fun initImmersionBar() {
         BarUtils.init(this).titleBar(binding.tabLayout).init()

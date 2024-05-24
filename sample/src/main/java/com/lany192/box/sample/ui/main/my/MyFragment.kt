@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.main.my
 
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.VMVBFragment
+import com.github.lany192.arch.fragment.ViewModelFragment
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.dialog.MenuDialog
@@ -26,7 +26,7 @@ import java.time.LocalDate
 
 @AndroidEntryPoint
 @Route(path = "/page/my")
-class MyFragment : VMVBFragment<MyViewModel, FragmentMyBinding>() {
+class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
 
     @Autowired
     lateinit var loginProvider: LoginProvider

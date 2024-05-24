@@ -1,7 +1,7 @@
 package com.lany192.box.sample.ui.main.message
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.github.lany192.arch.fragment.VMVBFragment
+import com.github.lany192.arch.fragment.ViewModelFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.arch.utils.BarUtils
@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/page/message")
-class MessageFragment : VMVBFragment<MessageViewModel, FragmentMessageBinding>() {
+class MessageFragment : ViewModelFragment<MessageViewModel, FragmentMessageBinding>() {
 
     override fun initImmersionBar() {
         BarUtils.init(this).titleBar(binding.toolbar).init()

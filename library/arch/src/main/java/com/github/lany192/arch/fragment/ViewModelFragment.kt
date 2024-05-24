@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 /**
  * ViewBinding实现基类
  */
-abstract class VMVBFragment<VM : LifecycleViewModel, VB : ViewBinding> : VBFragment<VB>() {
+abstract class ViewModelFragment<VM : LifecycleViewModel, VB : ViewBinding> : ViewBindingFragment<VB>() {
     lateinit var viewModel: VM
 
     override fun onCreate(state: Bundle?) {
