@@ -7,5 +7,9 @@ public interface UserProvider extends IProvider {
 
     void startUserInfo();
 
-    String getUserId();
+    long getUserId();
+
+    String getToken();
+
+    boolean isLogin();
 }

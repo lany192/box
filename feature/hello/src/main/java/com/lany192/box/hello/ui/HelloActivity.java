@@ -53,6 +53,7 @@ public class HelloActivity extends AppCompatActivity {
             binding.textView.setText("用户id:" + userProvider.getUserId());
         }
         binding.test5.setOnClickListener(v -> imagePicker());
+        binding.test6.setOnClickListener(v -> Toaster.show(userProvider.getToken()));
     }
 
     private void imagePicker() {

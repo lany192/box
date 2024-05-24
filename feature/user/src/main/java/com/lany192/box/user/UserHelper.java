@@ -51,7 +51,8 @@ public class UserHelper {
     }
 
     public String getToken() {
-        return KVUtils.getString(KEY_TOKEN);
+//        return KVUtils.getString(KEY_TOKEN);
+        return "user_token_test_xxxxxxxxx";
     }
 
     public UserInfo getUserInfo() {
