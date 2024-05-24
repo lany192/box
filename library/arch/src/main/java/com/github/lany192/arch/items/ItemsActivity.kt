@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.chad.library.adapter4.QuickAdapterHelper
 import com.chad.library.adapter4.layoutmanager.QuickGridLayoutManager
-import com.github.lany192.arch.activity.VMVBActivity
+import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.adapter.MultiAdapter
 import com.github.lany192.arch.utils.ListUtils
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
-abstract class ItemsActivity<VM : ItemsViewModel, VB : ViewBinding> : VMVBActivity<VM, VB>() {
+abstract class ItemsActivity<VM : ItemsViewModel, VB : ViewBinding> : ViewModelActivity<VM, VB>() {
     protected lateinit var refreshLayout: SmartRefreshLayout
     protected lateinit var layoutManager: RecyclerView.LayoutManager
     protected lateinit var recyclerView: RecyclerView

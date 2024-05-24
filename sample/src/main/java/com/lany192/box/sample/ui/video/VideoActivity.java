@@ -20,7 +20,7 @@ import androidx.media3.exoplayer.upstream.DefaultAllocator;
 import androidx.media3.exoplayer.upstream.DefaultBandwidthMeter;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.VMVBActivity;
+import com.github.lany192.arch.activity.ViewModelActivity;
 import com.github.lany192.video.JZMediaExo;
 import com.github.lany192.video.Jzvd;
 import com.github.lany192.video.JzvdStd;
@@ -31,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/video")
-public class VideoActivity extends VMVBActivity<VideoViewModel, ActivityVideoBinding> {
+public class VideoActivity extends ViewModelActivity<VideoViewModel, ActivityVideoBinding> {
     private final String url = "https://media.w3.org/2010/05/sintel/trailer.mp4";
 
     @OptIn(markerClass = UnstableApi.class)

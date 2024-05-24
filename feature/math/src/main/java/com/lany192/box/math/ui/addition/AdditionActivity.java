@@ -3,7 +3,7 @@ package com.lany192.box.math.ui.addition;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.VMVBActivity;
+import com.github.lany192.arch.activity.ViewModelActivity;
 import com.lany192.box.math.databinding.ActivityAdditionBinding;
 import com.lany192.box.math.repository.MathItem;
 
@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/math/addition")
-public class AdditionActivity extends VMVBActivity<AdditionViewModel, ActivityAdditionBinding> {
+public class AdditionActivity extends ViewModelActivity<AdditionViewModel, ActivityAdditionBinding> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

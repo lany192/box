@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.github.lany192.arch.activity.VMVBActivity;
+import com.github.lany192.arch.activity.ViewModelActivity;
 import com.lany192.box.sample.databinding.ActivityDownloadBinding;
 import com.liulishuo.okdownload.DownloadMonitor;
 import com.liulishuo.okdownload.DownloadTask;
@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/ui/download")
-public class DownloadActivity extends VMVBActivity<DownloadViewModel, ActivityDownloadBinding> {
+public class DownloadActivity extends ViewModelActivity<DownloadViewModel, ActivityDownloadBinding> {
 //    private final BinderAdapter itemsAdapter = new BinderAdapter();
 //
 //    @Override
