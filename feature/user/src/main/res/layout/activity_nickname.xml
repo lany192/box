@@ -83,7 +83,7 @@
             android:textColor="@color/text_2level"
             android:textColorHint="@color/text_4level"
             android:textSize="14sp"
-            app:bl_corners_radius="8dp"
+            app:bl_corners_radius="4dp"
             app:bl_solid_color="@color/gray_light_bg"
             tools:text="架飞机飞机架飞机飞机架架飞机飞机架飞机飞机架飞机飞机架飞机飞机架飞机飞机架飞机飞机架飞机飞机架飞机飞机飞机飞机架飞机飞机" />
 
