@@ -54,7 +54,7 @@ abstract class ViewBindingActivity<VB : ViewBinding> : BaseActivity() {
     }
 
     override fun setTitle(titleId: Int) {
-        findViewById<TextView>(R.id.title)?.text = getString(titleId)
+        setTitle(getString(titleId))
     }
 
     open fun getErrorView(): View {

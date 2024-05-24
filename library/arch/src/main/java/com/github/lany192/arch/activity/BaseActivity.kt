@@ -136,6 +136,11 @@ abstract class BaseActivity : AppCompatActivity() {
         return ContextCompat.getColor(this, id)
     }
 
+    override fun onBackPressed() {
+        onBackPressedDispatcher.onBackPressed()
+        super.onBackPressed()
+    }
+
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             //点击空白区域收起输入法
