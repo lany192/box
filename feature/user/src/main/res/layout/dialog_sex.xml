@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:bl_corners_topRadius="8dp"
+    app:bl_solid_color="@color/white_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@android:string/cancel"
+            android:textColor="@color/text_4level"
+            android:textSize="14sp"
+            tools:layout_height="48dp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="性别"
+            android:textColor="@color/text_1level"
+            android:textSize="17sp"
+            app:text_style_middle_bold="true" />
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@android:string/ok"
+            android:textColor="@color/text_4level"
+            android:textSize="14sp"
+            tools:layout_height="48dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/outline" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <com.github.lany192.text.IconTextView
+            android:id="@+id/boy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="男生"
+            android:textColor="#4a97ff"
+            android:textSize="13sp"
+            app:icon="@mipmap/sex_man_normal"
+            app:icon_gravity="start"
+            app:icon_padding="16dp"
+            app:icon_size="30dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/outline" />
+
+        <com.github.lany192.text.IconTextView
+            android:id="@+id/girl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="女生"
+            android:textColor="#ff889b"
+            android:textSize="13sp"
+            app:icon="@mipmap/sex_woman_normal"
+            app:icon_gravity="start"
+            app:icon_padding="16dp"
+            app:icon_size="30dp" />
+
+    </LinearLayout>
+</LinearLayout>
