@@ -28,7 +28,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
+        
+        vectorDrawables {
+            useSupportLibrary true
+        }
+        
         if (singleRun) {
             applicationId namespace
             versionCode apk.versionCode
@@ -113,6 +117,8 @@ dependencies {
     implementation libs.androidx.material
     implementation libs.toaster
     implementation libs.immersionbar
+    implementation libs.gson
+
     if (singleRun) {
         implementation project(path: ':feature:hello')
         implementation project(path: ':feature:login')

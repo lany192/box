@@ -6,8 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewBindingActivity;
+import com.github.lany192.utils.ImageUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lany192.box.user.databinding.ActivityUserBinding;
+import com.lany192.box.user.dialog.SexDialog;
 import com.lany192.box.user.ui.nickname.NicknameRouter;
 import com.lany192.box.user.ui.signature.SignatureRouter;
 
@@ -26,8 +28,11 @@ public class UserInfoActivity extends ViewBindingActivity<ActivityUserBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding.niceNameView.setOnClickListener(v -> NicknameRouter.start());
+        binding.nickname.setOnClickListener(v -> NicknameRouter.start());
         binding.signature.setOnClickListener(v -> SignatureRouter.start());
+        binding.sexView.setOnClickListener(v -> new SexDialog(false).show());
+
+        ImageUtils.show(binding.avatar,"http://pic.imeitou.com/uploads/allimg/221021/8-221021094504.jpg");
 
 //        binding.test1.setText("标题:" + title + ",链接:" + url);
 //        binding.button.setOnClickListener(v -> {
