@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.facade.template.IProvider;
 
 public interface UserProvider extends IProvider {
 
-    void startUser(String title, String url);
+    void startUserInfo();
 
     String getUserId();
 }

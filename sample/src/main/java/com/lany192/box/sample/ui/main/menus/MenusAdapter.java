@@ -78,7 +78,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 15) {
             MathRouter.start();
         } else if (position == 16) {
-            UserRouter.start("", "");
+            UserRouter.start();
         } else if (position == 17) {
             ImageRouter.start();
         }else if (position == 18) {

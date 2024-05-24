@@ -14,6 +14,7 @@ import com.gyf.immersionbar.ImmersionBar
 import com.hjq.permissions.XXPermissions
 import com.hjq.toast.Toaster
 import com.lany192.box.router.provider.BrowserProvider
+import com.lany192.box.router.provider.UserProvider
 import com.lany192.box.sample.R
 import com.lany192.box.sample.databinding.ActivitySettingsBinding
 import com.lany192.box.sample.ui.settings.about.AboutRouter
@@ -28,6 +29,9 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
 
     @Autowired
     lateinit var browserProvider: BrowserProvider
+    @Autowired
+    lateinit var userProvider: UserProvider
+
     override fun initImmersionBar(): ImmersionBar {
         return super.initImmersionBar().titleBar(binding.toolbar)
     }
@@ -35,6 +39,7 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
+        binding.userInfo.setOnClickListener { userProvider.startUserInfo() }
         binding.cacheView.hint(CacheUtils.getCacheSize(this))
         binding.versionView.setOnClickListener { checkVersion() }
         binding.cacheView.setOnClickListener { showCacheDialog() }

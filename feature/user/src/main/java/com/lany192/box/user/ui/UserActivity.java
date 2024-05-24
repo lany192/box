@@ -19,10 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/user/main")
 public class UserActivity extends ViewBindingActivity<ActivityUserBinding> {
-    @Autowired(name = "title", desc = "标题")
-    String title;
-    @Autowired(name = "url", desc = "链接")
-    String url;
+
     @NonNull
     @Override
     public ImmersionBar initImmersionBar() {

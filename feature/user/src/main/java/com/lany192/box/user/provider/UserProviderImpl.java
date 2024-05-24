@@ -16,8 +16,8 @@ public class UserProviderImpl implements UserProvider {
     }
 
     @Override
-    public void startUser(String title, String url) {
-        UserRouter.start(title, url);
+    public void startUserInfo() {
+        UserRouter.start();
     }
 
     @Override

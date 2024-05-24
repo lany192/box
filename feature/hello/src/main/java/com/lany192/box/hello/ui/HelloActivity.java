@@ -47,7 +47,7 @@ public class HelloActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.test1.setOnClickListener(v -> browserProvider.startBrowser("测试", "https://www.baidu.com"));
         binding.test2.setOnClickListener(v -> mathProvider.startMath());
-        binding.test3.setOnClickListener(v -> userProvider.startUser("dddd", "eeee"));
+        binding.test3.setOnClickListener(v -> userProvider.startUserInfo());
         binding.test4.setOnClickListener(v -> loginProvider.startLogin());
         if (userProvider != null) {
             binding.textView.setText("用户id:" + userProvider.getUserId());

@@ -33,7 +33,7 @@
             android:gravity="center"
             android:maxWidth="240dp"
             android:maxLines="1"
-            android:text="关于"
+            android:text="用户信息"
             android:textColor="@color/text_1level"
             android:textSize="18sp"
             app:text_style_middle_bold="true"/>
