@@ -15,6 +15,7 @@ import com.lany192.box.hello.ui.HelloRouter;
 import com.lany192.box.login.ui.LoginRouter;
 import com.lany192.box.math.ui.MathRouter;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
+import com.lany192.box.sample.ui.database.DatabaseRouter;
 import com.lany192.box.sample.ui.encrypt.EncryptRouter;
 import com.lany192.box.sample.ui.html.HtmlRouter;
 import com.lany192.box.sample.ui.image.ImageRouter;
@@ -63,7 +64,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
         } else if (position == 8) {
             TransformationRouter.start();
         } else if (position == 9) {
-            MathRouter.start();
+            DatabaseRouter.start();
         } else if (position == 10) {
             Toaster.show(DeviceId.get().getDeviceId());
         } else if (position == 11) {

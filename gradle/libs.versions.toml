@@ -8,6 +8,7 @@ alipayzerosdk = "1.1" #支付宝打赏 https://github.com/fython/AlipayZeroSdk
 androidxEspressoCoreVersion = "3.5.1"
 androidxTestExtJunit = "1.1.5"
 appcompat = "1.6.1"
+activity = "1.8.0"
 banner = "2.2.3" # banner https://github.com/youth5201314/banner
 camera = "1.3.3" #相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
 junit = "4.13.2"
@@ -65,13 +66,14 @@ router = "2.0.8" #https://github.com/lany192/app-router
 rootbeer = "0.1.0" #https://github.com/scottyab/rootbeer
 blur = "b636349" #https://github.com/android/renderscript-intrinsics-replacement-toolkit
 gson = "2.10.1"
-zxingLite = "3.1.1"
-activity = "1.8.0" #https://github.com/jenly1314/ZXingLite
+zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
+
 
 [libraries]
 alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
@@ -153,7 +155,7 @@ rootbeer = { module = "com.scottyab:rootbeer-lib", version.ref = "rootbeer" }
 blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxingLite" }
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

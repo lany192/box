@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.database.DatabaseActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.image.ImageActivity"
             android:exported="false"
             android:label="图片"
