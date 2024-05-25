@@ -24,11 +24,12 @@ afterEvaluate {
                         }
                     }
                 }
-//                repositories {
-//                    maven {
-//                        name = 'local_repository'
-//                        url = "${rootProject.rootDir}/repository"
-//                    }
+                repositories {
+                    mavenLocal()  // 发布到本地仓库
+                    maven {
+                        name = 'local_repository'
+                        url = "${rootProject.rootDir}/repository"
+                    }
 //                    maven {
 //                        allowInsecureProtocol true
 //                        url = "http://localhost:5001/repository/maven-snapshots/"
@@ -37,7 +38,7 @@ afterEvaluate {
 //                            it.password = "dev123456"
 //                        }
 //                    }
-//                }
+                }
             }
         }
     }
