@@ -20,7 +20,7 @@ class DatabaseRepository(private val database: AppDatabase) : BaseRepository() {
      */
     suspend fun getSearchHistories(sharedFlow: MutableSharedFlow<List<SearchHistory>>) {
         flow {
-            val result = database.searchHistoryMapper().selectList(20)
+            val result = database.searchHistoryDao().selectList(20)
             emit(result)
         }.flowOn(Dispatchers.IO).catch { exception ->
             log.e(exception.message)
@@ -35,7 +35,7 @@ class DatabaseRepository(private val database: AppDatabase) : BaseRepository() {
      */
     suspend fun saveSearchHistory(record: SearchHistory) {
         flow {
-            val result = database.searchHistoryMapper().insertRecord(record)
+            val result = database.searchHistoryDao().insertRecord(record)
             emit(result)
         }.flowOn(Dispatchers.IO).catch { exception ->
             log.e(exception.message)
@@ -50,7 +50,7 @@ class DatabaseRepository(private val database: AppDatabase) : BaseRepository() {
      */
     suspend fun saveBrowseHistory(record: BrowseHistory) {
         flow {
-            val result = database.browseHistoryMapper().insertRecord(record)
+            val result = database.browseHistoryDao().insertRecord(record)
             emit(result)
         }.flowOn(Dispatchers.IO).catch { exception ->
             log.e(exception.message)

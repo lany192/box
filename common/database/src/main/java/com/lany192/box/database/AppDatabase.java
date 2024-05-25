@@ -6,8 +6,8 @@ import androidx.room.TypeConverters;
 
 import com.lany192.box.database.entity.BrowseHistory;
 import com.lany192.box.database.entity.SearchHistory;
-import com.lany192.box.database.mapper.BrowseHistoryMapper;
-import com.lany192.box.database.mapper.SearchHistoryMapper;
+import com.lany192.box.database.dao.BrowseHistoryDao;
+import com.lany192.box.database.dao.SearchHistoryDao;
 
 
 @Database(entities = {SearchHistory.class, BrowseHistory.class}, exportSchema = false, version = 1)
@@ -16,10 +16,10 @@ public abstract class AppDatabase extends RoomDatabase {
     /**
      * 搜索记录
      */
-    public abstract SearchHistoryMapper searchHistoryMapper();
+    public abstract SearchHistoryDao searchHistoryDao();
 
     /**
      * 浏览记录
      */
-    public abstract BrowseHistoryMapper browseHistoryMapper();
+    public abstract BrowseHistoryDao browseHistoryDao();
 }

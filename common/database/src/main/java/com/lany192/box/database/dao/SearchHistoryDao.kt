@@ -1,4 +1,4 @@
-package com.lany192.box.database.mapper
+package com.lany192.box.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -10,7 +10,7 @@ import com.lany192.box.database.entity.SearchHistory
  * 搜索记录表操作
  */
 @Dao
-interface SearchHistoryMapper {
+interface SearchHistoryDao {
     /**
      * 插入数据
      */

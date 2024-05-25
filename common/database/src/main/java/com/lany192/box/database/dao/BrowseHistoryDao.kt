@@ -1,17 +1,16 @@
-package com.lany192.box.database.mapper
+package com.lany192.box.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.lany192.box.database.entity.BrowseHistory
-import com.lany192.box.database.entity.SearchHistory
 
 /**
  * 浏览记录表操作
  */
 @Dao
-interface BrowseHistoryMapper {
+interface BrowseHistoryDao {
     /**
      * 插入数据
      */
