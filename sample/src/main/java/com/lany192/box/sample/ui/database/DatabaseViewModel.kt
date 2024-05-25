@@ -6,12 +6,14 @@ import com.hjq.toast.Toaster
 import com.lany192.box.database.entity.SearchHistory
 import com.lany192.box.database.repository.DatabaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DatabaseViewModel @Inject constructor(val repository: DatabaseRepository) :
     LifecycleViewModel() {
+    val results = MutableStateFlow<List<String>>(mutableListOf())
 
     fun insert() {
         viewModelScope.launch {
@@ -28,8 +30,8 @@ class DatabaseViewModel @Inject constructor(val repository: DatabaseRepository) 
     fun query() {
         viewModelScope.launch {
             val records = repository.getSearchHistories()
-            records.collect {
-                Toaster.show(it.map { it.keyword })
+            records.collect { it ->
+                results.value = it.map { it.keyword!! }
             }
         }
     }
