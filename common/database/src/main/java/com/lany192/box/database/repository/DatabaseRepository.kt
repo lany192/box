@@ -32,7 +32,7 @@ class DatabaseRepository(private val database: AppDatabase) : BaseRepository() {
     /**
      * 保存搜索记录
      */
-    suspend fun getSearchHistories(record: SearchHistory) {
+    suspend fun saveSearchHistory(record: SearchHistory) {
         flow {
             val result = database.searchHistoryMapper().insertRecord(record)
             emit(result)

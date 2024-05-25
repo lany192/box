@@ -20,18 +20,24 @@ interface SearchHistoryMapper {
     /**
      * 删除记录
      */
-    @Query("DELETE FROM game_search_history WHERE keyword == :keyword")
+    @Query("DELETE FROM tb_search_history WHERE _id == :id")
+    suspend fun deleteById(id: Long)
+
+    /**
+     * 删除记录
+     */
+    @Query("DELETE FROM tb_search_history WHERE keyword == :keyword")
     suspend fun deleteByKeyword(keyword: String)
 
     /**
      * 删除全部记录
      */
-    @Query("DELETE FROM game_search_history")
+    @Query("DELETE FROM tb_search_history")
     suspend fun deleteAll()
 
     /**
      * 查询数据
      */
-    @Query("SELECT * FROM game_search_history ORDER by _id DESC LIMIT :limit ")
+    @Query("SELECT * FROM tb_search_history ORDER by _id DESC LIMIT :limit ")
     suspend fun selectList(limit: Int): List<SearchHistory>
 }
