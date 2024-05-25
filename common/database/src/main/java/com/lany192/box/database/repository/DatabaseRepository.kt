@@ -15,17 +15,15 @@ import javax.inject.Inject
 /**
  * 数据库操作
  */
-class DatabaseRepository() : BaseRepository() {
-    @Inject
-     lateinit var searchHistoryDao: SearchHistoryDao
-
-    @Inject
-     lateinit var browseHistoryDao: BrowseHistoryDao
+class DatabaseRepository(
+    private val searchHistoryDao: SearchHistoryDao,
+    private val browseHistoryDao: BrowseHistoryDao
+) : BaseRepository() {
 
     /**
      * 搜索历史记录
      */
-    fun getSearchHistories(): Flow<List<SearchHistory>> {
+    suspend fun getSearchHistories(): Flow<List<SearchHistory>> {
         return flow {
             val result = searchHistoryDao.selectList(20)
             emit(result)
@@ -38,7 +36,7 @@ class DatabaseRepository() : BaseRepository() {
     /**
      * 保存搜索记录
      */
-    fun saveSearchHistory(record: SearchHistory): Flow<List<Long>> {
+    suspend fun saveSearchHistory(record: SearchHistory): Flow<List<Long>> {
         return flow {
             val result = searchHistoryDao.insertRecord(record)
             emit(result)
@@ -51,7 +49,7 @@ class DatabaseRepository() : BaseRepository() {
     /**
      * 保存搜索记录
      */
-    fun saveBrowseHistory(record: BrowseHistory): Flow<List<Long>> {
+    suspend fun saveBrowseHistory(record: BrowseHistory): Flow<List<Long>> {
         return flow {
             val result = browseHistoryDao.insertRecord(record)
             emit(result)
