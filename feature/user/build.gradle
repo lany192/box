@@ -184,7 +184,7 @@ dependencies {
         implementation libs.eventbus
         implementation libs.okdownload
         implementation libs.licensesdialog
-        implementation libs.alipay.zero.sdk
+        
         implementation libs.banner
         implementation libs.touchimageview
         implementation libs.zxing.lite

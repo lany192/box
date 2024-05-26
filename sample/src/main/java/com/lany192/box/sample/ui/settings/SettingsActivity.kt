@@ -20,7 +20,6 @@ import com.lany192.box.sample.databinding.ActivitySettingsBinding
 import com.lany192.box.sample.ui.settings.about.AboutRouter
 import com.lany192.box.sample.ui.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import moe.feng.alipay.zerosdk.AlipayZeroSdk
 
 @AndroidEntryPoint
 @Route(path = "/ui/settings")
@@ -29,6 +28,7 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
 
     @Autowired
     lateinit var browserProvider: BrowserProvider
+
     @Autowired
     lateinit var userProvider: UserProvider
 
@@ -45,11 +45,7 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
         binding.cacheView.setOnClickListener { showCacheDialog() }
         binding.permissionView.setOnClickListener { permissionSetting() }
         binding.rewardView.setOnClickListener {
-            if (AlipayZeroSdk.hasInstalledAlipayClient(this)) {
-                AlipayZeroSdk.startAlipayClient(this, "fkx125282bvqbijw7s6uh8f")
-            } else {
-                Toaster.show("感谢您的支持，不过你的手机还没有安装支付宝")
-            }
+            Toaster.show("感谢您的支持，不过你的手机还没有安装支付宝")
         }
         binding.noticeView.setOnClickListener {
             browserProvider.startBrowser("百度也不知道", "https://www.baidu.com")

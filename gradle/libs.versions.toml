@@ -4,7 +4,6 @@ agp = "8.4.1"
 kotlin = "1.8.20"
 
 activityKtx = "1.9.0"
-alipayzerosdk = "1.1" #支付宝打赏 https://github.com/fython/AlipayZeroSdk
 androidxEspressoCoreVersion = "3.5.1"
 androidxTestExtJunit = "1.1.5"
 appcompat = "1.6.1"
@@ -70,7 +69,6 @@ zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
 
 
 [libraries]
-alipay-zero-sdk = { module = "moe.feng:AlipayZeroSdk", version.ref = "alipayzerosdk" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }

@@ -38,7 +38,7 @@ abstract class ViewBindingActivity<VB : ViewBinding> : BaseActivity() {
      * 获取第几个泛型的class
      */
     @Suppress("UNCHECKED_CAST")
-    open fun <T> getClass(index: Int): Class<T> {
+    fun <T> getClass(index: Int): Class<T> {
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
 
