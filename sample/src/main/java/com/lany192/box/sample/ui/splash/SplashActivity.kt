@@ -24,6 +24,10 @@ class SplashActivity : ViewModelActivity<SplashViewModel, ActivitySplashBinding>
         return ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_BAR)
     }
 
+    override fun getViewBinding(): ActivitySplashBinding {
+        return ActivitySplashBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //防止部分手机点击桌面图标后重启应用

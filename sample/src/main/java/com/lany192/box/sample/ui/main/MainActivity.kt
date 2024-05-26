@@ -27,6 +27,9 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
     // 第一次按退出的时间
     private var mLastClickTime: Long = 0
     private lateinit var userViewModel: UserViewModel
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

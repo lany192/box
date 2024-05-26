@@ -33,6 +33,7 @@ public class SampleApp extends BoxApplication {
 
         ShortcutUtils.init(this);
         LancetTest.test();
+//        enableStrictMode();
     }
 
     @Override
@@ -46,33 +47,35 @@ public class SampleApp extends BoxApplication {
             ARouter.openDebug();
         }
         ARouter.init(this);
-//        enableStrictMode();
     }
 
     private void enableStrictMode() {
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                    .detectCustomSlowCalls() //API等级11，使用StrictMode.noteSlowCode
-                    .detectDiskReads()
-                    .detectDiskWrites()
-                    .detectNetwork()   // or .detectAll() for all detectable problems
+                            .detectAll() //所有违规操作
+//                    .detectCustomSlowCalls() //API等级11，使用StrictMode.noteSlowCode
+//                    .detectDiskReads() //磁盘读操作
+//                    .detectDiskWrites() //磁盘写操作
+//                    .detectNetwork()   // or .detectAll() for all detectable problems
                     .penaltyDialog() //弹出违规提示对话框
                     .penaltyLog() //在Logcat 中打印违规异常信息
                     .penaltyFlashScreen() //API等级11
                     .build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                    .detectLeakedSqlLiteObjects()
-                    .detectLeakedClosableObjects() //API等级11
-                    .penaltyLog()
-                    .penaltyDeath()
+                            .detectAll() //所有违规操作
+//                    .detectLeakedSqlLiteObjects()//SQLite
+//                    .detectLeakedClosableObjects() //API等级11
+                    .penaltyLog()//在Logcat 中打印违规异常信息
+                    .penaltyDeath()//违规则崩溃
                     .build());
             FragmentStrictMode.INSTANCE.setDefaultPolicy(new FragmentStrictMode.Policy.Builder()
-                    .penaltyDeath()
+                    .penaltyDeath()//违规则崩溃
                     .detectFragmentReuse()
                     .detectWrongFragmentContainer()
                     .detectRetainInstanceUsage()
                     .detectSetUserVisibleHint()
                     .detectFragmentTagUsage()
+                    .penaltyLog() //在Logcat 中打印违规异常信息
                     .build());
         }
     }
