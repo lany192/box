@@ -11,10 +11,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 abstract class PageActivity<VM : ItemsViewModel> : ItemsActivity<VM, ActivityPageBinding>() {
 
     override fun initImmersionBar() {
-        BarUtils.init(this)
-            .keyboardEnable(true)
-            .titleBar(binding.toolbar)
-            .init()
+        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init()
     }
 
     override fun createRefreshLayout(): SmartRefreshLayout {
