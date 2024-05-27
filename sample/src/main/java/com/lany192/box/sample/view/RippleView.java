@@ -5,9 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.github.lany192.utils.DensityUtils;
@@ -152,15 +150,14 @@ public class RippleView extends View {
 
 
     private static class Rectangle {
+        float width;
+        float height;
+        int alpha;
         Rectangle(float width, float height, int alpha) {
             this.width = width;
             this.height = height;
             this.alpha = alpha;
         }
-
-        float width;
-        float height;
-        int alpha;
     }
 
 }

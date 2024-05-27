@@ -31,9 +31,7 @@ abstract class BaseFragment : Fragment() {
     @CallSuper
     override fun onResume() {
         super.onResume()
-        if (immersionBarEnabled()) {
-            initImmersionBar()
-        }
+        initImmersionBar()
     }
 
     @CallSuper
@@ -67,19 +65,7 @@ abstract class BaseFragment : Fragment() {
     @CallSuper
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        if (immersionBarEnabled()) {
-            initImmersionBar()
-        }
-    }
-
-    /**
-     * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
-     * Immersion bar enabled boolean.
-     *
-     * @return the boolean
-     */
-    fun immersionBarEnabled(): Boolean {
-        return true
+        initImmersionBar()
     }
 
     open fun initImmersionBar() {}

@@ -18,16 +18,16 @@
         tools:ignore="UnusedAttribute">
 
         <com.github.lany192.image.RatioImageView
-            android:layout_width="match_parent"
             android:id="@+id/image"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             app:image_ratio="1.75"
             app:layout_constraintRight_toRightOf="parent"
-            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
-            tools:background="@android:color/holo_green_light"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/LeftRoundedStyle" />
+            app:shapeAppearanceOverlay="@style/LeftRoundedStyle"
+            tools:background="@android:color/holo_green_light" />
 
         <com.github.lany192.text.BoxTextView
             android:id="@+id/title"

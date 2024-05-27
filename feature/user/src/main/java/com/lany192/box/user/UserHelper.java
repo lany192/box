@@ -6,8 +6,6 @@ import android.util.Log;
 import com.github.lany192.utils.JsonUtils;
 import com.github.lany192.utils.KVUtils;
 import com.hjq.toast.Toaster;
-import com.lany192.box.user.event.LoginEvent;
-import com.lany192.box.user.event.LogoutEvent;
 
 public class UserHelper {
     private volatile static UserHelper instance;

@@ -1,5 +1,3 @@
-
-
 package com.github.lany192.cropper;
 
 import android.graphics.RectF;
@@ -81,11 +79,81 @@ public final class CropWindowHandler {
     // endregion
 
     /**
+     * Determines if the specified coordinate is in the target touch zone for a corner handle.
+     *
+     * @param x            the x-coordinate of the touch point
+     * @param y            the y-coordinate of the touch point
+     * @param handleX      the x-coordinate of the corner handle
+     * @param handleY      the y-coordinate of the corner handle
+     * @param targetRadius the target radius in pixels
+     * @return true if the touch point is in the target touch zone; false otherwise
+     */
+    private static boolean isInCornerTargetZone(
+            float x, float y, float handleX, float handleY, float targetRadius) {
+        return Math.abs(x - handleX) <= targetRadius && Math.abs(y - handleY) <= targetRadius;
+    }
+
+    /**
+     * Determines if the specified coordinate is in the target touch zone for a horizontal bar handle.
+     *
+     * @param x            the x-coordinate of the touch point
+     * @param y            the y-coordinate of the touch point
+     * @param handleXStart the left x-coordinate of the horizontal bar handle
+     * @param handleXEnd   the right x-coordinate of the horizontal bar handle
+     * @param handleY      the y-coordinate of the horizontal bar handle
+     * @param targetRadius the target radius in pixels
+     * @return true if the touch point is in the target touch zone; false otherwise
+     */
+    private static boolean isInHorizontalTargetZone(
+            float x, float y, float handleXStart, float handleXEnd, float handleY, float targetRadius) {
+        return x > handleXStart && x < handleXEnd && Math.abs(y - handleY) <= targetRadius;
+    }
+
+    /**
+     * Determines if the specified coordinate is in the target touch zone for a vertical bar handle.
+     *
+     * @param x            the x-coordinate of the touch point
+     * @param y            the y-coordinate of the touch point
+     * @param handleX      the x-coordinate of the vertical bar handle
+     * @param handleYStart the top y-coordinate of the vertical bar handle
+     * @param handleYEnd   the bottom y-coordinate of the vertical bar handle
+     * @param targetRadius the target radius in pixels
+     * @return true if the touch point is in the target touch zone; false otherwise
+     */
+    private static boolean isInVerticalTargetZone(
+            float x, float y, float handleX, float handleYStart, float handleYEnd, float targetRadius) {
+        return Math.abs(x - handleX) <= targetRadius && y > handleYStart && y < handleYEnd;
+    }
+
+    /**
+     * Determines if the specified coordinate falls anywhere inside the given bounds.
+     *
+     * @param x      the x-coordinate of the touch point
+     * @param y      the y-coordinate of the touch point
+     * @param left   the x-coordinate of the left bound
+     * @param top    the y-coordinate of the top bound
+     * @param right  the x-coordinate of the right bound
+     * @param bottom the y-coordinate of the bottom bound
+     * @return true if the touch point is inside the bounding rectangle; false otherwise
+     */
+    private static boolean isInCenterTargetZone(
+            float x, float y, float left, float top, float right, float bottom) {
+        return x > left && x < right && y > top && y < bottom;
+    }
+
+    /**
      * Get the left/top/right/bottom coordinates of the crop window.
      */
     public RectF getRect() {
         mGetEdges.set(mEdges);
         return mGetEdges;
+    }
+
+    /**
+     * Set the left/top/right/bottom coordinates of the crop window.
+     */
+    public void setRect(RectF rect) {
+        mEdges.set(rect);
     }
 
     /**
@@ -148,6 +216,8 @@ public final class CropWindowHandler {
         mMaxCropResultHeight = maxCropResultHeight;
     }
 
+    // region: Private methods
+
     /**
      * set the max width/height and scale factor of the showen image to original image to scale the
      * limits appropriately.
@@ -170,13 +240,6 @@ public final class CropWindowHandler {
         mMinCropResultHeight = options.getMinCropResultHeight();
         mMaxCropResultWidth = options.getMaxCropResultWidth();
         mMaxCropResultHeight = options.getMaxCropResultHeight();
-    }
-
-    /**
-     * Set the left/top/right/bottom coordinates of the crop window.
-     */
-    public void setRect(RectF rect) {
-        mEdges.set(rect);
     }
 
     /**
@@ -206,8 +269,6 @@ public final class CropWindowHandler {
                         : getRectanglePressedMoveType(x, y, targetRadius);
         return type != null ? new CropWindowMoveHandler(type, this, x, y) : null;
     }
-
-    // region: Private methods
 
     /**
      * Determines which, if any, of the handles are pressed given the touch coordinates, the bounding
@@ -317,69 +378,6 @@ public final class CropWindowHandler {
         }
 
         return moveType;
-    }
-
-    /**
-     * Determines if the specified coordinate is in the target touch zone for a corner handle.
-     *
-     * @param x            the x-coordinate of the touch point
-     * @param y            the y-coordinate of the touch point
-     * @param handleX      the x-coordinate of the corner handle
-     * @param handleY      the y-coordinate of the corner handle
-     * @param targetRadius the target radius in pixels
-     * @return true if the touch point is in the target touch zone; false otherwise
-     */
-    private static boolean isInCornerTargetZone(
-            float x, float y, float handleX, float handleY, float targetRadius) {
-        return Math.abs(x - handleX) <= targetRadius && Math.abs(y - handleY) <= targetRadius;
-    }
-
-    /**
-     * Determines if the specified coordinate is in the target touch zone for a horizontal bar handle.
-     *
-     * @param x            the x-coordinate of the touch point
-     * @param y            the y-coordinate of the touch point
-     * @param handleXStart the left x-coordinate of the horizontal bar handle
-     * @param handleXEnd   the right x-coordinate of the horizontal bar handle
-     * @param handleY      the y-coordinate of the horizontal bar handle
-     * @param targetRadius the target radius in pixels
-     * @return true if the touch point is in the target touch zone; false otherwise
-     */
-    private static boolean isInHorizontalTargetZone(
-            float x, float y, float handleXStart, float handleXEnd, float handleY, float targetRadius) {
-        return x > handleXStart && x < handleXEnd && Math.abs(y - handleY) <= targetRadius;
-    }
-
-    /**
-     * Determines if the specified coordinate is in the target touch zone for a vertical bar handle.
-     *
-     * @param x            the x-coordinate of the touch point
-     * @param y            the y-coordinate of the touch point
-     * @param handleX      the x-coordinate of the vertical bar handle
-     * @param handleYStart the top y-coordinate of the vertical bar handle
-     * @param handleYEnd   the bottom y-coordinate of the vertical bar handle
-     * @param targetRadius the target radius in pixels
-     * @return true if the touch point is in the target touch zone; false otherwise
-     */
-    private static boolean isInVerticalTargetZone(
-            float x, float y, float handleX, float handleYStart, float handleYEnd, float targetRadius) {
-        return Math.abs(x - handleX) <= targetRadius && y > handleYStart && y < handleYEnd;
-    }
-
-    /**
-     * Determines if the specified coordinate falls anywhere inside the given bounds.
-     *
-     * @param x      the x-coordinate of the touch point
-     * @param y      the y-coordinate of the touch point
-     * @param left   the x-coordinate of the left bound
-     * @param top    the y-coordinate of the top bound
-     * @param right  the x-coordinate of the right bound
-     * @param bottom the y-coordinate of the bottom bound
-     * @return true if the touch point is inside the bounding rectangle; false otherwise
-     */
-    private static boolean isInCenterTargetZone(
-            float x, float y, float left, float top, float right, float bottom) {
-        return x > left && x < right && y > top && y < bottom;
     }
 
     /**

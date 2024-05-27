@@ -1,8 +1,17 @@
 package com.lany192.box.network.data.api
 
-import com.lany192.box.network.data.bean.*
-import com.lany192.box.network.data.model.*
-import retrofit2.http.*
+import com.lany192.box.network.data.model.CommunityRecommend
+import com.lany192.box.network.data.model.Daily
+import com.lany192.box.network.data.model.Discovery
+import com.lany192.box.network.data.model.Follow
+import com.lany192.box.network.data.model.HomePageRecommend
+import com.lany192.box.network.data.model.PushMessage
+import com.lany192.box.network.data.model.VideoBeanForClient
+import com.lany192.box.network.data.model.VideoRelated
+import com.lany192.box.network.data.model.VideoReplies
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface EyeService {

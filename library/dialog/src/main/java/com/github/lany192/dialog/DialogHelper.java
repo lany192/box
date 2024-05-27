@@ -28,18 +28,17 @@ public class DialogHelper {
      */
     private final Queue<PriorityDialog> dialogQueue = new PriorityQueue<>();
     /**
-     * 当前正在显示对话框
-     */
-    private PriorityDialog currentDialog;
-    /**
      * 堆栈
      */
     private final Stack<FragmentActivity> activityStack = new Stack<>();
-
     /**
      * 正在显示的单例对话框id
      */
     private final Set<Long> ids = new ArraySet<>();
+    /**
+     * 当前正在显示对话框
+     */
+    private PriorityDialog currentDialog;
 
     private DialogHelper() {
     }

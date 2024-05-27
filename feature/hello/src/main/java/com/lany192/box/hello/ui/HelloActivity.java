@@ -29,6 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/hello/main")
 public class HelloActivity extends AppCompatActivity {
+    private final int REQUEST_CODE_CHOOSE = 999;
     @Autowired
     BrowserProvider browserProvider;
     @Autowired
@@ -37,8 +38,6 @@ public class HelloActivity extends AppCompatActivity {
     UserProvider userProvider;
     @Autowired
     LoginProvider loginProvider;
-
-    private final int REQUEST_CODE_CHOOSE = 999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

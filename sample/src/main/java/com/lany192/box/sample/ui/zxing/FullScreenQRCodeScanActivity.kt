@@ -2,16 +2,15 @@ package com.lany192.box.sample.ui.zxing
 
 import android.app.Activity
 import android.content.Intent
-import android.widget.Toast
 import com.google.zxing.Result
 import com.king.camera.scan.AnalyzeResult
 import com.king.camera.scan.CameraScan
 import com.king.camera.scan.analyze.Analyzer
 import com.king.camera.scan.util.PointUtils
 import com.king.view.viewfinderview.ViewfinderView.ViewfinderStyle
+import com.king.zxing.BarcodeCameraScanActivity
 import com.king.zxing.DecodeConfig
 import com.king.zxing.DecodeFormatManager
-import com.king.zxing.BarcodeCameraScanActivity
 import com.king.zxing.analyze.QRCodeAnalyzer
 
 /**

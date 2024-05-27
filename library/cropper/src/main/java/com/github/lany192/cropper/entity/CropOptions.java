@@ -1,5 +1,3 @@
-
-
 package com.github.lany192.cropper.entity;
 
 import android.content.res.Resources;
@@ -407,6 +405,10 @@ public class CropOptions implements Parcelable {
         cropMenuCropButtonIcon = in.readInt();
     }
 
+    public static Creator<CropOptions> getCREATOR() {
+        return CREATOR;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(cropShape.ordinal());
@@ -529,10 +531,6 @@ public class CropOptions implements Parcelable {
             throw new IllegalArgumentException(
                     "Cannot set rotation degrees value to a number < 0 or > 360");
         }
-    }
-
-    public static Creator<CropOptions> getCREATOR() {
-        return CREATOR;
     }
 
     public CropShape getCropShape() {

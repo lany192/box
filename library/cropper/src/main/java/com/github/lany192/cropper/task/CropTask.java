@@ -1,4 +1,3 @@
-
 package com.github.lany192.cropper.task;
 
 import android.content.Context;

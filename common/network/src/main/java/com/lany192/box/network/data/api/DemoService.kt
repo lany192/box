@@ -1,8 +1,22 @@
 package com.lany192.box.network.data.api
 
 import com.github.lany192.arch.entity.ApiResult
-import com.lany192.box.network.data.bean.*
-import retrofit2.http.*
+import com.lany192.box.network.data.bean.Area
+import com.lany192.box.network.data.bean.Article
+import com.lany192.box.network.data.bean.ArticleList
+import com.lany192.box.network.data.bean.Banner
+import com.lany192.box.network.data.bean.Hot
+import com.lany192.box.network.data.bean.Navigation
+import com.lany192.box.network.data.bean.PageInfo
+import com.lany192.box.network.data.bean.SystemParent
+import com.lany192.box.network.data.bean.User
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface DemoService {
     /**
@@ -12,11 +26,11 @@ interface DemoService {
     @GET("https://xzwcn.oss-cn-shanghai.aliyuncs.com/config/city.json")
     suspend fun getCityList(): ApiResult<List<Area>>
 
-//    @Headers("domain:test1")
+    //    @Headers("domain:test1")
     @GET("/article/list/{page}/json")
     suspend fun getArticleList(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 
-//    @Headers("domain:test2")
+    //    @Headers("domain:test2")
     @GET("/article/list/{page}/json")
     suspend fun getHomeArticles(@Path("page") page: Int): ApiResult<PageInfo<Article>>
 

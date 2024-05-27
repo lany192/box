@@ -14,8 +14,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class DomainInterceptor implements Interceptor {
-    private final XLog log = XLog.tag(getClass().getSimpleName());
     private static final String DOMAIN_KEY = "domain";
+    private final XLog log = XLog.tag(getClass().getSimpleName());
 
     @NonNull
     @Override

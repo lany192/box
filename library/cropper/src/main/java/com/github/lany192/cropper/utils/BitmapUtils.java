@@ -1,5 +1,3 @@
-
-
 package com.github.lany192.cropper.utils;
 
 import android.content.ContentResolver;
@@ -57,16 +55,14 @@ public final class BitmapUtils {
      * Reusable point for general internal usage
      */
     public static final float[] POINTS2 = new float[6];
-
-    /**
-     * Used to know the max texture size allowed to be rendered
-     */
-    private static int mMaxTextureSize;
-
     /**
      * used to save bitmaps during state save and restore so not to reload them.
      */
     public static Pair<String, WeakReference<Bitmap>> mStateBitmap;
+    /**
+     * Used to know the max texture size allowed to be rendered
+     */
+    private static int mMaxTextureSize;
 
     /**
      * Rotate the given image by reading the Exif value of the image (uri).<br>

@@ -34,19 +34,19 @@ public class CheckTextView extends IconTextView implements Checkable {
         return checked;
     }
 
-    private void showIcon() {
-        if (this.checked) {
-            setIcon(R.drawable.ico_check);
-        } else {
-            setIcon(R.drawable.ico_uncheck);
-        }
-    }
-
     public void setChecked(boolean checked) {
         this.checked = checked;
         showIcon();
         if (mListener != null) {
             mListener.onChanged(this.checked);
+        }
+    }
+
+    private void showIcon() {
+        if (this.checked) {
+            setIcon(R.drawable.ico_check);
+        } else {
+            setIcon(R.drawable.ico_uncheck);
         }
     }
 

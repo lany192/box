@@ -25,6 +25,7 @@ public class MathActivity extends ViewModelActivity<MathViewModel, ActivityMathB
     public ImmersionBar initImmersionBar() {
         return super.initImmersionBar().titleBar(binding.toolbar);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

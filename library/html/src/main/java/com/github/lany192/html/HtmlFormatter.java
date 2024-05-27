@@ -1,5 +1,3 @@
-
-
 package com.github.lany192.html;
 
 import android.text.Html;
@@ -25,10 +23,6 @@ public class HtmlFormatter {
                 }, builder.getIndent(),
                 builder.isRemoveTrailingWhiteSpace()
         );
-    }
-
-    interface TagClickListenerProvider {
-        OnClickATagListener provideTagClickListener();
     }
 
     public static Spanned formatHtml(@Nullable String html, ImageGetter imageGetter, ClickableTableSpan clickableTableSpan, DrawTableLinkSpan drawTableLinkSpan, TagClickListenerProvider tagClickListenerProvider, float indent, boolean removeTrailingWhiteSpace) {
@@ -65,5 +59,9 @@ public class HtmlFormatter {
             text = (Spanned) text.subSequence(0, text.length() - 1);
         }
         return text;
+    }
+
+    interface TagClickListenerProvider {
+        OnClickATagListener provideTagClickListener();
     }
 }

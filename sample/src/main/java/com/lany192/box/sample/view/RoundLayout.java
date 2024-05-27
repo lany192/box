@@ -1,13 +1,15 @@
 package com.lany192.box.sample.view;
 
+import static android.graphics.Canvas.ALL_SAVE_FLAG;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
 import android.graphics.Path.Direction;
 import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.os.Build.VERSION;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
@@ -16,8 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.Arrays;
-
-import static android.graphics.Canvas.ALL_SAVE_FLAG;
 
 /**
  * 圆角容器

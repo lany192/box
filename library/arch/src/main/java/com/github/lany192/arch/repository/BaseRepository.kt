@@ -5,7 +5,11 @@ import com.github.lany192.arch.entity.ApiResult
 import com.github.lany192.log.XLog
 import com.github.lany192.utils.NetUtils
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
 
 open class BaseRepository {
     protected var log: XLog = XLog.tag(javaClass.name)

@@ -5,8 +5,12 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;
 
 public class RxBus {
-    private final Subject<Object> subject;
     private volatile static RxBus instance = null;
+    private final Subject<Object> subject;
+
+    private RxBus() {
+        this.subject = PublishSubject.create().toSerialized();
+    }
 
     public static RxBus getDefault() {
         if (instance == null) {
@@ -17,10 +21,6 @@ public class RxBus {
             }
         }
         return instance;
-    }
-
-    private RxBus() {
-        this.subject = PublishSubject.create().toSerialized();
     }
 
     public void post(Object object) {

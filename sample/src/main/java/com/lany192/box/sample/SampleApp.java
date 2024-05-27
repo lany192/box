@@ -52,7 +52,7 @@ public class SampleApp extends BoxApplication {
     private void enableStrictMode() {
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                            .detectAll() //所有违规操作
+                    .detectAll() //所有违规操作
 //                    .detectCustomSlowCalls() //API等级11，使用StrictMode.noteSlowCode
 //                    .detectDiskReads() //磁盘读操作
 //                    .detectDiskWrites() //磁盘写操作
@@ -62,7 +62,7 @@ public class SampleApp extends BoxApplication {
                     .penaltyFlashScreen() //API等级11
                     .build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                            .detectAll() //所有违规操作
+                    .detectAll() //所有违规操作
 //                    .detectLeakedSqlLiteObjects()//SQLite
 //                    .detectLeakedClosableObjects() //API等级11
                     .penaltyLog()//在Logcat 中打印违规异常信息

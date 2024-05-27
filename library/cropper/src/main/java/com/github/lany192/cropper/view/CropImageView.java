@@ -347,6 +347,33 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
+     * Determines the specs for the onMeasure function. Calculates the width or height depending on
+     * the mode.
+     *
+     * @param measureSpecMode The mode of the measured width or height.
+     * @param measureSpecSize The size of the measured width or height.
+     * @param desiredSize     The desired size of the measured width or height.
+     * @return The final size of the width or height.
+     */
+    private static int getOnMeasureSpec(int measureSpecMode, int measureSpecSize, int desiredSize) {
+
+        // Measure Width
+        int spec;
+        if (measureSpecMode == MeasureSpec.EXACTLY) {
+            // Must be this size
+            spec = measureSpecSize;
+        } else if (measureSpecMode == MeasureSpec.AT_MOST) {
+            // Can't be bigger than...; match_parent value
+            spec = Math.min(desiredSize, measureSpecSize);
+        } else {
+            // Be whatever you want; wrap_content
+            spec = desiredSize;
+        }
+
+        return spec;
+    }
+
+    /**
      * Get the scale type of the image in the crop view.
      */
     public ScaleType getScaleType() {
@@ -636,6 +663,19 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
+     * Sets a Drawable as the content of the CropImageView.
+     *
+     * @param resId the drawable resource ID to set
+     */
+    public void setImageResource(int resId) {
+        if (resId != 0) {
+            mOverlayView.setInitialCropWindowRect(null);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resId);
+            setBitmap(bitmap, resId, null, 1, 0);
+        }
+    }
+
+    /**
      * Get the URI of an image that was set by URI, null otherwise.
      */
     public Uri getImageUri() {
@@ -689,6 +729,16 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
+     * Set the crop window position and size to the given rectangle.<br>
+     * Image to crop must be first set before invoking this, for async - after complete callback.
+     *
+     * @param rect window rectangle (position and size) relative to source bitmap
+     */
+    public void setCropRect(Rect rect) {
+        mOverlayView.setInitialCropWindowRect(rect);
+    }
+
+    /**
      * Gets the crop window's position relative to the parent's view at screen.
      *
      * @return a Rect instance containing cropped area boundaries of the source Bitmap
@@ -733,16 +783,6 @@ public class CropImageView extends FrameLayout {
         }
 
         return points;
-    }
-
-    /**
-     * Set the crop window position and size to the given rectangle.<br>
-     * Image to crop must be first set before invoking this, for async - after complete callback.
-     *
-     * @param rect window rectangle (position and size) relative to source bitmap
-     */
-    public void setCropRect(Rect rect) {
-        mOverlayView.setInitialCropWindowRect(rect);
     }
 
     /**
@@ -1026,19 +1066,6 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Sets a Drawable as the content of the CropImageView.
-     *
-     * @param resId the drawable resource ID to set
-     */
-    public void setImageResource(int resId) {
-        if (resId != 0) {
-            mOverlayView.setInitialCropWindowRect(null);
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resId);
-            setBitmap(bitmap, resId, null, 1, 0);
-        }
-    }
-
-    /**
      * Sets a bitmap loaded from the given Android URI as the content of the CropImageView.<br>
      * Can be used with URI from gallery or camera source.<br>
      * Will rotate the image by exif data.<br>
@@ -1163,6 +1190,8 @@ public class CropImageView extends FrameLayout {
         applyImageMatrix(getWidth(), getHeight(), true, false);
     }
 
+    // region: Private methods
+
     /**
      * Flips the image vertically.
      */
@@ -1170,8 +1199,6 @@ public class CropImageView extends FrameLayout {
         mFlipVertically = !mFlipVertically;
         applyImageMatrix(getWidth(), getHeight(), true, false);
     }
-
-    // region: Private methods
 
     /**
      * On complete of the async bitmap loading by {@link #setImageUriAsync(Uri)} set the result to the
@@ -1794,33 +1821,6 @@ public class CropImageView extends FrameLayout {
         mScaleImagePoints[6] = 0;
         mScaleImagePoints[7] = 100;
         mImageMatrix.mapPoints(mScaleImagePoints);
-    }
-
-    /**
-     * Determines the specs for the onMeasure function. Calculates the width or height depending on
-     * the mode.
-     *
-     * @param measureSpecMode The mode of the measured width or height.
-     * @param measureSpecSize The size of the measured width or height.
-     * @param desiredSize     The desired size of the measured width or height.
-     * @return The final size of the width or height.
-     */
-    private static int getOnMeasureSpec(int measureSpecMode, int measureSpecSize, int desiredSize) {
-
-        // Measure Width
-        int spec;
-        if (measureSpecMode == MeasureSpec.EXACTLY) {
-            // Must be this size
-            spec = measureSpecSize;
-        } else if (measureSpecMode == MeasureSpec.AT_MOST) {
-            // Can't be bigger than...; match_parent value
-            spec = Math.min(desiredSize, measureSpecSize);
-        } else {
-            // Be whatever you want; wrap_content
-            spec = desiredSize;
-        }
-
-        return spec;
     }
 
     /**

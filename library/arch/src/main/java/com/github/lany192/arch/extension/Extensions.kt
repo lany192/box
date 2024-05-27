@@ -2,7 +2,11 @@ package com.github.lany192.arch.extension
 
 import android.content.Context
 import android.widget.TextView
-import androidx.annotation.*
+import androidx.annotation.BoolRes
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.IntegerRes
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.hjq.toast.Toaster

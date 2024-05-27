@@ -2,7 +2,7 @@ package com.github.lany192.arch.items
 
 import androidx.recyclerview.widget.RecyclerView
 import com.github.lany192.arch.databinding.ActivityPageBinding
-import com.gyf.immersionbar.ImmersionBar
+import com.github.lany192.arch.utils.BarUtils
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 /**
@@ -10,8 +10,11 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  */
 abstract class PageActivity<VM : ItemsViewModel> : ItemsActivity<VM, ActivityPageBinding>() {
 
-    override fun initImmersionBar(): ImmersionBar {
-        return super.initImmersionBar().titleBar(binding.toolbar)
+    override fun initImmersionBar() {
+        BarUtils.init(this)
+            .keyboardEnable(true)
+            .titleBar(binding.toolbar)
+            .init()
     }
 
     override fun createRefreshLayout(): SmartRefreshLayout {

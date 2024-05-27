@@ -11,7 +11,6 @@ import com.github.lany192.arch.items.ViewState
 import com.github.lany192.binding.getBinding
 import com.github.lany192.view.DefaultView
 import com.github.lany192.view.databinding.ViewLoadingBinding
-import java.lang.reflect.ParameterizedType
 
 /**
  * ViewBinding的Activity基类,包含<头部和内容>

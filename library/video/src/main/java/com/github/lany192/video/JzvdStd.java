@@ -56,7 +56,7 @@ public class JzvdStd extends Jzvd {
     public PopupWindow clarityPopWindow;
     public TextView mRetryBtn;
     public LinearLayout mRetryLayout;
-    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
+    protected DismissControlViewTimerTask mDismissControlViewTimerTask;    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
@@ -73,7 +73,6 @@ public class JzvdStd extends Jzvd {
             }
         }
     };
-    protected DismissControlViewTimerTask mDismissControlViewTimerTask;
     protected Dialog mProgressDialog;
     protected ProgressBar mDialogProgressBar;
     protected TextView mDialogSeekTime;
@@ -87,7 +86,10 @@ public class JzvdStd extends Jzvd {
     protected ProgressBar mDialogBrightnessProgressBar;
     protected TextView mDialogBrightnessTextView;
     protected boolean mIsWifi;
-    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+    protected ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
+    public JzvdStd(Context context) {
+        super(context);
+    }    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
@@ -101,12 +103,6 @@ public class JzvdStd extends Jzvd {
             }
         }
     };
-    protected ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
-
-    public JzvdStd(Context context) {
-        super(context);
-    }
-
     public JzvdStd(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -265,33 +261,6 @@ public class JzvdStd extends Jzvd {
         registerWifiListener(getApplicationContext());
     }
 
-    /**
-     * 双击
-     */
-    protected GestureDetector gestureDetector = new GestureDetector(getContext().getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            if (state == STATE_PLAYING || state == STATE_PAUSE) {
-                Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
-                startButton.performClick();
-            }
-            return super.onDoubleTap(e);
-        }
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            if (!mChangePosition && !mChangeVolume) {
-                onClickUiToggle();
-            }
-            return super.onSingleTapConfirmed(e);
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-            super.onLongPress(e);
-        }
-    });
-
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int id = v.getId();
@@ -358,7 +327,32 @@ public class JzvdStd extends Jzvd {
         }
         seekToInAdvance = mCurrentPosition;
         startVideo();
-    }
+    }    /**
+     * 双击
+     */
+    protected GestureDetector gestureDetector = new GestureDetector(getContext().getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            if (state == STATE_PLAYING || state == STATE_PAUSE) {
+                Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
+                startButton.performClick();
+            }
+            return super.onDoubleTap(e);
+        }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            if (!mChangePosition && !mChangeVolume) {
+                onClickUiToggle();
+            }
+            return super.onSingleTapConfirmed(e);
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            super.onLongPress(e);
+        }
+    });
 
     protected void clickClarity() {
         onCLickUiToggleToClear();
@@ -974,5 +968,11 @@ public class JzvdStd extends Jzvd {
             dissmissControlView();
         }
     }
+
+
+
+
+
+
 
 }

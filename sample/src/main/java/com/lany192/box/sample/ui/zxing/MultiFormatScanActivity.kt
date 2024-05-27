@@ -1,13 +1,12 @@
 package com.lany192.box.sample.ui.zxing
 
-import android.widget.Toast
 import com.google.zxing.Result
 import com.hjq.toast.Toaster
 import com.king.camera.scan.AnalyzeResult
 import com.king.camera.scan.CameraScan
 import com.king.camera.scan.analyze.Analyzer
-import com.king.zxing.DecodeConfig
 import com.king.zxing.BarcodeCameraScanActivity
+import com.king.zxing.DecodeConfig
 import com.king.zxing.analyze.MultiFormatAnalyzer
 
 /**

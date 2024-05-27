@@ -2,10 +2,10 @@ package com.lany192.box.network.di
 
 import com.github.lany192.arch.network.HttpLogInterceptor
 import com.lany192.box.network.BuildConfig
-import com.lany192.box.network.interceptor.DomainInterceptor
-import com.lany192.box.network.interceptor.TimeIntervalInterceptor
 import com.lany192.box.network.data.api.ApiService
+import com.lany192.box.network.interceptor.DomainInterceptor
 import com.lany192.box.network.interceptor.HeaderInterceptor
+import com.lany192.box.network.interceptor.TimeIntervalInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

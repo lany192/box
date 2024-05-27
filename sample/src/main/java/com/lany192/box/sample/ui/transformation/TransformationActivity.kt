@@ -18,8 +18,10 @@ class TransformationActivity : ViewBindingActivity<ActivityTransformationBinding
         super.onCreate(savedInstanceState)
 
         with(binding) {
-            recyclerView.adapter = PosterAdapter().apply { addPosterList(MockUtil.getMockPosters()) }
-            recyclerViewMenu.adapter = PosterMenuAdapter().apply { addPosterList(MockUtil.getMockPosters()) }
+            recyclerView.adapter =
+                PosterAdapter().apply { addPosterList(MockUtil.getMockPosters()) }
+            recyclerViewMenu.adapter =
+                PosterMenuAdapter().apply { addPosterList(MockUtil.getMockPosters()) }
 
             fab.setOnClickListener {
                 if (!transformationLayout.isTransforming) {

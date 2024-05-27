@@ -1,4 +1,3 @@
-
 package com.github.lany192.html;
 
 import android.content.Context;
@@ -43,6 +42,15 @@ public class HtmlTextView extends JellyBeanSpanFixTextView {
 
     public HtmlTextView(Context context) {
         super(context);
+    }
+
+    /**
+     * http://stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
+     */
+    @NonNull
+    private static String convertStreamToString(@NonNull InputStream is) {
+        Scanner s = new Scanner(is).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
     }
 
     /**
@@ -131,15 +139,6 @@ public class HtmlTextView extends JellyBeanSpanFixTextView {
      */
     public void setListIndentPx(float px) {
         this.indent = px;
-    }
-
-    /**
-     * http://stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
-     */
-    @NonNull
-    private static String convertStreamToString(@NonNull InputStream is) {
-        Scanner s = new Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
     }
 
     private void replaceQuoteSpans(Spanned spanned) {

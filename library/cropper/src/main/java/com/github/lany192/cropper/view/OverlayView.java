@@ -1,5 +1,3 @@
-
-
 package com.github.lany192.cropper.view;
 
 import android.annotation.TargetApi;
@@ -34,144 +32,117 @@ public class OverlayView extends View {
     // region: Fields and Consts
 
     /**
-     * Gesture detector used for multi touch box scaling
-     */
-    private ScaleGestureDetector mScaleDetector;
-
-    /**
-     * Boolean to see if multi touch is enabled for the crop rectangle
-     */
-    private boolean mMultiTouchEnabled;
-
-    /**
      * Handler from crop window stuff, moving and knowing possition.
      */
     private final CropWindowHandler mCropWindowHandler = new CropWindowHandler();
-
-    /**
-     * Listener to publicj crop window changes
-     */
-    private CropWindowChangeListener mCropWindowChangeListener;
-
     /**
      * Rectangle used for drawing
      */
     private final RectF mDrawRect = new RectF();
-
-    /**
-     * The Paint used to draw the white rectangle around the crop area.
-     */
-    private Paint mBorderPaint;
-
-    /**
-     * The Paint used to draw the corners of the Border
-     */
-    private Paint mBorderCornerPaint;
-
-    /**
-     * The Paint used to draw the guidelines within the crop area when pressed.
-     */
-    private Paint mGuidelinePaint;
-
-    /**
-     * The Paint used to darken the surrounding areas outside the crop area.
-     */
-    private Paint mBackgroundPaint;
-
-    /**
-     * Used for oval crop window shape or non-straight rotation drawing.
-     */
-    private Path mPath = new Path();
-
     /**
      * The bounding box around the Bitmap that we are cropping.
      */
     private final float[] mBoundsPoints = new float[8];
-
     /**
      * The bounding box around the Bitmap that we are cropping.
      */
     private final RectF mCalcBounds = new RectF();
-
+    /**
+     * the initial crop window rectangle to set
+     */
+    private final Rect mInitialCropWindowRect = new Rect();
+    /**
+     * Gesture detector used for multi touch box scaling
+     */
+    private ScaleGestureDetector mScaleDetector;
+    /**
+     * Boolean to see if multi touch is enabled for the crop rectangle
+     */
+    private boolean mMultiTouchEnabled;
+    /**
+     * Listener to publicj crop window changes
+     */
+    private CropWindowChangeListener mCropWindowChangeListener;
+    /**
+     * The Paint used to draw the white rectangle around the crop area.
+     */
+    private Paint mBorderPaint;
+    /**
+     * The Paint used to draw the corners of the Border
+     */
+    private Paint mBorderCornerPaint;
+    /**
+     * The Paint used to draw the guidelines within the crop area when pressed.
+     */
+    private Paint mGuidelinePaint;
+    /**
+     * The Paint used to darken the surrounding areas outside the crop area.
+     */
+    private Paint mBackgroundPaint;
+    /**
+     * Used for oval crop window shape or non-straight rotation drawing.
+     */
+    private Path mPath = new Path();
     /**
      * The bounding image view width used to know the crop overlay is at view edges.
      */
     private int mViewWidth;
-
     /**
      * The bounding image view height used to know the crop overlay is at view edges.
      */
     private int mViewHeight;
-
     /**
      * The offset to draw the border corener from the border
      */
     private float mBorderCornerOffset;
-
     /**
      * the length of the border corner to draw
      */
     private float mBorderCornerLength;
-
     /**
      * The initial crop window padding from image borders
      */
     private float mInitialCropWindowPaddingRatio;
-
     /**
      * The radius of the touch zone (in pixels) around a given Handle.
      */
     private float mTouchRadius;
-
     /**
      * An edge of the crop window will snap to the corresponding edge of a specified bounding box when
      * the crop window edge is less than or equal to this distance (in pixels) away from the bounding
      * box edge.
      */
     private float mSnapRadius;
-
     /**
      * The Handle that is currently pressed; null if no Handle is pressed.
      */
     private CropWindowMoveHandler mMoveHandler;
-
     /**
      * Flag indicating if the crop area should always be a certain aspect ratio (indicated by
      * mTargetAspectRatio).
      */
     private boolean mFixAspectRatio;
-
     /**
      * save the current aspect ratio of the image
      */
     private int mAspectRatioX;
-
     /**
      * save the current aspect ratio of the image
      */
     private int mAspectRatioY;
-
     /**
      * The aspect ratio that the crop area should maintain; this variable is only used when
      * mMaintainAspectRatio is true.
      */
     private float mTargetAspectRatio = ((float) mAspectRatioX) / mAspectRatioY;
-
     /**
      * Instance variables for customizable attributes
      */
     private Guidelines mGuidelines;
-
     /**
      * The shape of the cropping area - rectangle/circular.
      */
     private CropShape mCropShape;
-
-    /**
-     * the initial crop window rectangle to set
-     */
-    private final Rect mInitialCropWindowRect = new Rect();
-
     /**
      * Whether the Crop View has been initialized for the first time
      */
@@ -189,6 +160,31 @@ public class OverlayView extends View {
 
     public OverlayView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    /**
+     * Creates the Paint object for drawing.
+     */
+    private static Paint getNewPaint(int color) {
+        Paint paint = new Paint();
+        paint.setColor(color);
+        return paint;
+    }
+
+    /**
+     * Creates the Paint object for given thickness and color, if thickness < 0 return null.
+     */
+    private static Paint getNewPaintOrNull(float thickness, int color) {
+        if (thickness > 0) {
+            Paint borderPaint = new Paint();
+            borderPaint.setColor(color);
+            borderPaint.setStrokeWidth(thickness);
+            borderPaint.setStyle(Paint.Style.STROKE);
+            borderPaint.setAntiAlias(true);
+            return borderPaint;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -450,6 +446,8 @@ public class OverlayView extends View {
         }
     }
 
+    // region: Private methods
+
     /**
      * Reset crop window to initial rectangle.
      */
@@ -483,8 +481,6 @@ public class OverlayView extends View {
         mGuidelinePaint = getNewPaintOrNull(options.getGuidelinesThickness(), options.getGuidelinesColor());
         mBackgroundPaint = getNewPaint(options.getBackgroundColor());
     }
-
-    // region: Private methods
 
     /**
      * Set the initial crop window size and position. This is dependent on the size and position of
@@ -881,31 +877,6 @@ public class OverlayView extends View {
                     rect.right - mBorderCornerLength,
                     rect.bottom + cornerOffset,
                     mBorderCornerPaint);
-        }
-    }
-
-    /**
-     * Creates the Paint object for drawing.
-     */
-    private static Paint getNewPaint(int color) {
-        Paint paint = new Paint();
-        paint.setColor(color);
-        return paint;
-    }
-
-    /**
-     * Creates the Paint object for given thickness and color, if thickness < 0 return null.
-     */
-    private static Paint getNewPaintOrNull(float thickness, int color) {
-        if (thickness > 0) {
-            Paint borderPaint = new Paint();
-            borderPaint.setColor(color);
-            borderPaint.setStrokeWidth(thickness);
-            borderPaint.setStyle(Paint.Style.STROKE);
-            borderPaint.setAntiAlias(true);
-            return borderPaint;
-        } else {
-            return null;
         }
     }
 

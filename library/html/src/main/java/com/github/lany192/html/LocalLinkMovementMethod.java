@@ -1,4 +1,3 @@
-
 package com.github.lany192.html;
 
 import android.text.Layout;

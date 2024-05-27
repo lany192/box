@@ -22,7 +22,6 @@ import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.LoadingDialog
 import com.github.lany192.log.XLog
 import com.github.lany192.utils.KeyboardUtils
-import com.gyf.immersionbar.ImmersionBar
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -68,17 +67,13 @@ abstract class BaseActivity : AppCompatActivity() {
     @CallSuper
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        if (immersionBarEnabled()) {
-            initImmersionBar().init()
-        }
+        initImmersionBar()
     }
 
     @CallSuper
     public override fun onResume() {
         super.onResume()
-        if (immersionBarEnabled()) {
-            initImmersionBar().init()
-        }
+        initImmersionBar()
     }
 
     /**
@@ -124,18 +119,8 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
-     * Immersion bar enabled boolean.
-     *
-     * @return the boolean
-     */
-    open fun immersionBarEnabled(): Boolean {
-        return true
-    }
-
-    open fun initImmersionBar(): ImmersionBar {
-        return BarUtils.init(this).keyboardEnable(true)
+    open fun initImmersionBar() {
+        BarUtils.init(this).keyboardEnable(true).init()
     }
 
     @ColorInt

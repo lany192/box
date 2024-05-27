@@ -39,7 +39,14 @@ public final class DownloadService extends Service implements OnDownloadListener
     private UpdateManager updateManager;
     private HttpDownloadManager httpManager;
 
-    @SuppressLint("HandlerLeak")
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (null == intent) {
+            return START_STICKY;
+        }
+        init();
+        return super.onStartCommand(intent, flags, startId);
+    }    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -80,15 +87,6 @@ public final class DownloadService extends Service implements OnDownloadListener
 
         }
     };
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (null == intent) {
-            return START_STICKY;
-        }
-        init();
-        return super.onStartCommand(intent, flags, startId);
-    }
 
     private void init() {
         updateManager = UpdateManager.getInstance();
@@ -241,4 +239,6 @@ public final class DownloadService extends Service implements OnDownloadListener
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+
 }

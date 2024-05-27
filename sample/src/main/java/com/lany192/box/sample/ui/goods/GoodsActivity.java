@@ -26,11 +26,13 @@ public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBi
         register(new ArticleBinder());
         register(new ViewPagerBinder());
     }
+
     @NonNull
     @Override
     public ImmersionBar initImmersionBar() {
         return super.initImmersionBar().titleBar(binding.toolbar);
     }
+
     @NonNull
     @Override
     public SmartRefreshLayout createRefreshLayout() {

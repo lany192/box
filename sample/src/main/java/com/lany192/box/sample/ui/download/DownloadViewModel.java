@@ -32,38 +32,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class DownloadViewModel extends LifecycleViewModel {
     private final TaskLiveData liveData = new TaskLiveData();
     private final DownloadContext downloadContext;
-
-    @Inject
-    public DownloadViewModel() {
-        List<Task> taskItems = new ArrayList<>();
-        taskItems.add(new Task("微信", "http://dldir1.qq.com/weixin/android/weixin6516android1120.apk"));
-        taskItems.add(new Task("微信arm64", "https://dldir1.qq.com/weixin/android/weixin8016android2040_arm64.apk"));
-        taskItems.add(new Task("流利说", "https://cdn.llscdn.com/yy/files/tkzpx40x-lls-LLS-5.7-785-20171108-111118.apk"));
-        taskItems.add(new Task("支付宝", "https://t.alipayobjects.com/L1/71/100/and/alipay_wap_main.apk"));
-        taskItems.add(new Task("网易云音乐", "http://d1.music.126.net/dmusic/CloudMusic_official_4.3.2.468990.apk"));
-        taskItems.add(new Task("企业微信", "https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk"));
-        taskItems.add(new Task("好游快爆", "https://d.3839app.net/video/hykb/HYKB15590220211203pc.apk"));
-
-        DownloadContext.QueueSet queueSet = new DownloadContext.QueueSet();
-        queueSet.setMinIntervalMillisCallbackProcess(500);
-        queueSet.setPassIfAlreadyCompleted(false);
-        queueSet.setParentPathFile(new File(FileUtils.getCacheDir(ContextUtils.getContext()), "download"));
-
-        DownloadContext.Builder builder = queueSet.commit();
-        List<DownloadTask> tasks = new ArrayList<>();
-        for (Task item : taskItems) {
-            DownloadTask downloadTask = builder.bind(item.getUrl());
-            TaskUtils.INSTANCE.saveTaskName(downloadTask, item.getName());
-            tasks.add(downloadTask);
-        }
-        downloadContext = builder.build();
-        liveData.setTasks(tasks);
-    }
-
-    public TaskLiveData getItems() {
-        return liveData;
-    }
-
     private final DownloadListener downloadListener = new DownloadListener4WithSpeed() {
         @Override
         public void taskStart(@NonNull DownloadTask task) {
@@ -131,6 +99,37 @@ public class DownloadViewModel extends LifecycleViewModel {
             liveData.change(task);
         }
     };
+
+    @Inject
+    public DownloadViewModel() {
+        List<Task> taskItems = new ArrayList<>();
+        taskItems.add(new Task("微信", "http://dldir1.qq.com/weixin/android/weixin6516android1120.apk"));
+        taskItems.add(new Task("微信arm64", "https://dldir1.qq.com/weixin/android/weixin8016android2040_arm64.apk"));
+        taskItems.add(new Task("流利说", "https://cdn.llscdn.com/yy/files/tkzpx40x-lls-LLS-5.7-785-20171108-111118.apk"));
+        taskItems.add(new Task("支付宝", "https://t.alipayobjects.com/L1/71/100/and/alipay_wap_main.apk"));
+        taskItems.add(new Task("网易云音乐", "http://d1.music.126.net/dmusic/CloudMusic_official_4.3.2.468990.apk"));
+        taskItems.add(new Task("企业微信", "https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk"));
+        taskItems.add(new Task("好游快爆", "https://d.3839app.net/video/hykb/HYKB15590220211203pc.apk"));
+
+        DownloadContext.QueueSet queueSet = new DownloadContext.QueueSet();
+        queueSet.setMinIntervalMillisCallbackProcess(500);
+        queueSet.setPassIfAlreadyCompleted(false);
+        queueSet.setParentPathFile(new File(FileUtils.getCacheDir(ContextUtils.getContext()), "download"));
+
+        DownloadContext.Builder builder = queueSet.commit();
+        List<DownloadTask> tasks = new ArrayList<>();
+        for (Task item : taskItems) {
+            DownloadTask downloadTask = builder.bind(item.getUrl());
+            TaskUtils.INSTANCE.saveTaskName(downloadTask, item.getName());
+            tasks.add(downloadTask);
+        }
+        downloadContext = builder.build();
+        liveData.setTasks(tasks);
+    }
+
+    public TaskLiveData getItems() {
+        return liveData;
+    }
 
     public void startAll() {
         downloadContext.startOnParallel(downloadListener);

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.multiplication.MultiplicationActivity">
+
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -36,7 +37,7 @@
             android:text="关于"
             android:textColor="@color/text_1level"
             android:textSize="18sp"
-            app:text_style_middle_bold="true"/>
+            app:text_style_middle_bold="true" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

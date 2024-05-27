@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="id" name="layout_bottom" />
-    <item type="id" name="current" />
-    <item type="id" name="bottom_seek_progress" />
-    <item type="id" name="total" />
-    <item type="id" name="clarity" />
-    <item type="id" name="fullscreen" />
-    <item type="id" name="back_tiny" />
-    <item type="id" name="layout_top" />
-    <item type="id" name="back" />
-    <item type="id" name="title" />
-    <item type="id" name="battery_time_layout" />
-    <item type="id" name="battery_level" />
-    <item type="id" name="video_current_time" />
-    <item type="id" name="retry_layout" />
-    <item type="id" name="retry_btn" />
-    <item type="id" name="replay_text" />
-    <item type="id" name="bottom_progress" />
-    <item type="id" name="loading" />
-    <item type="id" name="start_layout" />
-    <item type="id" name="start" />
+    <item name="layout_bottom" type="id" />
+    <item name="current" type="id" />
+    <item name="bottom_seek_progress" type="id" />
+    <item name="total" type="id" />
+    <item name="clarity" type="id" />
+    <item name="fullscreen" type="id" />
+    <item name="back_tiny" type="id" />
+    <item name="layout_top" type="id" />
+    <item name="back" type="id" />
+    <item name="title" type="id" />
+    <item name="battery_time_layout" type="id" />
+    <item name="battery_level" type="id" />
+    <item name="video_current_time" type="id" />
+    <item name="retry_layout" type="id" />
+    <item name="retry_btn" type="id" />
+    <item name="replay_text" type="id" />
+    <item name="bottom_progress" type="id" />
+    <item name="loading" type="id" />
+    <item name="start_layout" type="id" />
+    <item name="start" type="id" />
 </resources>

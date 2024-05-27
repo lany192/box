@@ -1,4 +1,3 @@
-
 package com.github.lany192.html;
 
 import android.graphics.Canvas;
@@ -17,10 +16,9 @@ import androidx.annotation.Nullable;
  * the same leading margin.
  */
 public class NumberSpan extends BulletSpan {
+    public static final int STANDARD_GAP_WIDTH = 10;
     private final int mNumberGapWidth;
     private final String mNumber;
-
-    public static final int STANDARD_GAP_WIDTH = 10;
 
     public NumberSpan(int gapWidth, int number) {
         super();

@@ -11,6 +11,17 @@ public enum CropShape implements Parcelable {
 
     RECTANGLE(0), OVAL(1);
 
+    public static final Creator<CropShape> CREATOR = new Creator<CropShape>() {
+        @Override
+        public CropShape createFromParcel(Parcel in) {
+            return CropShape.values()[in.readInt()];
+        }
+
+        @Override
+        public CropShape[] newArray(int size) {
+            return new CropShape[size];
+        }
+    };
     private int value;
 
     CropShape(int value) {
@@ -26,16 +37,4 @@ public enum CropShape implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<CropShape> CREATOR = new Creator<CropShape>() {
-        @Override
-        public CropShape createFromParcel(Parcel in) {
-            return CropShape.values()[in.readInt()];
-        }
-
-        @Override
-        public CropShape[] newArray(int size) {
-            return new CropShape[size];
-        }
-    };
 }

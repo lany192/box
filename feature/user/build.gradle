@@ -28,11 +28,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        
+
         vectorDrawables {
             useSupportLibrary true
         }
-        
+
         if (singleRun) {
             applicationId namespace
             versionCode apk.versionCode
@@ -184,7 +184,7 @@ dependencies {
         implementation libs.eventbus
         implementation libs.okdownload
         implementation libs.licensesdialog
-        
+
         implementation libs.banner
         implementation libs.touchimageview
         implementation libs.zxing.lite

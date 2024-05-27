@@ -27,7 +27,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        
+
         vectorDrawables {
             useSupportLibrary true
         }
@@ -174,7 +174,7 @@ dependencies {
         implementation libs.eventbus
         implementation libs.okdownload
         implementation libs.licensesdialog
-        
+
         implementation libs.banner
         implementation libs.touchimageview
         implementation libs.zxing.lite

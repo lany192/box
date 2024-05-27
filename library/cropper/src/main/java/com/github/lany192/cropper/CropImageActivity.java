@@ -1,5 +1,3 @@
-
-
 package com.github.lany192.cropper;
 
 import android.content.Context;
@@ -27,9 +25,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class CropImageActivity extends AppCompatActivity implements OnSetImageUriCompleteListener, OnCropImageCompleteListener {
+    private final String TAG = getClass().getSimpleName();
     private CropImageView mCropImageView;
     private CropOptions mOptions;
-    private final String TAG = getClass().getSimpleName();
 
     public static Intent getIntent(Context context, Uri uri, CropOptions options) {
         Intent intent = new Intent(context, CropImageActivity.class);

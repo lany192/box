@@ -41,20 +41,18 @@ import java.util.Objects;
  */
 public abstract class PriorityDialog extends DialogFragment implements Comparable<PriorityDialog> {
     protected final String TAG = this.getClass().getName();
+    /**
+     * 隐藏监听器
+     */
+    private final List<DialogInterface.OnDismissListener> dismissListeners = new ArrayList<>();
     protected XLog log = XLog.tag(TAG);
-
     private boolean canceledOnTouchOutside = true;
     private boolean isInitLoaded;
-
     private boolean flag;
     /**
      * 优先级，数值越大优先级越高，优先级仅在队列中生效
      */
     private int priority;
-    /**
-     * 隐藏监听器
-     */
-    private final List<DialogInterface.OnDismissListener> dismissListeners = new ArrayList<>();
     /**
      * 是否单例模式
      */

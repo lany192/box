@@ -20,6 +20,7 @@ public class LoginActivity extends ViewModelActivity<LoginViewModel, ActivityLog
     public ImmersionBar initImmersionBar() {
         return super.initImmersionBar().titleBar(binding.toolbar);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

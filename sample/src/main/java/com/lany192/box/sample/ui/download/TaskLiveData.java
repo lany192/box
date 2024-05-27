@@ -18,6 +18,12 @@ public class TaskLiveData extends MutableLiveData<TaskLiveData> {
         return tasks;
     }
 
+    public void setTasks(List<?> items) {
+        this.change = false;
+        this.tasks = (List<Object>) items;
+        postValue(this);
+    }
+
     public int getIndex() {
         return index;
     }
@@ -36,12 +42,6 @@ public class TaskLiveData extends MutableLiveData<TaskLiveData> {
         index = tasks.indexOf(task);
         this.downloadTask = task;
         this.tasks.set(index, task);
-        postValue(this);
-    }
-
-    public void setTasks(List<?> items) {
-        this.change = false;
-        this.tasks = (List<Object>) items;
         postValue(this);
     }
 }

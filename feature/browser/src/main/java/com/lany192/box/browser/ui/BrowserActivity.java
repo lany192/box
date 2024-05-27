@@ -19,11 +19,13 @@ public class BrowserActivity extends ViewBindingActivity<ActivityBrowserBinding>
     String title;
     @Autowired(name = "url", desc = "链接")
     String url;
+
     @NonNull
     @Override
     public ImmersionBar initImmersionBar() {
         return super.initImmersionBar().titleBar(binding.toolbar);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,21 +3,22 @@ package com.lany192.box.sample.ui.zxing;
 import android.app.Activity;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.zxing.Result;
 import com.king.camera.scan.AnalyzeResult;
 import com.king.camera.scan.CameraScan;
 import com.king.camera.scan.analyze.Analyzer;
+import com.king.zxing.BarcodeCameraScanActivity;
 import com.king.zxing.DecodeConfig;
 import com.king.zxing.DecodeFormatManager;
-import com.king.zxing.BarcodeCameraScanActivity;
 import com.king.zxing.analyze.QRCodeAnalyzer;
 import com.lany192.box.sample.R;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 /**
  * 扫二维码识别示例
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class QRCodeScanActivity extends BarcodeCameraScanActivity {

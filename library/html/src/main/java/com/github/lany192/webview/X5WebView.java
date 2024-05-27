@@ -59,6 +59,15 @@ public class X5WebView extends WebView {
         this.getView().setClickable(true);
     }
 
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        AbsoluteLayout.LayoutParams lp = (AbsoluteLayout.LayoutParams) mProgressBar.getLayoutParams();
+        lp.x = l;
+        lp.y = t;
+        mProgressBar.setLayoutParams(lp);
+        super.onScrollChanged(l, t, oldl, oldt);
+    }
+
     public class MyWebChromeClient extends WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
@@ -71,14 +80,5 @@ public class X5WebView extends WebView {
             }
             super.onProgressChanged(view, newProgress);
         }
-    }
-
-    @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        AbsoluteLayout.LayoutParams lp = (AbsoluteLayout.LayoutParams) mProgressBar.getLayoutParams();
-        lp.x = l;
-        lp.y = t;
-        mProgressBar.setLayoutParams(lp);
-        super.onScrollChanged(l, t, oldl, oldt);
     }
 }

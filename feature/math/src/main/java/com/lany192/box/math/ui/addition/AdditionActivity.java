@@ -24,6 +24,7 @@ public class AdditionActivity extends ViewModelActivity<AdditionViewModel, Activ
     public ImmersionBar initImmersionBar() {
         return super.initImmersionBar().titleBar(binding.toolbar);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

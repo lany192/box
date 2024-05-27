@@ -5,10 +5,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Poster(
-  val name: String,
-  val release: String,
-  val playtime: String,
-  val description: String,
-  val poster: String,
-  val gif: String?,
+    val name: String,
+    val release: String,
+    val playtime: String,
+    val description: String,
+    val poster: String,
+    val gif: String?,
 ) : Parcelable

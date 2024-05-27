@@ -31,7 +31,7 @@ public class UserInfoActivity extends ViewBindingActivity<ActivityUserBinding> {
         binding.nickname.setOnClickListener(v -> NicknameRouter.start());
         binding.signature.setOnClickListener(v -> SignatureRouter.start());
         binding.sexView.setOnClickListener(v -> new SexDialog(false).show());
-        ImageUtils.show(binding.avatar,"http://pic.imeitou.com/uploads/allimg/221021/8-221021094504.jpg");
+        ImageUtils.show(binding.avatar, "http://pic.imeitou.com/uploads/allimg/221021/8-221021094504.jpg");
 
 //        binding.test1.setText("标题:" + title + ",链接:" + url);
 //        binding.button.setOnClickListener(v -> {

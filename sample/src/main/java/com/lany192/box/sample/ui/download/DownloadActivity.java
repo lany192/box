@@ -1,23 +1,8 @@
 package com.lany192.box.sample.ui.download;
 
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.SimpleItemAnimator;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewModelActivity;
 import com.lany192.box.sample.databinding.ActivityDownloadBinding;
-import com.liulishuo.okdownload.DownloadMonitor;
-import com.liulishuo.okdownload.DownloadTask;
-import com.liulishuo.okdownload.OkDownload;
-import com.liulishuo.okdownload.core.breakpoint.BreakpointInfo;
-import com.liulishuo.okdownload.core.cause.EndCause;
-import com.liulishuo.okdownload.core.cause.ResumeFailedCause;
-import com.liulishuo.okdownload.core.dispatcher.DownloadDispatcher;
-
-import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

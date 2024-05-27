@@ -1,5 +1,3 @@
-
-
 package com.github.lany192.cropper;
 
 import android.graphics.Matrix;

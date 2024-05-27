@@ -5,7 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.items.ViewState
 import com.github.lany192.log.XLog
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 
 open class BaseViewModel : ViewModel() {
     /**

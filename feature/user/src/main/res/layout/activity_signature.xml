@@ -35,11 +35,11 @@
             android:gravity="center"
             android:maxWidth="240dp"
             android:maxLines="1"
+            android:text="修改个性签名"
             android:textColor="@color/text_1level"
             android:textSize="18sp"
             app:text_style_middle_bold="true"
-            tools:layout_height="@dimen/actionbar_height"
-            android:text="修改个性签名" />
+            tools:layout_height="@dimen/actionbar_height" />
 
         <com.github.lany192.text.BoxTextView
             android:id="@+id/right"
@@ -50,10 +50,10 @@
             android:gravity="center"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
+            android:text="修改"
             android:textColor="@color/primary_dark"
             android:textSize="14sp"
-            tools:layout_height="@dimen/actionbar_height"
-            android:text="修改" />
+            tools:layout_height="@dimen/actionbar_height" />
 
     </RelativeLayout>
 
@@ -62,9 +62,9 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <LinearLayout

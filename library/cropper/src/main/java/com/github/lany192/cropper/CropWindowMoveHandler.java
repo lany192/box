@@ -1,5 +1,3 @@
-
-
 package com.github.lany192.cropper;
 
 import android.graphics.Matrix;
@@ -72,6 +70,15 @@ public final class CropWindowMoveHandler {
     }
 
     /**
+     * Calculates the aspect ratio given a rectangle.
+     */
+    private static float calculateAspectRatio(float left, float top, float right, float bottom) {
+        return (right - left) / (bottom - top);
+    }
+
+    // region: Private methods
+
+    /**
      * Updates the crop window by change in the toch location.<br>
      * Move type handled by this instance, as initialized in creation, affects how the change in toch
      * location changes the crop window position and size.<br>
@@ -123,8 +130,6 @@ public final class CropWindowMoveHandler {
             }
         }
     }
-
-    // region: Private methods
 
     /**
      * Calculates the offset of the touch point from the precise location of the specified handle.<br>
@@ -746,13 +751,6 @@ public final class CropWindowMoveHandler {
         if (rect.bottom > bounds.bottom) {
             rect.offset(0, bounds.bottom - rect.bottom);
         }
-    }
-
-    /**
-     * Calculates the aspect ratio given a rectangle.
-     */
-    private static float calculateAspectRatio(float left, float top, float right, float bottom) {
-        return (right - left) / (bottom - top);
     }
     // endregion
 
