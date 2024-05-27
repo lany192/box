@@ -90,7 +90,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
             if (System.currentTimeMillis() - mLastClickTime > 3000) {
                 Toaster.show("再按一次退出" + getString(R.string.app_name))
                 mLastClickTime = System.currentTimeMillis()
-                return false
+                return true;
             }
         }
         return super.onKeyDown(keyCode, event)

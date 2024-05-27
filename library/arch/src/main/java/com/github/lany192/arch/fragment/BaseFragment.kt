@@ -1,9 +1,7 @@
 package com.github.lany192.arch.fragment
 
-import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
@@ -21,21 +19,6 @@ import org.greenrobot.eventbus.ThreadMode
 abstract class BaseFragment : Fragment() {
     protected var log: XLog = XLog.tag(javaClass.name)
     private var loadingDialog: LoadingDialog? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    onBackPressed()
-                }
-            })
-    }
-
-    open fun onBackPressed() {
-
-    }
 
     @CallSuper
     override fun onCreate(state: Bundle?) {
