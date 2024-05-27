@@ -30,16 +30,14 @@ abstract class ViewBindingActivity<VB : ViewBinding> : BaseActivity() {
         content = FrameLayout(this)
         content.addView(binding.root)
         setContentView(content)
-        //如果有返回id，添加监听
-        findViewById<View>(R.id.back)?.setOnClickListener { finish() }
+        addToolbarBackClickListener()
     }
 
     /**
-     * 获取第几个泛型的class
+     * 如果有返回id，添加监听
      */
-    @Suppress("UNCHECKED_CAST")
-    fun <T> getClass(index: Int): Class<T> {
-        return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
+    open fun addToolbarBackClickListener() {
+        findViewById<View>(R.id.back)?.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 
     /**

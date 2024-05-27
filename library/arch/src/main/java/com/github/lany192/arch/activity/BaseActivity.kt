@@ -1,6 +1,5 @@
 package com.github.lany192.arch.activity
 
-import android.Manifest
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
@@ -27,6 +26,7 @@ import com.gyf.immersionbar.ImmersionBar
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.lang.reflect.ParameterizedType
 
 /**
  * Activity基类
@@ -49,10 +49,10 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun getCustomRequestedOrientation(): Int {
-        if (isPortraitScreen()) {
-            return ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        return if (isPortraitScreen()) {
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         } else {
-            return ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         }
     }
 
@@ -101,7 +101,14 @@ abstract class BaseActivity : AppCompatActivity() {
         return ViewModelProvider((applicationContext as ViewModelStoreOwner))[modelClass]
     }
 
-    @JvmOverloads
+    /**
+     * 获取第几个泛型的class
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun <T> getClass(index: Int): Class<T> {
+        return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
+    }
+
     fun showLoadingDialog(message: CharSequence? = getString(R.string.loading)) {
         if (loadingDialog == null) {
             loadingDialog = LoadingDialog()
@@ -134,11 +141,6 @@ abstract class BaseActivity : AppCompatActivity() {
     @ColorInt
     fun getColorResId(@ColorRes id: Int): Int {
         return ContextCompat.getColor(this, id)
-    }
-
-    override fun onBackPressed() {
-        onBackPressedDispatcher.onBackPressed()
-        super.onBackPressed()
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
