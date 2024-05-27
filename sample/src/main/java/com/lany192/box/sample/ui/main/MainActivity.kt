@@ -9,6 +9,7 @@ import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.log.LogUtils
+import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.sample.R
@@ -27,8 +28,13 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
     // 第一次按退出的时间
     private var mLastClickTime: Long = 0
     private lateinit var userViewModel: UserViewModel
+
     override fun getViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    override fun initImmersionBar() {
+        return ImmersionBar.with(this).init()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

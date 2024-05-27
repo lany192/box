@@ -5,9 +5,9 @@ import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.interfaces.SimpleTextWatcher
+import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.link.Link
 import com.github.lany192.link.LinkBuilder
-import com.gyf.immersionbar.ImmersionBar
 import com.lany192.box.user.R
 import com.lany192.box.user.UserHelper
 import com.lany192.box.user.databinding.ActivitySignatureBinding
@@ -17,8 +17,9 @@ import java.util.Locale
 @AndroidEntryPoint
 @Route(path = "/user/signature", name = "修改个性签名")
 class SignatureActivity : ViewModelActivity<SignatureViewModel, ActivitySignatureBinding>() {
-    override fun initImmersionBar(): ImmersionBar {
-        return super.initImmersionBar().titleBar(binding.toolbar)
+
+    override fun initImmersionBar() {
+        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

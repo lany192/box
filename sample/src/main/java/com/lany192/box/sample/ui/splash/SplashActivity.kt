@@ -20,8 +20,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : ViewModelActivity<SplashViewModel, ActivitySplashBinding>() {
 
-    override fun initImmersionBar(): ImmersionBar {
-        return ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_BAR)
+    override fun initImmersionBar() {
+        return ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_BAR).init()
     }
 
     override fun getViewBinding(): ActivitySplashBinding {

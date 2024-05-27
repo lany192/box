@@ -29,8 +29,6 @@ import java.util.List;
  * 滑动TabLayout,对于ViewPager2的依赖性强
  */
 public class PagerTabLayout extends HorizontalScrollView {
-    private List<CharSequence> mTitles = new ArrayList<>();
-
     private static final int STYLE_NORMAL = 0;
     private static final int STYLE_TRIANGLE = 1;
     private static final int STYLE_BLOCK = 2;
@@ -57,6 +55,7 @@ public class PagerTabLayout extends HorizontalScrollView {
     // show MsgTipView
     private final Paint mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final SparseArray<Boolean> mInitSetMap = new SparseArray<>();
+    private List<CharSequence> mTitles = new ArrayList<>();
     private float mTextSelectSize;
     private int mCurrentTab;
     private float mCurrentPositionOffset;
@@ -100,7 +99,6 @@ public class PagerTabLayout extends HorizontalScrollView {
     private int mHeight;
     private boolean mSnapOnTabClick;
     private float margin;
-    private OnTabSelectListener mListener;
     private final ViewPager2.OnPageChangeCallback onPageChangeCallback = new ViewPager2.OnPageChangeCallback() {
 
         @Override
@@ -120,6 +118,7 @@ public class PagerTabLayout extends HorizontalScrollView {
             updateTabSelection(position);
         }
     };
+    private OnTabSelectListener mListener;
 
     public PagerTabLayout(Context context) {
         this(context, null, 0);

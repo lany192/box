@@ -2,12 +2,10 @@ package com.lany192.box.user.ui;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewBindingActivity;
+import com.github.lany192.arch.utils.BarUtils;
 import com.github.lany192.utils.ImageUtils;
-import com.gyf.immersionbar.ImmersionBar;
 import com.lany192.box.user.databinding.ActivityUserBinding;
 import com.lany192.box.user.dialog.SexDialog;
 import com.lany192.box.user.ui.nickname.NicknameRouter;
@@ -19,10 +17,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 @Route(path = "/user/main")
 public class UserInfoActivity extends ViewBindingActivity<ActivityUserBinding> {
 
-    @NonNull
     @Override
-    public ImmersionBar initImmersionBar() {
-        return super.initImmersionBar().titleBar(binding.toolbar);
+    public void initImmersionBar() {
+        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
     }
 
     @Override

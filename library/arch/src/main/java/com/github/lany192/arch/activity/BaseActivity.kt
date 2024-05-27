@@ -18,7 +18,6 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
 import com.github.lany192.arch.network.NetworkHelper
-import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.LoadingDialog
 import com.github.lany192.log.XLog
 import com.github.lany192.utils.KeyboardUtils
@@ -104,6 +103,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as Class<T>
     }
 
+    @JvmOverloads
     fun showLoadingDialog(message: CharSequence? = getString(R.string.loading)) {
         if (loadingDialog == null) {
             loadingDialog = LoadingDialog()
@@ -120,7 +120,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).init()
     }
 
     @ColorInt

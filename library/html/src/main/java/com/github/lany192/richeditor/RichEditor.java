@@ -49,12 +49,15 @@ public class RichEditor extends WebView {
     private OnTextChangeListener mTextChangeListener;
     private OnDecorationStateListener mDecorationStateListener;
     private AfterInitialLoadListener mLoadListener;
+
     public RichEditor(Context context) {
         this(context, null);
     }
+
     public RichEditor(Context context, AttributeSet attrs) {
         this(context, attrs, android.R.attr.webViewStyle);
     }
+
     @SuppressLint("SetJavaScriptEnabled")
     public RichEditor(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);

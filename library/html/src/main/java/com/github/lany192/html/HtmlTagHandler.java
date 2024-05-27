@@ -68,6 +68,7 @@ public class HtmlTagHandler implements WrapperTagHandler {
     private ClickableTableSpan clickableTableSpan;
     private DrawTableLinkSpan drawTableLinkSpan;
     private HtmlFormatter.TagClickListenerProvider onClickATagListenerProvider;
+
     public HtmlTagHandler() {
     }
 

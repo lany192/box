@@ -46,6 +46,37 @@ public final class DownloadService extends Service implements OnDownloadListener
         }
         init();
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    private void init() {
+        updateManager = UpdateManager.getInstance();
+        if (updateManager == null) {
+            log.d("init DownloadManager.getInstance() = null ,请先调用 getInstance(Context context) !");
+            return;
+        }
+        apkUrl = updateManager.getApkUrl();
+        apkName = updateManager.getApkName();
+        downloadPath = updateManager.getDownloadPath();
+        smallIcon = updateManager.getSmallIcon();
+        //创建apk文件存储文件夹
+        FileUtil.createDirDirectory(downloadPath);
+
+        UpdateConfig configuration = updateManager.getConfiguration();
+        listeners = configuration.getOnDownloadListener();
+        showNotification = configuration.isShowNotification();
+        showBgdToast = configuration.isShowBgdToast();
+        jumpInstallPage = configuration.isJumpInstallPage();
+        //获取app通知开关是否打开
+        boolean enable = NotificationUtil.notificationEnable(this);
+        log.d(enable ? "应用的通知栏开关状态：已打开" : "应用的通知栏开关状态：已关闭");
+        if (checkApkMD5()) {
+            log.d("文件已经存在直接进行安装");
+            //直接调用完成监听即可
+            done(FileUtil.createFile(downloadPath, apkName));
+        } else {
+            log.d("文件不存在开始下载");
+            download(configuration);
+        }
     }    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
@@ -87,37 +118,6 @@ public final class DownloadService extends Service implements OnDownloadListener
 
         }
     };
-
-    private void init() {
-        updateManager = UpdateManager.getInstance();
-        if (updateManager == null) {
-            log.d("init DownloadManager.getInstance() = null ,请先调用 getInstance(Context context) !");
-            return;
-        }
-        apkUrl = updateManager.getApkUrl();
-        apkName = updateManager.getApkName();
-        downloadPath = updateManager.getDownloadPath();
-        smallIcon = updateManager.getSmallIcon();
-        //创建apk文件存储文件夹
-        FileUtil.createDirDirectory(downloadPath);
-
-        UpdateConfig configuration = updateManager.getConfiguration();
-        listeners = configuration.getOnDownloadListener();
-        showNotification = configuration.isShowNotification();
-        showBgdToast = configuration.isShowBgdToast();
-        jumpInstallPage = configuration.isJumpInstallPage();
-        //获取app通知开关是否打开
-        boolean enable = NotificationUtil.notificationEnable(this);
-        log.d(enable ? "应用的通知栏开关状态：已打开" : "应用的通知栏开关状态：已关闭");
-        if (checkApkMD5()) {
-            log.d("文件已经存在直接进行安装");
-            //直接调用完成监听即可
-            done(FileUtil.createFile(downloadPath, apkName));
-        } else {
-            log.d("文件不存在开始下载");
-            download(configuration);
-        }
-    }
 
     /**
      * 校验Apk是否已经下载好了，不重复下载
@@ -239,6 +239,8 @@ public final class DownloadService extends Service implements OnDownloadListener
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+
 
 
 }

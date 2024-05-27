@@ -6,11 +6,11 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
+import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
-import com.gyf.immersionbar.ImmersionBar
 import com.hjq.permissions.XXPermissions
 import com.hjq.toast.Toaster
 import com.lany192.box.router.provider.BrowserProvider
@@ -32,8 +32,8 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
     @Autowired
     lateinit var userProvider: UserProvider
 
-    override fun initImmersionBar(): ImmersionBar {
-        return super.initImmersionBar().titleBar(binding.toolbar)
+    override fun initImmersionBar() {
+        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

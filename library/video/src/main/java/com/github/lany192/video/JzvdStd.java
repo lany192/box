@@ -56,7 +56,8 @@ public class JzvdStd extends Jzvd {
     public PopupWindow clarityPopWindow;
     public TextView mRetryBtn;
     public LinearLayout mRetryLayout;
-    protected DismissControlViewTimerTask mDismissControlViewTimerTask;    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
+    protected DismissControlViewTimerTask mDismissControlViewTimerTask;
+    protected Dialog mProgressDialog;    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
@@ -73,7 +74,6 @@ public class JzvdStd extends Jzvd {
             }
         }
     };
-    protected Dialog mProgressDialog;
     protected ProgressBar mDialogProgressBar;
     protected TextView mDialogSeekTime;
     protected TextView mDialogTotalTime;
@@ -89,20 +89,8 @@ public class JzvdStd extends Jzvd {
     protected ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
     public JzvdStd(Context context) {
         super(context);
-    }    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
-                boolean isWifi = JZUtils.isWifiConnected(context);
-                if (mIsWifi == isWifi) return;
-                mIsWifi = isWifi;
-                if (!mIsWifi && !WIFI_TIP_DIALOG_SHOWED && state == STATE_PLAYING) {
-                    startButton.performClick();
-                    showWifiDialog();
-                }
-            }
-        }
-    };
+    }
+
     public JzvdStd(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -169,7 +157,20 @@ public class JzvdStd extends Jzvd {
         tinyBackImageView.setOnClickListener(this);
         clarity.setOnClickListener(this);
         mRetryBtn.setOnClickListener(this);
-    }
+    }    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+                boolean isWifi = JZUtils.isWifiConnected(context);
+                if (mIsWifi == isWifi) return;
+                mIsWifi = isWifi;
+                if (!mIsWifi && !WIFI_TIP_DIALOG_SHOWED && state == STATE_PLAYING) {
+                    startButton.performClick();
+                    showWifiDialog();
+                }
+            }
+        }
+    };
 
     public void setUp(JZDataSource jzDataSource, int screen, Class mediaInterfaceClass) {
         if ((System.currentTimeMillis() - gobakFullscreenTime) < 200) {
@@ -327,32 +328,7 @@ public class JzvdStd extends Jzvd {
         }
         seekToInAdvance = mCurrentPosition;
         startVideo();
-    }    /**
-     * 双击
-     */
-    protected GestureDetector gestureDetector = new GestureDetector(getContext().getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            if (state == STATE_PLAYING || state == STATE_PAUSE) {
-                Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
-                startButton.performClick();
-            }
-            return super.onDoubleTap(e);
-        }
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            if (!mChangePosition && !mChangeVolume) {
-                onClickUiToggle();
-            }
-            return super.onSingleTapConfirmed(e);
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-            super.onLongPress(e);
-        }
-    });
+    }
 
     protected void clickClarity() {
         onCLickUiToggleToClear();
@@ -410,7 +386,32 @@ public class JzvdStd extends Jzvd {
 
     protected void clickBack() {
         backPress();
-    }
+    }    /**
+     * 双击
+     */
+    protected GestureDetector gestureDetector = new GestureDetector(getContext().getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            if (state == STATE_PLAYING || state == STATE_PAUSE) {
+                Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
+                startButton.performClick();
+            }
+            return super.onDoubleTap(e);
+        }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            if (!mChangePosition && !mChangeVolume) {
+                onClickUiToggle();
+            }
+            return super.onSingleTapConfirmed(e);
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            super.onLongPress(e);
+        }
+    });
 
     protected void clickSurfaceContainer() {
         startDismissControlViewTimer();
@@ -968,6 +969,7 @@ public class JzvdStd extends Jzvd {
             dissmissControlView();
         }
     }
+
 
 
 

@@ -153,6 +153,7 @@ public class RippleView extends View {
         float width;
         float height;
         int alpha;
+
         Rectangle(float width, float height, int alpha) {
             this.width = width;
             this.height = height;

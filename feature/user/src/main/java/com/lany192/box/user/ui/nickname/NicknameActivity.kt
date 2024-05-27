@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
-import com.gyf.immersionbar.ImmersionBar
+import com.github.lany192.arch.utils.BarUtils
 import com.hjq.toast.Toaster
 import com.lany192.box.user.UserHelper
 import com.lany192.box.user.databinding.ActivityNicknameBinding
@@ -15,8 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @Route(path = "/user/nickname", name = "昵称")
 class NicknameActivity : ViewModelActivity<NicknameViewModel, ActivityNicknameBinding>() {
 
-    override fun initImmersionBar(): ImmersionBar {
-        return super.initImmersionBar().titleBar(binding.toolbar)
+    override fun initImmersionBar() {
+        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

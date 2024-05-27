@@ -3,7 +3,8 @@ package com.github.lany192.dialog
 import com.github.lany192.dialog.databinding.DialogBirthdayBinding
 import com.github.lany192.utils.TimeUtils
 import java.time.LocalDate
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 /**
  * 生日选择器
