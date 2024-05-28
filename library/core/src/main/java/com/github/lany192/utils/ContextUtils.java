@@ -7,14 +7,14 @@ import android.content.pm.ApplicationInfo;
 import androidx.fragment.app.FragmentActivity;
 
 public class ContextUtils {
-    private static Context context;
+    private static Context mContext;
 
     public static void setApplicationContext(Context context) {
-        ContextUtils.context = context;
+        mContext = context;
     }
 
     public static Context getContext() {
-        return context;
+        return mContext;
     }
 
     public static FragmentActivity context2activity(Context context) {
@@ -29,7 +29,7 @@ public class ContextUtils {
     }
 
     public static boolean isDebug() {
-        return context.getApplicationInfo() != null &&
-                (context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        return mContext.getApplicationInfo() != null &&
+                (mContext.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
 }
