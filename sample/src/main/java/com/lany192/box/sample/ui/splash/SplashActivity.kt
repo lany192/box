@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SplashActivity : ViewModelActivity<SplashViewModel, ActivitySplashBinding>() {
 
     override fun initImmersionBar() {
-        return ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_BAR).init()
+        ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_BAR).init()
     }
 
     override fun getViewBinding(): ActivitySplashBinding {

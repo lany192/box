@@ -57,10 +57,16 @@ abstract class ViewModelActivity<VM : LifecycleViewModel, VB : ViewBinding> :
         }
     }
 
+    /**
+     * 不想反射可以复写
+     */
     open fun getDefaultViewModel(): VM {
         return getViewModel(getClass(0))
     }
 
+    /**
+     * 不想反射可以复写
+     */
     override fun getViewBinding(): VB {
         return getClass<VB>(1).getBinding(layoutInflater)
     }

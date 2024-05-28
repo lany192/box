@@ -9,6 +9,7 @@ import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.log.LogUtils
+import com.github.lany192.utils.ContextUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
@@ -34,12 +35,12 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initImmersionBar() {
-        return ImmersionBar.with(this).init()
+        ImmersionBar.with(this).init()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Toaster.show("构建时间：" + getString(R.string.apk_build_time))
+        Toaster.show("测试：" + ContextUtils.isDebug())
 //        ViewUtils.setGrayStyle(this, true)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> Toaster.show("首页：" + userInfo.name) }
