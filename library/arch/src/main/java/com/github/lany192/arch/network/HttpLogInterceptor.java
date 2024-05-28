@@ -3,6 +3,7 @@ package com.github.lany192.arch.network;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.log.XLog;
+import com.github.lany192.utils.ContextUtils;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -25,17 +26,12 @@ import okio.GzipSource;
 
 public class HttpLogInterceptor implements Interceptor {
     private final XLog log = XLog.tag("接口请求");
-    private final boolean debug;
-
-    public HttpLogInterceptor(boolean debug) {
-        this.debug = debug;
-    }
 
     @NonNull
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        if (!debug) {
+        if (!ContextUtils.isDebug()) {
             return chain.proceed(request);
         }
         long startTime = System.nanoTime();

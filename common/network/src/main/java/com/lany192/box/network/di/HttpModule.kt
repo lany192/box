@@ -30,7 +30,7 @@ class HttpModule {
         builder.retryOnConnectionFailure(true)
         builder.addInterceptor(DomainInterceptor())
         builder.addInterceptor(HeaderInterceptor())
-        builder.addInterceptor(HttpLogInterceptor(ContextUtils.isDebug()))
+        builder.addInterceptor(HttpLogInterceptor())
         builder.addInterceptor(TimeIntervalInterceptor())
         builder.connectTimeout(7, TimeUnit.SECONDS)
         builder.readTimeout(7, TimeUnit.SECONDS)
