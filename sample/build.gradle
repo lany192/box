@@ -81,7 +81,7 @@ android {
             signingConfig signingConfigs.config
             versionNameSuffix '_dev'
             //打包时间
-            resValue("string", "apk_build_time", build_time)
+            resValue("string", "apk_build_time", "2000-01-01 01:01:01")
         }
     }
     compileOptions {
