@@ -7,6 +7,8 @@ import androidx.fragment.app.strictmode.FragmentStrictMode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.lany192.arch.BoxApplication;
+import com.github.lany192.utils.ContextUtils;
+import com.hjq.toast.Toaster;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.lany192.box.router.lifecycle.ActivityLifecycle;
 import com.lany192.box.sample.lancet.LancetTest;
@@ -36,13 +38,8 @@ public class SampleApp extends BoxApplication {
 //        enableStrictMode();
     }
 
-    @Override
-    public boolean debug() {
-        return BuildConfig.DEBUG;
-    }
-
     private void initARouter() {
-        if (BuildConfig.DEBUG) {
+        if (ContextUtils.isDebug()) {
             ARouter.openLog();
             ARouter.openDebug();
         }
@@ -50,7 +47,7 @@ public class SampleApp extends BoxApplication {
     }
 
     private void enableStrictMode() {
-        if (BuildConfig.DEBUG) {
+        if (ContextUtils.isDebug()) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectAll() //所有违规操作
 //                    .detectCustomSlowCalls() //API等级11，使用StrictMode.noteSlowCode

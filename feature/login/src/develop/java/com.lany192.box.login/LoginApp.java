@@ -27,11 +27,11 @@ public class LoginApp extends BoxApplication {
 
     @Override
     public boolean debug() {
-        return BuildConfig.DEBUG;
+        return ContextUtils.isDebug();
     }
 
     private void initARouter() {
-        if (BuildConfig.DEBUG) {
+        if (ContextUtils.isDebug()) {
             ARouter.openLog();
             ARouter.openDebug();
         }

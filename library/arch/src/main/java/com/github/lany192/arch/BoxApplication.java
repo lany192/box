@@ -11,6 +11,7 @@ import androidx.multidex.MultiDex;
 import com.github.lany192.arch.utils.DeviceId;
 import com.github.lany192.dialog.DialogHelper;
 import com.github.lany192.log.LogUtils;
+import com.github.lany192.utils.ContextUtils;
 import com.hjq.toast.Toaster;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
@@ -41,7 +42,7 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 
         Toaster.init(this);
         Toaster.setView(R.layout.toast_view);
-        Toaster.setDebugMode(debug());
+        Toaster.setDebugMode(ContextUtils.isDebug());
 
         DialogHelper.get().init(this);
 
@@ -79,6 +80,4 @@ public abstract class BoxApplication extends Application implements ViewModelSto
         LogUtils.close();
         super.onTerminate();
     }
-
-    public abstract boolean debug();
 }

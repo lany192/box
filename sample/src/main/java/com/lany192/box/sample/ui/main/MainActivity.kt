@@ -39,6 +39,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Toaster.show("构建时间：" + getString(R.string.apk_build_time))
 //        ViewUtils.setGrayStyle(this, true)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         userViewModel.userInfo.observe(this) { userInfo: UserInfo -> Toaster.show("首页：" + userInfo.name) }

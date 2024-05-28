@@ -10,6 +10,7 @@ def ROOT_PATH = properties.getProperty("APK_OUT_PATH", rootDir.getPath()) + "/ap
 def ZIP_FOLDER_PATH = ROOT_PATH + "/zip/" + buildTime + "/"
 
 project.android.applicationVariants.all { variant ->
+    variant.resValue("string", "build_time", buildTime)
     if (variant.buildType.name != "debug") {
         def variantName = variant.name.capitalize()
         //apk输出路径

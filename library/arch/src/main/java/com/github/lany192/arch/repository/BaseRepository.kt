@@ -1,8 +1,8 @@
 package com.github.lany192.arch.repository
 
-import com.github.lany192.arch.BuildConfig
 import com.github.lany192.arch.entity.ApiResult
 import com.github.lany192.log.XLog
+import com.github.lany192.utils.ContextUtils
 import com.github.lany192.utils.NetUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -33,7 +33,7 @@ open class BaseRepository {
             }
             .catch {
                 log.e("请求异常:${it.message}")
-                if (BuildConfig.DEBUG) {
+                if (ContextUtils.isDebug()) {
                     emit(ApiResult.network(it.message))
                 } else {
                     emit(ApiResult.network())
