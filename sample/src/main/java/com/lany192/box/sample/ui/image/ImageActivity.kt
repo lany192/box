@@ -17,5 +17,6 @@ class ImageActivity : AppCompatActivity() {
         val binding = ActivityImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewUtils.applyWindowInsets(binding.root, binding.toolbar)
+        binding.back.setOnClickListener { finish() }
     }
 }
