@@ -8,12 +8,9 @@ import androidx.fragment.app.FragmentActivity;
 
 public class ContextUtils {
     private static Context context;
-    private static boolean isDebug = false;
 
     public static void setApplicationContext(Context context) {
         ContextUtils.context = context;
-        isDebug = context.getApplicationInfo() != null &&
-                (context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
 
     public static Context getContext() {
@@ -32,6 +29,7 @@ public class ContextUtils {
     }
 
     public static boolean isDebug() {
-        return isDebug;
+        return context.getApplicationInfo() != null &&
+                (context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
 }
