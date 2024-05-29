@@ -98,6 +98,13 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
     }
 
     /**
+     * 对话框背景蒙层透明度
+     */
+    public float getAmount() {
+        return 0.5f;
+    }
+
+    /**
      * 获取优先级
      */
     public int getPriority() {
@@ -275,6 +282,7 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
         Window window = dialog.getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            window.setDimAmount(getAmount());
         }
         return dialog;
     }
