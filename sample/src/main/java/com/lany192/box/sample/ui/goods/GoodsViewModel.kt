@@ -18,7 +18,7 @@ class GoodsViewModel @Inject constructor(var service: ApiService) : ItemsViewMod
     override fun request(refresh: Boolean) {
         viewModelScope.launch {
             val items = mutableListOf<Any>()
-            items.addAll(service.getHomeArticles(1).data.list)
+            items.addAll(service.getHomeArticles(page).data.list)
             items.add(ViewPagerItem())
             resetItems(items)
             refreshFinish()

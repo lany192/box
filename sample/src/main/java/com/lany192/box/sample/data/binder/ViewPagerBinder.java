@@ -16,6 +16,11 @@ import java.util.List;
 public class ViewPagerBinder extends ItemBinder<ViewPagerItem, ItemViewPagerBinding> {
 
     @Override
+    public boolean isFullSpanItem(int itemType) {
+        return true;
+    }
+
+    @Override
     public void convert(@NonNull ItemViewPagerBinding binding, ViewPagerItem item, int position) {
         List<TabItem> items = new ArrayList<>();
         items.add(new TabItem("标题1", ArticleBuilder.getFragment()));
