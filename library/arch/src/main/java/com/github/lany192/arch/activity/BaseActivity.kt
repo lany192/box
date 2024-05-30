@@ -127,13 +127,13 @@ abstract class BaseActivity : AppCompatActivity() {
         return ContextCompat.getColor(this, id)
     }
 
-    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-        if (event.action == MotionEvent.ACTION_DOWN) {
-            //点击空白区域收起输入法
-            KeyboardUtils.hide(this)
-        }
-        return super.dispatchTouchEvent(event)
-    }
+//    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+//        if (event.action == MotionEvent.ACTION_DOWN) {
+//            //点击空白区域收起输入法
+//            KeyboardUtils.hide(this)
+//        }
+//        return super.dispatchTouchEvent(event)
+//    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEvent(event: HideSoftInputEvent) {
