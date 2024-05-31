@@ -113,7 +113,7 @@ dependencies {
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.material
     implementation libs.immersionbar
-    implementation libs.matisse
+    
     implementation libs.toaster
     if (singleRun) {
         implementation project(path: ':feature:browser')
