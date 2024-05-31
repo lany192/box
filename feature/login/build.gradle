@@ -102,7 +102,7 @@ dependencies {
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
 
-    implementation libs.hilt.android
+    implementation libs.hilt
     kapt libs.hilt.compiler
 
     implementation libs.arouter

@@ -103,7 +103,7 @@ dependencies {
     implementation project(path: ':library:html')
     implementation project(path: ':library:cropper')
 
-    implementation libs.hilt.android
+    implementation libs.hilt
     kapt libs.hilt.compiler
 
     implementation libs.arouter
@@ -152,7 +152,7 @@ dependencies {
 
         implementation libs.coroutines.core
         implementation libs.coroutines.android
-        implementation libs.hilt.android
+        implementation libs.hilt
 
         implementation libs.brvah
         implementation libs.retrofit
@@ -166,8 +166,8 @@ dependencies {
         implementation libs.tencent.sonic
         implementation libs.tencent.wechat
         implementation libs.tencent.tbs
-        implementation libs.tencent.vasdolly.reader
-        implementation libs.tencent.vasdolly.writer
+        implementation libs.vasdolly.reader
+        implementation libs.vasdolly.writer
 
         implementation libs.xcrash
         implementation libs.refresh.header

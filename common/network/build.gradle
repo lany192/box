@@ -39,7 +39,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
-    implementation libs.hilt.android
+    implementation libs.hilt
     kapt libs.hilt.compiler
 
     implementation libs.coroutines.core
