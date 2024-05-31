@@ -2,13 +2,13 @@
 
 agp = "8.4.1"
 kotlin = "1.8.20"
-junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
 appcompat = "1.6.1"
 material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
 
 banner = "2.2.3" # banner https://github.com/youth5201314/banner
 camera = "1.3.3" #相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
