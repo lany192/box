@@ -101,7 +101,7 @@ dependencies {
     implementation project(path: ':library:time')
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
-    implementation project(path: ':library:cropper')
+
 
     implementation libs.hilt
     kapt libs.hilt.compiler

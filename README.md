@@ -32,7 +32,6 @@
         implementation 'com.github.lany192.box:time:master-SNAPSHOT'
         implementation 'com.github.lany192.box:tablayout:master-SNAPSHOT'
         implementation 'com.github.lany192.box:html:master-SNAPSHOT'
-        implementation 'com.github.lany192.box:cropper:master-SNAPSHOT'
         implementation 'com.github.lany192.box:toolkit:master-SNAPSHOT'
         implementation 'com.github.lany192.box:blackbox:master-SNAPSHOT'
         implementation 'com.github.lany192.box:video:master-SNAPSHOT'

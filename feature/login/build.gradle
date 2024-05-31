@@ -97,7 +97,7 @@ dependencies {
 
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
-    implementation project(path: ':library:cropper')
+
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
