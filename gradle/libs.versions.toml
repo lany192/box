@@ -38,7 +38,6 @@ oss = "2.74.0" #minio库 minio 官方的sdk 只有java 版本的不兼容android
 kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
 permissions = "18.63" #权限 https://github.com/getActivity/XXPermissions
 phoenix = "3.0.0" #重启工具库 https://github.com/JakeWharton/ProcessPhoenix
-htmlspanner = "e667fba" #https://github.com/NightWhistler/HtmlSpanner https://jitpack.io/#NightWhistler/HtmlSpanner
 tbssdk = "44286" #腾讯x5 https://x5.tencent.com/docs/index.html
 wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
 sonic = "3.1.0" #https://github.com/Tencent/VasSonic
@@ -64,6 +63,8 @@ gson = "2.10.1"
 moshi = "1.15.1"
 zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
 ucrop = "2.2.8-native" #图片裁剪https://github.com/Yalantis/uCrop
+htmlspanner = "e667fba" #https://github.com/NightWhistler/HtmlSpanner
+htmlcleaner = "2.29" #html解析 https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
 box = "4.6.3" #https://github.com/lany192/box
 feature = "0.0.1" #本地仓库
 
@@ -160,6 +161,7 @@ permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "
 backgroundx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "backgroundx" }
 phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
 html-spanner = { module = "com.github.NightWhistler:HtmlSpanner", version.ref = "htmlspanner" }
+html-cleaner = { module = "net.sourceforge.htmlcleaner:htmlcleaner", version.ref = "htmlcleaner" }
 tencent-tbs = { module = "com.tencent.tbs:tbssdk", version.ref = "tbssdk" }
 tencent-wechat = { module = "com.tencent.mm.opensdk:wechat-sdk-android", version.ref = "wechat" }
 tencent-sonic = { module = "com.tencent.sonic:sdk", version.ref = "sonic" }
