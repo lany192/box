@@ -138,7 +138,7 @@ junit = { module = "junit:junit", version.ref = "junit" }
 keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
-licenses = { module = "de.psdev.licenses:licenses", version.ref = "licenses" }
+licenses = { module = "de.psdev.licensesdialog:licensesdialog", version.ref = "licenses" }
 luban = { module = "top.zibin:Luban", version.ref = "luban" }
 mocker = { module = "com.github.lany192:mock-generator", version.ref = "mocker" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
