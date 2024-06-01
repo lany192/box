@@ -64,11 +64,18 @@ toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
 touchimageview = "3.6" #图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
 ucrop = "2.2.8-native" #图片裁剪 https://github.com/Yalantis/uCrop
 vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
-webkit = "1.3.0"
+webkit = "1.6.1"
 wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
+
+umsdk-asms = "1.8.0"
+umsdk-link = "1.2.0"
+umsdk-apm = "1.9.2"
+umsdk-common = "9.6.6" #友盟统计 https://developer.umeng.com/docs/119267/cate/118577
+umeng-share = "7.3.2"
+umeng-push = "2.1.0"
 
 [libraries]
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
@@ -177,6 +184,16 @@ touchimageview = { module = "com.github.MikeOrtiz:TouchImageView", version.ref =
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxingLite" }
+
+umsdk-common = { module = "com.umeng.umsdk:common", version.ref = "umsdk-common" }
+umsdk-link = { module = "com.umeng.umsdk:link", version.ref = "umsdk-link" }
+umsdk-apm = { module = "com.umeng.umsdk:apm", version.ref = "umsdk-apm" }
+umsdk-asms = { module = "com.umeng.umsdk:asms", version.ref = "umsdk-asms" }
+umsdk-share-board = { module = "com.umeng.umsdk:share-board", version.ref = "umeng-share" }
+umsdk-share-core = { module = "com.umeng.umsdk:share-core", version.ref = "umeng-share" }
+umsdk-share-qq = { module = "com.umeng.umsdk:share-qq", version.ref = "umeng-share" }
+umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng-share" }
+umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
