@@ -49,6 +49,6 @@ dependencies {
     implementation libs.glide
     implementation libs.rxjava
     implementation libs.blur
-    implementation libs.vasdolly.reader
-    implementation libs.vasdolly.writer
+    implementation libs.tencent.vasdolly.reader
+    implementation libs.tencent.vasdolly.writer
 }

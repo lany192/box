@@ -168,7 +168,7 @@ dependencies {
         implementation libs.touchimageview
         implementation libs.rxjava
         implementation libs.rxandroid
-        implementation libs.material.spinner
+        implementation libs.spinner
         implementation libs.html.spanner
         implementation libs.phoenix
         implementation libs.permissions

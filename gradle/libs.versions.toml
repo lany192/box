@@ -47,8 +47,8 @@ flexbox = "3.0.0" #flexbox控件 https://github.com/google/flexbox-layout
 keyboard = "1.0.1" #键盘监听器 https://github.com/lany192/KeyboardWatcher
 rxjava = "3.1.8" #https://github.com/ReactiveX/RxJava
 decoration = "1.23" #分割线 https://github.com/lany192/ItemDecoration
-licensesdialog = "2.1.0"
-materialSpinner = "1.3.1" #https://github.com/jaredrummler/materialspinner
+licenses = "2.1.0"
+spinner = "1.3.1" #https://github.com/jaredrummler/spinner
 media3 = "1.3.1" #播放器 https://developer.android.google.cn/jetpack/androidx/releases/media3
 paging = "3.3.0" #https://developer.android.google.cn/jetpack/androidx/releases/paging?hl=zh-cn
 room = "2.6.1" #数据库 https://developer.android.google.cn/training/data-storage/room/index.html
@@ -132,8 +132,8 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 refresh-header = { module = "io.github.scwang90:refresh-header-classics", version.ref = "refresh" }
 refresh-layout = { module = "io.github.scwang90:refresh-layout-kernel", version.ref = "refresh" }
 
-vasdolly-reader = { module = "com.tencent.vasdolly:reader", version.ref = "vasdolly" }
-vasdolly-writer = { module = "com.tencent.vasdolly:writer", version.ref = "vasdolly" }
+tencent-vasdolly-reader = { module = "com.tencent.vasdolly:reader", version.ref = "vasdolly" }
+tencent-vasdolly-writer = { module = "com.tencent.vasdolly:writer", version.ref = "vasdolly" }
 
 box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
 box-core = { module = "com.github.lany192.box:core", version.ref = "box" }
@@ -173,8 +173,8 @@ toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }
 keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
 immersionbar = { module = "com.geyifeng.immersionbar:immersionbar", version.ref = "immersionbar" }
 decoration = { module = "com.github.lany192:ItemDecoration", version.ref = "decoration" }
-licensesdialog = { module = "de.psdev.licensesdialog:licensesdialog", version.ref = "licensesdialog" }
-material-spinner = { module = "com.jaredrummler:material-spinner", version.ref = "materialSpinner" }
+licenses = { module = "de.psdev.licenses:licenses", version.ref = "licenses" }
+spinner = { module = "com.jaredrummler:material-spinner", version.ref = "spinner" }
 number-picker = { module = "io.github.ShawnLin013:number-picker", version.ref = "numberPicker" }
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }

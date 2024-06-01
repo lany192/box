@@ -194,8 +194,8 @@ dependencies {
     implementation libs.tencent.sonic
     implementation libs.tencent.wechat
     implementation libs.tencent.tbs
-    implementation libs.vasdolly.reader
-    implementation libs.vasdolly.writer
+    implementation libs.tencent.vasdolly.reader
+    implementation libs.tencent.vasdolly.writer
 
     implementation libs.xcrash
     implementation libs.refresh.header
@@ -210,14 +210,14 @@ dependencies {
     implementation libs.number.picker
     implementation libs.eventbus
     implementation libs.okdownload
-    implementation libs.licensesdialog
+    implementation libs.licenses
 
     implementation libs.banner
     implementation libs.touchimageview
     implementation libs.zxing.lite
     implementation libs.rxjava
     implementation libs.rxandroid
-    implementation libs.material.spinner
+    implementation libs.spinner
     implementation libs.html.spanner
     implementation libs.phoenix
     implementation libs.oss.sdk.client
