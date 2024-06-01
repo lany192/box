@@ -59,14 +59,18 @@ startup = "1.1.1"
 tbssdk = "44286" #腾讯x5 https://x5.tencent.com/docs/index.html
 toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
 touchimageview = "3.6" #图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
-ucrop = "2.2.8-native" #图片裁剪https://github.com/Yalantis/uCrop
+ucrop = "2.2.8-native" #图片裁剪 https://github.com/Yalantis/uCrop
 vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
 wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
+palette = "1.0.0"
+linkbuilder = "2.0.5" #超链接处理 https://github.com/klinker24/Android-TextView-LinkBuilder
 
 [libraries]
+link-builder = { module = "com.klinkerapps:link_builder", version.ref = "linkbuilder" }
+androidx-palette = { module = "androidx.palette:palette", version.ref = "palette" }
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
