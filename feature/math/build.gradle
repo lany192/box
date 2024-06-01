@@ -87,6 +87,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit2
+    androidTestImplementation libs.androidx.test.espresso
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
     implementation project(path: ':library:arch')
@@ -96,9 +99,6 @@ dependencies {
     implementation project(path: ':library:time')
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.ext.junit2
-    androidTestImplementation libs.androidx.test.espresso
 
     implementation libs.hilt
     kapt libs.hilt.compiler
