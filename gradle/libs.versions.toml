@@ -65,6 +65,7 @@ moshi = "1.15.1"
 zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
 ucrop = "2.2.8-native" #图片裁剪https://github.com/Yalantis/uCrop
 box = "4.6.3" #https://github.com/lany192/box
+feature = "0.0.1" #本地仓库
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -143,6 +144,12 @@ box-html = { module = "com.github.lany192.box:html", version.ref = "box" }
 box-update = { module = "com.github.lany192.box:update", version.ref = "box" }
 box-toolkit = { module = "com.github.lany192.box:toolkit", version.ref = "box" }
 box-video = { module = "com.github.lany192.box:video", version.ref = "box" }
+
+feature-browser = { module = "com.github.lany192.sample:browser", version.ref = "feature" }
+feature-user = { module = "com.github.lany192.sample:user", version.ref = "feature" }
+feature-login = { module = "com.github.lany192.sample:login", version.ref = "feature" }
+feature-hello = { module = "com.github.lany192.sample:hello", version.ref = "feature" }
+feature-richeditor = { module = "com.github.lany192.sample:richeditor", version.ref = "feature" }
 
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
 junit = { module = "junit:junit", version.ref = "junit" }
