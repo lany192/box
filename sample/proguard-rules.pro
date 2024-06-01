@@ -141,7 +141,12 @@
 #----------------------------------------------
 -dontwarn dalvik.system.VMStack
 -dontwarn javax.lang.model.element.Element
-
+# tencent x5----------------------------------------------
+-dontwarn dalvik.**
+-dontwarn com.tencent.smtt.**
+-keep class com.tencent.smtt.** { *;}
+-keep class com.tencent.tbs.** { *;}
+#----------------------------------------------
 
 
 

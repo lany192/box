@@ -5,7 +5,7 @@ appcompat = "1.6.1"
 backgroundx = "1.7.6" #背景绘制 https://github.com/JavaNoober/BackgroundLibrary
 banner = "2.2.3" # banner https://github.com/youth5201314/banner
 blur = "b636349" #高斯模糊 https://github.com/android/renderscript-intrinsics-replacement-toolkit
-box = "4.6.3" #https://github.com/lany192/box
+box = "4.6.3" # master-SNAPSHOT #https://github.com/lany192/box
 brvah = "4.1.4" #适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
 camera = "1.3.3" #相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
 chucker = "4.0.0" #https://github.com/ChuckerTeam/chucker
@@ -22,8 +22,8 @@ fragment = "1.7.1"
 glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
 gson = "2.10.1"
 hilt = "2.45" #注入依赖 https://dagger.dev/hilt/
-htmlcleaner = "2.29" #html解析 https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
-htmlspanner = "e667fba" #https://github.com/NightWhistler/HtmlSpanner
+html-cleaner = "2.29" #html解析 https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
+html-spanner = "e667fba" #https://github.com/NightWhistler/HtmlSpanner
 immersionbar = "3.2.2" #状态栏工具 https://github.com/gyf-dev/ImmersionBar
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -33,7 +33,7 @@ kotlin = "1.8.20"
 leakcanary = "2.14" #内存检测 https://github.com/square/leakcanary
 licenses = "2.1.0"
 lifecycle = "2.8.0"
-linkbuilder = "2.0.5" #超链接处理 https://github.com/klinker24/Android-TextView-LinkBuilder
+link-builder = "2.0.5" #超链接处理 https://github.com/klinker24/Android-TextView-LinkBuilder
 lottie = "5.2.0" #动画加载 https://github.com/airbnb/lottie-android
 luban = "1.1.8" #图片压缩 https://github.com/Curzibn/Luban
 material = "1.12.0"
@@ -42,7 +42,7 @@ mmkv = "1.3.3" #存储 https://github.com/Tencent/MMKV
 mocker = "1.0.4" #模拟数据生成 https://github.com/lany192/mock-generator
 moshi = "1.15.1"
 multidex = "2.0.1"
-numberPicker = "2.4.13" #自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
+number-picker = "2.4.13" #自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
 okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
 oss = "2.74.0" #minio库 minio 官方的sdk 只有java 版本的不兼容android，可以尝试使用 amazon s3 的oss sdk 来实现功能
 paging = "3.3.0" #https://developer.android.google.cn/jetpack/androidx/releases/paging?hl=zh-cn
@@ -75,7 +75,7 @@ webkit = "1.6.1"
 wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
-zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
+zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
 
 [libraries]
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
@@ -146,20 +146,20 @@ glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = 
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
-html-cleaner = { module = "net.sourceforge.htmlcleaner:htmlcleaner", version.ref = "htmlcleaner" }
-html-spanner = { module = "com.github.NightWhistler:HtmlSpanner", version.ref = "htmlspanner" }
+html-cleaner = { module = "net.sourceforge.htmlcleaner:htmlcleaner", version.ref = "html-cleaner" }
+html-spanner = { module = "com.github.NightWhistler:HtmlSpanner", version.ref = "html-spanner" }
 immersionbar = { module = "com.geyifeng.immersionbar:immersionbar", version.ref = "immersionbar" }
 junit = { module = "junit:junit", version.ref = "junit" }
 keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 licenses = { module = "de.psdev.licensesdialog:licensesdialog", version.ref = "licenses" }
-link-builder = { module = "com.klinkerapps:link_builder", version.ref = "linkbuilder" }
+link-builder = { module = "com.klinkerapps:link_builder", version.ref = "link-builder" }
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 luban = { module = "top.zibin:Luban", version.ref = "luban" }
 mocker = { module = "com.github.lany192:mock-generator", version.ref = "mocker" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
-number-picker = { module = "io.github.ShawnLin013:number-picker", version.ref = "numberPicker" }
+number-picker = { module = "io.github.ShawnLin013:number-picker", version.ref = "number-picker" }
 okdownload = { module = "com.github.lany192:okdownload", version.ref = "okdownload" }
 oss-sdk-client = { module = "com.amazonaws:aws-android-sdk-mobile-client", version.ref = "oss" }
 oss-sdk-s33 = { module = "com.amazonaws:aws-android-sdk-s3", version.ref = "oss" }
@@ -194,7 +194,7 @@ umsdk-share-qq = { module = "com.umeng.umsdk:share-qq", version.ref = "umeng-sha
 umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng-share" }
 umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
-zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxingLite" }
+zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
