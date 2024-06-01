@@ -63,6 +63,8 @@ blur = "b636349" #高斯模糊 https://github.com/android/renderscript-intrinsic
 gson = "2.10.1"
 moshi = "1.15.1"
 zxingLite = "3.1.1" #https://github.com/jenly1314/ZXingLite
+ucrop = "2.2.8-native" #图片裁剪https://github.com/Yalantis/uCrop
+box = "4.6.3" #https://github.com/lany192/box
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -131,6 +133,18 @@ refresh-layout = { module = "io.github.scwang90:refresh-layout-kernel", version.
 vasdolly-reader = { module = "com.tencent.vasdolly:reader", version.ref = "vasdolly" }
 vasdolly-writer = { module = "com.tencent.vasdolly:writer", version.ref = "vasdolly" }
 
+box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
+box-core = { module = "com.github.lany192.box:core", version.ref = "box" }
+box-dialog = { module = "com.github.lany192.box:dialog", version.ref = "box" }
+box-arch = { module = "com.github.lany192.box:arch", version.ref = "box" }
+box-time = { module = "com.github.lany192.box:time", version.ref = "box" }
+box-tablayout = { module = "com.github.lany192.box:tablayout", version.ref = "box" }
+box-html = { module = "com.github.lany192.box:html", version.ref = "box" }
+box-update = { module = "com.github.lany192.box:update", version.ref = "box" }
+box-toolkit = { module = "com.github.lany192.box:toolkit", version.ref = "box" }
+box-video = { module = "com.github.lany192.box:video", version.ref = "box" }
+
+ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
 junit = { module = "junit:junit", version.ref = "junit" }
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
