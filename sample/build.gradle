@@ -138,6 +138,7 @@ dependencies {
     implementation project(path: ':library:tablayout')
     implementation project(path: ':library:html')
     implementation project(path: ':library:video')
+    implementation project(path: ':library:blurview')
 
     implementation project(path: ':common:router')
     implementation project(path: ':common:network')
