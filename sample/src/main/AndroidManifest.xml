@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.blur.BlurActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.database.DatabaseActivity"
             android:exported="false" />
         <activity
