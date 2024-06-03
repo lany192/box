@@ -1,6 +1,7 @@
 [versions]
 activity = "1.9.0"
 agp = "8.4.1"
+annotation = "1.8.0"
 appcompat = "1.6.1"
 backgroundx = "1.7.6" #背景绘制 https://github.com/JavaNoober/BackgroundLibrary
 banner = "2.2.3" # banner https://github.com/youth5201314/banner
@@ -81,6 +82,7 @@ zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
 [libraries]
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera" }
 androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera" }
