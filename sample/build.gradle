@@ -224,7 +224,7 @@ dependencies {
     implementation libs.permissions
     implementation libs.blur
     implementation libs.rootbeer
-
+    implementation libs.lottie
     //模拟数据生成 https://github.com/lany192/mock-generator
     implementation 'com.github.lany192:mock-generator:1.0.4'
     //转场动画 https://github.com/skydoves/TransformationLayout

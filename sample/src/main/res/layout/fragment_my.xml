@@ -23,6 +23,15 @@
                 android:src="@mipmap/a" />
         </com.lany192.box.sample.view.RippleLayout>
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/test" />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image1"
             android:layout_width="200dp"
