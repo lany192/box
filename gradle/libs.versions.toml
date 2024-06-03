@@ -8,6 +8,7 @@ blur = "b636349" #高斯模糊 https://github.com/android/renderscript-intrinsic
 box = "4.6.3" # master-SNAPSHOT #https://github.com/lany192/box
 brvah = "4.1.4" #适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
 camera = "1.3.3" #相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
+cardview = "1.0.0"
 chucker = "4.0.0" #https://github.com/ChuckerTeam/chucker
 constraintlayout = "2.1.4"
 coreKtx = "1.13.1"
@@ -86,6 +87,7 @@ androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "
 androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "camera" }
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera" }
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "camera" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
