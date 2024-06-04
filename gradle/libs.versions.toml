@@ -132,6 +132,8 @@ box-toolkit = { module = "com.github.lany192.box:toolkit", version.ref = "box" }
 box-update = { module = "com.github.lany192.box:update", version.ref = "box" }
 box-video = { module = "com.github.lany192.box:video", version.ref = "box" }
 box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
+box-blur = { module = "com.github.lany192.box:blurview", version.ref = "box" }
+box-blackbox = { module = "com.github.lany192.box:blackbox", version.ref = "box" }
 brvah = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "brvah" }
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
 chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
