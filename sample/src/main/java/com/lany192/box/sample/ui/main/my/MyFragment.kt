@@ -21,7 +21,6 @@ import com.lany192.box.sample.ui.settings.SettingsRouter
 import com.lany192.box.sample.ui.user.UserViewModel
 import com.lany192.box.sample.ui.video.VideoRouter
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDate
 
 
 @AndroidEntryPoint
@@ -56,7 +55,14 @@ class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
         binding.goods.setOnClickListener { GoodsRouter.start() }
         binding.dialog2View.setOnClickListener { showDialog2() }
         binding.birthday.setOnClickListener {
-            BirthdayDialog(LocalDate.of(2001, 1, 2)).show()
+            val dialog = BirthdayDialog(2001, 1, 1)
+            dialog.setOnBirthdayListener(object :
+                BirthdayDialog.OnBirthdayListener {
+                override fun onResult(year: Int, month: Int, day: Int) {
+                    Toaster.show("你选择的是：$year-$month-$day")
+                }
+            })
+            dialog.show()
         }
         binding.testView.setOnClickListener {
             userViewModel.setName("我是张三")

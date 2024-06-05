@@ -2,14 +2,14 @@ package com.github.lany192.dialog
 
 import com.github.lany192.dialog.databinding.DialogBirthdayBinding
 import com.github.lany192.utils.TimeUtils
-import java.time.LocalDate
 import java.util.Calendar
 import java.util.Date
 
 /**
  * 生日选择器
  */
-class BirthdayDialog(private val localDate: LocalDate) : BaseDialog<DialogBirthdayBinding>() {
+class BirthdayDialog(private val year: Int, private val month: Int, private val day: Int) :
+    BaseDialog<DialogBirthdayBinding>() {
 
     private var listener: OnBirthdayListener? = null
 
@@ -19,7 +19,7 @@ class BirthdayDialog(private val localDate: LocalDate) : BaseDialog<DialogBirthd
 
     override fun init() {
         val calendar = Calendar.getInstance()
-        calendar.timeInMillis = TimeUtils.localDate2Timestamp(localDate)
+        calendar.set(year, month - 1, day)
         binding.datePicker.setYearFormatter("%d年")
         binding.datePicker.setMonthFormatter("%02d月")
         binding.datePicker.setDayFormatter("%02d日")
@@ -33,9 +33,13 @@ class BirthdayDialog(private val localDate: LocalDate) : BaseDialog<DialogBirthd
             calendar[Calendar.MONDAY],
             calendar[Calendar.DAY_OF_MONTH]
         )
-        binding.close.setOnClickListener { cancel() }
-        binding.confirm.setOnClickListener {
-            listener?.onResult(TimeUtils.date2LocalDate(calendar.time))
+        binding.left.setOnClickListener { cancel() }
+        binding.right.setOnClickListener {
+            listener?.onResult(
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH) + 1,
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
             cancel()
         }
     }
@@ -45,6 +49,6 @@ class BirthdayDialog(private val localDate: LocalDate) : BaseDialog<DialogBirthd
     }
 
     interface OnBirthdayListener {
-        fun onResult(birthday: LocalDate)
+        fun onResult(year: Int, month: Int, day: Int)
     }
 }
