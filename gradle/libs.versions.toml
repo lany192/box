@@ -85,14 +85,15 @@ umsdk-asms = "1.8.0"
 umsdk-common = "9.6.6" #友盟统计 https://developer.umeng.com/docs/119267/cate/118577
 umsdk-link = "1.2.0"
 vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
+watermark = "0.2.3" # 水印 https://github.com/huangyz0918/AndroidWM
 webkit = "1.10.0"
 wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
-watermark = "0.2.3" # 水印 https://github.com/huangyz0918/AndroidWM
+
+
 [libraries]
-watermark = { module = "com.huangyz0918:androidwm", version.ref = "watermark" }
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
@@ -225,8 +226,10 @@ umsdk-share-core = { module = "com.umeng.umsdk:share-core", version.ref = "umeng
 umsdk-share-qq = { module = "com.umeng.umsdk:share-qq", version.ref = "umeng-share" }
 umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng-share" }
 umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
+watermark = { module = "com.huangyz0918:androidwm", version.ref = "watermark" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
