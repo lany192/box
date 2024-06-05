@@ -85,6 +85,7 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
+fastjson = "1.2.83"
 
 [libraries]
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
@@ -216,6 +217,7 @@ umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng
 umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
+fastjson = { group = "com.alibaba", name = "fastjson", version.ref = "fastjson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
