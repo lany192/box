@@ -24,10 +24,12 @@ decoration = "1.23" #分割线 https://github.com/lany192/ItemDecoration
 espressoCore = "3.5.1"
 eventbus = "3.3.1" #通知事件 https://github.com/greenrobot/EventBus
 exifinterface = "1.3.7"
+fastjson = "1.2.83"
 feature = "0.0.1" #本地仓库
 flexbox = "3.0.0" #flexbox控件 https://github.com/google/flexbox-layout
 fragment = "1.7.1"
 glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
+gradle = "8.3.2"
 gson = "2.10.1"
 hilt = "2.45" #注入依赖 https://dagger.dev/hilt/
 html-cleaner = "2.29" #html解析 https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
@@ -85,7 +87,6 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
-fastjson = "1.2.83"
 
 [libraries]
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
@@ -156,6 +157,7 @@ coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 decoration = { module = "com.github.lany192:ItemDecoration", version.ref = "decoration" }
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+fastjson = { group = "com.alibaba", name = "fastjson", version.ref = "fastjson" }
 feature-browser = { module = "com.github.lany192.sample:browser", version.ref = "feature" }
 feature-hello = { module = "com.github.lany192.sample:hello", version.ref = "feature" }
 feature-login = { module = "com.github.lany192.sample:login", version.ref = "feature" }
@@ -164,6 +166,7 @@ feature-user = { module = "com.github.lany192.sample:user", version.ref = "featu
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
@@ -217,7 +220,6 @@ umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng
 umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
-fastjson = { group = "com.alibaba", name = "fastjson", version.ref = "fastjson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
