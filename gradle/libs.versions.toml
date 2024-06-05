@@ -3,6 +3,7 @@ activity = "1.9.0"
 agp = "8.4.1"
 annotation = "1.8.0"
 appcompat = "1.6.1"
+auto-service = "1.1.1"
 backgroundx = "1.7.6" #背景绘制 https://github.com/JavaNoober/BackgroundLibrary
 banner = "2.2.3" # banner https://github.com/youth5201314/banner
 blur = "b636349" #高斯模糊 https://github.com/android/renderscript-intrinsics-replacement-toolkit
@@ -27,6 +28,7 @@ hilt = "2.45" #注入依赖 https://dagger.dev/hilt/
 html-cleaner = "2.29" #html解析 https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
 html-spanner = "e667fba" #https://github.com/NightWhistler/HtmlSpanner
 immersionbar = "3.2.2" #状态栏工具 https://github.com/gyf-dev/ImmersionBar
+javapoet = "1.13.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 keyboard = "1.0.1" #键盘监听器 https://github.com/lany192/KeyboardWatcher
@@ -119,10 +121,14 @@ androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
 arouter = { module = "com.github.lany192.app-router:arouter", version.ref = "router" }
 arouter-compiler = { module = "com.github.lany192.app-router:arouter-compiler", version.ref = "router" }
 arouter-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "router" }
+auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "auto-service" }
+auto-service-compiler = { module = "com.google.auto.service:auto-service", version.ref = "auto-service" }
 backgroundx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "backgroundx" }
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
 blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
 box-arch = { module = "com.github.lany192.box:arch", version.ref = "box" }
+box-blackbox = { module = "com.github.lany192.box:blackbox", version.ref = "box" }
+box-blurview = { module = "com.github.lany192.box:blurview", version.ref = "box" }
 box-core = { module = "com.github.lany192.box:core", version.ref = "box" }
 box-dialog = { module = "com.github.lany192.box:dialog", version.ref = "box" }
 box-html = { module = "com.github.lany192.box:html", version.ref = "box" }
@@ -132,8 +138,6 @@ box-toolkit = { module = "com.github.lany192.box:toolkit", version.ref = "box" }
 box-update = { module = "com.github.lany192.box:update", version.ref = "box" }
 box-video = { module = "com.github.lany192.box:video", version.ref = "box" }
 box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
-box-blurview = { module = "com.github.lany192.box:blurview", version.ref = "box" }
-box-blackbox = { module = "com.github.lany192.box:blackbox", version.ref = "box" }
 brvah = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "brvah" }
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
 chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
@@ -155,6 +159,7 @@ hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.re
 html-cleaner = { module = "net.sourceforge.htmlcleaner:htmlcleaner", version.ref = "html-cleaner" }
 html-spanner = { module = "com.github.NightWhistler:HtmlSpanner", version.ref = "html-spanner" }
 immersionbar = { module = "com.geyifeng.immersionbar:immersionbar", version.ref = "immersionbar" }
+javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 junit = { module = "junit:junit", version.ref = "junit" }
 keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
