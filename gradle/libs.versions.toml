@@ -1,10 +1,12 @@
 [versions]
 activity = "1.9.0"
 agp = "8.4.1"
+aliyun-oss = "2.9.13" # https://github.com/aliyun/aliyun-oss-android-sdk
 annotation = "1.8.0"
 appcompat = "1.6.1"
 asm-util = "9.6"
 auto-service = "1.1.1"
+aztec = "v1.6.2" # 富文本 https://github.com/wordpress-mobile/AztecEditor-Android
 backgroundx = "1.7.6" #背景绘制 https://github.com/JavaNoober/BackgroundLibrary
 banner = "2.2.3" # banner https://github.com/youth5201314/banner
 blur = "b636349" #高斯模糊 https://github.com/android/renderscript-intrinsics-replacement-toolkit
@@ -41,6 +43,7 @@ junitVersion = "1.1.5"
 keyboard = "1.0.1" #键盘监听器 https://github.com/lany192/KeyboardWatcher
 kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
 kotlin = "1.8.20"
+labelview = "v1.1.2" # 斜体TextView控件 https://github.com/linger1216/labelview
 leakcanary = "2.14" #内存检测 https://github.com/square/leakcanary
 licenses = "2.1.0"
 lifecycle = "2.8.0"
@@ -87,10 +90,9 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
-labelview = "v1.1.2" # 斜体TextView控件 https://github.com/linger1216/labelview
-aliyun-oss = "2.9.13" # https://github.com/aliyun/aliyun-oss-android-sdk
-aztec = "v1.6.2" # 富文本 https://github.com/wordpress-mobile/AztecEditor-Android
+
 [libraries]
+aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
@@ -133,6 +135,7 @@ arouter-register = { module = "com.github.lany192.app-router:arouter-register", 
 asm-util = { module = "org.ow2.asm:asm-util", version.ref = "asm-util" }
 auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "auto-service" }
 auto-service-compiler = { module = "com.google.auto.service:auto-service", version.ref = "auto-service" }
+aztec = { module = "org.wordpress:aztec", version.ref = "aztec" }
 backgroundx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "backgroundx" }
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
 blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
@@ -179,6 +182,7 @@ javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 junit = { module = "junit:junit", version.ref = "junit" }
 keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
+labelview = { module = "com.github.linger1216:labelview", version.ref = "labelview" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 licenses = { module = "de.psdev.licensesdialog:licensesdialog", version.ref = "licenses" }
 link-builder = { module = "com.klinkerapps:link_builder", version.ref = "link-builder" }
@@ -222,9 +226,6 @@ umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng
 umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
-labelview = { module = "com.github.linger1216:labelview", version.ref = "labelview" }
-aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
-aztec = { module = "org.wordpress:aztec", version.ref = "aztec" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
