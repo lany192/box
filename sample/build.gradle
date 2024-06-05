@@ -119,8 +119,8 @@ dependencies {
     implementation libs.hilt
     kapt libs.hilt.compiler
 
-    implementation libs.arouter
-    kapt libs.arouter.compiler
+    implementation libs.lany.router
+    kapt libs.lany.router.compiler
 
 
     //https://github.com/Knight-ZXW/LancetX
@@ -203,12 +203,12 @@ dependencies {
     implementation libs.backgroundx
     implementation libs.kluban
     implementation libs.luban
-    implementation libs.decoration
-    implementation libs.keyboard
+    implementation libs.lany.decoration
+    implementation libs.lany.keyboard
     implementation libs.flexbox
     implementation libs.number.picker
     implementation libs.eventbus
-    implementation libs.okdownload
+    implementation libs.lany.download
     implementation libs.licenses
 
     implementation libs.banner
@@ -225,10 +225,9 @@ dependencies {
     implementation libs.blur
     implementation libs.rootbeer
     implementation libs.lottie
-    //模拟数据生成 https://github.com/lany192/mock-generator
-    implementation 'com.github.lany192:mock-generator:1.0.4'
-    //转场动画 https://github.com/skydoves/TransformationLayout
-    implementation 'com.github.skydoves:transformationlayout:1.1.3'
+
+    implementation libs.lany.mocker
+    implementation libs.transformation.layout
 }
 //引入安装包生成配置
 apply from: '../package.gradle'

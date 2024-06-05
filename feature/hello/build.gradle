@@ -105,8 +105,8 @@ dependencies {
     implementation libs.hilt
     kapt libs.hilt.compiler
 
-    implementation libs.arouter
-    kapt libs.arouter.compiler
+    implementation libs.lany.router
+    kapt libs.lany.router.compiler
 
     implementation libs.androidx.appcompat
     implementation libs.androidx.constraintlayout
@@ -174,12 +174,12 @@ dependencies {
         implementation libs.backgroundx
         implementation libs.kluban
         implementation libs.luban
-        implementation libs.decoration
+        implementation libs.lany.decoration
         implementation libs.keyboard
         implementation libs.flexbox
         implementation libs.number.picker
         implementation libs.eventbus
-        implementation libs.okdownload
+        implementation libs.lany.download
         implementation libs.licenses
 
         implementation libs.banner

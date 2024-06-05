@@ -22,6 +22,7 @@ commons-lang3 = "3.14.0"
 constraintlayout = "2.1.4"
 coreKtx = "1.13.1"
 coroutines = "1.8.0" #协程 https://github.com/Kotlin/kotlinx.coroutines
+datetime-picker = "1.0.9" #https://github.com/lany192/DateTimePicker
 decoration = "1.23" #分割线 https://github.com/lany192/ItemDecoration
 espressoCore = "3.5.1"
 eventbus = "3.3.1" #通知事件 https://github.com/greenrobot/EventBus
@@ -77,6 +78,7 @@ startup = "1.1.1"
 tbssdk = "44286" #腾讯x5 https://x5.tencent.com/docs/index.html
 toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
 touchimageview = "3.6" #图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
+transformation-layout = "1.1.3" #转场动画 https://github.com/skydoves/TransformationLayout
 ucrop = "2.2.8-native" #图片裁剪 https://github.com/Yalantis/uCrop
 umeng-push = "2.1.0"
 umeng-share = "7.3.2"
@@ -85,8 +87,10 @@ umsdk-asms = "1.8.0"
 umsdk-common = "9.6.6" #友盟统计 https://developer.umeng.com/docs/119267/cate/118577
 umsdk-link = "1.2.0"
 vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
+viewpager2 = "1.0.0"
 watermark = "0.2.3" # 水印 https://github.com/huangyz0918/AndroidWM
 webkit = "1.10.0"
+webpdecoder = "2.6.4.16.0" #webp解析器 https://github.com/zjupure/GlideWebpDecoder
 wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
@@ -130,10 +134,8 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startup" }
 androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
 androidx-test-ext-junit2 = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
-arouter = { module = "com.github.lany192.app-router:arouter", version.ref = "router" }
-arouter-compiler = { module = "com.github.lany192.app-router:arouter-compiler", version.ref = "router" }
-arouter-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "router" }
 asm-util = { module = "org.ow2.asm:asm-util", version.ref = "asm-util" }
 auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "auto-service" }
 auto-service-compiler = { module = "com.google.auto.service:auto-service", version.ref = "auto-service" }
@@ -141,18 +143,6 @@ aztec = { module = "org.wordpress:aztec", version.ref = "aztec" }
 backgroundx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "backgroundx" }
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
 blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
-box-arch = { module = "com.github.lany192.box:arch", version.ref = "box" }
-box-blackbox = { module = "com.github.lany192.box:blackbox", version.ref = "box" }
-box-blurview = { module = "com.github.lany192.box:blurview", version.ref = "box" }
-box-core = { module = "com.github.lany192.box:core", version.ref = "box" }
-box-dialog = { module = "com.github.lany192.box:dialog", version.ref = "box" }
-box-html = { module = "com.github.lany192.box:html", version.ref = "box" }
-box-tablayout = { module = "com.github.lany192.box:tablayout", version.ref = "box" }
-box-time = { module = "com.github.lany192.box:time", version.ref = "box" }
-box-toolkit = { module = "com.github.lany192.box:toolkit", version.ref = "box" }
-box-update = { module = "com.github.lany192.box:update", version.ref = "box" }
-box-video = { module = "com.github.lany192.box:video", version.ref = "box" }
-box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
 brvah = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "brvah" }
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
 chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
@@ -162,14 +152,8 @@ commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-decoration = { module = "com.github.lany192:ItemDecoration", version.ref = "decoration" }
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 fastjson = { group = "com.alibaba", name = "fastjson", version.ref = "fastjson" }
-feature-browser = { module = "com.github.lany192.sample:browser", version.ref = "feature" }
-feature-hello = { module = "com.github.lany192.sample:hello", version.ref = "feature" }
-feature-login = { module = "com.github.lany192.sample:login", version.ref = "feature" }
-feature-richeditor = { module = "com.github.lany192.sample:richeditor", version.ref = "feature" }
-feature-user = { module = "com.github.lany192.sample:user", version.ref = "feature" }
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
@@ -182,18 +166,40 @@ html-spanner = { module = "com.github.NightWhistler:HtmlSpanner", version.ref = 
 immersionbar = { module = "com.geyifeng.immersionbar:immersionbar", version.ref = "immersionbar" }
 javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 junit = { module = "junit:junit", version.ref = "junit" }
-keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
 labelview = { module = "com.github.linger1216:labelview", version.ref = "labelview" }
+lany-box-arch = { module = "com.github.lany192.box:arch", version.ref = "box" }
+lany-box-blackbox = { module = "com.github.lany192.box:blackbox", version.ref = "box" }
+lany-box-blurview = { module = "com.github.lany192.box:blurview", version.ref = "box" }
+lany-box-core = { module = "com.github.lany192.box:core", version.ref = "box" }
+lany-box-dialog = { module = "com.github.lany192.box:dialog", version.ref = "box" }
+lany-box-html = { module = "com.github.lany192.box:html", version.ref = "box" }
+lany-box-tablayout = { module = "com.github.lany192.box:tablayout", version.ref = "box" }
+lany-box-time = { module = "com.github.lany192.box:time", version.ref = "box" }
+lany-box-toolkit = { module = "com.github.lany192.box:toolkit", version.ref = "box" }
+lany-box-update = { module = "com.github.lany192.box:update", version.ref = "box" }
+lany-box-video = { module = "com.github.lany192.box:video", version.ref = "box" }
+lany-box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
+lany-datetime-picker = { module = "com.github.lany192:DateTimePicker", version.ref = "datetime-picker" }
+lany-decoration = { module = "com.github.lany192:ItemDecoration", version.ref = "decoration" }
+lany-download = { module = "com.github.lany192:okdownload", version.ref = "okdownload" }
+lany-feature-browser = { module = "com.github.lany192.sample:browser", version.ref = "feature" }
+lany-feature-hello = { module = "com.github.lany192.sample:hello", version.ref = "feature" }
+lany-feature-login = { module = "com.github.lany192.sample:login", version.ref = "feature" }
+lany-feature-richeditor = { module = "com.github.lany192.sample:richeditor", version.ref = "feature" }
+lany-feature-user = { module = "com.github.lany192.sample:user", version.ref = "feature" }
+lany-keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
+lany-mocker = { module = "com.github.lany192:mock-generator", version.ref = "mocker" }
+lany-router = { module = "com.github.lany192.app-router:arouter", version.ref = "router" }
+lany-router-compiler = { module = "com.github.lany192.app-router:arouter-compiler", version.ref = "router" }
+lany-router-register = { module = "com.github.lany192.app-router:arouter-register", version.ref = "router" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 licenses = { module = "de.psdev.licensesdialog:licensesdialog", version.ref = "licenses" }
 link-builder = { module = "com.klinkerapps:link_builder", version.ref = "link-builder" }
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 luban = { module = "top.zibin:Luban", version.ref = "luban" }
-mocker = { module = "com.github.lany192:mock-generator", version.ref = "mocker" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 number-picker = { module = "io.github.ShawnLin013:number-picker", version.ref = "number-picker" }
-okdownload = { module = "com.github.lany192:okdownload", version.ref = "okdownload" }
 oss-sdk-client = { module = "com.amazonaws:aws-android-sdk-mobile-client", version.ref = "oss" }
 oss-sdk-s33 = { module = "com.amazonaws:aws-android-sdk-s3", version.ref = "oss" }
 permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "permissions" }
@@ -216,6 +222,7 @@ tencent-wechat = { module = "com.tencent.mm.opensdk:wechat-sdk-android", version
 tencent-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "xlog" }
 toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }
 touchimageview = { module = "com.github.MikeOrtiz:TouchImageView", version.ref = "touchimageview" }
+transformation-layout = { module = "com.github.skydoves:transformationlayout", version.ref = "transformation-layout" }
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
 umsdk-apm = { module = "com.umeng.umsdk:apm", version.ref = "umsdk-apm" }
 umsdk-asms = { module = "com.umeng.umsdk:asms", version.ref = "umsdk-asms" }
@@ -227,6 +234,7 @@ umsdk-share-qq = { module = "com.umeng.umsdk:share-qq", version.ref = "umeng-sha
 umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng-share" }
 umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
 watermark = { module = "com.huangyz0918:androidwm", version.ref = "watermark" }
+webpdecoder = { module = "com.github.zjupure:webpdecoder", version.ref = "webpdecoder" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
 

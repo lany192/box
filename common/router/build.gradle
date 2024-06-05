@@ -38,7 +38,7 @@ dependencies {
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
     implementation libs.androidx.appcompat
-    implementation libs.arouter
+    implementation libs.lany.router
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
