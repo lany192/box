@@ -90,8 +90,9 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
-
+watermark = "0.2.3" # 水印 https://github.com/huangyz0918/AndroidWM
 [libraries]
+watermark = { module = "com.huangyz0918:androidwm", version.ref = "watermark" }
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
