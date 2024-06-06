@@ -230,4 +230,4 @@ dependencies {
     implementation libs.transformation.layout
 }
 //引入安装包生成配置
-apply from: '../package.gradle'
+apply from: '../gradle/package.gradle'

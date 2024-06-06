@@ -77,5 +77,5 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-apply from: './buildinfo.gradle'
+apply from: './gradle/buildinfo.gradle'
 

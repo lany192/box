@@ -27,7 +27,7 @@ afterEvaluate {
                 repositories {
                     mavenLocal()  // 发布到本地仓库
                     maven {
-                        name = 'local_repository'
+                        name = 'mavenCustom'
                         url = "${rootProject.rootDir}/repository"
                     }
 //                    maven {

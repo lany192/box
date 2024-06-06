@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 }
-apply from: '../../publish.gradle'
+apply from: '../../gradle/publish.gradle'
 
 android {
     compileSdk apk.compileSdkVersion
