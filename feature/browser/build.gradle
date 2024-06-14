@@ -5,7 +5,7 @@ if (singleRun) {
 } else {
     apply plugin: 'com.android.library'
 }
-apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'dagger.hilt.android.plugin'
