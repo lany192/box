@@ -5,10 +5,10 @@ plugins {
 apply from: '../../gradle/publish.gradle'
 
 android {
-    compileSdk apk.compileSdkVersion
+    compileSdk Integer.parseInt(libs.versions.compileSdk.get())
     defaultConfig {
-        minSdk apk.minSdkVersion
-        targetSdk apk.targetSdkVersion
+        minSdk Integer.parseInt(libs.versions.minSdk.get())
+        targetSdk Integer.parseInt(libs.versions.targetSdk.get())
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

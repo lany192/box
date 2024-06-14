@@ -44,6 +44,7 @@ junitVersion = "1.1.5"
 keyboard = "1.0.1" #键盘监听器 https://github.com/lany192/KeyboardWatcher
 kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
 kotlin = "1.8.20"
+ksp = "1.8.20-1.0.11" # https://github.com/google/ksp/releases
 labelview = "v1.1.2" # 斜体TextView控件 https://github.com/linger1216/labelview
 leakcanary = "2.14" #内存检测 https://github.com/square/leakcanary
 licenses = "2.1.0"
@@ -95,7 +96,9 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
-
+compileSdk = "34" # 编译版本
+minSdk = "21" # 最小版本
+targetSdk = "30"# 目标版本
 
 [libraries]
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
@@ -246,4 +249,5 @@ hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
