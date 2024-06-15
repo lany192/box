@@ -157,7 +157,7 @@ commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "co
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
-fastjson = { group = "com.alibaba", name = "fastjson", version.ref = "fastjson" }
+fastjson = { module = "com.alibaba:fastjson", version.ref = "fastjson" }
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
