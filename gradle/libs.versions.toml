@@ -161,6 +161,7 @@ fastjson = { group = "com.alibaba", name = "fastjson", version.ref = "fastjson" 
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+glide-webp = { module = "com.github.zjupure:webpdecoder", version.ref = "glide-webp" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -238,7 +239,6 @@ umsdk-share-qq = { module = "com.umeng.umsdk:share-qq", version.ref = "umeng-sha
 umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng-share" }
 umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
 watermark = { module = "com.huangyz0918:androidwm", version.ref = "watermark" }
-glide-webp = { module = "com.github.zjupure:webpdecoder", version.ref = "glide-webp" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
 
