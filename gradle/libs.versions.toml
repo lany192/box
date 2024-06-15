@@ -19,9 +19,10 @@ commons-codec = "1.16.1"
 commons-collections4 = "4.4"
 commons-io = "2.15.1"
 commons-lang3 = "3.14.0"
+compileSdk = "34" # 编译版本
 constraintlayout = "2.1.4"
 coreKtx = "1.13.1"
-coroutines = "1.8.0" #协程 https://github.com/Kotlin/kotlinx.coroutines
+coroutines = "1.8.1" #协程 https://github.com/Kotlin/kotlinx.coroutines
 datetime-picker = "1.0.9" #https://github.com/lany192/DateTimePicker
 decoration = "1.23" #分割线 https://github.com/lany192/ItemDecoration
 espressoCore = "3.5.1"
@@ -32,7 +33,8 @@ feature = "0.0.1" #本地仓库
 flexbox = "3.0.0" #flexbox控件 https://github.com/google/flexbox-layout
 fragment = "1.7.1"
 glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
-gradle = "8.3.2"
+glide-webp = "2.6.4.16.0" #webp解析器 https://github.com/zjupure/GlideWebpDecoder
+gradle = "8.5.0"
 gson = "2.10.1"
 hilt = "2.45" #注入依赖 https://dagger.dev/hilt/
 html-cleaner = "2.29" #html解析 https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
@@ -54,6 +56,7 @@ lottie = "6.4.1" #动画加载 https://github.com/airbnb/lottie-android
 luban = "1.1.8" #图片压缩 https://github.com/Curzibn/Luban
 material = "1.12.0"
 media3 = "1.3.1" #播放器 https://developer.android.google.cn/jetpack/androidx/releases/media3
+minSdk = "21" # 最小版本
 mmkv = "1.3.3" #存储 https://github.com/Tencent/MMKV
 mocker = "1.0.4" #模拟数据生成 https://github.com/lany192/mock-generator
 moshi = "1.15.1"
@@ -76,6 +79,7 @@ rxjava = "3.1.8" #https://github.com/ReactiveX/RxJava
 sonic = "3.1.0" #https://github.com/Tencent/VasSonic
 spinner = "1.3.1" #https://github.com/jaredrummler/spinner
 startup = "1.1.1"
+targetSdk = "30"# 目标版本
 tbssdk = "44286" #腾讯x5 https://x5.tencent.com/docs/index.html
 toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
 touchimageview = "3.6" #图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
@@ -91,14 +95,11 @@ vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
 viewpager2 = "1.0.0"
 watermark = "0.2.3" # 水印 https://github.com/huangyz0918/AndroidWM
 webkit = "1.10.0"
-webpdecoder = "2.6.4.16.0" #webp解析器 https://github.com/zjupure/GlideWebpDecoder
 wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.1.1" #https://github.com/jenly1314/ZXingLite
-compileSdk = "34" # 编译版本
-minSdk = "21" # 最小版本
-targetSdk = "30"# 目标版本
+
 
 [libraries]
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
@@ -237,7 +238,7 @@ umsdk-share-qq = { module = "com.umeng.umsdk:share-qq", version.ref = "umeng-sha
 umsdk-share-sina = { module = "com.umeng.umsdk:share-sina", version.ref = "umeng-share" }
 umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-share" }
 watermark = { module = "com.huangyz0918:androidwm", version.ref = "watermark" }
-webpdecoder = { module = "com.github.zjupure:webpdecoder", version.ref = "webpdecoder" }
+glide-webp = { module = "com.github.zjupure:webpdecoder", version.ref = "glide-webp" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
 
@@ -245,13 +246,11 @@ zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-
-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
