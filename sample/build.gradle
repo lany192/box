@@ -4,8 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.kotlin.parcelize)
-    id 'com.github.lany192.router'
     alias(libs.plugins.hilt.android)
+    id 'com.github.lany192.router'
 }
 
 kapt {
