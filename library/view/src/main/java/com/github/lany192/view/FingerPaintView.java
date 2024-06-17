@@ -13,6 +13,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 /**
  * 手写板
  */
@@ -62,12 +64,10 @@ public class FingerPaintView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
-        if (canvas != null) {
-            canvas.drawBitmap(drawingBitmap, 0f, 0f, drawingPaint);
-            canvas.drawPath(path, paint);
-        }
+        canvas.drawBitmap(drawingBitmap, 0f, 0f, drawingPaint);
+        canvas.drawPath(path, paint);
     }
 
     @SuppressLint("ClickableViewAccessibility")
