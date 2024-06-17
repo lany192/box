@@ -181,7 +181,7 @@ dependencies {
         implementation libs.kluban
         implementation libs.luban
         implementation libs.lany.decoration
-        implementation libs.keyboard
+        implementation libs.lany.keyboard
         implementation libs.flexbox
         implementation libs.number.picker
         implementation libs.eventbus
