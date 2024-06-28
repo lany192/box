@@ -7,13 +7,47 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class TimeUtils {
+    /**
+     * 计算与当前的时间差相差多少时间
+     */
+    public static String formatTime(Date date) {
+        Calendar current = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        if (current.get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
+            if (current.get(Calendar.MONTH) == calendar.get(Calendar.MONTH)) {
+                if (current.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)) {
+                    int hour = current.get(Calendar.HOUR) - calendar.get(Calendar.HOUR);
+                    if (hour < 1) {
+                        int minute = current.get(Calendar.MINUTE) - calendar.get(Calendar.MINUTE);
+                        if (minute < 1) {
+                            return "刚刚";
+                        } else {
+                            return minute + "分钟前";
+                        }
+                    }
+                    return hour + "小时前";
+                } else if ((calendar.get(Calendar.DAY_OF_MONTH) + 1) == current.get(Calendar.DAY_OF_MONTH)) {
+                    return "昨天";
+                }
+            }
+            return new SimpleDateFormat("MM-dd", Locale.getDefault()).format(date);
+        }
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date);
+    }
+
+    /**
+     * 计算与当前的时间差相差多少时间
+     */
+    public static String formatTime(long timestamp) {
+        return formatTime(new Date(timestamp));
+    }
 
     /**
      * Date转成LocalDate
@@ -102,15 +136,6 @@ public class TimeUtils {
             LogUtils.e("时间字符串 " + dateStr + " 转Date失败:" + e.getMessage());
         }
         return null;
-    }
-
-    /**
-     * 将日期转成字符串
-     */
-    public static String localDate2string(LocalDate localDate) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        format.withLocale(Locale.getDefault());
-        return format.format(localDate);
     }
 
     /**
