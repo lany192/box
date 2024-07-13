@@ -10,3 +10,4 @@
 /apk
 *.log
 /repository
+/.kotlin
