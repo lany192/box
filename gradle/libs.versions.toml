@@ -3,6 +3,9 @@ activity = "1.9.0"
 activity-compose = "1.9.0"
 agp = "8.5.1"
 aliyun-oss = "2.9.13" # https://github.com/aliyun/aliyun-oss-android-sdk
+android-compile-sdk = "34" # 编译版本
+android-min-sdk = "21" # 最小版本
+android-target-sdk = "30"# 目标版本
 annotation = "1.8.1"
 appcompat = "1.6.1"
 asm-util = "9.6"
@@ -20,7 +23,6 @@ commons-codec = "1.16.1"
 commons-collections4 = "4.4"
 commons-io = "2.15.1"
 commons-lang3 = "3.14.0"
-android-compile-sdk = "34" # 编译版本
 compose-bom = "2024.04.01"
 constraintlayout = "2.1.4"
 coreKtx = "1.13.1"
@@ -58,7 +60,6 @@ lottie = "6.5.0" #动画加载 https://github.com/airbnb/lottie-android
 luban = "1.1.8" #图片压缩 https://github.com/Curzibn/Luban
 material = "1.12.0"
 media3 = "1.3.1" #播放器 https://developer.android.google.cn/jetpack/androidx/releases/media3
-android-min-sdk = "21" # 最小版本
 mmkv = "1.3.3" #存储 https://github.com/Tencent/MMKV
 mocker = "1.0.4" #模拟数据生成 https://github.com/lany192/mock-generator
 moshi = "1.15.1"
@@ -81,7 +82,6 @@ rxjava = "3.1.8" #https://github.com/ReactiveX/RxJava
 sonic = "3.1.0" #提升H5首屏加载速度 https://github.com/Tencent/VasSonic
 spinner = "1.3.1" #https://github.com/jaredrummler/MaterialSpinner
 startup = "1.1.1"
-android-target-sdk = "30"# 目标版本
 tbssdk = "44286" #腾讯x5 https://x5.tencent.com/docs/index.html
 tensorflow-lite = "2.16.1"
 toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
@@ -159,6 +159,23 @@ aztec = { module = "org.wordpress:aztec", version.ref = "aztec" }
 backgroundx = { module = "com.github.JavaNoober.BackgroundLibrary:libraryx", version.ref = "backgroundx" }
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
 blur = { module = "com.github.android:renderscript-intrinsics-replacement-toolkit", version.ref = "blur" }
+box-arch = { module = "com.github.lany192.box:arch", version.ref = "box" }
+box-blackbox = { module = "com.github.lany192.box:blackbox", version.ref = "box" }
+box-blurview = { module = "com.github.lany192.box:blurview", version.ref = "box" }
+box-core = { module = "com.github.lany192.box:core", version.ref = "box" }
+box-dialog = { module = "com.github.lany192.box:dialog", version.ref = "box" }
+box-feature-browser = { module = "com.github.lany192.sample:browser", version.ref = "feature" }
+box-feature-hello = { module = "com.github.lany192.sample:hello", version.ref = "feature" }
+box-feature-login = { module = "com.github.lany192.sample:login", version.ref = "feature" }
+box-feature-richeditor = { module = "com.github.lany192.sample:richeditor", version.ref = "feature" }
+box-feature-user = { module = "com.github.lany192.sample:user", version.ref = "feature" }
+box-html = { module = "com.github.lany192.box:html", version.ref = "box" }
+box-tablayout = { module = "com.github.lany192.box:tablayout", version.ref = "box" }
+box-time = { module = "com.github.lany192.box:time", version.ref = "box" }
+box-toolkit = { module = "com.github.lany192.box:toolkit", version.ref = "box" }
+box-update = { module = "com.github.lany192.box:update", version.ref = "box" }
+box-video = { module = "com.github.lany192.box:video", version.ref = "box" }
+box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
 brvah = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "brvah" }
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
 chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
@@ -185,26 +202,9 @@ javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
 labelview = { module = "com.github.linger1216:labelview", version.ref = "labelview" }
-box-arch = { module = "com.github.lany192.box:arch", version.ref = "box" }
-box-blackbox = { module = "com.github.lany192.box:blackbox", version.ref = "box" }
-box-blurview = { module = "com.github.lany192.box:blurview", version.ref = "box" }
-box-core = { module = "com.github.lany192.box:core", version.ref = "box" }
-box-dialog = { module = "com.github.lany192.box:dialog", version.ref = "box" }
-box-html = { module = "com.github.lany192.box:html", version.ref = "box" }
-box-tablayout = { module = "com.github.lany192.box:tablayout", version.ref = "box" }
-box-time = { module = "com.github.lany192.box:time", version.ref = "box" }
-box-toolkit = { module = "com.github.lany192.box:toolkit", version.ref = "box" }
-box-update = { module = "com.github.lany192.box:update", version.ref = "box" }
-box-video = { module = "com.github.lany192.box:video", version.ref = "box" }
-box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
 lany-datetime-picker = { module = "com.github.lany192:DateTimePicker", version.ref = "datetime-picker" }
 lany-decoration = { module = "com.github.lany192:ItemDecoration", version.ref = "decoration" }
 lany-download = { module = "com.github.lany192:okdownload", version.ref = "okdownload" }
-box-feature-browser = { module = "com.github.lany192.sample:browser", version.ref = "feature" }
-box-feature-hello = { module = "com.github.lany192.sample:hello", version.ref = "feature" }
-box-feature-login = { module = "com.github.lany192.sample:login", version.ref = "feature" }
-box-feature-richeditor = { module = "com.github.lany192.sample:richeditor", version.ref = "feature" }
-box-feature-user = { module = "com.github.lany192.sample:user", version.ref = "feature" }
 lany-keyboard = { module = "com.github.lany192:KeyboardWatcher", version.ref = "keyboard" }
 lany-mocker = { module = "com.github.lany192:mock-generator", version.ref = "mocker" }
 lany-router = { module = "com.github.lany192.app-router:arouter", version.ref = "router" }
