@@ -9,10 +9,10 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     namespace apk.appId + '.' + project.getName()
-    compileSdk Integer.parseInt(libs.versions.compileSdk.get())
+    compileSdk Integer.parseInt(libs.versions.android.compile.sdk.get())
     defaultConfig {
-        minSdk Integer.parseInt(libs.versions.minSdk.get())
-        targetSdk Integer.parseInt(libs.versions.targetSdk.get())
+        minSdk Integer.parseInt(libs.versions.android.min.sdk.get())
+        targetSdk Integer.parseInt(libs.versions.android.target.sdk.get())
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

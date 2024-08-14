@@ -26,7 +26,7 @@ def build_time = "\"${new Date().format('yyyy-MM-dd HH:mm')}\""
 android {
     namespace apk.appId + '.' + project.getName()
 
-    compileSdk Integer.parseInt(libs.versions.compileSdk.get())
+    compileSdk Integer.parseInt(libs.versions.android.compile.sdk.get())
 
     signingConfigs {
         config {
@@ -39,8 +39,8 @@ android {
 
     defaultConfig {
         applicationId apk.appId + '.' + project.getName()
-        minSdk Integer.parseInt(libs.versions.minSdk.get())
-        targetSdk Integer.parseInt(libs.versions.targetSdk.get())
+        minSdk Integer.parseInt(libs.versions.android.min.sdk.get())
+        targetSdk Integer.parseInt(libs.versions.android.target.sdk.get())
         versionCode apk.versionCode
         versionName apk.versionName
         multiDexEnabled true
