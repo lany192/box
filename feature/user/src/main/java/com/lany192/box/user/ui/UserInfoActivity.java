@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewBindingActivity;
 import com.github.lany192.arch.utils.BarUtils;
+import com.github.lany192.arch.utils.FileUtils;
 import com.github.lany192.utils.ImageUtils;
 import com.hjq.toast.Toaster;
 import com.lany192.box.user.databinding.ActivityUserBinding;
@@ -19,9 +20,6 @@ import com.lany192.box.user.dialog.SexDialog;
 import com.lany192.box.user.ui.nickname.NicknameRouter;
 import com.lany192.box.user.ui.signature.SignatureRouter;
 import com.yalantis.ucrop.UCrop;
-
-import java.io.File;
-import java.io.IOException;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -44,20 +42,9 @@ public class UserInfoActivity extends ViewBindingActivity<ActivityUserBinding> {
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
                     ImageUtils.show(binding.avatar, uri);
-                    // 获取缓存文件的绝对路径
-                    String imagePath = getCacheDir().getPath() + "/" + System.currentTimeMillis() + ".jpg";
-                    File file = new File(imagePath);
-                    if(!file.exists()){
-                        try {
-                            file.createNewFile();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    Uri destination = Uri.fromFile(file);
-                    log.i("切图保存地址：" + destination);
-                    cropLauncher.launch(UCrop.of(uri, destination)
+                    Uri cropUri = FileUtils.getTempPicUri(this);
+                    log.i("切图保存地址：" + cropUri);
+                    cropLauncher.launch(UCrop.of(uri, cropUri)
                             .withAspectRatio(1, 1)
                             .withMaxResultSize(300, 300)
                             .getIntent(this));

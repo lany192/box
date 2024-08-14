@@ -173,4 +173,18 @@ public class FileUtils {
             e.printStackTrace();
         }
     }
+
+    public static Uri getTempPicUri(Context context) {
+        try {
+            String imagePath = context.getCacheDir().getPath() + File.pathSeparator + System.currentTimeMillis() + ".jpg";
+            File file = new File(imagePath);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            return Uri.fromFile(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
