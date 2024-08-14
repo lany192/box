@@ -1,5 +1,8 @@
 package com.lany192.box.user.ui;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -15,18 +18,49 @@ import com.lany192.box.user.databinding.ActivityUserBinding;
 import com.lany192.box.user.dialog.SexDialog;
 import com.lany192.box.user.ui.nickname.NicknameRouter;
 import com.lany192.box.user.ui.signature.SignatureRouter;
+import com.yalantis.ucrop.UCrop;
+
+import java.io.File;
+import java.io.IOException;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 @Route(path = "/user/main")
 public class UserInfoActivity extends ViewBindingActivity<ActivityUserBinding> {
+    private final ActivityResultLauncher<Intent> cropLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getData() != null && result.getResultCode() == Activity.RESULT_OK) {
+                    // 处理成功的结果
+                    final Uri resultUri = UCrop.getOutput(result.getData());
+                    Toaster.show("Selected URI: " + resultUri);
+                } else {
+                    // 处理取消或失败的情况
+                    Toaster.show("处理取消或失败的情况");
+                }
+            });
 
     private final ActivityResultLauncher<PickVisualMediaRequest> imagePicker =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
-                    Toaster.show("Selected URI: " + uri);
                     ImageUtils.show(binding.avatar, uri);
+                    // 获取缓存文件的绝对路径
+                    String imagePath = getCacheDir().getPath() + "/" + System.currentTimeMillis() + ".jpg";
+                    File file = new File(imagePath);
+                    if(!file.exists()){
+                        try {
+                            file.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    Uri destination = Uri.fromFile(file);
+                    log.i("切图保存地址：" + destination);
+                    cropLauncher.launch(UCrop.of(uri, destination)
+                            .withAspectRatio(1, 1)
+                            .withMaxResultSize(300, 300)
+                            .getIntent(this));
                 } else {
                     Toaster.show("No media selected");
                 }

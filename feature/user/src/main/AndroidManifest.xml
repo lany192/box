@@ -3,6 +3,11 @@
 
     <application>
         <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:exported="false"
+            android:label="裁切图片"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.nickname.NicknameActivity"
             android:exported="false"
             android:label="修改昵称" />

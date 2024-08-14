@@ -117,6 +117,7 @@ dependencies {
     implementation libs.toaster
     implementation libs.immersionbar
     implementation libs.gson
+    implementation libs.ucrop
 
     if (singleRun) {
         implementation project(path: ':feature:hello')
