@@ -176,7 +176,7 @@ public class FileUtils {
 
     public static Uri getTempPicUri(Context context) {
         try {
-            String imagePath = context.getCacheDir().getPath() + File.pathSeparator + System.currentTimeMillis() + ".jpg";
+            String imagePath = context.getCacheDir().getPath() + "/" + System.currentTimeMillis() + ".jpg";
             File file = new File(imagePath);
             if(!file.exists()){
                 file.createNewFile();
