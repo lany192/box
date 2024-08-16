@@ -102,8 +102,10 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.2.0" #https://github.com/jenly1314/ZXingLite
+coil = "2.7.0" #https://github.com/coil-kt/coil
 
 [libraries]
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
