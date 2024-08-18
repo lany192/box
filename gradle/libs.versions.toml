@@ -23,7 +23,7 @@ commons-codec = "1.16.1"
 commons-collections4 = "4.4"
 commons-io = "2.15.1"
 commons-lang3 = "3.14.0"
-compose-bom = "2024.04.01"
+compose-bom = "2024.06.00"
 constraintlayout = "2.1.4"
 coreKtx = "1.13.1"
 coroutines = "1.8.1" #协程 https://github.com/Kotlin/kotlinx.coroutines
@@ -257,6 +257,7 @@ umsdk-share-wx = { module = "com.umeng.umsdk:share-wx", version.ref = "umeng-sha
 watermark = { module = "com.huangyz0918:androidwm", version.ref = "watermark" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
+ksp-symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -268,4 +269,5 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
