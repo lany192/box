@@ -99,8 +99,9 @@
 
 # 指令打包
 
-    gradlew sample:assembleDevelop --debug --stacktrace
-
+```bash
+gradlew sample:assembleDevelop --debug --stacktrace
+```
 ## 查看手机当前界面activity信息
 
 ```bash
