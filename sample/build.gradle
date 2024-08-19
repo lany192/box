@@ -172,6 +172,7 @@ android {
         // as the unused resource check.
         ignoreTestSources true
         // Normally lint will skip generated sources, but you can turn it on with this flag
+        // 检查ViewBinding之类的
         checkGeneratedSources true
         // Whether lint should check all dependencies too as part of its analysis.
         // Default is false.
