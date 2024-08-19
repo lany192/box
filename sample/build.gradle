@@ -179,6 +179,9 @@ dependencies {
     implementation libs.androidx.camera.view
     implementation libs.androidx.camera.extensions
     implementation libs.androidx.cardview
+    implementation libs.androidx.palette
+    implementation libs.androidx.viewpager2
+    implementation libs.androidx.webkit
 
     implementation libs.coroutines.core
     implementation libs.coroutines.android
