@@ -303,6 +303,10 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
 
     public void setCanceledOnTouchOutside(boolean canceledOnTouchOutside) {
         this.canceledOnTouchOutside = canceledOnTouchOutside;
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
+        }
     }
 
     @CallSuper
