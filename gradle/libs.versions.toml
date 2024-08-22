@@ -80,6 +80,7 @@ rootbeer = "0.1.0" #root检查 https://github.com/scottyab/rootbeer
 router = "2.0.8" #https://github.com/lany192/app-router
 rxandroid = "3.0.2" #https://github.com/ReactiveX/RxAndroid
 rxjava = "3.1.8" #https://github.com/ReactiveX/RxJava
+shadow = "1.0.0-SNAPSHOT"
 sonic = "3.1.0" #提升H5首屏加载速度 https://github.com/Tencent/VasSonic
 spinner = "1.3.1" #https://github.com/jaredrummler/MaterialSpinner
 startup = "1.1.1"
@@ -235,6 +236,16 @@ rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroi
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 spinner = { module = "com.jaredrummler:material-spinner", version.ref = "spinner" }
 tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
+tencent-shadow-core-activity-container = { module = "com.tencent.shadow.core:activity-container", version.ref = "shadow" }
+tencent-shadow-core-common = { module = "com.tencent.shadow.core:common", version.ref = "shadow" }
+tencent-shadow-core-gradle-plugin = { module = "com.tencent.shadow.core:gradle-plugin", version.ref = "shadow" }
+tencent-shadow-core-runtime = { module = "com.tencent.shadow.core:runtime", version.ref = "shadow" }
+tencent-shadow-core-utils = { module = "com.tencent.shadow.core:utils", version.ref = "shadow" }
+tencent-shadow-dynamic-apk = { module = "com.tencent.shadow.dynamic:apk", version.ref = "shadow" }
+tencent-shadow-dynamic-host = { module = "com.tencent.shadow.dynamic:host", version.ref = "shadow" }
+tencent-shadow-dynamic-host-multi-loader-ext = { module = "com.tencent.shadow.dynamic:host-multi-loader-ext", version.ref = "shadow" }
+tencent-shadow-dynamic-loader-impl = { module = "com.tencent.shadow.dynamic:loader-impl", version.ref = "shadow" }
+tencent-shadow-dynamic-manager = { module = "com.tencent.shadow.dynamic:manager", version.ref = "shadow" }
 tencent-sonic = { module = "com.tencent.sonic:sdk", version.ref = "sonic" }
 tencent-tbs = { module = "com.tencent.tbs:tbssdk", version.ref = "tbssdk" }
 tencent-vasdolly-reader = { module = "com.tencent.vasdolly:reader", version.ref = "vasdolly" }
@@ -270,4 +281,5 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+tencent-shadow = { id = "com.tencent.shadow.plugin", version.ref = "shadow" }
 
