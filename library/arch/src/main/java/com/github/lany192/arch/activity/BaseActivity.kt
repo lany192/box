@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.MotionEvent
 import androidx.annotation.CallSuper
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
