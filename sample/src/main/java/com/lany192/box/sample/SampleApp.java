@@ -1,5 +1,6 @@
 package com.lany192.box.sample;
 
+import android.os.Build;
 import android.os.StrictMode;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -36,8 +37,17 @@ public class SampleApp extends BoxApplication {
         ShortcutUtils.init(this);
         LancetTest.test();
 //        enableStrictMode();
+        detectNonSdkApiUsageOnAndroidP();
     }
 
+    private void detectNonSdkApiUsageOnAndroidP() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            return;
+        }
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        builder.detectNonSdkApiUsage();
+        StrictMode.setVmPolicy(builder.build());
+    }
     private void initARouter() {
         if (ContextUtils.isDebug()) {
             ARouter.openLog();

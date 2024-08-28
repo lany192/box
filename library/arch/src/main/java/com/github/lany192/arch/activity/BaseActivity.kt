@@ -1,5 +1,6 @@
 package com.github.lany192.arch.activity
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
@@ -35,6 +36,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private var loadingDialog: LoadingDialog? = null
 
+    private lateinit var startForResultLauncher: StartActivityForResultLauncher
+
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +47,11 @@ abstract class BaseActivity : AppCompatActivity() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
+        startForResultLauncher = StartActivityForResultLauncher(this)
+    }
+
+    fun startActivityForResult(intent: Intent, callback: OnResultCallback?) {
+        startForResultLauncher.launch(intent) { callback?.onResult(it) }
     }
 
     open fun getCustomRequestedOrientation(): Int {

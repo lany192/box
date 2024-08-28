@@ -1,6 +1,7 @@
 [![](https://jitpack.io/v/lany192/box.svg)](https://jitpack.io/#lany192/box)
 
 实验测试库，变动频繁，请勿用于生产环境
+仅供学习使用，不
 
 # 快速开发框架
 

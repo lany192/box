@@ -2,6 +2,9 @@ package com.github.lany192.arch;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
+import android.os.StrictMode;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelStore;
@@ -51,7 +54,17 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 //        CrashHelper.getInstance();
 
         initRefreshView();
+
+        setWebViewDataDirectorySuffix();
     }
+
+    private void setWebViewDataDirectorySuffix() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            return;
+        }
+        WebView.setDataDirectorySuffix(Application.getProcessName());
+    }
+
 
     @NonNull
     @Override
