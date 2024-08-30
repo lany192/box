@@ -1,7 +1,12 @@
 package com.github.lany192.arch.fragment
 
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
@@ -9,6 +14,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.github.lany192.arch.R
+import com.github.lany192.arch.activity.OnResultCallback
+import com.github.lany192.arch.activity.PickVisualMediaRequestLauncher
+import com.github.lany192.arch.activity.StartActivityForResultLauncher
 import com.github.lany192.dialog.LoadingDialog
 import com.github.lany192.log.XLog
 import org.greenrobot.eventbus.EventBus
@@ -20,6 +28,7 @@ abstract class BaseFragment : Fragment() {
     protected var log: XLog = XLog.tag(javaClass.name)
     private var loadingDialog: LoadingDialog? = null
     private lateinit var startForResultLauncher: StartActivityForResultLauncher
+    private lateinit var pickVisualMediaRequestLauncher: PickVisualMediaRequestLauncher
 
     @CallSuper
     override fun onCreate(state: Bundle?) {
@@ -28,6 +37,7 @@ abstract class BaseFragment : Fragment() {
             EventBus.getDefault().register(this)
         }
         startForResultLauncher = StartActivityForResultLauncher(this)
+        pickVisualMediaRequestLauncher = PickVisualMediaRequestLauncher(this)
     }
 
     @CallSuper
@@ -44,8 +54,18 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    fun startActivityForResult(intent: Intent, callback: OnResultCallback?) {
+    fun startActivityForResult(intent: Intent, callback: OnResultCallback<ActivityResult>?) {
         startForResultLauncher.launch(intent) { callback?.onResult(it) }
+    }
+
+    fun startMediaPicker(
+        callback: OnResultCallback<Uri>?,
+        request: PickVisualMediaRequest = PickVisualMediaRequest
+            .Builder()
+            .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            .build()
+    ) {
+        pickVisualMediaRequestLauncher.launch(request) { callback?.onResult(it) }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

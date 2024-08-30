@@ -3,9 +3,13 @@ package com.github.lany192.arch.activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.CallSuper
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -36,6 +40,7 @@ abstract class BaseActivity : AppCompatActivity() {
     private var loadingDialog: LoadingDialog? = null
 
     private lateinit var startForResultLauncher: StartActivityForResultLauncher
+    private lateinit var pickVisualMediaRequestLauncher: PickVisualMediaRequestLauncher
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,10 +52,21 @@ abstract class BaseActivity : AppCompatActivity() {
             EventBus.getDefault().register(this)
         }
         startForResultLauncher = StartActivityForResultLauncher(this)
+        pickVisualMediaRequestLauncher = PickVisualMediaRequestLauncher(this)
     }
 
-    fun startActivityForResult(intent: Intent, callback: OnResultCallback?) {
+    fun startActivityForResult(intent: Intent, callback: OnResultCallback<ActivityResult>?) {
         startForResultLauncher.launch(intent) { callback?.onResult(it) }
+    }
+
+    fun startMediaPicker(
+        callback: OnResultCallback<Uri>?,
+        request: PickVisualMediaRequest = PickVisualMediaRequest
+            .Builder()
+            .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            .build()
+    ) {
+        pickVisualMediaRequestLauncher.launch(request) { callback?.onResult(it) }
     }
 
     open fun getCustomRequestedOrientation(): Int {
