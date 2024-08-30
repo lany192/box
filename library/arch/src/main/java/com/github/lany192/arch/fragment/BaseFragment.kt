@@ -19,6 +19,7 @@ import org.greenrobot.eventbus.ThreadMode
 abstract class BaseFragment : Fragment() {
     protected var log: XLog = XLog.tag(javaClass.name)
     private var loadingDialog: LoadingDialog? = null
+    private lateinit var startForResultLauncher: StartActivityForResultLauncher
 
     @CallSuper
     override fun onCreate(state: Bundle?) {
@@ -26,6 +27,7 @@ abstract class BaseFragment : Fragment() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
+        startForResultLauncher = StartActivityForResultLauncher(this)
     }
 
     @CallSuper
@@ -40,6 +42,10 @@ abstract class BaseFragment : Fragment() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this)
         }
+    }
+
+    fun startActivityForResult(intent: Intent, callback: OnResultCallback?) {
+        startForResultLauncher.launch(intent) { callback?.onResult(it) }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
