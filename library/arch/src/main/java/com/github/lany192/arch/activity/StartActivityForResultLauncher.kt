@@ -39,6 +39,6 @@ class PickVisualMediaRequestLauncher(caller: ActivityResultCaller) :
         caller, ActivityResultContracts.PickVisualMedia()
     )
 
-interface OnResultCallback<O> {
+fun interface OnResultCallback<O> {
     fun onResult(result: O?)
 }
