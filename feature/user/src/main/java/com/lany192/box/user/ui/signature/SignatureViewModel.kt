@@ -5,8 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SignatureViewModel @Inject constructor() :
-    LifecycleViewModel() {
+class SignatureViewModel @Inject constructor() : LifecycleViewModel() {
 
     /**
      * 个性签名
