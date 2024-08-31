@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import androidx.activity.ComponentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
@@ -31,7 +31,7 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
     abstract fun init(attrs: AttributeSet?)
 
     init {
-        if (context is ComponentActivity) {
+        if (context is LifecycleOwner) {
             context.lifecycle.addObserver(this)
         }
         binding = getClass<VB>(0).getBinding(LayoutInflater.from(context), this)
