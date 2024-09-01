@@ -131,15 +131,13 @@ abstract class BaseActivity : AppCompatActivity() {
         if (loadingDialog == null) {
             loadingDialog = LoadingDialog()
         }
-        loadingDialog!!.setMessage(message)
-        loadingDialog!!.show()
+        loadingDialog?.setMessage(message)
+        loadingDialog?.show()
     }
 
     fun cancelLoadingDialog() {
-        if (loadingDialog != null) {
-            loadingDialog!!.cancel()
-            loadingDialog = null
-        }
+        loadingDialog?.cancel()
+        loadingDialog = null
     }
 
     open fun initImmersionBar() {

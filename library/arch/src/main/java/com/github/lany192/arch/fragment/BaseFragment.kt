@@ -77,15 +77,13 @@ abstract class BaseFragment : Fragment() {
         if (loadingDialog == null) {
             loadingDialog = LoadingDialog()
         }
-        loadingDialog!!.setMessage(message)
-        loadingDialog!!.show(this)
+        loadingDialog?.setMessage(message)
+        loadingDialog?.show(this)
     }
 
     fun cancelLoadingDialog() {
-        if (loadingDialog != null) {
-            loadingDialog!!.cancel()
-            loadingDialog = null
-        }
+        loadingDialog?.cancel()
+        loadingDialog = null
     }
 
     @CallSuper
