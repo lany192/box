@@ -2,11 +2,10 @@ package com.lany192.box.sample.ui.splash
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
-import com.github.lany192.utils.ImageUtils
+import com.github.lany192.arch.extension.load
+import com.github.lany192.arch.extension.postDelayedOnLifecycle
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.lany192.box.sample.R
@@ -34,11 +33,11 @@ class SplashActivity : ViewModelActivity<SplashViewModel, ActivitySplashBinding>
         if (!isTaskRoot) {
             finish()
         }
-        ImageUtils.show(binding.image, R.mipmap.demo)
+        binding.image.load(R.mipmap.demo)
         viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
-        Handler(Looper.getMainLooper()).postDelayed({
+        postDelayedOnLifecycle(3000) {
             MainRouter.start()
             finish()
-        }, 3000)
+        }
     }
 }

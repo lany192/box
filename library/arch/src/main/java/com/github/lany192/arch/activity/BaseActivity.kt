@@ -5,8 +5,6 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,9 +19,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
+import com.github.lany192.arch.extension.log
+import com.github.lany192.arch.extension.postDelayedOnLifecycle
 import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.dialog.LoadingDialog
-import com.github.lany192.log.XLog
 import com.github.lany192.utils.KeyboardUtils
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -34,9 +33,6 @@ import java.lang.reflect.ParameterizedType
  * Activity基类
  */
 abstract class BaseActivity : AppCompatActivity() {
-    @JvmField
-    protected var log: XLog = XLog.tag(javaClass.simpleName)
-
     private var loadingDialog: LoadingDialog? = null
 
     private lateinit var startForResultLauncher: StartActivityForResultLauncher
@@ -141,6 +137,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun initImmersionBar() {
+        log("执行initImmersionBar")
     }
 
     @ColorInt
@@ -158,6 +155,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEvent(event: HideSoftInputEvent) {
-        Handler(Looper.getMainLooper()).postDelayed({ KeyboardUtils.hide(this) }, 300)
+        postDelayedOnLifecycle(300) {
+            KeyboardUtils.hide(this)
+        }
     }
 }

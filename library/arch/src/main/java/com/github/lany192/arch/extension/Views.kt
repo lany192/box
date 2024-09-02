@@ -1,4 +1,4 @@
-package com.github.lany192.extensions
+package com.github.lany192.arch.extension
 
 import android.view.View
 

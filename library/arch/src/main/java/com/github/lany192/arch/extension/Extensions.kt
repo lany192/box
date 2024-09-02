@@ -1,25 +1,13 @@
 package com.github.lany192.arch.extension
 
 import android.content.Context
-import android.view.View
 import android.widget.TextView
 import androidx.annotation.BoolRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
-import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
-import com.hjq.toast.Toaster
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 /**
  * Fragment是否存活
@@ -31,10 +19,6 @@ fun Fragment.isAlive(): Boolean {
             && this.isAdded
             && !this.isDetached
 }
-
-fun Any.toast(text: CharSequence) = Toaster.show(text)
-
-fun Any.toast(@StringRes textId: Int) = Toaster.show(textId)
 
 fun Context.getColorCompat(color: Int) = ContextCompat.getColor(this, color)
 
@@ -66,30 +50,4 @@ fun TextView.setDrawableRight(drawable: Int) {
 
 fun TextView.setDrawableBottom(drawable: Int) {
     this.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, drawable)
-}
-
-fun LifecycleOwner.postDelayedOnLifecycle(
-    duration: Long,
-    block: () -> Unit,
-): Job = lifecycleScope.launch(Dispatchers.Main) {
-    delay(duration)
-    block()
-}
-
-fun View.postDelayedOnLifecycle(
-    duration: Long,
-    block: () -> Unit,
-): Job? = findViewTreeLifecycleOwner()?.let { lifecycleOwner ->
-    lifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
-        delay(duration)
-        block()
-    }
-}
-
-fun ViewModel.postDelayedOnLifecycle(
-    duration: Long,
-    block: () -> Unit,
-): Job = viewModelScope.launch(Dispatchers.Main) {
-    delay(duration)
-    block()
 }

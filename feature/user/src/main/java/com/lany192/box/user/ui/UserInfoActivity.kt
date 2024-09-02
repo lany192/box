@@ -5,11 +5,11 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewBindingActivity
+import com.github.lany192.arch.extension.load
+import com.github.lany192.arch.extension.log
 import com.github.lany192.arch.extension.toast
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.arch.utils.FileUtils
-import com.github.lany192.extensions.load
-import com.github.lany192.utils.ImageUtils
 import com.lany192.box.user.databinding.ActivityUserBinding
 import com.lany192.box.user.dialog.SexDialog
 import com.lany192.box.user.ui.nickname.NicknameRouter
@@ -33,9 +33,9 @@ class UserInfoActivity : ViewBindingActivity<ActivityUserBinding>() {
         binding.avatar.setOnClickListener {
             startMediaPicker({ uri ->
                     if (uri != null) {
-                        ImageUtils.show(binding.avatar, uri)
+                        binding.avatar.load(uri)
                         val cropUri = FileUtils.getTempPicUri(this@UserInfoActivity)
-                        log.i("切图保存地址：$cropUri")
+                        log("切图保存地址：$cropUri")
                         val cropIntent = UCrop.of(uri, cropUri)
                             .withAspectRatio(1f, 1f)
                             .withMaxResultSize(300, 300)

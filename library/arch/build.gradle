@@ -65,4 +65,5 @@ dependencies {
     implementation libs.rxandroid
     implementation libs.retrofit
     implementation libs.retrofit.gson
+    implementation libs.glide
 }

@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.github.lany192.dialog.databinding.DialogMenuBinding
-import com.github.lany192.extensions.setGone
 
 /**
  * 通用底部菜单对话框
@@ -34,8 +33,12 @@ class MenuDialog : BaseDialog<DialogMenuBinding>() {
                 cancel()
             }
         binding.cancel.setOnClickListener { cancel() }
-        binding.title.setGone(TextUtils.isEmpty(title))
-        binding.title.text = title
+        if (TextUtils.isEmpty(title)) {
+            binding.title.visibility = View.GONE
+        } else {
+            binding.title.text = title
+            binding.title.visibility = View.VISIBLE
+        }
     }
 
     fun setTitle(title: String) {

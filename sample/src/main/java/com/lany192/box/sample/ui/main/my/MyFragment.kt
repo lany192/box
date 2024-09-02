@@ -2,12 +2,12 @@ package com.lany192.box.sample.ui.main.my
 
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.github.lany192.arch.extension.load
 import com.github.lany192.arch.fragment.ViewModelFragment
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
-import com.github.lany192.extensions.load
 import com.github.lany192.toolkit.BoxToolKit
 import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
