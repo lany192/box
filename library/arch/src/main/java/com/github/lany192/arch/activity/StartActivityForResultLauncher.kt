@@ -34,7 +34,7 @@ class StartActivityForResultLauncher(caller: ActivityResultCaller) :
         caller, ActivityResultContracts.StartActivityForResult()
     )
 
-class PickVisualMediaRequestLauncher(caller: ActivityResultCaller) :
+class MediaPickerLauncher(caller: ActivityResultCaller) :
     BaseActivityResultLauncher<PickVisualMediaRequest, Uri?>(
         caller, ActivityResultContracts.PickVisualMedia()
     )

@@ -36,7 +36,7 @@ abstract class BaseActivity : AppCompatActivity() {
     private var loadingDialog: LoadingDialog? = null
 
     private lateinit var startForResultLauncher: StartActivityForResultLauncher
-    private lateinit var pickVisualMediaRequestLauncher: PickVisualMediaRequestLauncher
+    private lateinit var mMediaPickerLauncher: MediaPickerLauncher
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ abstract class BaseActivity : AppCompatActivity() {
             EventBus.getDefault().register(this)
         }
         startForResultLauncher = StartActivityForResultLauncher(this)
-        pickVisualMediaRequestLauncher = PickVisualMediaRequestLauncher(this)
+        mMediaPickerLauncher = MediaPickerLauncher(this)
     }
 
     fun startActivityForResult(intent: Intent, callback: OnResultCallback<ActivityResult>?) {
@@ -62,7 +62,7 @@ abstract class BaseActivity : AppCompatActivity() {
             .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly)
             .build()
     ) {
-        pickVisualMediaRequestLauncher.launch(request) { callback?.onResult(it) }
+        mMediaPickerLauncher.launch(request) { callback?.onResult(it) }
     }
 
     open fun getCustomRequestedOrientation(): Int {

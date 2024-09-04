@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.github.lany192.arch.R
 import com.github.lany192.arch.activity.OnResultCallback
-import com.github.lany192.arch.activity.PickVisualMediaRequestLauncher
+import com.github.lany192.arch.activity.MediaPickerLauncher
 import com.github.lany192.arch.activity.StartActivityForResultLauncher
 import com.github.lany192.dialog.LoadingDialog
 import com.github.lany192.log.XLog
@@ -28,7 +28,7 @@ abstract class BaseFragment : Fragment() {
     protected var log: XLog = XLog.tag(javaClass.name)
     private var loadingDialog: LoadingDialog? = null
     private lateinit var startForResultLauncher: StartActivityForResultLauncher
-    private lateinit var pickVisualMediaRequestLauncher: PickVisualMediaRequestLauncher
+    private lateinit var MediaPickerLauncher: MediaPickerLauncher
 
     @CallSuper
     override fun onCreate(state: Bundle?) {
@@ -37,7 +37,7 @@ abstract class BaseFragment : Fragment() {
             EventBus.getDefault().register(this)
         }
         startForResultLauncher = StartActivityForResultLauncher(this)
-        pickVisualMediaRequestLauncher = PickVisualMediaRequestLauncher(this)
+        MediaPickerLauncher = MediaPickerLauncher(this)
     }
 
     @CallSuper
@@ -65,7 +65,7 @@ abstract class BaseFragment : Fragment() {
             .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly)
             .build()
     ) {
-        pickVisualMediaRequestLauncher.launch(request) { callback?.onResult(it) }
+        MediaPickerLauncher.launch(request) { callback?.onResult(it) }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
