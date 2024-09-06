@@ -4,8 +4,6 @@ package com.lany192.box.user.dialog;
 import android.graphics.Color;
 
 import com.github.lany192.dialog.BaseDialog;
-import com.github.lany192.utils.PhoneUtils;
-import com.hjq.toast.Toaster;
 import com.lany192.box.user.R;
 import com.lany192.box.user.databinding.DialogSexBinding;
 
@@ -42,7 +40,6 @@ public class SexDialog extends BaseDialog<DialogSexBinding> {
         });
         binding.boy.setOnClickListener(v -> manClicked());
         binding.girl.setOnClickListener(v -> womanClicked());
-        Toaster.show("是否有导航栏：" + PhoneUtils.hasNavigationBar());
     }
 
     void manClicked() {

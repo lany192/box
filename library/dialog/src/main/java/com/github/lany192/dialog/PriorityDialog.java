@@ -35,7 +35,6 @@ import com.github.lany192.utils.PhoneUtils;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 对话框基类
@@ -277,16 +276,22 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(isCancelable());
         dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
+        resetWindow(dialog);
+        return dialog;
+    }
+
+    public void resetWindow(Dialog dialog) {
         Window window = dialog.getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             window.setDimAmount(getAmount());
+            window.setGravity(getGravity());
+            window.setLayout(getDialogWidth(), getDialogHeight());
             if (bottomStyle() && PhoneUtils.hasNavigationBar()) {
                 //处理导航栏区域
                 window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             }
         }
-        return dialog;
     }
 
     /**
@@ -315,10 +320,9 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
     @Override
     public void onResume() {
         super.onResume();
-        Window window = Objects.requireNonNull(getDialog()).getWindow();
-        if (window != null) {
-            window.setGravity(getGravity());
-            window.setLayout(getDialogWidth(), getDialogHeight());
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            resetWindow(dialog);
         }
         if (!isInitLoaded) {
             isInitLoaded = true;
