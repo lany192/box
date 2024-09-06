@@ -283,6 +283,10 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             window.setDimAmount(getAmount());
+            if (bottomStyle()) {
+                //处理导航栏区域
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            }
         }
         return dialog;
     }
