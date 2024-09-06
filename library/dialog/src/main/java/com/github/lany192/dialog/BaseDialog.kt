@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.github.lany192.binding.getBinding
+import com.github.lany192.utils.PhoneUtils
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseDialog<VB : ViewBinding> : PriorityDialog() {
@@ -15,7 +16,20 @@ abstract class BaseDialog<VB : ViewBinding> : PriorityDialog() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = getViewBinding(inflater, container)
-        return binding.root
+        val view = binding.root
+        addNavigationBarHeight(view)
+        return view
+    }
+
+    open fun addNavigationBarHeight(view: View) {
+        if (bottomStyle() && PhoneUtils.hasNavigationBar()) {
+            view.setPadding(
+                view.paddingLeft,
+                view.paddingTop,
+                view.paddingRight,
+                view.paddingBottom + PhoneUtils.getNavigationBarHeight()
+            )
+        }
     }
 
     /**

@@ -5,7 +5,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.utils.DeviceId;
-import com.github.lany192.arch.utils.PhoneUtils;
+import com.github.lany192.utils.PhoneUtils;
 
 import java.io.IOException;
 

@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.github.lany192.utils.PhoneUtils;
+
 public class ViewUtils {
     public static void applyWindowInsets(View rootView, View toolbar) {
         int toolbarPaddingTop = toolbar.getPaddingTop();

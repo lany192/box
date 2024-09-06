@@ -1,4 +1,4 @@
-package com.github.lany192.arch.utils;
+package com.github.lany192.utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,22 +7,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Process;
-import android.provider.Settings;
-import android.text.TextUtils;
-
-import androidx.fragment.app.FragmentActivity;
-
-import com.github.lany192.dialog.SimpleDialog;
-import com.github.lany192.utils.ContextUtils;
+import android.view.Display;
+import android.view.WindowManager;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.List;
 
 public class PhoneUtils {
-    private static String BASE_INFO;
 
     /**
      * 获取声明的权限
@@ -59,21 +54,6 @@ public class PhoneUtils {
         context.startActivity(intent);
         System.exit(0);
         Process.killProcess(Process.myPid());
-    }
-
-    /**
-     * 获取手机的基本信息:系统类型/屏幕信息/手机型号/系统版本号/app版本号/发布渠道/手机号码
-     */
-    public static String getBaseInfo() {
-        if (TextUtils.isEmpty(BASE_INFO)) {
-            BASE_INFO = "android" + ";"
-                    + getScreenInfo() + ";"
-                    + getOSVersionCode() + ";"
-                    + getAppVersionCode() + ";"
-                    + getAppVersionName() + ";"
-                    + DeviceId.get().getDeviceId() + ";";
-        }
-        return BASE_INFO;
     }
 
     /**
@@ -166,23 +146,6 @@ public class PhoneUtils {
         return value;
     }
 
-    /**
-     * 检查是否开启'不保留活动'
-     */
-    public static void checkAlwaysFinishDialog(final FragmentActivity activity) {
-        int alwaysFinish = Settings.Global.getInt(activity.getContentResolver(), Settings.Global.ALWAYS_FINISH_ACTIVITIES, 0);
-        if (alwaysFinish == 1) {
-            SimpleDialog dialog = new SimpleDialog();
-            dialog.setMessage("检测到您已开启'不保留活动'功能,导致APP部分功能无法正常使用。建议您找到'系统设置'下的'开发者选项'，将'不保留活动'功能关闭。");
-            dialog.setRightButton("设置", () -> {
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
-                activity.startActivity(intent);
-            });
-            dialog.setLeftButton("取消", null);
-            dialog.show(activity);
-        }
-    }
-
 
     /**
      * 获取状态栏高度
@@ -202,6 +165,15 @@ public class PhoneUtils {
         int resId = Resources.getSystem().getIdentifier("navigation_bar_height", "dimen", "android");
         if (resId > 0) {
             return Resources.getSystem().getDimensionPixelSize(resId);
+        }
+        WindowManager windowManager = (WindowManager) ContextUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager != null) {
+            Display display = windowManager.getDefaultDisplay();
+            Point size = new Point();
+            Point realSize = new Point();
+            display.getSize(size);
+            display.getRealSize(realSize);
+            return realSize.y - size.y;
         }
         return 0;
     }
@@ -226,6 +198,18 @@ public class PhoneUtils {
                 hasNavigationBar = true;
             }
         } catch (Exception e) {
+
+        }
+        if (!hasNavigationBar) {
+            WindowManager windowManager = (WindowManager) ContextUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            if (windowManager != null) {
+                Display display = windowManager.getDefaultDisplay();
+                Point size = new Point();
+                Point realSize = new Point();
+                display.getSize(size);
+                display.getRealSize(realSize);
+                hasNavigationBar = realSize.y != size.y;
+            }
         }
         return hasNavigationBar;
     }

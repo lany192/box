@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.utils.FileUtils;
-import com.github.lany192.arch.utils.PhoneUtils;
+import com.github.lany192.arch.utils.OtherUtils;
 import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 import com.github.lany192.utils.ContextUtils;
@@ -74,7 +74,7 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
             cause = cause.getCause();
         }
         printWriter.close();
-        return "基础信息:" + PhoneUtils.getBaseInfo() + "\n" + writer;
+        return "基础信息:" + OtherUtils.getBaseInfo() + "\n" + writer;
     }
 
     private void save2file(String error) {
