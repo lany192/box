@@ -36,14 +36,26 @@ public class KeyboardWatcher extends PopupWindow implements OnGlobalLayoutListen
         setHeight(LayoutParams.MATCH_PARENT);
 
         // 设置键盘弹出方式
-        setSoftInputMode(LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        setSoftInputMode(LayoutParams.SOFT_INPUT_ADJUST_RESIZE | LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
 
-        if (!isShowing()) {
-            final View view = activity.getWindow().getDecorView();
-            // 延迟加载PopupWindow，如果不加延迟就会报错
-            view.post(() -> showAtLocation(view, Gravity.NO_GRAVITY, 0, 0));
-        }
+        View decorView = activity.getWindow().getDecorView();
+//        if (!isShowing()) {
+//            // 延迟加载PopupWindow，如果不加延迟就会报错
+//            decorView.post(() -> showAtLocation(decorView, Gravity.NO_GRAVITY, 0, 0));
+//        }
+        decorView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View view) {
+                if (!isShowing() && decorView.getWindowToken() != null) {
+                    showAtLocation(decorView, Gravity.NO_GRAVITY, 0, 0);
+                }
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View view) {
+            }
+        });
     }
 
     @Override
