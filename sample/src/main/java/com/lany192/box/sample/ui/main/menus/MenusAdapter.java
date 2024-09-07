@@ -15,6 +15,7 @@ import com.lany192.box.hello.ui.HelloRouter;
 import com.lany192.box.login.ui.LoginRouter;
 import com.lany192.box.math.ui.MathRouter;
 import com.lany192.box.sample.databinding.ItemMenuBinding;
+import com.lany192.box.sample.dialog.ReplyDialog;
 import com.lany192.box.sample.ui.blur.BlurRouter;
 import com.lany192.box.sample.ui.database.DatabaseRouter;
 import com.lany192.box.sample.ui.encrypt.EncryptRouter;
@@ -86,6 +87,8 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
             SettingsRouter.start();
         } else if (position == 19) {
             BlurRouter.start();
+        } else if (position == 20) {
+            new ReplyDialog().show();
         }
     }
 
