@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
+import com.github.lany192.arch.extension.toast
 import com.github.lany192.arch.interfaces.SimpleTextWatcher
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.link.Link
 import com.github.lany192.link.LinkBuilder
+import com.github.lany192.utils.KeyboardWatcher
 import com.lany192.box.user.R
 import com.lany192.box.user.UserHelper
 import com.lany192.box.user.databinding.ActivitySignatureBinding
@@ -36,6 +38,12 @@ class SignatureActivity : ViewModelActivity<SignatureViewModel, ActivitySignatur
             binding.input.setText(signature)
             binding.input.setSelection(signature.length)
         }
+        KeyboardWatcher(this, object : KeyboardWatcher.OnKeyboardListener {
+
+                override fun onChanged(showKeyboard: Boolean, keyboardHeight: Int) {
+                    toast("键盘弹出:$showKeyboard,高度：$keyboardHeight")
+                }
+            })
     }
 
     /**
