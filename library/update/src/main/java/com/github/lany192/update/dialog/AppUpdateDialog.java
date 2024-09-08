@@ -23,7 +23,7 @@ public class AppUpdateDialog extends BaseDialog<DialogAppUpdateBinding>
     private File apk;
 
     @Override
-    protected boolean bottomStyle() {
+    public boolean bottomStyle() {
         return true;
     }
 
