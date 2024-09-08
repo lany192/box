@@ -7,6 +7,7 @@ import com.github.lany192.arch.extension.toast
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.utils.KeyboardWatcher
 import com.lany192.box.sample.databinding.ActivityFeedbackBinding
+import com.lany192.box.sample.dialog.ReplyDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,9 +20,7 @@ class FeedbackActivity : ViewBindingActivity<ActivityFeedbackBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.button.setOnClickListener {
-            startMediaPicker({
-                toast("Selected URI: $it")
-            })
+            ReplyDialog().show()
         }
         KeyboardWatcher(this, object : KeyboardWatcher.OnKeyboardListener {
 

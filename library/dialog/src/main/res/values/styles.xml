@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="BottomDialogTheme" parent="@style/Theme.AppCompat.DayNight.Dialog">
+    <style name="BottomDialogTheme" parent="@style/Theme.Material3.DayNight.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
