@@ -15,13 +15,8 @@
     </style>
 
     <style name="InputDialogTheme" parent="@style/Theme.Material3.DayNight.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@style/BottomDialogAnimation</item>
         <item name="android:textCursorDrawable">@drawable/cursor_drawable</item>
-        <item name="android:windowSoftInputMode">adjustPan|stateAlwaysVisible</item>
     </style>
-
 </resources>

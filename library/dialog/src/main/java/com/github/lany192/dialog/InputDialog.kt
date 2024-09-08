@@ -4,9 +4,13 @@ import android.text.TextUtils
 import android.text.method.MovementMethod
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import com.github.lany192.dialog.databinding.DialogInputBinding
 import com.github.lany192.interfaces.OnSimpleListener
+import com.github.lany192.utils.KeyboardWatcher
+import com.github.lany192.utils.KeyboardWatcher.OnKeyboardListener
+
 
 class InputDialog : BaseDialog<DialogInputBinding>() {
     @ColorRes
@@ -25,21 +29,20 @@ class InputDialog : BaseDialog<DialogInputBinding>() {
     var rightButton: CharSequence? = null
     var rightClickListener: OnSimpleListener? = null
 
-    @ColorRes
-    var leftTextColor = 0
-    var leftButton: CharSequence? = null
-    var leftClickListener: OnSimpleListener? = null
-
     override fun bottomStyle(): Boolean {
         return true
     }
+
+//    override fun getDialogHeight(): Int {
+//        return WindowManager.LayoutParams.MATCH_PARENT
+//    }
 
     override fun getTheme(): Int {
         return R.style.InputDialogTheme
     }
 
     override fun init() {
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         if (TextUtils.isEmpty(title)) {
             binding.title.visibility = View.GONE
         } else {
@@ -48,6 +51,17 @@ class InputDialog : BaseDialog<DialogInputBinding>() {
             binding.title.visibility = View.VISIBLE
             binding.title.setTextColorId(titleColor)
         }
+        KeyboardWatcher(requireActivity()) { showKeyboard, keyboardHeight ->
+            log.i("键盘板状态：$showKeyboard, 高度：$keyboardHeight")
+            binding.panel.layoutParams.height = keyboardHeight
+        }
     }
 
+//    override fun onStart() {
+//        super.onStart()
+//        val dialog = dialog
+//        if (dialog != null) {
+//            dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+//        }
+//    }
 }

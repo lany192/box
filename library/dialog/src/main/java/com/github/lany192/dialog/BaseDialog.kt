@@ -16,20 +16,7 @@ abstract class BaseDialog<VB : ViewBinding> : PriorityDialog() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = getViewBinding(inflater, container)
-        val view = binding.root
-        addNavigationBarHeight(view)
-        return view
-    }
-
-    open fun addNavigationBarHeight(view: View) {
-        if (bottomStyle() && PhoneUtils.hasNavigationBar()) {
-            view.setPadding(
-                view.paddingLeft,
-                view.paddingTop,
-                view.paddingRight,
-                view.paddingBottom + PhoneUtils.getNavigationBarHeight()
-            )
-        }
+        return binding.root
     }
 
     /**
