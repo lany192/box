@@ -1,10 +1,12 @@
 package com.github.lany192.dialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -12,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 
 import androidx.annotation.CallSuper;
@@ -20,6 +23,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsAnimationCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -30,7 +38,6 @@ import com.github.lany192.log.LogUtils;
 import com.github.lany192.log.XLog;
 import com.github.lany192.utils.ContextUtils;
 import com.github.lany192.utils.DensityUtils;
-import com.github.lany192.utils.PhoneUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -280,6 +287,7 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
         return dialog;
     }
 
+    @SuppressLint("WrongConstant")
     public void resetWindow(Dialog dialog) {
         Window window = dialog.getWindow();
         if (window != null) {
@@ -287,9 +295,28 @@ public abstract class PriorityDialog extends DialogFragment implements Comparabl
             window.setDimAmount(getAmount());
             window.setGravity(getGravity());
             window.setLayout(getDialogWidth(), getDialogHeight());
-            if (bottomStyle() && PhoneUtils.hasNavigationBar()) {
-                //处理导航栏区域
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            if (bottomStyle()) {
+                window.setStatusBarColor(Color.RED);
+                window.setNavigationBarColor(Color.RED);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    window.setNavigationBarDividerColor(Color.TRANSPARENT);
+                }
+                WindowCompat.setDecorFitsSystemWindows(window, true);
+                window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                ViewCompat.setWindowInsetsAnimationCallback(window.getDecorView(), new WindowInsetsAnimationCompat.Callback(WindowInsetsAnimationCompat.Callback.DISPATCH_MODE_STOP) {
+                    @NonNull
+                    @Override
+                    public WindowInsetsCompat onProgress(@NonNull WindowInsetsCompat insets, @NonNull List<WindowInsetsAnimationCompat> runningAnimations) {
+                        return insets;
+                    }
+                });
+                WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
+                insetsController.setAppearanceLightNavigationBars(false);
+                insetsController.setAppearanceLightStatusBars(false);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    insetsController.hide(WindowInsets.Type.navigationBars());
+                }
+//                //window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             }
         }
     }
