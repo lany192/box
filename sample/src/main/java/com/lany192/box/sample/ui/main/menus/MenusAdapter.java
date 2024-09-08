@@ -95,6 +95,7 @@ public class MenusAdapter extends BindingAdapter<MenuItem, ItemMenuBinding> {
     private void test1() {
         if (new RootBeer(getContext()).isRooted()) {
             SimpleDialog dialog = new SimpleDialog();
+            dialog.setTitle("检测到root");
             dialog.setMessage("检测到当前手机已经被root，存在数据不安全情况。为保证良好的用户体验，请选择在非root手机上使用本软件。");
             dialog.setRightButton("取消");
             dialog.show();

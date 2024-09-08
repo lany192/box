@@ -6,8 +6,10 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
+import com.github.lany192.arch.extension.toast
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.SimpleDialog
+import com.github.lany192.interfaces.OnSimpleListener
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
@@ -54,15 +56,15 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
     }
 
     private fun showCacheDialog() {
-        val dialog = SimpleDialog()
-        dialog.setMessage("确定要清除缓存吗？")
-        dialog.setRightButton("确定") {
-            CacheUtils.cleanCache(this)
-            binding.cacheView.hint("0KB")
-            Toaster.show("缓存清除成功！")
-        }
-        dialog.setLeftButton("取消", null)
-        dialog.show()
+        SimpleDialog().apply {
+            message = "确定要清除缓存吗？"
+            leftButton = "取消"
+            rightButton = "确定"
+            rightClickListener = OnSimpleListener {
+                cancel()
+                toast("缓存清除成功！")
+            }
+        }.show()
     }
 
     private fun permissionSetting() {

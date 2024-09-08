@@ -10,6 +10,7 @@ import androidx.annotation.ColorInt;
 import androidx.fragment.app.FragmentActivity;
 
 import com.github.lany192.dialog.SimpleDialog;
+import com.github.lany192.interfaces.OnSimpleListener;
 import com.github.lany192.utils.PhoneUtils;
 
 import java.lang.reflect.Constructor;
@@ -43,11 +44,12 @@ public class OtherUtils {
         if (alwaysFinish == 1) {
             SimpleDialog dialog = new SimpleDialog();
             dialog.setMessage("检测到您已开启'不保留活动'功能,导致APP部分功能无法正常使用。建议您找到'系统设置'下的'开发者选项'，将'不保留活动'功能关闭。");
-            dialog.setRightButton("设置", () -> {
+            dialog.setRightButton("设置");
+            dialog.setRightClickListener(() -> {
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
                 activity.startActivity(intent);
             });
-            dialog.setLeftButton("取消", null);
+            dialog.setLeftButton("取消");
             dialog.show(activity);
         }
     }
