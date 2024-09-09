@@ -14,8 +14,11 @@ class ToastInitializer : Initializer<Unit> {
         LogUtils.i("Toast完成初始化")
     }
 
-    override fun dependencies(): MutableList<Class<Initializer<*>>> {
-        return mutableListOf()
+    override fun dependencies(): MutableList<Class<out Initializer<*>>> {
+        return mutableListOf(
+            LogInitializer::class.java,
+            ContextInitializer::class.java
+        )
     }
 }
 

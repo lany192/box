@@ -12,7 +12,10 @@ class DialogInitializer : Initializer<Unit> {
     }
 
     override fun dependencies(): MutableList<Class<out Initializer<*>>> {
-        return mutableListOf(ContextInitializer::class.java)
+        return mutableListOf(
+            LogInitializer::class.java,
+            ContextInitializer::class.java
+        )
     }
 }
 
