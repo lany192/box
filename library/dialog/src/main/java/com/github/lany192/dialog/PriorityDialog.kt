@@ -125,7 +125,7 @@ abstract class PriorityDialog : DialogFragment(), Comparable<PriorityDialog> {
     }
 
     fun show(context: Context) {
-        val activity = ContextUtils.context2activity(context)
+        val activity = ContextUtils.context2FragmentActivity(context)
         if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
             show(activity.supportFragmentManager)
         } else {

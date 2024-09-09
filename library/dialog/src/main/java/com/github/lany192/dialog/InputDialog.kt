@@ -10,6 +10,7 @@ import com.github.lany192.dialog.databinding.DialogInputBinding
 import com.github.lany192.interfaces.OnSimpleListener
 import com.github.lany192.utils.KeyboardWatcher
 import com.github.lany192.utils.KeyboardWatcher.OnKeyboardListener
+import com.hjq.toast.Toaster
 
 
 class InputDialog : BaseDialog<DialogInputBinding>() {
@@ -42,7 +43,8 @@ class InputDialog : BaseDialog<DialogInputBinding>() {
     }
 
     override fun init() {
-        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        dialog?.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         if (TextUtils.isEmpty(title)) {
             binding.title.visibility = View.GONE
         } else {
@@ -52,16 +54,16 @@ class InputDialog : BaseDialog<DialogInputBinding>() {
             binding.title.setTextColorId(titleColor)
         }
         KeyboardWatcher(requireActivity()) { showKeyboard, keyboardHeight ->
-            log.i("键盘板状态：$showKeyboard, 高度：$keyboardHeight")
+            Toaster.show("键盘板状态：$showKeyboard, 高度：$keyboardHeight")
             binding.panel.layoutParams.height = keyboardHeight
         }
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        val dialog = dialog
-//        if (dialog != null) {
-//            dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-//        }
-//    }
+    override fun onStart() {
+        super.onStart()
+        val dialog = dialog
+        if (dialog != null) {
+            dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        }
+    }
 }

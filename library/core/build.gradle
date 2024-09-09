@@ -54,4 +54,5 @@ dependencies {
     implementation libs.blur
     implementation libs.tencent.vasdolly.reader
     implementation libs.tencent.vasdolly.writer
+    implementation libs.toaster
 }
