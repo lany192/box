@@ -1,7 +1,6 @@
 package com.github.lany192.utils;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.pm.ApplicationInfo;
@@ -9,18 +8,14 @@ import android.content.pm.ApplicationInfo;
 import androidx.fragment.app.FragmentActivity;
 
 public class ContextUtils {
-    private static Application application;
+    private static Context mContext;
 
-    public static void setApplicationContext(Application context) {
-        application = context;
+    public static void setContext(Context context) {
+        mContext = context;
     }
 
     public static Context getContext() {
-        return application.getApplicationContext();
-    }
-
-    public static Application getApplication() {
-        return application;
+        return mContext.getApplicationContext();
     }
 
     public static FragmentActivity context2FragmentActivity(Context context) {
@@ -54,7 +49,7 @@ public class ContextUtils {
     }
 
     public static boolean isDebug() {
-        return application.getApplicationInfo() != null &&
-                (application.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        return mContext.getApplicationInfo() != null &&
+                (mContext.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
 }

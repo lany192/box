@@ -9,7 +9,7 @@ import com.github.lany192.utils.ContextUtils
 class ContextInitializer : Initializer<Unit> {
 
     override fun create(context: Context) {
-        ContextUtils.setApplicationContext(context)
+        ContextUtils.setContext(context)
         LogUtils.i("ContextUtils初始化")
     }
 
