@@ -6,12 +6,12 @@ import android.view.View.OnClickListener
 /**
  * 防止重复点击
  */
-fun View.setOnClickListener(clickDelayTime: Long, listener: OnClickListener) {
+fun View.setOnClickListener(duration: Long, listener: OnClickListener) {
     this.setOnClickListener(object : OnClickListener {
         private var lastClickedTime = 0L
         override fun onClick(v: View?) {
             val currentTime = System.currentTimeMillis()
-            if (currentTime - lastClickedTime < clickDelayTime) {
+            if (currentTime - lastClickedTime < duration) {
                 return
             }
             lastClickedTime = currentTime

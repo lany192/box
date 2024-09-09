@@ -19,10 +19,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
-import com.github.lany192.arch.extension.log
-import com.github.lany192.arch.extension.postDelayedOnLifecycle
 import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.dialog.LoadingDialog
+import com.github.lany192.extension.log
+import com.github.lany192.extension.postDelayedOnLifecycle
 import com.github.lany192.utils.KeyboardUtils
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
