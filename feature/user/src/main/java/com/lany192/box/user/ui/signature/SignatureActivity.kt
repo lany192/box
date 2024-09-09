@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
-import com.github.lany192.arch.extension.toast
 import com.github.lany192.arch.interfaces.SimpleTextWatcher
 import com.github.lany192.arch.utils.BarUtils
+import com.github.lany192.extension.toast
 import com.github.lany192.link.Link
 import com.github.lany192.link.LinkBuilder
 import com.github.lany192.utils.KeyboardWatcher

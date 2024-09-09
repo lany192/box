@@ -5,11 +5,11 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewBindingActivity
-import com.github.lany192.arch.extension.load
-import com.github.lany192.arch.extension.log
-import com.github.lany192.arch.extension.toast
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.arch.utils.FileUtils
+import com.github.lany192.extension.load
+import com.github.lany192.extension.log
+import com.github.lany192.extension.toast
 import com.lany192.box.user.databinding.ActivityUserBinding
 import com.lany192.box.user.dialog.SexDialog
 import com.lany192.box.user.ui.nickname.NicknameRouter

@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
-import com.github.lany192.arch.extension.load
-import com.github.lany192.arch.extension.postDelayedOnLifecycle
+import com.github.lany192.extension.load
+import com.github.lany192.extension.postDelayedOnLifecycle
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.lany192.box.sample.R

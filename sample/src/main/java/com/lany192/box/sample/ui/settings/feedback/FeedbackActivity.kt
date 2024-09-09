@@ -3,7 +3,7 @@ package com.lany192.box.sample.ui.settings.feedback
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewBindingActivity
-import com.github.lany192.arch.extension.toast
+import com.github.lany192.extension.toast
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.utils.KeyboardWatcher
 import com.lany192.box.sample.databinding.ActivityFeedbackBinding

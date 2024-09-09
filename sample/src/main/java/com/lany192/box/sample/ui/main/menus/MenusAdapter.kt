@@ -2,10 +2,10 @@ package com.lany192.box.sample.ui.main.menus
 
 import android.util.Log
 import com.github.lany192.arch.adapter.BindingAdapter
-import com.github.lany192.arch.extension.toast
 import com.github.lany192.arch.utils.DeviceId
 import com.github.lany192.dialog.InputDialog
 import com.github.lany192.dialog.SimpleDialog
+import com.github.lany192.extension.toast
 import com.github.lany192.toolkit.BoxToolKit
 import com.github.lany192.utils.ChannelUtils
 import com.lany192.box.browser.ui.BrowserRouter

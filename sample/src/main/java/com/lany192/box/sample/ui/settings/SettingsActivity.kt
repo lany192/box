@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
-import com.github.lany192.arch.extension.toast
+import com.github.lany192.extension.toast
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.interfaces.OnSimpleListener

@@ -1,4 +1,4 @@
-package com.github.lany192.arch.extension
+package com.github.lany192.extension
 
 import android.content.Context
 import android.widget.TextView
