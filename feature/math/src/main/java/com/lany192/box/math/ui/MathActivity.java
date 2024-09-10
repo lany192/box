@@ -19,10 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/math/main")
 public class MathActivity extends ViewModelActivity<MathViewModel, ActivityMathBinding> {
-    @Override
-    public void initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
-    }
+//    @Override
+//    public void initImmersionBar() {
+//        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_height="wrap_content"
         android:background="@color/white_bg"
         tools:background="@android:color/holo_blue_bright">
 
@@ -71,8 +71,8 @@
                         android:layout_height="0dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintDimensionRatio="1:1.2"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

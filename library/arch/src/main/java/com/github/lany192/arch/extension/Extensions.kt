@@ -1,12 +1,15 @@
 package com.github.lany192.extension
 
 import android.content.Context
+import android.view.View
 import android.widget.TextView
 import androidx.annotation.BoolRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 
 /**

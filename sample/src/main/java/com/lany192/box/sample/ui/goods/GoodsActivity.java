@@ -27,10 +27,10 @@ public class GoodsActivity extends ItemsActivity<GoodsViewModel, ActivityGoodsBi
         register(new ViewPagerBinder());
     }
 
-    @Override
-    public void initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
-    }
+//    @Override
+//    public void initImmersionBar() {
+//        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
+//    }
 
     @NonNull
     @Override

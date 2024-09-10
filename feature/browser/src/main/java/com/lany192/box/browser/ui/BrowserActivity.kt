@@ -19,9 +19,10 @@ class BrowserActivity : ViewBindingActivity<ActivityBrowserBinding>() {
     @Autowired(name = "url", desc = "链接")
     lateinit var url: String
 
-    override fun initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init()
-    }
+//    @Override
+//    public void initImmersionBar() {
+//        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

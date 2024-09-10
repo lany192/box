@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -41,7 +42,7 @@ abstract class BaseActivity : AppCompatActivity() {
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycle.addObserver(NetworkHelper.getInstance())
+        enableEdgeToEdge()
         //控制屏幕方向
         requestedOrientation = getCustomRequestedOrientation()
         if (!EventBus.getDefault().isRegistered(this)) {
@@ -78,20 +79,7 @@ abstract class BaseActivity : AppCompatActivity() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this)
         }
-        KeyboardUtils.hide(this)
         super.onDestroy()
-    }
-
-    @CallSuper
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        initImmersionBar()
-    }
-
-    @CallSuper
-    public override fun onResume() {
-        super.onResume()
-        initImmersionBar()
     }
 
     /**
@@ -136,22 +124,10 @@ abstract class BaseActivity : AppCompatActivity() {
         loadingDialog = null
     }
 
-    open fun initImmersionBar() {
-        log("执行initImmersionBar")
-    }
-
     @ColorInt
     fun getColorResId(@ColorRes id: Int): Int {
         return ContextCompat.getColor(this, id)
     }
-
-//    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-//        if (event.action == MotionEvent.ACTION_DOWN) {
-//            //点击空白区域收起输入法
-//            KeyboardUtils.hide(this)
-//        }
-//        return super.dispatchTouchEvent(event)
-//    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEvent(event: HideSoftInputEvent) {

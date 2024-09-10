@@ -13,10 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/login/main")
 public class LoginActivity extends ViewModelActivity<LoginViewModel, ActivityLoginBinding> {
-    @Override
-    public void initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

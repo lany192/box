@@ -13,10 +13,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/ui/encrypt")
 public class EncryptActivity extends ViewBindingActivity<ActivityEncryptBinding> {
-    @Override
-    public void initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
-    }
+//    @Override
+//    public void initImmersionBar() {
+//        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

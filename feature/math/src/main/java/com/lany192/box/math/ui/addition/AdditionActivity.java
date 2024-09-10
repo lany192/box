@@ -17,10 +17,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 @Route(path = "/math/addition")
 public class AdditionActivity extends ViewModelActivity<AdditionViewModel, ActivityAdditionBinding> {
-    @Override
-    public void initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
-    }
+//    @Override
+//    public void initImmersionBar() {
+//        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

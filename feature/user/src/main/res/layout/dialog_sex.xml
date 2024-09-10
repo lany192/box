@@ -16,7 +16,7 @@
         <Button
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
+            android:layout_height="@dimen/actionbar_height"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@android:string/cancel"
@@ -37,7 +37,7 @@
         <Button
             android:id="@+id/confirm"
             android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
+            android:layout_height="@dimen/actionbar_height"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@android:string/ok"

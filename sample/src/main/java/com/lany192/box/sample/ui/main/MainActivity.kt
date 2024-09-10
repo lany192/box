@@ -34,9 +34,9 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).init()
-    }
+//    override fun initImmersionBar() {
+//        ImmersionBar.with(this).init()
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -15,10 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @Route(path = "/user/nickname", name = "昵称")
 class NicknameActivity : ViewModelActivity<NicknameViewModel, ActivityNicknameBinding>() {
 
-    override fun initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.right.setOnClickListener {

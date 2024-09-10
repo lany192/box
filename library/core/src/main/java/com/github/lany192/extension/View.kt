@@ -2,6 +2,8 @@ package com.github.lany192.extension
 
 import android.view.View
 import android.view.View.OnClickListener
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 /**
  * 防止重复点击
@@ -34,4 +36,12 @@ fun View.gone() {
 
 fun View.setGone(gone: Boolean) {
     visibility = if (gone) View.GONE else View.VISIBLE
+}
+
+fun View.addStatusBarPadding() {
+    ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
+        val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        v.setPadding(0, systemBars.top, 0, 0)
+        insets
+    }
 }

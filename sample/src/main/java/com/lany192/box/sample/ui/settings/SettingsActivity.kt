@@ -6,9 +6,9 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
-import com.github.lany192.extension.toast
-import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.SimpleDialog
+import com.github.lany192.extension.addStatusBarPadding
+import com.github.lany192.extension.toast
 import com.github.lany192.interfaces.OnSimpleListener
 import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
@@ -34,12 +34,9 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
     @Autowired
     lateinit var userProvider: UserProvider
 
-    override fun initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.toolbar.addStatusBarPadding()
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         binding.userInfo.setOnClickListener { userProvider.startUserInfo() }
         binding.cacheView.hint(CacheUtils.getCacheSize(this))

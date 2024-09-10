@@ -20,10 +20,6 @@ import java.util.Locale
 @Route(path = "/user/signature", name = "修改个性签名")
 class SignatureActivity : ViewModelActivity<SignatureViewModel, ActivitySignatureBinding>() {
 
-    override fun initImmersionBar() {
-        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.right.setOnClickListener { viewModel.submit() }
