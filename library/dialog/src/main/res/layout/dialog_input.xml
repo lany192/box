@@ -1,117 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="bottom"
-    android:background="@drawable/bottom_dialog_bg"
+    android:background="#30123456"
     android:orientation="vertical">
 
-    <com.github.lany192.text.BoxTextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="这里是提示标题"
-        android:textColor="@color/text_4level"
-        android:textSize="11sp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp">
+        android:layout_gravity="bottom"
+        android:background="@drawable/bottom_dialog_bg"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/input"
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="这里是提示标题"
+            android:textColor="@color/text_4level"
+            android:textSize="11sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="top|start"
-            android:hint="在此处输入回复内容"
-            android:lineSpacingExtra="8dp"
-            android:maxLength="150"
-            android:minHeight="120dp"
-            android:padding="10dp"
-            android:textColor="@color/text_1level"
-            android:textColorHint="@color/text_3level"
-            android:textSize="13sp"
-            app:bl_corners_radius="8dp"
-            app:bl_solid_color="@color/gray_light_bg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/gray_light_bg" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp">
 
-        <com.github.lany192.text.BoxTextView
-            android:id="@+id/limit_tip"
-            android:layout_width="wrap_content"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="top|start"
+                android:hint="在此处输入回复内容"
+                android:lineSpacingExtra="8dp"
+                android:maxLength="150"
+                android:minHeight="120dp"
+                android:padding="10dp"
+                android:textColor="@color/text_1level"
+                android:textColorHint="@color/text_3level"
+                android:textSize="13sp"
+                app:bl_corners_radius="8dp"
+                app:bl_solid_color="@color/gray_light_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/gray_light_bg" />
+
+            <com.github.lany192.text.BoxTextView
+                android:id="@+id/limit_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="8dp"
+                android:text="最多输入150字"
+                android:textColor="@color/text_4level"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_margin="8dp"
-            android:text="最多输入150字"
-            android:textColor="@color/text_4level"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/action"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@android:color/holo_purple"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+            <com.github.lany192.text.BoxTextView
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:background="@android:color/holo_purple"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="回复"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/action"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@android:color/holo_purple"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/panel"
+            android:layout_width="match_parent"
+            android:layout_height="234dp"
+            android:background="@android:color/holo_red_light">
 
-        <com.github.lany192.text.BoxTextView
-            android:id="@+id/send"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:background="@android:color/holo_purple"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="回复"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/panel"
-        android:layout_width="match_parent"
-        android:layout_height="234dp"
-        android:background="@android:color/holo_blue_light">
-
-        <com.github.lany192.text.BoxTextView
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="取消"
-            android:textColor="@color/text_3level"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+            <com.github.lany192.text.BoxTextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="取消"
+                android:textColor="@color/text_3level"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</FrameLayout>

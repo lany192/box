@@ -63,7 +63,8 @@ class InputDialog : BaseDialog<DialogInputBinding>() {
         super.onStart()
         val dialog = dialog
         if (dialog != null) {
-            dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+            activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+            dialog?.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         }
     }
 }
