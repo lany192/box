@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewBindingActivity
 import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.arch.utils.FileUtils
+import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.extension.load
 import com.github.lany192.extension.log
 import com.github.lany192.extension.toast
@@ -31,7 +32,8 @@ class UserInfoActivity : ViewBindingActivity<ActivityUserBinding>() {
         binding.sexView.setOnClickListener { SexDialog(false).show() }
         binding.avatar.load("http://pic.imeitou.com/uploads/allimg/221021/8-221021094504.jpg")
         binding.avatar.setOnClickListener {
-            startMediaPicker({ uri ->
+            startMediaPicker(
+                { uri ->
                     if (uri != null) {
                         binding.avatar.load(uri)
                         val cropUri = FileUtils.getTempPicUri(this@UserInfoActivity)
@@ -60,6 +62,15 @@ class UserInfoActivity : ViewBindingActivity<ActivityUserBinding>() {
                     .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly)
                     .build()
             )
+        }
+        binding.birthday.setOnClickListener {
+            val dialog = BirthdayDialog(2001, 1, 1)
+            dialog.setOnBirthdayListener(object : BirthdayDialog.OnBirthdayListener {
+                override fun onResult(year: Int, month: Int, day: Int) {
+                    toast("你选择的是：$year-$month-$day")
+                }
+            })
+            dialog.show()
         }
     }
 }

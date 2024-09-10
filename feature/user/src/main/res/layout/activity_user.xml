@@ -141,7 +141,7 @@
                 android:background="@color/outline" />
 
             <com.github.lany192.view.MenuView
-                android:id="@+id/birthday_view"
+                android:id="@+id/birthday"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 app:menu_hint="未设置"
