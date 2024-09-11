@@ -25,6 +25,9 @@ class ToolbarView @JvmOverloads constructor(
                 (context as ComponentActivity).onBackPressedDispatcher.onBackPressed()
             }
         }
+        if (context is ComponentActivity) {
+            setTitle((context as ComponentActivity).title)
+        }
     }
 
     fun setTitle(title: CharSequence?) {

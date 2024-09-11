@@ -24,6 +24,7 @@ class UserInfoActivity : ViewBindingActivity<ActivityUserBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.toolbar.setTitle("")
         binding.nickname.setOnClickListener { NicknameRouter.start() }
         binding.signature.setOnClickListener { SignatureRouter.start() }
         binding.sexView.setOnClickListener { SexDialog(false).show() }

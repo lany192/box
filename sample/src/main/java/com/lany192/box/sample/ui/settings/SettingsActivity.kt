@@ -36,8 +36,6 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
-        binding.toolbar.setTitle("设置")
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
         binding.userInfo.setOnClickListener { userProvider.startUserInfo() }
         binding.cacheView.hint(CacheUtils.getCacheSize(this))
