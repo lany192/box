@@ -31,14 +31,6 @@ abstract class ViewBindingActivity<VB : ViewBinding> : BaseActivity() {
         content = FrameLayout(this)
         content.addView(binding.root)
         setContentView(content)
-        addToolbarBackClickListener()
-    }
-
-    /**
-     * 如果有返回id，添加监听
-     */
-    open fun addToolbarBackClickListener() {
-        findViewById<View>(R.id.back)?.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 
     /**
@@ -47,14 +39,6 @@ abstract class ViewBindingActivity<VB : ViewBinding> : BaseActivity() {
      */
     open fun getViewBinding(): VB {
         return getClass<VB>(0).getBinding(layoutInflater)
-    }
-
-    override fun setTitle(title: CharSequence?) {
-        findViewById<TextView>(R.id.title)?.text = title
-    }
-
-    override fun setTitle(titleId: Int) {
-        setTitle(getString(titleId))
     }
 
     open fun getErrorView(): View {

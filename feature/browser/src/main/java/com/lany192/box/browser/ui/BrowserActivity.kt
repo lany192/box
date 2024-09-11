@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewBindingActivity
 import com.github.lany192.arch.utils.BarUtils
+import com.github.lany192.extension.addStatusBarPadding
 import com.github.lany192.extension.log
 import com.lany192.box.browser.databinding.ActivityBrowserBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,18 +16,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class BrowserActivity : ViewBindingActivity<ActivityBrowserBinding>() {
     @Autowired(name = "title", desc = "标题")
     lateinit var title: String
-
     @Autowired(name = "url", desc = "链接")
     lateinit var url: String
 
-//    @Override
-//    public void initImmersionBar() {
-//        BarUtils.init(this).keyboardEnable(true).titleBar(binding.toolbar).init();
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitle(title)
+        binding.toolbar.addStatusBarPadding()
+        binding.toolbar.setTitle(title)
         binding.webview.loadUrl(url)
         log("标题:$title,链接:$url")
     }

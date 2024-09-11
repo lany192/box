@@ -34,9 +34,13 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
         if (context is LifecycleOwner) {
             context.lifecycle.addObserver(this)
         }
-        binding = getClass<VB>(0).getBinding(LayoutInflater.from(context), this)
+        binding = getViewBinding()
         addView(binding.root)
         init(attrs)
+    }
+
+    open fun getViewBinding():VB{
+        return getClass<VB>(0).getBinding(LayoutInflater.from(context), this)
     }
 
     /**

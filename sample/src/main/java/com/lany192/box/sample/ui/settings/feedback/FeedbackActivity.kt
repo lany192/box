@@ -17,6 +17,7 @@ class FeedbackActivity : ViewBindingActivity<ActivityFeedbackBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.toolbar.addStatusBarPadding()
+        binding.toolbar.setTitle("反馈")
         binding.button.setOnClickListener {
             ReplyDialog().show()
         }
