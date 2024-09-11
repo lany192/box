@@ -21,7 +21,7 @@ class BrowserActivity : ViewBindingActivity<ActivityBrowserBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.toolbar.addStatusBarPadding()
+        
         binding.toolbar.setTitle(title)
         binding.webview.loadUrl(url)
         log("标题:$title,链接:$url")

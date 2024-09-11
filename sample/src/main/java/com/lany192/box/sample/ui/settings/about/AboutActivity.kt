@@ -26,7 +26,7 @@ class AboutActivity : ViewModelActivity<AboutViewModel, ActivityAboutBinding>() 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.toolbar.addStatusBarPadding()
+        
         binding.licenceView.setOnClickListener { showLicensesDialog() }
         binding.marketView.setOnClickListener { gotoMarket() }
         binding.privacyView.setOnClickListener {

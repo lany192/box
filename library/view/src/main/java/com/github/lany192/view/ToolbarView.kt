@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes
+import com.github.lany192.extension.addStatusBarPadding
 import com.github.lany192.view.databinding.ViewToolbarBinding
 
 class ToolbarView @JvmOverloads constructor(
@@ -18,6 +19,7 @@ class ToolbarView @JvmOverloads constructor(
     }
 
     override fun init(attrs: AttributeSet?) {
+        addStatusBarPadding()
         binding.back.setOnClickListener {
             if (context is ComponentActivity) {
                 (context as ComponentActivity).onBackPressedDispatcher.onBackPressed()

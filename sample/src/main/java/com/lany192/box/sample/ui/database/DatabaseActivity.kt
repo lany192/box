@@ -15,7 +15,7 @@ class DatabaseActivity : ViewModelActivity<DatabaseViewModel, ActivityDatabaseBi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.toolbar.addStatusBarPadding()
+        
         binding.insert.setOnClickListener {
             viewModel.insert()
         }
