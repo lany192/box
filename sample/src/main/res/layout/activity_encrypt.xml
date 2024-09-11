@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.encrypt.EncryptActivity">
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,10 +18,11 @@
             android:id="@+id/back"
             android:layout_width="@dimen/actionbar_height"
             android:layout_height="@dimen/actionbar_height"
-            android:layout_alignParentBottom="true"
             android:background="?android:attr/actionBarItemBackground"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/vector_back_black" />
+            android:src="@drawable/vector_back_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.github.lany192.text.BoxTextView
             android:id="@+id/title"
@@ -34,12 +34,15 @@
             android:gravity="center"
             android:maxWidth="240dp"
             android:maxLines="1"
-            android:text="下载"
+            android:text="加解密"
             android:textColor="@color/text_1level"
             android:textSize="18sp"
-            app:text_style_middle_bold="true"
-            tools:layout_height="@dimen/actionbar_height" />
-    </RelativeLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:text_style_middle_bold="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -13,10 +13,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,12 +25,13 @@
             android:id="@+id/back"
             android:layout_width="@dimen/actionbar_height"
             android:layout_height="@dimen/actionbar_height"
-            android:layout_alignParentBottom="true"
             android:background="?android:attr/actionBarItemBackground"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/vector_back_black" />
+            android:src="@drawable/vector_back_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/head_view"
