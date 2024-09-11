@@ -7,39 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.addition.AdditionActivity">
 
-    <RelativeLayout
+    <com.github.lany192.view.ToolbarView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="@dimen/actionbar_height"
-            android:layout_height="@dimen/actionbar_height"
-            android:layout_alignParentBottom="true"
-            android:background="?android:attr/actionBarItemBackground"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/vector_back_black" />
-
-        <com.github.lany192.text.BoxTextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/actionbar_height"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxWidth="240dp"
-            android:maxLines="1"
-            android:text="关于"
-            android:textColor="@color/text_1level"
-            android:textSize="18sp"
-            app:text_style_middle_bold="true" />
-    </RelativeLayout>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

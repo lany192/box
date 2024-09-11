@@ -17,6 +17,7 @@ public class LoginActivity extends ViewModelActivity<LoginViewModel, ActivityLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding.toolbar.setTitle("");
         binding.login.setOnClickListener(v -> Toaster.show("登录成功"));
     }
 }
