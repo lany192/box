@@ -101,82 +101,39 @@ android {
             excludes += ['META-INF/INDEX.LIST', 'META-INF/DEPENDENCIES', 'META-INF/LGPL2.1']
         }
     }
-    //https://developer.android.google.cn/reference/tools/gradle-api/8.3/null/com/android/build/api/dsl/LintOptions
-    lintOptions {
-        // set to true to turn off analysis progress reporting by lint
-        quiet true
-        // if true, stop the gradle build if errors are found
+    lint {
         abortOnError false
-        // set to true to have all release builds run lint on issues with severity=fatal
-        // and abort the build (controlled by abortOnError above) if fatal issues are found
-        checkReleaseBuilds true
-        // if true, only report errors
-        ignoreWarnings true
-        // if true, emit full/absolute paths to files with errors (true by default)
         absolutePaths true
-        // if true, check all issues, including those that are off by default
+        baseline file('lint-baseline.xml')
+        checkOnly 'NewApi', 'InlinedApi'
         checkAllWarnings true
-        // if true, treat all warnings as errors
-        warningsAsErrors true
-        // turn off checking the given issue id's
-        disable 'TypographyFractions', 'TypographyQuotes'
-        // turn on the given issue id's
-        enable 'RtlHardcoded', 'RtlCompat', 'RtlEnabled'
-        // check *only* the given issue id's
-        check 'NewApi', 'InlinedApi'
-        // if true, don't include source code lines in the error output
-        noLines true
-        // if true, show all locations for an error, do not truncate lists, etc.
-        showAll true
-        // whether lint should include full issue explanations in the text error output
-        explainIssues false
-        // Fallback lint configuration (default severities, etc.)
-        lintConfig file("default-lint.xml")
-        // if true, generate a text report of issues (false by default)
-        textReport true
-        // location to write the output; can be a file or 'stdout' or 'stderr'
-        //textOutput 'stdout'
-        textOutput file("$buildDir/reports/lint-results.txt")
-        // if true, generate an XML report for use by for example Jenkins
-        xmlReport true
-        // file to write report to (if not specified, defaults to lint-results.xml)
-        xmlOutput file("$buildDir/reports/lint-report.xml")
-        // if true, generate an HTML report (with issue explanations, sourcecode, etc)
-        htmlReport true
-        // optional path to HTML report (default will be lint-results.html in the builddir)
-        htmlOutput file("$buildDir/reports/lint-report.html")
-        // if true, generate a SARIF report (OASIS Static Analysis Results Interchange Format)
-        sarifReport true
-        // optional path to SARIF report (default will be lint-results.sarif in the builddir)
-        sarifOutput file("$buildDir/reports/lint-report.html")
-        // Set the severity of the given issues to fatal (which means they will be
-        // checked during release builds (even if the lint target is not included)
-        fatal 'NewApi', 'InlineApi'
-        // Set the severity of the given issues to error
-        error 'Wakelock', 'TextViewEdits'
-        // Set the severity of the given issues to warning
-        warning 'ResourceAsColor'
-        // Set the severity of the given issues to ignore (same as disabling the check)
-        ignore 'TypographyQuotes'
-        // Set the severity of the given issues to informational
-        informational 'StopShip'
-        // Use (or create) a baseline file for issues that should not be reported
-        baseline file("lint-baseline.xml")
-        // Normally most lint checks are not run on test sources (except the checks
-        // dedicated to looking for mistakes in unit or instrumentation tests, unless
-        // ignoreTestSources is true). You can turn on normal lint checking in all
-        // sources with the following flag, false by default:
-        checkTestSources true
-        // Like checkTestSources, but always skips analyzing tests -- meaning that it
-        // also ignores checks that have explicitly asked to look at test sources, such
-        // as the unused resource check.
-        ignoreTestSources true
-        // Normally lint will skip generated sources, but you can turn it on with this flag
-        // 检查ViewBinding之类的
-        checkGeneratedSources true
-        // Whether lint should check all dependencies too as part of its analysis.
-        // Default is false.
         checkDependencies true
+        checkGeneratedSources true
+        checkReleaseBuilds true
+        checkTestSources true
+        disable 'TypographyFractions', 'TypographyQuotes'
+        enable 'RtlHardcoded', 'RtlCompat', 'RtlEnabled'
+        error 'Wakelock', 'TextViewEdits'
+        explainIssues false
+        fatal 'NewApi', 'InlineApi'
+        htmlOutput file("$buildDir/reports/lint-report.html")
+        htmlReport true
+        ignore 'TypographyQuotes'
+        ignoreTestSources true
+        ignoreWarnings true
+        informational 'StopShip'
+        lintConfig file('default-lint.xml')
+        noLines true
+        quiet true
+        sarifOutput file("$buildDir/reports/lint-report.html")
+        sarifReport true
+        showAll true
+        textOutput file("$buildDir/reports/lint-results.txt")
+        textReport true
+        warning 'ResourceAsColor'
+        warningsAsErrors true
+        xmlOutput file("$buildDir/reports/lint-report.xml")
+        xmlReport true
     }
 }
 
