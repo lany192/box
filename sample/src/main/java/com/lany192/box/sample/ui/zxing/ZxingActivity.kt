@@ -73,8 +73,7 @@ class ZxingActivity : ViewBindingActivity<ActivityZxingBinding>() {
      * 开始选择图片
      */
     private fun startPickPhoto() {
-        startMediaPicker(
-            { uri ->
+        startMediaPicker({ uri ->
                 if (uri != null) {
                     parsePhoto(uri)
                 } else {
