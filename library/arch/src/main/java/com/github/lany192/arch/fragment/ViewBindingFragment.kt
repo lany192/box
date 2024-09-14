@@ -24,24 +24,14 @@ abstract class ViewBindingFragment<VB : ViewBinding> : BaseFragment() {
     private lateinit var content: FrameLayout
     private var viewState = ViewState.CONTENT
 
-    private var init = false
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = getViewBinding(inflater, container)
         content = FixDragLayout(requireContext())
         content.addView(binding.root)
+        init()
         return content
-    }
-
-    @CallSuper
-    override fun onResume() {
-        super.onResume()
-        if (!init) {
-            init = true
-            init()
-        }
     }
 
     /**
