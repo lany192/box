@@ -67,14 +67,18 @@ public class PhoneUtils {
      * 获取屏幕宽度(px)
      */
     public static int getDeviceWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
+        int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+        return Math.min(width, height);
     }
 
     /**
      * 获取屏幕的高度(px)
      */
     public static int getDeviceHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
+        int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+        return Math.max(width, height);
     }
 
     /**
