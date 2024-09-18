@@ -268,6 +268,7 @@ dependencies {
     implementation libs.lany.mocker
     implementation libs.transformation.layout
     implementation libs.live.event.bus
+    implementation libs.tencent.pag
 }
 //引入安装包生成配置
 apply from: '../gradle/package.gradle'

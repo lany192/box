@@ -41,6 +41,7 @@ class MenusFragment : ViewModelFragment<MenusViewModel, FragmentMenusBinding>() 
         items.add(MenuItem("设置", R.drawable.android))
         items.add(MenuItem("高斯模糊", R.drawable.android))
         items.add(MenuItem("输入弹窗", R.drawable.ic_empty_feed))
+        items.add(MenuItem("引导页示例", R.drawable.ic_empty_feed))
         binding.recyclerView.adapter = MenusAdapter(items)
     }
 }

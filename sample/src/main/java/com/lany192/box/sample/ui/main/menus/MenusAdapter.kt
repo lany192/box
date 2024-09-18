@@ -16,6 +16,7 @@ import com.lany192.box.sample.databinding.ItemMenuBinding
 import com.lany192.box.sample.ui.blur.BlurRouter
 import com.lany192.box.sample.ui.database.DatabaseRouter
 import com.lany192.box.sample.ui.encrypt.EncryptRouter
+import com.lany192.box.sample.ui.guide.GuideRouter
 import com.lany192.box.sample.ui.html.HtmlRouter
 import com.lany192.box.sample.ui.image.ImageRouter
 import com.lany192.box.sample.ui.settings.SettingsRouter
@@ -81,6 +82,8 @@ class MenusAdapter(data: List<MenuItem>) : BindingAdapter<MenuItem, ItemMenuBind
                 title = "输入框"
                 message = "请输入内容"
             }.show()
+        } else if (position == 21) {
+            GuideRouter.start()
         }
     }
 

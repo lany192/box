@@ -79,6 +79,11 @@
             android:label="关于"
             android:screenOrientation="nosensor" />
         <activity
+            android:name=".ui.guide.GuideActivity"
+            android:exported="false"
+            android:label="引导页"
+            android:screenOrientation="nosensor" />
+        <activity
             android:name=".router.SchemeFilterActivity"
             android:exported="true">
             <intent-filter>
