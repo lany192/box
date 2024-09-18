@@ -78,6 +78,15 @@ public class PhoneUtils {
     public static int getDeviceHeight() {
         int width = Resources.getSystem().getDisplayMetrics().widthPixels;
         int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+        WindowManager windowManager = (WindowManager) ContextUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager != null) {
+            Display display = windowManager.getDefaultDisplay();
+            Point realSize = new Point();
+            display.getRealSize(realSize);
+            if (realSize.y > height) {
+                height = realSize.y;
+            }
+        }
         return Math.max(width, height);
     }
 
