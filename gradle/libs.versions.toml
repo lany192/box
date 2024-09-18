@@ -57,6 +57,7 @@ leakcanary = "2.14" #内存检测 https://github.com/square/leakcanary
 licenses = "2.1.0"
 lifecycle = "2.8.4"
 link-builder = "2.0.5" #超链接处理 https://github.com/klinker24/Android-TextView-LinkBuilder
+live-event-bus = "1.8.0" #事件 https://github.com/JeremyLiao/LiveEventBus
 lottie = "6.5.0" #动画加载 https://github.com/airbnb/lottie-android
 luban = "1.1.8" #图片压缩 https://github.com/Curzibn/Luban
 material = "1.12.0"
@@ -68,6 +69,7 @@ multidex = "2.0.1"
 number-picker = "2.4.13" #自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
 okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
 oss = "2.74.0" #minio库 minio 官方的sdk 只有java 版本的不兼容android，可以尝试使用 amazon s3 的oss sdk 来实现功能
+pag = "4.3.62" #动画加载 https://github.com/Tencent/libpag
 paging = "3.3.2" #https://developer.android.google.cn/jetpack/androidx/releases/paging?hl=zh-cn
 palette = "1.0.0"
 permissions = "20.0" #权限 https://github.com/getActivity/XXPermissions
@@ -104,12 +106,8 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.2.0" #https://github.com/jenly1314/ZXingLite
-live-event-bus = "1.8.0" #事件 https://github.com/JeremyLiao/LiveEventBus
-pag = "4.3.62" #动画加载 https://github.com/Tencent/libpag
 
 [libraries]
-pag = { module = "com.tencent.tav:libpag", version.ref = "pag" }
-live-event-bus = { module = "io.github.jeremyliao:live-event-bus-x", version.ref = "live-event-bus" }
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -222,6 +220,7 @@ lany-router-register = { module = "com.github.lany192.app-router:arouter-registe
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 licenses = { module = "de.psdev.licensesdialog:licensesdialog", version.ref = "licenses" }
 link-builder = { module = "com.klinkerapps:link_builder", version.ref = "link-builder" }
+live-event-bus = { module = "io.github.jeremyliao:live-event-bus-x", version.ref = "live-event-bus" }
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 luban = { module = "top.zibin:Luban", version.ref = "luban" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
@@ -240,6 +239,7 @@ rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroi
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 spinner = { module = "com.jaredrummler:material-spinner", version.ref = "spinner" }
 tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
+tencent-pag = { module = "com.tencent.tav:libpag", version.ref = "pag" }
 tencent-shadow-core-activity-container = { module = "com.tencent.shadow.core:activity-container", version.ref = "shadow" }
 tencent-shadow-core-common = { module = "com.tencent.shadow.core:common", version.ref = "shadow" }
 tencent-shadow-core-gradle-plugin = { module = "com.tencent.shadow.core:gradle-plugin", version.ref = "shadow" }
