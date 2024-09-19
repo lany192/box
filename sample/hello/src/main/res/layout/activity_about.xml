@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg">
+
+    <com.github.lany192.image.RatioImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/default_color_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.lany192.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/head_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@mipmap/ic_launcher" />
+
+        <com.github.lany192.text.BoxTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/app_name"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/card_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_bg"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/head_view">
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/qq_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_hint="12345678"
+            app:menu_title="客服QQ" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/feedback_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="意见反馈" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/protocol_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="用户协议" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/privacy_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="隐私政策" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/market_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="给我好评" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/white_bg"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_1">
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/licence_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="开源许可" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/about_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_hint="1.0.0"
+            app:menu_title="版本状态" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.github.lany192.text.BoxTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XX公司 版权所有"
+            android:textColor="@color/text_4level"
+            android:textSize="13sp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="copyright © 2021 xxxx, Inc."
+            android:textColor="@color/text_4level"
+            android:textSize="12sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

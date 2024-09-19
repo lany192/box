@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical">
+
+    <com.github.lany192.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/card_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_bg"
+        android:orientation="vertical">
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="用户信息" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="通知管理" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/privacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="隐私管理" />
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/notice_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="推送设置" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/permission_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="授权设置" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/white_bg"
+        android:orientation="vertical">
+
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/version_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_hint="发现新版本"
+            app:menu_title="版本检查" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/cache_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_hint="0KB"
+            app:menu_title="清除缓存" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/share_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="分享应用" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/reward_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_hint="您的鼓励是对我最大的支持"
+            app:menu_title="打赏作者" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/divider" />
+
+        <com.github.lany192.view.MenuView
+            android:id="@+id/about_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu_title="关于我们" />
+    </LinearLayout>
+</LinearLayout>

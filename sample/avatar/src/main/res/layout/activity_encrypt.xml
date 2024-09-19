@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.encrypt.EncryptActivity">
+
+    <com.github.lany192.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_black_style"
+            android:hint="请输入需要加密的内容"
+            android:padding="8dp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/encrypt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_green_style"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="加密"
+            android:textColor="@color/white" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/encrypt_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="8dp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/decrypt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_green_style"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="解密"
+            android:textColor="@color/white" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/decrypt_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="8dp" />
+    </LinearLayout>
+</LinearLayout>

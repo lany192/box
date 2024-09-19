@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <application
+        android:name=".SampleApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.blur.BlurActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.database.DatabaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.image.ImageActivity"
+            android:exported="false"
+            android:label="图片"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.encrypt.EncryptActivity"
+            android:exported="false"
+            android:label="加密解密"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.zxing.ZxingActivity"
+            android:exported="false"
+            android:label="Zxing测试"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.html.HtmlActivity"
+            android:exported="false"
+            android:label="html测试"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.video.VideoActivity"
+            android:exported="false"
+            android:label="视频测试"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.goods.GoodsActivity"
+            android:exported="false"
+            android:label="列表测试"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.settings.feedback.FeedbackActivity"
+            android:exported="false"
+            android:label="反馈"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.download.DownloadActivity"
+            android:exported="false"
+            android:label="下载"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false"
+            android:label="设置"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false"
+            android:label="主界面"
+            android:launchMode="singleTask"
+            android:screenOrientation="nosensor"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".ui.settings.about.AboutActivity"
+            android:exported="false"
+            android:label="关于"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.guide.GuideActivity"
+            android:exported="false"
+            android:label="引导页"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".router.SchemeFilterActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="box" />
+                <data android:scheme="android" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="nosensor"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.zxing.FullScreenQRCodeScanActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
+        <activity
+            android:name=".ui.zxing.MultiFormatScanActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
+        <activity
+            android:name=".ui.zxing.QRCodeScanActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
+        <activity
+            android:name=".ui.transformation.TransformationActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ui.transformation.TransformationDetailActivity"
+            android:launchMode="singleTop" />
+    </application>
+
+</manifest>

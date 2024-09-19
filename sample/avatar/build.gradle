@@ -1,0 +1,274 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.hilt.android)
+    id 'com.github.lany192.router'
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+//        arg("AROUTER_GENERATE_DOC", "enable")
+        //是否debug模式
+        arg("ROUTER_DEBUG", true)
+        //是否打印JS路由文档
+        arg("JS_ROUTER_DOC", true)
+        //Uri Scheme标识
+        arg("ROUTER_SCHEME", "box")
+        //JS路由调用方法
+        arg("ROUTER_JS_FUN", "window.app.route")
+    }
+}
+def build_time = "\"${new Date().format('yyyy-MM-dd HH:mm')}\""
+android {
+    namespace apk.appId + '.' + project.getName()
+
+    compileSdk Integer.parseInt(libs.versions.android.compile.sdk.get())
+
+    signingConfigs {
+        config {
+            keyAlias 'box'
+            keyPassword 'box2024'
+            storeFile file('../box.jks')
+            storePassword 'box2024'
+        }
+    }
+
+    defaultConfig {
+        applicationId apk.appId + '.' + project.getName()
+        minSdk Integer.parseInt(libs.versions.android.min.sdk.get())
+        targetSdk Integer.parseInt(libs.versions.android.target.sdk.get())
+        versionCode apk.versionCode
+        versionName apk.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
+        vectorDrawables {
+            useSupportLibrary true
+        }
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            //打包时间
+            resValue("string", "apk_build_time", build_time)
+        }
+        develop {
+            matchingFallbacks = ['release']
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            versionNameSuffix '_dev'
+            //打包时间
+            resValue("string", "apk_build_time", build_time)
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
+            versionNameSuffix '_dev'
+            //打包时间
+            resValue("string", "apk_build_time", "2000-01-01 01:01:01")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        resources {
+            excludes += ['**/*.properties', '**/*.txt']
+            excludes += ['META-INF/*.info', 'META-INF/*.version']
+            excludes += ['META-INF/*.md', 'META-INF/*.kotlin_module']
+            excludes += ['META-INF/maven/com.squareup.okio/okio/pom.xml', 'META-INF/ASL2.0']
+            excludes += ['META-INF/MANIFEST.MF', 'META-INF/NOTICE', 'META-INF/LICENSE']
+            excludes += ['META-INF/INDEX.LIST', 'META-INF/DEPENDENCIES', 'META-INF/LGPL2.1']
+        }
+    }
+    lint {
+        abortOnError false
+        absolutePaths true
+        baseline file('lint-baseline.xml')
+        checkOnly 'NewApi', 'InlinedApi'
+        checkAllWarnings true
+        checkDependencies true
+        checkGeneratedSources true
+        checkReleaseBuilds true
+        checkTestSources true
+        disable 'TypographyFractions', 'TypographyQuotes'
+        enable 'RtlHardcoded', 'RtlCompat', 'RtlEnabled'
+        error 'Wakelock', 'TextViewEdits'
+        explainIssues false
+        fatal 'NewApi', 'InlineApi'
+        htmlOutput file("$buildDir/reports/lint-report.html")
+        htmlReport true
+        ignore 'TypographyQuotes'
+        ignoreTestSources true
+        ignoreWarnings true
+        informational 'StopShip'
+        lintConfig file('default-lint.xml')
+        noLines true
+        quiet true
+        sarifOutput file("$buildDir/reports/lint-report.html")
+        sarifReport true
+        showAll true
+        textOutput file("$buildDir/reports/lint-results.txt")
+        textReport true
+        warning 'ResourceAsColor'
+        warningsAsErrors true
+        xmlOutput file("$buildDir/reports/lint-report.xml")
+        xmlReport true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit2
+    androidTestImplementation libs.androidx.test.espresso
+
+    implementation libs.glide
+    kapt libs.glide.compiler
+
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+    kapt libs.androidx.room.compiler
+
+    implementation libs.hilt
+    kapt libs.hilt.compiler
+
+    implementation libs.lany.router
+    kapt libs.lany.router.compiler
+
+
+    //https://github.com/Knight-ZXW/LancetX
+    compileOnly 'io.github.knight-zxw:lancet-runtime:0.0.7'
+
+
+    implementation project(path: ':library:arch')
+    implementation project(path: ':library:view')
+    implementation project(path: ':library:core')
+    implementation project(path: ':library:dialog')
+    implementation project(path: ':library:update')
+    implementation project(path: ':library:time')
+    implementation project(path: ':library:toolkit')
+    implementation project(path: ':library:blackbox')
+    implementation project(path: ':library:tablayout')
+    implementation project(path: ':library:html')
+    implementation project(path: ':library:video')
+    implementation project(path: ':library:blurview')
+
+    implementation project(path: ':common:router')
+    implementation project(path: ':common:network')
+    implementation project(path: ':common:database')
+
+    implementation project(path: ':feature:browser')
+    implementation project(path: ':feature:hello')
+    implementation project(path: ':feature:login')
+    implementation project(path: ':feature:math')
+    implementation project(path: ':feature:user')
+
+    //内存泄漏检测 https://github.com/square/leakcanary
+    debugImplementation libs.leakcanary
+
+    implementation libs.androidx.annotation
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.activity
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.fragment
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.recyclerview
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.multidex
+    implementation libs.androidx.material
+    implementation libs.androidx.exifinterface
+    implementation libs.androidx.paging.runtime.ktx
+    implementation libs.androidx.paging.runtime
+    implementation libs.androidx.startup.runtime
+    implementation libs.androidx.media3.exoplayer
+    implementation libs.androidx.media3.exoplayer.dash
+    implementation libs.androidx.media3.ui
+    implementation libs.androidx.camera.core
+    implementation libs.androidx.camera.camera2
+    implementation libs.androidx.camera.lifecycle
+    implementation libs.androidx.camera.view
+    implementation libs.androidx.camera.extensions
+    implementation libs.androidx.cardview
+    implementation libs.androidx.palette
+    implementation libs.androidx.viewpager2
+    implementation libs.androidx.webkit
+
+    implementation libs.coroutines.core
+    implementation libs.coroutines.android
+
+    implementation libs.toaster
+    implementation libs.brvah
+    implementation libs.immersionbar
+    implementation libs.retrofit
+    implementation libs.retrofit.moshi
+    implementation libs.retrofit.gson
+    implementation libs.moshi
+    implementation libs.tencent.mmkv
+    implementation libs.tencent.xlog
+    implementation libs.tencent.sonic
+    implementation libs.tencent.wechat
+    implementation libs.tencent.tbs
+    implementation libs.tencent.vasdolly.reader
+    implementation libs.tencent.vasdolly.writer
+
+    implementation libs.xcrash
+    implementation libs.refresh.header
+    implementation libs.refresh.layout
+
+    implementation libs.backgroundx
+    implementation libs.kluban
+    implementation libs.luban
+    implementation libs.lany.decoration
+    implementation libs.lany.keyboard
+    implementation libs.flexbox
+    implementation libs.number.picker
+    implementation libs.eventbus
+    implementation libs.lany.download
+    implementation libs.licenses
+
+    implementation libs.banner
+    implementation libs.touchimageview
+    implementation libs.zxing.lite
+    implementation libs.rxjava
+    implementation libs.rxandroid
+    implementation libs.spinner
+    implementation libs.html.spanner
+    implementation libs.phoenix
+    implementation libs.oss.sdk.client
+    implementation libs.oss.sdk.s33
+    implementation libs.permissions
+    implementation libs.blur
+    implementation libs.rootbeer
+    implementation libs.lottie
+
+    implementation libs.lany.mocker
+    implementation libs.transformation.layout
+    implementation libs.live.event.bus
+    implementation libs.tencent.pag
+}
+//引入安装包生成配置
+apply from: '../../gradle/package.gradle'

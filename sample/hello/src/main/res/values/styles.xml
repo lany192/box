@@ -1,0 +1,21 @@
+<resources>
+
+
+    <!--ShapeableImageView 圆 -->
+    <style name="CircleStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="RoundedStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="LeftRoundedStyle">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">4dp</item>
+        <item name="cornerSizeTopLeft">4dp</item>
+    </style>
+</resources>

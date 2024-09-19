@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.github.lany192.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <Button
+            android:id="@+id/test1"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/btn_black_style"
+            android:gravity="center"
+            android:text="连续扫码（识别多种格式）"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/test2"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_black_style"
+            android:gravity="center"
+            android:text="扫二维码"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/test3"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_black_style"
+            android:gravity="center"
+            android:text="扫二维码（全屏识别）"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/test4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="选择图片识别"
+            app:bl_corners_radius="8dp"
+            app:bl_stroke_color="@color/green"
+            app:bl_stroke_width="1dp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/test5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="生成二维码"
+            app:bl_corners_radius="8dp"
+            app:bl_stroke_color="@color/green"
+            app:bl_stroke_width="1dp" />
+
+        <ImageView
+            android:id="@+id/code1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <com.github.lany192.text.BoxTextView
+            android:id="@+id/test6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="生成线性条形码"
+            app:bl_corners_radius="8dp"
+            app:bl_stroke_color="@color/green"
+            app:bl_stroke_width="1dp" />
+
+        <ImageView
+            android:id="@+id/code2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
