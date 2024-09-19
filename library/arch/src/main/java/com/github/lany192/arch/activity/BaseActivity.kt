@@ -2,7 +2,6 @@ package com.github.lany192.arch.activity
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -20,9 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
-import com.github.lany192.arch.network.NetworkHelper
 import com.github.lany192.dialog.LoadingDialog
-import com.github.lany192.extension.log
 import com.github.lany192.extension.postDelayedOnLifecycle
 import com.github.lany192.utils.KeyboardUtils
 import org.greenrobot.eventbus.EventBus
@@ -80,6 +77,7 @@ abstract class BaseActivity : AppCompatActivity() {
             EventBus.getDefault().unregister(this)
         }
         super.onDestroy()
+        cancelLoadingDialog()
     }
 
     /**
