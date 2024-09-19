@@ -7,7 +7,7 @@ import com.github.lany192.extension.toast
 import com.github.lany192.interfaces.OnSimpleListener
 import com.lany192.box.network.data.bean.Area
 import com.lany192.box.sample.MockUtils
-import com.lany192.box.sample.databinding.ItemAreaBinding
+import com.lany192.box.hello.databinding.ItemAreaBinding
 
 class AreaBinder : ItemBinder<Area, ItemAreaBinding>() {
 

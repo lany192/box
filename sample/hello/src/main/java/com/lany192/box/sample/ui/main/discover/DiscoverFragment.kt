@@ -9,7 +9,7 @@ import com.github.lany192.decoration.Divider
 import com.github.lany192.decoration.ItemDecoration
 import com.lany192.box.sample.data.binder.CategoryBinder
 import com.lany192.box.sample.data.binder.ImageBinder
-import com.lany192.box.sample.databinding.FragmentDiscoverBinding
+import com.lany192.box.hello.databinding.FragmentDiscoverBinding
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 

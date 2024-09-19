@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.lany192.box.sample.databinding.ActivityBlurBinding
+import com.lany192.box.hello.databinding.ActivityBlurBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

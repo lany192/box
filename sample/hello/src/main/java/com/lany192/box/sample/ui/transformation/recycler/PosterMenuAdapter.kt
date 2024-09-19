@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.lany192.box.sample.databinding.ItemPosterMenuBinding
+import com.lany192.box.hello.databinding.ItemPosterMenuBinding
 import com.lany192.box.sample.ui.transformation.TransformationDetailActivity
 
 class PosterMenuAdapter : RecyclerView.Adapter<PosterMenuAdapter.PosterViewHolder>() {

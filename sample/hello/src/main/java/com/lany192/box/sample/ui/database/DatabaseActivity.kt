@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
-import com.github.lany192.extension.addStatusBarPadding
-import com.lany192.box.sample.databinding.ActivityDatabaseBinding
+import com.lany192.box.hello.databinding.ActivityDatabaseBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

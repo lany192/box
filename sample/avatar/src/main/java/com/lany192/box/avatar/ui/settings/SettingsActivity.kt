@@ -38,7 +38,7 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
         binding.cacheView.setOnClickListener { showCacheDialog() }
         binding.permissionView.setOnClickListener { permissionSetting() }
         binding.rewardView.setOnClickListener {
-            Toaster.show("感谢您的支持，不过你的手机还没有安装支付宝")
+            toast("感谢您的支持，不过你的手机还没有安装支付宝")
         }
         binding.noticeView.setOnClickListener {
             browserProvider.startBrowser("百度也不知道", "https://www.baidu.com")

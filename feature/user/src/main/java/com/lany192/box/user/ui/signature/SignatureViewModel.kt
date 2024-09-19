@@ -21,7 +21,7 @@ class SignatureViewModel @Inject constructor() : LifecycleViewModel() {
 //                .collect {
 //                    if (it.success()) {
 //                        App.getUser().save(it.data)
-//                        Toaster.show(it.msg)
+//                        toast(it.msg)
 //                    } else {
 //                        StatusUtils.otherStatus(it.code, it.msg)
 //                    }

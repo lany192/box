@@ -1,5 +1,6 @@
 package com.lany192.box.sample.ui.zxing
 
+import com.github.lany192.extension.toast
 import com.google.zxing.Result
 import com.hjq.toast.Toaster
 import com.king.camera.scan.AnalyzeResult
@@ -36,7 +37,7 @@ class MultiFormatScanActivity : BarcodeCameraScanActivity() {
         // 停止分析
         cameraScan.setAnalyzeImage(false)
         // 处理扫码结果相关逻辑（此处弹Toast只是为了演示）
-        Toaster.show(result.result.text)
+        toast(result.result.text)
         // 继续分析
         cameraScan.setAnalyzeImage(true)
     }

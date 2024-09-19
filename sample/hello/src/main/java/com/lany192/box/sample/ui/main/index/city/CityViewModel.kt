@@ -2,6 +2,7 @@ package com.lany192.box.sample.ui.main.index.city
 
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.items.ItemsViewModel
+import com.github.lany192.extension.toast
 import com.hjq.toast.Toaster
 import com.lany192.box.network.repository.BoxRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,7 +32,7 @@ class CityViewModel @Inject constructor(val repository: BoxRepository) : ItemsVi
                         }
                         moreLoadEnd()
                     } else {
-                        Toaster.show(it.msg)
+                        toast(it.msg)
                     }
                 }
         }

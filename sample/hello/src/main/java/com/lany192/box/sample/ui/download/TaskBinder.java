@@ -3,7 +3,7 @@ package com.lany192.box.sample.ui.download;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.items.ItemBinder;
-import com.lany192.box.sample.databinding.ItemTaskBinding;
+import com.lany192.box.hello.databinding.ItemTaskBinding;
 import com.liulishuo.okdownload.DownloadTask;
 import com.liulishuo.okdownload.core.Util;
 

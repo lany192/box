@@ -8,8 +8,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.extension.load
 import com.github.lany192.extension.postDelayedOnLifecycle
-import com.lany192.box.sample.R
-import com.lany192.box.sample.databinding.ActivitySplashBinding
+import com.lany192.box.hello.R
+import com.lany192.box.hello.databinding.ActivitySplashBinding
 import com.lany192.box.sample.ui.main.MainRouter
 import dagger.hilt.android.AndroidEntryPoint
 

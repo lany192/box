@@ -7,7 +7,7 @@ import com.github.lany192.arch.items.ItemBinder;
 import com.github.lany192.arch.tab.TabAdapter;
 import com.github.lany192.arch.tab.TabItem;
 import com.lany192.box.network.data.bean.ViewPagerItem;
-import com.lany192.box.sample.databinding.ItemViewPagerBinding;
+import com.lany192.box.hello.databinding.ItemViewPagerBinding;
 import com.lany192.box.sample.ui.main.index.article.ArticleBuilder;
 
 import java.util.ArrayList;

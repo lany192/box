@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.database
 
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
-import com.hjq.toast.Toaster
+import com.github.lany192.extension.toast
 import com.lany192.box.database.entity.SearchHistory
 import com.lany192.box.database.repository.DatabaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +22,7 @@ class DatabaseViewModel @Inject constructor(val repository: DatabaseRepository) 
             val records = repository.saveSearchHistory(record)
             records.collect {
                 log.i("插入测试：" + it.size)
-                Toaster.show("数据：" + it.size)
+                toast("数据：" + it.size)
             }
         }
     }

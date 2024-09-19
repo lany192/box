@@ -3,7 +3,7 @@ package com.github.lany192.arch.items
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.entity.ApiResult
 import com.github.lany192.arch.entity.Page
-import com.hjq.toast.Toaster
+import com.github.lany192.extension.toast
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
@@ -65,7 +65,7 @@ abstract class PageViewModel : ItemsViewModel() {
                             requestError()
                         }
                     } else {
-                        Toaster.show(it.msg)
+                        toast(it.msg)
                         requestError()
                     }
                 }

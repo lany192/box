@@ -3,7 +3,7 @@ package com.lany192.box.sample.dialog
 import com.github.lany192.dialog.BaseDialog
 import com.github.lany192.extension.toast
 import com.github.lany192.utils.KeyboardWatcher
-import com.lany192.box.sample.databinding.DialogReplyBinding
+import com.lany192.box.hello.databinding.DialogReplyBinding
 
 class ReplyDialog : BaseDialog<DialogReplyBinding>() {
     override fun bottomStyle(): Boolean {

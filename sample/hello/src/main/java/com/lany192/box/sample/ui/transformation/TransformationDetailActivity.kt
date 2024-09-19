@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.github.lany192.arch.activity.ViewBindingActivity
-import com.lany192.box.sample.databinding.ActivityTransformDetailBinding
+import com.lany192.box.hello.databinding.ActivityTransformDetailBinding
 import com.lany192.box.sample.ui.transformation.recycler.Poster
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout

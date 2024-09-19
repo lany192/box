@@ -9,7 +9,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.lany192.box.sample.R;
+import com.lany192.box.hello.R;
 
 import net.nightwhistler.htmlspanner.HtmlSpanner;
 

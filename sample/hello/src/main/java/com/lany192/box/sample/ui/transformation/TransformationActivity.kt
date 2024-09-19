@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewBindingActivity
-import com.lany192.box.sample.databinding.ActivityTransformationBinding
+import com.lany192.box.hello.databinding.ActivityTransformationBinding
 import com.lany192.box.sample.ui.transformation.recycler.PosterAdapter
 import com.lany192.box.sample.ui.transformation.recycler.PosterMenuAdapter
 import dagger.hilt.android.AndroidEntryPoint

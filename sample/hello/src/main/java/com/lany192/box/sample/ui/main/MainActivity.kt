@@ -8,13 +8,14 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
+import com.github.lany192.extension.toast
 import com.github.lany192.log.LogUtils
 import com.github.lany192.utils.ContextUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.UserInfo
-import com.lany192.box.sample.R
-import com.lany192.box.sample.databinding.ActivityMainBinding
+import com.lany192.box.hello.R
+import com.lany192.box.hello.databinding.ActivityMainBinding
 import com.lany192.box.sample.ui.main.discover.DiscoverBuilder
 import com.lany192.box.sample.ui.main.index.IndexBuilder
 import com.lany192.box.sample.ui.main.menus.MenusBuilder
@@ -40,10 +41,10 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Toaster.show("测试：" + ContextUtils.isDebug())
+        toast("测试：" + ContextUtils.isDebug())
 //        ViewUtils.setGrayStyle(this, true)
         userViewModel = getAndroidViewModel(UserViewModel::class.java)
-        userViewModel.userInfo.observe(this) { userInfo: UserInfo -> Toaster.show("首页：" + userInfo.name) }
+        userViewModel.userInfo.observe(this) { userInfo: UserInfo -> toast("首页：" + userInfo.name) }
         val items = mutableListOf<TabItem>()
         items.add(TabItem("测试", MenusBuilder.getFragment()))
         items.add(TabItem("首页", IndexBuilder.getFragment()))
@@ -96,7 +97,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (System.currentTimeMillis() - mLastClickTime > 3000) {
-                Toaster.show("再按一次退出" + getString(R.string.app_name))
+                toast("再按一次退出" + getString(R.string.app_name))
                 mLastClickTime = System.currentTimeMillis()
                 return true;
             }

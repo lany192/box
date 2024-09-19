@@ -3,6 +3,7 @@ package com.lany192.box.sample.ui.main.my
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
+import com.github.lany192.extension.toast
 import com.hjq.toast.Toaster
 import com.lany192.box.network.data.bean.Area
 import com.lany192.box.network.repository.BoxRepository
@@ -33,7 +34,7 @@ class MyViewModel @Inject constructor(val repository: BoxRepository) :
                     if (it.code == 0) {
                         items.postValue(it.data)
                     } else {
-                        Toaster.show(it.msg)
+                        toast(it.msg)
                     }
                 }
         }

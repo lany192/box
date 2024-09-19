@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.utils.ViewUtils
 import com.github.lany192.dialog.InputDialog
-import com.lany192.box.sample.databinding.ActivityImageBinding
+import com.lany192.box.hello.databinding.ActivityImageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

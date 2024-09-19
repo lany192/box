@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.guide
 
 import android.widget.FrameLayout
 import com.github.lany192.arch.adapter.BindingAdapter
-import com.lany192.box.sample.databinding.ItemGuideBinding
+import com.lany192.box.hello.databinding.ItemGuideBinding
 import org.libpag.PAGImageView
 
 class GuideAdapter(data: MutableList<String>, val height: Int, val listener: OnGuideListener) :

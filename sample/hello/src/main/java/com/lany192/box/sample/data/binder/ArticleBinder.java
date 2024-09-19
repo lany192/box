@@ -9,7 +9,7 @@ import com.github.lany192.utils.ImageUtils;
 import com.lany192.box.network.data.bean.Article;
 import com.lany192.box.router.provider.BrowserProvider;
 import com.lany192.box.sample.MockUtils;
-import com.lany192.box.sample.databinding.ItemArticleBinding;
+import com.lany192.box.hello.databinding.ItemArticleBinding;
 
 import java.util.Date;
 

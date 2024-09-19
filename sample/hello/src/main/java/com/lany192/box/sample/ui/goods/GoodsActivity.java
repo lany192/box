@@ -12,7 +12,7 @@ import com.github.lany192.arch.items.ItemsActivity;
 import com.github.lany192.arch.utils.BarUtils;
 import com.lany192.box.sample.data.binder.ArticleBinder;
 import com.lany192.box.sample.data.binder.ViewPagerBinder;
-import com.lany192.box.sample.databinding.ActivityGoodsBinding;
+import com.lany192.box.hello.databinding.ActivityGoodsBinding;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;

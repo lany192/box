@@ -15,8 +15,8 @@ import com.google.zxing.BarcodeFormat
 import com.king.camera.scan.CameraScan
 import com.king.zxing.util.CodeUtils
 import com.lany192.box.sample.MockUtils
-import com.lany192.box.sample.R
-import com.lany192.box.sample.databinding.ActivityZxingBinding
+import com.lany192.box.hello.R
+import com.lany192.box.hello.databinding.ActivityZxingBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.apache.commons.lang3.RandomUtils
 import java.util.concurrent.Executors

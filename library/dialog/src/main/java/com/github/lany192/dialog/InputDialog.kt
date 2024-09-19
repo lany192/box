@@ -4,14 +4,11 @@ import android.text.TextUtils
 import android.text.method.MovementMethod
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.annotation.ColorRes
 import com.github.lany192.dialog.databinding.DialogInputBinding
+import com.github.lany192.extension.toast
 import com.github.lany192.interfaces.OnSimpleListener
 import com.github.lany192.utils.KeyboardWatcher
-import com.github.lany192.utils.KeyboardWatcher.OnKeyboardListener
-import com.hjq.toast.Toaster
-
 
 class InputDialog : BaseDialog<DialogInputBinding>() {
     @ColorRes
@@ -54,7 +51,7 @@ class InputDialog : BaseDialog<DialogInputBinding>() {
             binding.title.setTextColorId(titleColor)
         }
         KeyboardWatcher(requireActivity()) { showKeyboard, keyboardHeight ->
-            Toaster.show("键盘板状态：$showKeyboard, 高度：$keyboardHeight")
+            toast("键盘板状态：$showKeyboard, 高度：$keyboardHeight")
             binding.panel.layoutParams.height = keyboardHeight
         }
     }

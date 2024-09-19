@@ -5,7 +5,7 @@ import com.github.lany192.arch.fragment.ViewModelFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.arch.utils.BarUtils
-import com.lany192.box.sample.databinding.FragmentIndexBinding
+import com.lany192.box.hello.databinding.FragmentIndexBinding
 import com.lany192.box.sample.ui.main.index.article.ArticleBuilder
 import com.lany192.box.sample.ui.main.index.city.CityBuilder
 import com.lany192.box.sample.ui.main.index.girl.GirlBuilder

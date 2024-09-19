@@ -20,8 +20,8 @@ import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.video.JZMediaExo
 import com.github.lany192.video.Jzvd
 import com.github.lany192.video.JzvdStd
-import com.lany192.box.sample.R
-import com.lany192.box.sample.databinding.ActivityVideoBinding
+import com.lany192.box.hello.R
+import com.lany192.box.hello.databinding.ActivityVideoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -8,15 +8,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
+import com.github.lany192.extension.toast
 import com.github.lany192.log.LogUtils
-import com.github.lany192.utils.ContextUtils
-import com.hjq.toast.Toaster
 import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.ActivityMainBinding
-import com.lany192.box.avatar.ui.main.discover.DiscoverBuilder
-import com.lany192.box.avatar.ui.main.index.IndexBuilder
 import com.lany192.box.avatar.ui.main.menus.MenusBuilder
-import com.lany192.box.avatar.ui.main.message.MessageBuilder
 import com.lany192.box.avatar.ui.main.my.MyBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,18 +22,13 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
     // 第一次按退出的时间
     private var mLastClickTime: Long = 0
 
-    override fun getViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Toaster.show("测试：" + ContextUtils.isDebug())
         val items = mutableListOf<TabItem>()
         items.add(TabItem("测试", MenusBuilder.getFragment()))
-        items.add(TabItem("首页", IndexBuilder.getFragment()))
-        items.add(TabItem("发现", DiscoverBuilder.getFragment()))
-        items.add(TabItem("消息", MessageBuilder.getFragment()))
+        items.add(TabItem("首页", MyBuilder.getFragment()))
+        items.add(TabItem("发现", MyBuilder.getFragment()))
+        items.add(TabItem("消息", MyBuilder.getFragment()))
         items.add(TabItem("我的", MyBuilder.getFragment()))
         binding.viewpager.isUserInputEnabled = false
         binding.viewpager.offscreenPageLimit = items.size
@@ -85,7 +76,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (System.currentTimeMillis() - mLastClickTime > 3000) {
-                Toaster.show("再按一次退出" + getString(R.string.app_name))
+                toast("再按一次退出" + getString(R.string.app_name))
                 mLastClickTime = System.currentTimeMillis()
                 return true;
             }

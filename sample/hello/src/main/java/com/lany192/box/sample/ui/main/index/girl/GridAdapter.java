@@ -3,7 +3,7 @@ package com.lany192.box.sample.ui.main.index.girl;
 import androidx.annotation.NonNull;
 
 import com.github.lany192.arch.adapter.BindingAdapter;
-import com.lany192.box.sample.databinding.ItemGirlBinding;
+import com.lany192.box.hello.databinding.ItemGirlBinding;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewBindingActivity;
 import com.github.lany192.arch.utils.BarUtils;
 import com.github.lany192.blackbox.BlackBox;
-import com.lany192.box.sample.databinding.ActivityEncryptBinding;
+import com.lany192.box.hello.databinding.ActivityEncryptBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

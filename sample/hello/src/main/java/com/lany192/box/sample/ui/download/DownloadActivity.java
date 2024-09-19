@@ -2,7 +2,7 @@ package com.lany192.box.sample.ui.download;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.lany192.arch.activity.ViewModelActivity;
-import com.lany192.box.sample.databinding.ActivityDownloadBinding;
+import com.lany192.box.hello.databinding.ActivityDownloadBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

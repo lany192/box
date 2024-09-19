@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.extension.addStatusBarPadding
 import com.lany192.box.router.provider.BrowserProvider
-import com.lany192.box.sample.databinding.ActivityAboutBinding
+import com.lany192.box.hello.databinding.ActivityAboutBinding
 import com.lany192.box.sample.ui.settings.feedback.FeedbackRouter
 import dagger.hilt.android.AndroidEntryPoint
 import de.psdev.licensesdialog.LicensesDialog

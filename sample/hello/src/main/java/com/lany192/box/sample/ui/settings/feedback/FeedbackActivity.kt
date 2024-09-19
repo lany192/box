@@ -6,7 +6,7 @@ import com.github.lany192.arch.activity.ViewBindingActivity
 import com.github.lany192.extension.toast
 import com.github.lany192.extension.addStatusBarPadding
 import com.github.lany192.utils.KeyboardWatcher
-import com.lany192.box.sample.databinding.ActivityFeedbackBinding
+import com.lany192.box.hello.databinding.ActivityFeedbackBinding
 import com.lany192.box.sample.dialog.ReplyDialog
 import dagger.hilt.android.AndroidEntryPoint
 

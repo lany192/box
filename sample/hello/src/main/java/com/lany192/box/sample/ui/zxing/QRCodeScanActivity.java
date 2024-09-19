@@ -14,7 +14,7 @@ import com.king.zxing.BarcodeCameraScanActivity;
 import com.king.zxing.DecodeConfig;
 import com.king.zxing.DecodeFormatManager;
 import com.king.zxing.analyze.QRCodeAnalyzer;
-import com.lany192.box.sample.R;
+import com.lany192.box.hello.R;
 
 /**
  * 扫二维码识别示例

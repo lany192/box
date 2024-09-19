@@ -5,7 +5,7 @@ import com.github.lany192.arch.fragment.ViewModelFragment
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.arch.utils.BarUtils
-import com.lany192.box.sample.databinding.FragmentMessageBinding
+import com.lany192.box.hello.databinding.FragmentMessageBinding
 import com.lany192.box.sample.ui.main.index.city.CityBuilder
 import com.lany192.box.sample.ui.main.index.girl.GirlBuilder
 import dagger.hilt.android.AndroidEntryPoint

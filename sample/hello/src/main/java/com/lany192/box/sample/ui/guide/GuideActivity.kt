@@ -11,7 +11,7 @@ import com.github.lany192.extension.visible
 import com.github.lany192.utils.PhoneUtils
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
-import com.lany192.box.sample.databinding.ActivityGuideBinding
+import com.lany192.box.hello.databinding.ActivityGuideBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

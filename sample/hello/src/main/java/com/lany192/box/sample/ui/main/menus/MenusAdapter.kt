@@ -12,7 +12,7 @@ import com.lany192.box.browser.ui.BrowserRouter
 import com.lany192.box.hello.ui.HelloRouter
 import com.lany192.box.login.ui.LoginRouter
 import com.lany192.box.math.ui.MathRouter
-import com.lany192.box.sample.databinding.ItemMenuBinding
+import com.lany192.box.hello.databinding.ItemMenuBinding
 import com.lany192.box.sample.ui.blur.BlurRouter
 import com.lany192.box.sample.ui.database.DatabaseRouter
 import com.lany192.box.sample.ui.encrypt.EncryptRouter

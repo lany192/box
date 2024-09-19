@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.github.lany192.utils.DensityUtils;
-import com.lany192.box.sample.R;
+import com.lany192.box.hello.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@ package com.lany192.box.sample.data.binder
 
 import com.github.lany192.extension.load
 import com.github.lany192.arch.items.ItemBinder
-import com.lany192.box.sample.databinding.ItemImageBinding
+import com.lany192.box.hello.databinding.ItemImageBinding
 
 class ImageBinder : ItemBinder<String, ItemImageBinding>() {
 
