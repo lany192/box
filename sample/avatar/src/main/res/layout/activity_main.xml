@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#eeeeee"
     android:orientation="vertical"
-    tools:context="com.lany192.box.sample.ui.main.MainActivity">
+    tools:context="com.lany192.box.avatar.ui.main.MainActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"

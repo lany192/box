@@ -1,4 +1,4 @@
-package com.lany192.box.sample;
+package com.lany192.box.avatar;
 
 import static org.junit.Assert.assertEquals;
 

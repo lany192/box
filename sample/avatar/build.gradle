@@ -32,7 +32,7 @@ android {
         config {
             keyAlias 'box'
             keyPassword 'box2024'
-            storeFile file('../box.jks')
+            storeFile file('avatar_app.jks')
             storePassword 'box2024'
         }
     }

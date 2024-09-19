@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
-    tools:context="com.lany192.box.sample.ui.splash.SplashActivity">
+    tools:context="com.lany192.box.avatar.ui.splash.SplashActivity">
 
     <com.github.lany192.text.BoxTextView
         android:id="@+id/textView"

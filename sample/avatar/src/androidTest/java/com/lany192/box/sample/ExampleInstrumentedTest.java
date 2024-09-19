@@ -1,4 +1,4 @@
-package com.lany192.box.sample;
+package com.lany192.box.avatar;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.lany192.box.sample", appContext.getPackageName());
+        assertEquals("com.lany192.box.avatar", appContext.getPackageName());
     }
 }
