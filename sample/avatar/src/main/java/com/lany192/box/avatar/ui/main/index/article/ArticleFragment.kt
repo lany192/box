@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.items.ItemsFragment
 import com.github.lany192.log.LogUtils
-import com.lany192.box.avatar.data.binder.ArticleBinder
+import com.lany192.box.avatar.binder.ArticleBinder
 import com.lany192.box.avatar.databinding.FragmentArticleBinding
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint

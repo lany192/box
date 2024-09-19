@@ -2,7 +2,7 @@ package com.lany192.box.avatar.ui.main.index.girl
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.items.PageFragment
-import com.lany192.box.avatar.data.binder.ArticleBinder
+import com.lany192.box.avatar.binder.ArticleBinder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

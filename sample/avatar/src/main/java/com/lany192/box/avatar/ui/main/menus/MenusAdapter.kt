@@ -9,10 +9,7 @@ import com.github.lany192.extension.toast
 import com.github.lany192.toolkit.BoxToolKit
 import com.github.lany192.utils.ChannelUtils
 import com.lany192.box.avatar.databinding.ItemMenuBinding
-import com.lany192.box.avatar.ui.database.DatabaseRouter
-import com.lany192.box.avatar.ui.encrypt.EncryptRouter
 import com.lany192.box.avatar.ui.settings.SettingsRouter
-import com.lany192.box.avatar.ui.zxing.ZxingRouter
 import com.lany192.box.browser.ui.BrowserRouter
 import com.lany192.box.hello.ui.HelloRouter
 import com.lany192.box.login.ui.LoginRouter
@@ -47,15 +44,15 @@ class MenusAdapter(data: List<MenuItem>) : BindingAdapter<MenuItem, ItemMenuBind
             val channel = ChannelUtils.getChannelByPath(path)
             toast("渠道信息：$channel")
         } else if (position == 7) {
-            ZxingRouter.start()
+            toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 8) {
             toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 9) {
-            DatabaseRouter.start()
+            toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 10) {
             toast(DeviceId.get().deviceId)
         } else if (position == 11) {
-            EncryptRouter.start()
+            toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 12) {
             HelloRouter.start()
         } else if (position == 13) {

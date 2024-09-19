@@ -7,8 +7,8 @@ import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.decoration.Border
 import com.github.lany192.decoration.Divider
 import com.github.lany192.decoration.ItemDecoration
-import com.lany192.box.avatar.data.binder.CategoryBinder
-import com.lany192.box.avatar.data.binder.ImageBinder
+import com.lany192.box.avatar.binder.CategoryBinder
+import com.lany192.box.avatar.binder.ImageBinder
 import com.lany192.box.avatar.databinding.FragmentDiscoverBinding
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
