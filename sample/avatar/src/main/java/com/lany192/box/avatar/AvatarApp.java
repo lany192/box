@@ -14,7 +14,7 @@ import com.lany192.box.router.lifecycle.ActivityLifecycle;
 import dagger.hilt.android.HiltAndroidApp;
 
 @HiltAndroidApp
-public class SampleApp extends BoxApplication {
+public class AvatarApp extends BoxApplication {
 
     @Override
     public void onCreate() {

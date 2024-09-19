@@ -8,16 +8,13 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
-        android:name=".SampleApp"
+        android:name=".AvatarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.database.DatabaseActivity"
-            android:exported="false" />
         <activity
             android:name=".ui.settings.feedback.FeedbackActivity"
             android:exported="false"
@@ -66,18 +63,5 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.zxing.FullScreenQRCodeScanActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/CameraScanTheme" />
-        <activity
-            android:name=".ui.zxing.MultiFormatScanActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/CameraScanTheme" />
-        <activity
-            android:name=".ui.zxing.QRCodeScanActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/CameraScanTheme" />
     </application>
-
 </manifest>
