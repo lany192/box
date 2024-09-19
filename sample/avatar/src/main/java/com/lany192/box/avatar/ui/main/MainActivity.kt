@@ -10,9 +10,7 @@ import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.log.LogUtils
 import com.github.lany192.utils.ContextUtils
-import com.gyf.immersionbar.ImmersionBar
 import com.hjq.toast.Toaster
-import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.ActivityMainBinding
 import com.lany192.box.avatar.ui.main.discover.DiscoverBuilder
@@ -20,7 +18,6 @@ import com.lany192.box.avatar.ui.main.index.IndexBuilder
 import com.lany192.box.avatar.ui.main.menus.MenusBuilder
 import com.lany192.box.avatar.ui.main.message.MessageBuilder
 import com.lany192.box.avatar.ui.main.my.MyBuilder
-import com.lany192.box.avatar.ui.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @Route(path = "/ui/main")
@@ -28,22 +25,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
     // 第一次按退出的时间
     private var mLastClickTime: Long = 0
-    private lateinit var userViewModel: UserViewModel
 
     override fun getViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
-//    override fun initImmersionBar() {
-//        ImmersionBar.with(this).init()
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Toaster.show("测试：" + ContextUtils.isDebug())
-//        ViewUtils.setGrayStyle(this, true)
-        userViewModel = getAndroidViewModel(UserViewModel::class.java)
-        userViewModel.userInfo.observe(this) { userInfo: UserInfo -> Toaster.show("首页：" + userInfo.name) }
         val items = mutableListOf<TabItem>()
         items.add(TabItem("测试", MenusBuilder.getFragment()))
         items.add(TabItem("首页", IndexBuilder.getFragment()))

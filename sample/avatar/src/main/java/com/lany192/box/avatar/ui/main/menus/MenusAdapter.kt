@@ -8,20 +8,15 @@ import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extension.toast
 import com.github.lany192.toolkit.BoxToolKit
 import com.github.lany192.utils.ChannelUtils
+import com.lany192.box.avatar.databinding.ItemMenuBinding
+import com.lany192.box.avatar.ui.database.DatabaseRouter
+import com.lany192.box.avatar.ui.encrypt.EncryptRouter
+import com.lany192.box.avatar.ui.settings.SettingsRouter
+import com.lany192.box.avatar.ui.zxing.ZxingRouter
 import com.lany192.box.browser.ui.BrowserRouter
 import com.lany192.box.hello.ui.HelloRouter
 import com.lany192.box.login.ui.LoginRouter
 import com.lany192.box.math.ui.MathRouter
-import com.lany192.box.avatar.databinding.ItemMenuBinding
-import com.lany192.box.avatar.ui.blur.BlurRouter
-import com.lany192.box.avatar.ui.database.DatabaseRouter
-import com.lany192.box.avatar.ui.encrypt.EncryptRouter
-import com.lany192.box.avatar.ui.guide.GuideRouter
-import com.lany192.box.avatar.ui.html.HtmlRouter
-import com.lany192.box.avatar.ui.image.ImageRouter
-import com.lany192.box.avatar.ui.settings.SettingsRouter
-import com.lany192.box.avatar.ui.transformation.TransformationRouter
-import com.lany192.box.avatar.ui.zxing.ZxingRouter
 import com.lany192.box.user.ui.UserInfoRouter
 import com.scottyab.rootbeer.RootBeer
 
@@ -41,7 +36,7 @@ class MenusAdapter(data: List<MenuItem>) : BindingAdapter<MenuItem, ItemMenuBind
         } else if (position == 3) {
             toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 4) {
-            HtmlRouter.start()
+            toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 5) {
             val channelApkPath = ChannelUtils.getChannelApkPath(context, "hello")
             Log.i("测试", "apkPath: $channelApkPath")
@@ -54,7 +49,7 @@ class MenusAdapter(data: List<MenuItem>) : BindingAdapter<MenuItem, ItemMenuBind
         } else if (position == 7) {
             ZxingRouter.start()
         } else if (position == 8) {
-            TransformationRouter.start()
+            toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 9) {
             DatabaseRouter.start()
         } else if (position == 10) {
@@ -72,18 +67,18 @@ class MenusAdapter(data: List<MenuItem>) : BindingAdapter<MenuItem, ItemMenuBind
         } else if (position == 16) {
             UserInfoRouter.start()
         } else if (position == 17) {
-            ImageRouter.start()
+            toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 18) {
             SettingsRouter.start()
         } else if (position == 19) {
-            BlurRouter.start()
+            toast("是否是模拟器：" + BoxToolKit.isEmulator())
         } else if (position == 20) {
             InputDialog().apply {
                 title = "输入框"
                 message = "请输入内容"
             }.show()
         } else if (position == 21) {
-            GuideRouter.start()
+            toast("是否是模拟器：" + BoxToolKit.isEmulator())
         }
     }
 

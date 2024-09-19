@@ -6,7 +6,6 @@ import com.github.lany192.arch.activity.ViewBindingActivity
 import com.github.lany192.extension.toast
 import com.github.lany192.utils.KeyboardWatcher
 import com.lany192.box.avatar.databinding.ActivityFeedbackBinding
-import com.lany192.box.avatar.dialog.ReplyDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +15,6 @@ class FeedbackActivity : ViewBindingActivity<ActivityFeedbackBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.button.setOnClickListener {
-            ReplyDialog().show()
         }
         KeyboardWatcher(this, object : KeyboardWatcher.OnKeyboardListener {
 

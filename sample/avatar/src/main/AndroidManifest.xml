@@ -16,16 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.blur.BlurActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.database.DatabaseActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.image.ImageActivity"
-            android:exported="false"
-            android:label="图片"
-            android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.encrypt.EncryptActivity"
             android:exported="false"
@@ -37,29 +29,14 @@
             android:label="Zxing测试"
             android:screenOrientation="nosensor" />
         <activity
-            android:name=".ui.html.HtmlActivity"
-            android:exported="false"
-            android:label="html测试"
-            android:screenOrientation="nosensor" />
-        <activity
             android:name=".ui.video.VideoActivity"
             android:exported="false"
             android:label="视频测试"
             android:screenOrientation="nosensor" />
         <activity
-            android:name=".ui.goods.GoodsActivity"
-            android:exported="false"
-            android:label="列表测试"
-            android:screenOrientation="nosensor" />
-        <activity
             android:name=".ui.settings.feedback.FeedbackActivity"
             android:exported="false"
             android:label="反馈"
-            android:screenOrientation="nosensor" />
-        <activity
-            android:name=".ui.download.DownloadActivity"
-            android:exported="false"
-            android:label="下载"
             android:screenOrientation="nosensor" />
         <activity
             android:name=".ui.settings.SettingsActivity"
@@ -77,11 +54,6 @@
             android:name=".ui.settings.about.AboutActivity"
             android:exported="false"
             android:label="关于"
-            android:screenOrientation="nosensor" />
-        <activity
-            android:name=".ui.guide.GuideActivity"
-            android:exported="false"
-            android:label="引导页"
             android:screenOrientation="nosensor" />
         <activity
             android:name=".router.SchemeFilterActivity"
@@ -121,12 +93,6 @@
             android:name=".ui.zxing.QRCodeScanActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme" />
-        <activity
-            android:name=".ui.transformation.TransformationActivity"
-            android:launchMode="singleTop" />
-        <activity
-            android:name=".ui.transformation.TransformationDetailActivity"
-            android:launchMode="singleTop" />
     </application>
 
 </manifest>

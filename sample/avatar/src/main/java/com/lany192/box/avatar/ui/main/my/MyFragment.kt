@@ -12,16 +12,11 @@ import com.github.lany192.extension.toast
 import com.github.lany192.interfaces.OnSimpleListener
 import com.github.lany192.toolkit.BoxToolKit
 import com.hjq.toast.Toaster
-import com.lany192.box.network.data.bean.UserInfo
 import com.lany192.box.router.provider.HelloProvider
 import com.lany192.box.router.provider.LoginProvider
 import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.FragmentMyBinding
-import com.lany192.box.avatar.ui.download.DownloadRouter
-import com.lany192.box.avatar.ui.goods.GoodsRouter
 import com.lany192.box.avatar.ui.settings.SettingsRouter
-import com.lany192.box.avatar.ui.user.UserViewModel
-import com.lany192.box.avatar.ui.video.VideoRouter
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -35,17 +30,12 @@ class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
     @Autowired
     lateinit var helloProvider: HelloProvider
 
-    private lateinit var userViewModel: UserViewModel
-
     override fun initImmersionBar() {
         BarUtils.init(this).init()
     }
 
     override fun init() {
         super.init()
-        userViewModel = getAndroidViewModel(UserViewModel::class.java)
-        userViewModel.userInfo.observe(this) { userInfo: UserInfo -> binding.testView.hint(userInfo.name) }
-        binding.downloadView.setOnClickListener { DownloadRouter.start() }
         binding.dialogView.setOnClickListener { showDialog() }
         binding.loginView.setOnClickListener {
             loginProvider.startLogin()
@@ -54,7 +44,6 @@ class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
         binding.helloView.setOnClickListener {
             helloProvider.startHello()
         }
-        binding.goods.setOnClickListener { GoodsRouter.start() }
         binding.dialog2View.setOnClickListener { showDialog2() }
         binding.birthday.setOnClickListener {
             val dialog = BirthdayDialog(2001, 1, 1)
@@ -65,9 +54,6 @@ class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
                 }
             })
             dialog.show()
-        }
-        binding.testView.setOnClickListener {
-            userViewModel.setName("我是张三")
         }
         binding.image.load(R.mipmap.a)
         binding.gif1.load("https://img.zcool.cn/community/01ef345bcd8977a8012099c82483d3.gif")
@@ -80,7 +66,6 @@ class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
         binding.photoPicker.setOnClickListener {
 
         }
-        binding.video.setOnClickListener { VideoRouter.start() }
         binding.test1.setOnClickListener {
             helloProvider.startHello()
         }

@@ -7,7 +7,6 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.dialog.SimpleDialog
-import com.github.lany192.extension.addStatusBarPadding
 import com.github.lany192.extension.toast
 import com.github.lany192.interfaces.OnSimpleListener
 import com.github.lany192.update.config.UpdateConfig
@@ -20,14 +19,11 @@ import com.lany192.box.router.provider.UserProvider
 import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.ActivitySettingsBinding
 import com.lany192.box.avatar.ui.settings.about.AboutRouter
-import com.lany192.box.avatar.ui.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = "/ui/settings")
 class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBinding>() {
-    private lateinit var userViewModel: UserViewModel
-
     @Autowired
     lateinit var browserProvider: BrowserProvider
 
@@ -36,7 +32,6 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userViewModel = getAndroidViewModel(UserViewModel::class.java)
         binding.userInfo.setOnClickListener { userProvider.startUserInfo() }
         binding.cacheView.hint(CacheUtils.getCacheSize(this))
         binding.versionView.setOnClickListener { checkVersion() }

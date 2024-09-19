@@ -7,11 +7,8 @@ import com.github.lany192.arch.items.ItemsFragment
 import com.github.lany192.log.LogUtils
 import com.lany192.box.avatar.data.binder.ArticleBinder
 import com.lany192.box.avatar.databinding.FragmentArticleBinding
-import com.lany192.box.avatar.ui.goods.DemoEvent
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 @AndroidEntryPoint
 @Route(path = "/page/article")
@@ -40,11 +37,5 @@ class ArticleFragment : ItemsFragment<ArticleViewModel, FragmentArticleBinding>(
                 binding.demoLayout.setSubclass(firstVisibleItemPosition >= 0)
             }
         })
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: DemoEvent) {
-        LogUtils.i("父类滑动测试：" + event.firstVisibleItemPosition)
-        binding.demoLayout.setParentClass(event.firstVisibleItemPosition == 19)
     }
 }
