@@ -1,4 +1,4 @@
-package com.lany192.box.avatar.data.binder
+package com.lany192.box.avatar.binder
 
 import com.github.lany192.extension.load
 import com.github.lany192.arch.items.ItemBinder
