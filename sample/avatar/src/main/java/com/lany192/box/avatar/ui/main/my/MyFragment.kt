@@ -55,7 +55,6 @@ class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
             })
             dialog.show()
         }
-        binding.image.load(R.mipmap.a)
         binding.gif1.load("https://img.zcool.cn/community/01ef345bcd8977a8012099c82483d3.gif")
         binding.gif2.load("https://img.zcool.cn/community/01b8355bcd8978a801213deaae9e9c.gif")
         binding.checkView.setOnCheckChangeListener { Toaster.show(it) }
