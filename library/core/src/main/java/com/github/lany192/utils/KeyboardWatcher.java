@@ -32,10 +32,9 @@ public class KeyboardWatcher {
                 int navigationBarHeight = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
                 boolean navigationBarVisible = windowInsets.isVisible(WindowInsetsCompat.Type.navigationBars());
                 boolean hasNavigationBar = navigationBarVisible && navigationBarHeight > 0;
-                int height = hasNavigationBar ? Math.max(imeHeight - navigationBarHeight, 0) : imeHeight;
                 boolean floatMode = navigationBarHeight == imeHeight;
                 Log.i("KeyboardWatcher", "imeHeight: " + imeHeight + ", navigationBarHeight: "
-                        + navigationBarHeight + ", height: " + height + ", floatMode: " + floatMode);
+                        + navigationBarHeight + ", hasNavigationBar: " + hasNavigationBar + ", floatMode: " + floatMode);
                 if (keyboardHeight != imeHeight) {
                     keyboardHeight = imeHeight;
                     if (listener != null) {
