@@ -1,7 +1,5 @@
 package com.github.lany192.utils;
 
-import static com.github.lany192.extension.LogKt.log;
-
 import android.app.Activity;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -36,10 +34,13 @@ public class KeyboardWatcher {
                 boolean navigationBarVisible = windowInsets.isVisible(WindowInsetsCompat.Type.navigationBars());
                 boolean hasNavigationBar = navigationBarVisible && navigationBarHeight > 0;
                 int height = hasNavigationBar ? Math.max(imeHeight - navigationBarHeight, 0) : imeHeight;
-                if (keyboardHeight != height) {
-                    keyboardHeight = height;
+                boolean floatMode = navigationBarHeight == imeHeight;
+                Log.i("KeyboardWatcher", "imeHeight: " + imeHeight + ", navigationBarHeight: "
+                        + navigationBarHeight + ", height: " + height + ", floatMode: " + floatMode);
+                if (keyboardHeight != imeHeight) {
+                    keyboardHeight = imeHeight;
                     if (listener != null) {
-                        listener.onChanged(imeHeight > 0, height);
+                        listener.onChanged(imeHeight > 0, keyboardHeight, floatMode);
                     }
                 }
             });
@@ -59,7 +60,7 @@ public class KeyboardWatcher {
                 if (keyboardHeight != height) {
                     keyboardHeight = height;
                     if (listener != null) {
-                        listener.onChanged(height > 0, height);
+                        listener.onChanged(height > 0, height, false);
                     }
                 }
             });
@@ -87,7 +88,14 @@ public class KeyboardWatcher {
     }
 
     public interface OnKeyboardListener {
-        void onChanged(boolean showKeyboard, int keyboardHeight);
+        /**
+         * 键盘状态监听
+         *
+         * @param showKeyboard   是否显示键盘
+         * @param keyboardHeight 键盘高度
+         * @param floatMode      是否是悬浮模式
+         */
+        void onChanged(boolean showKeyboard, int keyboardHeight, boolean floatMode);
     }
 }
 

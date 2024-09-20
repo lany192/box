@@ -5,7 +5,6 @@ import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.interfaces.SimpleTextWatcher
-import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.extension.toast
 import com.github.lany192.link.Link
 import com.github.lany192.link.LinkBuilder
@@ -36,10 +35,10 @@ class SignatureActivity : ViewModelActivity<SignatureViewModel, ActivitySignatur
         }
         KeyboardWatcher(this, object : KeyboardWatcher.OnKeyboardListener {
 
-                override fun onChanged(showKeyboard: Boolean, keyboardHeight: Int) {
-                    toast("键盘弹出:$showKeyboard,高度：$keyboardHeight")
-                }
-            })
+            override fun onChanged(showKeyboard: Boolean, keyboardHeight: Int, floatMode: Boolean) {
+                toast("键盘弹出:$showKeyboard,高度：$keyboardHeight,悬浮模式：$floatMode")
+            }
+        })
     }
 
     /**

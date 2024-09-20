@@ -12,8 +12,8 @@ class ReplyDialog : BaseDialog<DialogReplyBinding>() {
 
     override fun init() {
         KeyboardWatcher(requireActivity(), object : KeyboardWatcher.OnKeyboardListener {
-            override fun onChanged(showKeyboard: Boolean, keyboardHeight: Int) {
-                toast("键盘高度：$keyboardHeight, 是否显示：$showKeyboard")
+            override fun onChanged(showKeyboard: Boolean, keyboardHeight: Int, floatMode: Boolean) {
+                toast("键盘弹出:$showKeyboard,高度：$keyboardHeight,悬浮模式：$floatMode")
             }
         })
     }

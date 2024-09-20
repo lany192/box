@@ -50,7 +50,7 @@ class InputDialog : BaseDialog<DialogInputBinding>() {
             binding.title.visibility = View.VISIBLE
             binding.title.setTextColorId(titleColor)
         }
-        KeyboardWatcher(requireActivity()) { showKeyboard, keyboardHeight ->
+        KeyboardWatcher(requireActivity()) { showKeyboard, keyboardHeight, floatMode ->
             toast("键盘板状态：$showKeyboard, 高度：$keyboardHeight")
             binding.panel.layoutParams.height = keyboardHeight
         }

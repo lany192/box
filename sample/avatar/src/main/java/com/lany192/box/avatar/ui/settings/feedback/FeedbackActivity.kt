@@ -19,8 +19,8 @@ class FeedbackActivity : ViewBindingActivity<ActivityFeedbackBinding>() {
         }
         KeyboardWatcher(this, object : KeyboardWatcher.OnKeyboardListener {
 
-            override fun onChanged(showKeyboard: Boolean, keyboardHeight: Int) {
-                toast("键盘弹出:$showKeyboard,高度：$keyboardHeight")
+            override fun onChanged(showKeyboard: Boolean, keyboardHeight: Int, floatMode: Boolean) {
+                toast("键盘弹出:$showKeyboard,高度：$keyboardHeight,悬浮模式：$floatMode")
             }
         })
     }
