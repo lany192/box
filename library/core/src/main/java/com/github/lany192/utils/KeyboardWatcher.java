@@ -26,7 +26,6 @@ public class KeyboardWatcher {
     public KeyboardWatcher(Activity activity, final KeyboardWatcher.OnKeyboardListener listener) {
         View decorView = activity.getWindow().getDecorView();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            // 监听Activity Layout变化
             decorView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
                 WindowInsets windowInsets = activity.getWindow().getDecorView().getRootWindowInsets();
                 int imeHeight = windowInsets.getInsets(WindowInsetsCompat.Type.ime()).bottom;
@@ -57,6 +56,8 @@ public class KeyboardWatcher {
                 }
                 // 两者的差值就是键盘的高度
                 int height = windowVisibleDisplayHeight - rect.bottom;
+                Log.i("KeyboardWatcher", "imeHeight: " + height + ", navigationBarHeight: "
+                        + rect.bottom + ", height: " + height);
                 if (keyboardHeight != height) {
                     keyboardHeight = height;
                     if (listener != null) {
