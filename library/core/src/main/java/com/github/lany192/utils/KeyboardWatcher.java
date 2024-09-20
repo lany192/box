@@ -1,9 +1,12 @@
 package com.github.lany192.utils;
 
+import static com.github.lany192.extension.LogKt.log;
+
 import android.app.Activity;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowInsets;
@@ -36,7 +39,7 @@ public class KeyboardWatcher {
                 if (keyboardHeight != height) {
                     keyboardHeight = height;
                     if (listener != null) {
-                        listener.onChanged(height > 0, height);
+                        listener.onChanged(imeHeight > 0, height);
                     }
                 }
             });

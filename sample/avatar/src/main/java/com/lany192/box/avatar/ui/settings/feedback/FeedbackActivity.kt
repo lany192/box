@@ -15,6 +15,7 @@ class FeedbackActivity : ViewBindingActivity<ActivityFeedbackBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.button.setOnClickListener {
+
         }
         KeyboardWatcher(this, object : KeyboardWatcher.OnKeyboardListener {
 
