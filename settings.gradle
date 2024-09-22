@@ -42,7 +42,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "box"
-include ':sample:hello'
+include ':sample:demo'
 include ':sample:avatar'
 
 include ':library:arch'
