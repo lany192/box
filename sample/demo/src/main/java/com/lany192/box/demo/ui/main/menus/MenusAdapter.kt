@@ -1,6 +1,7 @@
 package com.lany192.box.demo.ui.main.menus
 
 import android.util.Log
+import android.view.LayoutInflater
 import com.github.lany192.arch.adapter.BindingAdapter
 import com.github.lany192.arch.utils.DeviceId
 import com.github.lany192.dialog.InputDialog
@@ -8,7 +9,9 @@ import com.github.lany192.dialog.SimpleDialog
 import com.github.lany192.extension.toast
 import com.github.lany192.toolkit.BoxToolKit
 import com.github.lany192.utils.ChannelUtils
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lany192.box.browser.ui.BrowserRouter
+import com.lany192.box.demo.R
 import com.lany192.box.hello.ui.HelloRouter
 import com.lany192.box.login.ui.LoginRouter
 import com.lany192.box.math.ui.MathRouter
@@ -78,10 +81,15 @@ class MenusAdapter(data: List<MenuItem>) : BindingAdapter<MenuItem, ItemMenuBind
         } else if (position == 19) {
             BlurRouter.start()
         } else if (position == 20) {
-            InputDialog().apply {
-                title = "输入框"
-                message = "请输入内容"
-            }.show()
+//            InputDialog().apply {
+//                title = "输入框"
+//                message = "请输入内容"
+//            }.show()
+
+            val layoutInflater = LayoutInflater.from(context)
+            val dialog = BottomSheetDialog(context)
+            dialog.setContentView(layoutInflater.inflate(R.layout.dialog_reply, null))
+            dialog.show()
         } else if (position == 21) {
             GuideRouter.start()
         }
