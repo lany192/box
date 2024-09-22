@@ -1,5 +1,7 @@
 package com.lany192.box.sample;
 
+import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
@@ -7,9 +9,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.strictmode.FragmentStrictMode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.github.lany192.arch.BoxApplication;
+import com.github.lany192.arch.Box;
 import com.github.lany192.utils.ContextUtils;
-import com.hjq.toast.Toaster;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.lany192.box.router.lifecycle.ActivityLifecycle;
 import com.lany192.box.sample.lancet.LancetTest;
@@ -18,7 +19,12 @@ import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 
 @HiltAndroidApp
-public class SampleApp extends BoxApplication {
+public class SampleApp extends Application {
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        Box.getInstance().attachBaseContext(this);
+    }
 
     @Override
     public void onCreate() {
@@ -26,6 +32,7 @@ public class SampleApp extends BoxApplication {
         if (ProcessPhoenix.isPhoenixProcess(this)) {
             return;
         }
+        Box.getInstance().onCreate(this);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         initARouter();

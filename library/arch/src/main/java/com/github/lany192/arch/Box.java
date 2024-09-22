@@ -3,7 +3,6 @@ package com.github.lany192.arch;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
-import android.os.StrictMode;
 import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
@@ -22,19 +21,30 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
 import xcrash.XCrash;
 
-public abstract class BoxApplication extends Application implements ViewModelStoreOwner {
+public class Box implements ViewModelStoreOwner {
     private ViewModelStore mAppViewModelStore;
+    private volatile static Box instance = null;
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-        XCrash.init(this);
+    private Box() {
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+    public static Box getInstance() {
+        if (instance == null) {
+            synchronized (Box.class) {
+                if (instance == null) {
+                    instance = new Box();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void attachBaseContext(Context context) {
+        MultiDex.install(context);
+        XCrash.init(context);
+    }
+
+    public void onCreate(Application application) {
 //        ContextUtils.setApplicationContext(this);
 
         mAppViewModelStore = new ViewModelStore();
@@ -43,11 +53,11 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 
 //        KVUtils.init(this);
 
-        Toaster.init(this);
+        Toaster.init(application);
         Toaster.setView(R.layout.toast_view);
         Toaster.setDebugMode(ContextUtils.isDebug());
 
-        DialogHelper.get().init(this);
+        DialogHelper.get().init(application);
 
         DeviceId.get().grantedSDPermission();
         //处理异常
@@ -67,7 +77,6 @@ public abstract class BoxApplication extends Application implements ViewModelSto
 
 
     @NonNull
-    @Override
     public ViewModelStore getViewModelStore() {
         return mAppViewModelStore;
     }
@@ -88,9 +97,7 @@ public abstract class BoxApplication extends Application implements ViewModelSto
         });
     }
 
-    @Override
     public void onTerminate() {
         LogUtils.close();
-        super.onTerminate();
     }
 }
