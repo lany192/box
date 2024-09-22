@@ -37,6 +37,11 @@ public class AvatarApp extends Application {
         detectNonSdkApiUsageOnAndroidP();
     }
 
+    @Override
+    public void onTerminate() {
+        Box.getInstance().onTerminate();
+    }
+
     private void detectNonSdkApiUsageOnAndroidP() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return;

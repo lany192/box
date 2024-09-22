@@ -47,6 +47,11 @@ public class SampleApp extends Application {
         detectNonSdkApiUsageOnAndroidP();
     }
 
+    @Override
+    public void onTerminate() {
+        Box.getInstance().onTerminate();
+    }
+
     private void detectNonSdkApiUsageOnAndroidP() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return;
@@ -55,6 +60,7 @@ public class SampleApp extends Application {
         builder.detectNonSdkApiUsage();
         StrictMode.setVmPolicy(builder.build());
     }
+
     private void initARouter() {
         if (ContextUtils.isDebug()) {
             ARouter.openLog();
