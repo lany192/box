@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
-    tools:context="com.lany192.box.sample.ui.settings.about.AboutActivity">
+    tools:context="com.lany192.box.demo.ui.settings.about.AboutActivity">
 
     <com.github.lany192.view.ToolbarView
         android:id="@+id/toolbar"

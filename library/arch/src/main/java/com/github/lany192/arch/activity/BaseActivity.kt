@@ -17,6 +17,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.github.lany192.arch.Box
 import com.github.lany192.arch.R
 import com.github.lany192.arch.event.HideSoftInputEvent
 import com.github.lany192.dialog.LoadingDialog
@@ -97,7 +98,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun <T : ViewModel> getAndroidViewModel(modelClass: Class<T>): T {
-        return ViewModelProvider((applicationContext as ViewModelStoreOwner))[modelClass]
+        return ViewModelProvider((Box.getInstance() as ViewModelStoreOwner))[modelClass]
     }
 
     /**

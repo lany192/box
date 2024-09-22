@@ -13,6 +13,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.github.lany192.arch.Box
 import com.github.lany192.arch.R
 import com.github.lany192.arch.activity.OnResultCallback
 import com.github.lany192.arch.activity.MediaPickerLauncher
@@ -111,6 +112,6 @@ abstract class BaseFragment : Fragment() {
     }
 
     fun <T : ViewModel> getAndroidViewModel(modelClass: Class<T>): T {
-        return ViewModelProvider((requireActivity().applicationContext as ViewModelStoreOwner))[modelClass]
+        return ViewModelProvider((Box.getInstance() as ViewModelStoreOwner))[modelClass]
     }
 }

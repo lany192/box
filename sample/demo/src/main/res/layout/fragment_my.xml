@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.lany192.box.sample.view.RippleLayout
+        <com.lany192.box.demo.view.RippleLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -21,7 +21,7 @@
                 android:layout_height="320dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/a" />
-        </com.lany192.box.sample.view.RippleLayout>
+        </com.lany192.box.demo.view.RippleLayout>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
@@ -346,7 +346,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <com.lany192.box.sample.view.RippleView
+        <com.lany192.box.demo.view.RippleView
             android:layout_width="240dp"
             android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
@@ -356,7 +356,7 @@
             app:cIsAlpha="true"
             app:cIsFill="true" />
 
-        <com.lany192.box.sample.view.RoundLayout
+        <com.lany192.box.demo.view.RoundLayout
             android:id="@+id/round_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -367,7 +367,7 @@
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/a" />
-        </com.lany192.box.sample.view.RoundLayout>
+        </com.lany192.box.demo.view.RoundLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
