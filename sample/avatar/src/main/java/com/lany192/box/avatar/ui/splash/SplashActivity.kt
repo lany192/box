@@ -8,7 +8,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.extension.load
 import com.github.lany192.extension.postDelayedOnLifecycle
-import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.ActivitySplashBinding
 import com.lany192.box.avatar.ui.main.MainRouter
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,9 +29,9 @@ class SplashActivity : ViewModelActivity<SplashViewModel, ActivitySplashBinding>
             v.setPadding(systemBars.left, 0, systemBars.right, 0)
             insets
         }
-        binding.image.load(R.mipmap.demo)
+        binding.image.load(android.R.color.holo_blue_light)
         viewModel.welcome.observe(this) { s: String? -> binding.textView.text = s }
-        postDelayedOnLifecycle(3000) {
+        postDelayedOnLifecycle(1000) {
             MainRouter.start()
             finish()
         }

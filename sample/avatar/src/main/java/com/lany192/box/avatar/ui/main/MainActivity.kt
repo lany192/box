@@ -28,8 +28,6 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
         items.add(TabItem("测试", MenusBuilder.getFragment()))
         items.add(TabItem("首页", MyBuilder.getFragment()))
         items.add(TabItem("发现", MyBuilder.getFragment()))
-        items.add(TabItem("消息", MyBuilder.getFragment()))
-        items.add(TabItem("我的", MyBuilder.getFragment()))
         binding.viewpager.isUserInputEnabled = false
         binding.viewpager.offscreenPageLimit = items.size
         binding.viewpager.adapter = TabAdapter(this, items)
@@ -57,16 +55,6 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.menu_main_city -> {
-                    binding.viewpager.setCurrentItem(3, false)
-                    return@setOnItemSelectedListener true
-                }
-
-                R.id.menu_main_my -> {
-                    binding.viewpager.setCurrentItem(4, false)
-                    return@setOnItemSelectedListener true
-                }
-
                 else -> {}
             }
             false
@@ -82,10 +70,5 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
             }
         }
         return super.onKeyDown(keyCode, event)
-    }
-
-    override fun onDestroy() {
-        LogUtils.close()
-        super.onDestroy()
     }
 }

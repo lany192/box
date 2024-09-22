@@ -11,14 +11,6 @@
         android:title="测试" />
     <item
         android:id="@+id/menu_main_pic"
-        android:icon="@drawable/ic_backup_black_24dp"
-        android:title="发现" />
-    <item
-        android:id="@+id/menu_main_city"
-        android:icon="@drawable/ic_msg_black_24dp"
-        android:title="消息" />
-    <item
-        android:id="@+id/menu_main_my"
         android:icon="@drawable/ic_camera_black_24dp"
-        android:title="我的" />
+        android:title="发现" />
 </menu>
