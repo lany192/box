@@ -15,7 +15,6 @@ import com.github.lany192.utils.CacheUtils
 import com.hjq.permissions.XXPermissions
 import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.ActivitySettingsBinding
-import com.lany192.box.avatar.ui.settings.about.AboutRouter
 import com.lany192.box.router.provider.BrowserProvider
 import com.lany192.box.router.provider.UserProvider
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +41,7 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
         binding.noticeView.setOnClickListener {
             browserProvider.startBrowser("百度也不知道", "https://www.baidu.com")
         }
-        binding.aboutView.setOnClickListener { AboutRouter.start() }
+        binding.aboutView.setOnClickListener {  }
     }
 
     private fun showCacheDialog() {
