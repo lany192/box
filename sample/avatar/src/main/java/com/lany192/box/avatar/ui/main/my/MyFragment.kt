@@ -7,10 +7,8 @@ import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
-import com.github.lany192.extension.load
 import com.github.lany192.extension.toast
 import com.github.lany192.interfaces.OnSimpleListener
-import com.github.lany192.toolkit.BoxToolKit
 import com.lany192.box.avatar.databinding.FragmentMyBinding
 import com.lany192.box.avatar.ui.settings.SettingsRouter
 import com.lany192.box.router.provider.HelloProvider

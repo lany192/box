@@ -24,58 +24,81 @@ class MenusAdapter(data: List<MenuItem>) : BindingAdapter<MenuItem, ItemMenuBind
     }
 
     override fun onItemClicked(binding: ItemMenuBinding, item: MenuItem, position: Int) {
-        if (position == 0) {
-            test1()
-        } else if (position == 1) {
-            test2()
-        } else if (position == 2) {
-            test3()
-        } else if (position == 3) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
-        } else if (position == 4) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
-        } else if (position == 5) {
-            val channelApkPath = ChannelUtils.getChannelApkPath(context, "hello")
-            Log.i("测试", "apkPath: $channelApkPath")
-            toast(channelApkPath)
-        } else if (position == 6) {
-            val path =
-                ChannelUtils.getChannelApkPath(context, "hello_" + System.currentTimeMillis())
-            val channel = ChannelUtils.getChannelByPath(path)
-            toast("渠道信息：$channel")
-        } else if (position == 7) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
-        } else if (position == 8) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
-        } else if (position == 9) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
-        } else if (position == 10) {
-            toast(DeviceId.get().deviceId)
-        } else if (position == 11) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
-        } else if (position == 12) {
-            HelloRouter.start()
-        } else if (position == 13) {
-            BrowserRouter.start("测试", "https//www.baidu.com")
-        } else if (position == 14) {
-            LoginRouter.start()
-        } else if (position == 15) {
-            MathRouter.start()
-        } else if (position == 16) {
-            UserInfoRouter.start()
-        } else if (position == 17) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
-        } else if (position == 18) {
-            SettingsRouter.start()
-        } else if (position == 19) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
-        } else if (position == 20) {
-            InputDialog().apply {
-                title = "输入框"
-                message = "请输入内容"
-            }.show()
-        } else if (position == 21) {
-            toast("是否是模拟器：" + BoxToolKit.isEmulator())
+        when (position) {
+            0 -> {
+                test1()
+            }
+            1 -> {
+                test2()
+            }
+            2 -> {
+                test3()
+            }
+            3 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
+            4 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
+            5 -> {
+                val channelApkPath = ChannelUtils.getChannelApkPath(context, "hello")
+                Log.i("测试", "apkPath: $channelApkPath")
+                toast(channelApkPath)
+            }
+            6 -> {
+                val path =
+                    ChannelUtils.getChannelApkPath(context, "hello_" + System.currentTimeMillis())
+                val channel = ChannelUtils.getChannelByPath(path)
+                toast("渠道信息：$channel")
+            }
+            7 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
+            8 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
+            9 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
+            10 -> {
+                toast(DeviceId.get().deviceId)
+            }
+            11 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
+            12 -> {
+                HelloRouter.start()
+            }
+            13 -> {
+                BrowserRouter.start("测试", "https//www.baidu.com")
+            }
+            14 -> {
+                LoginRouter.start()
+            }
+            15 -> {
+                MathRouter.start()
+            }
+            16 -> {
+                UserInfoRouter.start()
+            }
+            17 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
+            18 -> {
+                SettingsRouter.start()
+            }
+            19 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
+            20 -> {
+                InputDialog().apply {
+                    title = "输入框"
+                    message = "请输入内容"
+                }.show()
+            }
+            21 -> {
+                toast("是否是模拟器：" + BoxToolKit.isEmulator())
+            }
         }
     }
 
@@ -98,14 +121,6 @@ class MenusAdapter(data: List<MenuItem>) : BindingAdapter<MenuItem, ItemMenuBind
 
     private fun test3() {
         toast("计算结果：" + hello(1, 2))
-    }
-
-    private fun test4() {
-        toast("点击了1")
-    }
-
-    private fun test5() {
-        toast("点击了")
     }
 
     private fun hello(x: Int, y: Int): Int {

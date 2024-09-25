@@ -9,7 +9,6 @@ import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
 import com.github.lany192.extension.toast
-import com.github.lany192.log.LogUtils
 import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.ActivityMainBinding
 import com.lany192.box.avatar.ui.main.menus.MenusBuilder
@@ -66,7 +65,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
             if (System.currentTimeMillis() - mLastClickTime > 3000) {
                 toast("再按一次退出" + getString(R.string.app_name))
                 mLastClickTime = System.currentTimeMillis()
-                return true;
+                return true
             }
         }
         return super.onKeyDown(keyCode, event)

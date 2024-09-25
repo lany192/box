@@ -13,12 +13,11 @@ import com.github.lany192.update.config.UpdateConfig
 import com.github.lany192.update.manager.UpdateManager
 import com.github.lany192.utils.CacheUtils
 import com.hjq.permissions.XXPermissions
-import com.hjq.toast.Toaster
-import com.lany192.box.router.provider.BrowserProvider
-import com.lany192.box.router.provider.UserProvider
 import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.ActivitySettingsBinding
 import com.lany192.box.avatar.ui.settings.about.AboutRouter
+import com.lany192.box.router.provider.BrowserProvider
+import com.lany192.box.router.provider.UserProvider
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,7 +59,7 @@ class SettingsActivity : ViewModelActivity<SettingsViewModel, ActivitySettingsBi
 
     private fun permissionSetting() {
         try {
-            XXPermissions.startPermissionActivity(this, "");
+            XXPermissions.startPermissionActivity(this, "")
         } catch (e: Exception) {
             val intent = Intent()
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

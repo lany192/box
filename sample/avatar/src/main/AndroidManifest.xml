@@ -16,11 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.settings.feedback.FeedbackActivity"
-            android:exported="false"
-            android:label="反馈"
-            android:screenOrientation="nosensor" />
-        <activity
             android:name=".ui.settings.SettingsActivity"
             android:exported="false"
             android:label="设置"
@@ -32,24 +27,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="nosensor"
             android:theme="@style/MainTheme" />
-        <activity
-            android:name=".ui.settings.about.AboutActivity"
-            android:exported="false"
-            android:label="关于"
-            android:screenOrientation="nosensor" />
-        <activity
-            android:name=".router.SchemeFilterActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="box" />
-                <data android:scheme="android" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"

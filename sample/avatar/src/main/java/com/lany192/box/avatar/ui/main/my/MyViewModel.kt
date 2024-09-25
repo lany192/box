@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MyViewModel @Inject constructor(val repository: BoxRepository) :
+class MyViewModel @Inject constructor(private val repository: BoxRepository) :
     LifecycleViewModel() {
-    val items = MutableLiveData<List<Area>>()
+    private val items = MutableLiveData<List<Area>>()
 
     override fun onLazyLoad() {
         super.onLazyLoad()
