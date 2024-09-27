@@ -106,6 +106,7 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.2.0" #https://github.com/jenly1314/ZXingLite
+qqopensdk = "3.53.0"
 
 [libraries]
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
@@ -256,6 +257,7 @@ tencent-vasdolly-reader = { module = "com.tencent.vasdolly:reader", version.ref 
 tencent-vasdolly-writer = { module = "com.tencent.vasdolly:writer", version.ref = "vasdolly" }
 tencent-wechat = { module = "com.tencent.mm.opensdk:wechat-sdk-android", version.ref = "wechat" }
 tencent-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "xlog" }
+tencent-qq-open-sdk = { module = "com.tencent.tauth:qqopensdk", version.ref = "qqopensdk" }
 tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflow-lite" }
 toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }
 touchimageview = { module = "com.github.MikeOrtiz:TouchImageView", version.ref = "touchimageview" }
