@@ -7,7 +7,9 @@ plugins {
     alias(libs.plugins.hilt.android)
     id 'com.github.lany192.router'
 }
-
+hilt {
+    enableAggregatingTask = false
+}
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
