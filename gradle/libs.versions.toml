@@ -107,6 +107,7 @@ xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.2.0" #https://github.com/jenly1314/ZXingLite
 qqopensdk = "3.53.0"
+openapi = "7.8.0" #https://github.com/OpenAPITools/openapi-generator
 
 [libraries]
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
@@ -288,4 +289,5 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 tencent-shadow = { id = "com.tencent.shadow.plugin", version.ref = "shadow" }
+openapi-generator = { id = "org.openapi.generator", version.ref = "openapi" }
 
