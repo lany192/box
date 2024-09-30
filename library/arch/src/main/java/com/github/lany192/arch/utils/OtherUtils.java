@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.ColorInt;
 import androidx.fragment.app.FragmentActivity;
@@ -95,5 +96,17 @@ public class OtherUtils {
      */
     public static boolean isDark(@ColorInt int color) {
         return androidx.core.graphics.ColorUtils.calculateLuminance(color) < 0.5;
+    }
+
+    /**
+     * 打印日志堆栈
+     */
+    public static void printStackTrace(String msg) {
+        try {
+            throw new RuntimeException("抛出堆栈:" + msg);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("打印堆栈", "堆栈信息：", e);
+        }
     }
 }
