@@ -1,15 +1,17 @@
 package com.lany192.box.avatar.ui.splash
 
-import androidx.lifecycle.MutableLiveData
 import com.github.lany192.arch.viewmodel.LifecycleViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor() : LifecycleViewModel() {
-    val welcome = MutableLiveData<String>()
+    private val _welcome = MutableSharedFlow<String>(replay = 1, extraBufferCapacity = 1)
+    val welcome: SharedFlow<String> get() = _welcome
 
     init {
-        welcome.postValue("Hello Box")
+        _welcome.tryEmit("Hello Box")
     }
 }
