@@ -7,7 +7,7 @@ import com.github.lany192.arch.utils.BarUtils
 import com.github.lany192.dialog.BirthdayDialog
 import com.github.lany192.dialog.MenuDialog
 import com.github.lany192.dialog.SimpleDialog
-import com.github.lany192.eventbus.postEvent
+import com.github.lany192.event.postEvent
 import com.github.lany192.extension.toast
 import com.github.lany192.interfaces.OnSimpleListener
 import com.lany192.box.avatar.databinding.FragmentMyBinding

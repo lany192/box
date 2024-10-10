@@ -1,16 +1,16 @@
-package com.github.lany192.eventbus
+package com.github.lany192.event
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -23,7 +23,7 @@ inline fun <reified T> LifecycleOwner.subscribeEvent(
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
 ) {
-    FlowBus.getDefault().subscribeEvent(
+    EventBus.getDefault().subscribe(
         lifecycleOwner = this,
         eventName = T::class.java.name,
         minState = minActiveState,
@@ -33,34 +33,25 @@ inline fun <reified T> LifecycleOwner.subscribeEvent(
     )
 }
 
+@OptIn(DelicateCoroutinesApi::class)
 @MainThread
 inline fun <reified T> subscribeEvent(
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
 ): Job {
-    return GlobalScope.launch {
-        FlowBus.getDefault().subscribeEvent(T::class.java.name, isSticky, onReceived)
+    return GlobalScope.launch(Dispatchers.Main.immediate) {
+        EventBus.getDefault().subscribe(T::class.java.name, isSticky, onReceived)
     }
 }
-
-inline fun <reified T : Any> postEvent(
-    event: T,
-    delayPost: Long = 0L
-) = FlowBus.getDefault().postEvent(
-    GlobalScope,
-    eventName = T::class.java.name,
-    valuePost = event,
-    delayPost = delayPost
-)
 
 inline fun <reified T : Any> LifecycleOwner.postEvent(
     event: T,
     delayPost: Long = 0L
 ) {
-    FlowBus.getDefault().postEvent(
+    EventBus.getDefault().post(
         lifecycle.coroutineScope,
         eventName = T::class.java.name,
-        valuePost = event,
+        event = event,
         delayPost = delayPost
     )
 }
@@ -69,23 +60,28 @@ inline fun <reified T : Any> ViewModel.postEvent(
     event: T,
     delayPost: Long = 0L
 ) {
-    FlowBus.getDefault().postEvent(
+    EventBus.getDefault().post(
         viewModelScope,
         eventName = T::class.java.name,
-        valuePost = event,
+        event = event,
         delayPost = delayPost
     )
 }
 
-inline fun <reified T> getFlowCollectCount(event: Class<T>): Int =
-    FlowBus.getDefault().getEventObserverCount(event.name)
+@OptIn(DelicateCoroutinesApi::class)
+inline fun <reified T : Any> postEvent(
+    event: T,
+    delayPost: Long = 0L
+) = EventBus.getDefault().post(
+    GlobalScope,
+    eventName = T::class.java.name,
+    event = event,
+    delayPost = delayPost
+)
 
-inline fun <reified T> getFlowCollectCountScope(scope: ViewModelStoreOwner, event: Class<T>) =
-    FlowBus.getDefault().getEventObserverCount(event.name)
+inline fun <reified T> getSubscriberCount(): Int =
+    EventBus.getDefault().getEventObserverCount(T::class.java.name)
 
-/**
- * repeatOnLifecycle
- */
 fun <T> LifecycleOwner.launchWhenStateAtLeast(
     minState: Lifecycle.State,
     block: suspend CoroutineScope.() -> T
