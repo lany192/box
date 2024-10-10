@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -57,7 +58,7 @@ class FlowBus private constructor() {
         isSticky: Boolean,
         onReceived: (T) -> Unit
     ): Job {
-        Log.d(TAG,"collect event : $eventName")
+        Log.d(TAG, "collect event : $eventName")
         return lifecycleOwner.launchWhenStateAtLeast(minState) {
             getFlowEventByTag(eventName = eventName, isSticky = isSticky).collect { valueCollect ->
                 this.launch(dispatcher) {
@@ -79,13 +80,18 @@ class FlowBus private constructor() {
 
     // Using : emit call to such a shared flow suspends until all subscribers receive the emitted value and returns immediately if there are no subscribers.
     // Thus, tryEmit call succeeds and returns true only if there are no subscribers (in which case the emitted value is immediately lost)
-    fun busEvent(eventName: String, valuePost: Any, delayPost: Long) {
-        Log.d(TAG,"post flow bus ==> :$eventName")
+    fun busEvent(
+        coroutineScope: CoroutineScope,
+        eventName: String,
+        valuePost: Any,
+        delayPost: Long
+    ) {
+        Log.d(TAG, "post flow bus ==> :$eventName")
         listOfNotNull(
             getFlowEventByTag(eventName = eventName, isSticky = true),
             getFlowEventByTag(eventName = eventName, isSticky = false)
         ).forEach { flowBus ->
-            GlobalScope.launch {
+            coroutineScope.launch {
                 delay(delayPost)
                 flowBus.emit(value = valuePost)
             }
@@ -102,9 +108,9 @@ class FlowBus private constructor() {
         try {
             onReceived.invoke(value as T)
         } catch (e: ClassCastException) {
-            Log.d(TAG,"class cast error when received value ==> :$value")
+            Log.d(TAG, "class cast error when received value ==> :$value")
         } catch (e: Exception) {
-            Log.d(TAG,"exception error when received value ==> :$value")
+            Log.d(TAG, "exception error when received value ==> :$value")
         }
     }
 }

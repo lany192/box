@@ -4,12 +4,16 @@ import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -66,17 +70,30 @@ inline fun <reified T : Any> busEvent(
     valueBus: T,
     delayPost: Long = 0L
 ) = FlowBus.getInstance().busEvent(
+    GlobalScope,
     eventName = T::class.java.name,
     valuePost = valueBus,
     delayPost = delayPost
 )
 
-inline fun <reified T : Any> busEvent(
-    scope: ViewModelStoreOwner,
+inline fun <reified T : Any> LifecycleOwner.busEvent(
     valueBus: T,
     delayPost: Long = 0L
 ) {
     FlowBus.getInstance().busEvent(
+        lifecycle.coroutineScope,
+        eventName = T::class.java.name,
+        valuePost = valueBus,
+        delayPost = delayPost
+    )
+}
+
+inline fun <reified T : Any> ViewModel.busEvent(
+    valueBus: T,
+    delayPost: Long = 0L
+) {
+    FlowBus.getInstance().busEvent(
+        viewModelScope,
         eventName = T::class.java.name,
         valuePost = valueBus,
         delayPost = delayPost

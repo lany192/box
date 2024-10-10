@@ -51,7 +51,7 @@ class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
             dialog.show()
         }
         binding.imagePicker.setOnClickListener {
-            busEvent(this,"测试1")
+            busEvent("测试1")
         }
         binding.photoPicker.setOnClickListener {
             busEvent("测试2")
