@@ -101,8 +101,7 @@ inline fun <reified T : Any> ViewModel.busEvent(
 }
 
 inline fun <reified T> getFlowCollectCount(event: Class<T>): Int =
-    FlowBus.getInstance()
-        .getEventObserverCount(event.name)
+    FlowBus.getInstance().getEventObserverCount(event.name)
 
 inline fun <reified T> getFlowCollectCountScope(scope: ViewModelStoreOwner, event: Class<T>) =
     FlowBus.getInstance().getEventObserverCount(event.name)
