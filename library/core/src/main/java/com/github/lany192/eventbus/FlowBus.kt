@@ -50,7 +50,7 @@ class FlowBus private constructor() {
         }
     }
 
-    fun <T : Any> collectFlowBus(
+    fun <T : Any> subscribeEvent(
         lifecycleOwner: LifecycleOwner,
         eventName: String,
         minState: Lifecycle.State,
@@ -68,7 +68,7 @@ class FlowBus private constructor() {
         }
     }
 
-    suspend fun <T : Any> collectWithoutLifecycle(
+    suspend fun <T : Any> subscribeEvent(
         eventName: String,
         isSticky: Boolean,
         onReceived: (T) -> Unit
@@ -80,7 +80,7 @@ class FlowBus private constructor() {
 
     // Using : emit call to such a shared flow suspends until all subscribers receive the emitted value and returns immediately if there are no subscribers.
     // Thus, tryEmit call succeeds and returns true only if there are no subscribers (in which case the emitted value is immediately lost)
-    fun busEvent(
+    fun postEvent(
         coroutineScope: CoroutineScope,
         eventName: String,
         valuePost: Any,
