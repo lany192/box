@@ -55,7 +55,7 @@ class MyFragment : ViewModelFragment<MyViewModel, FragmentMyBinding>() {
             postEvent("测试1")
         }
         binding.photoPicker.setOnClickListener {
-            postEvent("测试2")
+            postEvent(true)
         }
         binding.test1.setOnClickListener {
             helloProvider.startHello()

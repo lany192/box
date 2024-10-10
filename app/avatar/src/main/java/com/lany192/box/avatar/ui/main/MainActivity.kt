@@ -62,6 +62,9 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
         subscribeEvent<String> {
             toast("主界面接受：$it")
         }
+        subscribeEvent<Boolean> {
+            toast("主界面接受：$it")
+        }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
