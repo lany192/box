@@ -17,9 +17,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-//Should be listen MainThread,Follow by lifecycle owner
 @MainThread
-inline fun <reified T> LifecycleOwner.collectFlowBus(
+inline fun <reified T> LifecycleOwner.subscribeEvent(
     dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     isSticky: Boolean = false,
@@ -33,8 +32,7 @@ inline fun <reified T> LifecycleOwner.collectFlowBus(
     onReceived = onReceived
 )
 
-// Follow by Fragment Scope
-inline fun <reified T> collectFlowBus(
+inline fun <reified T> subscribeEvent(
     scope: Fragment,
     dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
@@ -49,9 +47,8 @@ inline fun <reified T> collectFlowBus(
     onReceived = onReceived
 )
 
-//Follow by collect without lifecycle
 @MainThread
-inline fun <reified T> collectFlowBus(
+inline fun <reified T> subscribeEvent(
     coroutineScope: CoroutineScope,
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
@@ -66,36 +63,36 @@ inline fun <reified T> collectFlowBus(
     }
 }
 
-inline fun <reified T : Any> busEvent(
-    valueBus: T,
+inline fun <reified T : Any> postEvent(
+    event: T,
     delayPost: Long = 0L
 ) = FlowBus.getDefault().busEvent(
     GlobalScope,
     eventName = T::class.java.name,
-    valuePost = valueBus,
+    valuePost = event,
     delayPost = delayPost
 )
 
-inline fun <reified T : Any> LifecycleOwner.busEvent(
-    valueBus: T,
+inline fun <reified T : Any> LifecycleOwner.postEvent(
+    event: T,
     delayPost: Long = 0L
 ) {
     FlowBus.getDefault().busEvent(
         lifecycle.coroutineScope,
         eventName = T::class.java.name,
-        valuePost = valueBus,
+        valuePost = event,
         delayPost = delayPost
     )
 }
 
-inline fun <reified T : Any> ViewModel.busEvent(
-    valueBus: T,
+inline fun <reified T : Any> ViewModel.postEvent(
+    event: T,
     delayPost: Long = 0L
 ) {
     FlowBus.getDefault().busEvent(
         viewModelScope,
         eventName = T::class.java.name,
-        valuePost = valueBus,
+        valuePost = event,
         delayPost = delayPost
     )
 }
