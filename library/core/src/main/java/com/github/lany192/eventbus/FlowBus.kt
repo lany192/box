@@ -16,7 +16,7 @@ class FlowBus private constructor() {
     companion object {
         private const val TAG = "FlowBusCollect"
         private val instance = FlowBus()
-        fun getInstance(): FlowBus {
+        fun getDefault(): FlowBus {
             return instance
         }
     }

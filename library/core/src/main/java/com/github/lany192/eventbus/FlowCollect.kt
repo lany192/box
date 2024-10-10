@@ -24,7 +24,7 @@ inline fun <reified T> LifecycleOwner.collectFlowBus(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
-): Job = FlowBus.getInstance().collectFlowBus(
+): Job = FlowBus.getDefault().collectFlowBus(
     lifecycleOwner = this,
     eventName = T::class.java.name,
     minState = minActiveState,
@@ -40,7 +40,7 @@ inline fun <reified T> collectFlowBus(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
-) = FlowBus.getInstance().collectFlowBus(
+) = FlowBus.getDefault().collectFlowBus(
     lifecycleOwner = scope,
     eventName = T::class.java.name,
     minState = minActiveState,
@@ -57,7 +57,7 @@ inline fun <reified T> collectFlowBus(
     noinline onReceived: (T) -> Unit
 ): Job {
     return coroutineScope.launch {
-        FlowBus.getInstance()
+        FlowBus.getDefault()
             .collectWithoutLifecycle(
                 T::class.java.name,
                 isSticky,
@@ -69,7 +69,7 @@ inline fun <reified T> collectFlowBus(
 inline fun <reified T : Any> busEvent(
     valueBus: T,
     delayPost: Long = 0L
-) = FlowBus.getInstance().busEvent(
+) = FlowBus.getDefault().busEvent(
     GlobalScope,
     eventName = T::class.java.name,
     valuePost = valueBus,
@@ -80,7 +80,7 @@ inline fun <reified T : Any> LifecycleOwner.busEvent(
     valueBus: T,
     delayPost: Long = 0L
 ) {
-    FlowBus.getInstance().busEvent(
+    FlowBus.getDefault().busEvent(
         lifecycle.coroutineScope,
         eventName = T::class.java.name,
         valuePost = valueBus,
@@ -92,7 +92,7 @@ inline fun <reified T : Any> ViewModel.busEvent(
     valueBus: T,
     delayPost: Long = 0L
 ) {
-    FlowBus.getInstance().busEvent(
+    FlowBus.getDefault().busEvent(
         viewModelScope,
         eventName = T::class.java.name,
         valuePost = valueBus,
@@ -101,10 +101,10 @@ inline fun <reified T : Any> ViewModel.busEvent(
 }
 
 inline fun <reified T> getFlowCollectCount(event: Class<T>): Int =
-    FlowBus.getInstance().getEventObserverCount(event.name)
+    FlowBus.getDefault().getEventObserverCount(event.name)
 
 inline fun <reified T> getFlowCollectCountScope(scope: ViewModelStoreOwner, event: Class<T>) =
-    FlowBus.getInstance().getEventObserverCount(event.name)
+    FlowBus.getDefault().getEventObserverCount(event.name)
 
 /**
  * repeatOnLifecycle
