@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.tab.TabAdapter
 import com.github.lany192.arch.tab.TabItem
+import com.github.lany192.eventbus.collectFlowBus
 import com.github.lany192.extension.toast
 import com.lany192.box.avatar.R
 import com.lany192.box.avatar.databinding.ActivityMainBinding
@@ -57,6 +58,9 @@ class MainActivity : ViewModelActivity<MainViewModel, ActivityMainBinding>() {
                 else -> {}
             }
             false
+        }
+        collectFlowBus<String> {
+            toast("主界面接受：$it")
         }
     }
 
