@@ -6,8 +6,6 @@ import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -57,14 +55,17 @@ class FlowBus private constructor() {
         dispatcher: CoroutineDispatcher,
         isSticky: Boolean,
         onReceived: (T) -> Unit
-    ): Job {
+    ) {
         Log.d(TAG, "collect event : $eventName")
-        return lifecycleOwner.launchWhenStateAtLeast(minState) {
+        val job = lifecycleOwner.launchWhenStateAtLeast(minState) {
             getFlowEventByTag(eventName = eventName, isSticky = isSticky).collect { valueCollect ->
                 this.launch(dispatcher) {
                     invokeReceived(value = valueCollect, onReceived = onReceived)
                 }
             }
+        }
+        lifecycleOwner.launchWhenStateAtLeast(Lifecycle.State.DESTROYED) {
+            job.cancel()
         }
     }
 

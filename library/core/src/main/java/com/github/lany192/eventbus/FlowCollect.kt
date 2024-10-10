@@ -22,14 +22,16 @@ inline fun <reified T> LifecycleOwner.subscribeEvent(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
-): Job = FlowBus.getDefault().subscribeEvent(
-    lifecycleOwner = this,
-    eventName = T::class.java.name,
-    minState = minActiveState,
-    dispatcher = dispatcher,
-    isSticky = isSticky,
-    onReceived = onReceived
-)
+) {
+    FlowBus.getDefault().subscribeEvent(
+        lifecycleOwner = this,
+        eventName = T::class.java.name,
+        minState = minActiveState,
+        dispatcher = dispatcher,
+        isSticky = isSticky,
+        onReceived = onReceived
+    )
+}
 
 @MainThread
 inline fun <reified T> subscribeEvent(
@@ -37,12 +39,7 @@ inline fun <reified T> subscribeEvent(
     noinline onReceived: (T) -> Unit
 ): Job {
     return GlobalScope.launch {
-        FlowBus.getDefault()
-            .subscribeEvent(
-                T::class.java.name,
-                isSticky,
-                onReceived
-            )
+        FlowBus.getDefault().subscribeEvent(T::class.java.name, isSticky, onReceived)
     }
 }
 
