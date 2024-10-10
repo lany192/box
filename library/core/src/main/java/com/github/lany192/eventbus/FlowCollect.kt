@@ -4,7 +4,14 @@ import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import kotlinx.coroutines.*
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 //Should be listen MainThread,Follow by lifecycle owner
 @MainThread
@@ -13,7 +20,7 @@ inline fun <reified T> LifecycleOwner.collectFlowBus(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     isSticky: Boolean = false,
     noinline onReceived: (T) -> Unit
-) : Job = FlowBus.getInstance().collectFlowBus(
+): Job = FlowBus.getInstance().collectFlowBus(
     lifecycleOwner = this,
     eventName = T::class.java.name,
     minState = minActiveState,
@@ -52,5 +59,45 @@ inline fun <reified T> collectFlowBus(
                 isSticky,
                 onReceived
             )
+    }
+}
+
+inline fun <reified T : Any> busEvent(
+    valueBus: T,
+    delayPost: Long = 0L
+) = FlowBus.getInstance().busEvent(
+    eventName = T::class.java.name,
+    valuePost = valueBus,
+    delayPost = delayPost
+)
+
+inline fun <reified T : Any> busEvent(
+    scope: ViewModelStoreOwner,
+    valueBus: T,
+    delayPost: Long = 0L
+) {
+    FlowBus.getInstance().busEvent(
+        eventName = T::class.java.name,
+        valuePost = valueBus,
+        delayPost = delayPost
+    )
+}
+
+inline fun <reified T> getFlowCollectCount(event: Class<T>): Int =
+    FlowBus.getInstance()
+        .getEventObserverCount(event.name)
+
+inline fun <reified T> getFlowCollectCountScope(scope: ViewModelStoreOwner, event: Class<T>) =
+    FlowBus.getInstance().getEventObserverCount(event.name)
+
+/**
+ * repeatOnLifecycle
+ */
+fun <T> LifecycleOwner.launchWhenStateAtLeast(
+    minState: Lifecycle.State,
+    block: suspend CoroutineScope.() -> T
+): Job = lifecycleScope.launch {
+    lifecycle.repeatOnLifecycle(minState) {
+        block()
     }
 }
