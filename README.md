@@ -101,10 +101,10 @@
 # 指令打包
 
 ```bash
-gradlew sample:demo:assembleDevelop --debug --stacktrace
+gradlew app:demo:assembleDevelop --debug --stacktrace
 ```
 ```bash
-gradlew sample:avatar:assembleDevelop --debug --stacktrace
+gradlew app:avatar:assembleDevelop --debug --stacktrace
 ```
 ## 查看手机当前界面activity信息
 

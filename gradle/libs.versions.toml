@@ -1,7 +1,7 @@
 [versions]
 activity = "1.9.2"
 activity-compose = "1.9.2"
-agp = "8.6.1"
+agp = "8.7.0"
 aliyun-oss = "2.9.13" # https://github.com/aliyun/aliyun-oss-android-sdk
 android-compile-sdk = "35" # 编译版本
 android-min-sdk = "21" # 最小版本
