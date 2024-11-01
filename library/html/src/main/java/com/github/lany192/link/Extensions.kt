@@ -25,6 +25,11 @@ fun TextView.applyLinkedText(text: CharSequence) {
 fun CharSequence.createLinks(context: Context, vararg links: Link) {
     val builder = LinkBuilder.from(context, this.toString())
     links.forEach { builder.addLink(it) }
+    builder.build()
+}
 
+fun TextView.addHeightText(keyword: String, color: Int, underlined: Boolean = false) {
+    val builder = LinkBuilder.on(this)
+    builder.addLink(Link(keyword).setTextColor(color).setUnderlined(underlined))
     builder.build()
 }

@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.lany192.box.avatar-mergeDebugResources-126:/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "/Users/lany/.gradle/caches/8.9/transforms/7d13bf6ab3b2833503bea0b265a79973/transformed/appcompat-1.7.0/res/values-v18/values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                }
+            ]
+        }
+    ]
+}

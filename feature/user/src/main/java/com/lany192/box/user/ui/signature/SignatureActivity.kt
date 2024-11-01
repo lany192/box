@@ -6,8 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.github.lany192.arch.activity.ViewModelActivity
 import com.github.lany192.arch.interfaces.SimpleTextWatcher
 import com.github.lany192.extension.toast
-import com.github.lany192.link.Link
-import com.github.lany192.link.LinkBuilder
+import com.github.lany192.link.addHeightText
 import com.github.lany192.utils.KeyboardWatcher
 import com.lany192.box.user.R
 import com.lany192.box.user.UserHelper
@@ -49,10 +48,7 @@ class SignatureActivity : ViewModelActivity<SignatureViewModel, ActivitySignatur
         if (count == 60) {
             color = getColorResId(R.color.red)
         }
-        binding.count.text = LinkBuilder
-            .from(this, String.format(Locale.getDefault(), "%d/60", count))
-            .addLink(Link(count.toString()).setTextColor(color).setUnderlined(false))
-            .setFindOnlyFirstMatchesForAnyLink(true)
-            .build()
+        binding.count.text = String.format(Locale.getDefault(), "%d/60", count)
+        binding.count.addHeightText(count.toString(), color)
     }
 }
