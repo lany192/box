@@ -43,6 +43,7 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
     namespace 'com.github.lany192.' + project.getName()
+    ndkVersion '27.1.12297006'
 }
 
 dependencies {
