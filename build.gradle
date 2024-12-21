@@ -45,18 +45,18 @@ allprojects {
         if (project.plugins.hasPlugin('com.android.library') || project.plugins.hasPlugin('com.android.application')) {
             def android = project.extensions.getByName('android')
             android.compileOptions {
-                sourceCompatibility JavaVersion.VERSION_1_8
-                targetCompatibility JavaVersion.VERSION_1_8
+                sourceCompatibility JavaVersion.VERSION_11
+                targetCompatibility JavaVersion.VERSION_11
             }
             if (project.plugins.hasPlugin('org.jetbrains.kotlin.android')) {
                 android.kotlinOptions {
-                    jvmTarget = JavaVersion.VERSION_1_8
+                    jvmTarget = JavaVersion.VERSION_11
                 }
             }
         }
         tasks.withType(KotlinCompile).configureEach {
             kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_1_8
+                jvmTarget = JavaVersion.VERSION_11
             }
         }
     }
