@@ -244,7 +244,7 @@ dependencies {
     implementation libs.backgroundx
     implementation libs.kluban
     implementation libs.luban
-    implementation libs.lany.decoration
+//    implementation libs.lany.decoration
     implementation libs.lany.keyboard
     implementation libs.flexbox
     implementation libs.number.picker

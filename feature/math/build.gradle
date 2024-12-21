@@ -117,7 +117,7 @@ dependencies {
     implementation libs.androidx.recyclerview
     implementation libs.brvah
     implementation libs.immersionbar
-    implementation libs.lany.decoration
+//    implementation libs.lany.decoration
 
     if (singleRun) {
         implementation project(path: ':feature:browser')
