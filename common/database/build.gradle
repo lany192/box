@@ -39,9 +39,6 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit2
     androidTestImplementation libs.androidx.test.espresso
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.espresso
-    androidTestImplementation libs.androidx.test.ext.junit2
 
     implementation project(path: ':library:arch')
     implementation project(path: ':library:view')
