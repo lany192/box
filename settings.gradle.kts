@@ -53,7 +53,7 @@ include(":common:database")
 
 include(":feature:browser")
 include(":feature:login")
-include(":feature:hello")
+//include(":feature:hello")
 include(":feature:math")
 include(":feature:user")
  

@@ -1,11 +1,11 @@
 [versions]
 activity = "1.9.3"
 activity-compose = "1.9.3"
-agp = "8.7.3"
+agp = "8.8.0"
 aliyun-oss = "2.9.13" # https://github.com/aliyun/aliyun-oss-android-sdk
 annotation = "1.9.1"
 app-compile-sdk = "35"
-app-id= "com.lany192.box"
+app-id= "com.github.lany192.box.sample"
 app-min-sdk = "23"
 app-ndk-version = "27.1.12297006"
 app-target-sdk = "30"
