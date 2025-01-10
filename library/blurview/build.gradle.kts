@@ -5,10 +5,10 @@ plugins {
 apply(from = "../../gradle/publish.gradle")
 
 android {
-    compileSdk = libs.versions.android.compile.sdk.get().toInt()
+    compileSdk = libs.versions.app.compile.sdk.get().toInt()
     namespace = "com.github.lany192." + project.name
     defaultConfig {
-        minSdk = libs.versions.android.min.sdk.get().toInt()
+        minSdk = libs.versions.app.min.sdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -38,7 +38,7 @@ android {
     }
 
     lint {
-        targetSdk = libs.versions.android.target.sdk.get().toInt()
+        targetSdk = libs.versions.app.target.sdk.get().toInt()
     }
 }
 

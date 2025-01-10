@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.github.lany192.hello"
-    compileSdk = libs.versions.android.compile.sdk.get().toInt()
+    compileSdk = libs.versions.app.compile.sdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.github.lany192.hello"
-        minSdk = libs.versions.android.min.sdk.get().toInt()
-        targetSdk = libs.versions.android.target.sdk.get().toInt()
+        minSdk = libs.versions.app.min.sdk.get().toInt()
+        targetSdk = libs.versions.app.target.sdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
