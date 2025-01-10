@@ -12,8 +12,8 @@ android {
         applicationId = "com.github.lany192.hello"
         minSdk = libs.versions.app.min.sdk.get().toInt()
         targetSdk = libs.versions.app.target.sdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = libs.versions.app.version.code.get().toInt()
+        versionName = libs.versions.app.version.name.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
