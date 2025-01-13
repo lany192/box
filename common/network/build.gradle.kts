@@ -7,12 +7,11 @@ plugins {
 }
 
 android {
-    namespace = libs.versions.app.id.get() + "." + project.name
+    namespace = libs.versions.group.id.get() + "." + project.name
     compileSdk = libs.versions.app.compile.sdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.app.min.sdk.get().toInt()
-        targetSdk = libs.versions.app.target.sdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -39,6 +38,9 @@ android {
 
     kotlinOptions {
         jvmTarget = "11"
+    }
+    lint {
+        targetSdk = libs.versions.app.target.sdk.get().toInt()
     }
 }
 
