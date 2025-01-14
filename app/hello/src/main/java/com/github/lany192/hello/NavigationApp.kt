@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.github.lany192.hello.screen.DetailScreen
-import com.github.lany192.hello.screen.LoginScreen
+import com.github.lany192.hello.login.LoginScreen
 import com.github.lany192.hello.screen.MainScreen
 
 @Composable

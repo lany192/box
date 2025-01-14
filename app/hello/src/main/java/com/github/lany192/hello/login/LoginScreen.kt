@@ -1,4 +1,4 @@
-package com.github.lany192.hello.screen
+package com.github.lany192.hello.login
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
