@@ -54,8 +54,7 @@ dependencies {
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
-    implementation(libs.coroutines.core)
-    implementation(libs.coroutines.android)
+    implementation(libs.bundles.coroutines)
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.moshi)
