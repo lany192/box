@@ -35,6 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     namespace = "com.github.lany192." + project.name
     lint {
         targetSdk = libs.versions.app.target.sdk.get().toInt()

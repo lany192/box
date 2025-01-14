@@ -22,7 +22,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -32,6 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     namespace = "com.github.lany192." + project.name
     lint {
         targetSdk = libs.versions.app.target.sdk.get().toInt()
@@ -62,8 +66,7 @@ dependencies {
     implementation(libs.brvah)
     implementation(libs.immersionbar)
     implementation(libs.xcrash)
-    implementation(libs.refresh.header)
-    implementation(libs.refresh.layout)
+    implementation(libs.bundles.refresh)
     implementation(libs.eventbus)
     implementation(libs.luban)
     implementation(libs.rxjava)

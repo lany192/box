@@ -93,6 +93,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     packagingOptions {
         resources {
             excludes += ['**/*.properties', '**/*.txt']
@@ -206,21 +207,15 @@ dependencies {
     implementation libs.androidx.paging.runtime.ktx
     implementation libs.androidx.paging.runtime
     implementation libs.androidx.startup.runtime
-    implementation libs.androidx.media3.exoplayer
-    implementation libs.androidx.media3.exoplayer.dash
-    implementation libs.androidx.media3.ui
-    implementation libs.androidx.camera.core
-    implementation libs.androidx.camera.camera2
-    implementation libs.androidx.camera.lifecycle
-    implementation libs.androidx.camera.view
-    implementation libs.androidx.camera.extensions
     implementation libs.androidx.cardview
     implementation libs.androidx.palette
     implementation libs.androidx.viewpager2
     implementation libs.androidx.webkit
 
-    implementation libs.coroutines.core
-    implementation libs.coroutines.android
+    implementation libs.bundles.coroutines
+    implementation libs.bundles.androidx.camera
+    implementation libs.bundles.androidx.media3
+    implementation(libs.bundles.refresh)
 
     implementation libs.toaster
     implementation libs.brvah
@@ -238,8 +233,6 @@ dependencies {
     implementation libs.tencent.vasdolly.writer
 
     implementation libs.xcrash
-    implementation libs.refresh.header
-    implementation libs.refresh.layout
 
     implementation libs.backgroundx
     implementation libs.kluban

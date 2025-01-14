@@ -39,7 +39,7 @@ abstract class BindingView<VB : ViewBinding> @JvmOverloads constructor(
         init(attrs)
     }
 
-    open fun getViewBinding():VB{
+    open fun getViewBinding(): VB {
         return getClass<VB>(0).getBinding(LayoutInflater.from(context), this)
     }
 

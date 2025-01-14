@@ -57,7 +57,8 @@ public class JzvdStd extends Jzvd {
     public TextView mRetryBtn;
     public LinearLayout mRetryLayout;
     protected DismissControlViewTimerTask mDismissControlViewTimerTask;
-    protected Dialog mProgressDialog;    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
+    protected Dialog mProgressDialog;
+    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
@@ -87,6 +88,7 @@ public class JzvdStd extends Jzvd {
     protected TextView mDialogBrightnessTextView;
     protected boolean mIsWifi;
     protected ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
+
     public JzvdStd(Context context) {
         super(context);
     }
@@ -157,7 +159,9 @@ public class JzvdStd extends Jzvd {
         tinyBackImageView.setOnClickListener(this);
         clarity.setOnClickListener(this);
         mRetryBtn.setOnClickListener(this);
-    }    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+    }
+
+    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
@@ -386,7 +390,9 @@ public class JzvdStd extends Jzvd {
 
     protected void clickBack() {
         backPress();
-    }    /**
+    }
+
+    /**
      * 双击
      */
     protected GestureDetector gestureDetector = new GestureDetector(getContext().getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
@@ -969,12 +975,6 @@ public class JzvdStd extends Jzvd {
             dissmissControlView();
         }
     }
-
-
-
-
-
-
 
 
 }

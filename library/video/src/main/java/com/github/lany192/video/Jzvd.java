@@ -68,7 +68,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static int backUpBufferState = -1;
     public static float PROGRESS_DRAG_RATE = 1f;//进度条滑动阻尼系数 越大播放进度条滑动越慢
     public int state = -1;
-    public int screen = -1;    public static AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {//是否新建个class，代码更规矩，并且变量的位置也很尴尬
+    public int screen = -1;
+    public static AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {//是否新建个class，代码更规矩，并且变量的位置也很尴尬
         @Override
         public void onAudioFocusChange(int focusChange) {
             switch (focusChange) {
@@ -137,6 +138,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     protected int blockIndex;
     protected int blockWidth;
     protected int blockHeight;
+
     public Jzvd(Context context) {
         super(context);
         init(context);
@@ -1130,8 +1132,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             }
         }
     }
-
-
 
 
 }

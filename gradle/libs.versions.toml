@@ -1,18 +1,39 @@
 [versions]
-activity = "1.9.3"
-activity-compose = "1.9.3"
-agp = "8.8.0"
 aliyun-oss = "2.9.21" # https://github.com/aliyun/aliyun-oss-android-sdk
-annotation = "1.9.1"
+androidx-activity = "1.9.3"
+androidx-annotation = "1.9.1"
+androidx-appcompat = "1.7.0"
+androidx-camera = "1.4.0" #相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
+androidx-cardview = "1.0.0"
+androidx-constraintlayout = "2.2.0"
+androidx-core-ktx = "1.15.0"
+androidx-datastore = "1.1.1"
+androidx-exifinterface = "1.3.7"
+androidx-fragment = "1.8.5"
+androidx-lifecycle = "2.8.7"
+androidx-material = "1.12.0"
+androidx-media3 = "1.5.1" #播放器 https://developer.android.google.cn/jetpack/androidx/releases/media3
+androidx-multidex = "2.0.1"
+androidx-navigation = "2.8.5"
+androidx-paging = "3.3.5" #https://developer.android.google.cn/jetpack/androidx/releases/paging?hl=zh-cn
+androidx-palette = "1.0.0"
+androidx-recyclerview = "1.3.2"
+androidx-room = "2.6.1" #数据库 https://developer.android.google.cn/training/data-storage/room/index.html
+androidx-splash = "1.0.1"
+androidx-startup = "1.2.0"
+androidx-test-espresso = "3.6.1"
+androidx-test-ext = "1.2.1"
+androidx-viewpager2 = "1.1.0"
+androidx-webkit = "1.12.1"
+app-agp = "8.8.0"
+app-artifact-id = "box-sample"
 app-compile-sdk = "35"
-group-id= "com.github.lany192"
-artifact-id= "box-sample"
+app-group-id = "com.github.lany192"
 app-min-sdk = "23"
 app-ndk-version = "27.1.12297006"
 app-target-sdk = "30"
-app-version-code= "1"
-app-version-name= "1.0.0"
-appcompat = "1.7.0"
+app-version-code = "1"
+app-version-name = "1.0.0"
 asm-util = "9.7.1"
 auto-service = "1.1.1"
 aztec = "2.1.4" # 富文本 https://github.com/wordpress-mobile/AztecEditor-Android
@@ -21,8 +42,6 @@ banner = "2.2.3" # banner https://github.com/youth5201314/banner
 blur = "344be3f6" #高斯模糊 https://github.com/android/renderscript-intrinsics-replacement-toolkit
 box = "4.6.5" # master-SNAPSHOT #https://github.com/lany192/box
 brvah = "4.1.4" #适配器 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-camera = "1.4.0" #相机 https://developer.android.google.cn/jetpack/androidx/releases/camera
-cardview = "1.0.0"
 chucker = "4.1.0" #https://github.com/ChuckerTeam/chucker
 coil = "3.0.4" #图片加载 https://github.com/coil-kt/coil
 commons-codec = "1.16.1"
@@ -30,18 +49,13 @@ commons-collections4 = "4.4"
 commons-io = "2.18.0"
 commons-lang3 = "3.14.0"
 compose-bom = "2024.12.01"
-constraintlayout = "2.2.0"
-coreKtx = "1.15.0"
 coroutines = "1.10.1" #协程 https://github.com/Kotlin/kotlinx.coroutines
 datetime-picker = "1.0.9" #https://github.com/lany192/DateTimePicker
 decoration = "1.23" #分割线 https://github.com/lany192/ItemDecoration
-espresso-core = "3.6.1"
 eventbus = "3.3.1" #通知事件 https://github.com/greenrobot/EventBus
-exifinterface = "1.3.7"
 fastjson = "1.2.83"
 feature = "0.0.1" #本地仓库
 flexbox = "3.0.0" #flexbox控件 https://github.com/google/flexbox-layout
-fragment = "1.8.5"
 glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
 glide-webp = "2.6.4.16.0" #webp解析器 https://github.com/zjupure/GlideWebpDecoder
 gradle = "8.3.2"
@@ -52,7 +66,6 @@ html-spanner = "0.4" #https://github.com/NightWhistler/HtmlSpanner
 immersionbar = "3.2.2" #状态栏工具 https://github.com/gyf-dev/ImmersionBar
 javapoet = "1.13.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
 keyboard = "1.0.1" #键盘监听器 https://github.com/lany192/KeyboardWatcher
 kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
 kotlin = "2.1.0" #https://github.com/JetBrains/kotlin
@@ -60,32 +73,23 @@ ksp = "2.1.0-1.0.29" # https://github.com/google/ksp/releases
 labelview = "v1.1.2" # 斜体TextView控件 https://github.com/linger1216/labelview
 leakcanary = "3.0-alpha-8" #内存检测 https://github.com/square/leakcanary
 licenses = "2.1.0"
-lifecycle = "2.8.7"
 link-builder = "2.0.5" #超链接处理 https://github.com/klinker24/Android-TextView-LinkBuilder
 live-event-bus = "1.8.0" #事件 https://github.com/JeremyLiao/LiveEventBus
 lottie = "6.6.2" #动画加载 https://github.com/airbnb/lottie-android
 luban = "1.1.8" #图片压缩 https://github.com/Curzibn/Luban
-material = "1.12.0"
-media3 = "1.5.1" #播放器 https://developer.android.google.cn/jetpack/androidx/releases/media3
 mmkv = "2.0.2" #存储 https://github.com/Tencent/MMKV
 mocker = "1.0.4" #模拟数据生成 https://github.com/lany192/mock-generator
 moshi = "1.15.2"
-multidex = "2.0.1"
-navigation-compose = "2.8.5"
 number-picker = "2.4.13" #自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
 okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
 openapi = "7.10.0" #https://github.com/OpenAPITools/openapi-generator
 oss = "2.74.0" #minio库 minio 官方的sdk 只有java 版本的不兼容android，可以尝试使用 amazon s3 的oss sdk 来实现功能
 pag = "4.4.20" #动画加载 https://github.com/Tencent/libpag
-paging = "3.3.5" #https://developer.android.google.cn/jetpack/androidx/releases/paging?hl=zh-cn
-palette = "1.0.0"
 permissions = "20.0" #权限 https://github.com/getActivity/XXPermissions
 phoenix = "3.0.0" #重启工具库 https://github.com/JakeWharton/ProcessPhoenix
 qqopensdk = "3.53.0"
-recyclerview = "1.3.2"
 refresh = "3.0.0-alpha" #刷新套件 https://github.com/scwang90/SmartRefreshLayout
 retrofit = "2.11.0" #请求框架 https://github.com/square/retrofit
-room = "2.6.1" #数据库 https://developer.android.google.cn/training/data-storage/room/index.html
 rootbeer = "0.1.0" #root检查 https://github.com/scottyab/rootbeer
 router = "2.0.8" #https://github.com/lany192/app-router
 rxandroid = "3.0.2" #https://github.com/ReactiveX/RxAndroid
@@ -93,13 +97,13 @@ rxjava = "3.1.8" #https://github.com/ReactiveX/RxJava
 shadow = "1.0.0-SNAPSHOT"
 sonic = "3.1.0" #提升H5首屏加载速度 https://github.com/Tencent/VasSonic
 spinner = "1.3.1" #https://github.com/jaredrummler/MaterialSpinner
-startup = "1.2.0"
 tbssdk = "44286" #腾讯x5 https://x5.tencent.com/docs/index.html
+tencent-xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 tensorflow-lite = "2.16.1"
 toaster = "12.6" #Toast工具 https://github.com/getActivity/Toaster
 touchimageview = "3.6" #图片缩放控件 https://github.com/MikeOrtiz/TouchImageView
 transformation-layout = "1.1.5" #转场动画 https://github.com/skydoves/TransformationLayout
-ucrop = "2.2.10-native" #图片裁剪 https://github.com/Yalantis/uCrop
+ucrop = "2.2.9-native" #图片裁剪 https://github.com/Yalantis/uCrop
 umeng-push = "2.1.0"
 umeng-share = "7.3.2"
 umsdk-apm = "1.9.2"
@@ -107,64 +111,65 @@ umsdk-asms = "1.8.5.1"
 umsdk-common = "9.6.6" #友盟统计 https://developer.umeng.com/docs/119267/cate/118577
 umsdk-link = "1.2.0"
 vasdolly = "3.0.6" #多渠道打包工具 https://github.com/Tencent/VasDolly
-viewpager2 = "1.1.0"
 watermark = "0.2.3" # 水印 https://github.com/huangyz0918/AndroidWM
-webkit = "1.10.0"
 wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Downloads/Android_Resource.html
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
-xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.2.0" #https://github.com/jenly1314/ZXingLite
 
 [libraries]
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
-androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
-androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
-androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera" }
-androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera" }
-androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "camera" }
-androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera" }
-androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "camera" }
-androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+androidx-activity = { module = "androidx.activity:activity", version.ref = "androidx-activity" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "androidx-camera" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "androidx-camera" }
+androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "androidx-camera" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "androidx-camera" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "androidx-camera" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "androidx-cardview" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
-androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
-androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
-androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "fragment" }
-androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
-androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata", version.ref = "lifecycle" }
-androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
-androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
-androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
-androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-androidx-material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "androidx-exifinterface" }
+androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "androidx-fragment" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-material = { module = "com.google.android.material:material", version.ref = "androidx-material" }
 androidx-material3 = { module = "androidx.compose.material3:material3" }
-androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3" }
-androidx-media3-exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "media3" }
-androidx-media3-exoplayer-hls = { module = "androidx.media3:media3-exoplayer-hls", version.ref = "media3" }
-androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3" }
-androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
-androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
-androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
-androidx-palette = { module = "androidx.palette:palette", version.ref = "palette" }
-androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
-androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
-androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startup" }
-androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
-androidx-test-ext-junit2 = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
+androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "androidx-media3" }
+androidx-media3-exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "androidx-media3" }
+androidx-media3-exoplayer-hls = { module = "androidx.media3:media3-exoplayer-hls", version.ref = "androidx-media3" }
+androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "androidx-media3" }
+androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "androidx-multidex" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+androidx-navigation-runtime-ktx = { module = "androidx.navigation:navigation-runtime-ktx", version.ref = "androidx-navigation" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androidx-paging" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "androidx-paging" }
+androidx-palette = { module = "androidx.palette:palette", version.ref = "androidx-palette" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidx-room" }
+androidx-splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-splash" }
+androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "androidx-startup" }
+androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso" }
+androidx-test-ext-junit2 = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext" }
 androidx-ui = { module = "androidx.compose.ui:ui" }
 androidx-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
-androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "androidx-viewpager2" }
+androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "androidx-webkit" }
 asm-util = { module = "org.ow2.asm:asm-util", version.ref = "asm-util" }
 auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "auto-service" }
 auto-service-compiler = { module = "com.google.auto.service:auto-service", version.ref = "auto-service" }
@@ -265,7 +270,7 @@ tencent-tbs = { module = "com.tencent.tbs:tbssdk", version.ref = "tbssdk" }
 tencent-vasdolly-reader = { module = "com.tencent.vasdolly:reader", version.ref = "vasdolly" }
 tencent-vasdolly-writer = { module = "com.tencent.vasdolly:writer", version.ref = "vasdolly" }
 tencent-wechat = { module = "com.tencent.mm.opensdk:wechat-sdk-android", version.ref = "wechat" }
-tencent-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "xlog" }
+tencent-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "tencent-xlog" }
 tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflow-lite" }
 toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }
 touchimageview = { module = "com.github.MikeOrtiz:TouchImageView", version.ref = "touchimageview" }
@@ -284,11 +289,18 @@ watermark = { module = "com.huangyz0918:androidwm", version.ref = "watermark" }
 xcrash = { module = "com.iqiyi.xcrash:xcrash-android-lib", version.ref = "xcrash" }
 zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-lite" }
 
+[bundles]
+androidx-camera = ["androidx-camera-camera2", "androidx-camera-core", "androidx-camera-extensions", "androidx-camera-lifecycle", "androidx-camera-view"]
+androidx-navigation = ["androidx-navigation-compose", "androidx-navigation-runtime-ktx"]
+androidx-media3 = ["androidx-media3-exoplayer", "androidx-media3-exoplayer-dash", "androidx-media3-exoplayer-hls", "androidx-media3-ui"]
+coroutines = ["coroutines-android", "coroutines-core"]
+refresh = ["refresh-header", "refresh-layout"]
+
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
-android-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+android-application = { id = "com.android.application", version.ref = "app-agp" }
 android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+android-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+android-library = { id = "com.android.library", version.ref = "app-agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

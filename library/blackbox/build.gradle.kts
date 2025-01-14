@@ -46,6 +46,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     lint {
         targetSdk = libs.versions.app.target.sdk.get().toInt()
     }

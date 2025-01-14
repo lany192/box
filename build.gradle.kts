@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
@@ -61,8 +62,11 @@ allprojects {
 //            }
         }
         tasks.withType<KotlinCompile>().configureEach {
-            kotlinOptions {
-                jvmTarget = "11"
+//            kotlinOptions {
+//                jvmTarget = "11"
+//            }
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_11)
             }
         }
     }
@@ -81,7 +85,7 @@ allprojects {
 }
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }
 
 apply(from = "./gradle/buildinfo.gradle")

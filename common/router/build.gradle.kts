@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = libs.versions.group.id.get() + "." + project.name
+    namespace = libs.versions.app.group.id.get() + "." + project.name
     compileSdk = libs.versions.app.compile.sdk.get().toInt()
 
     defaultConfig {
@@ -36,6 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     lint {
         targetSdk = libs.versions.app.target.sdk.get().toInt()
     }

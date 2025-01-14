@@ -50,6 +50,7 @@ include(":library:blurview")
 include(":common:network")
 include(":common:router")
 include(":common:database")
+include(":common:navigation")
 
 include(":feature:browser")
 include(":feature:login")

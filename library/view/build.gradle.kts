@@ -23,7 +23,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -33,6 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     lint {
         targetSdk = libs.versions.app.target.sdk.get().toInt()
     }
@@ -48,7 +52,6 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.glide)
     implementation(libs.toaster)
-    implementation(libs.refresh.header)
-    implementation(libs.refresh.layout)
+    implementation(libs.bundles.refresh)
     implementation(project(":library:core"))
 }

@@ -77,7 +77,9 @@ public final class DownloadService extends Service implements OnDownloadListener
             log.d("文件不存在开始下载");
             download(configuration);
         }
-    }    @SuppressLint("HandlerLeak")
+    }
+
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -239,8 +241,6 @@ public final class DownloadService extends Service implements OnDownloadListener
     public IBinder onBind(Intent intent) {
         return null;
     }
-
-
 
 
 }

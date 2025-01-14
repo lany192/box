@@ -8,6 +8,15 @@ android {
     namespace = "com.github.lany192.hello"
     compileSdk = libs.versions.app.compile.sdk.get().toInt()
 
+    signingConfigs {
+        create("config") {
+            keyAlias = "box"
+            keyPassword = "box2024"
+            storePassword = "box2024"
+            storeFile = file("../box.jks")
+        }
+    }
+
     defaultConfig {
         applicationId = "com.github.lany192.hello"
         minSdk = libs.versions.app.min.sdk.get().toInt()
@@ -20,11 +29,26 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isDebuggable = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("config")
+        }
+        debug {
+            isDebuggable = true
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("config")
+            manifestPlaceholders["app_name_value"] = "玩安卓dev"
+            applicationIdSuffix = ".dev"
         }
     }
     compileOptions {
@@ -34,6 +58,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
@@ -54,6 +79,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit2)
     androidTestImplementation(libs.androidx.test.espresso)
