@@ -60,7 +60,7 @@ glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
 glide-webp = "2.6.4.16.0" #webp解析器 https://github.com/zjupure/GlideWebpDecoder
 gradle = "8.3.2"
 gson = "2.11.0"
-hilt = "2.54" #注入依赖 https://dagger.dev/hilt/
+hilt = "2.55" #注入依赖 https://dagger.dev/hilt/
 html-cleaner = "2.29" #html解析 https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
 html-spanner = "0.4" #https://github.com/NightWhistler/HtmlSpanner
 immersionbar = "3.2.2" #状态栏工具 https://github.com/gyf-dev/ImmersionBar
@@ -197,8 +197,12 @@ box-view = { module = "com.github.lany192.box:view", version.ref = "box" }
 brvah = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "brvah" }
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
 chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
-coil = { module = "io.coil-kt:coil", version.ref = "coil" }
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
+coil-network = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+coil-gif = { module = "io.coil-kt.coil3:coil-gif", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
+coil-video = { module = "io.coil-kt.coil3:coil-video", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 commons-codec = { module = "commons-codec:commons-codec", version.ref = "commons-codec" }
 commons-collections4 = { module = "org.apache.commons:commons-collections4", version.ref = "commons-collections4" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
@@ -295,6 +299,7 @@ androidx-navigation = ["androidx-navigation-compose", "androidx-navigation-runti
 androidx-media3 = ["androidx-media3-exoplayer", "androidx-media3-exoplayer-dash", "androidx-media3-exoplayer-hls", "androidx-media3-ui"]
 coroutines = ["coroutines-android", "coroutines-core"]
 refresh = ["refresh-header", "refresh-layout"]
+image = ["coil", "coil-network", "coil-compose", "coil-gif", "coil-svg", "coil-video"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "app-agp" }
