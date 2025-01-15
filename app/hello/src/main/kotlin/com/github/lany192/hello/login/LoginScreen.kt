@@ -15,6 +15,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.github.lany192.extension.log
+import com.github.lany192.hello.BoxImage
 import com.github.lany192.hello.R
 import com.github.lany192.toolkit.BoxToolKit
 import java.util.regex.Pattern
@@ -39,9 +40,8 @@ fun LoginScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = "App Logo",
+        BoxImage(
+            imageUrl = "https://img1.baidu.com/it/u=3277373589,2105735670&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1067",
             modifier = Modifier.size(100.dp)
         )
 
