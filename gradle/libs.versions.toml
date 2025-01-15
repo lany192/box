@@ -295,7 +295,7 @@ zxing-lite = { module = "com.github.jenly1314:zxing-lite", version.ref = "zxing-
 
 [bundles]
 androidx-camera = ["androidx-camera-camera2", "androidx-camera-core", "androidx-camera-extensions", "androidx-camera-lifecycle", "androidx-camera-view"]
-androidx-navigation = ["androidx-navigation-compose", "androidx-navigation-runtime-ktx"]
+navigation = ["androidx-navigation-compose", "androidx-navigation-runtime-ktx"]
 androidx-media3 = ["androidx-media3-exoplayer", "androidx-media3-exoplayer-dash", "androidx-media3-exoplayer-hls", "androidx-media3-ui"]
 coroutines = ["coroutines-android", "coroutines-core"]
 refresh = ["refresh-header", "refresh-layout"]
