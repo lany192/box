@@ -5,8 +5,8 @@ agp = "8.7.3"
 aliyun-oss = "2.9.13" # https://github.com/aliyun/aliyun-oss-android-sdk
 android-compile-sdk = "35" # 编译版本
 android-min-sdk = "23" # 最小版本
-android-target-sdk = "30"# 目标版本
 android-ndk-version = "27.1.12297006"
+android-target-sdk = "30"# 目标版本
 annotation = "1.8.2"
 appcompat = "1.7.0"
 asm-util = "9.6"
@@ -51,6 +51,8 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 keyboard = "1.0.1" #键盘监听器 https://github.com/lany192/KeyboardWatcher
 kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
+koin = "4.0.1" #https://github.com/InsertKoinIO/koin
+koin-annotations = "2.0.0-Beta3"
 kotlin = "2.1.0" #https://github.com/JetBrains/kotlin
 ksp = "2.1.0-1.0.29" # https://github.com/google/ksp/releases
 labelview = "v1.1.2" # 斜体TextView控件 https://github.com/linger1216/labelview
@@ -69,12 +71,14 @@ moshi = "1.15.2"
 multidex = "2.0.1"
 number-picker = "2.4.13" #自定义样式的NumberPicker https://github.com/ShawnLin013/NumberPicker
 okdownload = "2.0.2"#下载框架 https://github.com/lany192/okdownload
+openapi = "7.10.0" #https://github.com/OpenAPITools/openapi-generator
 oss = "2.74.0" #minio库 minio 官方的sdk 只有java 版本的不兼容android，可以尝试使用 amazon s3 的oss sdk 来实现功能
 pag = "4.4.20" #动画加载 https://github.com/Tencent/libpag
 paging = "3.3.5" #https://developer.android.google.cn/jetpack/androidx/releases/paging?hl=zh-cn
 palette = "1.0.0"
 permissions = "20.0" #权限 https://github.com/getActivity/XXPermissions
 phoenix = "3.0.0" #重启工具库 https://github.com/JakeWharton/ProcessPhoenix
+qqopensdk = "3.53.0"
 recyclerview = "1.3.2"
 refresh = "3.0.0-alpha" #刷新套件 https://github.com/scwang90/SmartRefreshLayout
 retrofit = "2.11.0" #请求框架 https://github.com/square/retrofit
@@ -107,8 +111,6 @@ wechat = "6.8.18" #微信SDK https://developers.weixin.qq.com/doc/oplatform/Down
 xcrash = "3.1.0" #异常捕获 https://github.com/iqiyi/xCrash
 xlog = "1.2.5" #日志工具 https://github.com/Tencent/mars
 zxing-lite = "3.2.0" #https://github.com/jenly1314/ZXingLite
-qqopensdk = "3.53.0"
-openapi = "7.10.0" #https://github.com/OpenAPITools/openapi-generator
 
 [libraries]
 aliyun-oss = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "aliyun-oss" }
@@ -210,6 +212,12 @@ immersionbar = { module = "com.geyifeng.immersionbar:immersionbar", version.ref 
 javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-android-test = { module = "io.insert-koin:koin-android-test", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
+koin-ksp = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
+koin-test = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }
 ksp-symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 labelview = { module = "com.github.linger1216:labelview", version.ref = "labelview" }
 lany-datetime-picker = { module = "com.github.lany192:DateTimePicker", version.ref = "datetime-picker" }
@@ -243,6 +251,7 @@ rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 spinner = { module = "com.jaredrummler:material-spinner", version.ref = "spinner" }
 tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
 tencent-pag = { module = "com.tencent.tav:libpag", version.ref = "pag" }
+tencent-qq-open-sdk = { module = "com.tencent.tauth:qqopensdk", version.ref = "qqopensdk" }
 tencent-shadow-core-activity-container = { module = "com.tencent.shadow.core:activity-container", version.ref = "shadow" }
 tencent-shadow-core-common = { module = "com.tencent.shadow.core:common", version.ref = "shadow" }
 tencent-shadow-core-gradle-plugin = { module = "com.tencent.shadow.core:gradle-plugin", version.ref = "shadow" }
@@ -259,7 +268,6 @@ tencent-vasdolly-reader = { module = "com.tencent.vasdolly:reader", version.ref 
 tencent-vasdolly-writer = { module = "com.tencent.vasdolly:writer", version.ref = "vasdolly" }
 tencent-wechat = { module = "com.tencent.mm.opensdk:wechat-sdk-android", version.ref = "wechat" }
 tencent-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "xlog" }
-tencent-qq-open-sdk = { module = "com.tencent.tauth:qqopensdk", version.ref = "qqopensdk" }
 tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflow-lite" }
 toaster = { module = "com.github.getActivity:Toaster", version.ref = "toaster" }
 touchimageview = { module = "com.github.MikeOrtiz:TouchImageView", version.ref = "touchimageview" }
@@ -289,6 +297,6 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-tencent-shadow = { id = "com.tencent.shadow.plugin", version.ref = "shadow" }
 openapi-generator = { id = "org.openapi.generator", version.ref = "openapi" }
+tencent-shadow = { id = "com.tencent.shadow.plugin", version.ref = "shadow" }
 
