@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.android.legacy.kapt)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.android.hilt)
 }
@@ -36,9 +35,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 
     lint {
         targetSdk = libs.versions.app.target.sdk.get().toInt()
@@ -51,6 +47,9 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit2)
     androidTestImplementation(libs.androidx.test.espresso)
 
+    // 项目依赖（PageInfo.java 使用 com.github.lany192.arch.entity.Page）
+    implementation(project(":library:arch"))
+
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
@@ -61,4 +60,6 @@ dependencies {
     implementation(libs.retrofit.gson)
 
     implementation(libs.moshi)
+    // AGP 9 内置 Kotlin 下 parcelize 插件不会自动添加该运行时依赖（其 forAllAndroidVariants 依赖已移除的旧 Variant API）
+    implementation(libs.kotlin.parcelize.runtime)
 }

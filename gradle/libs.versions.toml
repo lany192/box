@@ -18,19 +18,19 @@ androidx-navigation = "2.8.5"
 androidx-paging = "3.3.5" #https://developer.android.google.cn/jetpack/androidx/releases/paging?hl=zh-cn
 androidx-palette = "1.0.0"
 androidx-recyclerview = "1.3.2"
-androidx-room = "2.6.1" #数据库 https://developer.android.google.cn/training/data-storage/room/index.html
+androidx-room = "2.8.5" #数据库 https://developer.android.google.cn/training/data-storage/room/index.html
 androidx-splash = "1.0.1"
 androidx-startup = "1.2.0"
 androidx-test-espresso = "3.6.1"
 androidx-test-ext = "1.2.1"
 androidx-viewpager2 = "1.1.0"
 androidx-webkit = "1.12.1"
-app-agp = "8.8.0"
+app-agp = "9.4.0"
 app-artifact-id = "box-sample"
-app-compile-sdk = "35"
+app-compile-sdk = "36"
 app-group-id = "com.github.lany192"
 app-min-sdk = "23"
-app-ndk-version = "27.1.12297006"
+app-ndk-version = "28.2.13676358"
 app-target-sdk = "30"
 app-version-code = "1"
 app-version-name = "1.0.0"
@@ -58,9 +58,9 @@ feature = "0.0.1" #本地仓库
 flexbox = "3.0.0" #flexbox控件 https://github.com/google/flexbox-layout
 glide = "4.16.0" #glide依赖 https://github.com/bumptech/glide
 glide-webp = "2.6.4.16.0" #webp解析器 https://github.com/zjupure/GlideWebpDecoder
-gradle = "8.3.2"
+gradle = "9.4.0"
 gson = "2.11.0"
-hilt = "2.55" #注入依赖 https://dagger.dev/hilt/
+hilt = "2.59.2" #注入依赖 https://dagger.dev/hilt/
 html-cleaner = "2.29" #html解析 https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
 html-spanner = "0.4" #https://github.com/NightWhistler/HtmlSpanner
 immersionbar = "3.2.2" #状态栏工具 https://github.com/gyf-dev/ImmersionBar
@@ -68,8 +68,8 @@ javapoet = "1.13.0"
 junit = "4.13.2"
 keyboard = "1.0.1" #键盘监听器 https://github.com/lany192/KeyboardWatcher
 kluban = "1.1.0" #图片压缩 https://github.com/forJrking/KLuban
-kotlin = "2.1.0" #https://github.com/JetBrains/kotlin
-ksp = "2.1.0-1.0.29" # https://github.com/google/ksp/releases
+kotlin = "2.2.10" #https://github.com/JetBrains/kotlin
+ksp = "2.3.12" # https://github.com/google/ksp/releases
 labelview = "v1.1.2" # 斜体TextView控件 https://github.com/linger1216/labelview
 leakcanary = "3.0-alpha-8" #内存检测 https://github.com/square/leakcanary
 licenses = "2.1.0"
@@ -225,6 +225,7 @@ immersionbar = { module = "com.geyifeng.immersionbar:immersionbar", version.ref 
 javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kluban = { module = "com.github.forJrking:KLuban", version.ref = "kluban" }
+kotlin-parcelize-runtime = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlin" }
 ksp-symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 labelview = { module = "com.github.linger1216:labelview", version.ref = "labelview" }
 lany-datetime-picker = { module = "com.github.lany192:DateTimePicker", version.ref = "datetime-picker" }
@@ -305,6 +306,7 @@ image = ["coil", "coil-network", "coil-compose", "coil-gif", "coil-svg", "coil-v
 android-application = { id = "com.android.application", version.ref = "app-agp" }
 android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 android-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+android-legacy-kapt = { id = "com.android.legacy-kapt", version.ref = "app-agp" }
 android-library = { id = "com.android.library", version.ref = "app-agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

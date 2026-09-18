@@ -1,8 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
 }
-apply(from = "../../gradle/publish.gradle")
+apply(from = "../../gradle/publish.gradle.kts")
 
 android {
     compileSdk = libs.versions.app.compile.sdk.get().toInt()
@@ -31,9 +30,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
     }
 
     namespace = "com.github.lany192." + project.name

@@ -16,10 +16,20 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         mavenLocal()
+        // 腾讯镜像对 app-router 组只缓存了 POM 而缺失 JAR/AAR，且 Gradle 不会回退到其他仓库取构件，这里强制走 JitPack 源站
+        maven {
+            setUrl("https://www.jitpack.io")
+            content {
+                includeGroup("com.github.lany192.app-router")
+            }
+        }
         maven { setUrl("https://mirrors.tencent.com/nexus/repository/maven-public/") }
         maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
         maven { setUrl("https://maven.aliyun.com/repository/public") }

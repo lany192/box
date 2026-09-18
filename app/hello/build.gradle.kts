@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 
@@ -55,12 +54,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 
     buildFeatures {
         compose = true
+    }
+
+    lint {
+        // targetSdk 30 为项目既有配置，此处仅跳过 Play 目标版本政策检查
+        disable += "ExpiredTargetSdkVersion"
     }
 }
 

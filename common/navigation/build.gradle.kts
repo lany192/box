@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.ksp)
     alias(libs.plugins.android.hilt)
 }
@@ -35,9 +34,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 
     lint {
         targetSdk = libs.versions.app.target.sdk.get().toInt()
