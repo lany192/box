@@ -107,6 +107,8 @@ dependencies {
     "implementation"(libs.androidx.constraintlayout)
     "implementation"(libs.androidx.material)
     "implementation"(libs.androidx.recyclerview)
+    // MathActivity 使用 com.github.lany192.decoration.LinearDecoration
+    "implementation"(libs.lany.decoration)
     "implementation"(libs.brvah)
     "implementation"(libs.immersionbar)
 

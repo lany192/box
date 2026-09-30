@@ -165,6 +165,8 @@
 -dontwarn io.smallrye.**
 -dontwarn java.beans.**
 -dontwarn java.lang.reflect.AnnotatedType
+#jdom 引用了 Android 上不存在的 java.rmi
+-dontwarn java.rmi.**
 -dontwarn javax.xml.**
 -dontwarn jdk.jfr.**
 -dontwarn joptsimple.**

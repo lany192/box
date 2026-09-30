@@ -57,21 +57,23 @@ configure<com.android.build.api.dsl.ApplicationExtension> {
     }
 
     buildFeatures.viewBinding = true
+    // AGP 9 中 resValues 默认关闭，buildTypes 里的 resValue 需要显式开启
+    buildFeatures.resValues = true
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("config")
             //打包时间
             resValue("string", "apk_build_time", buildTime)
         }
         create("develop") {
-            matchingFallbacks = mutableListOf("release")
+            matchingFallbacks += "release"
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("config")
             versionNameSuffix = "_dev"
             //打包时间
@@ -117,7 +119,7 @@ configure<com.android.build.api.dsl.ApplicationExtension> {
         error += listOf("Wakelock", "TextViewEdits")
         explainIssues = false
         fatal += listOf("NewApi", "InlineApi")
-        htmlOutput = reports.file("lint-report.html").get().asFile
+        htmlOutput = reports.get().asFile.resolve("lint-report.html")
         htmlReport = true
         ignore += "TypographyQuotes"
         ignoreTestSources = true
@@ -126,20 +128,22 @@ configure<com.android.build.api.dsl.ApplicationExtension> {
         lintConfig = file("default-lint.xml")
         noLines = true
         quiet = true
-        sarifOutput = reports.file("lint-report.html").get().asFile
+        sarifOutput = reports.get().asFile.resolve("lint-report.html")
         sarifReport = true
         showAll = true
-        textOutput = reports.file("lint-results.txt").get().asFile
+        textOutput = reports.get().asFile.resolve("lint-results.txt")
         textReport = true
         warning += "ResourceAsColor"
         warningsAsErrors = true
-        xmlOutput = reports.file("lint-report.xml").get().asFile
+        xmlOutput = reports.get().asFile.resolve("lint-report.xml")
         xmlReport = true
     }
 }
 
 dependencies {
     "implementation"(fileTree(mapOf("include" to listOf("*.jar", "*.aar"), "dir" to "libs")))
+    // AGP 9 内置 Kotlin 下 parcelize 插件不会自动添加该运行时依赖
+    "implementation"(libs.kotlin.parcelize.runtime)
     "testImplementation"(libs.junit)
     "androidTestImplementation"(libs.androidx.test.ext.junit2)
     "androidTestImplementation"(libs.androidx.test.espresso)
@@ -244,7 +248,7 @@ dependencies {
     "implementation"(libs.backgroundx)
     "implementation"(libs.kluban)
     "implementation"(libs.luban)
-//    "implementation"(libs.lany.decoration)
+    "implementation"(libs.lany.decoration)
     "implementation"(libs.lany.keyboard)
     "implementation"(libs.flexbox)
     "implementation"(libs.number.picker)

@@ -1,7 +1,6 @@
 package com.lany192.box.network.di
 
 import com.github.lany192.arch.network.HttpLogInterceptor
-import com.github.lany192.utils.ContextUtils
 import com.lany192.box.network.data.api.ApiService
 import com.lany192.box.network.interceptor.DomainInterceptor
 import com.lany192.box.network.interceptor.HeaderInterceptor

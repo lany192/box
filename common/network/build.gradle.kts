@@ -49,6 +49,8 @@ dependencies {
 
     // 项目依赖（PageInfo.java 使用 com.github.lany192.arch.entity.Page）
     implementation(project(":library:arch"))
+    // interceptor 下的 Java 源码使用 com.github.lany192.utils.{PhoneUtils,KVUtils,TimeUtils} 与 com.github.lany192.log.XLog
+    implementation(project(":library:core"))
 
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)

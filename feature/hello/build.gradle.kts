@@ -10,6 +10,8 @@ if (singleRun) {
 }
 apply(plugin = "com.android.legacy-kapt")
 apply(plugin = "kotlin-parcelize")
+// Kotlin 2.0 起启用 compose 必须应用 Compose Compiler 插件
+apply(plugin = "org.jetbrains.kotlin.plugin.compose")
 apply(plugin = "com.google.dagger.hilt.android")
 apply(plugin = "com.github.lany192.router")
 

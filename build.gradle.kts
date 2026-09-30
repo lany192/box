@@ -68,6 +68,23 @@ allprojects {
     }
 }
 
+// AGP 9 内置 Kotlin 只自动加载实现了 KotlinBaseApiPlugin 的编译器插件（compose/ksp），
+// parcelize 插件（ParcelizeSubplugin）仍是旧版 KotlinCompilerPluginSupportPlugin 接口，不会被加载，
+// 这里对应用了 parcelize 的模块把编译器插件手动加入类路径，AGP 会将其转为 -Xplugin 传给 Kotlin 编译器
+subprojects {
+    afterEvaluate {
+        val parcelizeApplied = pluginManager.hasPlugin("org.jetbrains.kotlin.plugin.parcelize") ||
+            pluginManager.hasPlugin("kotlin-parcelize")
+        if (parcelizeApplied) {
+            configurations
+                .matching { it.name.startsWith("kotlinCompilerPluginClasspath") }
+                .configureEach {
+                    dependencies.add(project.dependencies.create("org.jetbrains.kotlin:kotlin-parcelize-compiler:${libs.versions.kotlin.get()}"))
+                }
+        }
+    }
+}
+
 tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }
