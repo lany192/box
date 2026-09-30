@@ -178,7 +178,7 @@ public class FileUtils {
         try {
             String imagePath = context.getCacheDir().getPath() + "/" + System.currentTimeMillis() + ".jpg";
             File file = new File(imagePath);
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.createNewFile();
             }
             return Uri.fromFile(file);

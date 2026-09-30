@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
@@ -14,8 +15,10 @@ plugins {
     alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
-    alias(libs.plugins.hilt.android) apply false
-    alias(libs.plugins.google.ksp) apply false
+    alias(libs.plugins.kotlin.compose) apply false
+    alias(libs.plugins.android.hilt) apply false
+    alias(libs.plugins.android.ksp) apply false
+    alias(libs.plugins.android.legacy.kapt) apply false
 }
 
 allprojects {
@@ -46,23 +49,9 @@ allprojects {
         }
     }
 
-    afterEvaluate {
-        if (plugins.hasPlugin("com.android.library") || plugins.hasPlugin("com.android.application")) {
-            val android = extensions.getByName("android") as com.android.build.gradle.BaseExtension
-            android.compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_11
-                targetCompatibility = JavaVersion.VERSION_11
-            }
-//            if (plugins.hasPlugin("org.jetbrains.kotlin.android")) {
-//                android.kotlinOptions {
-//                    jvmTarget = "11"
-//                }
-//            }
-        }
-        tasks.withType<KotlinCompile>().configureEach {
-            kotlinOptions {
-                jvmTarget = "11"
-            }
+    tasks.withType<KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
         }
     }
 }
@@ -80,7 +69,7 @@ allprojects {
 }
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }
 
-apply(from = "./gradle/buildinfo.gradle")
+apply(from = "./gradle/buildinfo.gradle.kts")
